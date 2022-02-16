@@ -10,4 +10,7 @@ So, the Sun sends out gravitational waves that travel at the speed of light.
 Therefore, Earth is attracted to where the Sun was ~8 minutes ago.
 
 Under the influence of an extreme gravitational field, time slows down (gravitational redshift)
-However, time is also affected when an object moves
+However, time is also affected when an object moves (speed of light is constant, special relativity)
+
+Faster you move, the slower time passes for you relative to an observer
+The stronger the gravitational field, the slower time passes for you relative to an observer

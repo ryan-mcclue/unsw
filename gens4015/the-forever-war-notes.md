@@ -23,8 +23,9 @@ Lack of doing things for enjoyment, e.g. 'soyashit' a high concentrated foodstuf
 Harmful effects of 'over-zealous hate conditioning'.
 Uneasiness with being at the mercy of a computer
 Feeling of detachment (remarking on the inability to send messages faster than the speed of light). generational loss of knowledge
-
-TODO: 
-· understand time dilation references. how can by 25 but served 20 years?
-· what is relativistic speeds
-· page 95: relativity traps us in the enemy's past, relativity brings them from our future
+'future shock' term is mentioned, yet it still happens.
+after not admitting to cowardice: 'surely he had nothing so primitive and unmilitary as a will to live'
+after discussing marygay injuries: 'tried to make love'
+mentioning of uneasniness with pyschological conditioning having unknown motives to the participants
+served 20 years, only 25
+the future holds mass unemployment.

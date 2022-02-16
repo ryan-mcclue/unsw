@@ -20,5 +20,12 @@
 
 % a fact/clause
 colour(a, red). 
+colour(a, green). 
 
 % we query prolog to prove a goal
+% variables (uppercase; constants lowercase; _ is variable that is not printed) are possible values to prove a goal
+
+% rule
+grandchild(Grandparent, Grandchild) :-
+  % conjunction
+  parent(irene, Child), parent(Child, GrandChild).

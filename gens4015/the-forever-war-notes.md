@@ -17,3 +17,14 @@ prolonged time away from the norm can cause the loss of your humanity (they star
 Furthermore, the 'military law' to have sex with different people every night loses the emotional bonds of being human, and such 'human' sensations are seen as necessities and just physical releases
 The high-risk endeavours of space travel involves high pressure situations where the slightest error can cause death. Serious affect on mental health
 Extreme pychological manipulation to evoke hatred for the Taurans and to overcome our humanity to achieve particular tasks (good things get better, bad things get worse)
+Lack of doing things for enjoyment, e.g. 'soyashit' a high concentrated foodstuff
+
+## Sergeant Mandella
+Harmful effects of 'over-zealous hate conditioning'.
+Uneasiness with being at the mercy of a computer
+Feeling of detachment (remarking on the inability to send messages faster than the speed of light). generational loss of knowledge
+
+TODO: 
+· understand time dilation references. how can by 25 but served 20 years?
+· what is relativistic speeds
+· page 95: relativity traps us in the enemy's past, relativity brings them from our future

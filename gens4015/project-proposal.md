@@ -1,5 +1,9 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+----------------------------------------------
+IN weekly writings reference lecture/articles
+----------------------------------------------
+
 It should be approximately a page long
 
 # GENS4015 Project Proposal - Ryan McClue (z5346008)
@@ -15,3 +19,5 @@ It should be approximately a page long
 -
 6. An outline or rough draft
 -
+
+Considering social structures of the future/development of long-lived civilisations (and there interaction with technology)

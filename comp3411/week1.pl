@@ -18,6 +18,8 @@
 % 3. Planning agent (usually involves search, i.e. a look ahead)
 % 4. Goal based (some 'end' state goal)
 
+% minmax algorithm for chess
+
 % a fact/clause
 colour(a, red). 
 colour(a, green). 

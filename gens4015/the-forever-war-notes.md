@@ -31,4 +31,12 @@ served 20 years, only 25
 the future holds mass unemployment, 75% on welfare. giant mega-cities
 'mother passed around joints'; so casually
 UN organises everythin; intense globalisation. this utmost control can stifle individualism; they control employment and dictate how you live your life (everything short of a dictatorship). censor media, seriously not even subtle distorted and fake news
+The entire city 'brain' in a single small room. Such influence in such a small area.
+UN conditioning people to not want to live in large houses but small places. UN charging insane $5000 tax on $100 letter from Luna to Earth to discourage contact.
+Medical priority levels of who is deemed suitable for medical treatment. No empathy from nurses. No empathy from crematorium.
+To go to 'Luna' to be more 'individual' have to rejoin UNEF.
+Deception saying you could choose your assignment but no garuntee how long you'd have that, i.e. reassigned immediately
 
+## Lieutenant Mandella
+Effects of mind conditioning with widespread gays and lesbians
+Unceremonious 'want to sack tonight?'

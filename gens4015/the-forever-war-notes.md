@@ -28,4 +28,7 @@ after not admitting to cowardice: 'surely he had nothing so primitive and unmili
 after discussing marygay injuries: 'tried to make love'
 mentioning of uneasniness with pyschological conditioning having unknown motives to the participants
 served 20 years, only 25
-the future holds mass unemployment.
+the future holds mass unemployment, 75% on welfare. giant mega-cities
+'mother passed around joints'; so casually
+UN organises everythin; intense globalisation. this utmost control can stifle individualism; they control employment and dictate how you live your life (everything short of a dictatorship). censor media, seriously not even subtle distorted and fake news
+

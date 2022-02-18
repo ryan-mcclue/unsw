@@ -38,5 +38,13 @@ To go to 'Luna' to be more 'individual' have to rejoin UNEF.
 Deception saying you could choose your assignment but no garuntee how long you'd have that, i.e. reassigned immediately
 
 ## Lieutenant Mandella
-Effects of mind conditioning with widespread gays and lesbians
+Effects of mind conditioning with widespread gays and lesbians. Convenience over love
 Unceremonious 'want to sack tonight?'
+Mind conditioning makes you doubtful if your own thoughts are genuine, particularly in times of distress, (amputation realisation)
+All are just soldiers; even after going to Heaven, few people know who they are
+Heaven charges exorbitant rates as it knows the soldiers have accumulated interest.
+No care for individuals, separating people to different time dilations in order to further reinforce staying in the army
+
+## Major Mandella
+ALSC machine to indoctrinate memories that cannot be forgotten. The same immoral principles have more 'civilised' ways of being inflicted
+

@@ -31,3 +31,6 @@ colour(a, green).
 grandchild(Grandparent, Grandchild) :-
   % conjunction
   parent(irene, Child), parent(Child, GrandChild).
+
+% to include a file: consult(file). or [file].
+

@@ -15,8 +15,17 @@
 % An agent senses information and acts upon it.
 % 1. Reactive agent performs minimal processing on the sensing information. No retained state. Can repeat the same action
 % 2. Model based reactive agent will have a 'world model' (soccer robots can keep track of map). Cannot look into the future and plan ahead
-% 3. Planning agent (usually involves search, i.e. a look ahead)
-% 4. Goal based (some 'end' state goal)
+% 3. Planning agent (usually involves search, i.e. a look ahead. assumes deterministic envrionment)
+% 4. Utility (reinforced  learning; some numerical number to indicate whether the new state is better or worse than success)
+% 5. Learning agent
+
+% Uninformed search (not knowing the goal, i.e. a blind search. We often initially have to do an uninformed search first to find the goal)
+% e.g. a delivery robot, convert 'map' to a weighted directed graph, i.e a search tree
+% DFS improved with depth bounded limited search. naive approach will not find complete solution if cycles
+% BFS improved with uniform cost search
+% An iterative deepening search is a repeated depth bounded search. This gives the effect of a bfs search, but without the space complexity issues  
+
+% planning is how you order a sequence of actions to acheive a goal
 
 % minmax algorithm for chess
 
@@ -33,4 +42,3 @@ grandchild(Grandparent, Grandchild) :-
   parent(irene, Child), parent(Child, GrandChild).
 
 % to include a file: consult(file). or [file].
-

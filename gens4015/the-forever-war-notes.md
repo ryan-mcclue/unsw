@@ -47,4 +47,8 @@ No care for individuals, separating people to different time dilations in order 
 
 ## Major Mandella
 ALSC machine to indoctrinate memories that cannot be forgotten. The same immoral principles have more 'civilised' ways of being inflicted
+No natural births. Conscription for all. Young years spent in an institute 'creche'. Certain 'normal' traits considered sociopathic
+The liklihood of anyone surviving a combat role is virtually none.
+Found optimal build/ethinicity type for most humans: polynesian. Eugenics council to control virtually every aspect of ones life.
+At no point is an attempt at conversing/peacemaking with the Tauruns suggested.
 

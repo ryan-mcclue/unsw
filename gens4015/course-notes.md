@@ -25,3 +25,17 @@ Faster you move, relative to an observer:
  - time passes slower
  - length contracts
  - mass gets larger
+
+The habitable zone is range of orbits around a star that a planet could support liquid water
+Eventually Earth will lose its magentic field when the inner core solidifies (like on the moon and Mars)
+
+MyVeryElderlyMotherJustServedUsNachos
+
+Proxima Centuri closest star. Magellic clouds dwarf galaxies orbitting milky way. Andromeda closest galaxy
+
+TODO: What is parallax and parsecs?
+
+IMPORTANT: Carl Zimmer interview is to understand the 'rules' that make good scientific writing, i.e. does it make it interesting, accessible and worth knowing.
+Hopefully have the reader leave with a new understanding/viewpoint of the universe/world
+
+# Week 2 - Astrophysics

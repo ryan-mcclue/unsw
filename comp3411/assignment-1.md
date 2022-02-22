@@ -23,21 +23,29 @@ Mem - out of global stack
   Assuming using min-heap implementation,
   time: O((v + e)log(v))
   space: O(v + e) 
+  will visit all nodes
     
   (II) [ideepsearch]
   'd' is the length of the shortest path to a target node
   'b' maximum number of children in graph
   'm' longest path between any two nodes in graph
-  time: O(b^d) 
-  space: O(bd)
+  time: O(b^m)
+  space: O(mb)
   
   (III) [astar]
-  informed, like BFS
+  informed
+  time: O(b^m)
+  space: O(b^m)
+   
+  global goal is how close to the end result, given by heuristic. essentially 'as-the-crow-flies' distance from current node to destination node.
+  local goal is communication between nodes
 
   (IV) [idastar]
   informed
 
   the iterative deepening is useful if the graph is very large and the goal far away
+  time: O(b^m)
+  space: O(mb)
 
 TODO: In relation to time (and other features) are we giving a numerical answer like O(b^n), or just explaining in layman terms like only returns one result so more time efficient?
 

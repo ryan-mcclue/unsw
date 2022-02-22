@@ -20,6 +20,9 @@ Mem - out of global stack
     What’s its space complexity?
   (I) [ucsdijkstra]
   djikstra implementation of ucs with no goal state, i.e. will find for all paths 
+  Assuming using min-heap implementation,
+  time: O((v + e)log(v))
+  space: O(v + e) 
     
   (II) [ideepsearch]
   'd' is the length of the shortest path to a target node
@@ -29,10 +32,12 @@ Mem - out of global stack
   space: O(bd)
   
   (III) [astar]
-  informed
+  informed, like BFS
 
   (IV) [idastar]
   informed
+
+  the iterative deepening is useful if the graph is very large and the goal far away
 
 TODO: In relation to time (and other features) are we giving a numerical answer like O(b^n), or just explaining in layman terms like only returns one result so more time efficient?
 

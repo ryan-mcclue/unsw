@@ -32,6 +32,7 @@
 %   - Is suboptimal if graph weights are different 
 %   - Exponential space
 % 4. Uniform Cost Search (makes next selection with a priority queue)
+% IMPORTANT: In reality, BFS is Djikstra without weights and Djikstra is A* with a worthless heuristic.
 
 % planning is how you order a sequence of actions to acheive a goal
 

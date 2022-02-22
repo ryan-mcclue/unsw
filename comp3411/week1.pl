@@ -20,10 +20,18 @@
 % 5. Learning agent
 
 % Uninformed search (not knowing the goal, i.e. a blind search. We often initially have to do an uninformed search first to find the goal)
-% e.g. a delivery robot, convert 'map' to a weighted directed graph, i.e a search tree
-% DFS improved with depth bounded limited search. naive approach will not find complete solution if cycles
-% BFS improved with uniform cost search
-% An iterative deepening search is a repeated depth bounded search. This gives the effect of a bfs search, but without the space complexity issues  
+% To consider search problems, it is useful to compare with a delivery robot example. In this example, we create a weighted directed graph with each node being a location.
+% Note that a 'cycle' can be represented in a tree as a continual succession of the same nodes (doesn't necessarily have to be a graph structure)
+% 1. DFS:
+%   - Is suboptimal, i.e. may miss shortest path as it expands in the wrong order
+%   - Is not complete, i.e. may get stuck in infinite loop
+%   - Linear space
+% 2. Iterative Deepening (utilising a repeated depth bounded search)
+% 3. BFS:
+%   - Is complete
+%   - Is suboptimal if graph weights are different 
+%   - Exponential space
+% 4. Uniform Cost Search (makes next selection with a priority queue)
 
 % planning is how you order a sequence of actions to acheive a goal
 

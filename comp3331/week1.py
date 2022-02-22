@@ -14,11 +14,9 @@
 # NOTE(Ryan): We are using Postgresql as it has better support for the SQL language (MySQL utilises too many non-standard extensions)
 # It's client-server based (unlike sqlite3).
 # For linux, /usr/lib/postgresql/12/bin/*
-# 
 
 # key constraint (cardinality) with arrows, specifically arrow points to 'one'
 # however, without participation constraint (bold line) we could have none/neither as an alternative
-
 
 # IMPORTANT(Ryan): RDBMS involves two structuring mechanisms:
 #  1. Relation: object name, e.g. Movie, Actor
@@ -26,8 +24,9 @@
   
 # select summary_function(argument [fields|*]) from [table] order by [field] where [condition]
 
-# er diagram relationships with multiplicity. relational diagram is drawn as a single table row. db schema diagram shows primary and foreign keys. 
-# 
+# er diagram relationships with multiplicity. relational diagram is drawn as a single table row. 
+# db schema diagram shows primary and foreign keys. 
+ 
 # relationship naming is not verb, e.g. owned not owns
 # for multiplicity we may have to introduce relations representing relationships, e.g. BelongsTo, AppearsIn, etc.
 

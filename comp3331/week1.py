@@ -38,6 +38,7 @@
 # e.g. say we want to store favourite cuisine name, dish, etc. can't do with multivalue.
  
 # a multiattribute value will most likely result in duplication of data as oppose to a relation
+# furthermore, breaking out into a relation offers the ability to add more relations
 
 # for large ER diagrams can separate diagrams with entity/attribute information and then another with the relations
 

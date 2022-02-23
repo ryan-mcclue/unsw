@@ -1,5 +1,35 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+1. Disruption of nature:
+Although the seeming wonders of space travel, to deal with the difficulties of space travel and dangers on other planets, resort to harmful substances, e.g. weed and cigaretes rampant.
+Also human enhancements like enhanced weight bearing suits, automatic guns further the disconnect with our natural self.
+Extreme pychological manipulation to evoke hatred for the Taurans and to overcome our humanity to achieve particular tasks (good things get better, bad things get worse)
+Furthermore, the 'military law' to have sex with different people every night loses the emotional bonds of being human, and such 'human' sensations are seen as necessities and just physical releases
+Effects of mind conditioning with widespread gays and lesbians. Convenience over love
+Unceremonious 'want to sack tonight?'
+Found optimal build/ethinicity type for most humans: polynesian. Eugenics council to control virtually every aspect of ones life.
+ALSC machine to indoctrinate memories that cannot be forgotten. The same immoral principles have more 'civilised' ways of being inflicted
+No natural births. Conscription for all. Young years spent in an institute 'creche'. Certain 'normal' traits considered sociopathic
+
+2. man's hubris:
+Quick to pass judgement on Taurans knowing what they are capable of
+Although no understanding, the development of interstellar travel has made more fearful of prospective threats, e.g. taurans with a returned drone attack 
+Lack of empathy/desensitised with knowledge of such destruction and frequent death (the idea of dying in training is just commonplace). 
+First instinct to kill animals, capital punishment (no patience), destroy buildings (even inanimate objects are subject to this ideology)
+UN organises everythin; intense globalisation. this utmost control can stifle individualism; they control employment and dictate how you live your life (everything short of a dictatorship). 
+censor media, seriously not even subtle distorted and fake news
+Deception saying you could choose your assignment but no garuntee how long you'd have that, i.e. reassigned immediately
+UN conditioning people to not want to live in large houses but small places. UN charging insane $5000 tax on $100 letter from Luna to Earth to discourage contact.
+Medical priority levels of who is deemed suitable for medical treatment. No empathy from nurses. No empathy from crematorium.
+No care for individuals, separating people to different time dilations in order to further reinforce staying in the army
+
+3. emotional isolation:
+time dilation causing alienation (called queer)
+humans only required where technology won't work
+loss of enjoyments, care-free living, everything is duty
+after not admitting to cowardice: 'surely he had nothing so primitive and unmilitary as a will to live'
+Mind conditioning makes you doubtful if your own thoughts are genuine, particularly in times of distress, (amputation realisation)
+
 ## Private Mandella
 Youthful cyninism/ignorance (questioning what is the point)
 Collapsar is worm hole. High IQ individuals protect planets around collapsars, i.e. portal planets
@@ -30,7 +60,8 @@ mentioning of uneasniness with pyschological conditioning having unknown motives
 served 20 years, only 25
 the future holds mass unemployment, 75% on welfare. giant mega-cities
 'mother passed around joints'; so casually
-UN organises everythin; intense globalisation. this utmost control can stifle individualism; they control employment and dictate how you live your life (everything short of a dictatorship). censor media, seriously not even subtle distorted and fake news
+UN organises everythin; intense globalisation. this utmost control can stifle individualism; they control employment and dictate how you live your life (everything short of a dictatorship). 
+censor media, seriously not even subtle distorted and fake news
 The entire city 'brain' in a single small room. Such influence in such a small area.
 UN conditioning people to not want to live in large houses but small places. UN charging insane $5000 tax on $100 letter from Luna to Earth to discourage contact.
 Medical priority levels of who is deemed suitable for medical treatment. No empathy from nurses. No empathy from crematorium.

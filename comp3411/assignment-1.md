@@ -27,7 +27,7 @@ Mem - out of global stack
     
   (II) [ideepsearch]
   'd' is the length of the shortest path to a target node
-  'b' maximum number of children in graph
+  'b' maximum number of children in graph, i.e. breadth
   'm' longest path between any two nodes in graph
   time: O(b^m)
   space: O(mb)

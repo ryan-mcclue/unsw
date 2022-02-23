@@ -16,7 +16,7 @@
 # For linux, /usr/lib/postgresql/12/bin/*
 
 # key constraint (cardinality) with arrows, specifically arrow points to 'one'
-# however, without participation constraint (bold line) we could have none/neither as an alternative
+# however, without participation constraint (bold line; aka total participation as oppose to partial) we could have none/neither as an alternative
 
 # IMPORTANT(Ryan): RDBMS involves two structuring mechanisms:
 #  1. Relation: object name, e.g. Movie, Actor
@@ -31,5 +31,14 @@
 # for multiplicity we may have to introduce relations representing relationships, e.g. BelongsTo, AppearsIn, etc.
 
 # will have a schema.sql file and a data.sql file containing table inserts
+
+# with inheritance, disjoint (either), overlap (could be both)
+
+# multivalue attributes don't allow storing more information about the value, 
+# e.g. say we want to store favourite cuisine name, dish, etc. can't do with multivalue.
+ 
+# a multiattribute value will most likely result in duplication of data as oppose to a relation
+
+# for large ER diagrams can separate diagrams with entity/attribute information and then another with the relations
 
 # TODO(Ryan): Investigate advanced SQL topics: views, stored procedures, triggers, aggregates

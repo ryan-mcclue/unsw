@@ -25,12 +25,18 @@ tyrells office the only place that gets the sun, voices echo to make you feel in
 grand buildings that lie in rubbish-strewn streets
 ship flying overhead is almost like big-brother; spotlights constantly filtering through windows to indicate a sort of automated intrusion; no peace and quiet
 J.F sebastian says 'i make my friends'; only one who seems content in the world is one who has given in to the idea of human replacements
-deckard frequently drinking, also at police station; coke is displayed a lot; smoking also; all to cope with living in such a dreary place
+deckard frequently drinking, also at police station; coca cola adverts are displayed a lot; smoking also; all to cope with living in such a dreary place
 no concern for deckard after seeing him distressed after killing. all duty
 majority of soundtrack is electronic music, symbolising that computers are present in all facets of life
 deckard has no social life or friends
-the replicants display more emotion than humans; distress at loss of others, anger at being destroyed, joy when seeing others, amusement at being playful and enjoyment with their plans working (chess ruse)
+the replicants display more emotion than humans; distress at loss of others, anger at prospect of being destroyed, joy when seeing others, amusement at being playful and enjoyment with their plans working (chess ruse)
+they are in some way more human in that they are learning to cope with their emotions, whilst humans have learned to stow them away.
+Roy repeating 'not yet' in the face of death; he shows a desire to keep living
 camera constantly panning up to indicate insignificance of human occupants. 
 the nexus replicants each represent attributes of humanity that has been lost, i.e. we have to experience these emotions through them as we have lost them ourselves
 e.g. pris is movement, roy cunning/devious, rachel caring, leon follower, zora flirtatious 
 the noticeable distress in deckard as he kills the replicants is due to the society he lives in not offering ways to express emotions, so he experiences physical shakes instead
+the extreme uneasiness he feels to Roy when he chases him as Roy embraces animalistic (howling) traits (and masochistic in order to prolong life), emotions Deckard is not accustomed to witnessing
+deckards understanding of the loss of his humanity is most pointantly experienced when he is saved by Roy (he was trying to be free, the most basic human emotion, not malice) and then witnesses Roy dying and how insigthful and introspective he is; what world must he live in whereby these
+'human' replicants are treated with such disrespect
+'it's too bad show won't live, then again who does?' remarking on the drudgery life has become

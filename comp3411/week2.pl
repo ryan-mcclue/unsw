@@ -16,3 +16,29 @@
 % When expanding nodes in A*, e.g. (A, running_cost, f(n)) 
 
 % With assignment question 2, tradeoff between greediness and optimality
+
+% Examples of constraint satisfaction problems: transit scheduling, circuit layout, assignment
+% CSP is to find variables from their domains that don't violate constraints
+% Translated to a constraint graph, nodes are variables, arcs are constraints 
+% Types of constraints are unary, binary, higher order, inequality
+% An adjacency relationship means nodes are connected
+% As opposed to path search, with constraint search the goal state is unknown
+% With constraint search, solvability is difficult without heuristics
+
+% Backtracking search. Like a DFS, assigning one value, then a new one which doesn't conflict and move on
+% Various heuristics to improve this (often the optimal heuristic will be determined via experimentation):
+%   Minimum Remaining Values, i.e. pick the variable that is the most constrained
+%   Least Constraining Value. This means we won't have to backtrack as much
+%   Forward Checking, we keep track of remaining legal values . So, in a sense we propagate the constraints forwards to detect a failure earlier 
+
+% arc consistency example of forward checking that constantly propagates constraints down (forward checking not always propagate). so there is an arc consistency algorithm
+%
+% variable elimination remove a node and add a new constraint between the nodes of the removed node
+% 1. write out constraint extension
+% 2. union extensions
+
+% Local search (iterative improvement, hill climb search) first sets out variables with most constraint violations. 
+% Then progress through each variable and try and remove/reduce constraints iteratively.
+% To prevent local minima, i.e. situation where you can't get any better, introduce randomness. A form of this is simulated annealing, i.e modeling change in temperatue
+
+% prolog good for constraint solving problems

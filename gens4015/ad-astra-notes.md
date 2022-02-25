@@ -41,3 +41,15 @@ layers of deception and censoring to preserve image; his father was not a hero
 'i'm being pulled farther and farther from the Sun to you', the Sun representing goodness and happiness; in order to reach his father Roy is being pulled further from his humanity
 such emotional anemia enables and individual to perform seemingly inhuman actions, e.g. his father killing the mutineers and Roy so desired to ignore orders as he believes he knows best and has nothing else in his life that matters
 Eve saying 'even when your hear I don't know where you are'. no scenes are with him and Eve in person in the present time (in fact all of this close relations are portrayed in this fashion)
+enroute to Neptune, Roy experiences negative effects of 0g on both psychological and physical self (psychodelic hallucinations, trance states of past memories, focusing on the negative things he has done with relationships, repeating phrases, hearing voices); repetive and monotonous task of long space journeys
+humans require variety in order to survive
+reliance on technology can blunt independence, e.g. the Captain unable to operate in manual control when landing on Mars
+soundtrack often monotnous to reinforce dreary life 
+TODO: what is the anti-matter catalyst on the Lima project. is it source of energy?
+the blind pursuit of a goal deterioates your humanity
+even after the most crushing statement to him 'i never once thought of home. i never cared about you or your mother and your small ideas'. conditioned to just have a tear slowly slide from his eye
+his father recognised to discover the wonders of the universe you have to abandon all else; SpaceComm embraces this mentality 
+Roy's emotional anaemia continues when communicating with his father
+only after he witnesses his father fade away in space does Roy exert a physical emotional response and cries out. the threshold for emotional experiences is so high
+the severe sacrifices required to search beyond left Roy's father with no desire to live in the real world. 
+'could only see what wasn't there, not what was right in front of him' imbued with such a will to achieve a goal, things that don't satisfy this are discarded at the detriment of oneself

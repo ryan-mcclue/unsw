@@ -40,6 +40,6 @@ depthlim(Path, Node, G, F_limit, Sol, G2)  :-
     not(member(Node1, Path)),      % Prevent a cycle
     G1 is G + C,
     h(Node1, H1),
-    F1 is G1 + H1,
+    F1 is (2 - 1.2) * G1 + (1.2 * H1), % (2 - w)·g(n) + w·f(n)
     F1 =< F_limit,
     depthlim([Node|Path], Node1, G1, F_limit, Sol, G2).

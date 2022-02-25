@@ -28,5 +28,16 @@ colonel injured 'colonel you have an irregular heartbeat; i suggest you get that
 mood stabliser pills.
 ever repeating Roy voice-over to emphasis his lonliness/isolation.
 onboard to mars the contrast between Roy and and the other crew members laughing and getting along.
-many people discussing Roy's father are full of adulation and praise; this furthers Roy's image of himself as second-rate in the eyes of his father.
+many people discussing Roy's father are full of adulation and praise; this furthers Roy's image of himself as second-rate in the eyes of his father. he is always referred to as 'son of william mcbride'
 normal chain of command Roy is constantly in a submissive state being told what to do; even on trip to Mars his lower-ranked Captain does not adhere to his requests to ignore Mayday
+the psychological evaluation following the monkey attack, Roy tells of his rage similar to that of monkey; if he compartmentalises this anger he experiences pain; it's still approved however; as long as he is able to perform optimally this is what is important, regardless of his unhealthy mental state
+after arriving at Mars underground base '7 weeks since Sun, birds, trees'; to search onward you must absolve yourself from nature.
+rooms with virtual nature scenes projected onto the walls
+all the bases are neutral colour schemes, dim lighting, basic shapes like cubes; furnished with only the essential; purely functional
+after laser transmission, Roy realises he is being used; the trauma of the individual is outweighed by the collective good which is determined a by a small few
+after emotional plea to his father, still no emotional condolences; instead his purpose has been exhausted and he is discarded
+failed psyhchological assessment places you in a comfort room; no human contact; tranquility is supposed to be achevied through oneself alone
+layers of deception and censoring to preserve image; his father was not a hero
+'i'm being pulled farther and farther from the Sun to you', the Sun representing goodness and happiness; in order to reach his father Roy is being pulled further from his humanity
+such emotional anemia enables and individual to perform seemingly inhuman actions, e.g. his father killing the mutineers and Roy so desired to ignore orders as he believes he knows best and has nothing else in his life that matters
+Eve saying 'even when your hear I don't know where you are'. no scenes are with him and Eve in person in the present time (in fact all of this close relations are portrayed in this fashion)

@@ -6,49 +6,34 @@
 
 Mem - out of global stack
 
-|             |start10  | start12 | start20 | start30 | start40 |
-|-------------|---------|---------|---------|---------|---------|
-| **UCS**     |10,2565  |Mem      |Mem       |Mem      |Mem      |
-| **IDS**     |10,2407  |12,13812 |20,5297410|Time     |Time     |
-| **A\***     |10,33    |12,26    |20,915    |Mem      |Mem      |
-| **IDA\***   |10,29    |12,21    |20,952   |30,17297 |40,112571|
+|             |start10  | start12 | start20   | start30 | start40 |
+|-------------|---------|---------|---------  |---------|---------|
+| **UCS**     |10,2565  |Mem      |Mem        |Mem      |Mem      |
+| **IDS**     |10,2407  |12,13812 |20,5297410 |Time     |Time     |
+| **A\***     |10,33    |12,26    |20,915     |Mem      |Mem      |
+| **IDA\***   |10,29    |12,21    |20,952     |30,17297 |40,112571|
 
 1b)
-    Is it complete? An algorithm is complete if it terminates for any input.
-    Is it optimal? We say that an algorithm is optimal if it returns the optimal path to the goal, provided that at least one goal state is reachable from the start state. If more than one state passes the goal test, we want the lowest-cost path among all the paths leading to any goal.
-    What’s the algorithm’s time complexity?
-    What’s its space complexity?
-  (I) [ucsdijkstra]
-  djikstra implementation of ucs with no goal state, i.e. will find for all paths 
-  Assuming using min-heap implementation,
-  time: O((v + e)log(v))
-  space: O(v + e) 
-  will visit all nodes
-    
-  (II) [ideepsearch]
-  'd' is the length of the shortest path to a target node
-  'b' maximum number of children in graph, i.e. breadth
-  'm' longest path between any two nodes in graph
-  time: O(b^m)
-  space: O(mb)
-  
-  (III) [astar]
-  informed
-  time: O(b^m)
-  space: O(b^m)
-   
-  global goal is how close to the end result, given by heuristic. essentially 'as-the-crow-flies' distance from current node to destination node.
-  local goal is communication between nodes
+  All the algorithms are complete and optimal and have time complexity of O(b ^ m)
 
-  (IV) [idastar]
-  informed
+  uscdijkstra is essentially a BFS search with weighted edges.
+  As such, it shares BFS's exponential space time complexity of O(b ^ m).
+  This is inefficient for large problems and can be seen with prolog generating a 'Mem - out of global stack' for start12 ... start40
 
-  the iterative deepening is useful if the graph is very large and the goal far away
-  time: O(b^m)
-  space: O(mb)
+  IDS is a repeated DFS depth-limited search. 
+  As such, it has much better space time complexity than ucsdijkstra of O(b·m).
+  This can be seen with it being able to compute start10 .. start20
+  However, the repeated search means for goals close to the target, it is slower than ucsdijkstra which can be seen in start10
+  IDS is an uninformed search and therefore expands are large number of unecessary nodes.
+  The consequence of this is seen with the algorithm 'timing out' from start30 ... start40
 
-TODO: In relation to time (and other features) are we giving a numerical answer like O(b^n), or just explaining in layman terms like only returns one result so more time efficient?
+  A\* is essentialy an informed ucsdijkstra.
+  This use of a heuristic means it is able to expand less nodes than ucsdijsktra and IDS.
+  As a result, A\* computes more solutions than ucsdijkstra, e.g. start10 ... start20 
+  However, like ucsdjikstra it has exponential space time which results in 'Mem' for start30 ... start40
 
+  IDA\* combines the aforementioned benefits of linear memory efficiency of IDS and the informed search of A\*.
+  It's therefore able to compute solutions to start10 ... start40
 2)
 |            | start50       | start60        | start64         |
 |------------|-------------  |----------------|-----------------|

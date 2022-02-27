@@ -33,7 +33,12 @@
 %   - Exponential space
 % 4. Uniform Cost Search (makes next selection with a priority queue)
 % IMPORTANT: In reality, BFS is Djikstra without weights and Djikstra is A* with a worthless heuristic.
-% IMPORTANT: The 'simple' algorithms will halt if no cycle detection as is what 
+% IMPORTANT: The 'simple' algorithms will halt if no cycle detection
+% IMPORTANT: djikstra implementation of ucs with no goal state, i.e. will find for all paths 
+% In relation to complexity 
+% 'd' is the length of the shortest path to a target node
+% 'b' maximum number of children in graph, i.e. breadth
+% 'm' longest path between any two nodes in graph
 
 % planning is how you order a sequence of actions to acheive a goal
 

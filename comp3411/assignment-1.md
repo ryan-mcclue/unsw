@@ -50,12 +50,12 @@ Mem - out of global stack
 TODO: In relation to time (and other features) are we giving a numerical answer like O(b^n), or just explaining in layman terms like only returns one result so more time efficient?
 
 2)
-|            | start50        | start60         | start64         |
-|------------|-------------   |-----------      |-----------      |
-| **IDA\***  | 50 , 14642512 |60 , 321252368  |64 , 1209086782 |
-| 1.2        | 52 , 191438     |62 , 230861       |66 , 431033 |
-| 1.4        | 10 , 33       |10 , 33         |10 , 33   |
-| 1.6        | 10 , 33       |10 , 33         |10 , 33   |
-| **Greedy** | 164 , 5447       |166 , 1617         |184 , 2174   |
+|            | start50       | start60        | start64         |
+|------------|-------------  |----------------|-----------------|
+| **IDA\***  | 50 , 14642512 | 60 , 321252368 | 64 , 1209086782 |
+| 1.2        | 52 , 191438   | 62 , 230861    | 66 , 431033     |
+| 1.4        | 66 , 116174   | 82 , 3673      | 94 ,188917      |
+| 1.6        | 100 , 34647   | 148 , 55626    | 162 , 235852    |
+| **Greedy** | 164 , 5447    | 166 , 1617     | 184 , 2174      |
 
 Greedy finds suboptimal solution as indicated by exceeding the minimum number of moves described in the starting position name

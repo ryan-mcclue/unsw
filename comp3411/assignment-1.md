@@ -14,7 +14,7 @@ Mem - out of global stack
 | **IDA\***   |10,29    |12,21    |20,952     |30,17297 |40,112571|
 
 1b)
-  All the algorithms are complete and optimal and have time complexity of `O(b ^ m)`
+  All the algorithms are complete, optimal and have time complexity of `O(b ^ m)`
 
   **uscdijkstra** is essentially a BFS search with weighted edges.
   As such, it shares BFS's exponential space time complexity of O(b ^ m).
@@ -47,10 +47,19 @@ Mem - out of global stack
 % Section of code changed for introducing Heuristic Path Search algorithm
 < 43:    F1 is G1 + H1,
 ---
-> 43:    F1 is (2 - 1.2) * G1 + (1.2 * H1), % where w = 1.2 for (2 - w)·g(n) + w·f(n)
+> 43:    F1 is (2 - 1.2) * G1 + (1.2 * H1), % where w = 1.2
 ```
-The properties of IDA\* were outlined in question 1.
-By increasing the value of `w`, we are making the algorithm more greedy and therefore more memory efficient.
-This can be seen with fewer nodes expanded in all successive solutions from `start50 ... start64`
+The most optimal algorithm of the 5 presented is IDA\*. The most memory efficient is Greedy.
+By introducing the heuristic path search algorithm `(2 - w)·g(n) + w·f(n)`, we can make the IDA\* algorithm more greedy or more optimal.
+By increasing the value of `w`, we are making IDA\* more greedy and therefore more memory efficient.
+This can be seen with fewer nodes expanded in all successive increments of `w` in solutions `start50 ... start64`
+However, by making the algorithm more greedy we are reducing how optimal it is.
+This can be seen with the length of the path explored (exceeding the minimum number of moves) increasing with all successive increments of `w` in solutions `start50 ... start64`.
 
-Greedy finds suboptimal solution as indicated by exceeding the minimum number of moves described in the starting position name
+3)
+Ask ourselves what are the implications of the constraint on the nodes? go by constraint by constraint. are we trying to prune values?
+e.g. for C < D, what value of C can be used such that it doesn't satisify constraint. this means we can remove that value from the domain of C. again, check how this constraint affects D
+after pruning the domain of one variable, we must double check other constraints attached to this node to see if they have changed
+
+domain splitting is taking separate constraint graphs by separating the domain of a particular node, e.g. {1,2,3,4} for node A becomes {1,2} for graph 1 and {3,4} for graph 2
+

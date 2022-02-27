@@ -14,11 +14,11 @@ Mem - out of global stack
 | **IDA\***   |10,29    |12,21    |20,952     |30,17297 |40,112571|
 
 1b)
-  All the algorithms are complete and optimal and have time complexity of O(b ^ m)
+  All the algorithms are complete and optimal and have time complexity of `O(b ^ m)`
 
-  uscdijkstra is essentially a BFS search with weighted edges.
+  **uscdijkstra** is essentially a BFS search with weighted edges.
   As such, it shares BFS's exponential space time complexity of O(b ^ m).
-  This is inefficient for large problems and can be seen with prolog generating a 'Mem - out of global stack' for start12 ... start40
+  This is inefficient for large problems and can be seen with prolog generating a *'Mem - out of global stack'* for start12 ... start40
 
   IDS is a repeated DFS depth-limited search. 
   As such, it has much better space time complexity than ucsdijkstra of O(b·m).
@@ -42,5 +42,15 @@ Mem - out of global stack
 | 1.4        | 66 , 116174   | 82 , 3673      | 94 ,188917      |
 | 1.6        | 100 , 34647   | 148 , 55626    | 162 , 235852    |
 | **Greedy** | 164 , 5447    | 166 , 1617     | 184 , 2174      |
+
+```
+% Section of code changed for introducing Heuristic Path Search algorithm
+< 43:    F1 is G1 + H1,
+---
+> 43:    F1 is (2 - 1.2) * G1 + (1.2 * H1), % where w = 1.2 for (2 - w)·g(n) + w·f(n)
+```
+The properties of IDA\* were outlined in question 1.
+By increasing the value of `w`, we are making the algorithm more greedy and therefore more memory efficient.
+This can be seen with fewer nodes expanded in all successive solutions from `start50 ... start64`
 
 Greedy finds suboptimal solution as indicated by exceeding the minimum number of moves described in the starting position name

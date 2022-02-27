@@ -39,3 +39,4 @@ IMPORTANT: Carl Zimmer interview is to understand the 'rules' that make good sci
 Hopefully have the reader leave with a new understanding/viewpoint of the universe/world
 
 # Week 2 - Astrophysics
+IMPORTANT: Harvard style references at end of writing assignments

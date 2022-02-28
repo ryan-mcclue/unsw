@@ -1,0 +1,15 @@
+@startuml
+(A\n{1,2,3,4}) as A
+(B\n{1,2,3,4}) as B
+(C\n{1,2,3,4}) as C
+(D\n{1,2,3,4}) as D
+(E\n{1,2,3,4}) as E
+
+(E) -- (A) : E - A is even
+(C) -- (D) : C /= D
+(C) -- (E) : C > E
+(C) -- (A) : C /= A
+(B) -- (D) : B > D
+(D) -- (E) : D > E
+(B) -- (C) : B > C
+@enduml

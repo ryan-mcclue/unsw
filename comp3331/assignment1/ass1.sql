@@ -1,5 +1,12 @@
 -- comp3311 22T1 Assignment 1
 
+-- view creates a virtual table that can then be queried; select * from View();
+-- function; select FunctionName()
+
+
+
+
+-- select unswid, name from Q1;
 -- Q1
 create or replace view Q1(unswid, name)
 as

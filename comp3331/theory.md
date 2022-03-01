@@ -20,8 +20,6 @@ IMPORTANT(Ryan): RDBMS involves two structuring mechanisms:
  1. Relation: object name, e.g. Movie, Actor
  2. Tuple: key value pair
 
-select summary_function(argument [fields|*]) from [table] order by [field] where [condition]
-
 er diagram relationships with multiplicity. relational diagram is drawn as a single table row. 
 db schema diagram shows primary and foreign keys. 
 

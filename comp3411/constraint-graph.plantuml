@@ -13,3 +13,19 @@
 (D) -- (E) : D > E
 (B) -- (C) : B > C
 @enduml
+
+@startuml
+(A\n{1,2,3,4}) as A
+(B\n{3,4}) as B
+(C\n{2,3}) as C
+(D\n{2,3}) as D
+(E\n{1,2}) as E
+
+(E) -- (A) : E - A is even
+(C) -- (D) : C /= D
+(C) -- (E) : C > E
+(C) -- (A) : C /= A
+(B) -- (D) : B > D
+(D) -- (E) : D > E
+(B) -- (C) : B > C
+@enduml

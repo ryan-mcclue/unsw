@@ -10,6 +10,21 @@ https://escapepod.org/2021/01/28/escape-pod-769-deal/
 
 Compare and contrast the difficulties in communication between humans and aliens:
 
+In 'Tear Tracks', the difficulty in communicating between humans and aliens is largely due to cultural differences.
+Through patience, open-mindedness and empathy, the text suggests that these difficulties can be overcome.
+By embracing these differences, 'Tear Tracks' proposes that one can learn about the experience of suffering. 
+
+From the beginning, Flur is uneasy with the emotional expressions of the Cyclopes "Flur finds each eye startlingly (perhaps deceptively?) expressive."
+She expresses apprehension when inspecting the portraits of notable Cyclopes and struggles to coalesce what she is seeing with similar humans on Earth
+"There are no confident smiles ... They look almost sorrowful ...  They look too sorrowful, the way the politicians at home look too distinguished"
+These thoughts in Flur's mind are then realised in physical communication when Irnv introduces the President by casually reciting her misfortunes
+"It’s the president ... She lost her three children and husband to sudden illness over the period of a year!"
+
+"Flur has no idea how to respond to that"
+"Flur wonders if they hear her spiel at all"
+
+This feeling of causes distraction and makes Flur doubtful if her attempts at communicating are being interpreted as she is intending.
+
 # Tear Tracks
 * why do they arise? 
 - primarily cultural differences 
@@ -25,13 +40,19 @@ Physical communication "Maybe that’s their idea of personal space?"
 "they would find the sight of them in their tubed breathing apparatuses disconcerting"
 " pressed against each other, fluttering suggestively"
 perceived similarities can lead you down the wrong way of thinking
-"There are no confident smiles; They look almost sorrowful"
+"There are no confident smiles; They look almost sorrowful" thinking that something is wrong
 President wiping tears away from eyes?
 Eating is social taboo; must be done by oneself
 "wondering if she is right about the translation for ‘socialize.’"
 Communicate through verbal; possible to learn and mimic beforehand (however could suffer from not being able to react to 'in-the-moment')
 the aliens (Cyclops) view greif/pain as signs of wisdom. on earth, we try to cover up those things. they ultimately believe that good comes from bad. being able to show your sadness is a sign of character
 fundamental unknown; just based on assumptions (Inrv named after Earth, yet 32 years old; learn to be humble and open-minded)
+
+
+Comparatively in 'Deal', the difficulty in communicating between humans and aliens is largely due to differences in language.
+Through hardwork, analysis and inquisitiveness, the text suggests that these difficulties can be overcome.
+By embracing these differences, 'Deal' proposes that one can learn about the experience of perserverance.
+
 
 # Deal
 * why do they arise? 

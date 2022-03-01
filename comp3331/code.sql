@@ -55,4 +55,19 @@ HAVING groupCondition -- having max(r.x) < 75
 select from where
 like ~'regex'
 
-create view Name(var1, var2) as 
+CREATE VIEW
+CourseMarksAndAverages(course,term,student,mark,avg)
+AS
+SELECT s.code, termName(t.id), e.student, e.mark,
+avg(mark) OVER (PARTITION BY course)
+FROM CourseEnrolments e
+JOIN Courses c on c.id = e.course
+JOIN Subjects s on s.id = c.subject
+JOIN Terms t on t.id = c.term;
+
+SELECT b1.name, b2.name
+FROM Beers b1 JOIN Beers b2 ON (b1.brewer = b2.brewer)
+WHERE b1.name < b2.name;
+
+left outer join -- if lhs exists and rhs doesn't, null fill rhs
+right outer join -- if rhs exists and lhs right doesn't, null fill lhs

@@ -5,10 +5,10 @@
 1.1)
 |             |start10  | start12 | start20   | start30 | start40 |
 |-------------|---------|---------|---------  |---------|---------|
-| **UCS**     |10,2565  |Mem      |Mem        |Mem      |Mem      |
-| **IDS**     |10,2407  |12,13812 |20,5297410 |Time     |Time     |
-| **A\***     |10,33    |12,26    |20,915     |Mem      |Mem      |
-| **IDA\***   |10,29    |12,21    |20,952     |30,17297 |40,112571|
+| **UCS**     |2565  |Mem      |Mem        |Mem      |Mem      |
+| **IDS**     |2407  |13812 |5297410 |Time     |Time     |
+| **A\***     |33    |26    |915     |Mem      |Mem      |
+| **IDA\***   |29    |21    |952     |17297 |112571|
 
 All the algorithms are complete, optimal and have time complexity of `O(b ^ m)`
 
@@ -23,7 +23,7 @@ However, the repeated search means for goals close to the target, it is slower t
 **IDS** is an uninformed search and therefore expands are large number of unecessary nodes.
 The consequence of this is seen with the algorithm 'timing out' from `start30 ... start40`
 
-**A\*** is essentialy an informed **ucsdijkstra**
+**A\*** is essentially an informed **ucsdijkstra**
 This use of a heuristic means it is able to expand less nodes than **ucsdijsktra** and **IDS**
 As a result, **A\*** computes more solutions than **ucsdijkstra**, e.g. `start10 ... start20`
 However, like **ucsdjikstra** it has exponential space time which results in *Mem* for `start30 ... start40`
@@ -57,6 +57,8 @@ This can be seen with the length of the path explored exceeding the minimum numb
 It's increasing with all successive increments of `w` in solutions `start50 ... start64`. The most extreme of this is seen in **Greedy**
 
 2.1)
+## Constraint Graph
+![CSP](https://imgur.com/9lQdCWx.png)
 | Arc    | Relation | Value(s) Removed      |
 |--------|----------|-----------------------|
 | (B, C) | B > C    | B = 1 & C = 4         |
@@ -64,29 +66,31 @@ It's increasing with all successive increments of `w` in solutions `start50 ... 
 | (D, E) | D > E    | D = 1 & E = 4 & E = 3 |
 | (C, E) | C > E    | C = 1                 |
 | (B, C) | B > C    | B = 2                 |
+## Constraint Graph with Arc Consistency Finished
+![CSP Arc Consistency](https://imgur.com/YHcAqL5.png)
 
-**Domain splitting for C = 2**
+## Domain splitting for C = 2
 | Arc    | Relation | Value(s) Removed      |
 |--------|----------|-----------------------|
-| (C, D) | C != D    | D = 2         |
-| (C, A) | C != A    | A = 2         |
+| (C, D) | C /= D    | D = 2         |
+| (C, A) | C /= A    | A = 2         |
 | (C, E) | C > E    | E = 2         |
 | (B, D) | B > D    | B = 3         |
 | (E, A) | E - A is even  | A = 4         |
-This gives two solutions:
- *
- *
+**This gives two solutions:**
+ * B = 4, C = 2, A = 1, E = 1, D = 3
+ * B = 4, C = 2, A = 3, E = 1, D = 3
 
-**Domain splitting for C = 3**
+## Domain splitting for C = 3
 | Arc    | Relation | Value(s) Removed      |
 |--------|----------|-----------------------|
-| (C, D) | C != D    | D = 3         |
-| (C, A) | C != A    | A = 3         |
+| (C, D) | C /= D    | D = 3         |
+| (C, A) | C /= A    | A = 3         |
 | (D, E) | D > E    | E = 2         |
 | (B, C) | B > C    | B = 3         |
 | (E, A) | E - A is even  | A = 2 & A = 4         |
-This gives one solution: 
- *
+**This gives one solution:**
+ * B = 4, C = 3, A = 1, E = 1, D = 2
 
 Therefore the union of these solutions gives solutions for this CSP.
 

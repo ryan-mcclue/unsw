@@ -30,46 +30,18 @@ Drawing a parallel between her mother and Inrv's earlier description of the tear
 Flur realises that by embracing this pain, she could have explored a new avenue of personal development and in some way, not let her mother's sorrow be in vain.
 Such a realisation is epitomised with the final line "In another world, it would be enough to make her president"
 
-# Tear Tracks
-* why do they arise? 
-- primarily cultural differences 
-* can they be overcome? 
-- time, patience, humble
-* what can we learn from each other?
-- constituents of good character
+Comparatively in 'Deal', the difficulty in communicating between humans and aliens is largely due to differences in physical makeup.
+Through perserverance, analysis and inquisitiveness, the text suggests that these difficulties can be overcome.
+By embracing these differences, 'Deal' proposes that one can learn to better communicate emotional experiences.
 
-Takes time to adjust. Inroads have to be made before personal relationships can develop and 'truth' obtained. this could all be for ceremony
-Cultural differences: prodimantly female leadership (however this could be a false assumption made on personal experience), appearance purple skin, 
-Differences in communication, e.g. "Flur finds each eye startlingly (perhaps deceptively?) expressive." preconcieved notions
-Physical communication "Maybe that’s their idea of personal space?"
-"they would find the sight of them in their tubed breathing apparatuses disconcerting"
-" pressed against each other, fluttering suggestively"
-perceived similarities can lead you down the wrong way of thinking
-"There are no confident smiles; They look almost sorrowful" thinking that something is wrong
-President wiping tears away from eyes?
-Eating is social taboo; must be done by oneself
-"wondering if she is right about the translation for ‘socialize.’"
-Communicate through verbal; possible to learn and mimic beforehand (however could suffer from not being able to react to 'in-the-moment')
-the aliens (Cyclops) view greif/pain as signs of wisdom. on earth, we try to cover up those things. they ultimately believe that good comes from bad. being able to show your sadness is a sign of character
-fundamental unknown; just based on assumptions (Inrv named after Earth, yet 32 years old; learn to be humble and open-minded)
-
-
-Comparatively in 'Deal', the difficulty in communicating between humans and aliens is largely due to differences in language.
-Through hardwork, analysis and inquisitiveness, the text suggests that these difficulties can be overcome.
-By embracing these differences, 'Deal' proposes that one can learn about the experience of perserverance.
-
-
-# Deal
-* why do they arise? 
-- differences in language
-* can they be overcome?
-- through analysis and open-mindness, inquisitiveness
-* what can we learn from each other?
-- kindness (helping the environment; they are peaceful;), patience and sticking to task (Beluah and Kim in time can see oncologist) 
-
-Does not take humanoid form. Purpose is unknown, ability to travel is unknown, leading to suspicion. (Kim scared to come out, yet is comfortable with a scorpion; the fear of uknown can be overwhelming for some)
-Verbal communication is incredibly unnatural and difficult
-The Visitors have encircled the Earth like a Lattice. This has had positive benefits like reducing UV and lowering temperatures to pre-industrial
-Hinting at learning how to communicate with aliens can teach us to better understand ourselves "If Beulah can learn to talk to literal space aliens, maybe she can figure out why her girlfriend would rather get cancer than go to the doctor."
-Feel scared/anxious at not knowing their intentions; can lead to thinking the worst "A cold finger draws itself down the length of her spine"
-
+The non-humanoid makeup of The Visitors is representative of the unknown. The degree to which this can affect communication is demonstrated with Kim's cowering reaction to the Visitor in the house.
+"She had been close to tears, almost hyperventilating". Belulah remarks that she has seen Kim "carry a bark scorpion outside in one of her shoes", emphasising that Kim is not overly fearful to highlight the degree at which The Visitors can affect anyone.
+The unfamiliarity with The Visitors appearance is extended to their language. 
+The difficulty with emulating their speech is outlined when Belulah undergoes an exhaustive series of steps to practice speaking Visitor "humming while breathing in and out through her nose, a long rolled r, a voiced lateral fricative".
+Belulah remarks that "she might as well be talking to an insect", to describe how unnatural the process feels. 
+With such a disparate form of communication compared to humans, it is difficult to speak naturally and learn about the Visitors.
+Belulah scrutinises The Visitors ability to encircle the Earth in a lattice despite it's positive effects in reducing UV exposure and global warming.
+She see's The Visitors amazing capabilities but is unaware of their purpose on Earth. This leads to fearful conclusions involving humans feeling powerless "A cold finger draws itself down the length of her spine ... To not have the tools to ask that person why"
+Belulah's perserverance in learning about the Visitors at *V110* causes her to draw a parallel between exploring how to communicate with The Visitor's and discussing Kim's cancer diagnosis "If Beulah can learn to talk to literal space aliens, maybe she can figure out why her girlfriend would rather get cancer than go to the doctor"
+With this changed mentality, Belulah adapts her communication with Kim and is able to convince Kim to recieve treatment "This evening is Kim’s last laser treatment"
+By reflecting on the communication environment between The Visitors and Earth, Belulah realises she can better understand and discuss human emotions.

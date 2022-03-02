@@ -11,7 +11,7 @@ https://escapepod.org/2021/01/28/escape-pod-769-deal/
 Compare and contrast the difficulties in communication between humans and aliens:
 
 In 'Tear Tracks', the difficulty in communicating between humans and aliens is largely due to cultural differences.
-Through patience, open-mindedness and empathy, the text suggests that these difficulties can be overcome.
+Through patience, open-mindedness and introspection, the text suggests that these difficulties can be overcome.
 By embracing these differences, 'Tear Tracks' proposes that one can learn about the experience of suffering. 
 
 From the beginning, Flur is uneasy with the emotional expressions of the Cyclopes "Flur finds each eye startlingly (perhaps deceptively?) expressive."
@@ -19,11 +19,16 @@ She expresses apprehension when inspecting the portraits of notable Cyclopes and
 "There are no confident smiles ... They look almost sorrowful ...  They look too sorrowful, the way the politicians at home look too distinguished"
 These thoughts in Flur's mind are then realised in physical communication when Irnv introduces the President by casually reciting her misfortunes
 "It’s the president ... She lost her three children and husband to sudden illness over the period of a year!"
-
-"Flur has no idea how to respond to that"
-"Flur wonders if they hear her spiel at all"
-
-This feeling of causes distraction and makes Flur doubtful if her attempts at communicating are being interpreted as she is intending.
+Inrv's continued matter-of-fact introduction of the council members with such sorrow overcomes Flur "Unable to continue murmuring about how sorry she is, Flur is reduced to nodding along and trying not to wince"
+The open discussion of a personal tragedy with a relative stranger is not a cultural custom on Earth.
+This cultural difference causes Flur to misinterpret the Cyclopes body language as disinterested and greif stricken. 
+"The president doesn’t seem engaged ... no one else is showing fire or passion either ... The president doesn’t seem up for it right now, with all she’s been through"
+Later talking with Tsonga, Flur incorrectly applies Earth's cultural lens to the President's sorrowful disposition, remarking "It's a shame that we caught a weak leader" 
+However, after Tsonga informs Flur of her misunderstanding "They believe that people who have suffered greatly have earned wisdom", Flur is propelled into deep introspection.
+She thinks about how she has hidden her own greif "all the hardship and self-doubt she has so painstakingly camouflaged" and that it has left her vulnerable.
+Drawing a parallel between her mother and Inrv's earlier description of the tear tracks in honour of the President "to represent her learning, sacrifice, and wisdom" Flur feels guilt for ignoring her mother's greif.
+Flur realises that by embracing this pain, she could have explored a new avenue of personal development and in some way, not let her mother's sorrow be in vain.
+Such a realisation is epitomised with the final line "In another world, it would be enough to make her president"
 
 # Tear Tracks
 * why do they arise? 

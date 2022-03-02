@@ -42,3 +42,5 @@
 % To prevent local minima, i.e. situation where you can't get any better, introduce randomness. A form of this is simulated annealing, i.e modeling change in temperatue
 
 % prolog good for constraint solving problems
+
+% could domain split from {1, 2, 3, 4} with {1,2} and {3,4} or {1},{2},{3},{4}

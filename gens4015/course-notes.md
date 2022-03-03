@@ -1,5 +1,5 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-# Week 1 - Astrophysics
+# Week 1 - Astrophysics - Space Time
 The milky way orbits a black hole
 
 The three-body problem refers to the difficulty in resolving the orbital paths of 3 objects
@@ -37,7 +37,7 @@ TODO: What is parallax and parsecs?
 IMPORTANT: Carl Zimmer interview is to understand the 'rules' that make good scientific writing, i.e. does it make it interesting, accessible and worth knowing.
 Hopefully have the reader leave with a new understanding/viewpoint of the universe/world
 
-# Week 2 - Astrophysics
+# Week 2 - Astrophysics - Entropy, Extreme Space Objects
 IMPORTANT: Harvard style references at end of writing assignments
 Time always moves forward (although theoretically possible to go backwards, it requires extreme space time curvature, like a black hole, so not practical)
 Non-reversible processes (most processes), i.e. most processes in the universe have a direction associated with them (not symmetric under time)
@@ -64,3 +64,14 @@ We notice that all galaxies are moving away from us. The further away they are, 
 Because of this expansion, we could say the universe will last for infinity. However, it will be rather bleak say trillions of years from now, with stars using all their energy.
 The state of the universe trillions of years from now is not an exact science. It's an example of in science where people's interpretations/world-view's reach different conclusions
 By calculating the doppler velocity, we can tell approximatley how long ago the universe was at its singularity (around 14 billion years)
+
+
+# Week 3 - Astrobiology - Exoplanets
+A nebula is a giant cloud of gas and dust.
+Stars produce their own light. Planets orbit stars.
+A planetary system is any star and its planets. They are formed when a large cloud of gas and dust collapses under its own gravity, forming a protostar and eventually the end result.
+So, a sun and planets are created at the same time.
+As the centre of this protostar (a protosun) is extremely hot, the constituents of a planet are determined by how far away it is from the protosun (or where it sits in the protoplanetary disk)
+The closer the more solid object can form like metals and rock, then ice, than gases. This is referred to as the architecture of a planetary system.
+However, after discovering the first exoplanet that orbited a sun-like star, we realised that this architecture is not entirely accurate as the many exoplantary systems are so diverse
+The moon was formed as a result of a collision with the Earth occuring in the protostar phase

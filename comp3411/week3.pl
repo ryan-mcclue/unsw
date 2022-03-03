@@ -28,3 +28,5 @@
 % think of 'there exists a variable such that it satisfies this condition'
 
 % static fact is something that persists. transient fact only applies at a specific instance
+
+

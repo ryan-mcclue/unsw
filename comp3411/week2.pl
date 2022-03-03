@@ -27,9 +27,12 @@
 
 % Backtracking search. Like a DFS, assigning one value, then a new one which doesn't conflict and move on
 % Various heuristics to improve this (often the optimal heuristic will be determined via experimentation):
-%   Minimum Remaining Values, i.e. pick the variable that is the most constrained
+%   Minimum Remaining Values, i.e. pick the variable that is the most constrained (smallest domain perhaps)
 %   Least Constraining Value. This means we won't have to backtrack as much
 %   Forward Checking, we keep track of remaining legal values . So, in a sense we propagate the constraints forwards to detect a failure earlier 
+% Middle ground between number of constraints and available domains in determining problem difficulty
+
+% For send + money problem, consider pairing equality, e.g. D + E > 11
 
 % arc consistency example of forward checking that constantly propagates constraints down (forward checking not always propagate). so there is an arc consistency algorithm
 %

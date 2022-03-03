@@ -81,13 +81,49 @@ where c9020.term = c9331.term;
 ;
 
 
+-- that gives the term and the minimum fail rate of the course COMP3311 from year 2009 to year 2012. 
+create or replace view COMP3331WithMark(term, counter)
+as
+select c.term, count(*)
+from People p
+join Students s on s.id = p.id
+join Course_Enrolments ce on ce.student = s.id
+join Courses c on c.id = ce.course
+join Subjects subj on subj.id = c.subject
+join Terms t on t.id = c.term
+where subj.code = 'COMP3311' and 
+ce.mark is not null and 
+t.year between 2009 and 2012
+group by c.term
+;
+
+create or replace view COMP3331WithFailingMark(term, counter)
+as
+select c.term, count(*)
+from People p
+join Students s on s.id = p.id
+join Course_Enrolments ce on ce.student = s.id
+join Courses c on c.id = ce.course
+join Subjects subj on subj.id = c.subject
+join Terms t on t.id = c.term
+where subj.code = 'COMP3311' and 
+ce.mark < 50 and 
+t.year between 2009 and 2012
+group by c.term
+;
 -- Q5a
 create or replace view Q5a(term, min_fail_rate)
 as
+select wm.term, wm.counter / fm.counter as fail_rate
+from COMP3331WithMark wm join COMP3331WithFailingMark fm on wm.term = fm.term
+group by wm.term, fail_rate
+order by fail_rate asc
+limit 1
 --... SQL statements, possibly using other views/functions defined by you ...
 ;
 
 
+-- that gives the term and the minimum fail rate of the course COMP3311 from year 2016 to year 2019.  
 -- Q5b
 create or replace view Q5b(term, min_fail_rate)
 as

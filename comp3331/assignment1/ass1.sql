@@ -43,14 +43,40 @@ join Courses c on c.id = ce.course
 join Subjects subj on subj.id = c.subject
 join Orgunits org on org.id = subj.offeredby
 where s.stype = 'intl' and ce.mark > 85 and org.name = 'School of Law'
-
 --... SQL statements, possibly using other views/functions defined by you ...
 ;
 
 
 -- Q4
+-- gives all the distinct local students who enrolled in COMP9020 and COMP9331 (refer to Subjects.code) in the same term. 
+
+create or replace view COMP9020(unswid, name, term)
+as
+  select p.unswid, p.name, c.term
+  from People p
+  join Students s on s.id = p.id
+  join Course_Enrolments ce on ce.student = s.id
+  join Courses c on c.id = ce.course
+  join Subjects subj on subj.id = c.subject
+  where s.stype = 'local' and subj.code = 'COMP9020'
+;
+create or replace view COMP9331(unswid, name, term)
+as
+  select p.unswid, p.name, c.term
+  from People p
+  join Students s on s.id = p.id
+  join Course_Enrolments ce on ce.student = s.id
+  join Courses c on c.id = ce.course
+  join Subjects subj on subj.id = c.subject
+  where s.stype = 'local' and subj.code = 'COMP9331'
+;
+
 create or replace view Q4(unswid, name)
 as
+select distinct unswid, name
+from COMP9020 c9020 
+join COMP9331 c9331 on c9020.unswid = c9331.unswid
+where c9020.term = c9331.term;
 --... SQL statements, possibly using other views/functions defined by you ...
 ;
 

@@ -1,23 +1,49 @@
 -- comp3311 22T1 Assignment 1
 
--- select unswid, name from Q1;
 -- Q1
+-- gives the student id and name of any student who has enrolled in more than 4 distinct programs at UNSW. 
+-- The name should be take from the People.name field for the student, and the student id should be taken from People.unswid. 
 create or replace view Q1(unswid, name)
 as
---... SQL statements, possibly using other views/functions defined by you ...
+select p.unswid, p.name
+from People p
+join Students s on s.id = p.id
+join Course_Enrolments ce on ce.student = s.id
+join Courses c on c.id = ce.course
+group by p.unswid, p.name -- 'group by' required for 'having'
+having count(distinct c.subject) > 4
 ;
 
-
 -- Q2
+--  gives the unswid and name of the person(s) who has been course tutor of the most courses at UNSW
 create or replace view Q2(unswid, name, course_cnt)
 as
+select p.unswid, p.name, count(*)
+from People p
+join Staff s on s.id = p.id
+join Course_Staff cs on cs.staff = s.id
+join Staff_Roles sr on sr.id = cs.role
+where sr.name = 'Course Tutor'
+group by p.unswid -- 'group by' scopes count(*)
+order by count(*) desc
+limit 1
 --... SQL statements, possibly using other views/functions defined by you ...
 ;
 
 
 -- Q3
+-- all the distinct international students who have enrolled in the course offered by the School of Law (refers to the OrgUnits.Name) and got a mark higher than 85. 
 create or replace view Q3(unswid, name)
 as
+select distinct p.unswid, p.name
+from People p
+join Students s on s.id = p.id
+join Course_Enrolments ce on ce.student = s.id
+join Courses c on c.id = ce.course
+join Subjects subj on subj.id = c.subject
+join Orgunits org on org.id = subj.offeredby
+where s.stype = 'intl' and ce.mark > 85 and org.name = 'School of Law'
+
 --... SQL statements, possibly using other views/functions defined by you ...
 ;
 

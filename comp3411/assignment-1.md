@@ -97,3 +97,4 @@ Therefore the union of these solutions gives solutions for this CSP.
 2.2)
 Eliminating variable **A** would remove constraints *r1* and *r2*. A new constraint *r11* is created that exists between **B** and **C**
 If we were to subsequently eliminate **B** this would remove constraints *r11*, *r4* and *r3*. A new ternary constraint would exist between **C**, **E** and **D**, say *r12*
+TODO: Monitor forums to understand what working out is required here

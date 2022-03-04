@@ -41,8 +41,9 @@ for large ER diagrams can separate diagrams with entity/attribute information an
 data modelling ensures that you record all information required and none that is extraneous or duplicated based on customer feedback, market research, etc.
 different modelling diagrams for a visual and machine based medium 
 
+IMPORTANT: If relationship has attributes may have to introduce an additional table
 many-to-one (teacher teaches one subject):
-2 tables, relationship attributes go on teacher
+2 tables, one foreign key 
 
 many-to-many, i.e. no arrows (teacher can teach many subjects):
 3 tables, all attributes on relationship table (composite pk), relations just primary keys
@@ -60,4 +61,4 @@ relationship is fk, pk is fk and another
 
 pk has to be unique, so a composite pk can have one being NULL 
 
-joins for obtain information through queries
+joins to obtain information through queries, don't have to think about accessing directly through one table

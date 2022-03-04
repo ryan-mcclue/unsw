@@ -26,7 +26,6 @@ Faster you move, relative to an observer:
  - length contracts
  - mass gets larger
 
-The habitable zone is range of orbits around a star that a planet could support liquid water
 Eventually Earth will lose its magentic field when the inner core solidifies (like on the moon and Mars)
 
 MyVeryElderlyMotherJustServedUsNachos
@@ -91,3 +90,12 @@ The process of forming planets is not calm. They can have their orbits changed:
   * three-body interactions (e.g. sun, earth, another planet): interact with neighbouring planets and exchange energy causing inward or outward orbital changes (could even be ejected, becoming a rogue planet)
 
 Tidal locking is where a planet is very close to its star, such that only one face of it ever faces the star. The moon does this with Earth, hence the near side and far side
+
+Clarify habitable it terms of what you are doing, e.g. interstellar travel, permanent habitation etc. 
+It doesn't necessarily mean an Earth-like planet, as we could artificially create certain things
+The habitable zone is range of orbits around a star that a planet could support liquid water. 
+However, doesn't take into account possible greenhouse effect, volcanic activity, could be entirely water (resulting social needs for society) etc. 
+Therefore, the habitable zone is a very basic indicator 
+1 AU is a measure of the distance between the Earth and the Sun
+
+Reasons for travelling outer space are to perform science experiments (how does bacteria survive in a high radiation environment), space tourism, commercialism, political, military, earth uninhabitable

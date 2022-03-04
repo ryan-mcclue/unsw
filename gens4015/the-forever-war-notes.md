@@ -1,19 +1,36 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
 1. Disruption of nature:
-Although the seeming wonders of space travel, to deal with the difficulties of space travel and dangers on other planets, resort to harmful substances, e.g. weed and cigaretes rampant.
-Also human enhancements like enhanced weight bearing suits, automatic guns further the disconnect with our natural self.
-Extreme pychological manipulation to evoke hatred for the Taurans and to overcome our humanity to achieve particular tasks (good things get better, bad things get worse)
-Furthermore, the 'military law' to have sex with different people every night loses the emotional bonds of being human, and such 'human' sensations are seen as necessities and just physical releases
+Although the seeming wonders of space travel, 
+to deal with the difficulties of space travel and dangers on other planets, 
+resort to harmful substances, e.g. weed and cigaretes rampant.
+
+Also human enhancements like enhanced weight bearing suits, 
+automatic guns further the disconnect with our natural self.
+
+Extreme pychological manipulation to evoke hatred for the Taurans 
+and to overcome our humanity to achieve particular tasks 
+(good things get better, bad things get worse)
+
+Furthermore, the 'military law' to have sex with different people 
+every night loses the emotional bonds of being human, 
+and such 'human' sensations are seen as necessities and just physical releases
+
 Effects of mind conditioning with widespread gays and lesbians. Convenience over love
+
 Unceremonious 'want to sack tonight?'
-Found optimal build/ethinicity type for most humans: polynesian. Eugenics council to control virtually every aspect of ones life.
-ALSC machine to indoctrinate memories that cannot be forgotten. The same immoral principles have more 'civilised' ways of being inflicted
-No natural births. Conscription for all. Young years spent in an institute 'creche'. Certain 'normal' traits considered sociopathic
+Found optimal build/ethinicity type for most humans: polynesian. 
+Eugenics council to control virtually every aspect of ones life.
+ALSC machine to indoctrinate memories that cannot be forgotten. 
+The same immoral principles have more 'civilised' ways of being inflicted
+
+No natural births. Conscription for all. Young years spent in an institute 'creche'. 
+Certain 'normal' traits considered sociopathic
 
 2. man's hubris:
 Quick to pass judgement on Taurans knowing what they are capable of
-Although no understanding, the development of interstellar travel has made more fearful of prospective threats, e.g. taurans with a returned drone attack 
+Although no understanding, the development of interstellar travel 
+has made more fearful of prospective threats, e.g. taurans with a returned drone attack 
 Lack of empathy/desensitised with knowledge of such destruction and frequent death (the idea of dying in training is just commonplace). 
 First instinct to kill animals, capital punishment (no patience), destroy buildings (even inanimate objects are subject to this ideology)
 UN organises everythin; intense globalisation. this utmost control can stifle individualism; they control employment and dictate how you live your life (everything short of a dictatorship). 

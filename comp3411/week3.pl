@@ -29,4 +29,9 @@
 
 % static fact is something that persists. transient fact only applies at a specific instance
 
+% semantic network; like object orientated programming making a distinction between classes and instances
+% nodes will be objects/values, e.g. car, vehicle, red, 4
+% arcs will be attributes, e.g. 'is a', 'kind of', 'number of wheels'
+% To reason, a semantic network could use frames (code that is run instances added, modified, etc.) 
 
+% rule based system; constantly scanning 

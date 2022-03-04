@@ -31,13 +31,19 @@ Certain 'normal' traits considered sociopathic
 Quick to pass judgement on Taurans knowing what they are capable of
 Although no understanding, the development of interstellar travel 
 has made more fearful of prospective threats, e.g. taurans with a returned drone attack 
-Lack of empathy/desensitised with knowledge of such destruction and frequent death (the idea of dying in training is just commonplace). 
-First instinct to kill animals, capital punishment (no patience), destroy buildings (even inanimate objects are subject to this ideology)
-UN organises everythin; intense globalisation. this utmost control can stifle individualism; they control employment and dictate how you live your life (everything short of a dictatorship). 
+Lack of empathy/desensitised with knowledge of such destruction and frequent death 
+(the idea of dying in training is just commonplace). 
+First instinct to kill animals, capital punishment (no patience), 
+destroy buildings (even inanimate objects are subject to this ideology)
+UN organises everything; intense globalisation. 
+this utmost control can stifle individualism; 
+they control employment and dictate how you live your life (everything short of a dictatorship). 
 censor media, seriously not even subtle distorted and fake news
 Deception saying you could choose your assignment but no garuntee how long you'd have that, i.e. reassigned immediately
-UN conditioning people to not want to live in large houses but small places. UN charging insane $5000 tax on $100 letter from Luna to Earth to discourage contact.
-Medical priority levels of who is deemed suitable for medical treatment. No empathy from nurses. No empathy from crematorium.
+UN conditioning people to not want to live in large houses but small places. 
+UN charging insane $5000 tax on $100 letter from Luna to Earth to discourage contact.
+Medical priority levels of who is deemed suitable for medical treatment. 
+No empathy from nurses. No empathy from crematorium.
 No care for individuals, separating people to different time dilations in order to further reinforce staying in the army
 
 3. emotional isolation:

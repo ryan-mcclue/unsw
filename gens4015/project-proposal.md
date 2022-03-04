@@ -39,7 +39,7 @@ Scientific advancements are pursued in order to develop interstellar travel and 
 ## Blade Runner:
 Scientific advancements are pursued in order to develop synthetic intelligent life
 1. Disruption of Nature:
-  * Environment is polluted, machinery; soundtrack synthesised; all animals artifical ...
+  * Environment is polluted, machinery; soundtrack synthesised; all animals artifical; doctors are now engineers ...
 2. Emotional Isolation:
   * No scenes of Deckard with friends; no concern for his emotional distress just duty
   physical shakes instead of communication of emotions (unhealthy expression of emotion)

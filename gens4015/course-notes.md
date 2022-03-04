@@ -65,7 +65,6 @@ Because of this expansion, we could say the universe will last for infinity. How
 The state of the universe trillions of years from now is not an exact science. It's an example of in science where people's interpretations/world-view's reach different conclusions
 By calculating the doppler velocity, we can tell approximatley how long ago the universe was at its singularity (around 14 billion years)
 
-
 # Week 3 - Astrobiology - Exoplanets
 A nebula is a giant cloud of gas and dust.
 Stars produce their own light. Planets orbit stars.
@@ -75,3 +74,20 @@ As the centre of this protostar (a protosun) is extremely hot, the constituents 
 The closer the more solid object can form like metals and rock, then ice, than gases. This is referred to as the architecture of a planetary system.
 However, after discovering the first exoplanet that orbited a sun-like star, we realised that this architecture is not entirely accurate as the many exoplantary systems are so diverse
 The moon was formed as a result of a collision with the Earth occuring in the protostar phase
+A meteor is a small piece of rock. It is what would fall to Earth as a shooting star. An asteroid is a much larger piece of rock located in asteroid belt. A comet is another icey rock mainly in kuiper belt.
+To be considered a planet:
+  * be not too large that nucluer fusion occuring
+  * not too small that gravity has not made it spherical (like an asteroid) 
+  * it must be the only thing in its orbit (otherwise dwarf planet)
+Naming of stars: 
+  * if contains greek letter like alpha, beta, gamma etc. this references degree of brightness
+  * if contains name, referencing constellation
+  * if contains number prefix, latitude/longitude  
+  * if contains text prefix, referencing catalogue, e.g. Kepler is all discovered by kepler satellite. Subsequent number is order of discovery
+The name of the exoplanet that appends 'b', 'c', etc. to these star names
+
+The process of forming planets is not calm. They can have their orbits changed:
+  * dynamical friction: the large body moves through a series of smaller bodies which then follow it in its wake. This causes the larger body to slow down and have its orbit decay.
+  * three-body interactions (e.g. sun, earth, another planet): interact with neighbouring planets and exchange energy causing inward or outward orbital changes (could even be ejected, becoming a rogue planet)
+
+Tidal locking is where a planet is very close to its star, such that only one face of it ever faces the star. The moon does this with Earth, hence the near side and far side

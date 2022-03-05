@@ -87,7 +87,8 @@ UN organises everythin; intense globalisation. this utmost control can stifle in
 censor media, seriously not even subtle distorted and fake news
 The entire city 'brain' in a single small room. Such influence in such a small area.
 UN conditioning people to not want to live in large houses but small places. UN charging insane $5000 tax on $100 letter from Luna to Earth to discourage contact.
-Medical priority levels of who is deemed suitable for medical treatment. No empathy from nurses. No empathy from crematorium.
+Medical priority levels of who is deemed suitable for medical treatment. 
+No empathy from nurses. No empathy from crematorium.
 To go to 'Luna' to be more 'individual' have to rejoin UNEF.
 Deception saying you could choose your assignment but no garuntee how long you'd have that, i.e. reassigned immediately
 

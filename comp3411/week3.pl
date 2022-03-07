@@ -23,6 +23,7 @@
 
 % prolog a subset of first-order logic (which is just like set membership operators, e.g. member of, subclass of, etc.) 
 % in prolog :- can be thought as meaning 'if'. First-order logic is just quantifying membership?
+% the interpreter is a theorem prover
 
 % in logic, a variable is not a memory location. 
 % think of like a representation of an instance; 'there exists a variable such that it satisfies this condition'
@@ -60,3 +61,23 @@
 
 % more nerve endings from brain to eye, then from eye to brain (this is so we can predict things; we can get fooled)
 % do we want cars that are 100% reliable or just more reliable than a human driver?
+
+% focus on logic knowledge representation as there are algorithms that operate on the language nicely
+% machine learning is good at classification, not particularly good at reasoning 
+
+% as a language, a sentence is just a collection of symbols
+% we don't use a natural language as sentences can be too ambiguous
+% first order logic allows us to introduce variables. 
+% propositional logic only allows us to talk about the properties of specific objects
+% we can combine into more complex sentences with propositional connectives such as not, and, or, implies, iff (if and only if; equivalence)
+% these are all left-associative and have operator precedence
+
+% a tautology means that no matter what values you assign, will always be true (same as valid sentence)
+% sentences are equivalent if have same truth table (will use equivalences in transforming expressions to say, show they are tautologies. in proving equivalences, most algebraic rules hold)
+% satisifiable if can find some assignment that will make it true
+% in solving a complex sentence, break down the truth table of the sub expressions first 
+
+% an interpretation is an assignment of values. 
+% a model is where an assignment satisfies constraints. All rows of the expressions in the truth table are true
+
+% entailment is when one sentence logically follows another. the knowledge base will entail another sentence

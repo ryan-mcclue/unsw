@@ -115,4 +115,32 @@ SELECT sub_part, SUM(quantity) as total_quantity
 FROM IncludedParts
 GROUP BY sub_part
 
--- 
+-- create type EmpRecord as (name text, addr text);
+create or replace function
+hotelsIn(text) returns setof Bars
+as $$
+select * from Bars where addr = $1;
+$$ language sql;
+
+create or replace function
+div(x integer, y integer) returns integer
+as $$
+declare
+result integer := 0; -- variable 
+another result%TYPE; -- variable same type as another
+employee Employees%ROWTYPE; -- alternatively, employee RECORD;
+begin
+if (y <> 0) then -- conditional
+result := x/y; -- assignment
+else
+result := 0; -- assignment
+end if;
+return result;
+end;
+$$ language plpgsql;
+
+--for i in 1..n loop
+--fac := fac * i; or fac(n - 1)
+--end loop;
+
+-- select expr into variable

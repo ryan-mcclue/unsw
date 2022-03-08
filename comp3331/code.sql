@@ -69,8 +69,11 @@ SELECT b1.name, b2.name
 FROM Beers b1 JOIN Beers b2 ON (b1.brewer = b2.brewer)
 WHERE b1.name < b2.name;
 
-left outer join -- if lhs exists and rhs doesn't, null fill rhs
-right outer join -- if rhs exists and lhs right doesn't, null fill lhs
+-- Think of joins like a venn diagram.
+-- inner join is intersection, i.e. appear in both (default; only one that can not return a null value)
+-- outer join is whole diagram, i.e. appear in either
+-- left outer is left side with intersection, i.e. appear in only one
+-- right outer is right side with intersection, i.e. appear in only one
 
 SELECT *
 FROM R

@@ -39,9 +39,3 @@ insert into y(id, x_id, defn) values
   (3, 1, 'defn'),
   (4, 2, 'defn'),
   (5, 2, 'defn');
-
-
--- james, john, peter
-
--- student, mark
--- loop resets on 0

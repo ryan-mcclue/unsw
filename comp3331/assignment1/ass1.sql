@@ -132,17 +132,38 @@ as
 
 
 -- Q6
+-- people.id, subjects.code
+-- returns the student's mark for the course with the given subject code
 create or replace function 
 	Q6(id integer,code text) returns integer
 as $$
+select ce.mark
+from People p
+join Students s on s.id = $1
+join Course_Enrolments ce on ce.student = s.id
+join Courses c on c.id = ce.course
+join Subjects subj on subj.id = c.subject
+where subj.code = $2 
 --... SQL statements, possibly using other views/functions defined by you ...
 $$ language sql;
 
 
 -- Q7
+-- e.g. 2019, 'T1'
+-- returns a list of all the postgraduate COMP courses (refers to Subjects.code starting with COMP) offered at the given year and session. 
+-- An postgraduate course is the one whose Subjects.career is PG.
 create or replace function 
 	Q7(year integer, session text) returns table (code text)
 as $$
+select subj.code
+from People p
+join Students s on s.id = $1
+join Course_Enrolments ce on ce.student = s.id
+join Courses c on c.id = ce.course
+join Subjects subj on subj.id = c.subject
+join Terms t on t.id = c.term
+where subj.code like ~'^COMP.*$' and subj.career = 'PG' and t.year = $1 and t.session = $2
+-- TODO(Ryan): in db term session names are strange like X1, S2. No standard ones like T1 as mentioned in question? 
 --... SQL statements, possibly using other views/functions defined by you ...
 $$ language sql;
 

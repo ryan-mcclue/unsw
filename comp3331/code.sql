@@ -71,3 +71,8 @@ WHERE b1.name < b2.name;
 
 left outer join -- if lhs exists and rhs doesn't, null fill rhs
 right outer join -- if rhs exists and lhs right doesn't, null fill lhs
+
+SELECT *
+FROM R
+WHERE R.a > ALL(SELECT x FROM S WHERE Cond) -- set condition operator
+-- INTERSECT, EXCEPT, UNION

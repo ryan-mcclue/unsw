@@ -76,3 +76,43 @@ SELECT *
 FROM R
 WHERE R.a > ALL(SELECT x FROM S WHERE Cond) -- set condition operator
 -- INTERSECT, EXCEPT, UNION
+
+-- GROUP BY produces one tuple for each group; HAVING filters these groups
+
+-- PARTITION augments each tuple with group based values (TODO: is this a window function?)
+SELECT city, date, temperature
+min(temperature) OVER (PARTITION BY city) as lowest,
+max(temperature) OVER (PARTITION BY city) as highest
+FROM Weather;
+
+SELECT course, student, mark
+FROM (
+  SELECT course, student, mark,
+  avg(mark) OVER (PARTITION BY course)
+  FROM Enrolments
+) AS CourseMarksWithAvg -- subquery must be named, even if not used
+WHERE mark < avg;
+
+WITH CourseMarksWithAvg AS
+(SELECT course, student, mark,
+avg(mark) OVER (PARTITION BY course)
+FROM Enrolments)
+SELECT course, student, mark, avg
+FROM CourseMarksWithAvg
+WHERE mark < avg;
+
+-- TODO: understand
+-- finds all sub-parts in a part (sub-parts, sub-sub-parts, etc.)
+WITH RECURSIVE IncludedParts(sub_part, part, quantity) AS (
+SELECT sub_part, part, quantity
+FROM Parts WHERE part = GivenPart
+UNION ALL
+SELECT p.sub_part, p.part, p.quantity
+FROM IncludedParts i, Parts p
+WHERE p.part = i.sub_part
+)
+SELECT sub_part, SUM(quantity) as total_quantity
+FROM IncludedParts
+GROUP BY sub_part
+
+-- 

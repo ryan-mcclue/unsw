@@ -62,3 +62,5 @@ relationship is fk, pk is fk and another
 pk has to be unique, so a composite pk can have one being NULL 
 
 joins to obtain information through queries, don't have to think about accessing directly through one table
+
+PLpgSQL interpreter for stored procedures 

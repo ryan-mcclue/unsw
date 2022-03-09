@@ -74,6 +74,7 @@ WHERE b1.name < b2.name;
 -- outer join is whole diagram, i.e. appear in either
 -- left outer is left side with intersection, i.e. appear in only one
 -- right outer is right side with intersection, i.e. appear in only one
+-- cross join is a cardinal join, i.e. all combinations of rows of each table combined
 
 SELECT *
 FROM R

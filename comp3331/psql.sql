@@ -39,3 +39,21 @@ insert into y(id, x_id, defn) values
   (3, 1, 'defn'),
   (4, 2, 'defn'),
   (5, 2, 'defn');
+
+
+select sname from Suppliers where sid in 
+(
+  ()
+  intersect
+  ()
+)
+
+
+select * from Catalog c 
+join Suppliers s using(sid)
+join Parts p using(pid)
+where not exists(
+  (select pid from Parts where colour = 'red' or colour = 'green')
+  except
+  (select c.pid from Catalog c where c.sid = s.sid)
+)

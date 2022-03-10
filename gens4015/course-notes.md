@@ -32,7 +32,8 @@ MyVeryElderlyMotherJustServedUsNachos
 
 Proxima Centuri closest  the remnant core of a dead starstar. Magellic clouds dwarf galaxies orbitting milky way. Andromeda closest galaxy
 
-TODO: What is parallax and parsecs?
+Parallax is apparent change in position of something based on change in observers point of view, e.g. if we look straight up say 6 months apart on Earth, the we are looking at a different location 
+TODO: What is a parsecs
 IMPORTANT: Carl Zimmer interview is to understand the 'rules' that make good scientific writing, i.e. does it make it interesting, accessible and worth knowing.
 Hopefully have the reader leave with a new understanding/viewpoint of the universe/world
 

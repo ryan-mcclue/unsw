@@ -94,9 +94,31 @@ Tidal locking is where a planet is very close to its star, such that only one fa
 
 Clarify habitable it terms of what you are doing, e.g. interstellar travel, permanent habitation etc. 
 It doesn't necessarily mean an Earth-like planet, as we could artificially create certain things
-The habitable zone is range of orbits around a star that a planet could support liquid water. 
-However, doesn't take into account possible greenhouse effect, volcanic activity, could be entirely water (resulting social needs for society) etc. 
+The habitable zone is range of orbits around a star that a planet should be the right temperature to support liquid water. So, is just a measure of distance from star related to its temperature
+However, doesn't take into account possible greenhouse effect (planet's atmosphere), volcanic activity, could be entirely water (resulting social needs for society) etc.
 Therefore, the habitable zone is a very basic indicator 
 1 AU is a measure of the distance between the Earth and the Sun
 
 Reasons for travelling outer space are to perform science experiments (how does bacteria survive in a high radiation environment), space tourism, commercialism, political, military, earth uninhabitable
+
+# Week 4 - astrobiology
+To be considered life it must: metabolism (convert outside energy to something it can use), homeostasis (maintain internal state), growth, reproduction 
+Extremophiles on Earth can give us some indication of what possible extra-terrestial life could be: cold(psychrophilic; under antarctic glaciers)/hot(hydrothermal vents) temperatures, 
+acidity/salinity(halophilic)/radioactivity(fungus found in Chernobyl), no oxygen. Incredibly resistent to all aforementioned things are tardigrades (water bears)
+Geothermal is heat from within the Earth
+
+Exoplanet detection:
+* Transits (radius of planet)
+  Detect change in brightness of star when the planet blocks it through its orbit (Kepler and TESS satellites seen huge results here)
+  Observational bias to planets with short orbital periods and large radius
+* Radial Velocity (can tell use the mass of the planet)
+  Detect changes in blueshift and redshift as a planet orbits its star and is slightly pulled to us and pulled away from us
+  Observational bias to heavy massed planets
+* Direct Imaging (only one that looks for planet directly as oppose to looking at the effect the planet has on its star)
+  As star much more luminous than planets, have to block light from star. This can leave artifacts however, so require years of continual images to ensure dots are planets and not artifacts
+
+  By utilising radius and mass of planet can calculate its density and compare that to known planets in our solar system so as to make educated guess as to the constituents of the planet, e.g. gas giant
+  So, all beautiful pictures of planets are illustrations only. The only actual images are blobs from direct imaging
+
+Harder than planet detection is determining the planet's atmosphere. Transit spectroscopy compares light of star and than light when planet is blocking and determining what has been absorbed by the atmosphere
+Can then look at biosignatures, i.e. what would be produced by life (methane, CO2) or required by life (water)

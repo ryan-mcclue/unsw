@@ -14,14 +14,18 @@ I agree with the sentiments expressed by John Scalzi in *World-building: how sci
 Furthermore, because the story bows to the constraints of relativity it becomes more interesting as it has to invent ways to overcome them.
 An example of this are the collapsars which act as pseudo wormholes that allow the characters to traverse huge distances in short periods of time without violating the constancy of the speed of light.
 As described by Phil Plait, "[science] can inspire you to think around the problem" and "nature can trump our imagination".
+
 However, despite being based on scientific fact, the mathematics of the time dilation used is not accurate.
 At the initial part of the novel, the ship travels 0.9c and it's said that 2 years for those on board is 25 years for those on Earth.  
-Using the time dilation formula in the lectures, this speed would only give approximately 4.6 years. The actual speed would have to be 0.9968c.
+Using the time dilation formula in the lectures, this speed would only give approximately 4.6 years. The actual speed would have to be approximately 0.9968c.
 In spite of this, the fact that the story is based on accurate science, I'm willing to overlook this error as after all it's science fiction.
-This is remarked upon by John Scalzi "people are more willing to make the leap"
-Yet, although scientifically grounded, the most important part of *The Forever War* that leads me to enjoying it is the quality of the story.
-It touches on ... which are themes that resonate with me. The quality of the story is the foundation and the science is ...
-This is agreed upon by all members of *World-building: how science sculpts science fiction* 
+This is remarked upon by John Scalzi "people are more willing to make the leap".
+
+Although scientifically grounded, the most important part of *The Forever War* that leads me to enjoying it is the quality of the story.
+It focuses on the dehumanising effects of war on civilian society as well as the alienation those fighting the war experience.
+As oppose to the uplifting themes of glory and honour, delving into these raw consequences of war presents itself as an interesting story to me.
+The quality of the story is the foundation and the accuracy of the science involved is what is built upon it.
+This is agreed upon by all members of *World-building: how science sculpts science fiction* and is succinctly expressed by Simon Guerrier "danger of falling into the idea that because you get the science right your story is good".
 
 
 Becky chambers - Icy moon in 'to be taught, if fortunate' multicelluar organisms glow under ice at night (based on Europa possibly glowing in the dark)

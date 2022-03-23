@@ -29,8 +29,8 @@ To increase the number of resources mentioned to 4 and to explore different grou
 
 question/topic:
 Remember to make the distinction between each text's context/motivation for moving outer space.
-This is important, as it affects the resources put into the mission and the psychology of those living aboard.
-Therefore, whether the outcome of any is negative, it's worth mentioning that if the same mission with different resources was taken, the outcome might have been different. 
+This is important, as it affects the resources put into the mission and the psychology of those involved.
+Therefore, whether the outcome of any is negative, it's worth mentioning that if a similar mission with different motivations was taken, the outcome might have been different. 
 
 Outline the specific traits of what you think constitutes "humans of today", e.g. humans physical makeup, modern social structures etc.
 Relate to to these specifics instead of such a general term.

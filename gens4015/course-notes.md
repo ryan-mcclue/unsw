@@ -122,3 +122,12 @@ Exoplanet detection:
 
 Harder than planet detection is determining the planet's atmosphere. Transit spectroscopy compares light of star and than light when planet is blocking and determining what has been absorbed by the atmosphere
 Can then look at biosignatures, i.e. what would be produced by life (methane, CO2) or required by life (water)
+
+# Week 5 - climate change
+As stars and planets form at the same time, Sun is 4.5billions years old, so is the Earth (undergone dramatic changes, e.g. atomospheric composition, land placement)
+Some processes that affect the entire Earth take a long time to occur, e.g. plate tectonics (225 million years ago Pangea; due to convection currents in the mantle; fossils found of same animal in different continents at the same time), ice ages (deep rocks can contain minerals from past to help determine atmospheric composition back then)
+However some are fast (on a geological time scale), e.g. human induced climate change, magnetic field reversal
+Initially earth's atmosphere was largley methane, little oxygen. However these anarobic bacteria developed photosynthesis, producing oxygen. This reduced temperature of Earth as methane is a greenhouse gas, kicking off an ice-age
+Earth's magnetic field due to core rotating made of molten metals. It's polarity can change (random), as determined by inspecting magnetic sensitive molecules in igneous rocks and how they are aligned.
+66 million years ago 50km asteriod impact for mass extinction of dinosaurs in mexico (iridium  found in sedimentary rock layers 66 million years ago)
+

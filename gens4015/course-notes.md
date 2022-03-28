@@ -131,3 +131,26 @@ Initially earth's atmosphere was largley methane, little oxygen. However these a
 Earth's magnetic field due to core rotating made of molten metals. It's polarity can change (random), as determined by inspecting magnetic sensitive molecules in igneous rocks and how they are aligned.
 66 million years ago 50km asteriod impact for mass extinction of dinosaurs in mexico (iridium  found in sedimentary rock layers 66 million years ago)
 
+Since late 19th century, global average temperature has been increasing.
+Going up by only 1.5 degrees, this causes: polar ice caps melting (freshwater affecting salinity and circulation), bushfire risk, ocean acidification, rising sea levels
+Greenhouse gases in the Earth's atmosphere such as CO2, methane (29x more effective), nitrous oxide (298x more effective), trap infrared radiation
+This raises the equilibrium temperature in relation to the 'habitable zone'
+The entire EM spectrum is emitted by the Sun. UV is absorbed by ozone, IR by greenhouse gases, visible light passes through and warms the Earth's surface and then re-radiates as IR
+Carbon footprint collects all greenhouse gases and indicates how much CO2 would be emitted to be equivalent. 
+Average car produces 2.4 tonnes CO2 equivalent, 1kg of beef is 60kg CO2
+Average Australian yearly carbon footprinpt of 26tonnes of CO2-equivalent.
+Greatest carbon-footprints are companies, particularly energy companies. Also bitcoin, supercomputers have high energy requirements 
+As such, large scale incentives like carbon tax, businesses not investing in fossil fuel companies etc. are of greater importance than individual actions like not using a car, eating less meat etc.
+The ozone hole is over Antarctica. Despite the ozone hole being reduced since its discovery in 1985, ozone depleting compounds like CFCs persist for a long time. So, will return to normal in 2070 as we have stopped putting these chemicals into the atmosphere
+So, while the Earth has undergone large changes, human activity has seen similar changes occur at much faster rate and widespread rates
+
+300 million years in the future, plate tectonics will result in one large supercontinent again.
+Moon will recede from Earth (retreats 4cm a year due to lost orbital energy from controlling Earth's tides)
+Waiting into the future, rare events can occur like a nearby supernova
+Sun currently undergoes fusion with Hydrogen to Helium. 
+However in the future when the Sun's source of Hydrogen becomes more scarce it will have to raise its temperature to maintain fusion. So, it will get brighter.
+Eventually all Hydrogen will be gone, so the next reaction is with Helium. 
+However this requires much higher temperatures. 
+The core will contract and the shell will dramatically expand. This is red giant phase.
+This changes the habitable zone to Jupiter and Saturn (however will be when Sun is 12.5 billion years old)
+Milky Way will collide with Andromeda and become one smooth system (as mostly empty space). There black holes will merge

@@ -154,3 +154,36 @@ However this requires much higher temperatures.
 The core will contract and the shell will dramatically expand. This is red giant phase.
 This changes the habitable zone to Jupiter and Saturn (however will be when Sun is 12.5 billion years old)
 Milky Way will collide with Andromeda and become one smooth system (as mostly empty space). There black holes will merge
+
+# Week 7
+If in orbit, additional energy is required to be inputted to the system for it to leave 
+Orbiting is a special case of balance between gravity and motion (GPE + PE < 0). Escape velocity is where velocity gives total energy >= 0
+Objects could just pass by one another if moving fast enough, they could collide
+Gravitational potential energy is possessed due to position relative to another object (will often be negative indicating energy is required to leave orbit)
+Kinetic energy is possessed due to motion
+Often when launching items, we don't need to go as fast as escape velocity as we just want to be gravitationally bound at a higher altitude
+
+Geostationary orbit orbits same time as Earth takes to revolve, i.e. 24hrs. So, it appears to not move in the sky (they are circular orbits having GPE = -2KE)
+Kepler's Laws:
+1. Orbits are elliptical.
+Sun will be one of the two focuses of the ellipse.
+If we take half the major-axis, a.k.a semi-major axis, we approximate this as the distance from star (in reality this distance is changing)
+The eccentricity of an ellipse gives how far apart the focuses are, i.e. how stretched out the ellipse is or how much it deviates from being a circle
+2. Orbits cover equal areas in equal times
+Although closer to the planet you move faster, the arc area traversed is the same as far away
+3. Larger orbits take longer
+By larger we must alter the semi-major axis, otherwise period stays the same
+For any solar system, if you know the semi-major axis (a) and orbital period (p) of 1 planet you can calculate for any other with p^2 = a^3
+
+The most energy efficient way to move in solar system is from orbit to orbit (a.k.a transfer orbit) incurring the extra time penalty (note this is low-friction movement not perpetual)
+With current technology, this is the only way to traverse large distances
+
+Challenges with space:
+* Engineering (small things can go wrong)
+Although development of rockets long time; the process of launching is still difficult (harnessing large amounts of energy in a particular direction)
+Flight control being remote is difficult
+* Human Health
+Radiation (objects to protect are heavy and expensive)
+Diet, exercise, mental health
+Microgravity reduces bone density/muscle mass, blood pressure, vision due to cranial pressure
+Potential microscopic changes, e.g. cell structure

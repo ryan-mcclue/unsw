@@ -14,18 +14,30 @@ It's described as a "native microorganism that feeds on substances derived from 
 Whilst humans can survive without plastics as evidenced by our hominin ancestors, the environmental conditions of Tau Ceti-e outlined in *Sanctuary* dictates the need for plastics.
 
 The initial scans of Tau Ceti-e reveal a surface gravity of 1.59g. 
-As this is higher than Earth's, some form of space suit will be required to prevent the negative effects of a high-g environment on the human body.
-These include ...  
+As this is higher than Earth's, some form of space suit would have to worn to prevent the negative effects of a high-g environment on the human body such as increased load on joints and blood pooling in feet.
 (source plastic in helmet)
-Furthering the necessity of the spacesuit is the atmospheric composition.
+Furthering the necessity of the spacesuit is Tau Ceti-e's atmosphere which is "thin but breathable". 
+Although an an extensive "period of physical development" can decrease resting heart rate to accomodate this, it's remarked that it could be "generation before humans are thoroughly acclimated to this world".
+Therefore, for all intents and purposes the spacesuit's breathing apparatus is required.
 https://www.craftechind.com/plastic-materials-advanced-space-exploration/
 Currently there is no technology that exists that could provide the same functionality as their plastic counterparts.
 
-The ship requires plastic to prevent radiation (source), cushioning (source)
+In order to survive the journey from Earth to Tau Ceti-e, the ship must be built to sustain certain environmental effects.
+As discussed in week 5 lectures, the Sun emits the entire EM spectrum, most of which is dangerous to humans.
+The ship must be built with the right materials to provide the same protection as Earth's magnetic field and ozone layer.
+The downside of metal is its mass encumbering the ship, resulting in more energy being expended for propulsion.
+One of the lightest metals, aluminium does not offer enough protection against cosmic radiation as certain plastics.
+...
+cushioning (source)
 long distance biostasis plastic used for medical care trachea-pipe
-Plastics involved with wiring insulation and PCB construction
-
-"strongly recommend a period of physical development"
+To provide power the ship will require electrical connections. These connections require insulation 
+...
+To have any meaningful functionality, the ship will require computers. Computers are comprised of PCBs which have plastic in them
+...
+As a result, the only option available to those planning on inhabiting Tau Ceti-e would be to jettison the ship and never return. 
+In any unforseen event or unplanned contingency which is highly likely due to the complicated nature of space travel, those on the planet's surface are stranded and will probably die.
+Such occurences are backed up in *Sanctuary*, e.g. failed detection of intelligent life, the Rot, etc. in previous probes.
+With this in mind, I don't consider Tau Ceti-e to be habitable.
 
 having to take into account the various inaccuracies of probe and having contingencies, 
 e.g. treadmills becoming essential (not suitable for people with underlying health conditions), 

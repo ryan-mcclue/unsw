@@ -15,15 +15,20 @@ The captain's composure surrounded by angst beings to be seen as unnatural by so
 To demonstrate that the captain is not devoid of emotion, he eventually succumbs to the anxiety
 "To date I had avoided searching my own cabin, but as the hours to re-entry counted down, I lost it."
 As he experiences these emotions first hand, his words of comfort are all the more genuine.
-In the dangerous environment of space, I find it comforting to have someone who can stay resolute in a high pressure situation.
+As outlined in the lectures, space is a dangerous environment for humans.
+I find it comforting to have someone who can stay resolute in a high pressure situation which is quite likely to occur in space.
 
 In the TV series *Star Trek: The Next Generation*, Data is an android who fits the 'introverted genius' archetype.
 I like the nuanced observations and complex calculations made by people of this archetype.
 Data's primarily role is Operations Manager, however he also frequently works in the engineering department.
-
-Due to his high intellect he was disconnected, wanted what most people took for granted.
-Insight into what it means to be human
-...
-With the complexities of space travel, I enjoy witnessing someone capable of processing all the myriad of information with relative ease.
+Due to their incredibly high intellect, people of this archetype are often disconnected from the general population.
+Data aligns with this stereotype. He wants what most of his crewmates take for granted.
+In his journey to develop his emotional intelligence, he provides a unique insight into what it means to be human.
+Data demonstrates a lack of personal ambition and is entirely devoted to his work.
+This is due to his archetype, which makes him a contributor by nature.
+His standards are flawless and his work is imbued with impeccable efficiency and neatness. 
+He is able to perform extremely sophisticated computations to solve any task.
+As outlined in the lectures, space travel is complex.
+I enjoy witnessing someone capable of understanding and processing all those difficulties to producing high-quality outcomes.
 
 LECTURES AND OUTSIDE READING

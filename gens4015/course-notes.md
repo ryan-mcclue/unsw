@@ -115,21 +115,29 @@ Exoplanet detection:
   Detect changes in blueshift and redshift as a planet orbits its star and is slightly pulled to us and pulled away from us
   Observational bias to heavy massed planets
 * Direct Imaging (only one that looks for planet directly as oppose to looking at the effect the planet has on its star)
-  As star much more luminous than planets, have to block light from star. This can leave artifacts however, so require years of continual images to ensure dots are planets and not artifacts
+  As star much more luminous than planets, have to block light from star. 
+  This can leave artifacts however, so require years of continual images to ensure dots are planets and not artifacts
 
   By utilising radius and mass of planet can calculate its density and compare that to known planets in our solar system so as to make educated guess as to the constituents of the planet, e.g. gas giant
   So, all beautiful pictures of planets are illustrations only. The only actual images are blobs from direct imaging
 
-Harder than planet detection is determining the planet's atmosphere. Transit spectroscopy compares light of star and than light when planet is blocking and determining what has been absorbed by the atmosphere
+Harder than planet detection is determining the planet's atmosphere. 
+Transit spectroscopy compares light of star and than light when planet is blocking and determining what has been absorbed by the atmosphere
 Can then look at biosignatures, i.e. what would be produced by life (methane, CO2) or required by life (water)
 
 # Week 5 - climate change
-As stars and planets form at the same time, Sun is 4.5billions years old, so is the Earth (undergone dramatic changes, e.g. atomospheric composition, land placement)
-Some processes that affect the entire Earth take a long time to occur, e.g. plate tectonics (225 million years ago Pangea; due to convection currents in the mantle; fossils found of same animal in different continents at the same time), ice ages (deep rocks can contain minerals from past to help determine atmospheric composition back then)
+As stars and planets form at the same time, Sun is 4.5billions years old, so is the Earth 
+(undergone dramatic changes, e.g. atomospheric composition, land placement)
+Some processes that affect the entire Earth take a long time to occur, e.g. plate tectonics 
+(225 million years ago Pangea; due to convection currents in the mantle; fossils found of same animal in different continents at the same time), 
+ice ages (deep rocks can contain minerals from past to help determine atmospheric composition back then)
 However some are fast (on a geological time scale), e.g. human induced climate change, magnetic field reversal
-Initially earth's atmosphere was largley methane, little oxygen. However these anarobic bacteria developed photosynthesis, producing oxygen. This reduced temperature of Earth as methane is a greenhouse gas, kicking off an ice-age
-Earth's magnetic field due to core rotating made of molten metals. It's polarity can change (random), as determined by inspecting magnetic sensitive molecules in igneous rocks and how they are aligned.
-66 million years ago 50km asteriod impact for mass extinction of dinosaurs in mexico (iridium  found in sedimentary rock layers 66 million years ago)
+Initially earth's atmosphere was largley methane, little oxygen. However these anarobic bacteria developed photosynthesis, producing oxygen. 
+This reduced temperature of Earth as methane is a greenhouse gas, kicking off an ice-age
+Earth's magnetic field due to core rotating made of molten metals. 
+It's polarity can change (random), as determined by inspecting magnetic sensitive molecules in igneous rocks and how they are aligned.
+66 million years ago 50km asteriod impact for mass extinction of dinosaurs in mexico 
+(iridium  found in sedimentary rock layers 66 million years ago)
 
 Since late 19th century, global average temperature has been increasing.
 Going up by only 1.5 degrees, this causes: polar ice caps melting (freshwater affecting salinity and circulation), bushfire risk, ocean acidification, rising sea levels
@@ -148,22 +156,25 @@ So, while the Earth has undergone large changes, human activity has seen similar
 Moon will recede from Earth (retreats 4cm a year due to lost orbital energy from controlling Earth's tides)
 Waiting into the future, rare events can occur like a nearby supernova
 Sun currently undergoes fusion with Hydrogen to Helium. 
-However in the future when the Sun's source of Hydrogen becomes more scarce it will have to raise its temperature to maintain fusion. So, it will get brighter.
+However in the future when the Sun's source of Hydrogen becomes more scarce it will have to raise its temperature to maintain fusion. 
+So, it will get brighter.
 Eventually all Hydrogen will be gone, so the next reaction is with Helium. 
 However this requires much higher temperatures. 
 The core will contract and the shell will dramatically expand. This is red giant phase.
 This changes the habitable zone to Jupiter and Saturn (however will be when Sun is 12.5 billion years old)
-Milky Way will collide with Andromeda and become one smooth system (as mostly empty space). There black holes will merge
+Milky Way will collide with Andromeda and become one smooth system (as mostly empty space). Their black holes will merge
 
 # Week 7
 If in orbit, additional energy is required to be inputted to the system for it to leave 
 Orbiting is a special case of balance between gravity and motion (GPE + PE < 0). Escape velocity is where velocity gives total energy >= 0
-Objects could just pass by one another if moving fast enough, they could collide
-Gravitational potential energy is possessed due to position relative to another object (will often be negative indicating energy is required to leave orbit)
+Objects could just pass by one another if moving fast enough. they could also collide
+Gravitational potential energy is possessed due to position relative to another object 
+(will often be negative indicating energy is required to leave orbit)
 Kinetic energy is possessed due to motion
 Often when launching items, we don't need to go as fast as escape velocity as we just want to be gravitationally bound at a higher altitude
 
-Geostationary orbit orbits same time as Earth takes to revolve, i.e. 24hrs. So, it appears to not move in the sky (they are circular orbits having GPE = -2KE)
+Geostationary orbit orbits same time as Earth takes to revolve, i.e. 24hrs. So, it appears to not move in the sky 
+(they are circular orbits having GPE = -2KE)
 Kepler's Laws:
 1. Orbits are elliptical.
 Sun will be one of the two focuses of the ellipse.
@@ -175,12 +186,14 @@ Although closer to the planet you move faster, the arc area traversed is the sam
 By larger we must alter the semi-major axis, otherwise period stays the same
 For any solar system, if you know the semi-major axis (a) and orbital period (p) of 1 planet you can calculate for any other with p^2 = a^3
 
-The most energy efficient way to move in solar system is from orbit to orbit (a.k.a transfer orbit) incurring the extra time penalty (note this is low-friction movement not perpetual)
+The most energy efficient way to move in solar system is from orbit to orbit (a.k.a transfer orbit) incurring the extra time penalty 
+(note this is low-friction movement not perpetual)
 With current technology, this is the only way to traverse large distances
 
 Challenges with space:
 * Engineering (small things can go wrong)
-Although development of rockets long time; the process of launching is still difficult (harnessing large amounts of energy in a particular direction)
+Although development of rockets long time; the process of launching is still difficult 
+(harnessing large amounts of energy in a particular direction)
 Flight control being remote is difficult
 * Human Health
 Radiation (objects to protect are heavy and expensive)

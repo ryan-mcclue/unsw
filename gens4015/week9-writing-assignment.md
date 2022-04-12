@@ -30,3 +30,7 @@ some sort of goal "time for phase 2". which can then generate its own sub-goals
 make deductions based on input "I did my own research and then engineered my plans"
 "I invented a way, then I built my invention"
 "Project Protective Egg."
+
+-----------------------------------------------------------------------------------
+
+phone, social media, camera, computer

@@ -19,14 +19,11 @@ The distinguishing feature of AI is its ability to analyse data and to then auto
 Surveillance technologies are implemented in a number of everyday interactions, e.g. mobile phones, world-wide-web usage, CCTV systems etc.
 As they are only concerned with reconnaissance, different human organisations are responsible for analysing their data and making decisions from them.
 In mobile phones, the location of the phone can be monitored by GPS or cell tower signal triangulation.
-
-On the world-wide-web, the web browser uses your IP address to identify you and records your interactions on websites
-
-Finally, CCTV systems record live footage of public areas and hold on to this data for long periods of time.
-
-phone - GPS (policing, location tracking) 
-internet - IP address and website interaction metrics (advertisement, anti-terrorism) 
-CCTV - video recordings transmitted via ... (security)
+Emergency services can process this data to assist in finding people who have gone missing or are having a medical episode.
+On the world-wide-web, your web browser uses your IP address to identify you and records your interactions on websites.
+Websites can purchase this information and analyse it to create advertisements or list products that are more aligned to your preferences.
+CCTV systems record live footage of public areas and hold on to this data for long periods of time.
+Members of law enforcement can inspect these recordings to help detect, prevent and prosecute offenders.
 
 
 In fact, can even generate it's own sub-goals...

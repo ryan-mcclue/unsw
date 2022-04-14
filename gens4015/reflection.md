@@ -1,26 +1,16 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
-Updated outline or draft is included (with specific changes mentioned)
-
-Explains how feedback and further work have been used to develop the project
-
-Refers to specific points in the peer reviews or tutor comments
-
-"?" around 'extreme time dilation', explain what scientific technology allowed to travel this fast
-
 # GENS4015 Reflection
-It was suggested that I make the link between what topics I disscuss in my texts and how they relate to my thesis clearer.
-Tutor: "Be careful you don't end up doing just a critique on the text itself but that you keep it relevant to your topic"
-Peer: "It's important not to forget what you are trying to prove with your thesis" 
+It was suggested that I make the link between what topics I discuss in my texts and how they relate to my thesis clearer.
+**Tutor:** "Be careful you don't end up doing just a critique on the text itself but that you keep it relevant to your topic"
+**Peer:** "It's important not to forget what you are trying to prove with your thesis".
 In line with this, I provide a definition that I will refer back to in my paragraphs to stay on topic.
-What it currently means to be human is to interact with nature, be in touch with your emotions and to be modest.
+*What it currently means to be human is to interact with nature, be in touch with your emotions and to be modest.*
 
 It was also noted that I need to specifically mention the particular scientific/technological advancements that have allowed the topics I discuss to be possible.
-Tutor: "Make sure to include scientific and technological discussion rather than just talking about societal effects!"
-Peer: "Mindful of not skipping over the scientific advancements discussion"
-The peer comment "Are scientific advancements the root cause of this?" follows this train of thought.
-To pinpoint the particular advancement used, I had to investigate the current state of knowledge in a variety of fields.
-These included neuroscience, genetics, bio-engineering, artificial intelligence, computing and aerospace-engineering.
+**Tutor:** "Make sure to include scientific and technological discussion rather than just talking about societal effects!"
+**Peer:** "Mindful of not skipping over the scientific advancements discussion".
+To pinpoint the particular advancement used, I had to investigate the current state of knowledge in various branches of science.
 In addition to the content of my original project proposal, I have included these specific advancements (some may be shared between texts, however I only mention unique ones):
 
 ## The Forever War:
@@ -28,7 +18,7 @@ In addition to the content of my original project proposal, I have included thes
     The ability to selectively reinforce or destroy the electrical connections between the neurons and synapses in our brains allows for thought control.
   * Advancements in biology have allowed for no natural births.
     An egg is artificially fertilised with sperm and then introduced to an artificial womb.
-    Advancements in genetic engineering have allowed for ensuring everyone has similar traits.
+  * Advancements in genetic engineering have allowed for ensuring everyone has similar traits.
     This is acheived by altering the genomes of living organisms.
   * Advancements in computing have allowed for computers to control most aspects of life.
     The reduction in size of transistors and memory cells allows for improved computational power by being able to fit more onto a piece of silicon.

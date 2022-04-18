@@ -12,26 +12,35 @@ results in the disruption of nature, emotional isolation and hubristic ideology.
 
 In *The Forever War*, scientific advancements are pursued in order to 
 help win the war against an alien race known as the Taurans. The desire to create the ultimate
-war machine disrupts humanity's interation with nature, 
+war machine disrupts the soldier's interation with nature, 
 thereby challenging what it means to be human.
+Advancements in neuroscience enable the United Nations Exploratory Force
+to impose extreme pychological manipulation and mind conditioning on the soldiers.
+The ability to selectively reinforce or destroy the electrical connections 
+between the neurons and synapses in the soldier's brains allows for this thought control.
+Soldiers have their sense of empathy for the Taurans overridden 
+so they aren't 'held back' by the natural human instinct of compassion.
+Furthermore, the general population are directed to view natural heterosexuality as
+sociopathic and are controlled towards homosexuality in order to control birth rates. 
+[some comment here ...]
+Advancements in biology and genetic engineering allow the United Nations to create a global
+eugenics council that controls all production of human life.
+An egg can be artificially fertilised with sperm and then introduced to an artificial womb,
+removing the need of a natural birth arising from intercourse.
+Furthermore, genomes can be altered to ensure specific traits in individuals, rather
+than relying on the natural randomness of DNA inheritance.
+Extending beyond this disruption of the natural creation of life is the warping of a human's
+natural upbringing. There is no concept of a parent and adolescent years are spent in an 
+institution away from the general population.
+[some comment here ...]
+It's clear that the scientific advancements in neuroscience, biology and genetic engineering 
+disrupt the natural processes of thought and reproduction and therefore challenge what it
+means to be human.
 1. Disruption of Nature:
-  * Extreme pychological manipulation and mind conditioning to alter natural thought processes.
-    Soldiers have  their sense of empathy overridden in order to evoke intense hatred for the Taurans in battle.
-    General population is controlled towards homosexuality in order to control birth rates. Heterosexuality viewed as sociopathic.
-  * No natural births. No concept of a parent. Adolescent years spent in an institution.
-    Eugenics council controls all production of life, ensuring everyone has similar traits. 
-    Eventually everyone is a clone.
   * All interactions dominated by computers and machinery (at their mercy)
     Spaceships and major weapons are almost exclusively controlled by a computer. 
     Physical acts like running and walking overriden by enhanced space suit.
     Education controlled with automated learning systems.
-
-  * Advancements in neuroscience have allowed for extreme pychological manipulation and mind conditioning.
-    The ability to selectively reinforce or destroy the electrical connections between the neurons and synapses in our brains allows for thought control.
-  * Advancements in biology have allowed for no natural births.
-    An egg is artificially fertilised with sperm and then introduced to an artificial womb.
-  * Advancements in genetic engineering have allowed for ensuring everyone has similar traits.
-    This is acheived by altering the genomes of living organisms.
 
 The scientific advancements utilised in the war with the Taurens in *The Forever War*,
 creates an environment in which individuals are subjected to emotional isolation. 

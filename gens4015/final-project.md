@@ -97,7 +97,7 @@ and therefore challenge to what it means to be human.
 
 
 The scientific advancements prevalent throughout society in *Blade Runner*
-create a civilisation that is emotionally isolated. This challenges what it means to be human.
+create a civilisation that is emotionally isolated, thus challenging what it means to be human.
 
 2. Emotional Isolation:
   * Deckard is portrayed as a loner. No scenes of him in a social setting, all work.
@@ -116,4 +116,9 @@ create a civilisation that is emotionally isolated. This challenges what it mean
   * Advancements in bio-engineering have allowed for the ability to grow artificial organs.
     Stem cells can be grown on scaffolds specific to the particular organ desired.
 
-
+In conclusion, it's evident that in *The Forever War*, *Ad Astra* and *Blade Runner*,
+the 21st century definition of what it means to be human is questioned. 
+The texts investigate how scientific progressions lead to the disruption of nature, 
+emotional isolation and hubristic ideology.
+This investigation reaffirms the idea that the pursuit of scientific advancements challenges 
+what it means to be human.

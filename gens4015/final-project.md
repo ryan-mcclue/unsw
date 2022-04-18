@@ -12,8 +12,8 @@ results in the disruption of nature, emotional isolation and hubristic ideology.
 
 In *The Forever War*, scientific advancements are pursued in order to 
 help win the war against an alien race known as the Taurans. The desire to create the ultimate
-war machine disrupts humanity's interation with nature, challenging what it means to be human.
-
+war machine disrupts humanity's interation with nature, 
+thereby challenging what it means to be human.
 1. Disruption of Nature:
   * Extreme pychological manipulation and mind conditioning to alter natural thought processes.
     Soldiers have  their sense of empathy overridden in order to evoke intense hatred for the Taurans in battle.
@@ -33,8 +33,9 @@ war machine disrupts humanity's interation with nature, challenging what it mean
   * Advancements in genetic engineering have allowed for ensuring everyone has similar traits.
     This is acheived by altering the genomes of living organisms.
 
-
-
+The scientific advancements utilised in the war with the Taurens in *The Forever War*,
+creates an environment in which individuals are subjected to emotional isolation. 
+This challenges what it means to be human.
 
 2. Emotional Isolation:
   * Extreme time dilation makes it impossible to maintain social bonds outside of the Army.
@@ -55,6 +56,9 @@ war machine disrupts humanity's interation with nature, challenging what it mean
 
 In *Ad Astra*, scientific advancements are pursued in order to 
 develop interstellar travel and knowledge of life in the universe.
+The promotion of individualism as a successful mentality for celestial science 
+leads to a society with a hubristic frame of mind, challenging what it means to be human.
+
 1. Man's Hubris:
   * Media censorship and propaganda rife in Space Force and on Earth. 
     The few in command believe they know what's best for everyone to acheive a better society.
@@ -62,6 +66,11 @@ develop interstellar travel and knowledge of life in the universe.
   * Clifford's vanity meant he was in strong alignment with Space Force's message and so was selected as leader for the Lima project.
     He was the figurehead of Space Force excellence, promoting others to adopt his excessive self assurance in order to succeed 
     Even mild-mannered Roy adopts this mindset, as he illegally boards the ship to Neptune, thinking only he can get the job done
+
+The scientific advancements employed by Space Force in *Ad Astra*
+produce an emotionally isolating workplace for its employees, challenging
+what it means to be human.
+
 2. Emotional Isolation:
   * Roy's complete lack of emotional responses is valued by Space Force, e.g. his pulse never going above 80 is commended.
     Roy's frequent voice-overs, closeup shots and relationship flashbacks further emphasis his emotional anaemia
@@ -76,13 +85,20 @@ develop interstellar travel and knowledge of life in the universe.
     Detecting variations in a person's vital signs, vocal tones, pupil activity, body language etc.
 
 
-In *Blade Runner*, scientific advancements are pursued in order to 
-develop synthetic intelligent life.
+In *Blade Runner*, scientific advancements are pursued in order to develop 
+synthetic intelligent life. The absence of natural life is an undeniable disruption of nature
+and therefore challenge to what it means to be human.
+
 1. Disruption of Nature:
   * Shots of environment show excessive pollution, towering machinery, dirty streets, dark mottled skies and no trees or greenery.
     No natural light. All animals are artifical, epitomised with the existence of the Replicants.
     Soundtrack uses digital synthesisers, no physical instruments.
     Engineers now manufacturer body parts instead of doctors treating individuals.
+
+
+The scientific advancements prevalent throughout society in *Blade Runner*
+create a civilisation that is emotionally isolated. This challenges what it means to be human.
+
 2. Emotional Isolation:
   * Deckard is portrayed as a loner. No scenes of him in a social setting, all work.
     Deckard's work colleagues show no concern for his wellbeing.
@@ -99,3 +115,5 @@ develop synthetic intelligent life.
     An increase in speed of machine learning algorithms used greatly decreases the time taken for an agent to make an informed decision.
   * Advancements in bio-engineering have allowed for the ability to grow artificial organs.
     Stem cells can be grown on scaffolds specific to the particular organ desired.
+
+

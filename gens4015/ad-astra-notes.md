@@ -36,9 +36,11 @@ colonel talking to roy 'voyage of exploration can be used as an escape';
 no realisation of what the implications mean for Roy in that his father did not want to see him again. 
 his father promised to come back and take Roy with him
 frequent close-ups to Roy's eyes; this is how he experiences emotion; no physical response
-such isolation means Roy cannot maintain outside relationships and is Roy very self-critical 'i have made many mistakes in life'; unable/struggles to leave voice message for Eve
+such isolation means Roy cannot maintain outside relationships and is Roy very self-critical
+'i have made many mistakes in life'; unable/struggles to leave voice message for Eve
 
-before mars mission; ever constant psyhcological evaluation to ensure higher-ups always have control
+before mars mission; ever constant psyhcological evaluation 
+to ensure higher-ups always have control
 'the moon. where the world comes together' despite disputed territories in a state of war; 
 
 trying to create a false sense of reality to reaffirm the supposed positives of what they are doing
@@ -58,7 +60,8 @@ the psychological evaluation following the monkey attack, Roy tells of his rage 
 after arriving at Mars underground base '7 weeks since Sun, birds, trees'; 
 to search onward you must absolve yourself from nature.
 rooms with virtual nature scenes projected onto the walls
-all the bases are neutral colour schemes, dim lighting, basic shapes like cubes; furnished with only the essential; purely functional
+all the bases are neutral colour schemes, 
+dim lighting, basic shapes like cubes; furnished with only the essential; purely functional
 
 after laser transmission, Roy realises he is being used; 
 the trauma of the individual is outweighed by the collective good which is determined 

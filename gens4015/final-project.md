@@ -91,14 +91,29 @@ Advancements in psychology have allowed the ability to reliably determine someon
 mood/emotion from sensor readings.
 Performing calculations on the numerous microscopic variations in a person's vital signs, 
 vocal tones, pupil activity and body language gives an impression of their current disposition.
+Such technology results in Space Force performing psychological assessments via a machine
+that asks questions to the subject. On failure, you enter a solitary 'comfort room'.
+No human interaction is present and what should be a back and forth exchange of emotions 
+becomes a mere relying of information.
+Roy represents the incredibly emotionally detached state within Space Force.
+Roy's complete lack of emotional responses is valued by Space Force, 
+when he is commended for his pulse never going above 80 [quote here].
+Roy's frequent voice-overs, closeup shots and relationship flashbacks 
+further emphasis his emotional anaemia
+Room interiors are all muted colours. Soundtrack is monotonous and steady.
+'I see myself from the outside'; 'it's all a performance'
+when asked how he handled his father's absence he only mentions how it affected his mother; 
+he can only describe emotions by relating how they are experienced in others
+
+all the bases are neutral colour schemes, 
+dim lighting, basic shapes like cubes; furnished with only the essential; purely functional
+
+ever repeating Roy voice-over to emphasis his lonliness/isolation.
+
+repeated phrase to ensure passing is 
+"I'm focused on the essential to the exclusion of all else" 
 
 2. Emotional Isolation:
-  * Roy's complete lack of emotional responses is valued by Space Force, e.g. his pulse never going above 80 is commended.
-    Roy's frequent voice-overs, closeup shots and relationship flashbacks further emphasis his emotional anaemia
-    Room interiors are all muted colours. Soundtrack is monotonous and steady.
-  * Psychological assessments are performed by a machine asking questions and subject speaking into an microphone.
-    A repeated phrase to ensure passing is "I'm focused on the essential to the exclusion of all else" 
-    On failure, you enter a solitary 'comfort room'. No human contact or emotional discussions. 
 
 
 In *Blade Runner*, scientific advancements are pursued in order to develop 
@@ -139,13 +154,10 @@ Throughout the film, the Replicant's emotions serve as a dichotomy to humanity's
 Roy expresses sorrow after the loss of Pris, Leon demonstrates devotion to the Replicant's plight
 and Zora shows amorous desires in her work. 
 Deckard's isolated, emotionally anemic life is symbolic of humanity. 
-He is portrayed as a loner workaholic.
-His work colleagues show no concern for his wellbeing.
-Deckard himself is awkward and uncomforting relaying emotional information.
-When Deckard is subject to an event of high emotional impact, he undergoes physical shakes instead of healthy emotional expressions. 
-[...]
-J.F sebastian says 'i make my friends'; 
-
+He is awkward and uncomforting relaying emotional information to Rachel.
+When subject to an event of high emotional impact, such as when he shoots Zora or witnesses Roy's 
+animalistic howling, he undergoes physical shakes instead of healthy emotional expressions. 
+Even J.F Sebastian, the only human who shows any signs of happiness views emotions as a mechanical construct "I make my friends".
 
 In conclusion, it's evident that in *The Forever War*, *Ad Astra* and *Blade Runner*,
 the 21st century definition of what it means to be human is questioned. 

@@ -20,18 +20,22 @@ similarly, deckard telling rachel she is a replicant is at first very awkward an
 relaying information that is emotionally sensitive; 
 almost as if the caring nature in humans is not typical
 furthermore, when deckard forces rachel to kiss him he again demonstrates a lack of humanity
-tannoy system 'start a again on the off-world colony'; resignation that current climate is terrible
+tannoy system 'start a again on the off-world colony'; 
+resignation that current climate is terrible
 even the police station is dirty, unkempt. only tyrell is clean
 creation of origami is attempt to recreate life
 'if your not police your little people' controlling you into submission
 4-year life span is failsafe; disregard their ability to develop emotion; refer to as 'skinjobs', 'it', 'them'. rachel is just an experiment to control them better etc.
-asking 'do you like our owl?', immediate response is 'is it artificial?; of course' the idea of something natural is unheard of. genetically engineer eyes, snakes, etc.
+asking 'do you like our owl?', immediate response is 'is it artificial?; of course' 
+the idea of something natural is unheard of. genetically engineer eyes, snakes, etc.
 tyrells office the only place that gets the sun, voices echo to make you feel insignificant. 
 his glasses flicker with light
 grand buildings that lie in rubbish-strewn streets
 ship flying overhead is almost like big-brother; 
-spotlights constantly filtering through windows to indicate a sort of automated intrusion; no peace and quiet
-J.F sebastian says 'i make my friends'; only one who seems content in the world is one who has given in to the idea of human replacements
+spotlights constantly filtering through windows to indicate a sort of automated intrusion; 
+no peace and quiet
+J.F sebastian says 'i make my friends'; 
+only one who seems content in the world is one who has given in to the idea of human replacements
 deckard frequently drinking, also at police station; coca cola adverts are displayed a lot; smoking also; all to cope with living in such a dreary place
 no concern for deckard after seeing him distressed after killing. all duty
 majority of soundtrack is electronic music, symbolising that computers are present in all facets of life
@@ -40,7 +44,8 @@ the replicants display more emotion than humans; distress at loss of others, ang
 they are in some way more human in that they are learning to cope with their emotions, whilst humans have learned to stow them away.
 Roy repeating 'not yet' in the face of death; he shows a desire to keep living
 camera constantly panning up to indicate insignificance of human occupants. 
-the nexus replicants each represent attributes of humanity that has been lost, i.e. we have to experience these emotions through them as we have lost them ourselves
+the nexus replicants each represent attributes of humanity that has been lost, 
+i.e. we have to experience these emotions through them as we have lost them ourselves
 e.g. pris is movement, roy cunning/devious, rachel caring, leon follower, zora flirtatious 
 the noticeable distress in deckard as he kills the replicants is due to the society he lives in not offering ways to express emotions, so he experiences physical shakes instead
 the extreme uneasiness he feels to Roy when he chases him as Roy embraces animalistic (howling) traits (and masochistic in order to prolong life), emotions Deckard is not accustomed to witnessing

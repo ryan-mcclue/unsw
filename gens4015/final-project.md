@@ -101,38 +101,51 @@ vocal tones, pupil activity and body language gives an impression of their curre
     On failure, you enter a solitary 'comfort room'. No human contact or emotional discussions. 
 
 
-
 In *Blade Runner*, scientific advancements are pursued in order to develop 
 synthetic intelligent life. The absence of natural life is an undeniable disruption of nature
 and therefore challenge to what it means to be human.
+Advancements in bio-engineering have allowed for the ability to grow artificial organs.
+Stem cells can be grown on scaffolds specific to the particular organ desired.
 
-1. Disruption of Nature:
-  * Shots of environment show excessive pollution, towering machinery, dirty streets, dark mottled skies and no trees or greenery.
-    No natural light. All animals are artifical, epitomised with the existence of the Replicants.
-    Soundtrack uses digital synthesisers, no physical instruments.
-    Engineers now manufacturer body parts instead of doctors treating individuals.
+Hannibal Chew is 
+[Engineers now manufacturer body parts instead of doctors treating individuals]
 
-  * Advancements in bio-engineering have allowed for the ability to grow artificial organs.
-    Stem cells can be grown on scaffolds specific to the particular organ desired.
-
+Advancements in robotics have allowed for fluid, human-like movements to be performed by robots.
+Improvements in multiple feedback loop systems are acheived, so as to create agents that have a 
+changing centre of gravity.
+The ability to emulate nature devalues the importance of natural things, which sees their 
+removal.
+Wide angle shots of the environment show excessive pollution, towering machinery, 
+dirty streets, dark mottled skies and no trees or greenery.
+The soundtrack employs digital synthesisers with no physical instruments.
+These visual and audio cues emphasis the replacement of the natural world. 
+When Deckard asks Rachel about the composition of her owl "is it artificial?" her blunt response
+"of course" demonstrates the dim resignation society has towards the natural being replaced.
 
 The scientific advancements prevalent throughout society in *Blade Runner*
 create a civilisation that is emotionally isolated, thus challenging what it means to be human.
+Advancements in artificial intelligence have allowed for agents to learn and adapt to complex 
+and unpredictable situations.
+An increase in the speed of machine learning algorithms used greatly decreases the time taken 
+for an agent to make an informed decision.
+As Replicants embody these advancements, synthetic life is able to develop emotion.
+As the Replicant's are artificial, their emotional expressions are viewed as artificial by 
+society also. The end result is a society that devalues the importance of emotion.
+The opening of the film which describes the '4 year fail-safe' (termination) builtin to the 
+Replicants is evident of society's disregard for their ability to develop emotion.
+The dehumanising slurs to refer to the Replicants like 'skinjob' and 'skinner' serves to 
+further enhance this state of affairs. 
+Throughout the film, the Replicant's emotions serve as a dichotomy to humanity's lack thereof.
+Roy expresses sorrow after the loss of Pris, Leon demonstrates devotion to the Replicant's plight
+and Zora shows amorous desires in her work. 
+Deckard's isolated, emotionally anemic life is symbolic of humanity. 
+He is portrayed as a loner workaholic.
+His work colleagues show no concern for his wellbeing.
+Deckard himself is awkward and uncomforting relaying emotional information.
+When Deckard is subject to an event of high emotional impact, he undergoes physical shakes instead of healthy emotional expressions. 
+[...]
+J.F sebastian says 'i make my friends'; 
 
-2. Emotional Isolation:
-  * Deckard is portrayed as a loner. No scenes of him in a social setting, all work.
-    Deckard's work colleagues show no concern for his wellbeing.
-    Deckard himself is awkward and uncomforting relaying emotional information.
-    When Deckard is subject to an event of high emotional impact, he undergoes physical shakes instead of healthy emotional expressions. 
-  * Disregarding their ability to develop emotion, builtin to the Replicants is a '4 year fail-safe' that will shut them down after 4 years.
-    Non-complying Replicants are sought for termination, not execution. This choice of words, along with slurs like 'skinjob' serves to dehumanise them.
-    The Replicants exhibit varied emotions such as compassion, fear, anger and a desire to live.
-    The Replicants emotions serve as a dichotomy to humanity's lack thereof.
-
-  * Advancements in robotics have allowed for fluid, human-like movements to be performed by robots.
-    Improvements in multiple feedback loop systems to create agents that have a centre of gravity that changes as they move.
-  * Advancements in artificial intelligence have allowed for agents to learn and adapt to complex and unpredictable situations.
-    An increase in speed of machine learning algorithms used greatly decreases the time taken for an agent to make an informed decision.
 
 In conclusion, it's evident that in *The Forever War*, *Ad Astra* and *Blade Runner*,
 the 21st century definition of what it means to be human is questioned. 

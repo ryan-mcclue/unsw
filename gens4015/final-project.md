@@ -36,37 +36,44 @@ institution away from the general population.
 It's clear that the scientific advancements in neuroscience, biology and genetic engineering 
 disrupt the natural processes of thought and reproduction and therefore challenge what it
 means to be human.
-1. Disruption of Nature:
-  * All interactions dominated by computers and machinery (at their mercy)
-    Spaceships and major weapons are almost exclusively controlled by a computer. 
-    Physical acts like running and walking overriden by enhanced space suit.
-    Education controlled with automated learning systems.
 
 The scientific advancements utilised in the war with the Taurens in *The Forever War*,
 creates an environment in which individuals are subjected to emotional isolation. 
 This challenges what it means to be human.
+Advancements in aerospace engineering have created propulsions systems capable of sustaining 
+speeds close to the speed of light. Furthermore, the technology to allow humans 
+to survive extremely high-g environments in order to acheive such high speeds in short
+periods of time have been developed.
+As a consequence of Einstein's theory of relativity, when a system contains velocities
+approaching lightspeed, time dilation is experienced. 
+From the perspective of those on Earth, time moves faster, resulting
+in [insert actual quote] 25 Earth years equating to 2 years for those travelling near the
+speed of light.
+[insert a comment here]
+Advancements in computing have allowed for computers to control most aspects of life.
+A reduction in the size of transistors and memory cells allows for accelerated speeds 
+as you are able to fit more computational and storage units onto a smaller surface area of 
+silicon.
 
 2. Emotional Isolation:
   * Extreme time dilation makes it impossible to maintain social bonds outside of the Army.
     Army deliberately moves squad members around to prevent developing relationships.
     Forced to to 'sack' (have sex) with members of your squad every night.
     Emotions are reduced to physical releases that you don't become attuned with.
-  * Desensitisation to death and suffering.
-    The idea of a private dying in training or later on a mission is commonplace and underwhelming.
-    On Earth, medical priority levels so only certain individuals get treatment.
-    Individualism is discarded. Only duty and results matter.
-
-
-  * Advancements in computing have allowed for computers to control most aspects of life.
-    The reduction in size of transistors and memory cells allows for improved computational power by being able to fit more onto a piece of silicon.
-  * Advancements in aerospace-engineering have allowed for spaceships to travel at speeds close to the speed of light.
-    Propulsion systems capable of sustaining the energy required to travel so fast, as well as technology to aid humans surviving high-g environments to accelerate to this speed in short amount of time.
+    Desensitisation to death and suffering.
+  * All interactions dominated by computers and machinery (at their mercy)
+    Spaceships and major weapons are almost exclusively controlled by a computer. 
+    Physical acts like running and walking overriden by enhanced space suit.
+    Education controlled with automated learning systems.
 
 
 In *Ad Astra*, scientific advancements are pursued in order to 
 develop interstellar travel and knowledge of life in the universe.
 The promotion of individualism as a successful mentality for celestial science 
 leads to a society with a hubristic frame of mind, challenging what it means to be human.
+Advancements in aerospace engineering have allowed humans to spend large amounts of time in 
+space. Improved cosmic radiation protection and technology to inhibit the negative affects of 
+prolonged exposure to microgravity means humans can better sustain the harsh environment of space.
 
 1. Man's Hubris:
   * Media censorship and propaganda rife in Space Force and on Earth. 
@@ -76,9 +83,14 @@ leads to a society with a hubristic frame of mind, challenging what it means to 
     He was the figurehead of Space Force excellence, promoting others to adopt his excessive self assurance in order to succeed 
     Even mild-mannered Roy adopts this mindset, as he illegally boards the ship to Neptune, thinking only he can get the job done
 
+
 The scientific advancements employed by Space Force in *Ad Astra*
 produce an emotionally isolating workplace for its employees, challenging
 what it means to be human.
+Advancements in psychology have allowed the ability to reliably determine someone's 
+mood/emotion from sensor readings.
+Performing calculations on the numerous microscopic variations in a person's vital signs, 
+vocal tones, pupil activity and body language gives an impression of their current disposition.
 
 2. Emotional Isolation:
   * Roy's complete lack of emotional responses is valued by Space Force, e.g. his pulse never going above 80 is commended.
@@ -88,10 +100,6 @@ what it means to be human.
     A repeated phrase to ensure passing is "I'm focused on the essential to the exclusion of all else" 
     On failure, you enter a solitary 'comfort room'. No human contact or emotional discussions. 
 
-  * Advancements in aerospace-engineering have allowed humans to spend a large amount of time in space.
-    Improved cosmic radiation protection and technology to inhibit the negative affects of prolonged exposure to microgravity (such as electric muscle stimulants)
-  * Advancements in neuroscience have allowed the ability to reliably determine someone's mood/emotion from sensor readings.
-    Detecting variations in a person's vital signs, vocal tones, pupil activity, body language etc.
 
 
 In *Blade Runner*, scientific advancements are pursued in order to develop 
@@ -103,6 +111,9 @@ and therefore challenge to what it means to be human.
     No natural light. All animals are artifical, epitomised with the existence of the Replicants.
     Soundtrack uses digital synthesisers, no physical instruments.
     Engineers now manufacturer body parts instead of doctors treating individuals.
+
+  * Advancements in bio-engineering have allowed for the ability to grow artificial organs.
+    Stem cells can be grown on scaffolds specific to the particular organ desired.
 
 
 The scientific advancements prevalent throughout society in *Blade Runner*
@@ -122,8 +133,6 @@ create a civilisation that is emotionally isolated, thus challenging what it mea
     Improvements in multiple feedback loop systems to create agents that have a centre of gravity that changes as they move.
   * Advancements in artificial intelligence have allowed for agents to learn and adapt to complex and unpredictable situations.
     An increase in speed of machine learning algorithms used greatly decreases the time taken for an agent to make an informed decision.
-  * Advancements in bio-engineering have allowed for the ability to grow artificial organs.
-    Stem cells can be grown on scaffolds specific to the particular organ desired.
 
 In conclusion, it's evident that in *The Forever War*, *Ad Astra* and *Blade Runner*,
 the 21st century definition of what it means to be human is questioned. 

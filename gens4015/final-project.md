@@ -75,24 +75,23 @@ Advancements in aerospace engineering have allowed humans to spend large amounts
 space. Improved cosmic radiation protection and technology to inhibit the negative affects of 
 prolonged exposure to microgravity means humans can better sustain the harsh environment of space.
 Because of this extended time in space, Space Force exerts itself as an authoritarian figure.
-
-Media censorship and propaganda rife in Space Force and on Earth. 
-The few in command believe they know what's best for everyone to acheive a better society.
-Roy is told lies about his father so that he is still motivated to continue work
-Clifford's vanity meant he was in strong alignment with Space Force's message and so was selected as leader for the Lima project.
-He was the figurehead of Space Force excellence, promoting others to adopt his excessive self assurance in order to succeed 
-Even mild-mannered Roy adopts this mindset, as he illegally boards the ship to Neptune, thinking only he can get the job done
-
-'the moon. where the world comes together' despite disputed territories in a state of war; 
-trying to create a false sense of reality to reaffirm the supposed positives of what they are doing
-
-e.g. his father killing the mutineers and Roy so desired to ignore orders as he believes he knows best and has nothing else in his life t hat matters
-
-the blind pursuit of a goal deterioates your humanity
+Media censorship and propaganda is rife, with those few in command believing they know what's best for everyone.
+Space Force attempts to create a false sense of reality to reaffirm the supposed positives of what they are doing
+"The moon. Where the world comes together". This is despite the moon containing disputed territories and being in a state of war.
+Due to the fact that Clifford embodied the egotism of Space Force, he was selected as leader for the Lima Project and marketed as a hero.
+As the Lima Project was the figurehead of Space Force excellence, others were encouraged to adopt Clifford's excessive self assurance if they
+wanted to succeed.
+However, Roy's journey to discover what has become of the Lima Project reveals that the blind pursuit of a goal deteriorates your humanity.
+Whilst on the Mars base, Roy is told the uncensored events that led to the marooning of the Lima Project at Neptune.
+Clifford killed the other crew members who wanted to go back to Earth due to negative results, as he believed they were "".
+Demonstrating the widespread nature of conceited individuals in Space Force is Roy's actions on Mars.
+He is portrayed as a very mild-mannered individual yet he illegally boards and takes control of the ship to Neptune, thinking only he can get the job done.
+Once he reaches the Lima Project, Roy realises that his father's arrogance has taken his humanity when he says
+"I never once thought of home. I never cared about you or your mother and your small ideas". 
 
 the severe sacrifices required to search beyond left Roy's father with no desire to live in the real world. 
-'could only see what wasn't there, not what was right in front of him' imbued with such a will to achieve a goal, things that don't satisfy this are discarded at the detriment of oneself
-
+'could only see what wasn't there, not what was right in front of him' imbued with such a will to achieve a goal, 
+things that don't satisfy this are discarded at the detriment of oneself
 
 The scientific advancements employed by Space Force in *Ad Astra*
 produce an emotionally isolating workplace for its employees, challenging
@@ -123,8 +122,6 @@ ever repeating Roy voice-over to emphasis his lonliness/isolation.
 repeated phrase to ensure passing is 
 "I'm focused on the essential to the exclusion of all else" 
 
-even after the most crushing statement to him 'i never once thought of home. i never cared about you or your mother and your small ideas'. 
-conditioned to just have a tear slowly slide from his eye
 
 
 

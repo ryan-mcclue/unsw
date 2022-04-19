@@ -74,14 +74,24 @@ leads to a society with a hubristic frame of mind, challenging what it means to 
 Advancements in aerospace engineering have allowed humans to spend large amounts of time in 
 space. Improved cosmic radiation protection and technology to inhibit the negative affects of 
 prolonged exposure to microgravity means humans can better sustain the harsh environment of space.
+Because of this extended time in space, Space Force exerts itself as an authoritarian figure.
 
-1. Man's Hubris:
-  * Media censorship and propaganda rife in Space Force and on Earth. 
-    The few in command believe they know what's best for everyone to acheive a better society.
-    Roy is told lies about his father so that he is still motivated to continue work
-  * Clifford's vanity meant he was in strong alignment with Space Force's message and so was selected as leader for the Lima project.
-    He was the figurehead of Space Force excellence, promoting others to adopt his excessive self assurance in order to succeed 
-    Even mild-mannered Roy adopts this mindset, as he illegally boards the ship to Neptune, thinking only he can get the job done
+Media censorship and propaganda rife in Space Force and on Earth. 
+The few in command believe they know what's best for everyone to acheive a better society.
+Roy is told lies about his father so that he is still motivated to continue work
+Clifford's vanity meant he was in strong alignment with Space Force's message and so was selected as leader for the Lima project.
+He was the figurehead of Space Force excellence, promoting others to adopt his excessive self assurance in order to succeed 
+Even mild-mannered Roy adopts this mindset, as he illegally boards the ship to Neptune, thinking only he can get the job done
+
+'the moon. where the world comes together' despite disputed territories in a state of war; 
+trying to create a false sense of reality to reaffirm the supposed positives of what they are doing
+
+e.g. his father killing the mutineers and Roy so desired to ignore orders as he believes he knows best and has nothing else in his life t hat matters
+
+the blind pursuit of a goal deterioates your humanity
+
+the severe sacrifices required to search beyond left Roy's father with no desire to live in the real world. 
+'could only see what wasn't there, not what was right in front of him' imbued with such a will to achieve a goal, things that don't satisfy this are discarded at the detriment of oneself
 
 
 The scientific advancements employed by Space Force in *Ad Astra*
@@ -113,7 +123,9 @@ ever repeating Roy voice-over to emphasis his lonliness/isolation.
 repeated phrase to ensure passing is 
 "I'm focused on the essential to the exclusion of all else" 
 
-2. Emotional Isolation:
+even after the most crushing statement to him 'i never once thought of home. i never cared about you or your mother and your small ideas'. 
+conditioned to just have a tear slowly slide from his eye
+
 
 
 In *Blade Runner*, scientific advancements are pursued in order to develop 
@@ -121,21 +133,21 @@ synthetic intelligent life. The absence of natural life is an undeniable disrupt
 and therefore challenge to what it means to be human.
 Advancements in bio-engineering have allowed for the ability to grow artificial organs.
 Stem cells can be grown on scaffolds specific to the particular organ desired.
-
-Hannibal Chew is 
-[Engineers now manufacturer body parts instead of doctors treating individuals]
-
+The role of a conventional doctor has been replaced by a genetic designer as evidenced in the
+scene with Hannibal Chew and the Replicants, where Chew remarks "I design your eyes".
 Advancements in robotics have allowed for fluid, human-like movements to be performed by robots.
 Improvements in multiple feedback loop systems are acheived, so as to create agents that have a 
 changing centre of gravity.
-The ability to emulate nature devalues the importance of natural things, which sees their 
-removal.
+The ability to emulate nature results in society devaluing the importance of natural things. This leads
+to the removal of all things natural.
 Wide angle shots of the environment show excessive pollution, towering machinery, 
-dirty streets, dark mottled skies and no trees or greenery.
-The soundtrack employs digital synthesisers with no physical instruments.
-These visual and audio cues emphasis the replacement of the natural world. 
+dirty streets with no trees or greenery.
+The majority of the movie is filmed in dark lighting with accompanying fog, which obscures any living details. 
+From this, we can see the vast deterioration of the natural world.
+The soundtrack employs digital synthesisers with no physical instruments, demonstrating the extent to which even natural music has been replaced.
 When Deckard asks Rachel about the composition of her owl "is it artificial?" her blunt response
 "of course" demonstrates the dim resignation society has towards the natural being replaced.
+[]
 
 The scientific advancements prevalent throughout society in *Blade Runner*
 create a civilisation that is emotionally isolated, thus challenging what it means to be human.
@@ -154,10 +166,12 @@ Throughout the film, the Replicant's emotions serve as a dichotomy to humanity's
 Roy expresses sorrow after the loss of Pris, Leon demonstrates devotion to the Replicant's plight
 and Zora shows amorous desires in her work. 
 Deckard's isolated, emotionally anemic life is symbolic of humanity. 
+There are no scenes of him in a social setting, only work.
 He is awkward and uncomforting relaying emotional information to Rachel.
 When subject to an event of high emotional impact, such as when he shoots Zora or witnesses Roy's 
 animalistic howling, he undergoes physical shakes instead of healthy emotional expressions. 
 Even J.F Sebastian, the only human who shows any signs of happiness views emotions as a mechanical construct "I make my friends".
+[]
 
 In conclusion, it's evident that in *The Forever War*, *Ad Astra* and *Blade Runner*,
 the 21st century definition of what it means to be human is questioned. 

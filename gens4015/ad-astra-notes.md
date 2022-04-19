@@ -55,8 +55,11 @@ many people discussing Roy's father are full of adulation and praise;
 this furthers Roy's image of himself as second-rate in the eyes of his father. 
 he is always referred to as 'son of william mcbride'
 
-normal chain of command Roy is constantly in a submissive state being told what to do; even on trip to Mars his lower-ranked Captain does not adhere to his requests to ignore Mayday
-the psychological evaluation following the monkey attack, Roy tells of his rage similar to that of monkey; if he compartmentalises this anger he experiences pain; it's still approved however; as long as he is able to perform optimally this is what is important, regardless of his unhealthy mental state
+normal chain of command Roy is constantly in a submissive state being told what to do; 
+even on trip to Mars his lower-ranked Captain does not adhere to his requests to ignore Mayday
+the psychological evaluation following the monkey attack, Roy tells of his rage similar to that of monkey; 
+if he compartmentalises this anger he experiences pain; 
+it's still approved however; as long as he is able to perform optimally this is what is important, regardless of his unhealthy mental state
 after arriving at Mars underground base '7 weeks since Sun, birds, trees'; 
 to search onward you must absolve yourself from nature.
 rooms with virtual nature scenes projected onto the walls
@@ -69,11 +72,15 @@ a by a small few
 after emotional plea to his father, still no emotional condolences; instead his purpose has been exhausted and he is discarded
 failed psyhchological assessment places you in a comfort room; no human contact; tranquility is supposed to be achevied through oneself alone
 layers of deception and censoring to preserve image; his father was not a hero
-'i'm being pulled farther and farther from the Sun to you', the Sun representing goodness and happiness; in order to reach his father Roy is being pulled further from his humanity
+'i'm being pulled farther and farther from the Sun to you', the Sun representing goodness and happiness; 
+in order to reach his father Roy is being pulled further from his humanity
 
-such emotional anemia enables and individual to perform seemingly inhuman actions, e.g. his father killing the mutineers and Roy so desired to ignore orders as he believes he knows best and has nothing else in his life that matters
+such emotional anemia enables and individual to perform seemingly inhuman actions, 
+e.g. his father killing the mutineers and Roy so desired to ignore orders as he believes he knows best and has nothing else in his life t hat matters
 Eve saying 'even when your hear I don't know where you are'. no scenes are with him and Eve in person in the present time (in fact all of this close relations are portrayed in this fashion)
-enroute to Neptune, Roy experiences negative effects of 0g on both psychological and physical self (psychodelic hallucinations, trance states of past memories, focusing on the negative things he has done with relationships, repeating phrases, hearing voices); repetive and monotonous task of long space journeys
+enroute to Neptune, Roy experiences negative effects of 0g on both psychological and physical self 
+(psychodelic hallucinations, trance states of past memories, focusing on the negative things he has done with relationships, 
+repeating phrases, hearing voices); repetive and monotonous task of long space journeys
 humans require variety in order to survive
 reliance on technology can blunt independence, e.g. the Captain unable to operate in manual control when landing on Mars
 soundtrack often monotnous to reinforce dreary life 

@@ -70,11 +70,11 @@ They therefore challenge what it means to be human.
 In *Ad Astra*, scientific advancements are pursued in order to 
 develop interstellar travel and knowledge of life in the universe.
 The promotion of individualism as a successful mentality for celestial science 
-leads to a society with a hubristic frame of mind, challenging what it means to be human.
+leads to a space industry with a hubristic frame of mind, challenging what it means to be human.
 Advancements in aerospace engineering have allowed humans to spend large amounts of time in 
 space. Improved cosmic radiation protection and technology to inhibit the negative affects of 
 prolonged exposure to microgravity means humans can better sustain the harsh environment of space.
-Because of this extended time in space, Space Force exerts itself as an authoritarian figure.
+Because of this extended time in space, Space Force advocates the importance of the individual.
 Media censorship and propaganda is rife, with those few in command believing they know what's best for everyone.
 Space Force attempts to create a false sense of reality to reaffirm the supposed positives of what they are doing
 "The moon. Where the world comes together". This is despite the moon containing disputed territories and being in a state of war.
@@ -82,16 +82,17 @@ Due to the fact that Clifford embodied the egotism of Space Force, he was select
 As the Lima Project was the figurehead of Space Force excellence, others were encouraged to adopt Clifford's excessive self assurance if they
 wanted to succeed.
 However, Roy's journey to discover what has become of the Lima Project reveals that the blind pursuit of a goal deteriorates your humanity.
-Whilst on the Mars base, Roy is told the uncensored events that led to the marooning of the Lima Project at Neptune.
-Clifford killed the other crew members who wanted to go back to Earth due to negative results, as he believed they were "".
-Demonstrating the widespread nature of conceited individuals in Space Force is Roy's actions on Mars.
-He is portrayed as a very mild-mannered individual yet he illegally boards and takes control of the ship to Neptune, thinking only he can get the job done.
-Once he reaches the Lima Project, Roy realises that his father's arrogance has taken his humanity when he says
+Whilst on the Mars base, Roy learns that Clifford killed the other crew members "They desired to return to earth. I could not permit that".
+He also discovers the extent of Space Force's deception "Space Com. would never allow their image to be shattered. So, they made him a hero".
+The widespread nature of conceited individuals in Space Force is demonstrated when Roy illegally boards the ship to Neptune.
+He is portrayed as a very mild-mannered individual yet thinks only he can get the job done.
+Once he reaches the Lima Project, Roy realises that his father's arrogance has taken his humanity 
 "I never once thought of home. I never cared about you or your mother and your small ideas". 
-
-the severe sacrifices required to search beyond left Roy's father with no desire to live in the real world. 
-'could only see what wasn't there, not what was right in front of him' imbued with such a will to achieve a goal, 
-things that don't satisfy this are discarded at the detriment of oneself
+The obession to search for alien life left Clifford with no desire to live in the real world. 
+"He could only see what wasn't there, not what was right in front of him"
+Imbued with such a myopic will to achieve a goal, things that don't satisfy this are discarded at the detriment of your humanity.
+It's clear that scientific advancements in aerospace engineering have resulted in a space industry devoid of modesty.
+It therefore challenges what it means to be human.
 
 The scientific advancements employed by Space Force in *Ad Astra*
 produce an emotionally isolating workplace for its employees, challenging

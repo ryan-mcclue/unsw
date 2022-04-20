@@ -20,19 +20,20 @@ The ability to selectively reinforce or destroy the electrical connections
 between the neurons and synapses in the soldier's brains allows for this thought control.
 Soldiers have their sense of empathy for the Taurans overridden 
 so they aren't 'held back' by the natural human instinct of compassion.
+"We had just herded them up and slaughtered them, the first encounter between mankind and another intelligent species".
 Furthermore, the general population are directed to view natural heterosexuality as
 sociopathic and are controlled towards homosexuality in order to control birth rates. 
-[some comment here ...]
+"Heterosexuality is considered an emotional dysfunction. Relatively easy to cure".
 Advancements in biology and genetic engineering allow the United Nations to create a global
 eugenics council that controls all production of human life.
 An egg can be artificially fertilised with sperm and then introduced to an artificial womb,
 removing the need of a natural birth arising from intercourse.
 Furthermore, genomes can be altered to ensure specific traits in individuals, rather
 than relying on the natural randomness of DNA inheritance.
+"They looked remarkably alike", "Most of them looked vaguely Polynesian".
 Extending beyond this disruption of the natural creation of life is the warping of a human's
 natural upbringing. There is no concept of a parent and adolescent years are spent in an 
 institution away from the general population.
-[some comment here ...]
 It's clear that the scientific advancements in neuroscience, biology and genetic engineering 
 disrupt the natural processes of thought and reproduction and therefore challenge what it
 means to be human.
@@ -49,11 +50,18 @@ approaching lightspeed, time dilation is experienced.
 From the perspective of those on Earth, time moves faster, resulting
 in [insert actual quote] 25 Earth years equating to 2 years for those travelling near the
 speed of light.
+"the way all reality becomes illusory and observer-oriented when you study general relativity"
 [insert a comment here]
 Advancements in computing have allowed for computers to control most aspects of life.
 A reduction in the size of transistors and memory cells allows for accelerated speeds 
 as you are able to fit more computational and storage units onto a smaller surface area of 
 silicon.
+'surely he had nothing so primitive and unmilitary as a will to live'
+
+"your friends and sweethearts of 2 years ago are no going to be 26 years older than you.
+many of your relatives will have passed away. I think you'll find it a very lonely world"
+
+gets worse, "With time dilation, 450 years for research and development"
 
 2. Emotional Isolation:
   * Extreme time dilation makes it impossible to maintain social bonds outside of the Army.
@@ -65,6 +73,9 @@ silicon.
     Spaceships and major weapons are almost exclusively controlled by a computer. 
     Physical acts like running and walking overriden by enhanced space suit.
     Education controlled with automated learning systems.
+It's clear that the scientific advancements in neuroscience, biology and genetic engineering 
+disrupt the natural processes of thought and reproduction and therefore challenge what it
+means to be human.
 
 
 In *Ad Astra*, scientific advancements are pursued in order to 

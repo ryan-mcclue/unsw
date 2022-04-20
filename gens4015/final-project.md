@@ -34,8 +34,8 @@ than relying on the natural randomness of DNA inheritance.
 Extending beyond this disruption of the natural creation of life is the warping of a human's
 natural upbringing. There is no concept of a parent and adolescent years are spent in an 
 institution away from the general population.
-It's clear that the scientific advancements in neuroscience, biology and genetic engineering 
-disrupt the natural processes of thought and reproduction and therefore challenge what it
+It's clear that the scientific advancements in neuroscience, biology and genetic engineering have 
+disrupted the natural processes of thought and reproduction. They therefore challenge what it
 means to be human.
 
 The scientific advancements utilised in the war with the Taurens in *The Forever War*,
@@ -47,36 +47,25 @@ to survive extremely high-g environments in order to acheive such high speeds in
 periods of time have been developed.
 As a consequence of Einstein's theory of relativity, when a system contains velocities
 approaching lightspeed, time dilation is experienced. 
-From the perspective of those on Earth, time moves faster, resulting
-in [insert actual quote] 25 Earth years equating to 2 years for those travelling near the
-speed of light.
-"the way all reality becomes illusory and observer-oriented when you study general relativity"
-[insert a comment here]
+From the perspective of those on Earth, time moves faster.
+When Mandella returns to Earth after his 2 year minimum period of service, 26 years have passed on Earth.
+Furthermore, as Mandella stays in the UNEF, where upon attaining the rank of Major, 450 years have passed on Earth.
+This time disparity makes it impossible to maintain social bonds with anyone outside UNEF.
+To compound this, UNEF deliberately move squad members around to prevent developing emotional connections with anyone in your company.
+"Your friends and sweethearts of 2 years ago are now going to be 26 years older than you.
+Many of your relatives will have passed away. I think you'll find it a very lonely world".
+The absence of emotional relationships destroys one's humanity 
+"Surely he had nothing so primitive and unmilitary as a will to live".
 Advancements in computing have allowed for computers to control most aspects of life.
 A reduction in the size of transistors and memory cells allows for accelerated speeds 
-as you are able to fit more computational and storage units onto a smaller surface area of 
-silicon.
-'surely he had nothing so primitive and unmilitary as a will to live'
-
-"your friends and sweethearts of 2 years ago are no going to be 26 years older than you.
-many of your relatives will have passed away. I think you'll find it a very lonely world"
-
-gets worse, "With time dilation, 450 years for research and development"
-
-2. Emotional Isolation:
-  * Extreme time dilation makes it impossible to maintain social bonds outside of the Army.
-    Army deliberately moves squad members around to prevent developing relationships.
-    Forced to to 'sack' (have sex) with members of your squad every night.
-    Emotions are reduced to physical releases that you don't become attuned with.
-    Desensitisation to death and suffering.
-  * All interactions dominated by computers and machinery (at their mercy)
-    Spaceships and major weapons are almost exclusively controlled by a computer. 
-    Physical acts like running and walking overriden by enhanced space suit.
-    Education controlled with automated learning systems.
-It's clear that the scientific advancements in neuroscience, biology and genetic engineering 
-disrupt the natural processes of thought and reproduction and therefore challenge what it
-means to be human.
-
+as you are able to fit more computational and storage units onto a smaller surface area of silicon.
+Spaceships and major weapons are almost exclusively controlled by a computer. 
+Physical acts like running and walking are overriden by an enhanced space suit.
+The loss of responsibility and command makes you feel out of touch with your emotions.
+"It gave you the odd feeling of simultaneously being a marionette and puppeteer.".
+It's evident that the scientific advancements in aerospace engineering and computing have 
+isolated the emotional experiences of friendship and self-control.
+They therefore challenge what it means to be human.
 
 In *Ad Astra*, scientific advancements are pursued in order to 
 develop interstellar travel and knowledge of life in the universe.

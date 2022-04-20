@@ -103,28 +103,22 @@ Performing calculations on the numerous microscopic variations in a person's vit
 vocal tones, pupil activity and body language gives an impression of their current disposition.
 Such technology results in Space Force performing psychological assessments via a machine
 that asks questions to the subject. On failure, you enter a solitary 'comfort room'.
-No human interaction is present and what should be a back and forth exchange of emotions 
-becomes a mere relying of information.
-Roy represents the incredibly emotionally detached state within Space Force.
-Roy's complete lack of emotional responses is valued by Space Force, 
-when he is commended for his pulse never going above 80 [quote here].
-Roy's frequent voice-overs, closeup shots and relationship flashbacks 
-further emphasis his emotional anaemia
-Room interiors are all muted colours. Soundtrack is monotonous and steady.
-'I see myself from the outside'; 'it's all a performance'
-when asked how he handled his father's absence he only mentions how it affected his mother; 
-he can only describe emotions by relating how they are experienced in others
-
-all the bases are neutral colour schemes, 
-dim lighting, basic shapes like cubes; furnished with only the essential; purely functional
-
-ever repeating Roy voice-over to emphasis his lonliness/isolation.
-
-repeated phrase to ensure passing is 
-"I'm focused on the essential to the exclusion of all else" 
-
-
-
+No human interaction is present and what should be a back and forth exchange of emotions becomes a mere relying of information.
+All the Space Force buildings are based on basic shapes like cubes, incorporate neutral colour schemes with dim lighting 
+and are furnished with only the essential.
+The overall soundtrack is monotonous and steady.
+These film techniques further the idea of a world that is emotionally empty.
+Roy's character is further representative of the emotionally detached state within Space Force.
+His complete lack of emotional responses are valued by Space Force, "I'm focused on the essential to the exclusion of all else".
+Roy's frequent voice-overs highlight his inability to express himself to others as well as emphasising his lonliness and isolation.
+"I see myself from the outside", "It's all a performance".
+When asked how he handled his father's absence from his childhood, he refrains from mentioning his own emotions
+"My mother was certainly distressed by it ... My father was dedicated to his work and I'm sure it was very difficult for him as well".
+Roy can only describe emotions by relating how they are experienced in others, indicative of an individual who has lost touch of their own humanity.
+Despite this obvious unhealthy mental state, Space Force approve Roy for work as they believe the removal of all emotional attachments will
+allow him to perform better at his job.
+It's clear that scientific advancements in psychology have caused Space Force employees to become emotionally isolated.
+It therefore challenges what it means to be human.
 
 In *Blade Runner*, scientific advancements are pursued in order to develop 
 synthetic intelligent life. The absence of natural life is an undeniable disruption of nature

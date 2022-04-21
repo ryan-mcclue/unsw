@@ -1,4 +1,4 @@
-# Final Project (bibliography relating to scientific principles mentioned, maybe also mention lecture slides?)
+# Final Project
 
 Developments in science and technology are inextricably linked to changes 
 in the human condition.
@@ -117,7 +117,8 @@ When asked how he handled his father's absence from his childhood, he refrains f
 Roy can only describe emotions by relating how they are experienced in others, indicative of an individual who has lost touch of their own humanity.
 Despite this obvious unhealthy mental state, Space Force approve Roy for work as they believe the removal of all emotional attachments will
 allow him to perform better at his job.
-It's clear that scientific advancements in psychology have caused Space Force employees to become emotionally isolated.
+It's clear that scientific advancements in psychology have caused Space Force to depreciate the importance of emotions and as such,
+caused its employees to become emotionally isolated.
 It therefore challenges what it means to be human.
 
 In *Blade Runner*, scientific advancements are pursued in order to develop 
@@ -135,11 +136,15 @@ to the removal of all things natural.
 Wide angle shots of the environment show excessive pollution, towering machinery, 
 dirty streets with no trees or greenery.
 The majority of the movie is filmed in dark lighting with accompanying fog, which obscures any living details. 
+A constant source of light are spotlights that filter through windows, following a sweeping pattern back and forth.
+Their mechanical motion is disruptive and irritating, symbolising that the idea of light streaming in from outside, like the Sun naturally does, 
+is an intrusion.
 From this, we can see the vast deterioration of the natural world.
 The soundtrack employs digital synthesisers with no physical instruments, demonstrating the extent to which even natural music has been replaced.
 When Deckard asks Rachel about the composition of her owl "is it artificial?" her blunt response
 "of course" demonstrates the dim resignation society has towards the natural being replaced.
-[]
+It's clear that the scientific advancements in bio-engineering and robotics have disrupted nature by causing the replacement of natural things. 
+They therefore challenge what it means to be human.
 
 The scientific advancements prevalent throughout society in *Blade Runner*
 create a civilisation that is emotionally isolated, thus challenging what it means to be human.
@@ -163,11 +168,21 @@ He is awkward and uncomforting relaying emotional information to Rachel.
 When subject to an event of high emotional impact, such as when he shoots Zora or witnesses Roy's 
 animalistic howling, he undergoes physical shakes instead of healthy emotional expressions. 
 Even J.F Sebastian, the only human who shows any signs of happiness views emotions as a mechanical construct "I make my friends".
-[]
+It's clear that scientific advancements in artificial intelligence have caused society to become emotionally isolated.
+It therefore challenges what it means to be human.
 
 In conclusion, it's evident that in *The Forever War*, *Ad Astra* and *Blade Runner*,
 the 21st century definition of what it means to be human is questioned. 
-The texts investigate how scientific progressions lead to the disruption of nature, 
+The texts explore how scientific progressions lead to the disruption of nature, 
 emotional isolation and hubristic ideology.
 This investigation reaffirms the idea that the pursuit of scientific advancements challenges 
 what it means to be human.
+
+## Bibliography
+> Martell, S., 2022. The Rules of Spacetime. [ebook] Kensington: UNSW, p.17. Available at: <https://moodle.telt.unsw.edu.au/course/view.php?id=63963> [Accessed 21 April 2022].
+> Whalley, K. (2011). Tuning electrical synapses. Nature Reviews Neuroscience, 12(12), pp.705–705.
+> Romanis, E.C. (2018). Artificial womb technology and the frontiers of human reproduction: conceptual differences and potential implications. Journal of Medical Ethics, [online] 44(11), pp.751–755. Available at: https://jme.bmj.com/content/44/11/751.
+> Medline Plus (2020). What are genome editing and CRISPR-Cas9? [online] medlineplus.gov. Available at: https://medlineplus.gov/genetics/understanding/genomicresearch/genomeediting/.
+> Sammut, C., 2022. Planning Under Uncertainty Reinforcement Learning. [ebook] Kensington: UNSW, pp.1-33. Available at: <https://webcms3.cse.unsw.edu.au/COMP3411/22T1/resources/71625> [Accessed 21 April 2022].
+> rero lesson 15: Center of Gravity and Stability. 2022. [video] https://www.youtube.com/watch?v=wHEO1SSBavs: Rero.
+> Al Idrus, A. (2020). Exclusive: How far are we from lab-grown organs? This Y Combinator startup is printing a road map. [online] FierceBiotech. Available at: https://www.fiercebiotech.com/medtech/how-far-are-we-from-lab-grown-organ-transplants-y-combinator-startup-printing-a-road-map.

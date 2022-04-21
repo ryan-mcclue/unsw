@@ -47,8 +47,11 @@ camera constantly panning up to indicate insignificance of human occupants.
 the nexus replicants each represent attributes of humanity that has been lost, 
 i.e. we have to experience these emotions through them as we have lost them ourselves
 e.g. pris is movement, roy cunning/devious, rachel caring, leon follower, zora flirtatious 
-the noticeable distress in deckard as he kills the replicants is due to the society he lives in not offering ways to express emotions, so he experiences physical shakes instead
-the extreme uneasiness he feels to Roy when he chases him as Roy embraces animalistic (howling) traits (and masochistic in order to prolong life), emotions Deckard is not accustomed to witnessing
-deckards understanding of the loss of his humanity is most pointantly experienced when he is saved by Roy (he was trying to be free, the most basic human emotion, not malice) and then witnesses Roy dying and how insigthful and introspective he is; what world must he live in whereby these
-'human' replicants are treated with such disrespect
+the noticeable distress in deckard as he kills the replicants is due to the society he lives in not offering ways to express emotions, 
+so he experiences physical shakes instead
+the extreme uneasiness he feels to Roy when he chases him as Roy embraces animalistic (howling) traits (and masochistic in order to prolong life), 
+emotions Deckard is not accustomed to witnessing
+deckards understanding of the loss of his humanity is most pointantly experienced when he is saved by Roy (he was trying to be free, 
+the most basic human emotion, not malice) and then witnesses Roy dying and how insigthful and introspective he is; 
+what world must he live in whereby these 'human' replicants are treated with such disrespect
 'it's too bad show won't live, then again who does?' remarking on the drudgery life has become

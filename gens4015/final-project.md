@@ -1,4 +1,4 @@
-# Final Project
+# GENS4015 - Final Project
 
 Developments in science and technology are inextricably linked to changes 
 in the human condition.
@@ -180,9 +180,15 @@ what it means to be human.
 
 ## Bibliography
 > Martell, S., 2022. The Rules of Spacetime. [ebook] Kensington: UNSW, p.17. Available at: <https://moodle.telt.unsw.edu.au/course/view.php?id=63963> [Accessed 21 April 2022].
-> Whalley, K. (2011). Tuning electrical synapses. Nature Reviews Neuroscience, 12(12), pp.705–705.
-> Romanis, E.C. (2018). Artificial womb technology and the frontiers of human reproduction: conceptual differences and potential implications. Journal of Medical Ethics, [online] 44(11), pp.751–755. Available at: https://jme.bmj.com/content/44/11/751.
-> Medline Plus (2020). What are genome editing and CRISPR-Cas9? [online] medlineplus.gov. Available at: https://medlineplus.gov/genetics/understanding/genomicresearch/genomeediting/.
+
 > Sammut, C., 2022. Planning Under Uncertainty Reinforcement Learning. [ebook] Kensington: UNSW, pp.1-33. Available at: <https://webcms3.cse.unsw.edu.au/COMP3411/22T1/resources/71625> [Accessed 21 April 2022].
+
+> Whalley, K. (2011). Tuning electrical synapses. Nature Reviews Neuroscience, 12(12), pp.705–705.
+
+> Romanis, E.C. (2018). Artificial womb technology and the frontiers of human reproduction: conceptual differences and potential implications. Journal of Medical Ethics, [online] 44(11), pp.751–755. Available at: https://jme.bmj.com/content/44/11/751.
+
+> Medline Plus (2020). What are genome editing and CRISPR-Cas9? [online] medlineplus.gov. Available at: https://medlineplus.gov/genetics/understanding/genomicresearch/genomeediting/.
+
 > rero lesson 15: Center of Gravity and Stability. 2022. [video] https://www.youtube.com/watch?v=wHEO1SSBavs: Rero.
+
 > Al Idrus, A. (2020). Exclusive: How far are we from lab-grown organs? This Y Combinator startup is printing a road map. [online] FierceBiotech. Available at: https://www.fiercebiotech.com/medtech/how-far-are-we-from-lab-grown-organ-transplants-y-combinator-startup-printing-a-road-map.

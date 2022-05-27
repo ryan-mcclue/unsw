@@ -2,18 +2,28 @@
 Have valid licence then: bodies donated, embalmed (formaldehyde), kept for 4 years, then reconciled and cremated
 Handle bones delicatley, e.g. don't pick up skull through eye sockets
 
-process means extension? fossa means depression?
+process means extension? fossa means depression? foramen means hole? 
+articular means joint (where two bones meet)?
+
+(these depend on point of reference)
+Up or Below: superior (closer to head), inferior (closer to feet)
+Front/Behind: anterior/ventral (front), posterior/dorsal (behind)
+Middle: medial (closer to middle), lateral
+Limb Connection to Torso: proximal (closer to point of attachment), distal
 
 3 - 5 segments in coccyx?
 
-convex and concave nature of sections wrong?
-
-Axial skeleton: 
+Axial Skeleton: 
   * Skull:
     * Cranial
       * Frontal -(coronal)- parietal -(sagittal)- occipital -(lambdoid)- temporal
     * Facial
       * Nasal, maxilla, zygomatic, mandible
   * Veterbral Column:
-    * Cervical(7), thoracic(12), lumbar(5), sacral(5), coccyx(approx 4?)
-  * Thoracic Cage
+    * Cervical(7, cc), thoracic(12, cx, kyphosis), lumbar(5, cc, lordosis), sacral(5, fused), coccyx(approx 4?, cx)
+  * Thoracic Cage:
+    * 12 pairs of ribs (true and false), sternum
+
+Appendicular Skeleton:
+  * Clavicle connects to manubrium (part of sternum), i.e. axial skeleton
+  *   

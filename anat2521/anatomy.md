@@ -7,6 +7,9 @@ articular means joint (where two bones meet)?
 tuberosity means roundness
 condyle is tuberosity near end of long bone?
 subcutaneous means under the skin
+peri -> around
+endo -> within
+
 
 (these depend on point of reference)
 Up or Below: superior (closer to head), inferior (closer to feet)

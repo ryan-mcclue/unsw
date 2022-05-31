@@ -42,3 +42,19 @@ What things are instinctive biologically in humans?
 Example of biocultural evolution?
 When stating 206 bone count, mentioned that this doesn't include sesamoid bones. what about the variability of the coccyx? (3 - 5 segments in coccyx?)
 Easier to obtain mitochondrial dna than nuclear dna. Sometimes get lucky with nuclear dna, does this mean it's better? Can you only make a subset of inferences?
+Marking/assessment outlines:
+
+stations at time, rotate to each station (typical anatomy test)
+
+will get sample questions in lab; will build on lab material
+
+primates are a very long lived species like humans
+actual hobits in indoensia flores caves(homo-erectus survived somewhat 20000... amazing)
+
+gap in between body of spine is called disc
+
+gaps in bones could be because a young child where bone is separated by cartilage (e.g. fontalelles on skull)
+closer to equator, smaller trunk longer arms for evaporation
+ancestry term instead of race used now in anthropology
+european ancestry as opposed to caucasian
+be wary of magical numbers specified in anatomy textbooks (they may be variable!)

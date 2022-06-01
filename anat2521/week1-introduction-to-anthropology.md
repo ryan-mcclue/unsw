@@ -27,34 +27,32 @@ Humans are unique in that our behaviour is largely determined by culture.
 In fact, our culture has influenced our biological makeup leading to humans being products of biocultural evolution
 
 Bioarchelogy can reveal burial practices, weapons used (from antemortem or perimortem trauma), religious offerings, body modifications, community worldview
+Easier to obtain mitochondrial dna than nuclear dna as more cells. However less obtained in them.
 
 Ethical issues in Australia with indigienous communities not wanting skeletal remains to be uncovered (Mungo man)
 
------------------------------------
-Examples of non-western explorers?
-
-Seems 'traditional' societies are non-western e.g. mayan, african, etc. What about older white cultures?
-
-If humans obtain things culturally then they could be suboptimal. 
-if we learn from primates that know things biologically, is their way of behaving more optimal than ours?
-Applied anthropology in resting positions (perhaps even child-rearing) 
-What things are instinctive biologically in humans?
-Example of biocultural evolution?
-When stating 206 bone count, mentioned that this doesn't include sesamoid bones. what about the variability of the coccyx? (3 - 5 segments in coccyx?)
-Easier to obtain mitochondrial dna than nuclear dna. Sometimes get lucky with nuclear dna, does this mean it's better? Can you only make a subset of inferences?
 Marking/assessment outlines:
-
 stations at time, rotate to each station (typical anatomy test)
-
 will get sample questions in lab; will build on lab material
 
-primates are a very long lived species like humans
-actual hobits in indoensia flores caves(homo-erectus survived somewhat 20000... amazing)
+-----------------------------------
+Primates are a very long lived species like humans.
+If humans obtain things culturally then they could be suboptimal. 
+If we learn from primates that know things biologically, is their way of behaving could be more optimal than ours.
+Applied anthropology in resting positions (perhaps even child-rearing) 
 
-gap in between body of spine is called disc
+Exploring things that are instinctively biological in humans is a grey-area delving into psychology.
 
-gaps in bones could be because a young child where bone is separated by cartilage (e.g. fontalelles on skull)
-closer to equator, smaller trunk longer arms for evaporation
-ancestry term instead of race used now in anthropology
-european ancestry as opposed to caucasian
-be wary of magical numbers specified in anatomy textbooks (they may be variable!)
+When stating 206 bone count, it does not include sesamoid bones.
+This is common in anatomy books that mention a 'magic number'. 
+They don't take into account variability, e.g. saying that Homo Sapians appeared 200,000 years ago is not exact  
+
+'Hobbits' in Flores, Indoensia caves were Homo Erectus living about 20,000 years ago
+
+Gaps in bones could be because it's a young child where some bone is separated by cartilage, e.g. fontanelles
+
+Closer to equator, smaller trunk longer arms for evaporation as larger surface area.
+
+More accurate to use 'European Ancestry' as oppose to Caucasian.
+
+what about the variability of the coccyx? (3 - 5 segments in coccyx?)

@@ -35,6 +35,12 @@ Marking/assessment outlines:
 stations at time, rotate to each station (typical anatomy test)
 will get sample questions in lab; will build on lab material
 
+radius notch is more medial
+way patella tilts gives side
+identify what side bone goes on
+gotcha with thumb/big toe phalange number
+identify top and bottom, then things which point medially/laterally
+
 -----------------------------------
 Primates are a very long lived species like humans.
 If humans obtain things culturally then they could be suboptimal. 

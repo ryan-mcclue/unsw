@@ -18,6 +18,7 @@ Handle bones delicatley, e.g. don't pick up skull through eye sockets
 * Proximal (closer to point of limb attachment), Distal
 * Length is longest side. Longitudinal is running lengthwise
 * Sesamoid (embedded in tendon, e.g. patella)
+* Condyle (roundness near joint)
 
 Axial Skeleton: 
   * Skull:

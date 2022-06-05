@@ -77,9 +77,19 @@ Mitochondrial DNA is inherited soley from the mother. So, any changes are mutati
 Pleiotropy is where a single gene affects multiple characteristics 
 
 phenotype are observed physical characteristics of gene 
+(Environmental factors will affect phenotype as well)
 
 Important: a dominant allele is not necessarily better, e.g. Marfan's  
 Any allele on X chromosome for males will be present as no matching chromosome to block it
+
+Evolution is change in allele frequency
+
+Mutation must happen in gamete to inherit it
+
+Reasons for gene flow include geography, cultural, founders effect (colonisation from small group)
+
+Genetic bottle-neck is the loss of alleles due to some event, i.e. lack of genetic diversity 
+Suspected happened to cheetahs as they have little genetic diversity
 
 ------------------------------------------------------------------------
 if mapped the human genome in 2003, how does this affect genetic engineering/disease treatments? 
@@ -89,3 +99,4 @@ for chromosomes, each item from a pair is from either parent?
 is the number of chromosomes specific to each species?
 will the length of every person's chromosome pairs be the same?
 genome project is only protein-coding DNA? the other is the ongoing ENCODE project?
+Why is interbreeding higher chance of genetic disorders?

@@ -21,7 +21,7 @@ rate of fertility important, e.g. bacteria (single-celled)
 a cell is fundamental unit of life
 
 eukaroytic cells:
-  * nucleus --> DNA (23 pairs of chromosomes; 23rd are XY in males, YY in females), RNA (copy DNA information to ribosome)
+  * nucleus --> DNA (23 pairs of chromosomes; 23rd are XY in males, XX in females), RNA (copy DNA information to ribosome)
   * cytoplasm --> mitochondria (energy and mtDNA), ribosomes (protein synthesis)
     * somatic cells --> body tissue
     * gametes --> reproduction (egg cells and sperm cells forming zygote)
@@ -60,12 +60,30 @@ DNA is the basis of all life
 mutation:
 base substitution/point mutation (replacement of base in an amino acid)
 
+one point a chromosome item will have a corresponding point on it's other item.
 locus is a specific point on a gene.
 genotype are the alleles at a specific locus
-dominant is when only require one copy of allele (so, for any trait have at least two alleles? one for say tall, one for short?) 
+dominant is when only require one copy of allele in a genotype 
+(So, how do recessive genes first come about without a carrier? Are they produced at birth, i.e. are new 'conditions' created all the time? What is the rarity?) 
+A Mendelian trait is one which is determined only at a single locus, e.g. blood type
+
+Polygenic is multiple loci, i.e. multiple genes, e.g hair colour, height
+(Mendelian inheritence applies to each individual loci)
+Most traits are this. 
+In these cases, not just the the protein-encoded, but regulatory genes also
+
+Mitochondrial DNA is inherited soley from the mother. So, any changes are mutations
+
+Pleiotropy is where a single gene affects multiple characteristics 
+
+phenotype are observed physical characteristics of gene 
+
+Important: a dominant allele is not necessarily better, e.g. Marfan's  
+Any allele on X chromosome for males will be present as no matching chromosome to block it
 
 ------------------------------------------------------------------------
-if mapped the human genome in 2003, how does this affect genetic engineering/disease treatments?
+if mapped the human genome in 2003, how does this affect genetic engineering/disease treatments? 
+(Polygenic traits, we haven't determined all loci involved?)
 is all the DNA in the nucleus exclusively packaged in a chromosome?
 for chromosomes, each item from a pair is from either parent?
 is the number of chromosomes specific to each species?

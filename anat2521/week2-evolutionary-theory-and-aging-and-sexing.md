@@ -39,6 +39,7 @@ so, alterations within the bases of these sections (alleles) will produce variat
 mitosis is splitting into 2 new cells in most somatic cells.
 meisosis is splitting into 4 cells in gametes which contain only half number of chromosomes
 (this has a great evolutionary advantage allowing for genetic diversity in offspring)
+(also, gives rise to the principle of segregation)
 
 every somatic cell in the body contains the same DNA.
 however, only a fraction of it is used in that cell's protein-synthesis, e.g. bone cells don't produce same as liver cells
@@ -54,8 +55,14 @@ amino acids are structurally the same in all species.
 
 regulatory DNA evolves quicker. humans have highest concentration of this than any other species studied
 
+DNA is the basis of all life
+
 mutation:
 base substitution/point mutation (replacement of base in an amino acid)
+
+locus is a specific point on a gene.
+genotype are the alleles at a specific locus
+dominant is when only require one copy of allele (so, for any trait have at least two alleles? one for say tall, one for short?) 
 
 ------------------------------------------------------------------------
 if mapped the human genome in 2003, how does this affect genetic engineering/disease treatments?

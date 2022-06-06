@@ -102,10 +102,34 @@ From independent ancestors is homoplasy (assume these are not common in cladisti
 
 Hox regulatory gene very important in embryonic development
 
-Evolutionary systematics: will produce a phylogeny (lineage with time markers in mya.) 
-A clade is a group sharing a common ancestor  
+Interpreting Evolutionary Relationships:
+Evolutionary systematics: will produce a phylogeny (lineage with time markers in mya; difficult to do as many more extinct species) 
+A clade is a group sharing a common ancestor
 Cladistics: determine homologies that distinguish members of a clade (so they will be derived from ancestral homologies)
-Utilise both to form a complete picture (however more cladistics)
+will produce a cladogram (just ancestor-descendor relationships)
+Utilise both to form a complete picture
+
+As gene drift is random, simply isolating groups will lead to speciation
+
+Another definition for species is ecological species, i.e. physical and biological environment (e.g. terrestrial or arboreal, diet, behaviour)
+
+Species:
+Within fossils we have age and sexual dimorphism variations
+Can only accurately determine by comparing with currently living closely-linked species
+Genus: if can breed live offspring but not fertile, e.g. horse and donkey producing mule (this hybridisation is rare in nature, so go off adaptive zone; teeth good indicator here)
+
+Fossil is any trace organism, e.g. insect in resin, bone, etc. 
+In reality, very rare that circumstances allow for a terrestrial life-form to be fossilised
+
+Verterbrae evolution in geological eras: Paleozoic (500 mya; Pangea), Mesozoic (Gondwanaland, Lauraisia, Dinosaurs), Cenozoic (current)
+Mammals first appeared at end of Mesozoic and saw the change of reptiles to mammals as dominant terrestrial
+Largely due to: larger brains, varied shaped teeth, endothermic
+Placental mammals dominant
+
+Processes of macro evolution:
+Adaptive radiation: moving forth to an unused place 
+Specialised and generalised traits
+
 
 ------------------------------------------------------------------------
 if mapped the human genome in 2003, how does this affect genetic engineering/disease treatments? 

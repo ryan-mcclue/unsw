@@ -118,8 +118,8 @@ Evolution is two stages; variation and then natural selection
 
 So, inheritence is determined by the particular alleles in the gamete chromosomes resulting from meisois
 
-Similar traits from common ancestor is homology (interesting how skeleton of forelimbs in mammals are very similar). 
-From independent ancestors is homoplasy (assume these are not common in cladistics, otherwise no straightforward assumptions could be made!)
+Similar traits from common ancestor is homology (interesting how skeleton of forelimbs (human arm) in mammals are very similar). 
+From independent ancestors is homoplasy/analogy (assume these are not common in cladistics, otherwise no straightforward assumptions could be made!)
 
 Hox regulatory gene very important in embryonic development
 
@@ -132,10 +132,12 @@ Utilise both to form a complete picture
 
 As gene drift is random, simply isolating groups will lead to speciation
 
-Biological species is reproductively isolated 
-(so, not necessarily producing fertile offspring?)
+Biological species is reproductively isolated (so, not necessarily producing fertile offspring?):
+Premating Isolating Mechanisms (habitat, temporal, behaviour, mechanical)
+Postmating Isolating Mechanisms (egg fertilisation, sterile birth)
 
-Another definition for species is evolutionary (require more as some species asexual), i.e. phenotypically distinct (useful in fossils)
+Another definition for species is evolutionary (require more as some species asexual), 
+i.e. phenotypically distinct (useful in fossils)
 
 Another definition for species is ecological species, 
 i.e. physical and biological environment (e.g. terrestrial or arboreal, diet, behaviour)
@@ -159,6 +161,17 @@ Specialised and generalised traits
 
 Pedigree is lineage
 
+Cladogensis is when species branches into two or more.
+Anagensis is one
+
+Allopatric speciation results from geographic isolation (chimpanzees and bonobos Congo river)
+Parapatric speciation have adjacent regions with large geographic area (baboons)
+
+Evolution tempo: gradualism (slow and steady), punctuated equilibrium (bursts of change; more common)
+
+Not everything is a direct adaptation, e.g. large antlers for mating, but to support it have large spinous process  
+
+Hardy-Weinberg equilibrium states that allele frequency only changes with evolutionary forces (self-evident?)
 
 ------------------------------------------------------------------------
 if mapped the human genome in 2003, how does this affect genetic engineering/disease treatments? 

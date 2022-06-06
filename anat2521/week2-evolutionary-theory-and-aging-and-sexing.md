@@ -8,6 +8,8 @@ genus is homo (things that have a lot in common).
 family is hominidae
 order is primates
 class is mammals
+phylum is chordata (nerve cord and skeleton)
+kingdom is animalia (multicellular that move about and ingest food)
 
 genome is the entire genetic makeup of individual
 
@@ -90,6 +92,20 @@ Reasons for gene flow include geography, cultural, founders effect (colonisation
 
 Genetic bottle-neck is the loss of alleles due to some event, i.e. lack of genetic diversity 
 Suspected happened to cheetahs as they have little genetic diversity
+
+Evolution is two stages; variation and then natural selection
+
+So, inheritence is determined by the particular alleles in the gamete chromosomes resulting from meisois
+
+Similar traits from common ancestor is homology (interesting how skeleton of forelimbs in mammals are very similar). 
+From independent ancestors is homoplasy (assume these are not common in cladistics, otherwise no straightforward assumptions could be made!)
+
+Hox regulatory gene very important in embryonic development
+
+Evolutionary systematics: will produce a phylogeny (lineage with time markers in mya.) 
+A clade is a group sharing a common ancestor  
+Cladistics: determine homologies that distinguish members of a clade (so they will be derived from ancestral homologies)
+Utilise both to form a complete picture (however more cladistics)
 
 ------------------------------------------------------------------------
 if mapped the human genome in 2003, how does this affect genetic engineering/disease treatments? 

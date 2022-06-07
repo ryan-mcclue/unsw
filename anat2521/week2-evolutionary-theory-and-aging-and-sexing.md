@@ -1,109 +1,95 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-Fixation of species questioned as travelled and discovered other fossils/animals.
+# Week 2 - Evolutionary Theory and Aging and Sexing
+* Species is homo sapiens 
+* Genus is homo (things that have a lot in common) 
+* Family is hominidae
+* Order is primates
+* Class is mammals
+* Phylum is chordata (nerve cord and skeleton)
+* Kingdom is animalia (multicellular that move about and ingest food)
 
-non-western knowledge prior, however no formalisation of it so stays hidden
+* Genome is the entire DNA makeup of individual
+* Evolution is not directional, e.g. peppered moths
+* Cell is fundamental unit of life
+  Eukaroytic:
+    - Nucleus ➞ DNA (23 pairs of chromosomes; 23rd are XY in males, XX in females), 
+                RNA (transcribe DNA for translation in ribosome)
+    - Cytoplasm ➞ Mitochondria (ATP energy and mtDNA), 
+                  Ribosomes (amino acid/protein synthesis)
+  - Somatic cells ➞ body tissue
+    * Mitosis is splitting into 2 diploid cells.
+  - Gametes ➞ reproduction (egg cells and sperm cells forming zygote)
+    * Meisosis is splitting into 4 haploid cells (genetic diversity)
 
-species is homo sapiens. 
-genus is homo (things that have a lot in common). 
-family is hominidae
-order is primates
-class is mammals
-phylum is chordata (nerve cord and skeleton)
-kingdom is animalia (multicellular that move about and ingest food)
+* Phenotype are observed characteristic of gene
+  Environmental factors can also affect phenotype
 
-genome is the entire genetic makeup of individual
+* Chromosome is how DNA is packaged
+  One point in an autosome item will have a corresponding point on it's pair.
+  Locus is a specific point on a chromosome.
+  Genotype are the alleles at a specific locus
+  Dominant gene only requires hetereozygous genotype (not necessarily better, e.g. Marfan's)
+  A Mendelian trait is one which is determined at a single locus
+  Polygenic is multiple loci:
+    - Mendelian inheritence still applies to each individual locus
+    - Protein-encoding and/or regulatory genes
+  Pleiotropy is where a single gene affects multiple phenotypes 
 
-natural selection due to competition (fitness is environment specific)
-Evolution is not directional, e.g. peppered moths
+* DNA governs cellular activity. It's the basis of all life.
+  It can replicate and produce/regulate proteins.
+  Sugars and phosphates form sides, complementary bases (A, G, T, C) form rungs. 
+  Nucleotide is one individual side.
+  Three bases (triplet or codon) form a recipe for an amino acid.
+  Amino acids are structurally the same in all species.
 
-Selective pressures from selective agents
+* A protein is formed from amino acids
+  20 amino acids, 8 essential (from foods), 12 non-essential 
+  They function by binding to other molecules 
+  An enzyme is a protein that regulates a chemical reaction
+  A hormone is a protein that is released into the bloodstream to affect another tissue
 
-rate of fertility important, e.g. bacteria (single-celled)
+* Gene is a sequence of DNA bases
+  Regulatory genes are what allow for distinct cells like human liver and bone 
+  Regulatory DNA evolves quicker. 
+  Humans have highest concentration of this than any other species studied
+* Allele is variant of a gene (think about chromosome pairs)
 
-a cell is fundamental unit of life
-
-eukaroytic cells:
-  * nucleus --> DNA (23 pairs of chromosomes; 23rd are XY in males, XX in females), RNA (copy DNA information to ribosome)
-  * cytoplasm --> mitochondria (ATP energy and mtDNA), ribosomes (protein synthesis)
-    * somatic cells (diploid) --> body tissue
-    * gametes (haploid) --> reproduction (egg cells and sperm cells forming zygote)
-
-transcription happens at the nucleus (RNA) and translation occurs at the ribosome (producing amino acids)
-
-DNA governs cellular activity.
-sugars and phosphates form sides, complementary bases (A, G, T, C) form rungs. 
-nucleotide is one individual side
-three bases (triplet or codon) form a recipe for an amino acid.
-a protein is formed from amino acids (20 amino acids)
-so, DNA produces proteins and replicates
-
-gene is a sequence of DNA bases. 
-allele is variant of a gene (think about chromosome pairs)
-
-mapping the human genome means that we have identified particular sections of a chromosome that are responsible for particular traits.
-so, alterations within the bases of these sections (alleles) will produce variations of this trait
-
-codominant is where two alleles dominint only together?
-
-mitosis is splitting into 2 new cells in most somatic cells.
-meisosis is splitting into 4 cells in gametes which contain only half number of chromosomes
-(this has a great evolutionary advantage allowing for genetic diversity in offspring)
-(also, gives rise to the principle of segregation)
-
-every somatic cell in the body contains the same DNA.
-however, only a fraction of it is used in that cell's protein-synthesis, e.g. bone cells don't produce same as liver cells
-the genes that 'switch' other DNA bases off are called regulatory genes   
-regulatory genes may control the activity rates of protein-synthesis genes? many regulatory genes are common across all life
-
-protein contains amino acids in unique orientations. 20 amino acids, 8 essential (from foods), 12 non-essential 
-they function by binding to other molecules, 
-enzyme is a protein that regulates a chemical reaction
-hormone is a protein produced by specialised cells that are released into the bloodstream that affect another tissue
-
-amino acids are structurally the same in all species.
-
-regulatory DNA evolves quicker. humans have highest concentration of this than any other species studied
-
-DNA is the basis of all life
 
 mutation: change in DNA established in a daughter cell (so from replication)
 base substitution/point mutation (replacement of base in an amino acid)
 chromosomal mutation (reordering, deletion, etc.)
 mutation is the main source of variability
 
+Fixation of species was questioned as Europeans travelled and discovered new fossils/animals.
+There was some Non-Western knowledge prior, however no formalisation of it so it stayed hidden.
+
+
+natural selection due to competition (fitness is environment specific)
+
+Selective pressures from selective agents
+
+codominant is where two alleles dominint only together?
+
+
+
 gene flow is movement of genes between populations
 inbreeding increases the chances of an individual having homozygous recessive
 genetic drift is random changes in gene frequency
 
-punnet squares just give probabilty?
+punnet squares just give probabilty distribution (hence randomness of DNA)
 
 genetic bottleneck is rapid reduction in population size, then later increase
 
 ways in which species choose mates influential in a trait that may seem impractical (antler size, peacock feathers, etc.)
 also access to mates
 
-one point a chromosome item will have a corresponding point on it's other item.
-locus is a specific point on a gene.
-genotype are the alleles at a specific locus
-dominant is when only require one copy of allele in a genotype 
-(So, how do recessive genes first come about without a carrier? Are they produced at birth, i.e. are new 'conditions' created all the time? What is the rarity?) 
-A Mendelian trait is one which is determined only at a single locus, e.g. blood type
 
-Polygenic is multiple loci, i.e. multiple genes, e.g hair colour, height
-(Mendelian inheritence applies to each individual loci)
-Most traits are this. 
-In these cases, not just the the protein-encoded, but regulatory genes also
-Also have environmental impacts as well
 
 Mitochondrial DNA is inherited soley from the mother. So, any changes are mutations
 
-Pleiotropy is where a single gene affects multiple characteristics 
 
-phenotype are observed physical characteristics of gene 
 (Environmental factors will affect phenotype as well)
 
-Important: a dominant allele is not necessarily better, e.g. Marfan's  
-Any allele on X chromosome for males will be present as no matching chromosome to block it
 
 Evolution is change in allele frequency
 
@@ -176,10 +162,16 @@ Hardy-Weinberg equilibrium states that allele frequency only changes with evolut
 ------------------------------------------------------------------------
 if mapped the human genome in 2003, how does this affect genetic engineering/disease treatments? 
 (Polygenic traits, we haven't determined all loci involved?)
-is all the DNA in the nucleus exclusively packaged in a chromosome?
 for chromosomes, each item from a pair is from either parent?
 is the number of chromosomes specific to each species?
 will the length of every person's chromosome pairs be the same?
 genome project is only protein-coding DNA? the other is the ongoing ENCODE project?
 Why is interbreeding higher chance of genetic disorders?
 What is random assortment or the randomness of DNA? If mapped genome, how can positions differ? If random, how can we say person will recieve Marfan's?
+
+mapping the human genome means that we have identified particular sections of a chromosome 
+that are responsible for particular traits?
+so, alterations within the bases of these sections (alleles) 
+will produce variations of this trait?
+
+If DNA is randomly assorted, how can you have a locus?

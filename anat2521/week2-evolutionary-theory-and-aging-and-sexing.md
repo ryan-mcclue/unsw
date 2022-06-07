@@ -64,8 +64,8 @@
      * Mechanical (unable to penetrate)
   - Postmating Isolating Mechanisms (failed egg fertilisation, sterile birth)
   Evolutionary species (phenotypically distinct, so useful in fossils)
-  Cladogensis is when species branches into two or more (anagensis is one)
-  Allopatric speciation from geographic isolation (chimpanzees and bonobos Congo river)
+  Cladogensis is when species branches into two or more due to geographic isolation (anagensis is one)
+  Allopatric speciation from geographic isolation (chimpanzees to bonobos Congo river)
   Parapatric speciation have adjacent regions with large geographic area (baboons)
 
 * Fossil is any trace organism, e.g. insect in resin, bone, etc. 
@@ -116,7 +116,8 @@ if mapped the human genome in 2003, how does this affect genetic engineering/dis
 (Polygenic traits, we haven't determined all loci involved?)
 is the number of chromosomes specific to each species?
 will the length of every person's chromosome pairs be the same?
-genome project is only protein-coding DNA? the other is the ongoing ENCODE project?
+genome project is only protein-coding DNA? 
+the other is the ongoing ENCODE project?
 What is random assortment or the randomness of DNA? If mapped genome, how can positions differ? If random, how can we say person will recieve Marfan's?
 
 mapping the human genome means that we have identified particular sections of a chromosome 
@@ -124,6 +125,25 @@ that are responsible for particular traits?
 so, alterations within the bases of these sections (alleles) 
 will produce variations of this trait?
 
-If DNA is randomly assorted, how can you have a locus? also what about chromosomal mutation?
+If DNA is randomly assorted, how can you have a locus? 
+also what about chromosomal mutation?
 
-if evolution change in frequency of alleles, you can evolve but not speciate? nuances here
+if evolution change in frequency of alleles, 
+you can evolve but not speciate? nuances here
+
+bones could have microbial damage from soil, termites, roots of trees, stone damage from a collapse, etc.
+
+natural selection on phenotype
+
+dna can determine if interbred if early fossil (biologicial species)
+
+earlist use of tool use from bone damage
+
+tool use on megafauna bones
+
+be part of ongoing project/facebook groups to know modern techniques
+
+squatting facets on tibia
+ancient beds in iraq (archeological evidence of beds)
+plant species brought into the cave 
+arrangement of pieces (length of extended leg or curled up in fetal position)

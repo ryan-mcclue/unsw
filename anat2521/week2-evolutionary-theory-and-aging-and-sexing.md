@@ -68,7 +68,7 @@
   Allopatric speciation from geographic isolation (chimpanzees to bonobos Congo river)
   Parapatric speciation have adjacent regions with large geographic area (baboons)
 
-* Fossil is any trace organism, e.g. insect in resin, bone, etc. 
+* Fossil is any trace organism, e.g. insect in resin, bone, etc.(requires mineralisation)
   In reality, very rare that circumstances allow for a terrestrial life-form to be fossilised
   Within fossils we have age and sexual dimorphism variations
   Can only accurately determine by comparing with currently living closely-linked species
@@ -98,7 +98,7 @@
      - Mesozoic (Gondwanaland + Lauraisia) 
        Largely reptiles/dinosaurs, later mammals (larger brains, varied shaped teeth, endothermic)
      - Cenozoic (current)
-       Placental mammals dominant
+       Placental mammals dominant (in-utero)
 
 * Pedigree is lineage
   Similar traits from common ancestor is homology (similarity in mammalian skeletal forelimbs)
@@ -113,6 +113,7 @@
 
 ------------------------------------------------------------------------
 if mapped the human genome in 2003, how does this affect genetic engineering/disease treatments? 
+(human genome took sample people and analysed theirs. as most sections are the same for most people use that as a template. however does it also map non-coding?)
 (Polygenic traits, we haven't determined all loci involved?)
 is the number of chromosomes specific to each species?
 will the length of every person's chromosome pairs be the same?

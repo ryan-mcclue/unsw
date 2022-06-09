@@ -14,7 +14,7 @@ Primates very generalised:
   - enhanced neocortex for sensory processing
 * Maturation
   - enhanced fetal nourishment
-  - reliance of derived learning with longer period of development
+  - reliance of derived learning with longer period of development (longer lived)
   - social groups with common presence of adults
   - diurnal
 
@@ -24,6 +24,12 @@ Evolution (genomic sequencing; humans have highest non-coding DNA)
 
 We see in most nondivergent primates lemurs more cusped molars (insectivourous), eyes further apart, some claws, rhinarium, nocturnal etc.
 
+Monkeys (case of homoplasy):
+new world (americas; outward facing nose) 
+old world (sub-sahara africa and south-east asia)
+
+oraguntans, gibbons (borneo, asia)
+gorrillas, chimps, bonobos (central africa)
+humans (bipedalism, enhanced cognitive abilities (fondness for high-energy fruits from arboreal ancestry)
 
 --------------------------
-new world (americas; outward facing nose) vs old world (apes?) monkeys?

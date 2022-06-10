@@ -1,4 +1,11 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+PALEOPATHOLOGY FOR PERIMORTEM TRAUMA (determined by no healing occuring in bone)
+- evidence of mass graves, etc.
+
+Blood Red Roses: The Archaeology of a Mass Grave from the Battle of Townton
+
+
+
 Australian Aborigines have developed unique adaptations in response to environmental and cultural factors
 
 'unique' in that they are not seen in Western Europeans 

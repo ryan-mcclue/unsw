@@ -63,5 +63,14 @@ Some Europeans resistent to smallpox seems to also affect the receptors involved
 
 10kya. began living in settlements and burying dead together
 
+Until recently, infectious diseases the main cause of human death
+
+From skeleton, can infer:
+Disease/Trauma: syphylus, hicking, fracture heals, embedded materials from weapons, etc.
+Lifestyle: Have osteoarthritis (in particular areas indicating higher activity hear)
+Diet: Permanently formed tooth enamel as a child reveals childhood diet. 
+      Carbon and nitrogen concentrations in bone indicate if eating plants, terrestrial or marine animals
+      Tooth decay
+
 ----------------------------------------
 How can we be so polytypic, yet also be genetically similar compared to other primates?

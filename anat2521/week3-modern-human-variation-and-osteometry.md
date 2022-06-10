@@ -9,8 +9,9 @@ Homo sapiens are a polytypic species.
 
 Race is a somewhat dubious term often conflating genetics and culture.
 Although it literally means phenotypic variation across geographical areas, there is no fixed-set guidelines to assess someone's race. 
-Furthermore, with the advent of genetics, even within groups the amount of genetic variation is large.
+Furthermore, with the advent of genetics (subfield as population genetics), even within groups the amount of genetic variation is large.
 Also, although two people may differ in skin colour, the amount of other shared traits may be high, e.g. head shape, blood type etc.
+In addition, certain phenotypes are influenced by the environment as well
 So, race is not biological meaningful. Instead, use the term 'population'
 However, there are some genes that indicate a person's geographical ancestry
 
@@ -25,6 +26,14 @@ Greater genetic variety seen amongst Africans then any other geographic region i
 Population is one that is capable of interbreeding, thus sharing a gene pool.
 Various breed isolate, e.g. geography, cultural
 Endogamy (breeding within group), exogamy (breeding out of group)
+To determine in evolution occuring at a locus, compare allele frequency with that predicted by Hardy-Weinberg equilibrium (this also emphasises the fact that populations evolve, not individuals)
+
+Nonrandom mating can affect evolution in modern human populations
+
+Balanced polymorphism is where a population maintains two copies of an allele, e.g. sickle-cell anemia (positives and negatives)
+
+Lactase persistence example of recent biocultural evolution (lactose is broken down when in cheese and yoghurt however)
+
 
 ----------------------------------------
 How can we be so polytypic, yet also be genetically similar compared to other species?

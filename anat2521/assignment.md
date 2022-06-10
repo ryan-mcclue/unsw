@@ -2,8 +2,9 @@
 PALEOPATHOLOGY FOR PERIMORTEM TRAUMA (determined by no healing occuring in bone)
 - evidence of mass graves, etc.
 
+https://sasn.rutgers.edu/about-us/faculty-staff/r-brian-ferguson
 
-These two philosophers first posed the question, that was then examined by anthropologists
+These two philosophers first posed the question (prior to 60s, not much by anthropologists), that was then examined by anthropologists
 Jacques Rousseau "noble savage"
 Thomas Hobbes "war of all against all" (human societies always practice war, i.e. part of human existence. does not need a reason, nothing to stop it)
 
@@ -65,8 +66,19 @@ The Human Potential for Peace: An Anthropological Challenge to Assumptions about
 very few violence in the most simple of societies
 Warless Societies and the Origin of War
 
+Steven Pinker: the history of violence
+civilisation isn't the cause of violence, it's helping us overcome it.
+counter: if you look at mesopatamian civisiliations, a lot of violence increase there...
+
+The purely Roussean idea to get rid of violence is to go back to the Stone Age 
 
 
+demonic males richard wrangham:
+chimps go on raiding parties and stomp other chimps. evidence of violence genes dating back millions of years
+counter: these are cases of disturbed chimps. there are whole other hosts of violence going on there, e.g. killing females in same group, children (not good for reproductive success); hyptohesising due to human impact
+in general, like humans, they develop a continous range of behaviour
+
+in general I think violence is learned, either culturally or because of the immediate environment, e.g. scarcity of resources
 
 You are to evaluate the various theories that have been proposed and choose the one
 which best fits the evidence.

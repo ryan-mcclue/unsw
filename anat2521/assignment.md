@@ -2,48 +2,83 @@
 PALEOPATHOLOGY FOR PERIMORTEM TRAUMA (determined by no healing occuring in bone)
 - evidence of mass graves, etc.
 
+
+These two philosophers first posed the question, that was then examined by anthropologists
+Jacques Rousseau "noble savage"
+Thomas Hobbes "war of all against all" (human societies always practice war, i.e. part of human existence. does not need a reason, nothing to stop it)
+
 Blood Red Roses: The Archaeology of a Mass Grave from the Battle of Townton
 
+10000 years ago (8000BC), northern iraq
+people have weapons in skeletons
+living in defendable sites
+large arrow heads
+
+although not indicators of war, it seems these things 'set the stage' for war:
+war comes about because of people living sedentary lives, social hierarchy (people buried differently), long-distance trade
+ 
+
+(Site 117, Sudan perhaps earlier)
+
+War leaves behind skeletons, settlement patterns, weapons
+
+So essentially, no war before 6000years. War between hunter-gatherers. This war intensified with European settlement 
+
+It seems that war was not endemic in societies before 6000/7000 years ago?
 
 
-Australian Aborigines have developed unique adaptations in response to environmental and cultural factors
+Humans have an in-borne tendency to go to war:
+Territorial Imperative (Robert Ardery)
+African Gensis (Robert Ardery)
+On Aggression (Konrad Lorenz)
 
-'unique' in that they are not seen in Western Europeans 
-
-
-Warlpiri people
-
-
-co-sleeping practices? parent-infant
+The advent of european colonialism saw an intensification of war than just between hunter-gatherers
+War in the Tribal Zone: Expanding States and Indigenous Warfare 
 
 
-gender differences for sleep patterns?
+Napoelon Chagnon, Yanomamo: The Fierce People
+Flawed in that it assumes modern day hunter-gatherers exhibit same behaviour as those before.
+They are influenced by contemporary European things
+Alternative: in a society like yanomamo, can't pay someone to be a warrior, so you reward them with women
+Essentially, not enough game to satiate people staying in one place, so resort to violence (malthusian argument)
+This makes war something 'rational', rather than something that wells up from our biology
+The statistics compiled were only of people alive at the time (not their entire history)
+(saying genghis khan had 1000 kids is irrelevent across entire history.)
+(look in native american plains people, peace leaders had more kids. only in times of war, did warriors produce more offspring. this is in relation to being a warrior spreads your genes better)
 
 
-The cooling adaptation of the Australian aborigines, 
-which resembles the insulative cooling commonly found in mammals, 
-differs from the metabolic compensation and greater peripheral heating developed in cold-acclimated white man.
-Also the Aborigines do not shiver when they sleep. Some interesting vascular adaptions going on
+War Before Civilization: The Myth of the Peaceful Savage (keeley)
+War in Human Civilisation: azar gat
+very good for archeology
+
+so, we see more war as time progresses.
+the absence of war is not indicative of us not having the evidence, we do have skeletons and settlements. just no war 
 
 
-sleep in particular places for 'Dreamtime' 
+although war capable 20kya. and 100kya and we would have no record if it you have to explain why did this go away when the archeological record began?
+
+NOTE: contemporary hunter-gatherers have some sort of settlement, so to say that they are the same as 20kya. is wrong
+also something like the nomadic horse-gatherers are hunter-gatherers, yet they use horses from the Spanish. so obviously not able to translate their actions to the past
 
 
-timekeeping associated with bedtimes and get-up times.
+The Human Potential for Peace: An Anthropological Challenge to Assumptions about War and Violence
+very few violence in the most simple of societies
+Warless Societies and the Origin of War
 
-Do we have access to jstor? I can only read a subset of the pages provided.
 
-These are what I have found regarding sleep:
-Night, sight, and feeling safe: An exploration of aspects of Warlpiri and Western sleep  - https://www.waunet.org/downloads/wcaa/dejalu/feb_2015/musharbash.pdf
-Aboriginal Sleeping Customs and Dreams, Ooldea, South Australia - https://www.jstor.org/stable/40327771?seq=1
-Cold Adaptation in Australian Aborigines: https://journals.physiology.org/doi/abs/10.1152/jappl.1958.13.2.211
-Experts reveal how Aboriginal people survived central Australian climate: https://www.abc.net.au/worldtoday/content/2012/s3933971.htm
-Cold Hands and Warm Heart: It May Be in Your Genes: https://eosmith.com/cold-hands-warm-heart-may-genes/
 
-From these some talking points:
-  - Co-sleeping practices, i.e. they sleep together
-  - Sleep time, i.e. they get up and go to bed at irregular times
-  - Genetic mutation, i.e. adaption to cold and warm climates
-  - Sleep positions, i.e. particular places for 'Dreamtime'
 
-Not sure if this is suffient...
+You are to evaluate the various theories that have been proposed and choose the one
+which best fits the evidence.
+
+Your paper must be argumentative and analytical.
+
+Each paragraph presents only one idea
+
+
+Go against what Roussea.
+
+NOT: primitive warfare was very ritualistic, few casualties
+
+
+humans have always be capable of war

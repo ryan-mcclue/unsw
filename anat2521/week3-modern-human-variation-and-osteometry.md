@@ -37,7 +37,7 @@ Lactase persistence example of recent biocultural evolution (lactose is broken d
 From Africa (why we prefer hot and dry), 200-100kya. genetic drift as been major cause of humans polytypic nature
 Humans have developed varied adaptations in response to particular environmental stresses to maintain homeostasis
 
-An acclimatisation is adaption as a result of experiences in one's life. They can be temporary, e.g. tanning or permanent (developmental, i.e. experienced when body is developing?)
+An acclimatisation is adaption as a result of experiences in one's life. They can be temporary, e.g. tanning or permanent (developmental, e.g. people grow up in mountaineous regions have larger hearts and lungs)
 
 New world is Americas, Old world is Europe, Asia and Africa
 
@@ -48,6 +48,20 @@ Sweat glands allow evaporation cooling (more effective with less body hair) whic
 Also have vasodilation (capillaries widen to allow more blood flow and thereby lose more heat to the environment)
 
 Bergemann (more mass, colder), Allen (longer trunk, colder)
+
+To generate heat, increase metabolic rate (break down nutrients to generate energy, therefore heat)
+Vasoconstriction reduces blood flow, thereby retaining heat 
+
+At higher altitudes oxygen is less plentiful which can cause hypoxia
+
+Up until 15kya. humans lived in hunter-gatherer groups, living a rather nomadic lifestyle. So, they never stayed neared refuse heaps to develop infections
+The birth of agriculture changed this with zoonotic infections such as tuberculosis, HIV, influenza (swine or bird), malaria
+For chimps, they carried SIV, however when given to humans (in Africa they sell butchered chimp) turned to HIV 
+Increase in global warming can also increases virus vectors
+
+Some Europeans resistent to smallpox seems to also affect the receptors involved with HIV
+
+10kya. began living in settlements and burying dead together
 
 ----------------------------------------
 How can we be so polytypic, yet also be genetically similar compared to other primates?

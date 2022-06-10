@@ -1,35 +1,21 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-# Week 3 - 
-Primates very generalised:
-* Limbs and Locomotion:
-  - erect posture
-  - flexible limbs for varied locomotion
-  - prehensile hands and feet 
-* Diet and Dentition:
-  - omnivorous (good if one source runs out, however increased competition from other species) 
-  - heterodonty (flat cusps in molars)
-* Brain
-  - stereoscopic vision
-  - enhanced colour vision, reduced olfactory, bony protection of eyes
-  - enhanced neocortex for sensory processing
-* Maturation
-  - enhanced fetal nourishment
-  - reliance of derived learning with longer period of development (longer lived)
-  - social groups with common presence of adults
-  - diurnal
+# Week 3 - Modern Human Variation and Osteometry
+Humans first evolved from Africa, spread out and interbred with Neanderthals
+Biocultural influences affect how we adapt to environmental challenges
 
-Evolution (genomic sequencing; humans have highest non-coding DNA) 
-  - stereoscopic, vision and prenhensile resulting from aboreal living
-  - brachiation (arm swinging from branch to branch)
+Historically biological determinism (behaviour determined by genetics) and eugenics (racial out-breeding) with Europeans as superior
 
-We see in most nondivergent primates lemurs more cusped molars (insectivourous), eyes further apart, some claws, rhinarium, nocturnal etc.
+Homo sapiens are a polytypic species. 
 
-Monkeys (case of homoplasy):
-new world (americas; outward facing nose) 
-old world (sub-sahara africa and south-east asia)
+Race is a somewhat dubious term often conflating genetics and culture.
+Although it literally means phenotypic variation across geographical areas, there is no fixed-set guidelines to assess someone's race. 
+Furthermore, with the advent of genetics, even within groups the amount of genetic variation is large.
+Also, although two people may differ in skin colour, the amount of other shared traits may be high, e.g. head shape, blood type etc.
+So, race is not biological meaningful. Instead, use the term 'population'
 
-oraguntans, gibbons (borneo, asia)
-gorrillas, chimps, bonobos (central africa)
-humans (bipedalism, enhanced cognitive abilities (fondness for high-energy fruits from arboreal ancestry)
+Ethnicity is purely cultural
 
---------------------------
+
+
+----------------------------------------
+How can we be so polytypic, yet also be genetically similar compared to other species?

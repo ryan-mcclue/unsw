@@ -34,6 +34,20 @@ Balanced polymorphism is where a population maintains two copies of an allele, e
 
 Lactase persistence example of recent biocultural evolution (lactose is broken down when in cheese and yoghurt however)
 
+From Africa (why we prefer hot and dry), 200-100kya. genetic drift as been major cause of humans polytypic nature
+Humans have developed varied adaptations in response to particular environmental stresses to maintain homeostasis
+
+An acclimatisation is adaption as a result of experiences in one's life. They can be temporary, e.g. tanning or permanent (developmental, i.e. experienced when body is developing?)
+
+New world is Americas, Old world is Europe, Asia and Africa
+
+Darker skin (higher levels of melanin) reduces UV radiation. As cancer is pronounced after reproducing, most likely due to inhibiting folate production in pregnant women.
+Lighter skin (wearing animal skins) for vitamin D for bone development and fighting infections 
+
+Sweat glands allow evaporation cooling (more effective with less body hair) which can be dangerous losing many vitamins and water.
+Also have vasodilation (capillaries widen to allow more blood flow and thereby lose more heat to the environment)
+
+Bergemann (more mass, colder), Allen (longer trunk, colder)
 
 ----------------------------------------
-How can we be so polytypic, yet also be genetically similar compared to other species?
+How can we be so polytypic, yet also be genetically similar compared to other primates?

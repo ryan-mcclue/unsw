@@ -12,10 +12,19 @@ Although it literally means phenotypic variation across geographical areas, ther
 Furthermore, with the advent of genetics, even within groups the amount of genetic variation is large.
 Also, although two people may differ in skin colour, the amount of other shared traits may be high, e.g. head shape, blood type etc.
 So, race is not biological meaningful. Instead, use the term 'population'
+However, there are some genes that indicate a person's geographical ancestry
 
 Ethnicity is purely cultural
 
+Focus on polymorphic traits, i.e. genes with two or more alleles (meaning different expression of same trait)
 
+HLAs (white blood cells antigens) is the most polymorphic trait in humans (hundreds of alleles, multiple loci)
+
+Greater genetic variety seen amongst Africans then any other geographic region in the world (giving more evidence to humans originating from Africa) 
+
+Population is one that is capable of interbreeding, thus sharing a gene pool.
+Various breed isolate, e.g. geography, cultural
+Endogamy (breeding within group), exogamy (breeding out of group)
 
 ----------------------------------------
 How can we be so polytypic, yet also be genetically similar compared to other species?

@@ -4,6 +4,9 @@ PALEOPATHOLOGY FOR PERIMORTEM TRAUMA (determined by no healing occuring in bone)
 
 https://sasn.rutgers.edu/about-us/faculty-staff/r-brian-ferguson
 
+hunter gatherers egalatarian.
+dunbars number of 150
+
 These two philosophers first posed the question (prior to 60s, not much by anthropologists), that was then examined by anthropologists
 Jacques Rousseau "noble savage"
 Thomas Hobbes "war of all against all" (human societies always practice war, i.e. part of human existence. does not need a reason, nothing to stop it)
@@ -92,5 +95,14 @@ Go against what Roussea.
 
 NOT: primitive warfare was very ritualistic, few casualties
 
-
 humans have always be capable of war
+
+
+----------------------------------------------------
+War is not an innate part of human existence (a mid-line between Roussea and Hobbes)
+
+War has not always been present in human evolutionary history. By analysing skeletal remains from various sites 
+
+paragraphs on it being present
+
+paragraphs on it not being present

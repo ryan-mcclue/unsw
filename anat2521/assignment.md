@@ -26,7 +26,8 @@ war comes about because of people living sedentary lives, social hierarchy (peop
 
 War leaves behind skeletons, settlement patterns, weapons
 
-So essentially, no war before 6000years. War between hunter-gatherers. This war intensified with European settlement 
+So essentially, no war before 6000years. War between hunter-gatherers. 
+This war intensified with European settlement 
 
 It seems that war was not endemic in societies before 6000/7000 years ago?
 
@@ -56,13 +57,17 @@ War in Human Civilisation: azar gat
 very good for archeology
 
 so, we see more war as time progresses.
-the absence of war is not indicative of us not having the evidence, we do have skeletons and settlements. just no war 
+the absence of war is not indicative of us not having the evidence, 
+we do have skeletons and settlements. just no war 
 
+although war capable 20kya. and 100kya and 
+we would have no record if it you have to explain 
+why did this go away when the archeological record began?
 
-although war capable 20kya. and 100kya and we would have no record if it you have to explain why did this go away when the archeological record began?
-
-NOTE: contemporary hunter-gatherers have some sort of settlement, so to say that they are the same as 20kya. is wrong
-also something like the nomadic horse-gatherers are hunter-gatherers, yet they use horses from the Spanish. so obviously not able to translate their actions to the past
+NOTE: contemporary hunter-gatherers have some sort of settlement, 
+so to say that they are the same as 20kya. is wrong
+also something like the nomadic horse-gatherers are hunter-gatherers, 
+yet they use horses from the Spanish. so obviously not able to translate their actions to the past
 
 
 The Human Potential for Peace: An Anthropological Challenge to Assumptions about War and Violence
@@ -97,12 +102,30 @@ NOT: primitive warfare was very ritualistic, few casualties
 
 humans have always be capable of war
 
-
 ----------------------------------------------------
-War is not an innate part of human existence (a mid-line between Roussea and Hobbes)
+War is not an innate part of human existence and has increased as a result of
+1, 2, 3 (a mid-line between Roussea and Hobbes)
+war comes about because of people living sedentary lives (settlements; agriculture),
+social hierarchy (political structures to organise public opinion; self-interest to gain; people buried differently), 
+long-distance trade (raiding precious materials, expanding trade network, protecting trade routes)
 
-War has not always been present in human evolutionary history. By analysing skeletal remains from various sites 
+1st paragraph on the absence of violence in the archeological record
 
-paragraphs on it being present
+humans have come from a sporadically violent past
 
-paragraphs on it not being present
+in egalitarian societies, man decides on war for himself
+
+in these conditions, it's unlikely that a group would risk at the cost of more effort and greater hazard
+
+material interests that 
+
+evidence indicates a late emergence of violence/war
+
+By analysing skeletal remains from various sites 
+
+War leaves behind skeletons, settlement patterns, weapons
+
+Stone age (paleolithic, (10000-8000)mesolithic, (-2300)neolithic), bronze age, iron age
+
+---------------------------------------------------
+

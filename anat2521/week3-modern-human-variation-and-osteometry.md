@@ -62,13 +62,22 @@ Also have vasodilation (capillaries widen to allow more blood flow and thereby l
 
 plasticity: ability to respond physiologically to environment (no change in genotype)
 adaptability is a positive form of plasticity
-acclimatisation is a short-term adaptibility
+acclimatisation is a short-term adaptibility (increase in hemoglobin at high altitude)
 
-adaptation is genetic change 
+interestingly different adaptations developed in similar conditions, e.g. Tibetans and Andean people 
+
+adaptation is genetic change, i.e. natural selection
 
 a phenotype change from plasticity would be growing up in high altitude (larger lungs, broader chest)
 
-Bergemann (more mass, colder), Allen (longer trunk, colder)
+Bergemann (more mass, non-linear shape suited for cold)
+Allen (longer trunk, shorter limbs suited for cold)
+Gloger (heavily pigmented in warmer)
+Thomson (thin nose in colder)
+
+pigments (carotene:orange, melanin, hemoglobin)
+epidermis has carotene (for toughness) and melanin
+dermies has sebaceous glands, sweat glands, hair follicle
 
 responses to heat:
 radiation: heat flow in EM
@@ -93,7 +102,7 @@ Some Europeans resistent to smallpox seems to also affect the receptors involved
 Until recently, infectious diseases the main cause of human death
 
 From skeleton, can infer:
-Disease/Trauma: syphylus, hicking, fracture heals, embedded materials from weapons, etc.
+Disease/Trauma: syphylus, ricking, fracture heals, embedded materials from weapons, etc.
 Lifestyle: Have osteoarthritis (in particular areas indicating higher activity hear)
 Diet: Permanently formed tooth enamel as a child reveals childhood diet. 
       Carbon and nitrogen concentrations in bone indicate if eating plants, terrestrial or marine animals
@@ -106,7 +115,7 @@ deme: population defined in terms of genetic composition, i.e. allele frequencie
 
 species -> subspecies/race (can obviously still interbreed, so there is gene flow) -> population
 
-
+americas from asia via land bridge
 
 ----------------------------------------
 How can we be so polytypic, yet also be genetically similar compared to other primates?

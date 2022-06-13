@@ -5,15 +5,21 @@ Biocultural influences affect how we adapt to environmental challenges
 
 Historically biological determinism (behaviour determined by genetics) and eugenics (racial out-breeding) with Europeans as superior
 
-Homo sapiens are a polytypic species. 
+Homo sapiens are a polytypic species (vast phenotypical differences amongst populations) 
 
 Race is a somewhat dubious term often conflating genetics and culture.
 Although it literally means phenotypic variation across geographical areas, there is no fixed-set guidelines to assess someone's race. 
 Furthermore, with the advent of genetics (subfield as population genetics), even within groups the amount of genetic variation is large.
 Also, although two people may differ in skin colour, the amount of other shared traits may be high, e.g. head shape, blood type etc.
+So, majority of genetic differences seen between individuals
 In addition, certain phenotypes are influenced by the environment as well
-So, race is not biological meaningful. Instead, use the term 'population'
+So, race is not biological meaningful as the boundaries are arbitrary, e.g. how many races?
+Instead, use the term 'population'
 However, there are some genes that indicate a person's geographical ancestry
+
+Took some time for people to accept all humans evolved from the same ancestor.
+Similarly, typology was used to categorise subraces.
+cline: gradual change in trait within a population, e.g. skin colour
 
 Ethnicity is purely cultural
 
@@ -71,6 +77,15 @@ Lifestyle: Have osteoarthritis (in particular areas indicating higher activity h
 Diet: Permanently formed tooth enamel as a child reveals childhood diet. 
       Carbon and nitrogen concentrations in bone indicate if eating plants, terrestrial or marine animals
       Tooth decay
+
+Even identical twins (single sperm one egg that splits) look different. non-identical (two sperm two eggs)
+age, sex, ancestry and individual mutations all contribute
+
+deme: population defined in terms of genetic composition, i.e. allele frequencies
+
+species -> subspecies/race (can obviously still interbreed, so there is gene flow) -> population
+
+
 
 ----------------------------------------
 How can we be so polytypic, yet also be genetically similar compared to other primates?

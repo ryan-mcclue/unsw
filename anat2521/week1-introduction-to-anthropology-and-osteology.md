@@ -5,7 +5,7 @@
 * DNA contains genetic instructions. 
 * A gene is small section of DNA responsible for a particular trait.
 * Species are reproductively isolated. 
-* To evolve, genes must change (different to adaptation). If resulting in speciation it is macroevolution.
+* To evolve, genes must change (different to adaptation). If resulting in speciation it is macroevolution (microevolution is within a species)
 * Culture is behaviour passed down from nonbiological means. 
 * Science is observation and experimentation, (observing and experimenting literal definition of empirical)
 * Called theory as it has been substantially verified through experimentation (allows for new insight from emerging technologies; not about defining absolute truths)

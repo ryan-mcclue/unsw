@@ -13,7 +13,7 @@ Furthermore, with the advent of genetics (subfield as population genetics), even
 Also, although two people may differ in skin colour, the amount of other shared traits may be high, e.g. head shape, blood type etc.
 So, majority of genetic differences seen between individuals
 In addition, certain phenotypes are influenced by the environment as well
-So, race is not biological meaningful as the boundaries are arbitrary, e.g. how many races?
+So, race is not biological meaningful (and can distract from real information) as the boundaries are arbitrary, e.g. how many races?
 Instead, use the term 'population'
 However, there are some genes that indicate a person's geographical ancestry
 
@@ -23,7 +23,14 @@ cline: gradual change in trait within a population, e.g. skin colour
 
 Ethnicity is purely cultural
 
-Focus on polymorphic traits, i.e. genes with two or more alleles (meaning different expression of same trait)
+Focus on polymorphic traits, i.e. genes with two or more alleles occuring more than 1%
+e.g. sickle-cell (balanced polymorphism, i.e. maintained heterozygous), lactase persistence, skin colour, etc.
+(meaning different expression of same trait)
+Can give indication of founder's effect
+Haplotype is a combination of polymorphisms
+
+Lemba people in Mozambique had oral history that they were Jewish, however due to their similar appearance to other Africans it was doubted.
+Genetics showed they were. So, an example of genotype and phenotypes differences
 
 HLAs (white blood cells antigens) is the most polymorphic trait in humans (hundreds of alleles, multiple loci)
 
@@ -53,10 +60,24 @@ Lighter skin (wearing animal skins) for vitamin D for bone development and fight
 Sweat glands allow evaporation cooling (more effective with less body hair) which can be dangerous losing many vitamins and water.
 Also have vasodilation (capillaries widen to allow more blood flow and thereby lose more heat to the environment)
 
+plasticity: ability to respond physiologically to environment (no change in genotype)
+adaptability is a positive form of plasticity
+acclimatisation is a short-term adaptibility
+
+adaptation is genetic change 
+
+a phenotype change from plasticity would be growing up in high altitude (larger lungs, broader chest)
+
 Bergemann (more mass, colder), Allen (longer trunk, colder)
 
+responses to heat:
+radiation: heat flow in EM
+convection: to air molecules
+conduction: physical contact
+evaporation: water to vapour
+
 To generate heat, increase metabolic rate (break down nutrients to generate energy, therefore heat)
-Vasoconstriction reduces blood flow, thereby retaining heat 
+Vasoconstriction reduces blood flow, thereby retaining heat (could also shiver)
 
 At higher altitudes oxygen is less plentiful which can cause hypoxia
 

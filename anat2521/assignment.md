@@ -128,4 +128,8 @@ War leaves behind skeletons, settlement patterns, weapons
 Stone age (paleolithic, (10000-8000)mesolithic, (-2300)neolithic), bronze age, iron age
 
 ---------------------------------------------------
+5 sources
 
+define what is distinct evidence of war (or that particular subject)
+
+articles are biological, and books are cultural

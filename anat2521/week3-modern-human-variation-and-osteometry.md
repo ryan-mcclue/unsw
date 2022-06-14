@@ -2,7 +2,7 @@
 # Week 3 - Modern Human Variation and Osteometry
 Deme: population defined in terms of genetic composition, i.e. allele frequencies
 Species -> subspecies/race (can obviously still interbreed, so there is gene flow) -> population
-Cline: gradual change in trait within a population, e.g. skin colour
+Cline: gradations in a trait within a population, e.g. skin colour
 
 Historically biological determinism (behaviour determined solely by genetics) 
 leading to eugenics (racial out-breeding) with Europeans as superior
@@ -49,7 +49,7 @@ by Hardy-Weinberg equilibrium
 This also emphasises the fact that populations evolve, not individuals
 
 Focus on polymorphic traits, i.e. genes with two or more alleles occuring more than 1% (meaning different expression of same trait)
-e.g. sickle-cell (balanced polymorphism, i.e. maintained heterozygous), lactase persistence, skin colour, etc.
+e.g. sickle-cell (balanced polymorphism, i.e. maintained heterozygous/carrier), lactase persistence, skin colour, etc.
 Can give indication of founder's effect
 Haplotype is a combination of polymorphisms
 
@@ -74,7 +74,7 @@ Gloger (heavily pigmented in warmer)
 Thomson (thin nose in colder)
 
 Responses to Solar Radiation (primarily skin adaptations):
-pigments (carotene:orange, melanin, hemoglobin)
+pigments (carotene:orange, melanin (melanocytes is octopus looking cell), hemoglobin)
 epidermis has carotene (for toughness) and melanin
 dermis has sebaceous glands, sweat glands, hair follicle
 * Darker skin (higher levels of melanin) reduces UV radiation. 
@@ -101,5 +101,5 @@ Diet: Permanently formed tooth enamel as a child reveals childhood diet.
       Tooth decay
 
 ----------------------------------------
-How can we be so polytypic, e.g. vast genetic drift, biocultural influences, yet also be genetically similar compared to other primates?
+How can we be so polytypic, e.g. vast genetic drift, biocultural influences, yet also be genetically similar compared to other primates? (so just phenotypical?)
 how prnounced are genotype differences in sex?

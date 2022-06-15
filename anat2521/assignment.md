@@ -103,6 +103,46 @@ NOT: primitive warfare was very ritualistic, few casualties
 humans have always be capable of war
 
 ----------------------------------------------------
+The two sides of the debate regarding humanity's propensity for war were first articulated centuries ago by philosopher's Roussea and Hobbes.
+Roussea proposed the "noble savage", stating that humanity was entirely peaceful before the advent of civilisation.
+Hobbes characterised the state of human nature as a "war of all against all", meaning that war is an inborn tendency in humans.  
+War can be defined as a collective violence between two groups.
+By examining osteological and archeological evidence of war, a midline can be drawn between Roussean and Hobbsian ideologies.
+Specifically, war is not an innate part of human existence and has increased in response to the development of sedentary cultures and complex social hierarchies.
+
+1 Jean-Jacques Rousseau (Discourse on the Origins of Inequality Among Men (1754))
+2 Thomas Hobbes ((De Cive) 1962)
+
+1. war has intensified after the mesolithic period? 8000-onwards
+mention anthropologists here
+outline evidence of war here
+
+2. war has itensified as a result of sendentary?
+
+3. war has intensified as a result of social hierarchy?
+
+
+(should we preface with saying that these assertions are the more plausable scenarios?)
+EVIDENCE OF WAR:
+Osteology (unlikely to be mistaken for spousal abuse, sports, rituals, sacrifices etc.):
+bone-embedded points like arrows
+high frequency of cranial compression fractures
+absent limbs
+multiple burials
+
+where a cultural tradition is known from many sites and skeletons, absence of warfare is not absence of evidence axiom. 
+it just wasn't there
+
+
+EVIDENCE OF SEDENTARY:
+fortifications; walls of jericho
+
+EVIDENCE OF SOCIAL STRUCTURE:
+
+
+
+
+
 War is not an innate part of human existence and has increased as a result of
 1, 2, 3 (a mid-line between Roussea and Hobbes)
 war comes about because of people living sedentary lives (settlements; agriculture),

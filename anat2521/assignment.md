@@ -102,6 +102,12 @@ NOT: primitive warfare was very ritualistic, few casualties
 
 humans have always be capable of war
 
+
+
+TO ASK:
+BOOK MAKES SUMMARIES OF FINDINGS. SO, ALTHOUGH TALKING ABOUT SAY 5 DIFFERENT PRIMARY SOURCES, TALKING ABOUT IT IS JUST 1? HOW TO INCLUDE PROPERLY WITHOUT JUST REHASHING WHAT THEY SAID?
+PERHAPS JUST SPLIT UP THE SAME ARGUMENT ACROSS DIFFERENT BOOKS?
+
 ----------------------------------------------------
 War can be defined as collective violence between two or more groups. (social pattern of violence?)
 The two sides of the debate regarding humanity's propensity for war were first articulated centuries ago by philosopher's Roussea and Hobbes.
@@ -118,24 +124,43 @@ Analysing the abundance of skeletal remains from the late Paelolithic () to earl
 Osteological evidence of warfare can be considered..... These are unlikely to be mistaken for ....
 332 (presence and absence) for summary. before that, for actual osteological discussion
 
-Book makes summaries of findings. So, although talking about say 5 different primary sources, talking about it is just 1? How to include properly without just rehashing what they said?
-Perhaps just split up the same argument across different books?
 
 which leads to the conclusion that humans come from a sporadically violent past.
 
 Stone age (paleolithic, (10000-8000)mesolithic, (-2300)neolithic), bronze age, iron age
+
+kelly pg. 124 (war is an episodic feature of human history observed at certain times and places, but not others)
+
+(war is not a primordial feature of human life)
+
+perhaps kelly pg. 125 summarises the absences of war in terms of dates best?
 
 2. war has itensified as a result of sendentary? (keely evidence, ferguson for reasons why)
 LBK culture, so radiocarbon dating of the pottery shows when agricultural/farming started to grow in central/northern Europe?
 Determine their diet was primarily agricultural as wild plants and animals not seen in diet.
 The very nature of this type of agricultural economy is to disrupt native ecology, replace indigenous flora/fauana with own crops
 This invades the native foragers, resulting in colonists developing institutional ways of dealing with the natives  
-Chapter 11
+More evidence in start of Chapter 11
 end of pg 312. "only after we accept warfare as an normal part of life, can we understand these inexplicable features" 
 
 3. war has intensified as a result of social hierarchy?
 pg 310 (weapons only found in burials of older men, indicating symbols of acheived status)
 materials made from 'exotic' materials not near the area
+pg 336.
+increasing hierarchy and centralisation leads to intensification of war
+evolution of contending political parties (Dunbar's number)
+fostering a greater reliance on central decision making (away from egalatarian societies). interest's tilt towards the few
+pursue war, interests must be garnered
+seek to raise their position in society
+must be a need and a militarily acheivable solution
+pg. 257 human trophy taking as prestige enhancement 
+
+kelly pg. 125: the fact people made it to New World and Australia demonstrates a degree of social heirarchy in order to sustain the environments (organsiation structure that has seen success in colonising unknown areas, kelly pg. 127)
+kelly pg. 126: difficult to integrate multiple socities without conflict as seen in great apes  
+kelly pg. 126: unsegmented foraging societies are typically egalatarian
+kelly pg. 130: distinctions of reasons for violence between hunter-gatherers and structured societies (cheifdoms etc.)
+
+
 
 (should we preface with saying that these assertions are the more plausable scenarios?)
 EVIDENCE OF WAR:
@@ -183,7 +208,5 @@ War leaves behind skeletons, settlement patterns, weapons
 
 ---------------------------------------------------
 5 sources
-
-define what is distinct evidence of war (or that particular subject)
 
 articles are biological, and books are cultural

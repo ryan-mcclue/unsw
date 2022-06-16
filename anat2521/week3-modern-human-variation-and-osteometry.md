@@ -104,7 +104,7 @@ Diet: Permanently formed tooth enamel as a child reveals childhood diet.
 How can we be so polytypic, e.g. vast genetic drift, biocultural influences, yet also be genetically similar compared to other primates? (so just phenotypical?)
 how prnounced are genotype differences in sex?
 
-height / breadth for nose formula change
+when taking measurement of a long bone, make sure shaft is parallel to ruler
 
 note name (least circumference) to infer possible meaning if not sure
 
@@ -119,3 +119,8 @@ upper molars tend to have 3 roots
 tip of root angled towards the back
 3rd molar erupts at 18
 will be given formula, know how to obtain values
+
+
+
+
+

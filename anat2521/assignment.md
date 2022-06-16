@@ -136,6 +136,7 @@ kelly pg. 124 (war is an episodic feature of human history observed at certain t
 perhaps kelly pg. 125 summarises the absences of war in terms of dates best?
 
 2. war has itensified as a result of sendentary? (keely evidence, ferguson for reasons why)
+An increase  
 LBK culture, so radiocarbon dating of the pottery shows when agricultural/farming started to grow in central/northern Europe?
 Determine their diet was primarily agricultural as wild plants and animals not seen in diet.
 The very nature of this type of agricultural economy is to disrupt native ecology, replace indigenous flora/fauana with own crops
@@ -159,7 +160,6 @@ kelly pg. 125: the fact people made it to New World and Australia demonstrates a
 kelly pg. 126: difficult to integrate multiple socities without conflict as seen in great apes  
 kelly pg. 126: unsegmented foraging societies are typically egalatarian
 kelly pg. 130: distinctions of reasons for violence between hunter-gatherers and structured societies (cheifdoms etc.)
-
 
 
 (should we preface with saying that these assertions are the more plausable scenarios?)

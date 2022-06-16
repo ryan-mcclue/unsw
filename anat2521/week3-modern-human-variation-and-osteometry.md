@@ -103,3 +103,19 @@ Diet: Permanently formed tooth enamel as a child reveals childhood diet.
 ----------------------------------------
 How can we be so polytypic, e.g. vast genetic drift, biocultural influences, yet also be genetically similar compared to other primates? (so just phenotypical?)
 how prnounced are genotype differences in sex?
+
+height / breadth for nose formula change
+
+note name (least circumference) to infer possible meaning if not sure
+
+for formula ranging from positive to negative, negative more female
+
+note the anterioposterior nomenclature for making measurements (diametre just one end to another)
+
+(for long bone) epishysis fused, so adult (adult/child distinguish)
+
+tooth present for age, sutures fused, tooth decay
+upper molars tend to have 3 roots
+tip of root angled towards the back
+3rd molar erupts at 18
+will be given formula, know how to obtain values

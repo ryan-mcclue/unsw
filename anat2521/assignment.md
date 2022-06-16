@@ -103,24 +103,39 @@ NOT: primitive warfare was very ritualistic, few casualties
 humans have always be capable of war
 
 ----------------------------------------------------
+War can be defined as collective violence between two or more groups. (social pattern of violence?)
 The two sides of the debate regarding humanity's propensity for war were first articulated centuries ago by philosopher's Roussea and Hobbes.
 Roussea proposed the "noble savage", stating that humanity was entirely peaceful before the advent of civilisation.
 Hobbes characterised the state of human nature as a "war of all against all", meaning that war is an inborn tendency in humans.  
-War can be defined as a collective violence between two groups.
 By examining osteological and archeological evidence of war, a midline can be drawn between Roussean and Hobbsian ideologies.
 Specifically, war is not an innate part of human existence and has increased in response to the development of sedentary cultures and complex social hierarchies.
 
 1 Jean-Jacques Rousseau (Discourse on the Origins of Inequality Among Men (1754))
-2 Thomas Hobbes ((De Cive) 1962)
+2 Thomas Hobbes ((De Cive) 1642)
 
 1. war has intensified after the mesolithic period? 8000-onwards
-mention anthropologists here
-outline evidence of war here
+Analysing the abundance of skeletal remains from the late Paelolithic () to early Neolithic (), evidence of war although present, is largely absent.
+Osteological evidence of warfare can be considered..... These are unlikely to be mistaken for ....
+332 (presence and absence) for summary. before that, for actual osteological discussion
 
-2. war has itensified as a result of sendentary?
+Book makes summaries of findings. So, although talking about say 5 different primary sources, talking about it is just 1? How to include properly without just rehashing what they said?
+Perhaps just split up the same argument across different books?
+
+which leads to the conclusion that humans come from a sporadically violent past.
+
+Stone age (paleolithic, (10000-8000)mesolithic, (-2300)neolithic), bronze age, iron age
+
+2. war has itensified as a result of sendentary? (keely evidence, ferguson for reasons why)
+LBK culture, so radiocarbon dating of the pottery shows when agricultural/farming started to grow in central/northern Europe?
+Determine their diet was primarily agricultural as wild plants and animals not seen in diet.
+The very nature of this type of agricultural economy is to disrupt native ecology, replace indigenous flora/fauana with own crops
+This invades the native foragers, resulting in colonists developing institutional ways of dealing with the natives  
+Chapter 11
+end of pg 312. "only after we accept warfare as an normal part of life, can we understand these inexplicable features" 
 
 3. war has intensified as a result of social hierarchy?
-
+pg 310 (weapons only found in burials of older men, indicating symbols of acheived status)
+materials made from 'exotic' materials not near the area
 
 (should we preface with saying that these assertions are the more plausable scenarios?)
 EVIDENCE OF WAR:
@@ -165,7 +180,6 @@ By analysing skeletal remains from various sites
 
 War leaves behind skeletons, settlement patterns, weapons
 
-Stone age (paleolithic, (10000-8000)mesolithic, (-2300)neolithic), bronze age, iron age
 
 ---------------------------------------------------
 5 sources

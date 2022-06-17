@@ -57,4 +57,29 @@ as living in social setting, communication is an essential part (scents, gesture
 violence is typically seen in response to lack of food or access to mates
 many acts of appeasement/bonding are through physical contact (grooming being the most important)
 
+competition for mates is high for males, so want to reproduce as much as possible to pass on their genes, i.e. have a higher reproductive fitness
+(infanticidal is an example of this, as killing children allows the mother to care your children)
+
+most mammals are k-selected, i.e. produce a small number of offspring, but invest large amounts of effort into it (as oppose to r-selected like fish)
+
+the lack of sexual dimorphism is a good indicator of long-term monogamous bonds
+
+modern humans have a very high encephilisation (brain larger than what is predicted based on our body-to-brain ratio)
+the neocortex being the most recently developed part of the brain responsible for cognitive thinking comprises 80% of our brain.
+our brains continue to grow outside the womb (unlike other primates), requiring significant energy (so must be evolutionary beneficial)
+
+human language is distinct in that it's symbolic, i.e. refer to immaterial things, things in the past etc.
+
+language is left hemisphere. left hemisphere controls motion of right body. left hemisphere is dominant in most people, so most people are right-handed
+
+the cultural behaviour of great apes makes them interesting to understand early hominins?
+they lived in areas similar to that of our ancestors, so we probably had similar behaviour?
+
+principle benefits of aggression are protection and territorial expansion to get more food and mates
+
+many primates perform altruistic acts (most notably humans with empathy)
+
 --------------------------
+often look at chimps because of their closeness to us to understand early hominin life. does this mean that from our common ancestor, chimps have had less in-between species?
+how do you know if that trait is unique to chimps or shared?
+so, if right-hemisphere is dominant in someone, they will be left-handeded? what about ambi-dextrous?

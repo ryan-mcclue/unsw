@@ -34,4 +34,6 @@ humans (bipedalism, most generalised digestive system, enhanced cognitive abilit
 
 almost all nonhuman primates are critically endangered due to deforestation, hunting and trade
 
+
+
 --------------------------

@@ -136,16 +136,42 @@ kelly pg. 124 (war is an episodic feature of human history observed at certain t
 perhaps kelly pg. 125 summarises the absences of war in terms of dates best?
 
 2. war has itensified as a result of sendentary? (keely evidence, ferguson for reasons why)
-The development of agricultural and farming settlements in the early Neolithic period catalysed a sedentary way of human life, 
-ultimately leading to an increase in warlike engagements.
-Investigating the colonisation of Central and North-West Europe by LBK () farmers, this transition is highly evident. 
-Radiocarbon dating age and  Agricultural diet (keely).
+The development of agricultural and farming settlements in the early Neolithic period 
+catalysed a sedentary way of human life, ultimately leading to an increase in warlike engagements.
+Investigating the colonisation of Central and North-West Europe by LBK () farmers, 
+this transition is highly evident. 
+Radiocarbon dating of LBK stone tools and pottery show their arrival to have occurred approximately 7000 years ago, i.e. early Neolithic.
+Pollen analysis demonstrates land clearing and palynological studies have shown deforestation was sustained for multiple generations.
+(food remains also?)Furthermore, inspection of their food remains is (bogucki 1988:53-61)
+Both of these are strong indicators of an agricultural economy.
+
+Keely who notes that their was nothing in Mesolithic foragers culture that was comparable to any feature of LBK culture. 
 The absence of these markers in the archeological record predating the LBK colonisation is evidence of the fact that the native Mesolithic inhabitants were
 foragers and therefore lived a more nomadic way of life.
+
 Settled because of nature of their economy. this sets the scene for violence (ferguson)
+
+Although no direct evidence of meso-lbk fighting, can infer violence between them
+
 Can see that this happened quickly. Evidence of violence between foragers and LBK (keely)
+burial sites, war weapons, fortified settlements (v-shaped ditches, palisades)
+stockpiling of arrows in 'enclosures' however they did not hunt
 
+LBK axes found in mesolithic sites, however cranial fractures in the talheim death pit shows evidence that these axes were used as weapons
+establishment of no-man's land 
 
+foragers unable to yeild territory
+
+carnerio (1970) idea of circumscription (cannot move away from the conflict)
+(sedentism means you cannot move when levels of animosity build)
+
+as resources are no longer fluctuating/scattered, less need to maintain cooperative bonds (textbook) 
+
+it would be difficult to argue that other sedentary culture colonisations were vastly different to LBK
+severe affect on the land, therefore antagonising to the foragers (could use textbook reference as fit for resources as source of violence?)
+
+1. immediate affects of sedentary is intrusion of natives
+2. long-term is ... (ferguson)
 
 LBK culture, so radiocarbon dating of the pottery shows when agricultural/farming started to grow in central/northern Europe?
 Determine their diet was primarily agricultural as wild plants and animals not seen in diet.
@@ -205,7 +231,8 @@ humans have come from a sporadically violent past
 
 in egalitarian societies, man decides on war for himself
 
-in these conditions, it's unlikely that a group would risk at the cost of more effort and greater hazard
+in these conditions, it's unlikely that a group would risk 
+at the cost of more effort and greater hazard
 
 material interests that 
 

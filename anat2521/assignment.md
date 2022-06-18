@@ -139,7 +139,9 @@ perhaps kelly pg. 125 summarises the absences of war in terms of dates best?
 The development of agricultural and farming settlements in the early Neolithic period catalysed a sedentary way of human life, 
 ultimately leading to an increase in warlike engagements.
 Investigating the colonisation of Central and North-West Europe by LBK () farmers, this transition is highly evident. 
-Radiocarbon dating age and  Agricultural diet (keely)
+Radiocarbon dating age and  Agricultural diet (keely).
+The absence of these markers in the archeological record predating the LBK colonisation is evidence of the fact that the native Mesolithic inhabitants were
+foragers and therefore lived a more nomadic way of life.
 Settled because of nature of their economy. this sets the scene for violence (ferguson)
 Can see that this happened quickly. Evidence of violence between foragers and LBK (keely)
 

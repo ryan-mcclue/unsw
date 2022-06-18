@@ -113,7 +113,7 @@ War can be defined as collective violence between two or more groups. (social pa
 The two sides of the debate regarding humanity's propensity for war were first articulated centuries ago by philosopher's Roussea and Hobbes.
 Roussea proposed the "noble savage", stating that humanity was entirely peaceful before the advent of civilisation.
 Hobbes characterised the state of human nature as a "war of all against all", meaning that war is an inborn tendency in humans.  
-By examining osteological and archeological evidence of war, a midline can be drawn between Roussean and Hobbsian ideologies.
+By examining osteological and archeological evidence, a midline can be drawn between Roussean and Hobbsian ideologies.
 Specifically, war is not an innate part of human existence and has increased in response to the development of sedentary cultures and complex social hierarchies.
 
 1 Jean-Jacques Rousseau (Discourse on the Origins of Inequality Among Men (1754))
@@ -136,7 +136,15 @@ kelly pg. 124 (war is an episodic feature of human history observed at certain t
 perhaps kelly pg. 125 summarises the absences of war in terms of dates best?
 
 2. war has itensified as a result of sendentary? (keely evidence, ferguson for reasons why)
-An increase  
+The development of agricultural and farming settlements in the early Neolithic period catalysed a sedentary way of human life, 
+ultimately leading to an increase in warlike engagements.
+Investigating the colonisation of Central and North-West Europe by LBK () farmers, this transition is highly evident. 
+Radiocarbon dating age and  Agricultural diet (keely)
+Settled because of nature of their economy. this sets the scene for violence (ferguson)
+Can see that this happened quickly. Evidence of violence between foragers and LBK (keely)
+
+
+
 LBK culture, so radiocarbon dating of the pottery shows when agricultural/farming started to grow in central/northern Europe?
 Determine their diet was primarily agricultural as wild plants and animals not seen in diet.
 The very nature of this type of agricultural economy is to disrupt native ecology, replace indigenous flora/fauana with own crops

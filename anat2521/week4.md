@@ -83,3 +83,4 @@ many primates perform altruistic acts (most notably humans with empathy)
 often look at chimps because of their closeness to us to understand early hominin life. does this mean that from our common ancestor, chimps have had less in-between species?
 how do you know if that trait is unique to chimps or shared?
 so, if right-hemisphere is dominant in someone, they will be left-handeded? what about ambi-dextrous?
+is nasal index narrow to broad?

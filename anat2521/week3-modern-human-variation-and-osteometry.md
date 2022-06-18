@@ -119,8 +119,3 @@ upper molars tend to have 3 roots
 tip of root angled towards the back
 3rd molar erupts at 18
 will be given formula, know how to obtain values
-
-
-
-
-

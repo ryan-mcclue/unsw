@@ -167,6 +167,8 @@ carnerio (1970) idea of circumscription (cannot move away from the conflict)
 
 as resources are no longer fluctuating/scattered, less need to maintain cooperative bonds (textbook) 
 
+put in a position where violence seems reasonable
+
 it would be difficult to argue that other sedentary culture colonisations were vastly different to LBK
 severe affect on the land, therefore antagonising to the foragers (could use textbook reference as fit for resources as source of violence?)
 

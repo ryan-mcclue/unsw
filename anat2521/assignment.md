@@ -138,7 +138,7 @@ perhaps kelly pg. 125 summarises the absences of war in terms of dates best?
 2. war has itensified as a result of sendentary? (keely evidence, ferguson for reasons why)
 The development of agricultural and farming settlements in the early Neolithic period 
 catalysed a sedentary way of human life, ultimately leading to an increase in warlike engagements.
-Investigating the colonisation of Central and North-West Europe by LBK () farmers, 
+Investigating the colonisation of Central and North West Europe by LBK (Linienbandkeramik) farmers, 
 this transition is highly evident. 
 Radiocarbon dating of LBK stone tools and pottery show their arrival to have occurred approximately 7000 years ago, i.e. early Neolithic.
 Pollen analysis demonstrates land clearing and palynological studies have shown deforestation was sustained for multiple generations.
@@ -174,6 +174,16 @@ severe affect on the land, therefore antagonising to the foragers (could use tex
 
 1. immediate affects of sedentary is intrusion of natives
 2. long-term is ... (ferguson)
+
+How to say edited by Debra L. Martin and David W. Frayer?
+Ember, C. R. et al. (1997). *Troubled Times: Violence and Warfare in the Past*
+
+How to say edition 15?
+Jurmain, R. et al. (2016). *Introduction to Physical Anthropology*
+
+Schacht, R. M. (1988). *Circumscription Theory: A Critical Review*, American Behavioral Scientist, vol. 31, no. 4
+
+How to reference multiple sentences to the same book?
 
 LBK culture, so radiocarbon dating of the pottery shows when agricultural/farming started to grow in central/northern Europe?
 Determine their diet was primarily agricultural as wild plants and animals not seen in diet.

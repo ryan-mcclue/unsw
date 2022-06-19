@@ -141,39 +141,39 @@ catalysed a sedentary way of human life, ultimately leading to an increase in wa
 Investigating the colonisation of Central and North West Europe by LBK (Linienbandkeramik) farmers, 
 this transition is highly evident. 
 Radiocarbon dating of LBK stone tools and pottery show their arrival to have occurred approximately 7000 years ago, i.e. early Neolithic.
-Pollen analysis demonstrates land clearing and palynological studies have shown deforestation was sustained for multiple generations.
-(food remains also?)Furthermore, inspection of their food remains is (bogucki 1988:53-61)
-Both of these are strong indicators of an agricultural economy.
+Pollen analysis performed on LBK sites show evidence of land clearing,
+while inspection of LBK food remains show a diet consisting almost entirely of agricultural foods. 
+LBK culture was not in any way comparable to the culture of the native Mesolithic foragers.
+The similarity between the radiocarbon dates of the latest Mesolithic sites 
+and earliest LBK sites indicate Mesolithic lifeways died quickly following LBK arrival.
+Therefore, by the very nature of their agricultural economy, LBK farmers represent a marked 
+transition to a more sedentary way of human life.
+Evidence of warfare in LBK culture can be seen in the remains of fortified settlements
+(v-shaped ditches and palisades), stockpiling of weapons in enclosures (arrow-heads and axes) 
+and mass burial graves containing skeletons with perimortem cranial trauma consistent 
+with LBK axe blows (Talheim death pit).
+There are both short-term and long-term consequences of the sedentary LBK culture that create 
+an environment where warfare seems reasonable.
+In the short-term, this culture intrudes on the land of native foragers who are unable to 
+yeild territory due to their scattered food sources.
+Competiton for food is major source of violence.
+In the long-term, 
 
-Keely who notes that their was nothing in Mesolithic foragers culture that was comparable to any feature of LBK culture. 
-The absence of these markers in the archeological record predating the LBK colonisation is evidence of the fact that the native Mesolithic inhabitants were
-foragers and therefore lived a more nomadic way of life.
 
-Settled because of nature of their economy. this sets the scene for violence (ferguson)
-
-Although no direct evidence of meso-lbk fighting, can infer violence between them
-
-Can see that this happened quickly. Evidence of violence between foragers and LBK (keely)
-burial sites, war weapons, fortified settlements (v-shaped ditches, palisades)
-stockpiling of arrows in 'enclosures' however they did not hunt
-
-LBK axes found in mesolithic sites, however cranial fractures in the talheim death pit shows evidence that these axes were used as weapons
-establishment of no-man's land 
-
-foragers unable to yeild territory
-
+In the long-term, 
+Settled because of nature of their economy. 
+this sets the scene for violence (ferguson)
+dunbar's number
 carnerio (1970) idea of circumscription (cannot move away from the conflict)
 (sedentism means you cannot move when levels of animosity build)
+as resources are no longer fluctuating/scattered, 
+less need to maintain cooperative bonds (textbook) 
 
-as resources are no longer fluctuating/scattered, less need to maintain cooperative bonds (textbook) 
-
-put in a position where violence seems reasonable
 
 it would be difficult to argue that other sedentary culture colonisations were vastly different to LBK
-severe affect on the land, therefore antagonising to the foragers (could use textbook reference as fit for resources as source of violence?)
 
-1. immediate affects of sedentary is intrusion of natives
 2. long-term is ... (ferguson)
+
 
 How to say edited by Debra L. Martin and David W. Frayer?
 Ember, C. R. et al. (1997). *Troubled Times: Violence and Warfare in the Past*

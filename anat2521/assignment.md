@@ -151,28 +151,28 @@ transition to a more sedentary way of human life.
 Evidence of warfare in LBK culture can be seen in the remains of fortified settlements
 (v-shaped ditches and palisades), stockpiling of weapons in enclosures (arrow-heads and axes) 
 and mass burial graves containing skeletons with perimortem cranial trauma consistent 
-with LBK axe blows (Talheim death pit).
+with LBK axe blows (Talheim death pit). (keely)
+
 There are both short-term and long-term consequences of the sedentary LBK culture that create 
 an environment where warfare seems reasonable.
-In the short-term, this culture intrudes on the land of native foragers who are unable to 
+In the short-term, a sedentary culture intrudes on the land of native foragers who are unable to 
 yeild territory due to their scattered food sources.
-Competiton for food is major source of violence.
-In the long-term, 
+In the long-term, a sedentary culture removes the ability to move away from situations building
+to violence. (ferguson)
+Furthermore, as resources are no longer fluctuating or scattered, there is less need to 
+maintain cooperative bonds with others as was essential in humanity's evolutionary past.
+(textbook)
+All of these factors resulting from sedentism can ignite warfare.
+
+Although only analysing a section of Neolithic history, 
+the circumstances of the LBK colonisation
+and subsequent culture are shared across other sedentary cultures.
+
+of  would be difficult to argue that other sedentary culture colonisations 
+were vastly different to LBK
 
 
-In the long-term, 
-Settled because of nature of their economy. 
-this sets the scene for violence (ferguson)
-dunbar's number
-carnerio (1970) idea of circumscription (cannot move away from the conflict)
-(sedentism means you cannot move when levels of animosity build)
-as resources are no longer fluctuating/scattered, 
-less need to maintain cooperative bonds (textbook) 
-
-
-it would be difficult to argue that other sedentary culture colonisations were vastly different to LBK
-
-2. long-term is ... (ferguson)
+Dunbar's number
 
 
 How to say edited by Debra L. Martin and David W. Frayer?

@@ -125,6 +125,7 @@ Osteological evidence of warfare can be considered..... These are unlikely to be
 332 (presence and absence) for summary. before that, for actual osteological discussion
 
 
+
 which leads to the conclusion that humans come from a sporadically violent past.
 
 Stone age (paleolithic, (10000-8000)mesolithic, (-2300)neolithic), bronze age, iron age
@@ -136,6 +137,7 @@ kelly pg. 124 (war is an episodic feature of human history observed at certain t
 perhaps kelly pg. 125 summarises the absences of war in terms of dates best?
 
 2. war has itensified as a result of sendentary? (keely evidence, ferguson for reasons why)
+
 The development of agricultural and farming settlements in the early Neolithic period 
 catalysed a sedentary way of human life, ultimately leading to an increase in warlike engagements.
 Investigating the colonisation of Central and North West Europe by LBK (Linienbandkeramik) farmers, 
@@ -146,13 +148,7 @@ while inspection of LBK food remains show a diet consisting almost entirely of a
 LBK culture was not in any way comparable to the culture of the native Mesolithic foragers.
 The similarity between the radiocarbon dates of the latest Mesolithic sites 
 and earliest LBK sites indicate Mesolithic lifeways died quickly following LBK arrival.
-Therefore, by the very nature of their agricultural economy, LBK farmers represent a marked 
-transition to a more sedentary way of human life.
-Evidence of warfare in LBK culture can be seen in the remains of fortified settlements
-(v-shaped ditches and palisades), stockpiling of weapons in enclosures (arrow-heads and axes) 
-and mass burial graves containing skeletons with perimortem cranial trauma consistent 
-with LBK axe blows (Talheim death pit). (keely)
-
+Therefore, LBK farmers represent a marked transition to a more sedentary way of human life.
 There are both short-term and long-term consequences of the sedentary LBK culture that create 
 an environment where warfare seems reasonable.
 In the short-term, a sedentary culture intrudes on the land of native foragers who are unable to 
@@ -162,26 +158,25 @@ to violence. (ferguson)
 Furthermore, as resources are no longer fluctuating or scattered, there is less need to 
 maintain cooperative bonds with others as was essential in humanity's evolutionary past.
 (textbook)
-All of these factors resulting from sedentism can ignite warfare.
-
-Although only analysing a section of Neolithic history, 
-the circumstances of the LBK colonisation
-and subsequent culture are shared across other sedentary cultures.
-
-of  would be difficult to argue that other sedentary culture colonisations 
-were vastly different to LBK
-
-
-Dunbar's number
+Evidence of warfare in LBK culture can be seen in the remains of fortified settlements
+(v-shaped ditches and palisades), stockpiling of weapons in enclosures (arrow-heads and axes) 
+and mass burial graves containing skeletons with perimortem cranial trauma consistent 
+with LBK axe blows (Talheim death pit). (keely)
+Although only analysing the LBK colonisation, it's reasonable to assume that other sedentary
+culture colonisations that occured during the Neolithic period share many similarities.
+Consequently, it's clear that the development of sedentary cultures increased the frequency 
+of warlike interactions.
 
 
 How to say edited by Debra L. Martin and David W. Frayer?
-Ember, C. R. et al. (1997). *Troubled Times: Violence and Warfare in the Past*
+Keeley, L. H. et al. (1997). *Troubled Times: Violence and Warfare in the Past*
+Ferguson, B. R. et al. (1997). *Troubled Times: Violence and Warfare in the Past*
 
 How to say edition 15?
 Jurmain, R. et al. (2016). *Introduction to Physical Anthropology*
 
-Schacht, R. M. (1988). *Circumscription Theory: A Critical Review*, American Behavioral Scientist, vol. 31, no. 4
+(could also mention Dunbar's number ...)
+(could also mention circumscript ...)
 
 How to reference multiple sentences to the same book?
 

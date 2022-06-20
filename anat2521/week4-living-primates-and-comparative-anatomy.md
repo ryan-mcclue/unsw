@@ -18,24 +18,38 @@ Primates very generalised (most apply to haplorines):
   - social groups with common presence of adults
   - diurnal
 
-Evolution resulting from aboreal living (genomic sequencing; humans have highest non-coding DNA) 
+Evolution resulting from aboreal living (applying to apes in general) (genomic sequencing; humans have highest non-coding DNA) 
   - stereoscopic vision (closer eyes less range of vision, but better depth and colour perception), skull protection of eye
   - prenhensile, nails over claws 
   - brachiation (arm swinging from branch to branch)
 
 where is petrosal bulla (unique to primates, inner ear for balance)?
 
-Suborders of Strepsirhini (lemurs and lorises are clingers and leapers) and Haplorhini (monkeys, apes, humans are quadrapedal)
+Suborders of Strepsirhini/Prosimian (lemurs and lorises are clingers and leapers. have rhinarium, i.e. wet nose) and 
+Haplorhini/Anthropoid (monkeys, apes, humans are quadrapedal)
 
-We see in most nondivergent primates lemurs more cusped molars (insectivourous), eyes further apart, some claws, rhinarium, nocturnal etc.
+Lemurs had no natural predator in Madagascar, so example of adaptive radiation
+Lorises very slow-moving, huge eyes
+
+Tarsiers (mix of strepsirhines and haplorhines)
 
 Monkeys (species demonstrate homoplasy):
-new world (americas; outward facing nose) 
-old world (sub-sahara africa and south-east asia)
+new world (americas; prehensile tail, platyrrhini: outward facing nose (as oppose to catarhines inferiorly))
+marmosets and tamarins
 
-oraguntans, gibbons (borneo, asia)
-gorrillas, chimps, bonobos (central africa)
-humans (bipedalism, most generalised digestive system, enhanced cognitive abilities (culture dependence, verbal/written speech) 
+old world (sub-sahara africa and south-east asia)
+ischial callosites (tissue padding on sitting bone, i.e. ischial tuberosity) 
+macaques and baboons
+
+catarrhini, homoinoidea, apes:
+hylobatidae (lesser apes): gibbons (borneo, asia)
+hominidae (knuckle walkers): oraguntans (solitary)
+  hominiae: gorrillas (mountain gorillas almost extinct)
+  hominini: chimps, (central africa) (will live in groups and play roles based on personality, learn culture i.e. tool-making)
+  bonobos (hypersexual, strong female bonds)
+    humans (bipedalism, most generalised digestive system, enhanced cognitive abilities (culture dependence, verbal/written speech) 
+
+We see in most nondivergent primates lemurs more cusped molars (insectivourous), eyes further apart, some claws, rhinarium, nocturnal etc.
 
 almost all nonhuman primates are critically endangered due to deforestation, hunting and trade
 
@@ -88,10 +102,11 @@ many primates perform altruistic acts (most notably humans with empathy)
 
 
 
-
 --------------------------
 often look at chimps because of their closeness to us to understand early hominin life. does this mean that from our common ancestor, chimps have had less in-between species?
 how do you know if that trait is unique to chimps or shared?
 so, if right-hemisphere is dominant in someone, they will be left-handeded? what about ambi-dextrous?
 is nasal index narrow to broad?
 questions about limb size variations in lab 3
+how many dinosaur bones are real? how to tell?
+if monkey having long tail that is not prehensile, what is the point? (balance?)

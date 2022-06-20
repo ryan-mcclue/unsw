@@ -96,9 +96,11 @@
      - Paleozoic (500 mya; Pangea)
        Largely fish/amphibians
      - Mesozoic (Gondwanaland + Lauraisia) 
-       Largely reptiles/dinosaurs, later mammals (larger brains, varied shaped teeth, endothermic)
+       Largely reptiles/dinosaurs, later mammals (in-utero, larger brains, varied shaped teeth, endothermic)
+       (cold blooded is exothermic)
      - Cenozoic (current)
-       Placental mammals dominant (in-utero)
+       Placental mammals dominant
+       (marsupials give birth to embryonic state, and monotremes eggs)
 
 * Pedigree is lineage
   Similar traits from common ancestor is homology (similarity in mammalian skeletal forelimbs)

@@ -1,13 +1,13 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-# Week 4 - (chapter 6 +) 
-Primates very generalised:
+# Week 4 - Living Primates and Comparative Anatomy
+Primates very generalised (most apply to haplorines):
 * Limbs and Locomotion:
   - erect posture
-  - flexible limbs for varied locomotion
+  - flexible/generalised limbs for varied locomotion
   - prehensile hands and feet (opposable thumbs meaning they can move independently) 
 * Diet and Dentition:
   - omnivorous (good if one source runs out, however increased competition from other species) 
-  - heterodonty (flat cusps in molars)
+  - heterodonty (flat cusps in molars, no enormous canines for tearing meat, no enormous molars for fibrous foods)
 * Brain
   - stereoscopic vision
   - enhanced colour vision, reduced olfactory, bony protection of eyes
@@ -18,9 +18,14 @@ Primates very generalised:
   - social groups with common presence of adults
   - diurnal
 
-Evolution (genomic sequencing; humans have highest non-coding DNA) 
-  - stereoscopic, vision and prenhensile resulting from aboreal living
+Evolution resulting from aboreal living (genomic sequencing; humans have highest non-coding DNA) 
+  - stereoscopic vision (closer eyes less range of vision, but better depth and colour perception), skull protection of eye
+  - prenhensile, nails over claws 
   - brachiation (arm swinging from branch to branch)
+
+where is petrosal bulla (unique to primates, inner ear for balance)?
+
+Suborders of Strepsirhini (lemurs and lorises are clingers and leapers) and Haplorhini (monkeys, apes, humans are quadrapedal)
 
 We see in most nondivergent primates lemurs more cusped molars (insectivourous), eyes further apart, some claws, rhinarium, nocturnal etc.
 
@@ -38,7 +43,8 @@ for most animals, behaviour is largely determined by evolutionary history of the
 behaviours have evolved through natural selection, i.e. behaviour is a phenotype
 our evolution has been shaped by the ecological setting of our ancestors
 
-primatologists concerned with how certain behaviour's determine reproductive fitness, e.g. primate males paternal, explaining some behaviour in males
+primatologists concerned with how certain behaviour's determine reproductive fitness, 
+e.g. primate males paternal, explaining some behaviour in males
 
 as humans are very social, the social structure plays a key role
 
@@ -60,7 +66,8 @@ many acts of appeasement/bonding are through physical contact (grooming being th
 competition for mates is high for males, so want to reproduce as much as possible to pass on their genes, i.e. have a higher reproductive fitness
 (infanticidal is an example of this, as killing children allows the mother to care your children)
 
-most mammals are k-selected, i.e. produce a small number of offspring, but invest large amounts of effort into it (as oppose to r-selected like fish)
+k-selected, i.e. produce a small number of offspring (primates single offspring), but invest large amounts of effort into it (as oppose to r-selected like fish)
+therefore, mammals suited for stable environments
 
 the lack of sexual dimorphism is a good indicator of long-term monogamous bonds
 
@@ -79,8 +86,12 @@ principle benefits of aggression are protection and territorial expansion to get
 
 many primates perform altruistic acts (most notably humans with empathy)
 
+
+
+
 --------------------------
 often look at chimps because of their closeness to us to understand early hominin life. does this mean that from our common ancestor, chimps have had less in-between species?
 how do you know if that trait is unique to chimps or shared?
 so, if right-hemisphere is dominant in someone, they will be left-handeded? what about ambi-dextrous?
 is nasal index narrow to broad?
+questions about limb size variations in lab 3

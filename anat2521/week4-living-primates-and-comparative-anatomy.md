@@ -8,9 +8,9 @@ Suborders:
   2. Haplorhini/Anthropoid:
      Tarsiers (traits mix of strepsirhines and haplorhines)
 
-     New World monkeys. Prehensile tail, platyrrhini: outward facing nose 
+     New World monkeys. Prehensile tail, platyrrhini: outward facing nose (3 premolars)
      Marmosets and tamarins
-     Old World monkeys. Ischial callosites (tissue padding on sitting bone, i.e. ischial tuberosity) 
+     Old World monkeys. catarrhini. Ischial callosites (tissue padding on sitting bone, i.e. ischial tuberosity) 
      Macaques and baboons
 
      Catarrhini/homoinoidea/apes:
@@ -54,6 +54,11 @@ This generalisation is most evident in the haplorhines:
   - diurnal
   - k-selected
 
+
+primates closed eye socket (in reference to the side)
+early primates develop vision for catching insects
+
+quadrapedal, same proportions in limbs
 
 almost all nonhuman primates are critically endangered due to deforestation, hunting and trade
 
@@ -103,6 +108,9 @@ many primates perform altruistic acts (most notably humans with empathy)
 --------------------------
 often look at chimps because of their closeness to us to understand early hominin life. does this mean that from our common ancestor, chimps have had less in-between species?
 
+chimp behaviour used as hypothesis
+eskeleton.org websites
+
 is it because chimp behaviour determined by genetics to a greater extent?
 
 how do you know if that trait is unique to chimps or shared?
@@ -119,5 +127,7 @@ if monkey having long tail that is not prehensile, what is the point? (balance?)
 where is petrosal bulla (unique to primates, inner ear for balance)?
 
 Why do different human populations (past and present) display differences in platymeric index? (thickness of femur?)
+different stresses acted on body due to lifestyle
 
 Why do people with different geographical ancestry differ in the shape of their heads/skulls?
+shape of nose here

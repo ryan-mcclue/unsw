@@ -106,6 +106,29 @@ they lived in areas similar to that of our ancestors, so we probably had similar
 many primates perform altruistic acts (most notably humans with empathy)
 
 --------------------------
+1. mammal and primate (different dental formula)
+tell difference between ape and monkey skull
+
+determine locomotion from bone ratio
+size of orbits
+enclosure of orbits seen in haplorhines
+why so large canines in herbivore? (sexual selection)
+insectivore have more pointed cusps
+old world monkey teeth insectivore, so harsh ridges in molars
+apes frugavores so more rounded molars
+reduced saggital rudder in humans as less jaw mucles to have larger brain
+
+all monkeys have ridged teeth for leaves side-to-side
+
+diastema implies honing and sectorial premolar
+
+chimps shorter lumbar due to less space tall pelvis
+
+apes have longer arms than legs due to primordial brachiation
+humans have longer legs
+however, a clinger will have longer legs but will also have clinging feet
+
+
 often look at chimps because of their closeness to us to understand early hominin life. does this mean that from our common ancestor, chimps have had less in-between species?
 
 chimp behaviour used as hypothesis

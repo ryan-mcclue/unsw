@@ -111,9 +111,10 @@ tell difference between ape and monkey skull
 
 determine locomotion from bone ratio
 size of orbits
+strepssorhine have post orbital bar unlike in non-primate mammals
 enclosure of orbits seen in haplorhines
 why so large canines in herbivore? (sexual selection)
-insectivore have more pointed cusps
+insectivore/leaf eater have more pointed cusps (bilophodant; use to identify Old World monkeys)
 old world monkey teeth insectivore, so harsh ridges in molars
 apes frugavores so more rounded molars
 reduced saggital rudder in humans as less jaw mucles to have larger brain

@@ -19,3 +19,7 @@ is euprimate anachronistic?
 plattyrhines into new world via island hopping on natural mats of vegetation? accidental colonisation? aborigines on boats?
 
 if life so plentiful and extended ontology of primates, don't understand how so diverse now?
+
+row 7 for station 7 answers on answer sheet
+
+terrestrial quadrapedalism and arboreal quadrapedalism

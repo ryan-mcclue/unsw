@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 # Week 1 - Introduction to Anthropology and Osteology
-* Primates (monkeys) -> hominids (oraguntan) -> hominiae (gorilla, chimpanzee) -> hominins (humans)
+* Primates (monkeys) -> hominoidea (gibbons) -> homindae (oraguntan) -> hominiae (gorilla, chimpanzee) -> hominins (humans)
 * Stone age (paleolithic, mesolithic, neolithic), bronze age, iron age
 * DNA contains genetic instructions. 
 * A gene is small section of DNA responsible for a particular trait.

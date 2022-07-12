@@ -27,8 +27,11 @@ biostratigraphy (faunal succession, i.e. animal we know age of appears somewhere
 chemical analysis (fluorine), paleomagnetism (magnetic pole reversal)
 
 chronometric dating. carbon-14 for organic materials as eat plants photosythesis (potassium-40 longer half life so useful for older, however requires potassium, e.g. volcano), 
+(C-14 half life only 5700, oldest used for 50000)
 tree rings, uranium, electron spin resonance (pottery, silica, quartz)
 various methods applicable to materials present
+
+CP3 differentiate ape and hominin in general
 
 determining environment:
 oxygen-18 (heavier) indicates colder climates and lower sea levels
@@ -47,6 +50,10 @@ old world monkeys in uganda/kenya (victoriapithecus)
 
 earlist apes proconsul (walked on soles, y-5 molars) determined from crania, as postcranial similar to monkeys
 
+miocene explosion of apes.
+end of miocene cooling, plicene saw savannah till holiocene
+pleistoscene key part of human evolution
+
 when compare to monkeys, humans have unique traits resulting from brachiation:
 wide-short thorax, stiff back
 
@@ -63,7 +70,7 @@ if original primates ate insects and fruit, when did meat enter diet?
 not entirely sure how to reconstruct environmental conditions from isotopes (has to be some fossil to extrapolate from?)
 e.g. where are oxygen isotopes found? (in water?)
 
-radiometric dating, so the granularity is half-life?
+radiometric dating, so the granularity is half-life? (no)
 
 stone age and subsequent lithics are what?
 

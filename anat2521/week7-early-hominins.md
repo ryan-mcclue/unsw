@@ -38,16 +38,36 @@ prognathic, fairly megadont
 first stone tool maker (so probably when started to eat meat?)
 1. 4mya: australopithecus anamensis (kenya, ethopia)
 2. 3.9mya: australopithecus afarensis (Lucy, Laetoli footprints: ethopia)
-3. australopithecus bahrelghazdi/deyiremedi/garhi
+australopithecus bahrelghazdi/deyiremedi/garhi
 
 South African Australopithecus fossils found in breccia (broken rock clumped together)
 So, fossils died in a sinkhole that is later exposed? So more complex geology than
 East Africa Australopithecus fossils as have to isolate age from components of breccia 
-3.5mya: australopithecus africanus: taung child
+3. 3.5mya: australopithecus africanus: taung child
+4. 2mya: australopethicus sediba
 
+(alternative lineage, robust (as oppose to gracile) australopethicus developed larger jaws, flaring zygomatics (masseter muscle) and molars)
+1. 2.7mya: australopethicus/paranthropus aethiopicus (east africa)
+2. 2.3mya: australopethicus boisei (nut-cracker man: east africa)
+3. 2mya: australopethicus robustus (south africa)
 
+pliocene time of adaptive radiation of hominins
+there were multiple species of hominins living at the same time. ate different foods to coexist (like chimps and gorillas)
 
-(alternative lineage, robust australopethicus developed larger jaws and molars)
+various proposed hominin phylogeny, however all generally have australopethicus anamensis as stem
+
+latest DNA extraction is 1mya. so, unlikely for australopithecus
+
+tool nomenclature:
+* industry (style of make)
+* hammerstone strikes core (raw material) to produce a flake. 
+the flake is what is of use, as it will have a sharp edge
+Could also whack core against anvil for same effect
+* butchering place where carcasses butchered 
+* quarrying where raw materials obtained
+
+Oldawan industry oldest industry, with simple flake tools
+
 
 
 human evolution (evolution radiation in Africa):

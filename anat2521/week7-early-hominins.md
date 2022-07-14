@@ -96,3 +96,53 @@ early homo seems to have a longer femural neck?
 if australopethicus first stone tool maker, how does this coincide with Stone Age dates?
 
 things change, e.g. taphominic deformation from soil on bones
+
+-------------------------------------------------
+
+human and ape traits
+
+procunsul no tail. ape molars
+
+## chadensis 
+APE
+huge brow ridge.
+small brain, reduced canine
+U-shaped arcade
+
+HUMAN
+no honing complex, reduced prognthism
+anteror foramen mahnum
+
+lone femur is orrorin tugensis (not in spot test)
+
+although robust hominin, not human ancestors
+
+(all have molarised pre-molars, small anterior teeth)
+eothipicus has largest saggital crest towards posterior
+robustus least robust...only one which has nasal pillars (from south africa)
+
+afarensis in tanzania also
+larger anterior teeth than robustus
+
+(generally smaller brain than robustus)
+(both older than robusts, and more incisor prognathic and less dish-faced, i.e. sunken c-curve for nose)
+afarensis has diastema. males have saggital crest
+africanus more round nuchal crest, larger brain, less prognathic, smaller brow ridge
+africanus has nasal pillars
+
+stone tools 3.3million, so first used by afarensis
+
+australopithecus have more U-shaped than apes
+
+(asked about all robustus, afarensis and africanus)
+
+##  
+APE
+
+HUMAN
+
+##  
+APE
+
+HUMAN
+

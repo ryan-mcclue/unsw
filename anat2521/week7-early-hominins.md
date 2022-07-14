@@ -19,13 +19,15 @@ branching from australopithecus are homo genus
 
 diastema present with CP3 honing complex
 
-2mya. for first homo fossil homo
+2mya. for first homo fossil
 
 (these are candidate early hominins, possess mosaic of traits, e.g. anterior foramen magnum but divergent big-toe)
 (pre-australopithecus)
 1. 7-6mya: sahelanthropus tchadensis (chad)
 2. 6mya: orrorin tugenensis (kenya)
-3. 4.5mya: ardipithecus (ethopia) --> long arms and phalanges indicates brachiation?
+3. 5.8-5.2mya: ardipithecus kadabba (ethopia)
+4. 4.4mya: ardipithecus ramidus (ethopia) --> long arms and phalanges indicates brachiation?
+most probable earliest ancestor of hominins
 
 sectorial premolar sharpes/hones canine
 
@@ -36,20 +38,21 @@ large sagittal crest for large temporalis muscles, i.e. chewing muscles
 lack of feet arches
 prognathic, fairly megadont
 first stone tool maker (so probably when started to eat meat?)
-1. 4mya: australopithecus anamensis (kenya, ethopia)
-2. 3.9mya: australopithecus afarensis (Lucy, Laetoli footprints: ethopia)
+1. 4.2-3.9mya: australopithecus anamensis (kenya, ethopia)
+2. 3.9-2.9mya: australopithecus afarensis (eastern afica, Lucy, Laetoli footprints: ethopia)
 australopithecus bahrelghazdi/deyiremedi/garhi
 
 South African Australopithecus fossils found in breccia (broken rock clumped together)
 So, fossils died in a sinkhole that is later exposed? So more complex geology than
 East Africa Australopithecus fossils as have to isolate age from components of breccia 
-3. 3.5mya: australopithecus africanus: taung child, mrs plez
-4. 2mya: australopethicus sediba
+3. 3.5-2.0mya: australopithecus africanus: taung child, mrs plez
+4. 1.97-1.78mya: australopethicus sediba
 
-(alternative lineage, robust (as oppose to gracile) australopethicus developed larger jaws, flaring zygomatics (masseter muscle) and molars)
-1. 2.7mya: australopethicus/paranthropus aethiopicus (east africa)
-2. 2.3mya: australopethicus boisei (nut-cracker man: east africa)
-3. 2mya: australopethicus robustus (south africa)
+(alternative lineage, robust (as oppose to gracile) australopethicus developed larger jaws, 
+flaring zygomatics (masseter muscle) and molars)
+1. 2.7-2.5mya: australopethicus/paranthropus aethiopicus (east africa)
+2. 2.3-1.5mya: australopethicus boisei (nut-cracker man: east africa)
+3. 2-1.5mya: australopethicus robustus (south africa)
 
 (some think direct relation, others based on geography proximity)
 (3.4mya evidence of butchering and bone breakage of stone tools)

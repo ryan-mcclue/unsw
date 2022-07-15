@@ -27,3 +27,6 @@ Always been capable of violence
 theories
 # Warfare an evolutionary perspective 
 theories
+
+First slides present theories. Then explain why proving a particular one (thesis)
+

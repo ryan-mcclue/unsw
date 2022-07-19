@@ -8,14 +8,23 @@ skewed towards the work of cultural anthropologists Ferguson and Kelly, both of 
 
 -----------------------------------------------------------------------------
 While you present convincing evidence that ‘the development of sedentary cultures increased the frequency of warlike interactions’ 
-in Central and North West Europe at the start of the Neolithic, you do not present convincing evidence that this is true for other parts of the world.
+in Central and North West Europe at the start of the Neolithic, 
+you do not present convincing evidence that this is true for other parts of the world.
 EARLIER ON YOU MENTION ONLY TALKING ABOUT ONE REGION EUROPE. HOW CAN SATISFY BOTH OF THESE?
+
+origins of warfare in Europe...
+
+ESSENTIALLY TALK ABOUT EARLIER EVIDENCE OF VIOLENCE AND SPECIFIC THEORIES
+
+cannibalism, healed injuries in neandanthals
+populations in spain violent death of individual
 
 When stated missing major publications, is this in reference to evidence or theories?
 
 * provide specific numerical time period talking about. talk about specific geographic area.
 * only discuss Europe
-* discuss evidence of millions of years ago on early hominins (further back than stone age). so, talk more about hominins, rather than just homo sapiens?
+* discuss evidence of millions of years ago on early hominins (further back than stone age). 
+so, talk more about hominins, rather than just homo sapiens?
 * include more biological anthropological references and their varied main arguments.
 * if mentioning an anthropologist, give their main argument (e.g. Keely warfare is common in small-scale societies and was likely common throughout human evolutionary history)
 

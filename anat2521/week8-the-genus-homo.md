@@ -70,9 +70,9 @@ called archaic as some believe they are just early homo sapiens and not distinct
 large supratorbital torus (2 distinct toruses above each eye, as oppose to one long in Erectus)
 
 600,000-300,000: Homo heildedlbergensis (European archaic homo sapiens, Germany, Greece, Spain) -> 
-The mid-facial prognathism makes them a possible ancestor to Neandanthals
+The mid-facial prognathism makes them a possible ancestor to Neandanthals (and Denisovans, as more closely related to Neandanthals to Homo Sapiens)
 Homo rhodensis (africa)
-Asian archiac homo sapiens (china, india). possible ancestor to Denisovans?
+Asian archiac homo sapiens (china, india).
 
 Acheulean used until 150,000 years ago. Then Levallois (points and flakes)
 Found near big game fossils. 
@@ -81,6 +81,8 @@ Confident had control of fire.
 
 
 (-40,000) Denisovan (russia, tibet)
+from DNA in molar, finger, mandible
+Melanisians have highest current DNA
 
 (230,000 - 28,000): Neanderthal (northern europe, middle east, western asia)
 mid-facial prognathic due to swept back cheeks and retromolar space, no chin, wide nose
@@ -97,8 +99,8 @@ heavy meat reliance, capable hunters
 cannibalism, burials
 minimal indications of symbolic behaviour (animal teeth found as possible pendants)
 
-
-ARE HOMO SAPIENS FROM ERECTUS OR ARCHAIC HOMO SAPIENS?
+Splitter view (out-of-africa) is Homo Heidelbergensis as ancestor. So, we evolved from the archaic homo sapiens in Africa and later 'recolonised' other parts of the world.
+Lumper view (multi-regional) has only late Homo Erectus
 
 ----------------------
 how could neandethals and sapiens interbreed if different species?

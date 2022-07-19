@@ -40,7 +40,7 @@ prognathic, fairly megadont
 first stone tool maker (so probably when started to eat meat?)
 1. 4.2-3.9mya: australopithecus anamensis (kenya, ethopia)
 2. 3.9-2.9mya: australopithecus afarensis (eastern afica, Lucy, Laetoli footprints: ethopia)
-australopithecus bahrelghazdi/deyiremedi/garhi
+australopithecus bahrelghazdi/deyiremedi/garhi (garhi is robust?)
 
 South African Australopithecus fossils found in breccia (broken rock clumped together)
 So, fossils died in a sinkhole that is later exposed? So more complex geology than

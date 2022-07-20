@@ -1,16 +1,4 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-bachofen
-abizadeh
-ferguson
-backwell and d'errico
-guthrie
-keely
-jurmain
-
-turchin
-kelly
-sheehan
-
 
 PALEOPATHOLOGY FOR PERIMORTEM TRAUMA (determined by no healing occuring in bone)
 - evidence of mass graves, etc.
@@ -62,7 +50,8 @@ Essentially, not enough game to satiate people staying in one place, so resort t
 This makes war something 'rational', rather than something that wells up from our biology
 The statistics compiled were only of people alive at the time (not their entire history)
 (saying genghis khan had 1000 kids is irrelevent across entire history.)
-(look in native american plains people, peace leaders had more kids. only in times of war, did warriors produce more offspring. this is in relation to being a warrior spreads your genes better)
+(look in native american plains people, peace leaders had more kids. 
+only in times of war, did warriors produce more offspring. this is in relation to being a warrior spreads your genes better)
 
 
 War Before Civilization: The Myth of the Peaceful Savage (keeley)
@@ -101,13 +90,6 @@ in general, like humans, they develop a continous range of behaviour
 
 in general I think violence is learned, either culturally or because of the immediate environment, e.g. scarcity of resources
 
-You are to evaluate the various theories that have been proposed and choose the one
-which best fits the evidence.
-
-Your paper must be argumentative and analytical.
-
-Each paragraph presents only one idea
-
 
 Go against what Roussea.
 
@@ -115,11 +97,6 @@ NOT: primitive warfare was very ritualistic, few casualties
 
 humans have always be capable of war
 
-
-
-TO ASK:
-BOOK MAKES SUMMARIES OF FINDINGS. SO, ALTHOUGH TALKING ABOUT SAY 5 DIFFERENT PRIMARY SOURCES, TALKING ABOUT IT IS JUST 1? HOW TO INCLUDE PROPERLY WITHOUT JUST REHASHING WHAT THEY SAID?
-PERHAPS JUST SPLIT UP THE SAME ARGUMENT ACROSS DIFFERENT BOOKS?
 
 ----------------------------------------------------
 War can be defined as collective violence between two or more groups. (social pattern of violence?)

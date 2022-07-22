@@ -15,9 +15,10 @@ Homo, 3rd molar smaller than 2nd molar?
 Rounded brain case, reduced prognathic, smaller teeth, 
 larger body (possibly due to increased meat diet through tool use)
 
+(from one large brow thickening in au. to distinct 2 pieces)
 * 2.4-1.4mya: Homo habilis (Tanzania)
-Although established, still bits and pieces before 2mya in terms of conclusive first-homo ancestor (bosei, garhi)
-Oldowan tools (pre-Oldowan is australopithecines)
+Although established, still bits and pieces before 2mya in terms of conclusive first-homo (bosei, garhi)
+Oldowan tools (pre-Oldowan is australopithecines). just chopping, basic.
 still had larger anterior teeth and U-shaped dental arcade compared to later Homo
 saggital keel/torus rounded and no muscle attachments like crest 
 big brow ridge
@@ -53,17 +54,32 @@ Fur loss, more sweat glands, (lighter skin underneath fur like chimps. so evolve
 Much more carnivorous diet (smaller large intestine, larger small intestine, i.e. small gut as meat easier to digest), migratory, lowly dense populations
 Leisure time as meat highly nutritous
 Reason for venturing, to capture more animals and obtain more meat
+<<<<<<< HEAD
 * Possible difference to erectus 1.8-1.0mya: Homo ergaster (is what would be called an 'Asian Homo Erectus')
+||||||| constructed merge base
+* Possible difference to erectus 1.8-1.0mya: Homo ergaster (in Asia)
+=======
+* Possible difference to erectus 1.8-1.0mya: Homo ergaster (in Africa, Georgia)
+Ergaster seems to have more extended and lower cranial vault
+>>>>>>> Lab 8
 * (-18,000) Homo Floresiensis (Flores, Indonesia). Hobbit. 
 Insular dwarfism (small island with limited resources and no predators)
 Descended from Erectus
+Less progranthic, more of a chin, less extended than Erectus
 
 
 Modern humans:
+<<<<<<< HEAD
 chin (unique), canine fossa (not present in early hominins), rounded/bulbous cranium, very large mastoid (is this because of better neck turning?), small teeth, gracile (no torus, keels, etc.)
 cranial vault high (not low like in Homo Erectus)
 flattish/square posterior cranium
+||||||| constructed merge base
+chin, canine fossa, rounded/bulbous cranium, large mastoid, small teeth
+=======
+chin, canine fossa, rounded/bulbous cranium, large mastoid, small teeth, huge forehead
+>>>>>>> Lab 8
 
+<<<<<<< HEAD
 Archaic homo sapiens (not separate/defined genus between sapien and erectus? 
 So, perhaps regional?):
 called archaic as some believe they are just early homo sapiens and not distinct species
@@ -71,13 +87,38 @@ large supratorbital torus (2 distinct toruses above each eye, as oppose to one l
 
 600,000-300,000: Homo heildedlbergensis (European archaic homo sapiens, Germany, Greece, Spain) -> 
 The mid-facial prognathism makes them a possible ancestor to Neandanthals (and Denisovans, as more closely related to Neandanthals to Homo Sapiens)
+||||||| constructed merge base
+Archaic homo sapiens (not separate/defined genus between sapien and erectus? 
+So, perhaps regional?):
+Homo heildedlbergensis (europe) -> possible ancestor to neandanthals
+=======
+Archaic homo sapiens
+: Homo heildedlbergensis (europe) -> possible ancestor to neandanthals
+Larger cranial vault to differentiate between Habilis
+>>>>>>> Lab 8
 Homo rhodensis (africa)
 Asian archiac homo sapiens (china, india).
 
+<<<<<<< HEAD
 Acheulean used until 150,000 years ago. Then Levallois (points and flakes)
 Found near big game fossils. 
 Archaic homo sapiens were big-game hunters
 Confident had control of fire.
+||||||| constructed merge base
+(-40,000) Denisovan (russia, tibet)
+(230,000 - 28,000): Neanderthal (belgium, middle east)
+mid-facial prognathic due to swept back cheeks, no chin
+mousterian
+=======
+(-40,000) Denisovan (russia, tibet)
+(130,000 - 28,000): Neanderthal (belgium, middle east)
+mid-facial prognathic due to swept back cheeks, no chin
+low, extended cranial vault like erectus
+mousterian (start of mesolithic). smaller, scraping meat off
+massive bump at back of head compared to Heilderbgensis (larger brain)
+
+Levallois industry (mesolithic also)
+>>>>>>> Lab 8
 
 
 (-40,000) Denisovan (russia, tibet)

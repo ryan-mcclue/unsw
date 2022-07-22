@@ -195,6 +195,8 @@ warfare and peacemaking. This view is not dissimilar from Wrangham
 power and the perceived benefits of using violence or avoiding it.
 
 
+# INCLUDE NEADNATHAL VIOLENCE AS WELL
+
 (pg. 2 bottom right for anthropologists supporting non-innate warfare) 
 
 First slides present theories.

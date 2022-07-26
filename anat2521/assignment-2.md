@@ -207,3 +207,45 @@ Describe undisputable signs of warfare during Holocene.
 Explain reasons for these incidences relating to thesis points.
 Move on from there?
 
+# condense
+LBK (Linien band keramik) Colonisation of Central and North West Europe​
+
+Radiocarbon dating of stone tools and pottery place arrival approx. 7000 years ago 
+
+Pollen analysis shows evidence of land clearing
+
+Inspection of food remains show a diet consisting almost entirely of agricultural foods 
+
+Represent a marked transition to a more sedentary way of life as oppose to native hunter-gatherers
+
+
+1997). ​
+
+​
+
+
+life.​
+
+​
+
+intrude on the land of native hunter-gatherers who are unable to yield territory due to their scattered​
+food sources.
+
+unable to move away from situations building to violence 
+
+due to stable source of food, there is less need to maintain cooperative bonds with others as was​
+essential in humanity's evolutionary past (Jurmain, 2016). 
+
+​
+
+The similarity between the radiocarbon dates of the latest Mesolithic sites and​
+earliest LBK sites indicate Mesolithic lifeways died quickly following LBK arrival (Keely,​
+
+remains of fortified settlements such as v-shaped ditches and palisades
+
+stockpiling of weapons in enclosures (arrow-heads and axes) and 
+
+mass burial graves containing skeletons
+with perimortem cranial trauma consistent with LBK axe blows (Keely, 1997). ​
+
+​

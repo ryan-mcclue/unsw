@@ -54,14 +54,8 @@ Fur loss, more sweat glands, (lighter skin underneath fur like chimps. so evolve
 Much more carnivorous diet (smaller large intestine, larger small intestine, i.e. small gut as meat easier to digest), migratory, lowly dense populations
 Leisure time as meat highly nutritous
 Reason for venturing, to capture more animals and obtain more meat
-<<<<<<< HEAD
-* Possible difference to erectus 1.8-1.0mya: Homo ergaster (is what would be called an 'Asian Homo Erectus')
-||||||| constructed merge base
 * Possible difference to erectus 1.8-1.0mya: Homo ergaster (in Asia)
-=======
-* Possible difference to erectus 1.8-1.0mya: Homo ergaster (in Africa, Georgia)
 Ergaster seems to have more extended and lower cranial vault
->>>>>>> Lab 8
 * (-18,000) Homo Floresiensis (Flores, Indonesia). Hobbit. 
 Insular dwarfism (small island with limited resources and no predators)
 Descended from Erectus
@@ -69,56 +63,34 @@ Less progranthic, more of a chin, less extended than Erectus
 
 
 Modern humans:
-<<<<<<< HEAD
 chin (unique), canine fossa (not present in early hominins), rounded/bulbous cranium, very large mastoid (is this because of better neck turning?), small teeth, gracile (no torus, keels, etc.)
 cranial vault high (not low like in Homo Erectus)
 flattish/square posterior cranium
-||||||| constructed merge base
-chin, canine fossa, rounded/bulbous cranium, large mastoid, small teeth
-=======
 chin, canine fossa, rounded/bulbous cranium, large mastoid, small teeth, huge forehead
->>>>>>> Lab 8
-
-<<<<<<< HEAD
-Archaic homo sapiens (not separate/defined genus between sapien and erectus? 
-So, perhaps regional?):
+Archaic homo sapiens:
 called archaic as some believe they are just early homo sapiens and not distinct species
 large supratorbital torus (2 distinct toruses above each eye, as oppose to one long in Erectus)
 
 600,000-300,000: Homo heildedlbergensis (European archaic homo sapiens, Germany, Greece, Spain) -> 
 The mid-facial prognathism makes them a possible ancestor to Neandanthals (and Denisovans, as more closely related to Neandanthals to Homo Sapiens)
-||||||| constructed merge base
-Archaic homo sapiens (not separate/defined genus between sapien and erectus? 
-So, perhaps regional?):
 Homo heildedlbergensis (europe) -> possible ancestor to neandanthals
-=======
-Archaic homo sapiens
-: Homo heildedlbergensis (europe) -> possible ancestor to neandanthals
 Larger cranial vault to differentiate between Habilis
->>>>>>> Lab 8
 Homo rhodensis (africa)
 Asian archiac homo sapiens (china, india).
 
-<<<<<<< HEAD
 Acheulean used until 150,000 years ago. Then Levallois (points and flakes)
 Found near big game fossils. 
 Archaic homo sapiens were big-game hunters
 Confident had control of fire.
-||||||| constructed merge base
-(-40,000) Denisovan (russia, tibet)
-(230,000 - 28,000): Neanderthal (belgium, middle east)
-mid-facial prognathic due to swept back cheeks, no chin
 mousterian
-=======
 (-40,000) Denisovan (russia, tibet)
 (130,000 - 28,000): Neanderthal (belgium, middle east)
 mid-facial prognathic due to swept back cheeks, no chin
 low, extended cranial vault like erectus
 mousterian (start of mesolithic). smaller, scraping meat off
-massive bump at back of head compared to Heilderbgensis (larger brain)
+massive bump at back of head and at top compared to Heilderbgensis (larger brain)
 
 Levallois industry (mesolithic also)
->>>>>>> Lab 8
 
 
 (-40,000) Denisovan (russia, tibet)
@@ -132,7 +104,7 @@ shovel-shaped incisors (teeth as tools)
 larger teeth than modern humans (taurodontism: expanded molar cavities)
 tough, active lifestyle. barrel chested
 red hair inherited from neandanthals?
-neandanthal DNA in all of us, just less in Africans
+neandanthal DNA in all of us, just less in Africans (movement back to Africa)
 mousterian (middle stone age), however also used later stone age industries
 no sewing tools, only animals skins and hides
 migration due to climate change seen in neanderthals and homo sapiens
@@ -140,7 +112,11 @@ heavy meat reliance, capable hunters
 cannibalism, burials
 minimal indications of symbolic behaviour (animal teeth found as possible pendants)
 
-Splitter view (out-of-africa) is Homo Heidelbergensis as ancestor. So, we evolved from the archaic homo sapiens in Africa and later 'recolonised' other parts of the world.
+Splitter view (out-of-africa; replacement model) is Homo Heidelbergensis as ancestor. 
+So, we evolved from the archaic homo sapiens in Africa and later 'recolonised' 
+other parts of the world.
+mtDNA and Y-chromosome support African origin and leave of 100,000
+
 Lumper view (multi-regional) has only late Homo Erectus
 
 ----------------------

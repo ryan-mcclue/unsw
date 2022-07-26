@@ -67,6 +67,7 @@ chin (unique), canine fossa (not present in early hominins), rounded/bulbous cra
 cranial vault high (not low like in Homo Erectus)
 flattish/square posterior cranium
 chin, canine fossa, rounded/bulbous cranium, large mastoid, small teeth, huge forehead
+widest posterior near top
 Archaic homo sapiens:
 called archaic as some believe they are just early homo sapiens and not distinct species
 large supratorbital torus (2 distinct toruses above each eye, as oppose to one long in Erectus)
@@ -88,7 +89,8 @@ mousterian
 mid-facial prognathic due to swept back cheeks, no chin
 low, extended cranial vault like erectus
 mousterian (start of mesolithic). smaller, scraping meat off
-massive bump at back of head and at top compared to Heilderbgensis (larger brain)
+massive bump at back of head and at top compared to Heilderbgensis (larger brain) (occipital bun)
+widest near centre of cranial
 
 Levallois industry (mesolithic also)
 

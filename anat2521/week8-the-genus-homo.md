@@ -15,6 +15,13 @@ Homo, 3rd molar smaller than 2nd molar?
 Rounded brain case, reduced prognathic, smaller teeth, 
 larger body (possibly due to increased meat diet through tool use)
 
+
+Stone Tools:
+1. 2.6mya-1.7mya: Oldowan
+2. 1.7mya-200ka: Acheulean
+3. 240ka-40ka: Levallois
+3. 160ka-40ka: Mousterian
+
 (from one large brow thickening in au. to distinct 2 pieces)
 * 2.4-1.4mya: Homo habilis (Tanzania)
 Although established, still bits and pieces before 2mya in terms of conclusive first-homo (bosei, garhi)
@@ -92,7 +99,6 @@ mousterian (start of mesolithic). smaller, scraping meat off
 massive bump at back of head and at top compared to Heilderbgensis (larger brain) (occipital bun)
 widest near centre of cranial
 
-Levallois industry (mesolithic also)
 
 
 (-40,000) Denisovan (russia, tibet)
@@ -120,6 +126,7 @@ other parts of the world.
 mtDNA and Y-chromosome support African origin and leave of 100,000
 
 Lumper view (multi-regional) has only late Homo Erectus
+
 
 ----------------------
 how could neandethals and sapiens interbreed if different species?

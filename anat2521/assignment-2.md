@@ -93,8 +93,8 @@ are ambiguous, particularly those dating much earlier than around
 remains may be related to any kind of violence, such as family dis-
 putes and mortuary cannibalism, or to post-mortem burial procedures
 that have nothing to do with warfare. Similarly, archeological remains
-of weapons may equally indicate warfare or hunting of large prey. The
-only relatively unequivocal signs of warfare appear in the last
+of weapons may equally indicate warfare or hunting of large prey.
+The only relatively unequivocal signs of warfare appear in the last
 15,000–8,000 years, approximately around or immediately after the
 agricultural revolution.
 
@@ -153,6 +153,7 @@ questions.
 Bowles claims that groups of early humans
 frequently encountered one another and aggressively competed over
 valuable resources such as food or shelter
+
 Alternatively, They argue that population density
 of human groups has been estimated to be very low until around
 15,000–8,000 years BP. Therefore, groups had few chances to meet
@@ -248,4 +249,32 @@ stockpiling of weapons in enclosures (arrow-heads and axes) and
 mass burial graves containing skeletons
 with perimortem cranial trauma consistent with LBK axe blows (Keely, 1997). ​
 
-​
+
+# TO CONDENSE
+Radiocarbon dating of LBK stone tools and pottery
+show their arrival to have occurred approximately 7000 years ago (Keely, 1997). 
+
+Pollen analysis performed on LBK sites show evidence of land clearing, while inspection
+of LBK food remains show a diet consisting almost entirely of agricultural foods (Keely, 1997).
+
+LBK culture was not in any way comparable to the culture of the native Mesolithic foragers
+(Keely, 1997). 
+
+The similarity between the radiocarbon dates of the latest Mesolithic sites and
+earliest LBK sites indicate Mesolithic lifeways died quickly following LBK arrival (Keely,
+1997). 
+
+Therefore, LBK farmers represent a marked transition to a more sedentary way of human
+life.
+
+There are both short-term and long-term consequences of the sedentary LBK culture that
+create an environment where warfare seems reasonable. In the short-term, a sedentary culture
+intrudes on the land of native foragers who are unable to yield territory due to their scattered
+food sources. In the long-term, a sedentary culture removes the ability to move away from
+situations building to violence (Ferguson, 1997). Furthermore, as resources are no longer
+fluctuating or scattered, there is less need to maintain cooperative bonds with others as was
+essential in humanity's evolutionary past (Jurmain, 2016). Evidence of warfare in LBK culture
+3can be seen in the remains of fortified settlements (v-shaped ditches and palisades), stockpiling
+of weapons in enclosures (arrow-heads and axes) and mass burial graves containing skeletons
+with perimortem cranial trauma consistent with LBK axe blows (Keely, 1997). 
+>>>>>>> Stashed changes

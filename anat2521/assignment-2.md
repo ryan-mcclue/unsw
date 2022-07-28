@@ -195,6 +195,9 @@ warfare and peacemaking. This view is not dissimilar from Wrangham
 (1999, p. 24)'s argument that culture can mediate perceptions of
 power and the perceived benefits of using violence or avoiding it.
 
+The degree of organization among group members, advance planning, division of  labor, 
+and use of tactic observed instate-level warfare is rather unique not seen in early hominins (Majolo)
+
 
 # INCLUDE NEADNATHAL VIOLENCE AS WELL
 

@@ -36,9 +36,10 @@ nonmetric: shovel shaped incisor
 
 * isotope analysis
 diet: C13, N15 in protein component of bone and teeth, i.e. collagen
-plants have different photosythesis pathways: 
- - C4 pathway is tropical, producing more C13 (americas)
-mobility: Sr
+ - C4 photosynthetic pathway are tropical grasses, producing more C13 (new world, maize, sugarcane)
+ - C3 are forest plants; rice, wheat, oats, legumes 
+more N15 is more meat/seafood
+mobility: Sr isotope in rock->soil->plants/water/fauna. So, can identify if someone was buried where they lived
 
 hot humid environment not good for preservation of DNA
 

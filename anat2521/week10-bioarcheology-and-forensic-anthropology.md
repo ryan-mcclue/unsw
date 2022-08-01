@@ -18,7 +18,7 @@ nutritional rickets: unusually flexible
 degenerative osteoarthritis
 (most diseases leave no traces on skeleton at all; especially acute as die quickly)
 
-types of bone fractures: (ante,peri,postmortem)
+types of bone fractures: (ante,peri(adhering flakes),postmortem(sharp edges))
   - transverse (line break)
   - oblique (line break at an angle)
   - comminuted (many little fracture)
@@ -43,7 +43,20 @@ mobility: Sr isotope in rock->soil->plants/water/fauna. So, can identify if some
 
 hot humid environment not good for preservation of DNA
 
+forensic anthropology is bioarcheology to medicolegal contexts. so, work with fragments as oppose to what a medical conveyer at the morgue would be used to 
+1. human vs non-human: in NSW, large number of cases are just telling the police it's a kangaroo bone not human
+2. ancient vs recent
+First, establish datum. Then if buried, excavate with archeological techniques. Then process in lab and ensure chain of custody
+Establish biological profile (age, sex, stature, injuries, facial reconstruction)
+Daubert standard (legal case establishing guideless accessing the of admissibility of technical testimony)
+Establish cause of death (trauma). 'thumbnail' fractures from fire. distinguish between cultural and normal taphonomic incidences
+Time since death (quicker decomposition if on surface, unwrapped, warm, humid)
+Involved in natural disasters, war crimes, terrorism
+
+
 -------------------------------------------------------------
 
 What is post-processual archeology?
 cultures with 3rd gender?
+how do determine a possible archeological site for hominins?
+how to apply to things like drowning, poisoning, i.e. no visible in bones?

@@ -53,10 +53,30 @@ Establish cause of death (trauma). 'thumbnail' fractures from fire. distinguish 
 Time since death (quicker decomposition if on surface, unwrapped, warm, humid)
 Involved in natural disasters, war crimes, terrorism
 
+score shovel-shaped incisor assessable. more triangular wedged
+
+caries very common between joining of molars and on top of cusps on molars
+black marks
+
+antemortem tooth sockets fully resolved
+
+spongy bone is student damage
+
+arthiritis look at joints, e.g. articular joints, verterbral body.
+will be enlarged and some pockets and bone plate growth
+
+archeological context, e.g. status, regional important to establish greater understanding
+
+asymmetry of line on nasal bone indicates fracture, 
+i.e. fracture line not on middle or side sutures
+smoothness of line indicates it has had time for bony re-healing 
+
+identify and ascertain what it can tell us
 
 -------------------------------------------------------------
 
+everything is give and take in evolution, e.g. the knee and back have not fully evolved
+for bipedalism as seen in other primates and mammals
+
 What is post-processual archeology?
 cultures with 3rd gender?
-how do determine a possible archeological site for hominins?
-how to apply to things like drowning, poisoning, i.e. no visible in bones?

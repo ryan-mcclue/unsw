@@ -26,7 +26,8 @@ lithostratigraphy (rock layers), tephrostratigraphy (volcanic ash),
 biostratigraphy (faunal succession, i.e. animal we know age of appears somewhere else),
 chemical analysis (fluorine), paleomagnetism (magnetic pole reversal)
 
-chronometric dating. carbon-14 for organic materials as eat plants photosythesis (potassium-40 longer half life so useful for older, however requires potassium, e.g. volcano), 
+chronometric dating. carbon-14 for organic materials as eat plants photosythesis 
+(potassium-40 longer half life so useful for older, however requires potassium, e.g. volcano), 
 (C-14 half life only 5700, oldest used for 50000)
 tree rings, uranium, electron spin resonance (pottery, silica, quartz)
 various methods applicable to materials present
@@ -48,7 +49,8 @@ monkeys and apes (apidium and aegyptopithecus) from asia to africa.
 
 old world monkeys in uganda/kenya (victoriapithecus)
 
-earlist apes proconsul (walked on soles, y-5 molars) determined from crania, as postcranial similar to monkeys
+earlist apes proconsul (walked on soles, y-5 molars) determined from crania, 
+as postcranial similar to monkeys
 
 miocene explosion of apes.
 end of miocene cooling, plicene saw savannah till holiocene
@@ -57,7 +59,8 @@ pleistoscene key part of human evolution
 when compare to monkeys, humans have unique traits resulting from brachiation:
 wide-short thorax, stiff back
 
-the shift to more grasslands meant brachiation not as effective, so old world monkeys more plentiful (in addition to them being more r-selected)
+the shift to more grasslands meant brachiation not as effective,
+so old world monkeys more plentiful (in addition to them being more r-selected)
 
 ----------------------------------
 some guesswork involved and changing, e.g. morotopitehcus bishop better candidate than procunsol; separation of orangutans
@@ -84,7 +87,5 @@ plattyrhines into new world via island hopping on natural mats of vegetation? (t
 accidental colonisation? aborigines on boats?
 
 if life so plentiful and extended ontology of primates, don't understand how so diverse now?
-
-row 7 for station 7 answers on answer sheet
 
 terrestrial quadrapedalism and arboreal quadrapedalism

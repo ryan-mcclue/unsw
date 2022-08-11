@@ -123,4 +123,8 @@ multiregional says just homo erectus
 
 homo sapien (kennewick man)
 
+term dental apes as postcranially similar to monkeys
+
+premolars have 1 root, lower molars 2, upper molars 3
+
 in general know primitive and derived traits, location, age range 

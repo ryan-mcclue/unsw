@@ -89,3 +89,38 @@ accidental colonisation? aborigines on boats?
 if life so plentiful and extended ontology of primates, don't understand how so diverse now?
 
 terrestrial quadrapedalism and arboreal quadrapedalism
+
+
+---
+orangutan has prognathism
+chimp more prominent brow ridge
+---
+dryopithecus (possible ancestor to all great apes)
+sivapithecus (possible ancestor to orangutan, found in India)
+
+chadensis oldest claim to be hominin due to bipedalism from foramen magnum
+
+afarensis definately a hominin (reduced diastema; fairly parrallel dental arcade is primitive)
+(secotrial premolar would be elognated to support large canine)
+
+robust have molarised premolars. reduced frontal teeth.
+dish faced
+
+
+mrs ples, cave sterkfortein south africa
+nariokotmoe boy homo ergaster (erectus has modern limb proportions)
+georgia also homo ergaster
+sangiran man homo erectus (indonesia) (peking man in china)
+erectus interestingly more robust than habilis (keel, toruses (buttress))
+
+heilderbgensis: miguelon spain, petralona cave greece, kabwe zimbabwe
+
+neanderthal used levallois as well
+
+healed fracture a.k.a antemortem fracture
+
+multiregional says just homo erectus
+
+homo sapien (kennewick man)
+
+in general know primitive and derived traits, location, age range 

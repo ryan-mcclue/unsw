@@ -1,7 +1,8 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 # Week 3 - Modern Human Variation and Osteometry
 Deme: population defined in terms of genetic composition, i.e. allele frequencies
-Species -> subspecies/race (can obviously still interbreed, so there is gene flow) -> population
+Species -> subspecies/race (can obviously still interbreed, so there is gene flow) -> 
+population
 Cline: gradations in a trait within a population, e.g. skin colour
 
 Historically biological determinism (behaviour determined solely by genetics) 
@@ -48,7 +49,8 @@ To determine if evolution occuring at a locus, compare allele frequency with tha
 by Hardy-Weinberg equilibrium 
 This also emphasises the fact that populations evolve, not individuals
 
-Focus on polymorphic traits, i.e. genes with two or more alleles occuring more than 1% (meaning different expression of same trait)
+Focus on polymorphic traits, i.e. genes with two or more alleles occuring more than 1% 
+(meaning different expression of same trait)
 e.g. sickle-cell (balanced polymorphism, i.e. maintained heterozygous/carrier), lactase persistence, skin colour, etc.
 Can give indication of founder's effect
 Haplotype is a combination of polymorphisms

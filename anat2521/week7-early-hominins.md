@@ -58,7 +58,8 @@ flaring zygomatics (masseter muscle) and molars)
 (3.4mya evidence of butchering and bone breakage of stone tools)
 
 pliocene time of adaptive radiation of hominins
-there were multiple species of hominins living at the same time. ate different foods to coexist (like chimps and gorillas)
+there were multiple species of hominins living at the same time. 
+ate different foods to coexist (like chimps and gorillas)
 
 various proposed hominin phylogeny, however all generally have australopethicus anamensis as stem
 
@@ -125,7 +126,8 @@ afarensis in tanzania also
 larger anterior teeth than robustus
 
 (generally smaller brain than robustus)
-(both older than robusts, and more incisor prognathic and less dish-faced, i.e. sunken c-curve for nose)
+(both older than robusts, and more incisor prognathic and less dish-faced, 
+i.e. sunken c-curve for nose)
 afarensis has diastema. males have saggital crest
 africanus more round nuchal crest, larger brain, less prognathic, smaller brow ridge
 africanus has nasal pillars
@@ -135,14 +137,3 @@ stone tools 3.3million, so first used by afarensis
 australopithecus have more U-shaped than apes
 
 (asked about all robustus, afarensis and africanus)
-
-##  
-APE
-
-HUMAN
-
-##  
-APE
-
-HUMAN
-

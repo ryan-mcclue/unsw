@@ -1,16 +1,20 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 # Week 1 - Introduction to Anthropology and Osteology
-* Primates (monkeys) -> hominoidea (gibbons) -> homindae (oraguntan) -> hominiae (gorilla, chimpanzee) -> hominins (humans)
+* Primates (monkeys) -> hominoidea (gibbons) -> homindae (oraguntan) -> 
+  hominiae (gorilla, chimpanzee) -> hominins (humans)
 * Stone age (paleolithic, mesolithic, neolithic), bronze age, iron age
 * DNA contains genetic instructions. 
 * A gene is small section of DNA responsible for a particular trait.
-* Species are reproductively isolated. 
-* To evolve, genes must change (different to adaptation). If resulting in speciation it is macroevolution (microevolution is within a species)
+* To evolve, genes must change (different to adaptation). 
+  If resulting in speciation it is macroevolution (microevolution is within a species)
 * Culture is behaviour passed down from nonbiological means. 
-* Science is observation and experimentation, (observing and experimenting literal definition of empirical)
-* Called theory as it has been substantially verified through experimentation (allows for new insight from emerging technologies; not about defining absolute truths)
+* Science is observation and experimentation, 
+  (observing and experimenting literal definition of empirical)
+* Called theory as it has been substantially verified through experimentation 
+  (allows for new insight from emerging technologies; not about defining absolute truths)
 
-All life evolved from the same origin, meaning we share a connection to all living things (as evidenced by DNA)
+All life evolved from the same origin, meaning we share a connection to all living things 
+(as evidenced by DNA)
 Evolutionary theory (particularly natural selection) explains this change
 
 Anthropology is holistic and is the study of humans over time. 
@@ -19,21 +23,21 @@ Separated into:
 2. Linguistic 
 3. Archeology (artifacts - used by hominins) 
 4. Physical/biological (explore how and why humans have evolved genetically, physically and behaviourally; key word evolved)
-Within physical anthropology (paleoanthropology, primatology, human biology, paleopathology, forensic anthropology, bioarcheology etc.)
+Within physical anthropology 
+(paleoanthropology, primatology, human biology, paleopathology, 
+forensic anthropology, bioarcheology etc.)
 
-Originally anthropologists concerned with visible differences (osteology), now more genetic, e.g. physical responses under stimuli like running at alitude, diet, etc. 
+Originally anthropologists concerned with visible differences (osteology), 
+now more genetic, e.g. physical responses under stimuli like running at alitude, diet, etc. 
 
 Humans are unique in that our behaviour is largely determined by culture. 
-In fact, our culture has influenced our biological makeup leading to humans being products of biocultural evolution
+In fact, our culture has influenced our biological makeup leading to humans being products 
+of biocultural evolution
 
 Bioarchelogy can reveal burial practices, weapons used (from antemortem or perimortem trauma), religious offerings, body modifications, community worldview
 Easier to obtain mitochondrial dna than nuclear dna as more cells. However less obtained in them.
 
 Ethical issues in Australia with indigienous communities not wanting skeletal remains to be uncovered (Mungo man)
-
-Marking/assessment outlines:
-stations at time, rotate to each station (typical anatomy test)
-will get sample questions in lab; will build on lab material
 
 radius notch is more medial
 way patella tilts gives side

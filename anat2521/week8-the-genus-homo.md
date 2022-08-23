@@ -2,7 +2,8 @@
 # Week 8 - The Genus Homo 
 Pleistocene cyclic glaciation (glacial maxima when cold). 
 As more water frozen on land (ice sheets), sea levels dropped 
-(up to 120m:  Asia/North America; Australia/PNG <-Wallace's Line-> Mainland/South Asia connected;)
+(up to 120m:  Asia/North America; Australia/PNG <-Wallace's Line-> 
+Mainland/South Asia connected;)
 So, periods of drying and cooling. 
 This promoted the reduction of forest lands, leading to savannah.
 So, climate change greatly influenced Homo.
@@ -43,12 +44,14 @@ Homo confrontational (mostly small animals) and passive scavenging (hominin cut 
 
 torus is thickening of bone
 
-* 1.8-0.05mya: Homo erectus (Nariokotome boy; first species leaving Africa: Georgia -> Indonesia (java) -> China (peking man))
+* 1.8-0.25mya: Homo erectus (Nariokotome boy; first species leaving Africa: 
+Georgia -> Indonesia (java) -> China (peking man))
 (ruminations of true homo erectus in Europe, Spain. Spain is place of oldest European hominin)
 Thick boned, saggital keel/torus, no chin.
 Elongated skull (occipital and angular torus)
 Pentagonal posterior shape (widest point lower than on modern humans)
-Shovel shaped incisor (some people in Asia/Americas have this) for stronger enamel using teeth as tools
+Shovel shaped incisor (some people in Asia/Americas have this) 
+for stronger enamel using teeth as tools
 Longer lower limbs, reduced upper limbs
 Short, broad pelvis. Symphsis narrow for bipedalism, therefore young born small heads and grow
 
@@ -61,7 +64,7 @@ Fur loss, more sweat glands, (lighter skin underneath fur like chimps. so evolve
 Much more carnivorous diet (smaller large intestine, larger small intestine, i.e. small gut as meat easier to digest), migratory, lowly dense populations
 Leisure time as meat highly nutritous
 Reason for venturing, to capture more animals and obtain more meat
-* Possible difference to erectus 1.8-1.0mya: Homo ergaster (in Asia)
+* Possible difference to erectus 1.8-1.0mya: Homo ergaster (in Africa)
 Ergaster seems to have more extended and lower cranial vault
 * (-18,000) Homo Floresiensis (Flores, Indonesia). Hobbit. 
 Insular dwarfism (small island with limited resources and no predators)
@@ -70,7 +73,9 @@ Less progranthic, more of a chin, less extended than Erectus
 
 
 Modern humans:
-chin (unique), canine fossa (not present in early hominins), rounded/bulbous cranium, very large mastoid (is this because of better neck turning?), small teeth, gracile (no torus, keels, etc.)
+chin (unique), canine fossa (not present in early hominins), rounded/bulbous cranium, 
+very large mastoid (is this because of better neck turning?), 
+small teeth, gracile (no torus, keels, etc.)
 cranial vault high (not low like in Homo Erectus)
 flattish/square posterior cranium
 chin, canine fossa, rounded/bulbous cranium, large mastoid, small teeth, huge forehead

@@ -2,6 +2,10 @@
 wireshark
 ns-2
 
+issue with ed forum?
+
+setting up a honeypot and analysing traffic
+
 how come speedtest.net so much faster than actual? e.g. 90mbps when rarely see above 10mbs
 
 john hammond darkweb documentary

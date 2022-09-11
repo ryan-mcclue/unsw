@@ -9,7 +9,9 @@ when does it reach trans-alantic-cable.
 wherein the packet flow is the largest bottleneck? 
 is it just geographic distance from Australia?
 
-issue with ed forum?
+why would wifi-connection settings require a CA certificate?
+
+
 
 setting up a honeypot and analysing traffic
 

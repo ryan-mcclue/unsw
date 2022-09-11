@@ -1,4 +1,8 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+
+Quartus tool to target Altera FPGAs. 
+This is the physical design, i.e. after VHDL stage
+
 CAD used to simulate circuits? (CAD used to draw schematics?)
 
 FPGAs get higher throughput due to parallel circuits with less power than CPU
@@ -32,7 +36,7 @@ to simplify circuit, utilise boolean algebra theorems:
 - commutative (doesn't matter what order same operation): (X + Y) = (Y + X)
 - associative (doesn't matter what sequence same operation) (X · Y) · Y = X · (Y · Y)
 - distributive (multiplying out, i.e. pulling out common factor)
-- uniting (used a lot?): X · Y + X · !Y = X 
+- uniting (used a lot): X · Y + X · !Y = X 
 - de Morgan's: !(X + Y + ...) = !X · !Y ...
 can group say X · Y into XY term to be used with de Morgan's
 
@@ -44,12 +48,27 @@ first step in synthesising logic circuit is to · for each row with f = 1
 
 cost metric will be (number of inputs + number of gates)
 
+restricting to just synthesis subset of VHDL
+entity (port contains signals; specify mode and type) ➞ 
+architecture (concurrent signal assignment; use parenthesis to overcome VHDL precedence)
+
+uniting theorem systematically followed by synthesisers into Karnaugh Maps
+rows/columns labelled using Gray encoding (differ by 1 bit)
+
+
 * limitations in FPGA applications like in quantum computing?
 * mentioned students getting internships; only in fintec? want more for embedded software
 interesting you know the places where your students went; did you keep in touch or help them?
 (very open in getting in touch with him on Teams)
 * where are decimal logic circuits used? (binary digital logic is prevalent)
 * is going through min-terms just an academic process?
+i.e. can a computer program optimises this?
+(I think this is what syntehsising VHDL does?)
+  > Yes, synthesis tools will optimise canonical SOP/POS into min-cost 
+* how is CAD process different for an IC over an FPGA? (differences when doing physical design?)
+you mention far more costlier and riskier to use an IC solution. so why they more prevelant?
+* IEEE standard languages VHDL and Verilog. 
+ISO/IEC for C language
 
 * TUTORIAL STYLE PROBLEMS?
 

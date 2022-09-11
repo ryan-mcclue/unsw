@@ -12,3 +12,5 @@ lecture recording -> f2f review
 Quartus lab software
 
 each lab a problem to solve
+
+are all lecture recordings up on webcms? only week1 has two recordings?

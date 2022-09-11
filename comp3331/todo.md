@@ -2,6 +2,13 @@
 wireshark
 ns-2
 
+if COMP3331 largely theoretical.
+apply to calculating speed differences for our Internet connection,
+e.g. WiFi vs Ethernet. DSL vs FTTN vs FTTP.
+when does it reach trans-alantic-cable.
+wherein the packet flow is the largest bottleneck? 
+is it just geographic distance from Australia?
+
 issue with ed forum?
 
 setting up a honeypot and analysing traffic

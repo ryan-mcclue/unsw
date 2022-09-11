@@ -9,6 +9,8 @@ when does it reach trans-alantic-cable.
 wherein the packet flow is the largest bottleneck? 
 is it just geographic distance from Australia?
 
+why introduce Wifi 7 when Wifi 6 isn't even widely supported?
+
 why would wifi-connection settings require a CA certificate?
 
 

@@ -71,5 +71,3 @@ you mention far more costlier and riskier to use an IC solution. so why they mor
 ISO/IEC for C language
 
 * TUTORIAL STYLE PROBLEMS?
-
-

@@ -10,13 +10,14 @@ computer network work well?
 
 network edge: hosts/end systems (run networked apps that provide services), access network (edge routers connecting to ISPs network core), physical media
 network core: packet switching (breaks into packets of header+payload ∴ each packet independent), i.e. routers, switches (imagine an ISP network is interconnected routers)
-legacy circuit switching dedicates resources (not appropriate for bursty, variable data rate connections on the Internet)
+legacy circuit switching dedicates resources (not appropriate for bursty, variable data rate connections on the Internet. furthermore, not as economical as can't allow more users than hardware permits)
 main functions:
 1. packet forwarding (input to output)
 2. packet routing (routing algorithm, i.e. path determination based on header)
 we assume store-and-forward switching, i.e. router takes header and payload before transmitting 
 packet switching utilises statistical multiplexing, i.e. educated assumption of bursty traffic
-if overloaded, packets go into queue which may run out of memory resulting in drop, or at the very least a delay
+if queue overloaded, packets go into buffer (transient overload) resulting in a delay
+if buffer excedded (persistent overload), packets dropped
 
 performance: loss, delay, throughput 
 
@@ -52,3 +53,10 @@ p2p:(mesh, bus)
 client-server:star
 So, WAN vs Mesh? (perhaps WAN is another distinction like size? would probably have another like radio technology e.g. cellular/wifi etc.)
 * what is net neutrality? (Computerphile, Dr Richard Mortier networking)
+
+stochastic means random distribution but may still be analysed with statistics, e.g. stock market graphs
+
+bernoulli trial is binomial experiment whereby probability stays the same across repetitions
+binomial question: probability of 'x' successes in 'n' trials?   (mrnicholltv)
+calculate number of ways to acheive said number and multiply by probability
+number of ways is: N choose X

@@ -56,7 +56,7 @@ uniting theorem systematically followed by synthesisers into Karnaugh Maps
 rows/columns labelled using Gray encoding (differ by 1 bit)
 
 
-* limitations in FPGA applications like in quantum computing?
+* limitations in FPGA applications like in quantum computing? (FPGAs are cheaper and faster than MCUs)
 * mentioned students getting internships; only in fintec? want more for embedded software
 interesting you know the places where your students went; did you keep in touch or help them?
 (very open in getting in touch with him on Teams)
@@ -69,5 +69,3 @@ i.e. can a computer program optimises this?
 you mention far more costlier and riskier to use an IC solution. so why they more prevelant?
 * IEEE standard languages VHDL and Verilog. 
 ISO/IEC for C language
-
-* TUTORIAL STYLE PROBLEMS?

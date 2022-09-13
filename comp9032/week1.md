@@ -14,7 +14,8 @@ for adding, require at most 1 extra bit than max bit number for carry
 for multiplying, as many bits as both number of bits in each added together
 
 adding binary know how to carry
-subtracting binary know how to borrow (however, if convert to twos complement can just add, e.g. a + b = a + (-b))
+subtracting binary don't have to borrow as can convert to twos complement and just add,
+e.g. a + b = a + (-b)
 multiplying, shift over each place
 
 carry flag if incorrect unsigned interpretation
@@ -29,7 +30,7 @@ data memory also contains constants (SRAM)
 program memory (Flash) (jmp, call instructions)
 
 ISA will include memory model, addressing modes, address spaces (one for program, one for data), native data types (e.g. 8 bit unsigned ints, 32 bit floating point)
-ISA also specifies endianness and alignment?
+ISA also specifies endianness and alignment
 
 8-bit (register sizes?) RISC
 

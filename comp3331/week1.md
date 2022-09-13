@@ -20,14 +20,30 @@ we assume store-and-forward switching, i.e. router takes header and payload befo
 packet switching utilises statistical multiplexing, i.e. educated assumption of bursty traffic
 if queue overloaded, packets go into buffer (transient overload) resulting in a delay
 if buffer excedded (persistent overload), packets dropped
+as a result, packet switching requires protocols to ensure reliable data transfer and congestion control
 
 performance: loss, delay, throughput 
 
 so your home network is a type of access network, as well as connection to ISP? (i.e. access network just network to a router that goes to the ISP)
+however, you have access ISPs that are interconnected via a global ISP 
+(Telstra probably a Tier-1 ISP as would provide international coverage?)
 access networks:
 * WLAN (wifi?)
 * WAN (wide area network; cellular)
 * Enterprise networks (mail servers, switches in hardware etc.)
+
+Internet Structure (with IXPs intermingled between some junctions to connect ISPs together):
+1. Tier 1 ISP / CDN
+2. Regional ISP
+3. Access ISP
+
+UNSW ISP is AARNET?
+
+Delays:
+1. Processing (determine errors)
+2. Queueing (packets_arriving x packet_length / link_bandwidth(is this transmission rate?))
+3. Transmission (time to place a bit on the wire, e.g. packet_length / transmission_rate_10Mbps)
+4. Propagation
 
 coaxial cables used in copper transmission lines (inner conductor surrounded by shield).
 ethernet twisted pair wires to reduce interference
@@ -42,7 +58,6 @@ connect end systems to edge routers via access network:
 * HFC (hybrid fibre coax)
 * Fibre optic
 
-
 IETF and RFC govern a lot of Internet standards
 
 * network edge includes communication links like fibre optic?
@@ -55,6 +70,9 @@ p2p:(mesh, bus)
 client-server:star
 So, WAN vs Mesh? (perhaps WAN is another distinction like size? would probably have another like radio technology e.g. cellular/wifi etc.)
 * what is net neutrality? (Computerphile, Dr Richard Mortier networking)
+* traceroute gaps? why delays decrease as going down?
+
+In practice, end-to-end throughput bottleneck is that which exists in network edge
 
 stochastic means random distribution but may still be analysed with statistics, e.g. stock market graphs
 

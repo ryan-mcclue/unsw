@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+mkdir -p build
+
+avra code/week1.asm -o build/week1

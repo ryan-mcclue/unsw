@@ -10,9 +10,9 @@ wherein the packet flow is the largest bottleneck?
 is it just geographic distance from Australia?
 
 why introduce Wifi 7 when Wifi 6 isn't even widely supported?
+(I believe because 6GHz spectrum recently unlicensed)
 
 why would wifi-connection settings require a CA certificate?
-
 
 
 setting up a honeypot and analysing traffic

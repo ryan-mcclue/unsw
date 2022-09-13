@@ -8,6 +8,8 @@ computer network work well?
 • What design strategies have proven valuable?
 • How do we evaluate network performance?
 
+network speed faster if closer to the ISPs switching network
+
 network edge: hosts/end systems (run networked apps that provide services), access network (edge routers connecting to ISPs network core), physical media
 network core: packet switching (breaks into packets of header+payload ∴ each packet independent), i.e. routers, switches (imagine an ISP network is interconnected routers)
 legacy circuit switching dedicates resources (not appropriate for bursty, variable data rate connections on the Internet. furthermore, not as economical as can't allow more users than hardware permits)
@@ -25,7 +27,7 @@ so your home network is a type of access network, as well as connection to ISP? 
 access networks:
 * WLAN (wifi?)
 * WAN (wide area network; cellular)
-* Enterprise networks (mail servers, etc.)
+* Enterprise networks (mail servers, switches in hardware etc.)
 
 coaxial cables used in copper transmission lines (inner conductor surrounded by shield).
 ethernet twisted pair wires to reduce interference
@@ -57,6 +59,6 @@ So, WAN vs Mesh? (perhaps WAN is another distinction like size? would probably h
 stochastic means random distribution but may still be analysed with statistics, e.g. stock market graphs
 
 bernoulli trial is binomial experiment whereby probability stays the same across repetitions
-binomial question: probability of 'x' successes in 'n' trials?   (mrnicholltv)
+binomial question: probability of 'x' successes in 'n' trials?
 calculate number of ways to acheive said number and multiply by probability
 number of ways is: N choose X

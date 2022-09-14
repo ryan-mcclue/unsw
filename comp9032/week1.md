@@ -34,9 +34,14 @@ ISA also specifies endianness and alignment
 
 8-bit (register sizes?) RISC
 
-* segment vs section?
-with microchip studio toolchain, .cseg/.dseg/.eseg
+VsVim extension
+
+section compile-time
+so, something like .text, .bss
+segment run-time
+so, something like .dseg (data), .eseg (eeprom) and .cseg (code/program)
+essentially will have loadable code segment and loadable data segment which will comprise of sections
+(possibly more segments in MCUs as more memory spaces)
 * understand alignment!. AVR word size of 16bits? aligned to 16bits?
 * AVR is family of MCUs so doesn't exist in isolation? (I believe so as instruction set reference contains I/O registers)
-* RISC, yet most instructions take 1 cycle? Load and
 * Special instructions for XRAM in block diagram?

@@ -67,20 +67,22 @@ similarly, may combine separate functions that share similarities to reduce over
 furthermore, having less multilevels (i.e. less levels of gates) can be clocked faster 
 
 PLAs ➞ FPGA (grid of logic blocks connected with tracks) modern incarnation of programmable
-FPGA blocks are lookup tables (LUTs). They are just very small memory, e.g. 2-input table is 4 cell memory with 2 layers of muxes 
+FPGA blocks are lookup tables (LUTs). They are just very small memory, e.g. 2-input table is 4 cell memory with 2 layers of muxes (3-input, 3 layers etc.)
 The signals we feed the LUT are to select the cells in the LUT we want the internal multiplexer to activate
 So, we make the cells in the LUT the values in our truth table
 Some complexity of CAD tools arises from various ways we could arrange LUTs
 
 A fan-in (number of inputs) constraint is where have to layer LUTs to implement a function with too many inputs
+we can factor out function to help with this
 
 multilevel realisation might lower cost with more gates but yield a higher propagation delay
 
 don't include input inverters in min-cost calculation
 
-VLSI (very large scale integration) process of combining millions of transistors onto IC
-
 a multiplexer could just a be an AND gate
+
+VLSI (very large scale integration) process of combining millions of transistors onto IC
+prefer NAND and NOR as they require less transistors
 
 * limitations in FPGA applications like in quantum computing? (FPGAs are cheaper and faster than MCUs)
 * mentioned students getting internships; only in fintec? want more for embedded software

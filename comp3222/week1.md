@@ -35,7 +35,9 @@ to simplify circuit, utilise boolean algebra theorems:
 - complementarity: (X + !X = 1) ⟷ (X · !X = 0)
 - commutative (doesn't matter what order same operation): (X + Y) = (Y + X)
 - associative (doesn't matter what sequence same operation) (X · Y) · Y = X · (Y · Y)
-- distributive (multiplying out, i.e. pulling out common factor)
+- distributive (multiplying out, i.e. pulling out common factor) 
+x'₁ + x₁y₁ = (x'₁ + x₁)(x₁ + y₁)
+x(x + xy) + y(x + xy) = (x + y)(x + xy)
 - uniting (used a lot): X · Y + X · !Y = X 
 - de Morgan's: !(X + Y + ...) = !X · !Y ...
 can group say X · Y into XY term to be used with de Morgan's
@@ -45,6 +47,7 @@ prove deductively (algebra), exhaustively (truth table), set theory (Venn diagra
 first step in synthesising logic circuit is to · for each row with f = 1  
 (formally, this process is writing a sum of minterms; or canonical sum-of-products)
 (products = ANDed; sum = ORed)
+also have maxterms; or canonical product-of-sums
 
 cost metric will be (number of inputs + number of gates)
 
@@ -53,8 +56,31 @@ entity (port contains signals; specify mode and type) ➞
 architecture (concurrent signal assignment; use parenthesis to overcome VHDL precedence)
 
 uniting theorem systematically followed by synthesisers into Karnaugh Maps
-rows/columns labelled using Gray encoding (differ by 1 bit)
+rows/columns labelled using Gray encoding for 3 or more tables (differ by 1 bit)
+combine where truth tables give 1's in adjacent column/rows (differ by 1 bit). this yields torus behaviour
+essentially obtain essential and non-essential prime implicants to get a cover
+the process of selecting non-essential prime implicants goverened by trail-and-error hueristic? (and comparing with a POS method)
 
+real-world practilities are functions having values that we don't care about.
+similarly, may combine separate functions that share similarities to reduce overall cost
+
+furthermore, having less multilevels (i.e. less levels of gates) can be clocked faster 
+
+PLAs ➞ FPGA (grid of logic blocks connected with tracks) modern incarnation of programmable
+FPGA blocks are lookup tables (LUTs). They are just very small memory, e.g. 2-input table is 4 cell memory with 2 layers of muxes 
+The signals we feed the LUT are to select the cells in the LUT we want the internal multiplexer to activate
+So, we make the cells in the LUT the values in our truth table
+Some complexity of CAD tools arises from various ways we could arrange LUTs
+
+A fan-in (number of inputs) constraint is where have to layer LUTs to implement a function with too many inputs
+
+multilevel realisation might lower cost with more gates but yield a higher propagation delay
+
+don't include input inverters in min-cost calculation
+
+VLSI (very large scale integration) process of combining millions of transistors onto IC
+
+a multiplexer could just a be an AND gate
 
 * limitations in FPGA applications like in quantum computing? (FPGAs are cheaper and faster than MCUs)
 * mentioned students getting internships; only in fintec? want more for embedded software

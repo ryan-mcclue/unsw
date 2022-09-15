@@ -1,7 +1,7 @@
 IMPORTANT(Ryan): Various UNSW CompSci servers:
 General ➞  ssh z5346008@login.cse.unsw.edu.au
 Course ➞  ssh z5346008@d.cse.unsw.edu.au (test work on this)
-For Vlab, access the vnc server
+VLab ➞  tigervnc vlab.cse.unsw.edu.au:5920 
 
 PGDATA=data files
 PGHOST=socket files

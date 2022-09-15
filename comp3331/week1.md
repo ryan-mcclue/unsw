@@ -82,10 +82,10 @@ calculate number of ways to acheive said number and multiply by probability
 number of ways is: N choose X
 
 ------------------------------------------------------------------------------------------
-ping generates RTT, not end-to-end delay. operates under ICMP (diagnose network issues)
+$(ping) generates RTT, not end-to-end/latency delay. operates under ICMP (diagnose network issues)
 generally just to establish connection
 
-traceroute identify hop locations
+$(traceroute) identify hop locations
 exploits TTL field in IP packet header. TTL is decremented each router it passes through, i.e. each hop
 most routers are configured to return an ICMP time exceeded message when TTL=0.
 some routers are configured to block this ICMP response
@@ -94,4 +94,14 @@ sends out UDP
 
 SSH is a secure protocol on top of TCP 
 
-ifconfig lists network interfaces (software connection to network card, e.g. virbr0, wlp6s0)
+$(ifconfig) lists network interfaces (software connection to network card, e.g. virbr0, wlp6s0)
+
+$(netstat -i) list interfaces and thier MTU, flags (e.g. promiscious mode, running etc.)
+$(netstat -r) displays kernel routing table
+* what are 0.0.0.0 and 255.255.255.0
+
+$(netperf) measures throughput
+
+$(dig) ip⟷  host-name by contacting DNS servers 
+
+$(wireshark) captures all link-level (ethernet) frames

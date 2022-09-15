@@ -1,4 +1,20 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+## Fundamentals
+
+* Hosts: any device that sends or recieves traffic
+  - client: initiates
+  - server: respond
+* IP Address: identifies each host
+  - IPv4, 32bits, 4 octets
+  - Assigned hierarchically, e.g. Ry, Inc. 10.x.x.x (broken up into hierarchies via subnetting, i.e. subnet of Ry, Inc IP space)
+* Network: connection of hosts
+  - in reality, a logical grouping of hosts with similar connectivity
+  - network within another network, i.e. subnet of I
+
+
+------------------------------------------------------------------------------------
+
+
 • Internet is a complex global infrastructure
 • What are the organising principles behind the Internet?
 • What really happens when you “browse the Web”?

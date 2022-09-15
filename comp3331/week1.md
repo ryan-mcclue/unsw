@@ -7,10 +7,23 @@
 * IP Address: identifies each host
   - IPv4, 32bits, 4 octets
   - Assigned hierarchically, e.g. Ry, Inc. 10.x.x.x (broken up into hierarchies via subnetting, i.e. subnet of Ry, Inc IP space)
-* Network: connection of hosts
+* Network: connection of hosts. share IP address space
   - in reality, a logical grouping of hosts with similar connectivity
-  - network within another network, i.e. subnet of I
+  - can have network within another network, i.e. a subnet
+* Repeater: regenerates signal so can span large distances as signal decays (do routers have this in them?)
+* Hub: multi-port repeater. Everyone recieves everyone's data
+* Bridge: sits between two hubs. can contain traffic to one side
+* Switch: hub + bridge. facilitates communication within a network
+* Router: facilitate connection between networks. traffic control point (security, filtering, etc.)
+  - knowledge of other networks is a route stored in routing table
+  - IP address of router is gateway as it serves as host's way out of network
+  a host will have a default gateway, which is a particular interface IP address of a router (router can have multiple interface IP addresses)
+  - enables network hierarchies
 
+IMPORTANT:
+  - switching is process of moving data within network
+  - routing is process of moving data between networks
+  - many network devices exists, yet these are the fundamental operations they could perform
 
 ------------------------------------------------------------------------------------
 

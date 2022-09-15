@@ -8,6 +8,7 @@
   - IPv4, 32bits, 4 octets
   - Assigned hierarchically, e.g. Ry, Inc. 10.x.x.x (broken up into hierarchies via subnetting, i.e. subnet of Ry, Inc IP space)
 * Network: connection of hosts. share IP address space
+  - purpose is to share information
   - in reality, a logical grouping of hosts with similar connectivity
   - can have network within another network, i.e. a subnet
 * Repeater: regenerates signal so can span large distances as signal decays (do routers have this in them?)
@@ -19,6 +20,8 @@
   - IP address of router is gateway as it serves as host's way out of network
   a host will have a default gateway, which is a particular interface IP address of a router (router can have multiple interface IP addresses)
   - enables network hierarchies
+* OSI:
+  - layer of rules that govern network communication
 
 IMPORTANT:
   - switching is process of moving data within network
@@ -31,7 +34,7 @@ IMPORTANT:
 • Internet is a complex global infrastructure
 • What are the organising principles behind the Internet?
 • What really happens when you “browse the Web”?
-• What are TCP/IP, DNS, HTTP, NAT, VPNs, 802.11,.... anyway? (define format and order)
+• What are TCP/IP, DNS, HTTP, NAT, VPNs, 802.11,.... anyway?
 • What issue you need to take into consideration to make a
 computer network work well?
 • What design strategies have proven valuable?

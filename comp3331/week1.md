@@ -80,3 +80,18 @@ bernoulli trial is binomial experiment whereby probability stays the same across
 binomial question: probability of 'x' successes in 'n' trials?
 calculate number of ways to acheive said number and multiply by probability
 number of ways is: N choose X
+
+------------------------------------------------------------------------------------------
+ping generates RTT, not end-to-end delay. operates under ICMP (diagnose network issues)
+generally just to establish connection
+
+traceroute identify hop locations
+exploits TTL field in IP packet header. TTL is decremented each router it passes through, i.e. each hop
+most routers are configured to return an ICMP time exceeded message when TTL=0.
+some routers are configured to block this ICMP response
+sends out UDP
+* do all routers have to have publically acessible IP addresses? concept of a private IP?
+
+SSH is a secure protocol on top of TCP 
+
+ifconfig lists network interfaces (software connection to network card, e.g. virbr0, wlp6s0)

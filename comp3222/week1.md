@@ -4,6 +4,7 @@ Quartus tool to target Altera FPGAs.
 This is the physical design, i.e. after VHDL stage
 
 CAD used to simulate circuits? (CAD used to draw schematics?)
+For course CAD tools, can be called EDA (electronic design automation)
 
 FPGAs get higher throughput due to parallel circuits with less power than CPU
 
@@ -83,6 +84,11 @@ a multiplexer could just a be an AND gate
 
 VLSI (very large scale integration) process of combining millions of transistors onto IC
 prefer NAND and NOR as they require less transistors
+
+
+.vwf (input nodes, functional + timing)
+assignment editor locations to create bitstream to program board
+
 
 * limitations in FPGA applications like in quantum computing? (FPGAs are cheaper and faster than MCUs)
 * mentioned students getting internships; only in fintec? want more for embedded software

@@ -1,8 +1,8 @@
 LIBRARY ieee;
-USE ieee.std_logic_1164.all; -- STD_LOGIC: Z (high impedance just open circuit?)
+USE ieee.std_logic_1164.all; -- STD_LOGIC: Z (high impedance just open circuit?, unknown)
 
 ENTITY func1 IS
-  PORT (x1, x2, x3: IN BIT;
+  PORT (x1, x2, x3: IN STD_LOGIC;
         f: OUT BIT);
 END func1;
 

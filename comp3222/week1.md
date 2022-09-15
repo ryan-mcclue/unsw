@@ -62,6 +62,8 @@ combine where truth tables give 1's in adjacent column/rows (differ by 1 bit). t
 essentially obtain essential and non-essential prime implicants to get a cover
 the process of selecting non-essential prime implicants goverened by trail-and-error hueristic? (and comparing with a POS method)
 
+karnaugh map must be power of 2 sizes
+
 real-world practilities are functions having values that we don't care about.
 similarly, may combine separate functions that share similarities to reduce overall cost
 
@@ -78,7 +80,7 @@ we can factor out function to help with this
 
 multilevel realisation might lower cost with more gates but yield a higher propagation delay
 
-don't include input inverters in min-cost calculation
+don't include input inverters in min-cost calculation (as many inputs have inverters 'for free')
 
 a multiplexer could just a be an AND gate
 

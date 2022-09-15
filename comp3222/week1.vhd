@@ -11,3 +11,9 @@ BEGIN
   f <= (NOT x1 AND x2) OR
        (NOT x3 AND x1);
 END logic_func;
+
+ENTITY func IS
+BEGIN 
+  PORT (x1, x2, x3: IN BIT;
+        f: OUT BIT);
+END func;

@@ -1,6 +1,9 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 ## Fundamentals
 
+In general, if doesn't know address of sorts, perform broadcast/flooding
+Note that a signal is unicast or broadcast, however the action of the device might be to flood
+
 * Hosts: any device that sends or recieves traffic
   - client: initiates
   - server: respond
@@ -14,12 +17,27 @@
 * Repeater: regenerates signal so can span large distances as signal decays (do routers have this in them?)
 * Hub: multi-port repeater. Everyone recieves everyone's data
 * Bridge: sits between two hubs. can contain traffic to one side
+
 * Switch: hub + bridge. facilitates communication within a network
+only concerned with MAC (media access control) 
+  - Learn: maintain MAC Address Table (mapping of switch ports to MAC addresses)
+  - Flood: duplicate frame to all ports 
+  - Forward: use MAC address table
+dividing switch ports into isolated groups is creating VLANs
+
 * Router: facilitate connection between networks. traffic control point (security, filtering, etc.)
-  - knowledge of other networks is a route stored in routing table
+forwards packets not destined for themselves (wheres a host would just drop the packet)
+  - maintain knowledge of other networks they know about; a route stored in routing table
+  ∴, a router will have different IP address interfaces it uses to coordinate with various routes
+  will also have an ARP table for directly connected routes
+    route types (if router doesn't know how to get to IP, it will drop the packet):
+    * directly connected
+    * static route (directly entered by administrator)
+    * dynamic route (routers learning/sharing information via a routing protocol; essentially automatically adding a static route)
   - IP address of router is gateway as it serves as host's way out of network
   a host will have a default gateway, which is a particular interface IP address of a router (router can have multiple interface IP addresses)
   - enables network hierarchies
+
 * OSI (just a model to conceptualise, not rigid. e.g. router that has Access Control List will look at L4 header):
   - layer of rules that govern network communication
    L1: Physical (transport bits). ethernet, wifi, bluetooth
@@ -40,15 +58,18 @@ i.e. L3 header and its data is known as packet, L2 header and its data is known 
 i.e. checks L3 header and sees it matches, so moves up to L2
 
 * Hosts on Same Network:
-A host will have a MAC, IP and a subnet mask (identifies size of IP network)
+A host will have a MAC, IP, a subnet mask (identifies size of IP network, e.g. 255.255.255.0, /24), and a default gateway
 It will have the destination IP (possibly obtained with DNS or ping)
 It will know that the destination is in its own IP network by looking at it's own IP and subnet
 However, it does not known destination MAC address
 So, it sends out an ARP request saying who has the MAC address of a certain IP.
 This ARP request has the reserved MAC address ffff.ffff.ffff which will send to everyone on the network (so all broadcast signals have this)
-Respond with unicast ARP response will give information to be placed into ARP cache
+unicast ARP response will give information to be placed into ARP cache (anything with IP address has an ARP cache)
 (Further communication will be quicker as ARP can be bypassed)
 * Hosts on Different Network:
+Identifies on different network by comparing subnet.
+Obtains router's MAC via ARP
+Once sending to the router, host's job is done.
 
 
 

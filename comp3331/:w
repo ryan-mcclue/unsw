@@ -39,19 +39,6 @@ i.e. L3 header and its data is known as packet, L2 header and its data is known 
 * De-encapsulation: will iteratively strip away headers if matches 
 i.e. checks L3 header and sees it matches, so moves up to L2
 
-* Hosts on Same Network:
-A host will have a MAC, IP and a subnet mask (identifies size of IP network)
-It will have the destination IP (possibly obtained with DNS or ping)
-It will know that the destination is in its own IP network by looking at it's own IP and subnet
-However, it does not known destination MAC address
-So, it sends out an ARP request saying who has the MAC address of a certain IP.
-This ARP request has the reserved MAC address ffff.ffff.ffff which will send to everyone on the network (so all broadcast signals have this)
-Respond with unicast ARP response will give information to be placed into ARP cache
-(Further communication will be quicker as ARP can be bypassed)
-* Hosts on Different Network:
-
-
-
 IMPORTANT:
   - switching is process of moving data within network
   - routing is process of moving data between networks

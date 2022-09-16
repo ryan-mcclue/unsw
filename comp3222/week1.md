@@ -1,5 +1,9 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+FPGA for speed and low-power.
+Compared to an MCU, no time is spent having to clock data in
+MCU easier for AI, UI, network protocols?
+
 Quartus tool to target Altera FPGAs. 
 This is the physical design, i.e. after VHDL stage
 

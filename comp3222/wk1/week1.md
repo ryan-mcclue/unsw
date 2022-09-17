@@ -83,6 +83,7 @@ A fan-in (number of inputs) constraint is where have to layer LUTs to implement 
 we can factor out function to help with this
 
 multilevel realisation might lower cost with more gates but yield a higher propagation delay
+(gates have propagation delay due to circuit resistance and capacitance)
 
 don't include input inverters in min-cost calculation (as many inputs have inverters 'for free')
 

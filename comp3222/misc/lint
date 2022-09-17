@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -e
+
+ghdl -s wk2/week2.vhd

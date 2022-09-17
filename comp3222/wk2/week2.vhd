@@ -1,5 +1,9 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
+USE ieee.std_logic_signed.all; -- gives use synthesisable operators +, -, *
+
+-- Library of Parameterised Modules
+
 
 ENTITY full_adder IS
   PORT (c_in, x, y: IN STD_LOGIC;
@@ -37,7 +41,7 @@ END full_adder_package;
 --------------------------------------------------
 ENTITY adder4 IS
 PORT ( Cin : IN STD_LOGIC ;
-X, Y : IN STD_LOGIC_VECTOR(3 DOWNTO 0) ;
+X, Y : IN STD_LOGIC_VECTOR(3 DOWNTO 0) ; -- think of as X is a 4 bit value
 S : OUT STD_LOGIC_VECTOR(3 DOWNTO 0) ; -- numeric signals
 Cout : OUT STD_LOGIC ) ;
 END adder4 ;
@@ -51,4 +55,30 @@ stage2: fulladd PORT MAP ( C(2), X(2), Y(2), S(2), C(3) ) ;
 stage3: fulladd PORT MAP ( C(3), X(3), Y(3), S(3), Cout ) ;
 END Structure 
 
+------ 
+ENTITY adder16 IS
+PORT ( Cin : IN STD_LOGIC ;
+X, Y : IN STD_LOGIC_VECTOR(15 DOWNTO 0) ;
+S : OUT STD_LOGIC_VECTOR(15 DOWNTO 0) ;
+Cout, Overflow : OUT STD_LOGIC ) ;
+END adder16 ;
 
+ARCHITECTURE Behavior OF adder16 IS
+SIGNAL Sum : STD_LOGIC_VECTOR(16 DOWNTO 0) ;
+BEGIN
+Sum <= ('0' & X) + (‘0’ & Y) + Cin ; -- concatenation '&' adds a 0 bit
+S <= Sum(15 DOWNTO 0) ;
+Cout <= Sum(16) ;
+Overflow <= Sum(16) XOR X(15) XOR Y(15) XOR Sum(15) ; -- LPM does not give overflow automatically?
+END Behavior ;
+
+------
+ENTITY adder16 IS
+PORT ( X, Y : IN INTEGER RANGE -32768 TO 32767 ;
+S : OUT INTEGER RANGE -32768 TO 32767 ) ;
+END adder16 ;
+
+ARCHITECTURE Behavior OF adder16 IS
+BEGIN
+S <= X + Y ;
+END Behavior ;

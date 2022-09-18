@@ -7,9 +7,17 @@ Note that a signal is unicast or broadcast, however the action of the device mig
 * Hosts: any device that sends or recieves traffic
   - client: initiates
   - server: respond
+  - to be connected to the Internet require 4 things (IP, subnet mask (/8, 255.0.0.0), default gateway, resolving DNS server IP)
+  resolving name server should know how to get to root name server.
+  from there, root name server will know where top level domain name servers are, e.g. .com, .org etc.
+  from there, authoratative name server, e.g. example.com
+  when a host first connects to a network it will send out a DHCP discover to get these 4 things (router will typically run this server)
 * IP Address: identifies each host
   - IPv4, 32bits, 4 octets
   - Assigned hierarchically, e.g. Ry, Inc. 10.x.x.x (broken up into hierarchies via subnetting, i.e. subnet of Ry, Inc IP space)
+  - 192.0.0.1 /24 means matches on first three octets
+  - DNS converts domain names for websites and email to IP. Stored in OS host table
+  - TODO: NAT and IP assignment
 * Network: connection of hosts. share IP address space
   - purpose is to share information
   - in reality, a logical grouping of hosts with similar connectivity
@@ -17,6 +25,7 @@ Note that a signal is unicast or broadcast, however the action of the device mig
 * Repeater: regenerates signal so can span large distances as signal decays (do routers have this in them?)
 * Hub: multi-port repeater. Everyone recieves everyone's data
 * Bridge: sits between two hubs. can contain traffic to one side
+
 
 * Switch: hub + bridge. facilitates communication within a network
 only concerned with MAC (media access control) 
@@ -27,7 +36,9 @@ dividing switch ports into isolated groups is creating VLANs
 
 * Router: facilitate connection between networks. traffic control point (security, filtering, etc.)
 forwards packets not destined for themselves (wheres a host would just drop the packet)
-  - maintain knowledge of other networks they know about; a route stored in routing table
+  - maintain knowledge of other networks they know about; a route stored in routing table (10.40.66.0 /24, i.e. a slash 24 route)
+  0.0.0.0 /0 is default route, which matches all IPv4 addresses
+  packet matching multiple routes will go to more specific route entry
   ∴, a router will have different IP address interfaces it uses to coordinate with various routes
   will also have an ARP table for directly connected routes
     route types (if router doesn't know how to get to IP, it will drop the packet):
@@ -36,7 +47,8 @@ forwards packets not destined for themselves (wheres a host would just drop the 
     * dynamic route (routers learning/sharing information via a routing protocol; essentially automatically adding a static route)
   - IP address of router is gateway as it serves as host's way out of network
   a host will have a default gateway, which is a particular interface IP address of a router (router can have multiple interface IP addresses)
-  - enables network hierarchies
+  - routers typically deployed in hierarchies, allowing better scaling, faster connections, more robusticity and route summarisation (i.e. reduction of routes through subnetting)
+
 
 * OSI (just a model to conceptualise, not rigid. e.g. router that has Access Control List will look at L4 header):
   - layer of rules that govern network communication
@@ -52,6 +64,7 @@ forwards packets not destined for themselves (wheres a host would just drop the 
    Clients will randomly choose port (allows multiple connections to same server), while server will use well known
    L5: (session), L6: (presentation), L7: (application). 
    Merge all into Application. The application can perform these 3 layers in any way it wants.
+   FTP, SMTP, HTTPS (HTTP secured with SSL/TLS tunnel)
 * Encapsulation: (((data + L4 header)segment + L3 header)packet + L2 header)frame
 i.e. L3 header and its data is known as packet, L2 header and its data is known as frame, etc.
 * De-encapsulation: will iteratively strip away headers if matches 

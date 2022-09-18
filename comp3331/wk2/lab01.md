@@ -1,5 +1,7 @@
 # Lab 01 - Ryan McClue (z5346008)
 
+## Homework/Tutorial questions for exams
+
 ## 1. Nslookup
 
 1. The domain `www.koala.com.au` has 2 IP addresses: `104.21.45.210` and `172.67.219.46`
@@ -67,6 +69,7 @@ country:        AU
 > interesting get 'direct IP not allowed' when using last IP given by traceroute for domain
 
 > if traceroute '*' out, what does this mean? just use last IP for determining location?
+> how does it give a '*' and then continue onwards?
 
 3.
 Run from my own machine not connected to CSE network

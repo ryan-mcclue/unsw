@@ -147,7 +147,7 @@ UNSW ISP is AARNET?
 
 Delays:
 1. Processing (determine errors)
-2. Queueing (packets_arriving x packet_length / link_bandwidth(is this transmission rate?))
+2. Queueing (packets_arriving x packet_length / link_bandwidth)
 3. Transmission (time to place a bit on the wire, e.g. packet_length / transmission_rate_10Mbps)
 4. Propagation
 

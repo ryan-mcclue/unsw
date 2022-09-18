@@ -4,6 +4,15 @@
 In general, if doesn't know address of sorts, perform broadcast/flooding
 Note that a signal is unicast or broadcast, however the action of the device might be to flood
 
+IANA (Internet Assigned Numbers Authority) allocates blocks of IPs which ISPs will use.
+router networks designed to run as 'autonomous systems'.
+they use BGP (border gateway protocol) to exchange routing information
+BGP used by routers to decide what they should do with packet on their network
+e.g. should I go through path A or path B
+so, routers constantly sharing information with other directly connected routers via BGP (perhaps updating hop length to a network)
+
+NAT used to extend IPv4 address space by converting from private IPs: 10.0.0.0 /8, 172.16.0.0 /12, 192.168.0.0 /16
+
 * Hosts: any device that sends or recieves traffic
   - client: initiates
   - server: respond
@@ -17,7 +26,6 @@ Note that a signal is unicast or broadcast, however the action of the device mig
   - Assigned hierarchically, e.g. Ry, Inc. 10.x.x.x (broken up into hierarchies via subnetting, i.e. subnet of Ry, Inc IP space)
   - 192.0.0.1 /24 means matches on first three octets
   - DNS converts domain names for websites and email to IP. Stored in OS host table
-  - TODO: NAT and IP assignment
 * Network: connection of hosts. share IP address space
   - purpose is to share information
   - in reality, a logical grouping of hosts with similar connectivity

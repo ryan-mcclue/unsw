@@ -65,3 +65,16 @@ country:        AU
 > diverge from means last common router?
 > how do geolocation tools like yougetsignal work? 
 > interesting get 'direct IP not allowed' when using last IP given by traceroute for domain
+
+> if traceroute '*' out, what does this mean? just use last IP for determining location?
+
+3.
+Run from my own machine not connected to CSE network
+
+www.speedtest.com.sg (202.150.221.170)
+portal.etsi.org (195.238.226.19) -- not working
+
+determine public ip with: `dig +short myip.opendns.com @resolver1.opendns.com`
+
+## 4. Network Performance
+> gnuplot tutorial

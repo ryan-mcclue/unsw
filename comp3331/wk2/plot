@@ -1,0 +1,19 @@
+#!/bin/gnuplot
+
+set terminal postscript portrait enhanced color dashed lw 1 "DejaVuSans" 12
+set output "output.eps"
+
+# NOTE(Ryan): To pdf
+# epstopdf output.eps
+# pdfcrop output.pdf
+# mv output-crop.pdf output.pdf
+
+unset key
+
+set title "Title Here"
+set xlabel "x"
+set ylabel "y"
+
+set style fill solid
+
+plot "data.dat" with boxes

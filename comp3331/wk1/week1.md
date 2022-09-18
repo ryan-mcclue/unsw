@@ -78,6 +78,9 @@ IMPORTANT:
   - routing is process of moving data between networks
   - many network devices exists, yet these are the fundamental operations they could perform
 
+> when sending out ARP requests, how does the signal generation differ based on distance,
+e.g. ARP within network, as oppose to ARP made by router to another router? (must be some minimum distance; another reason for having a router)
+en extension of this is the difference between a unicast and broadcast signal
 ------------------------------------------------------------------------------------
 
 

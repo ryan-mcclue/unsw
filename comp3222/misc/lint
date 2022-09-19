@@ -2,4 +2,4 @@
 
 set -e
 
-ghdl -s wk2/week2.vhd
+ghdl -s wk2/lab02.vhd

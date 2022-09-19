@@ -16,6 +16,8 @@ This 1 toggles all the bits and is added again to convert to twos complement
 
 Critical path delay is longest delay
 
+n-wide 2-1 multiplexor.
+
 Faster addition is carry-lookahead
 All carries produced after 3-gate delays
 All sum bits after 4-gate delays

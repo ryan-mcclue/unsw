@@ -81,3 +81,7 @@ determine public ip with: `dig +short myip.opendns.com @resolver1.opendns.com`
 
 ## 4. Network Performance
 > gnuplot tutorial
+
+
+Uber intranet (private network only accessible by an organisation)
+*.corp.uber.com

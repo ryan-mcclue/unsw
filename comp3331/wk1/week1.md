@@ -145,11 +145,11 @@ Internet Structure (with IXPs intermingled between some junctions to connect ISP
 
 UNSW ISP is AARNET?
 
-Delays:
+Delays: (is it not queueing + processing + transmission + propagation?)
 1. Processing (determine errors)
 2. Queueing (packets_arriving x packet_length / link_bandwidth)
 3. Transmission (time to place a bit on the wire, e.g. packet_length / transmission_rate_10Mbps)
-4. Propagation
+4. Propagation (time to cross physical medium)
 
 coaxial cables used in copper transmission lines (inner conductor surrounded by shield).
 ethernet twisted pair wires to reduce interference

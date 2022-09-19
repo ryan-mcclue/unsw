@@ -49,6 +49,8 @@ can group say X · Y into XY term to be used with de Morgan's
 
 prove deductively (algebra), exhaustively (truth table), set theory (Venn diagram)
 
+XOR demands either 0 or 1, as oppose to inclusive OR which allows 1,1
+
 first step in synthesising logic circuit is to · for each row with f = 1  
 (formally, this process is writing a sum of minterms; or canonical sum-of-products)
 (products = ANDed; sum = ORed)
@@ -70,6 +72,8 @@ karnaugh map must be power of 2 sizes
 
 real-world practilities are functions having values that we don't care about.
 similarly, may combine separate functions that share similarities to reduce overall cost
+fan-in constraints (can always be overcome by quartus synthesiser at cost of multi-level propagation delay)
+(quartus synthesiser balances propagation delay and cost/area)
 
 furthermore, having less multilevels (i.e. less levels of gates) can be clocked faster 
 
@@ -85,12 +89,13 @@ we can factor out function to help with this
 multilevel realisation might lower cost with more gates but yield a higher propagation delay
 (gates have propagation delay due to circuit resistance and capacitance)
 
-don't include input inverters in min-cost calculation (as many inputs have inverters 'for free')
+don't include input inverters in min-cost calculation 
+(as many modern hardware inputs have inverters 'for free')
 
 a multiplexer could just a be an AND gate
 
 VLSI (very large scale integration) process of combining millions of transistors onto IC
-prefer NAND and NOR as they require less transistors
+prefer NAND and NOR as they require less transistors (cheaper in manufacturing process, not end result. so Intel chip just CMOS-NAND/NOR no inverters)
 
 
 .vwf (input nodes, functional + timing)

@@ -11,6 +11,7 @@ is it just geographic distance from Australia?
 
 why introduce Wifi 7 when Wifi 6 isn't even widely supported?
 (I believe because 6GHz spectrum recently unlicensed)
+(also create new standards to satisfy certain application bandwidth requirements, e.g. body image sensing)
 
 why would wifi-connection settings require a CA certificate?
 

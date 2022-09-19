@@ -132,7 +132,7 @@ performance: loss, delay, throughput
 
 so your home network is a type of access network, as well as connection to ISP? (i.e. access network just network to a router that goes to the ISP)
 however, you have access ISPs that are interconnected via a global ISP 
-(Telstra probably a Tier-1 ISP as would provide international coverage?)
+(Optus, Telstra, TPG etc. are access networks. IAA (internet association of australia) operate some IX (Internet exchange) points which would be core)
 access networks:
 * WLAN (wifi?)
 * WAN (wide area network; cellular)

@@ -82,3 +82,15 @@ ARCHITECTURE Behavior OF adder16 IS
 BEGIN
 S <= X + Y ;
 END Behavior ;
+
+
+
+
+
+-- USE work.full_adder_package.all (working directory; all sub components)
+PACKAGE full_adder_package IS
+  COMPONENT full_adder
+    PORT (c_in, x, y: IN STD_LOGIC;
+          sum, c_out: OUT STD_LOGIC);
+  END COMPONENT;
+END full_adder_package;

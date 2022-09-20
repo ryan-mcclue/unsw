@@ -1,0 +1,55 @@
+PING www.upm.ed.my (99.83.248.67) 722(750) bytes of data.
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=1 ttl=119 time=1.28 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=2 ttl=119 time=1.36 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=3 ttl=119 time=1.35 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=4 ttl=119 time=1.32 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=5 ttl=119 time=1.52 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=6 ttl=119 time=1.32 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=7 ttl=119 time=1.30 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=8 ttl=119 time=1.38 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=9 ttl=119 time=1.31 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=10 ttl=119 time=1.32 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=11 ttl=119 time=1.29 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=12 ttl=119 time=1.41 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=13 ttl=119 time=1.59 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=14 ttl=119 time=1.30 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=15 ttl=119 time=1.41 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=16 ttl=119 time=1.32 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=17 ttl=119 time=1.42 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=18 ttl=119 time=1.30 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=19 ttl=119 time=1.33 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=20 ttl=119 time=1.28 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=21 ttl=119 time=1.35 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=22 ttl=119 time=1.32 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=23 ttl=119 time=1.32 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=24 ttl=119 time=1.36 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=25 ttl=119 time=1.34 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=26 ttl=119 time=1.34 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=27 ttl=119 time=1.34 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=28 ttl=119 time=1.30 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=29 ttl=119 time=1.39 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=30 ttl=119 time=1.33 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=31 ttl=119 time=1.37 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=32 ttl=119 time=1.35 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=33 ttl=119 time=1.32 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=34 ttl=119 time=1.44 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=35 ttl=119 time=1.40 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=36 ttl=119 time=1.32 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=37 ttl=119 time=1.31 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=38 ttl=119 time=1.50 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=39 ttl=119 time=1.39 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=40 ttl=119 time=1.37 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=41 ttl=119 time=1.69 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=42 ttl=119 time=1.60 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=43 ttl=119 time=1.39 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=44 ttl=119 time=1.57 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=45 ttl=119 time=1.45 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=46 ttl=119 time=1.31 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=47 ttl=119 time=1.37 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=48 ttl=119 time=1.40 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=49 ttl=119 time=1.33 ms
+730 bytes from ad9042477ef37f5d8.awsglobalaccelerator.com (99.83.248.67): icmp_seq=50 ttl=119 time=1.33 ms
+
+--- www.upm.ed.my ping statistics ---
+50 packets transmitted, 50 received, 0% packet loss, time 49067ms
+rtt min/avg/max/mdev = 1.281/1.374/1.692/0.088 ms

@@ -33,7 +33,7 @@ This router is part of the *Australian Academic and Research Network*, the ISP t
 The number of hops on each path is not proportional to distance.
 Routers physically close to one another and others separated by large distances are interleaved with each other in each path.
 
-3. The IP of *www.speedtest.com.sg* is `202.150.221.170`
+3. The IP of *www.speedtest.com.sg* is `202.150.221.170` (lab tutor mentioned only required to do 1 traceroute web service)
 
 The reverse path does not go through the same routers as the forward path.
 This is because of different routing tables used by the access ISPs serving my machine and the web traceroute service.
@@ -62,18 +62,17 @@ determine public ip with: `dig +short myip.opendns.com @resolver1.opendns.com`
 
 ## 4. Network Performance
 
-1.
+![](q3.eps)
 brisbane: 756km,  17.5ms / 0.00252secs (7)
 manilla: 6,273km, 1.5ms / 0.02091 ()
 berlin: 16,100km, 279ms / 0.0537 (5) 
 
+1. Reasons for y-axis being larger than 2 is because ping command measures round-trip-time, while shortest possible time is end-to-end.
+Furthermore, there is associated nodal delay as the packet is routed, e.g. processing + queueing + transmission delays
 2. Delay to destinations varies over time. 
 Packets take different routes of different times based on network conditions, e.g. congestion.
 As network conditions are not constant, the delay will not be constant.
 3. Transmission delay depends on packet size. Propagation delay, processing delay and queuing delay don't.
-
-RTT and associated nodal delay
-IMPORTANT: delay not constant. depends on network congestion (e.g. night vs day) varies over time
 
 processing delay: inspecting header to determine where packet needs to go. (fixed number based on header size, e.g UDP less bytes thans TCP)
 queuing: depends on number of packets

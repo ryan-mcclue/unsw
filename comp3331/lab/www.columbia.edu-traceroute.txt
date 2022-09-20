@@ -1,0 +1,25 @@
+traceroute to www.columbia.edu (128.59.105.24), 30 hops max, 60 byte packets
+ 1  cserouter1-server.orchestra.cse.unsw.EDU.AU (129.94.242.251)  0.042 ms  0.041 ms  0.044 ms
+ 2  129.94.39.17 (129.94.39.17)  0.876 ms  0.841 ms  0.859 ms
+ 3  172.17.31.154 (172.17.31.154)  14.464 ms  14.421 ms  14.472 ms
+ 4  po-3-1902.ombcr1.gw.unsw.edu.au (129.94.24.20)  1.128 ms  1.082 ms  1.141 ms
+ 5  unswbr1-te-2-13.gw.unsw.edu.au (149.171.255.105)  1.098 ms  1.070 ms  1.108 ms
+ 6  138.44.5.0 (138.44.5.0)  1.431 ms  1.205 ms  1.221 ms
+ 7  et-1-1-0.pe1.mcqp.nsw.aarnet.net.au (113.197.15.4)  1.639 ms  1.608 ms  1.654 ms
+ 8  et-0_0_2.bdr1.guam.gum.aarnet.net.au (113.197.14.137)  71.585 ms  71.565 ms  71.510 ms
+ 9  138.44.228.5 (138.44.228.5)  186.544 ms  186.494 ms  186.462 ms
+10  fourhundredge-0-0-0-2.4079.core2.salt.net.internet2.edu (163.253.1.115)  237.147 ms  237.108 ms  237.228 ms
+11  fourhundredge-0-0-0-0.4079.core2.denv.net.internet2.edu (163.253.1.168)  237.218 ms fourhundredge-0-0-0-23.4079.core1.salt.net.internet2.edu (163.253.1.32)  237.472 ms fourhundredge-0-0-0-21.4079.core1.salt.net.internet2.edu (163.253.1.28)  237.090 ms
+12  fourhundredge-0-0-0-0.4079.core1.denv.net.internet2.edu (163.253.1.170)  237.456 ms  236.560 ms fourhundredge-0-0-0-0.4079.core2.kans.net.internet2.edu (163.253.1.251)  236.627 ms
+13  fourhundredge-0-0-0-0.4079.core1.kans.net.internet2.edu (163.253.1.243)  238.133 ms  238.006 ms fourhundredge-0-0-0-0.4079.core1.chic.net.internet2.edu (163.253.2.28)  236.037 ms
+14  fourhundredge-0-0-0-3.4079.core2.chic.net.internet2.edu (163.253.1.244)  238.172 ms  238.773 ms  238.480 ms
+15  fourhundredge-0-0-0-3.4079.core2.eqch.net.internet2.edu (163.253.2.19)  238.007 ms  236.924 ms  236.913 ms
+16  fourhundredge-0-0-0-0.4079.core2.clev.net.internet2.edu (163.253.2.16)  237.643 ms  237.601 ms  237.234 ms
+17  buf-9208-I2-CLEV.nysernet.net (199.109.11.33)  238.392 ms  238.306 ms  238.299 ms
+18  syr-55a1-buf-9208.nysernet.net (199.109.7.213)  241.804 ms  241.515 ms  241.745 ms
+19  nyc32-55a1-syr-55a1.nysernet.net (199.109.7.206)  247.140 ms  247.024 ms  247.277 ms
+20  nyc32-9208-nyc32-55a1.nysernet.net (199.109.7.201)  246.735 ms  246.746 ms  246.960 ms
+21  columbia.nyc-9208.nysernet.net (199.109.4.14)  246.769 ms  246.850 ms  246.978 ms
+22  cc-core-1-x-nyser32-gw-1.net.columbia.edu (128.59.255.5)  247.145 ms  246.998 ms  247.072 ms
+23  cc-conc-1-x-cc-core-1.net.columbia.edu (128.59.255.21)  247.336 ms  247.281 ms  247.188 ms
+24  columbia.edu (128.59.105.24)  247.042 ms  247.073 ms  247.091 ms

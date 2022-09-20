@@ -1,0 +1,31 @@
+traceroute to www.lancaster.ac.uk (148.88.65.80), 30 hops max, 60 byte packets
+ 1  cserouter1-server.orchestra.cse.unsw.EDU.AU (129.94.242.251)  0.042 ms  0.050 ms  0.092 ms
+ 2  129.94.39.17 (129.94.39.17)  0.876 ms  0.918 ms  0.886 ms
+ 3  172.17.31.154 (172.17.31.154)  1.623 ms  1.935 ms  1.857 ms
+ 4  po-3-1902.ombcr1.gw.unsw.edu.au (129.94.24.20)  1.432 ms  1.450 ms  1.339 ms
+ 5  unswbr1-te-2-13.gw.unsw.edu.au (149.171.255.105)  23.433 ms  23.311 ms  23.387 ms
+ 6  138.44.5.0 (138.44.5.0)  1.355 ms  1.327 ms  1.315 ms
+ 7  et-2-0-5.bdr1.sing.sin.aarnet.net.au (113.197.15.233)  92.760 ms  92.724 ms  92.658 ms
+ 8  138.44.226.7 (138.44.226.7)  260.097 ms  260.083 ms  260.013 ms
+ 9  janet-gw.mx1.lon.uk.geant.net (62.40.124.198)  260.090 ms  260.041 ms  260.448 ms
+10  ae29.londpg-sbr2.ja.net (146.97.33.2)  260.783 ms  260.676 ms  260.727 ms
+11  ae31.erdiss-sbr2.ja.net (146.97.33.22)  264.333 ms  264.519 ms  264.463 ms
+12  ae29.manckh-sbr2.ja.net (146.97.33.42)  266.117 ms  266.301 ms  266.280 ms
+13  ae25.manckh-ban1.ja.net (146.97.35.50)  266.425 ms  266.430 ms  266.374 ms
+14  lancaster-uni.ja.net (146.97.40.178)  286.608 ms  286.591 ms  286.550 ms
+15  * * *
+16  * * *
+17  * * *
+18  * * *
+19  * * *
+20  * * *
+21  * * *
+22  * * *
+23  * * *
+24  * * *
+25  * * *
+26  * * *
+27  * * *
+28  * * *
+29  * * *
+30  * * *

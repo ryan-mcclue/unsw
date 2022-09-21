@@ -1,9 +1,25 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+p2p, client+server are paradigms
+
+write software for network-edge
+
+IMAP and POP recieve emails. SMTP sends and exchanges
+
+socket (communication endpoint) for a client process (sending) and server process (responding)
+
+application protocol considerations (data loss, timing, throughput, security)
+
+TCP (flow/congestion control, reliable data transefer, connection oriented)
+
+HTTP2.0 stateless. Responses/requests have status line, header lines, body
+
+* does a dynamic IP address imply a NAT?
+
+
 > if traceroute '*' out, what does this mean? just use last IP for determining location?
 '*' and further traffic indicates it did pass router
 if '*' tail at end, routers sensititve to information leaking and cannot say where it ends 
-> how does it give a '*' and then continue onwards?
 
 > car keys use Zigbee. holding to head increases signal strength
 

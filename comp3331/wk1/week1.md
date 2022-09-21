@@ -59,7 +59,7 @@ forwards packets not destined for themselves (wheres a host would just drop the 
 
 
 * OSI (just a model to conceptualise, not rigid. e.g. router that has Access Control List will look at L4 header):
-  - layer of rules that govern network communication
+  - layer of rules that govern network communication (layered so as each protocol does not have to reimplement network technologies, however can make packet sizes large)
    L1: Physical (transport bits). ethernet, wifi, bluetooth
    L2: Data (hop-to-hop; places and retrieves bits). From one NIC to another NIC
    Each NIC uses MAC addressing scheme, 48bits, 12 hex digits

@@ -4,7 +4,9 @@ p2p, client+server are paradigms
 
 write software for network-edge
 
-IMAP and POP recieve emails. SMTP sends and exchanges
+IMAP and POP recieve emails. 
+SMTP sends and exchanges between servers (atop TCP). 
+Although HTTPS email user agent, between mail servers (so from protonmail to gmail) often plain-text (some use TLS). So, use PGP to be safe
 
 socket (communication endpoint) for a client process (sending) and server process (responding)
 
@@ -13,8 +15,19 @@ application protocol considerations (data loss, timing, throughput, security)
 TCP (flow/congestion control, reliable data transefer, connection oriented)
 
 HTTP2.0 stateless. Responses/requests have status line, header lines, body
+sends out cookie id which will be included in every HTTP request
+3rd party cookies (different to domain you are on, e.g. could be an image provider) allows sites to track you
+improve page load times with protocol enhancements, content providing location and caching
+HTTP1.0 one TCP connection per resource served (incurs RTT penalty of 3-way handshake for TCP) 
+HTTP1.1 had one persistent TCP connection (allows pipelining, i.e. sending multiple objects one after the other without waiting for response)
+ISPs may install 'web caches' which are web proxy servers to increase load times.
+HTTP 'conditional GET', i.e. if-modified-since header 
+HTTP2.0 decreases delay in multi-object responses (e.g. small object may be head-of-line blocked by larger object). objects divided into frames, so send say 16 bytes increments
+
+Without HTTPS, passwords just in base64 (binary-to-text)
 
 * does a dynamic IP address imply a NAT?
+* identify web cache proxy servers?
 
 
 > if traceroute '*' out, what does this mean? just use last IP for determining location?
@@ -31,6 +44,8 @@ determine public ip with: `dig +short myip.opendns.com @resolver1.opendns.com`
 > IANA to regional, APNIC, ARIN, etc.
 > interesting get 'direct IP not allowed' when using last IP given by traceroute for domain
 > how do geolocation tools like yougetsignal work? 
+
+> DNS server should be configured to return IP that best serves your location?
 
 brisbane: 756km,  17.1ms / 0.00252secs (6.8)
 serdang: 6,605, 99.7ms / 0.022 (4.5)

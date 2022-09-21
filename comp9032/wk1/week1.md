@@ -32,7 +32,7 @@ program memory (Flash) (jmp, call instructions)
 ISA will include memory model, addressing modes, address spaces (one for program, one for data), native data types (e.g. 8 bit unsigned ints, 32 bit floating point)
 ISA also specifies endianness and alignment
 
-8-bit (register sizes?) RISC
+8-bit (register sizes) RISC
 
 VsVim extension
 

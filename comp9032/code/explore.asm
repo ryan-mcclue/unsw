@@ -1,9 +1,57 @@
 .include "m2560def.inc"
 
-# TODO(Ryan): signed subtraction. sign-extension 
+; TODO(Ryan): If treat all numbers as twos-complement,
+; how to add two unsigned values max.
+; assume just bit interpretation or flags?
 
 .def sum_i=r18
 .def sum=r19
+
+; IMPORTANT(Ryan): So, 16bit address space.
+; Unique to program memory is that it's arranged with 'word addresses', i.e. each address holds 16bits (in contrast to normal byte addresses)
+; We pass in say 0x0000 as a byte address, but must convert to word-address equivalent, i.e. addr*2, addr*2+1
+; so, special address semantics when working with program memory
+
+; interesting status register storage bit 
+.macro copy_bit
+  bst @1, @2
+  bld @2, @3
+.endmacro
+; copy_bit r4, 2, r5, 3
+
+
+.set struct_size (4 + 20 + 1)
+; pointing to SRAM
+.dseg
+s1: .byte struct_size
+
+; default is .cseg, which itself will have a default .org pointing to flash
+.cseg
+s1_constant_initialisers: .dw LWRD(123456)
+                          .dw HWRD(123456)
+                          .db "Ryan     ", 0
+                          .db 75
+
+; X, Y, Z are register pairs that allow automatic indirect referencing, e.g. ld r16, X 
+ldi r30, LOW(1000) ; zl
+ldi r31, HIGH(1000) ; zh
+ld r24, Z
+
+.set modifiable=HIGH(10 + 10)
+.equ fixed=(10 + 10) 
+
+word_addition:
+  ldi r16, LOW(300)
+  ldi r17, HIGH(300)
+  ldi r18, LOW(600)
+  ldi r19, HIGH(600)
+  ; IMPORTANT(Ryan): Add with carry 
+  add r16, r18
+  adc r17, r19 ; replace with sbc for subtraction
+  ; IMPORTANT(Ryan): signed subtraction vs subtraction just means
+  ; number range is reduced. same instructions?
+end_loop:
+  rjmp end_loop
 
 while_loop:
   clr sum_i
@@ -47,11 +95,3 @@ three_dimensional_function:
 
 
 
-main:
-  ldi r16, 10
-  ldi r17, 20
-; IMPORTANT(Ryan): This is an add without carry. Might what to consider if approaching limit
-  add r16, r17 
-
-; X, Y, Z are register pairs?
-; interesting status register storage bit 

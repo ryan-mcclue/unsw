@@ -145,11 +145,14 @@ Internet Structure (with IXPs intermingled between some junctions to connect ISP
 
 UNSW ISP is AARNET?
 
-Delays: (is it not queueing + processing + transmission + propagation?)
-1. Processing (determine errors)
-2. Queueing (packets_arriving x packet_length / link_bandwidth)
-3. Transmission (time to place a bit on the wire, e.g. packet_length / transmission_rate_10Mbps)
-4. Propagation (time to cross physical medium)
+Delays: 
+1. Processing; time to process header and determine where going
+2. Queueing; time in routing queue (packets_arriving x packet_length / link_bandwidth)
+3. Transmission; time to place a bit on the wire (packet_length / transmission_rate_10Mbps)
+IMPORTANT: At the end of transmission delay, the last bit of the packet is on the wire.
+The router will wait for entire packet to arrive, i.e. wait for last bit to arrive
+IMPORTANT: Travelling through a router from A-to-B, the first packet transmission delay is times-2, but all others are times-1 due to overlap
+4. Propagation; time to cross physical medium
 
 coaxial cables used in copper transmission lines (inner conductor surrounded by shield).
 ethernet twisted pair wires to reduce interference
@@ -165,6 +168,8 @@ connect end systems to edge routers via access network:
 * Fibre optic
 
 IETF and RFC govern a lot of Internet standards
+
+VoIP is just sending voice over IP networks
 
 * network edge includes communication links like fibre optic?
 * distinction between a protocol like TCP and a game protocol?
@@ -186,6 +191,10 @@ bernoulli trial is binomial experiment whereby probability stays the same across
 binomial question: probability of 'x' successes in 'n' trials?
 calculate number of ways to acheive said number and multiply by probability
 number of ways is: N choose X
+
+calculate exponent by taking the natural log and moving exponent out
+
+minimum value of quadratic, equate derivative to 0
 
 ------------------------------------------------------------------------------------------
 $(ping) generates RTT, not end-to-end/latency delay. operates under ICMP (diagnose network issues)

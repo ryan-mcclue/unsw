@@ -1,5 +1,9 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+a socket connection must have unique combination of (local-ip, local-port, remote-ip, remote-port)
+∴ possible for sockets to share same port 
+client sockets will use random port number assigned by OS
+
 p2p, client+server are paradigms
 
 write software for network-edge
@@ -47,9 +51,13 @@ determine public ip with: `dig +short myip.opendns.com @resolver1.opendns.com`
 
 > DNS server should be configured to return IP that best serves your location?
 
+> as traceroute command sends 3 packets, it can return possibly 3 different IP addresses for the same router
+
 brisbane: 756km,  17.1ms / 0.00252secs (6.8)
 serdang: 6,605, 99.7ms / 0.022 (4.5)
 berlin: 16,100km, 279ms / 0.0537 (5.2) 
 
 processing delay: inspecting header to determine where packet needs to go. (fixed number based on header size, e.g UDP less bytes thans TCP)
 queuing: depends on number of packets
+
+> yes there is same router (look at IP address subnet)

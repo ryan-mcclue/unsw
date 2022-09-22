@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+# pandoc lab.md --pdf-engine=xelatex -o mcclue-5346008-lab02.pdf
+
+gcc -g PingClient.c -o PingClient
+
+# tar -cvf Lab2.tar

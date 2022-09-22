@@ -1,0 +1,12 @@
+#!/bin/bash
+
+addresses="www.unsw.edu.au www.getfittest.com.au www.mit.edu www.intel.com.au www.tpg.com.au www.hola.hp www.amazon.com www.tsinghua.edu.cn www.kremlin.ru 8.8.8.8"
+
+for addr in $addresses; do
+        ping -c 3 "$addr" > /dev/null
+        if [ $? -eq 0 ]; then
+          printf "%s: REACHABLE\n" "$addr"
+        else
+          printf "%s: UNREACHABLE\n" "$addr"
+        fi
+done

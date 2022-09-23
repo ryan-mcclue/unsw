@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+TODO: byte size of protocol headers
+
 a socket connection must have unique combination of (local-ip, local-port, remote-ip, remote-port)
 ∴ possible for sockets to share same port 
 client sockets will use random port number assigned by OS
@@ -61,3 +63,4 @@ processing delay: inspecting header to determine where packet needs to go. (fixe
 queuing: depends on number of packets
 
 > yes there is same router (look at IP address subnet)
+> traceroute shows 56(84) meaning 56 byte payload + 8 byte ICMP + 20 byte IP

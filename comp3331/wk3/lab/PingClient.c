@@ -50,19 +50,19 @@ typedef struct __attribute__((packed))
 {
   char ping[4];
   u32 seq_num;
-  u32 time;
+  u64 time;
   char crlf[2]; 
 } Msg;
 
-INTERNAL u32
+INTERNAL u64
 get_ms(void)
 {
-  u32 result = 0;
+  u64 result = 0;
 
   struct timespec time_spec = {0};
-  clock_gettime(CLOCK_REALTIME, &time_spec);
+  clock_gettime(CLOCK_MONOTONIC, &time_spec);
 
-  result = (r32)(time_spec.tv_sec * 1000.0f) + (r32)(time_spec.tv_nsec / 1000.0f);
+  result = (time_spec.tv_sec * 1000LL) + (time_spec.tv_nsec / 1000000.0f);
 
   return result;
 }
@@ -99,6 +99,9 @@ main(int argc, char *argv[])
           strncpy(msg.ping, "PING", sizeof(msg.ping));
           strncpy(msg.crlf, "\r\n", sizeof(msg.crlf));
 
+          u32 packets_ms[PING_COUNT] = {0};
+          u32 successful_packets = 0;
+
           for (u32 ping_i = 0; ping_i < PING_COUNT; ++ping_i)
           {
             msg.seq_num = (SEQ_START + ping_i);
@@ -113,10 +116,10 @@ main(int argc, char *argv[])
             }
 
 
-            u32 wait_time_ms = 0;
+            u64 wait_time_ms = 0;
             int recv_len = 0;
             char recv_buf[64] = {0};
-            u32 start_ms = get_ms();
+            u64 start_ms = get_ms();
             bool got_response = false;
             while (wait_time_ms < WAIT_FOR_RESPONSE_MS)
             {
@@ -126,9 +129,10 @@ main(int argc, char *argv[])
               {
                 if (errno == EAGAIN)
                 {
-                  u32 cur_ms = get_ms();
+                  u64 cur_ms = get_ms();
                   wait_time_ms += (cur_ms - start_ms);
                   start_ms = cur_ms;
+                  //printf("waited %d ms\n", wait_time_ms);
                 }
                 else
                 {
@@ -142,16 +146,40 @@ main(int argc, char *argv[])
               }
             }
 
+            // TODO(Ryan): In reality, rtt would be msg.time - time_gotten_back
             if (got_response)
             {
-              printf("ping to %s, seq = %d, rtt = %d ms\n", server_ip, ping_i + 1, wait_time_ms);
+              packets_ms[successful_packets++] = wait_time_ms;
+              printf("ping to %s, seq = %d, rtt = %ld ms\n", server_ip, ping_i + 1, wait_time_ms);
             }
             else
             {
               printf("ping to %s, seq = %d, rtt = 'time out'\n", server_ip, ping_i + 1);
             }
-
           }
+
+          u32 packets_ms_sum = 0;
+          u32 packets_ms_min = UINT32_MAX;
+          u32 packets_ms_max = 0;
+          for (u32 packet_i = 0; packet_i < successful_packets; ++packet_i)
+          {
+            u32 packet_ms_value = packets_ms[packet_i];
+
+            if (packet_ms_value > packets_ms_max)
+            {
+              packets_ms_max = packet_ms_value;
+            }
+
+            if (packet_ms_value < packets_ms_min)
+            {
+              packets_ms_min = packet_ms_value;
+            }
+
+            packets_ms_sum += packet_ms_value; 
+          }
+
+          printf("min. rtt: %d ms, max. rtt: %d ms, avg. rtt: %.2f ms\n", packets_ms_min, 
+                 packets_ms_max, (r32)packets_ms_sum / successful_packets);
         }
         else
         {
@@ -167,8 +195,6 @@ main(int argc, char *argv[])
     {
       fprintf(stderr, "Error: unable to open socket (%s)\n", strerror(errno));
     }
-
-
   }
   else
   {

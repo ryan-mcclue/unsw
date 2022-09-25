@@ -45,12 +45,12 @@ typedef uint32_t u32;
 typedef uint64_t u64;
 typedef float r32;
 
-// TODO(Ryan): So all of these are characters?
 typedef struct __attribute__((packed))
 {
-  char ping[4];
-  u32 seq_num;
-  u64 time;
+  // IMPORTANT(Ryan): Add 2 here for space (snprintf() adds '\0')
+  char ping[4 + 2];
+  char seq_num[4 + 2];
+  char time[32];
   char crlf[2]; 
 } Msg;
 
@@ -96,7 +96,7 @@ main(int argc, char *argv[])
           server_addr.sin_port = htons(server_port);
 
           Msg msg = {0};
-          strncpy(msg.ping, "PING", sizeof(msg.ping));
+          strncpy(msg.ping, "PING ", sizeof(msg.ping));
           strncpy(msg.crlf, "\r\n", sizeof(msg.crlf));
 
           u32 packets_ms[PING_COUNT] = {0};
@@ -104,8 +104,8 @@ main(int argc, char *argv[])
 
           for (u32 ping_i = 0; ping_i < PING_COUNT; ++ping_i)
           {
-            msg.seq_num = (SEQ_START + ping_i);
-            msg.time = get_ms();
+            snprintf(msg.seq_num, sizeof(msg.seq_num), "%d ", SEQ_START + ping_i);
+            snprintf(msg.time, sizeof(msg.time), "%ld", get_ms());
 
             int send_len = sendto(server_sock, &msg, sizeof(msg), 0, 
                 (struct sockaddr *)&server_addr, sizeof(server_addr));

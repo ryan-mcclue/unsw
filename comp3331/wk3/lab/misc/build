@@ -6,4 +6,8 @@ set -e
 
 gcc -g PingClient.c -o PingClient
 
+#if [ $? -eq 0 ]; then
+#  ./PingClient 127.0.0.1 4000 
+#fi
+#
 # tar -cvf Lab2.tar

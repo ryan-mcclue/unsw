@@ -122,13 +122,15 @@ legacy circuit switching dedicates resources (not appropriate for bursty, variab
 main functions:
 1. packet forwarding (input to output)
 2. packet routing (routing algorithm, i.e. path determination based on header)
-we assume store-and-forward switching, i.e. router takes header and payload before transmitting 
+we assume store-and-forward switching, i.e. router takes header and payload before transmitting (as oppose to 'cut through switching')
 packet switching utilises statistical multiplexing, i.e. educated assumption of bursty traffic
 if queue overloaded, packets go into buffer (transient overload) resulting in a delay
 if buffer excedded (persistent overload), packets dropped
 as a result, packet switching requires protocols to ensure reliable data transfer and congestion control
 
 performance: loss, delay, throughput 
+
+ISPs like AARNET might publish 'network maps', i.e image showing network connections
 
 so your home network is a type of access network, as well as connection to ISP? (i.e. access network just network to a router that goes to the ISP)
 however, you have access ISPs that are interconnected via a global ISP 

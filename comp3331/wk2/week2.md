@@ -25,12 +25,14 @@ sends out cookie id which will be included in every HTTP request
 3rd party cookies (different to domain you are on, e.g. could be an image provider) allows sites to track you
 improve page load times with protocol enhancements, content providing location and caching
 HTTP1.0 one TCP connection per resource served (incurs RTT penalty of 3-way handshake for TCP) 
-HTTP1.1 had one persistent TCP connection (allows pipelining, i.e. sending multiple objects one after the other without waiting for response)
+HTTP1.1 introduced persistent TCP connection (allows pipelining, i.e. sending multiple objects one after the other without waiting for response)
+The 'Keep-Alive' header sets the parameters for this persistence
 Further prevents the 3-way handshake 2xRTT for each object, incurring this only for first object
 (possibly may incur more burden on server maintaining this connection)
 ISPs may install 'web caches' which are web proxy servers to increase load times.
 HTTP 'conditional GET', i.e. if-modified-since header 
-HTTP2.0 decreases delay in multi-object responses (e.g. small object may be head-of-line blocked by larger object). objects divided into frames, so send say 16 bytes increments
+HTTP2.0 decreases delay in multi-object responses (e.g. small object may be head-of-line blocked by larger object). 
+objects divided into frames, so send say 16 bytes increments
 
 Without HTTPS, passwords just in base64 (binary-to-text)
 
@@ -51,6 +53,7 @@ determine public ip with: `dig +short myip.opendns.com @resolver1.opendns.com`
 (different end result due to many end router destination server possibilities)
 > IANA to regional, APNIC, ARIN, etc.
 (can specify with $(whois -h whois.arin.net 163.253.1.115))
+however, this just tells who the IP address is listed to and their location, not the router location 
 > interesting get 'direct IP not allowed' when using last IP given by traceroute for domain
 > how do geolocation tools like yougetsignal work? 
 

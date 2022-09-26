@@ -118,6 +118,7 @@ network speed faster if closer to the ISPs switching network
 
 network edge: hosts/end systems (run networked apps that provide services), access network (edge routers connecting to ISPs network core), physical media
 network core: packet switching (breaks into packets of header+payload ∴ each packet independent), i.e. routers, switches (imagine an ISP network is interconnected routers)
+(as oppose to message switching which will send entire message; more reliable but slower as packet switching allows transmission earlier)
 legacy circuit switching dedicates resources (not appropriate for bursty, variable data rate connections on the Internet. furthermore, not as economical as can't allow more users than hardware permits)
 main functions:
 1. packet forwarding (input to output)

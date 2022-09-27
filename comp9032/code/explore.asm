@@ -1,8 +1,13 @@
 .include "m2560def.inc"
 
-; TODO(Ryan): If treat all numbers as twos-complement,
-; how to add two unsigned values max.
-; assume just bit interpretation or flags?
+; IMPORTANT(Ryan): As the name implies, PUSH will put data at the next address to what the SP currently is at.
+; POP will take value at current SP
+
+; WinAVR a possible calling convention
+
+
+; IMPORTANT(Ryan): Will have particular compares for signed and unsigned
+; multiplication output goes to multiple registers
 
 .def sum_i=r18
 .def sum=r19

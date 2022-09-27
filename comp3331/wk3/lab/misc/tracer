@@ -1,9 +1,0 @@
-#!/bin/bash
-
-set -e
-
-sites="www.ucla.edu www.u-tokyo.ac.jp www.lancaster.ac.uk"
-
-for site in $sites; do
-	traceroute "$site" | tee "$site"-traceroute.txt
-done

@@ -2,6 +2,9 @@
 
 TODO: byte size of protocol headers
 
+telnet offers bidirectional text-oriented communication with server, e.g. can encapsulate HTTP server interaction over port 80 or port 443 
+interesting HEAD request to only get header
+
 a socket connection must have unique combination of (local-ip, local-port, remote-ip, remote-port)
 ∴ possible for sockets to share same port 
 client sockets will use random port number assigned by OS
@@ -20,25 +23,37 @@ application protocol considerations (data loss, timing, throughput, security)
 
 TCP (flow/congestion control, reliable data transefer, connection oriented)
 
-HTTP2.0 stateless. Responses/requests have status line, header lines, body
+HTTP is a pull protocol, i.e. will wait for recieved reply (as oppose to SMTP which is push)
+HTTP stateless. Responses/requests have status line, header lines, body
+
 sends out cookie id which will be included in every HTTP request
 3rd party cookies (different to domain you are on, e.g. could be an image provider) allows sites to track you
 improve page load times with protocol enhancements, content providing location and caching
+
 HTTP1.0 one TCP connection per resource served (incurs RTT penalty of 3-way handshake for TCP) 
+
 HTTP1.1 introduced persistent TCP connection (allows pipelining, i.e. sending multiple objects one after the other without waiting for response)
 The 'Keep-Alive' header sets the parameters for this persistence
 Further prevents the 3-way handshake 2xRTT for each object, incurring this only for first object
 (possibly may incur more burden on server maintaining this connection)
 ISPs may install 'web caches' which are web proxy servers to increase load times.
-HTTP 'conditional GET', i.e. if-modified-since header 
+HTTP 'conditional GET', i.e. client issues 'If-Modified-Since' to server, which if not changed, return 304 code  
+Additionally uses ETag 'If-None-Match' based on content as oppose to timestamp
+
+HTTP1.1 also introduced caching. ∴ must clear browser cache to properly inspect natural flow of packets
+
+Accept-Ranges header for partial requests (resume downloads)  
+
 HTTP2.0 decreases delay in multi-object responses (e.g. small object may be head-of-line blocked by larger object). 
 objects divided into frames, so send say 16 bytes increments
+This uses TCP splitting to increase performance via end-to-end delay (not say by decreasing overall packet size)
 
 Without HTTPS, passwords just in base64 (binary-to-text)
 
 * does a dynamic IP address imply a NAT?
 * identify web cache proxy servers?
 
+SNMP (simple network management protocol) get information about network devices
 
 > if traceroute '*' out, what does this mean? just use last IP for determining location?
 '*' and further traffic indicates it did pass router
@@ -60,10 +75,6 @@ however, this just tells who the IP address is listed to and their location, not
 > DNS server should be configured to return IP that best serves your location?
 
 > as traceroute command sends 3 packets, it can return possibly 3 different IP addresses for the same router
-
-brisbane: 756km,  17.1ms / 0.00252secs (6.8)
-serdang: 6,605, 99.7ms / 0.022 (4.5)
-berlin: 16,100km, 279ms / 0.0537 (5.2) 
 
 processing delay: inspecting header to determine where packet needs to go. (fixed number based on header size, e.g UDP less bytes thans TCP)
 queuing: depends on number of packets

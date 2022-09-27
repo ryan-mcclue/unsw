@@ -11,6 +11,10 @@ BGP used by routers to decide what they should do with packet on their network
 e.g. should I go through path A or path B
 so, routers constantly sharing information with other directly connected routers via BGP (perhaps updating hop length to a network)
 
+IP addresses can be static or dynamic.
+(is from your ISP static?)
+(advantages just for security?)
+
 NAT used to extend IPv4 address space by converting from private IPs: 10.0.0.0 /8, 172.16.0.0 /12, 192.168.0.0 /16
 
 * Hosts: any device that sends or recieves traffic

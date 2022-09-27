@@ -1,27 +1,5 @@
 // SPDX-License-Identifier: zlib-acknowledgement
 
-// LOSS_RATE is percentage packets dropped
-// AVERAGE_DELAY simulates delay (for when testing on same machine)
-
-// sends 15 ping requests to the server. 
-// Each message contains a payload of data that includes the keyword PING, 
-// a sequence number starting from 3,331, and a timestamp. 
-// After sending each packet, the client waits up to 600 ms to receive a reply. 
-// If 600 ms goes by without a reply from the server, 
-// (this 600ms should be larger than RTT determined from server AVERAGE_DELAY)
-// then the client assumes that its packet or the server's reply packet has been lost 
-// in the network. 
-
-
-
-// ./PingClient host port
-// output:
-// ping to 127.0.0.1, seq = 1, rtt = 120 ms
-// ping to 127.0.0.1, seq = 2, rtt = 'time out' 
-//
-// message format: (assume u32s)
-// PING sequence_number time CRLF
-
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
@@ -114,7 +92,6 @@ main(int argc, char *argv[])
             {
               fprintf(stderr, "Error: sendto failed (%s)\n", strerror(errno));
             }
-
 
             u64 wait_time_ms = 0;
             int recv_len = 0;

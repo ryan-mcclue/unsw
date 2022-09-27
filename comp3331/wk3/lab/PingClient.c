@@ -38,7 +38,7 @@ get_ms(void)
   u64 result = 0;
 
   struct timespec time_spec = {0};
-  clock_gettime(CLOCK_MONOTONIC, &time_spec);
+  clock_gettime(CLOCK_MONOTONIC_RAW, &time_spec);
 
   result = (time_spec.tv_sec * 1000LL) + (time_spec.tv_nsec / 1000000.0f);
 

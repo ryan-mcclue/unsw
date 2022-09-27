@@ -1,6 +1,6 @@
 # Lab 02 - Ryan McClue (z5346008)
 
-# 1. Wireshark HTTP GET Request/Response
+## 1. Wireshark HTTP GET Request/Response
 ![](misc/q1-1.png)
 1. *What is the status code and phrase returned from the server to the client browser?*
 
@@ -87,3 +87,6 @@ Furthermore, it's used in conjunction with the timestamp given by `If-Modified-S
 5.2 *Has this value changed since the 1st response message was received?*
 
 No
+
+## 3. PingClient
+![](misc/q3.png)

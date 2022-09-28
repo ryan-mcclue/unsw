@@ -23,7 +23,7 @@ NAT used to extend IPv4 address space by converting from private IPs: 10.0.0.0 /
   - to be connected to the Internet require 4 things (IP, subnet mask (/8, 255.0.0.0), default gateway, resolving DNS server IP)
   resolving name server should know how to get to root name server.
   from there, root name server will know where top level domain name servers are, e.g. .com, .org etc.
-  from there, authoratative name server, e.g. example.com
+  from there, authoratative name server, e.g. example.com, eecs.example.com etc.
   when a host first connects to a network it will send out a DHCP discover to get these 4 things (router will typically run this server)
 * IP Address: identifies each host
   - IPv4, 32bits, 4 octets

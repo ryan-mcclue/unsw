@@ -11,6 +11,7 @@
 
 ; TODO(Ryan): Pass parameters as registers. Then inside function assign parameters to stack and reuse those registers?
 ; If we treat everything as a function, then never have to save registers assuming stack size isn't an issue?
+; The registers we use here are call-clobbered
 
 ; IMPORTANT(Ryan): Function call
 function:

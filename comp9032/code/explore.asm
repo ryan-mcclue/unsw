@@ -5,6 +5,52 @@
 
 ; WinAVR a possible calling convention
 
+; Stack pointer is a I/O register
+; Seems we can access first 64 I/O with IN/OUT 1byte addresses (faster?). 
+; Or can access all (64 + 416) with ST/LD 2byte addresses? Use ST/LD for SRAM access as well?
+
+; TODO(Ryan): Pass parameters as registers. Then inside function assign parameters to stack and reuse those registers?
+; If we treat everything as a function, then never have to save registers assuming stack size isn't an issue?
+
+; IMPORTANT(Ryan): Function call
+function:
+; 1. SAVE STACK FRAME POINTER 
+  push YL
+  push YH
+; 2.1 SETUP STACK FRAME
+  rcall . ; equivalent to pushing 2 bytes
+  push 0
+  in YL, SPL
+  in YH, SPH
+; 2.2 SETUP STACK FRAME
+  in YL, SPL
+  in YH, SPH
+  sbiw Y, 3  
+  out SPL, YL
+  out SPH, YH
+; 3. LOAD PARAMETERS ONTO STACK
+  std Y+3, r16
+  std Y+4, r17
+; 4. ASSIGN LOCAL VARIABLES
+  ldi r24, lo(10)
+  std Y+1, r24 
+  ldi r24, lo(20)
+  std Y+2, r24 
+; 5.1 CLEANUP STACK FRAME
+  pop 0
+  pop 0
+  pop 0
+  pop YH
+  pop YL
+; 5.2 CLEANUP STACK FRAME
+  adiw Y, 8
+  out SPL, YL
+  out SPH, YH
+  pop YH
+  pop YL
+; 6. RETURN
+  ret
+
 
 ; IMPORTANT(Ryan): Will have particular compares for signed and unsigned
 ; multiplication output goes to multiple registers

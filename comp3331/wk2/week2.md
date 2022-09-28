@@ -2,6 +2,12 @@
 
 TODO: byte size of protocol headers
 
+CSE machines have firewalls that block external traffic like a UDP packet
+
+Servers like the CSE machines aren't behind a NAT as we want them to have static publically addressable IPs.
+So, users logged into them will share same IP. 
+Comparatively, on uniwide recieve NAT 
+
 telnet offers bidirectional text-oriented communication with server, e.g. can encapsulate HTTP server interaction over port 80 or port 443 
 interesting HEAD request to only get header
 
@@ -72,7 +78,7 @@ however, this just tells who the IP address is listed to and their location, not
 > interesting get 'direct IP not allowed' when using last IP given by traceroute for domain
 > how do geolocation tools like yougetsignal work? 
 
-> DNS server should be configured to return IP that best serves your location?
+DNS server should be configured to return IP that best serves your location and in conjunction with load balancing
 
 > as traceroute command sends 3 packets, it can return possibly 3 different IP addresses for the same router
 

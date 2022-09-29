@@ -40,6 +40,7 @@ HTTP1.0 one TCP connection per resource served (incurs RTT penalty of 3-way hand
 
 HTTP1.1 introduced persistent TCP connection (allows pipelining, i.e. sending multiple objects one after the other without waiting for response)
 The 'Keep-Alive' header sets the parameters for this persistence
+In essence, persistence is just maintaining a single connection for entire duration (so something like SMTP is connected until entire email is sent, hence persistent)
 Further prevents the 3-way handshake 2xRTT for each object, incurring this only for first object
 (possibly may incur more burden on server maintaining this connection)
 ISPs may install 'web caches' which are web proxy servers to increase load times.
@@ -72,7 +73,10 @@ determine public ip with: `dig +short myip.opendns.com @resolver1.opendns.com`
 
 (observe RTT; geolocation data from IP can be deliberatley forged for security reasons)
 (different end result due to many end router destination server possibilities)
-> IANA to regional, APNIC, ARIN, etc.
+> When requesting IP:
+  1. Single IP get from local ISP
+  2. Block of IPs for business, go regional APNIC
+  3. Top of food chain IANA
 (can specify with $(whois -h whois.arin.net 163.253.1.115))
 however, this just tells who the IP address is listed to and their location, not the router location 
 > interesting get 'direct IP not allowed' when using last IP given by traceroute for domain

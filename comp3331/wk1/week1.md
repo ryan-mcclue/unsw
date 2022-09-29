@@ -1,6 +1,8 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 ## Fundamentals
 
+A POP (point-of-presence) is an artificial communication point between two networks, e.g. ISP POP   
+
 In general, if doesn't know address of sorts, perform broadcast/flooding
 Note that a signal is unicast or broadcast, however the action of the device might be to flood
 

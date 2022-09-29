@@ -30,18 +30,38 @@ This caching is also performed by web browser and/or OS
 DNS is database of DNS resource records in format (type, name, value, ttl)
 type=A,hostname,IP
 type=CNAME,alias,canonical
-type=NS,domain,authorative-name-server
+type=NS,domain,authorative-name-server (where to go to find any sub-domains also)
 type=MX
 
 when creating a domain:
 * NS(networkutopia.com, dns1.networkutopia.com)
 * A(dns1.networkutopia.com, 212.212.212.1)
 
-DNS requests: CNAME->web (why not A?), MX->mail, NS->dns
+DNS requests: CNAME->web (why not A? assuming CDN use?), MX->mail, NS->dns
 
 observe CDN (caching from origin server to local servers) usage with $(dig) that shows CNAME for CDN, e.g. www.mit.edu -> www.mit.edu.edgekey.net
 
 Skype is P2P
 Offers high availability, but complex management
 Better file distribution time than client server
+
+Tracker is a server that records all people downloading/uploading a file (different to a torrent site that hosts .torrent files)
+A .torrent file contains all information to download file, e.g. size, tracker, hash of file chunks
+
+Torrent is collection of peers exchanging chunks of a file
+Peers may upload (periodicaly reevaluate what top-four peers they send to; tit-for-tat) and download chunks between other peers
+DHT (distributed hash table), i.e. a P2P hash table database
+New keys are assigned to closest current ID
+Circular DHT each peer aware of successor and predecessor
+
+80% of ISP bandwidth is video streaming (acheived with: compression + DASH + playout buffering)
+Spatial compression (within image), temporal compression (from one image to next, i.e. frame delta)
+Playout delay is time sent to time played
+DASH (dynamic adaptive streaming over HTTPS), chunks stored at different coding rates (manifest file; i.e. any file containing metadata for accompanying files)
+This allows client to choose appropriate rate for current bandwidth
+A video streaming CDN will typically implement a DASH server and so will send out a manifest file first
+
+A TCP server will have a 'welcoming' socket that clients use to perform 3way handshakes on. 
+Then a new 'connection' socket will be created
+Seems that multithreaded TCP server easier as specific connection sockets can be forked
 

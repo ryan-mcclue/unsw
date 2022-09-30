@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+# pandoc lab.md --pdf-engine=xelatex -o mcclue-5346008-lab02.pdf
+
+gcc -g WebServer.c -o WebServer
+
+#if [ $? -eq 0 ]; then
+#  ./PingClient 127.0.0.1 4000 
+#fi
+#
+# tar -cvf Lab2.tar

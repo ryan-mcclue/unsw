@@ -150,6 +150,7 @@ main(int argc, char *argv[])
                 u32 method_len = consume_identifier(&at);
                 memcpy(method, method_start, method_len + 1);
                 method[method_len] = '\0';
+                printf("method: %s\n", method);
                 assert(strcmp(method, "GET") == 0);
 
                 consume_whitespace(&at);
@@ -158,36 +159,76 @@ main(int argc, char *argv[])
                 memcpy(uri, uri_start, uri_len + 1);
                 uri[uri_len] = '\0';
 
-                printf("method: %s, uri: %s\n", method, uri);
+                printf("uri: %s\n", uri);
+                
+                char resource_type[16] = {0};
 
                 char *resource_ptr = uri;
                 if (strcmp(uri, "/") == 0)
                 {
                   resource_ptr = "index.html";
+                  strncpy(resource_type, "text/html", sizeof(resource_type));
                 }
                 else
                 {
+                  char file_extension[8] = {0};
+
+                  char *file_extension_at = uri;
+                  while (file_extension_at[0] != '.' && file_extension_at[0] != '\0')
+                  {
+                    file_extension_at++;
+                  }
+                  if (file_extension_at[0] != '\0')
+                  {
+                    u32 file_extension_len = 0;
+                    while (file_extension_at[0] != '\0')
+                    {
+                      file_extension_at++;
+                      file_extension_len++;
+                    }
+
+                    memcpy(file_extension, file_extension_at - file_extension_len + 1, file_extension_len + 1);
+                    file_extension[file_extension_len] = '\0';
+
+                    printf("file extension: %s\n", file_extension);
+
+                    if (strcmp(file_extension, "html") == 0)
+                    {
+                      strncpy(resource_type, "text/html", sizeof(resource_type));
+                    }
+                    if (strcmp(file_extension, "png") == 0)
+                    {
+                      strncpy(resource_type, "image/png", sizeof(resource_type));
+                    }
+                    if (strcmp(file_extension, "jpg") == 0 || strcmp(file_extension, "jpeg") == 0)
+                    {
+                      strncpy(resource_type, "image/jpeg", sizeof(resource_type));
+                    }
+
+                  }
                   resource_ptr++;
                 }
+
 
                 ReadFileResult read_file = read_entire_file(resource_ptr);
                 if (read_file.contents != NULL)
                 {
                   char header[256] = {0};
-                  snprintf(header, sizeof(header), "HTTP/1.1 200 OK\r\nContent-Type: image/jpeg\r\nContent-Length: %d\r\n\r\n", read_file.size);
-                    // TODO(Ryan): Can we get away with not sending Content-Type?
-                    // "Content-Type: image/jpeg\r\n
+                  int header_size = snprintf(header, sizeof(header), "HTTP/1.1 200 OK\r\nContent-Type: %s\r\nContent-Length: %d\r\n\r\n", resource_type, read_file.size);
 
-                  write(client_fd, header, sizeof(header));
+                  write(client_fd, header, header_size);
                   write(client_fd, read_file.contents, read_file.size);
 
                   free(read_file.contents);
                 }
                 else
                 {
-                  char html_404[128] = "HTTP/1.1 404 Not Found\r\nConnection: close\r\nContent-Length: 9\r\n\r\nNot Found";
-                  write(client_fd, html_404, sizeof(html_404));
+                  char html_404[128] = {0};
+                  int html_404_size = snprintf(html_404, sizeof(html_404), "HTTP/1.1 404 Not Found\r\nConnection: close\r\nContent-Length: 9\r\n\r\nNot Found");
+                  write(client_fd, html_404, html_404_size);
                 }
+
+                close(client_fd);
               }
               else
               {

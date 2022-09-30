@@ -14,12 +14,10 @@ relay1.west-coast.enterprise.com (canonical) two aliases www.enterprise.com and 
 
 13 logical root nameservers with many instances replicated across the world
 
-DNS registries:
-* root: ICANN
-* .com: Network Solutions
-* .edu: Educause
-
-DNS registrar: sells domain names, e.g. GoDaddy
+(IANA is department within ICANN)
+ICANN is the governing body for all domain name extensions (search ICANN registry agreements to see particular gDNS registry)
+DNS registrar: sells domain names, e.g. GoDaddy and adds records to TLD
+For specific domains, where it adds are different, e.g. for .au is auda.org, .com Verisign
 
 The local DNS server given by DHCP, i.e. run by your ISP is not part of this hierarchy, rather it connects you to it.
 
@@ -54,6 +52,17 @@ DHT (distributed hash table), i.e. a P2P hash table database
 New keys are assigned to closest current ID
 Circular DHT each peer aware of successor and predecessor
 
+DHT is a structured P2P, i.e. rigid way of finding peers to in turn find resource
+In DHT, each node only connected to its direct neighbours, i.e. successor and predecessor
+Each node has a hash table. 
+All data keys less than server key
+Node 2 owns all data keys [1..2), Node 3 [2..3)
+Exception is first server that owns all keys less than it normally (0,..1), but also all keys greater than final servers key [8..MAX_KEY)   
+When a request is recieved, a hash table lookup is performed. 
+Say request data key 4.2, will follow peers based on this rule to find destination
+If a server is removed, keys migrate to maintain this rule
+
+
 80% of ISP bandwidth is video streaming (acheived with: compression + DASH + playout buffering)
 Spatial compression (within image), temporal compression (from one image to next, i.e. frame delta)
 Playout delay is time sent to time played
@@ -65,3 +74,4 @@ A TCP server will have a 'welcoming' socket that clients use to perform 3way han
 Then a new 'connection' socket will be created
 Seems that multithreaded TCP server easier as specific connection sockets can be forked
 
+P2P network debugging use `xterm -hold`

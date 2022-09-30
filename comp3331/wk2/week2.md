@@ -33,6 +33,7 @@ HTTP is a pull protocol, i.e. will wait for recieved reply (as oppose to SMTP wh
 HTTP stateless. Responses/requests have status line, header lines, body
 
 sends out cookie id which will be included in every HTTP request
+(to automate signing in to a page, could use selenium and manually add say session-token cookie)
 3rd party cookies (different to domain you are on, e.g. could be an image provider) allows sites to track you
 improve page load times with protocol enhancements, content providing location and caching
 

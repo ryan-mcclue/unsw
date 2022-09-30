@@ -26,7 +26,7 @@ function:
 ; 2.2 SETUP STACK FRAME
   in YL, SPL
   in YH, SPH
-  sbiw Y, 3  
+  sbiw YH:YL, 3  
   out SPL, YL
   out SPH, YH
 ; 3. LOAD PARAMETERS ONTO STACK

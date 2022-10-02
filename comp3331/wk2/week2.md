@@ -9,7 +9,7 @@ So, users logged into them will share same IP.
 Comparatively, on uniwide recieve NAT 
 
 telnet offers bidirectional text-oriented communication with server, e.g. can encapsulate HTTP server interaction over port 80 or port 443 
-interesting HEAD request to only get header
+HEAD request to only get header, however the Content-Length is the same as for GET (i.e. Content-Length if body was present)
 
 a socket connection must have unique combination of (local-ip, local-port, remote-ip, remote-port)
 ∴ possible for sockets to share same port 

@@ -11,6 +11,7 @@ DNS is application-level. DNSSEC authenticates domain name responses to ensure D
 Hierarchical in namespace and administration (zone) for scalability and fast lookups
 Can allow for load balancing and host alaising, e.g. 
 relay1.west-coast.enterprise.com (canonical) two aliases www.enterprise.com and enterprise.com
+NOTE: DNS sent first than can do application-level like HTTP
 
 13 logical root nameservers with many instances replicated across the world
 

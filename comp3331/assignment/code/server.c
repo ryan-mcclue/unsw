@@ -40,137 +40,20 @@ typedef uint32_t u32;
 typedef uint64_t u64;
 typedef float r32;
 
+#include "io.c"
+
 typedef struct
 {
   u32 socket_handle;
   char device_name[32];
   char ip[32];
   u32 port;
+  u32 p2p_port;
   char date_active[32];
 } ConnectedClient;
 
 #define MAX_CONNECTED_CLIENTS 32
 GLOBAL ConnectedClient global_connected_clients[MAX_CONNECTED_CLIENTS];
-
-typedef struct
-{
-  char name[64];
-  char password[64];
-} ClientCredential;
-typedef struct
-{
-  ClientCredential credentials[64];
-  u32 num_credentials;
-} ClientCredentials;
-
-
-typedef struct 
-{
-  void *contents;
-  u32 size;
-} ReadFileResult;
-
-INTERNAL ReadFileResult
-read_entire_file(char *file_name)
-{
-  ReadFileResult result = {0};
-
-  int file_fd = open(file_name, O_RDONLY); 
-  if (file_fd != -1) 
-  {
-    struct stat file_stat = {0};
-    int fstat_res = fstat(file_fd, &file_stat);
-    if (fstat_res != -1) 
-    {
-      result.contents = malloc(file_stat.st_size);
-      if (result.contents != NULL)
-      {
-        result.size = file_stat.st_size;
-        size_t bytes_to_read = file_stat.st_size;
-        u8 *byte_location = (u8 *)result.contents;
-        while (bytes_to_read > 0) 
-        {
-          int read_res = read(file_fd, byte_location, bytes_to_read); 
-          if (read_res != -1) 
-          {
-            bytes_to_read -= read_res;
-            byte_location += read_res;
-          }
-          else
-          {
-            fprintf(stderr, "Error: unable to read file %s (%s)\n", file_name, strerror(errno));
-            free(result.contents);
-            break;
-          }
-        }
-      }
-      else
-      {
-        fprintf(stderr, "Error: unable to malloc memory for file %s (%s)\n", file_name, strerror(errno));
-      }
-    }
-    else
-    {
-      fprintf(stderr, "Error: unable to fstat file %s (%s)\n", file_name, strerror(errno));
-    }
-  }
-    
-  return result;
-}
-
-INTERNAL void
-consume_whitespace(char **at)
-{
-  while (isspace((*at)[0]))
-  {
-    (*at)++;
-  }
-}
-
-INTERNAL u32
-consume_identifier(char **at)
-{
-  u32 result = 0;
-
-  while (isalnum((*at)[0]) || (*at)[0] == ':' || (*at)[0] == '-' || (*at)[0] == '/' ||
-         (*at)[0] == '.')
-  {
-    (*at)++;
-    result++;
-  }
-
-  return result;
-}
-
-INTERNAL ClientCredentials
-parse_credentials(void)
-{
-  ClientCredentials result = {0};
-
-  ReadFileResult credentials_read = read_entire_file("credentials.txt");
-  if (credentials_read.contents != NULL)
-  {
-    char *credentials_at = (char *)credentials_read.contents;     
-
-    while (credentials_at[0] != '\0')
-    {
-      consume_whitespace(&credentials_at);
-      char *name_start = credentials_at;
-      consume_alpha(&credentials_at);
-      char *name_end = credentials_at - 1;
-      // strcpy
-
-      consume_whitespace(&credentials_at);
-      char *password_start = credentials_at;
-      consume_alpha(&credentials_at);
-      char *password_end = credentials_at - 1;
-    }
-
-    free(credentials_read.contents);
-  }
-
-  return result;
-}
 
 int
 main(int argc, char *argv[])
@@ -179,16 +62,23 @@ main(int argc, char *argv[])
   {
     long int server_port = strtol(argv[1], NULL, 10);
     long int number_of_consecutive_failed_attempts = strtol(argv[2], NULL, 10);
-
-    ClientCredentials client_credentials = parse_credentials();
-    if (client_credentials.num_credentials != 0)
+    if (number_of_consecutive_failed_attempts > 0 && number_of_consecutive_failed_attempts < 6)
     {
-
+      ClientCredentials client_credentials = parse_credentials();
+      if (client_credentials.num_credentials != 0)
+      {
+        int x = 0; 
+      }
+      else
+      {
+        fprintf(stderr, "Error: invalid credentials.txt\n");
+      }
     }
     else
     {
-      fprintf(stderr, "Error: invalid credentials.txt\n");
+      fprintf(stderr, "Error: argument <number-of-consecutive-failed-attempts> must be between 1-5\n");
     }
+
 #if 0
     int server_sock = socket(AF_INET, SOCK_STREAM, 0);
     if (server_sock != -1)

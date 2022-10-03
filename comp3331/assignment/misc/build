@@ -3,4 +3,6 @@
 # TODO(Ryan): Might have to convert to Makefile...
 set -e
 
-gcc -g server.c -o server
+mkdir -p build
+
+gcc -g code/server.c -o build/server

@@ -6,3 +6,5 @@ set -e
 mkdir -p build
 
 gcc -g code/server.c -o build/server
+
+gcc -g code/client.c -o build/client

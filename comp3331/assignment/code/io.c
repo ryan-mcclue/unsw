@@ -73,11 +73,11 @@ consume_identifier(char **at)
 }
 
 INTERNAL ClientCredentials
-parse_credentials()
+parse_credentials(char *credentials)
 {
   ClientCredentials result = {0};
 
-  ReadFileResult credentials_read = read_entire_file("credentials.txt");
+  ReadFileResult credentials_read = read_entire_file(credentials);
   if (credentials_read.contents != NULL)
   {
     char *credentials_at = (char *)credentials_read.contents;     

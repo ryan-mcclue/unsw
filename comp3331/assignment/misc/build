@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# TODO(Ryan): Might have to convert to Makefile...
+set -e
+
+gcc -g server.c -o server

@@ -228,6 +228,7 @@ main(int argc, char *argv[])
                   write(client_fd, html_404, html_404_size);
                 }
 
+                // TODO(Ryan): Make this persistent by removing, but causes repeated connections to stall?
                 close(client_fd);
               }
               else

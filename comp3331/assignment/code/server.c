@@ -70,6 +70,7 @@ main(int argc, char *argv[])
       ClientCredentials client_credentials = parse_credentials("credentials.txt");
       if (client_credentials.num_credentials != 0)
       {
+        // IMPORTANT(Ryan): This is the TCP welcoming socket. It will perform TCP handshake
         int server_sock = socket(AF_INET, SOCK_STREAM, 0);
         if (server_sock != -1)
         {

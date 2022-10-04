@@ -152,8 +152,11 @@ Internet Structure (with IXPs intermingled between some junctions to connect ISP
 2. Regional ISP
 3. Access ISP
 
-UNSW ISP is AARNET?
+UNSW ISP is AARNET
 
+When sending time, normally use UTC/GMT(no offset from UTC)/Zulu 
+
+(Abstracting from these, we can have Internet delay, access link delay, LAN delay, etc.)
 Delays: 
 1. Processing; time to process header and determine where going
 2. Queueing; time in routing queue (packets_arriving x packet_length / link_bandwidth)

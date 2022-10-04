@@ -2,6 +2,8 @@
 
 TODO: byte size of protocol headers
 
+LAN utilisation is the percentage of network bandwidth used.
+
 CSE machines have firewalls that block external traffic like a UDP packet
 
 Servers like the CSE machines aren't behind a NAT as we want them to have static publically addressable IPs.

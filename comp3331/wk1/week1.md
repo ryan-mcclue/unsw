@@ -159,8 +159,8 @@ When sending time, normally use UTC/GMT(no offset from UTC)/Zulu
 
 (Abstracting from these, we can have Internet delay, access link delay, LAN delay, etc.)
 Delays: 
-1. Processing; time to process header and determine where going
-2. Queueing; time in routing queue (packets_arriving x packet_length / link_bandwidth)
+1. Processing; time to process header and determine where going and place into queue
+2. Queueing; time in routing queue to go onto output link (packets_arriving x packet_length / link_bandwidth) 
 3. Transmission; time to place a bit on the wire (packet_length / transmission_rate_10Mbps)
 IMPORTANT: At the end of transmission delay, the last bit of the packet is on the wire.
 The router will wait for entire packet to arrive, i.e. wait for last bit to arrive

@@ -6,7 +6,7 @@
 //do some basic computations on a particular data file, 
 // DTE (Delete the data file (server side)), 
 // AED (Active Edge Devices), request and display the active edge devices, OUT: exit this edge network, and
-// UVF (Peer-to-peer Uploading Video Files)
+// UVF (Peer-to-peer Uploading Video Files) (will need to implement reliable ordered messages)
 
 #include <stdint.h>
 #include <stdio.h>

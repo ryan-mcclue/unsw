@@ -103,6 +103,9 @@ consume_identifier(char **at)
 
 // TODO(Ryan): Gracefully shut-down inactive: 
 // SO_RCVTIMEOUT on the socket and when you get read() returning -1 with errno == EAGAIN/EWOULDBLOCK, timeout hit
+// Then send a "Connection: close" to client
+//
+// A general graceful TCP shutdown would involve a 4-way connection closure  
 
 int
 main(int argc, char *argv[])

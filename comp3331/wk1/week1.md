@@ -79,8 +79,9 @@ forwards packets not destined for themselves (wheres a host would just drop the 
    L5: (session), L6: (presentation), L7: (application). 
    Merge all into Application. The application can perform these 3 layers in any way it wants.
    FTP, SMTP, HTTPS (HTTP secured with SSL/TLS tunnel)
-* Encapsulation: (((data + L4 header)segment + L3 header)packet + L2 header)frame
+* Encapsulation: (((data + L4 header)segment + L3 header)packet/datagram + L2 header)frame
 i.e. L3 header and its data is known as packet, L2 header and its data is known as frame, etc.
+So, a frame is the largest encapsulation
 * De-encapsulation: will iteratively strip away headers if matches 
 i.e. checks L3 header and sees it matches, so moves up to L2
 

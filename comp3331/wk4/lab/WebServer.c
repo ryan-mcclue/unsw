@@ -138,6 +138,7 @@ main(int argc, char *argv[])
           {
             struct sockaddr_in client_addr = {0}; 
             u32 client_size = sizeof(client_addr);
+            // IMPORTANT(Ryan): We could just loop inside client, as the listen() will queue of pending connections in a backlog
             int client_fd = accept(server_sock, (struct sockaddr *)&client_addr, &client_size);
             if (client_fd != -1)
             {

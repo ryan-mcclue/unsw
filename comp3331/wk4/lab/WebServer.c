@@ -101,6 +101,9 @@ consume_identifier(char **at)
   return result;
 }
 
+// TODO(Ryan): Gracefully shut-down inactive: 
+// SO_RCVTIMEOUT on the socket and when you get read() returning -1 with errno == EAGAIN/EWOULDBLOCK, timeout hit
+
 int
 main(int argc, char *argv[])
 {
@@ -135,105 +138,116 @@ main(int argc, char *argv[])
             int client_fd = accept(server_sock, (struct sockaddr *)&client_addr, &client_size);
             if (client_fd != -1)
             {
-              char tmp_buf[4096] = {0};
-              char method[8] = {0};
-              char uri[128] = {0};
-              int bytes_read = read(client_fd, tmp_buf, sizeof(tmp_buf));
-              if (bytes_read != -1)
-              { 
-                tmp_buf[bytes_read] = '\0';
-
-                char *at = tmp_buf;
-                consume_whitespace(&at);
-
-                char *method_start = at; 
-                u32 method_len = consume_identifier(&at);
-                memcpy(method, method_start, method_len + 1);
-                method[method_len] = '\0';
-                printf("method: %s\n", method);
-                assert(strcmp(method, "GET") == 0);
-
-                consume_whitespace(&at);
-                char *uri_start = at; 
-                u32 uri_len = consume_identifier(&at);
-                memcpy(uri, uri_start, uri_len + 1);
-                uri[uri_len] = '\0';
-
-                printf("uri: %s\n", uri);
-                
-                char resource_type[16] = {0};
-
-                char *resource_ptr = uri;
-                if (strcmp(uri, "/") == 0)
-                {
-                  resource_ptr = "index.html";
-                  strncpy(resource_type, "text/html", sizeof(resource_type));
-                }
-                else
-                {
-                  char file_extension[8] = {0};
-
-                  char *file_extension_at = uri;
-                  while (file_extension_at[0] != '.' && file_extension_at[0] != '\0')
-                  {
-                    file_extension_at++;
-                  }
-                  if (file_extension_at[0] != '\0')
-                  {
-                    u32 file_extension_len = 0;
-                    while (file_extension_at[0] != '\0')
-                    {
-                      file_extension_at++;
-                      file_extension_len++;
-                    }
-
-                    memcpy(file_extension, file_extension_at - file_extension_len + 1, file_extension_len + 1);
-                    file_extension[file_extension_len] = '\0';
-
-                    printf("file extension: %s\n", file_extension);
-
-                    if (strcmp(file_extension, "html") == 0)
-                    {
-                      strncpy(resource_type, "text/html", sizeof(resource_type));
-                    }
-                    if (strcmp(file_extension, "png") == 0)
-                    {
-                      strncpy(resource_type, "image/png", sizeof(resource_type));
-                    }
-                    if (strcmp(file_extension, "jpg") == 0 || strcmp(file_extension, "jpeg") == 0)
-                    {
-                      strncpy(resource_type, "image/jpeg", sizeof(resource_type));
-                    }
-
-                  }
-                  resource_ptr++;
-                }
-
-
-                ReadFileResult read_file = read_entire_file(resource_ptr);
-                if (read_file.contents != NULL)
-                {
-                  char header[256] = {0};
-                  int header_size = snprintf(header, sizeof(header), "HTTP/1.1 200 OK\r\nContent-Type: %s\r\nContent-Length: %d\r\n\r\n", resource_type, read_file.size);
-
-                  write(client_fd, header, header_size);
-                  write(client_fd, read_file.contents, read_file.size);
-
-                  free(read_file.contents);
-                }
-                else
-                {
-                  char html_404[128] = {0};
-                  int html_404_size = snprintf(html_404, sizeof(html_404), "HTTP/1.1 404 Not Found\r\nConnection: close\r\nContent-Length: 9\r\n\r\nNot Found");
-                  write(client_fd, html_404, html_404_size);
-                }
-
-                // TODO(Ryan): Make this persistent by removing, but causes repeated connections to stall?
-                close(client_fd);
+              pid_t fork_res = fork();
+              if (fork_res == -1)
+              {
+                fprintf(stderr, "Error: failed to fork client (%s)\n", strerror(errno));
               }
               else
               {
-                fprintf(stderr, "Error: failed to read bytes from client socket (%s)\n", strerror(errno));
+                if (fork_res == 0)
+                {
+                  while (true)
+                  {
+                    char tmp_buf[4096] = {0};
+                    char method[8] = {0};
+                    char uri[128] = {0};
+                    int bytes_read = read(client_fd, tmp_buf, sizeof(tmp_buf));
+                    if (bytes_read != -1)
+                    { 
+                      tmp_buf[bytes_read] = '\0';
+
+                      char *at = tmp_buf;
+                      consume_whitespace(&at);
+
+                      char *method_start = at; 
+                      u32 method_len = consume_identifier(&at);
+                      memcpy(method, method_start, method_len + 1);
+                      method[method_len] = '\0';
+                      printf("method: %s\n", method);
+                      assert(strcmp(method, "GET") == 0);
+
+                      consume_whitespace(&at);
+                      char *uri_start = at; 
+                      u32 uri_len = consume_identifier(&at);
+                      memcpy(uri, uri_start, uri_len + 1);
+                      uri[uri_len] = '\0';
+
+                      printf("uri: %s\n", uri);
+
+                      char resource_type[16] = {0};
+
+                      char *resource_ptr = uri;
+                      if (strcmp(uri, "/") == 0)
+                      {
+                        resource_ptr = "index.html";
+                        strncpy(resource_type, "text/html", sizeof(resource_type));
+                      }
+                      else
+                      {
+                        char file_extension[8] = {0};
+
+                        char *file_extension_at = uri;
+                        while (file_extension_at[0] != '.' && file_extension_at[0] != '\0')
+                        {
+                          file_extension_at++;
+                        }
+                        if (file_extension_at[0] != '\0')
+                        {
+                          u32 file_extension_len = 0;
+                          while (file_extension_at[0] != '\0')
+                          {
+                            file_extension_at++;
+                            file_extension_len++;
+                          }
+
+                          memcpy(file_extension, file_extension_at - file_extension_len + 1, file_extension_len + 1);
+                          file_extension[file_extension_len] = '\0';
+
+                          printf("file extension: %s\n", file_extension);
+
+                          if (strcmp(file_extension, "html") == 0)
+                          {
+                            strncpy(resource_type, "text/html", sizeof(resource_type));
+                          }
+                          if (strcmp(file_extension, "png") == 0)
+                          {
+                            strncpy(resource_type, "image/png", sizeof(resource_type));
+                          }
+                          if (strcmp(file_extension, "jpg") == 0 || strcmp(file_extension, "jpeg") == 0)
+                          {
+                            strncpy(resource_type, "image/jpeg", sizeof(resource_type));
+                          }
+
+                        }
+                        resource_ptr++;
+                      }
+
+                      ReadFileResult read_file = read_entire_file(resource_ptr);
+                      if (read_file.contents != NULL)
+                      {
+                        char header[256] = {0};
+                        int header_size = snprintf(header, sizeof(header), "HTTP/1.1 200 OK\r\nContent-Type: %s\r\nContent-Length: %d\r\n\r\n", resource_type, read_file.size);
+
+                        write(client_fd, header, header_size);
+                        write(client_fd, read_file.contents, read_file.size);
+
+                        free(read_file.contents);
+                      }
+                      else
+                      {
+                        char html_404[128] = {0};
+                        // NOTE(Ryan): Choose not to pass Connection: Close for persistence
+                        int html_404_size = snprintf(html_404, sizeof(html_404), "HTTP/1.1 404 Not Found\r\nContent-Length: 9\r\n\r\nNot Found");
+                        write(client_fd, html_404, html_404_size);
+                      }
+                    }
+                    else
+                    {
+                      fprintf(stderr, "Error: failed to read bytes from client socket (%s)\n", strerror(errno));
+                    }
+                  }
+                }
               }
             }
             else

@@ -28,9 +28,11 @@ This caching is also performed by web browser and/or OS
 
 DNS is database of DNS resource records in format (type, name, value, ttl)
 type=A,hostname,IP
-type=CNAME,alias,canonical
+type=CNAME,alias,canonical (for load balancing, say with CDN)
 type=NS,domain,authorative-name-server (where to go to find any sub-domains also)
 type=MX
+
+PTR (reverse, IP to domain)
 
 when creating a domain:
 * NS(networkutopia.com, dns1.networkutopia.com)

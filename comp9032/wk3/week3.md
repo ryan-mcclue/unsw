@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+IMPORTANT: stack not necessary for recursion unless local variables used
+
 AVR imposes a stack bottom of 0x0200
 
 Caller sets up parameters (registers or stack?) and pushes return address on stack.

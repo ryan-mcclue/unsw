@@ -8,6 +8,10 @@
 // AED (Active Edge Devices), request and display the active edge devices, OUT: exit this edge network, and
 // UVF (Peer-to-peer Uploading Video Files) (will need to implement reliable ordered messages)
 
+#if __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
+#error "This server is structured to only work on little-endian devices!"
+#endif
+
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>

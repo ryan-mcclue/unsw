@@ -7,6 +7,8 @@ A domain is name of a network. A hostname is end-point
 Essentially, a hostname extends DNS to within a network, e.g. machine-host-name.domain
 So, 'could' use hostname to communicate with other machine on same network
 
+NOTE: multiple DNS servers for a domain will all have identical information in them
+
 mywebsite.com is apex domain.
 www.mywebsite.com and mail.mywebsite.com are sub-domains
 

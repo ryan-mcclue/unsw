@@ -14,6 +14,10 @@
 // device IP address; edge device UDP server port number
 // 1; 30 September 2022 10:31:13; supersmartwatch; 129.64.31.13; 5432
 
+#if __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
+#error "This server is structured to only work on little-endian devices!"
+#endif
+
 #define DEVICE_BLOCK_TIME_SEC 10
 
 #include <stdint.h>

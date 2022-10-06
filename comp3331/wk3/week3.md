@@ -7,6 +7,9 @@ A domain is name of a network. A hostname is end-point
 Essentially, a hostname extends DNS to within a network, e.g. machine-host-name.domain
 So, 'could' use hostname to communicate with other machine on same network
 
+mywebsite.com is apex domain.
+www.mywebsite.com and mail.mywebsite.com are sub-domains
+
 DNS is application-level. DNSSEC authenticates domain name responses to ensure DNS requests can't be manipulated.
 Hierarchical in namespace and administration (zone) for scalability and fast lookups
 Can allow for load balancing and host alaising, e.g. 

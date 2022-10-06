@@ -2,7 +2,7 @@
 
 set -e
 
-# pandoc lab.md --pdf-engine=xelatex -o mcclue-5346008-lab02.pdf
+pandoc lab.md --pdf-engine=xelatex -o mcclue-5346008-lab03.pdf
 
 gcc -g WebServer.c -o WebServer
 

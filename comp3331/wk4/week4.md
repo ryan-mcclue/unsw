@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
-TODO(Ryan): conversion required with network-byte ordering... Don't have to worry as sending bytes?
+NOTE(Ryan): Can do pair programming by attaching to tmux session on same ssh server
 
 TODO(Ryan): Bizarre OS driver faking ethernet header unless in monitor mode?
 

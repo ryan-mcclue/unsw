@@ -91,22 +91,33 @@ main(int argc, char *argv[])
                         FPRINTF(stderr, "Warning: failed to set (%s)\n", strerror(errno));
                       }
 
-                      Message msg = {0}; 
+                      Message msg_request = {0}; 
 
-                      int bytes_read = read(client_fd, &msg, sizeof(msg)); 
+                      int bytes_read = read(client_fd, &msg_request, sizeof(msg_request)); 
                       if (bytes_read == -1)
                       {
                         FPRINTF(stderr, "Error: read failed (%s)\n", strerror(errno));
                         exit(1);
                       }
 
-                      switch (msg.type)
+                      switch (msg_request.type)
                       {
                         case AUTHENTICATION_REQUEST:
                         {
-                          char *username = msg.username;      
-                          char *password = msg.password;      
-                          printf("%s\n", username);
+                          char *username = msg_request.username;
+                          char *password = msg_request.password;
+
+                          Message response_msg = {0};
+                          response_msg.type = AUTHENTICATION_RESPONSE;
+
+                          if (verify_credentials(&client_credentials, username, password))
+                          {
+                            int break_here = 0;
+                          }
+                          else
+                          {
+                            int break_here = 0;
+                          }
                         } break;
 
                         ASSERT_DEFAULT_CASE()

@@ -72,6 +72,24 @@ consume_identifier(char **at)
   return result;
 }
 
+INTERNAL bool
+verify_credentials(ClientCredentials *credentials, char *username, char *password)
+{
+  bool result = false;
+
+  for (u32 credential_i = 0; credential_i < credentials->num_credentials; ++credential_i)
+  {
+    ClientCredential credential = credentials->credentials[credential_i];
+    if (strcmp(credential.name, username) == 0 && strcmp(credential.password, password) == 0)
+    {
+      result = true;
+      break;
+    }
+  }
+
+  return result;
+}
+
 INTERNAL ClientCredentials
 parse_credentials(char *credentials)
 {

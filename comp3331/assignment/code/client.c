@@ -56,13 +56,15 @@ main(int argc, char *argv[])
           while (!have_authenticated)
           {
             // TODO(Ryan): Should this be sent from the server? Don't think so
-            char username[64] = {0};
             printf("Username: ");
             fgets(authentication_request.username, sizeof(authentication_request.username), stdin);
+            char *username = authentication_request.username;
+            username[strcspn(username, "\n")] = '\0';
 
-            char password[64] = {0};
             printf("Password: ");
             fgets(authentication_request.password, sizeof(authentication_request.password), stdin);
+            char *password = authentication_request.password;
+            password[strcspn(password, "\n")] = '\0';
 
             int bytes_sent = write(server_sock, &authentication_request, sizeof(authentication_request));
             if (bytes_sent == -1)

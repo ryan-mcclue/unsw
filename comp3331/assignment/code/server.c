@@ -85,6 +85,12 @@ main(int argc, char *argv[])
                   {
                     if (fork_res == FORK_CHILD_PID)
                     {
+                      int exit_on_parent_close = prctl(PR_SET_PDEATHSIG, SIGTERM); 
+                      if (exit_on_parent_close == -1)
+                      {
+                        FPRINTF(stderr, "Warning: failed to set (%s)\n", strerror(errno));
+                      }
+
                       Message msg = {0}; 
 
                       int bytes_read = read(client_fd, &msg, sizeof(msg)); 
@@ -112,6 +118,17 @@ main(int argc, char *argv[])
                 {
                   FPRINTF(stderr, "Error: unable to accept connection\n");
                 }
+                #if DEBUG
+                  // IMPORTANT(Ryan): This will close on child exit. 
+                  // Necessary, as GDB is only controlling the child process
+                  int child_status = 0;
+                  pid_t wait_ret = wait(&child_status);
+                  if (wait_ret == -1)
+                  {
+                    FPRINTF(stderr, "Error: wait failed\n");
+                  }
+                  exit(1);
+                #endif
               }
             }
             else

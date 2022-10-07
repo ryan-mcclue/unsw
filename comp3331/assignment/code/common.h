@@ -14,11 +14,14 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <assert.h>
+#include <signal.h>
 #include <stdarg.h>
 
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
+#include <sys/prctl.h>
+#include <sys/wait.h>
 #include <unistd.h>
 #include <fcntl.h>
 

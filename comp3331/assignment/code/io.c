@@ -109,6 +109,8 @@ parse_credentials(char *credentials)
         {
           FPRINTF(stderr, "Error: expected password to follow device name in credentials.txt\n");
         }
+
+        consume_whitespace(&credentials_at);
       }
       else
       {

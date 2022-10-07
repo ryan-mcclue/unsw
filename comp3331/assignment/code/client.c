@@ -103,10 +103,6 @@ main(int argc, char *argv[])
           FPRINTF(stderr, "Error: failed to connect (%s)\n", strerror(errno));
         }
 
-
-#if 0
-#endif
-
 #if 0
         bool part_of_network = true;
         while (part_of_network)

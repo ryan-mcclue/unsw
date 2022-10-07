@@ -88,7 +88,7 @@ main(int argc, char *argv[])
                       int exit_on_parent_close = prctl(PR_SET_PDEATHSIG, SIGTERM); 
                       if (exit_on_parent_close == -1)
                       {
-                        FPRINTF(stderr, "Warning: failed to set (%s)\n", strerror(errno));
+                        FPRINTF(stderr, "Warning: failed to set exit child on parent exit (%s)\n", strerror(errno));
                       }
 
                       while (true)
@@ -121,6 +121,13 @@ main(int argc, char *argv[])
                             {
                               msg_response.authentication_status = AUTHENTICATION_REQUEST_FAILED;
                             }
+
+                            int bytes_sent = write(client_fd, &msg_response, sizeof(msg_response));
+                            if (bytes_sent == -1)
+                            {
+                              FPRINTF(stderr, "Error: write failed (%s)\n", strerror(errno));
+                            }
+
                           } break;
 
                           ASSERT_DEFAULT_CASE()
@@ -129,7 +136,20 @@ main(int argc, char *argv[])
                     }
                     else
                     {
-                      // put debug wait() here
+                      #if 0
+                        // IMPORTANT(Ryan): This will close on child exit. 
+                        // Necessary, as GDB is only controlling the child process
+                        // Otherwise will may get a zombie/defunct (process isn't running, just exists in process table) process as
+                        // 'parent' process will not close this 'child' properly
+                        
+                        int child_status = 0;
+                        pid_t wait_ret = wait(&child_status);
+                        if (wait_ret == -1)
+                        {
+                          FPRINTF(stderr, "Error: wait failed\n");
+                        }
+                        exit(1);
+                      #endif
                     }
                   }
                 }
@@ -137,17 +157,6 @@ main(int argc, char *argv[])
                 {
                   FPRINTF(stderr, "Error: unable to accept connection\n");
                 }
-                #if DEBUG
-                  // IMPORTANT(Ryan): This will close on child exit. 
-                  // Necessary, as GDB is only controlling the child process
-                  int child_status = 0;
-                  pid_t wait_ret = wait(&child_status);
-                  if (wait_ret == -1)
-                  {
-                    FPRINTF(stderr, "Error: wait failed\n");
-                  }
-                  exit(1);
-                #endif
               }
             }
             else

@@ -91,37 +91,45 @@ main(int argc, char *argv[])
                         FPRINTF(stderr, "Warning: failed to set (%s)\n", strerror(errno));
                       }
 
-                      Message msg_request = {0}; 
-
-                      int bytes_read = read(client_fd, &msg_request, sizeof(msg_request)); 
-                      if (bytes_read == -1)
+                      while (true)
                       {
-                        FPRINTF(stderr, "Error: read failed (%s)\n", strerror(errno));
-                        exit(1);
-                      }
+                        Message msg_request = {0}; 
 
-                      switch (msg_request.type)
-                      {
-                        case AUTHENTICATION_REQUEST:
+                        int bytes_read = read(client_fd, &msg_request, sizeof(msg_request)); 
+                        if (bytes_read == -1)
                         {
-                          char *username = msg_request.username;
-                          char *password = msg_request.password;
+                          FPRINTF(stderr, "Error: read failed (%s)\n", strerror(errno));
+                          exit(1);
+                        }
 
-                          Message response_msg = {0};
-                          response_msg.type = AUTHENTICATION_RESPONSE;
-
-                          if (verify_credentials(&client_credentials, username, password))
+                        switch (msg_request.type)
+                        {
+                          case AUTHENTICATION_REQUEST:
                           {
-                            int break_here = 0;
-                          }
-                          else
-                          {
-                            int break_here = 0;
-                          }
-                        } break;
+                            char *username = msg_request.username;
+                            char *password = msg_request.password;
 
-                        ASSERT_DEFAULT_CASE()
+                            Message msg_response = {0};
+                            msg_response.type = AUTHENTICATION_RESPONSE;
+
+                            if (verify_credentials(&client_credentials, username, password))
+                            {
+                              msg_response.authentication_status = AUTHENTICATION_REQUEST_SUCCESS;
+                              strncpy(msg_response.response_message, "Welcome!", sizeof(msg_response.response_message));
+                            }
+                            else
+                            {
+                              msg_response.authentication_status = AUTHENTICATION_REQUEST_FAILED;
+                            }
+                          } break;
+
+                          ASSERT_DEFAULT_CASE()
+                        }
                       }
+                    }
+                    else
+                    {
+                      // put debug wait() here
                     }
                   }
                 }

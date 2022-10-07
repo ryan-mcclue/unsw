@@ -53,14 +53,14 @@ main(int argc, char *argv[])
           Message authentication_request = {0};
           authentication_request.type = AUTHENTICATION_REQUEST;
 
+          // TODO(Ryan): Should this be sent from the server? Don't think so
+          printf("Username: ");
+          fgets(authentication_request.username, sizeof(authentication_request.username), stdin);
+          char *username = authentication_request.username;
+          username[strcspn(username, "\n")] = '\0';
+
           while (!have_authenticated)
           {
-            // TODO(Ryan): Should this be sent from the server? Don't think so
-            printf("Username: ");
-            fgets(authentication_request.username, sizeof(authentication_request.username), stdin);
-            char *username = authentication_request.username;
-            username[strcspn(username, "\n")] = '\0';
-
             printf("Password: ");
             fgets(authentication_request.password, sizeof(authentication_request.password), stdin);
             char *password = authentication_request.password;
@@ -72,7 +72,31 @@ main(int argc, char *argv[])
               FPRINTF(stderr, "Error: write failed (%s)\n", strerror(errno));
               exit(1);
             }
+
+            Message authentication_response = {0};
+            int bytes_read = read(server_sock, &authentication_response, sizeof(authentication_response));
+            if (bytes_read == -1)
+            {
+              FPRINTF(stderr, "Error: read failed (%s)\n", strerror(errno));
+              exit(1);
+            }
+
+            if (authentication_response.authentication_status == AUTHENTICATION_REQUEST_SUCCESS)
+            {
+              printf("%s\n", authentication_response.response_message);
+              have_authenticated = true; 
+            }
+            else if (authentication_response.authentication_status == AUTHENTICATION_REQUEST_FAILED)
+            {
+              printf("Invalid password. Please try again\n");
+            }
+            else if (authentication_response.authentication_status == AUTHENTICATION_REQUEST_BLOCKED)
+            {
+              printf("Invalid password. Your account has been blocked. Please try again\n");
+            }
           }
+
+          exit(1);
         }
         else
         {
@@ -81,28 +105,6 @@ main(int argc, char *argv[])
 
 
 #if 0
-          Message authentication_response = {0};
-          int bytes_read = read(server_sock, &authentication_response, sizeof(authentication_response));
-          if (bytes_read == -1)
-          {
-            FPRINTF(stderr, "Error: read failed (%s)\n", strerror(errno));
-            exit(1);
-          }
-
-          printf("%s\n", authentication_response.response_message);
-
-          if (authentication_response.authentication_status == AUTHENTICATION_REQUEST_SUCCESS)
-          {
-            have_authenticated = true; 
-          }
-          else if (authentication_response.authentication_status == AUTHENTICATION_REQUEST_FAILED)
-          {
-
-          }
-          else if (authentication_response.authentication_status == AUTHENTICATION_REQUEST_BLOCKED)
-          {
-
-          }
 #endif
 
 #if 0

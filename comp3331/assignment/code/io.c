@@ -29,7 +29,7 @@ read_entire_file(char *file_name)
           }
           else
           {
-            fprintf(stderr, "Error: unable to read file %s (%s)\n", file_name, strerror(errno));
+            FPRINTF(stderr, "Error: unable to read file %s (%s)\n", file_name, strerror(errno));
             free(result.contents);
             break;
           }
@@ -37,12 +37,12 @@ read_entire_file(char *file_name)
       }
       else
       {
-        fprintf(stderr, "Error: unable to malloc memory for file %s (%s)\n", file_name, strerror(errno));
+        FPRINTF(stderr, "Error: unable to malloc memory for file %s (%s)\n", file_name, strerror(errno));
       }
     }
     else
     {
-      fprintf(stderr, "Error: unable to fstat file %s (%s)\n", file_name, strerror(errno));
+      FPRINTF(stderr, "Error: unable to fstat file %s (%s)\n", file_name, strerror(errno));
     }
   }
     
@@ -107,12 +107,12 @@ parse_credentials(char *credentials)
         }
         else
         {
-          fprintf(stderr, "Error: expected password to follow device name in credentials.txt\n");
+          FPRINTF(stderr, "Error: expected password to follow device name in credentials.txt\n");
         }
       }
       else
       {
-        fprintf(stderr, "Error: expected device name to appear in credentials.txt\n");
+        FPRINTF(stderr, "Error: expected device name to appear in credentials.txt\n");
       }
     }
 

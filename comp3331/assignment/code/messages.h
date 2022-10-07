@@ -1,5 +1,11 @@
 // SPDX-License-Identifier: zlib-acknowledgement
 
+#pragma once
+
+#define AUTHENTICATION_REQUEST_SUCCESS 0
+#define AUTHENTICATION_REQUEST_FAILED 1
+#define AUTHENTICATION_REQUEST_BLOCKED 2
+
 typedef enum
 {
   AUTHENTICATION_REQUEST,
@@ -8,15 +14,12 @@ typedef enum
 
 } MESSAGE_TYPE;
 
-#define AUTHENTICATION_REQUEST_SUCCESS 0
-#define AUTHENTICATION_REQUEST_FAILED 1
-#define AUTHENTICATION_REQUEST_BLOCKED 2
-
 typedef struct
 {
   MESSAGE_TYPE type;
   union
   {
+    // AUTHENTICATION
     struct
     {
       char username[32];
@@ -27,6 +30,8 @@ typedef struct
       u32 authentication_status;
       char response_message[128];
     };
+
+    // ...
 
   };
 } Message;

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+pushd ../run >/dev/null
+
+../build/server 8000 3
+
+popd >/dev/null

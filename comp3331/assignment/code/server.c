@@ -14,38 +14,11 @@
 // device IP address; edge device UDP server port number
 // 1; 30 September 2022 10:31:13; supersmartwatch; 129.64.31.13; 5432
 
-#if __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
-#error "This server is structured to only work on little-endian devices!"
-#endif
-
-#define DEVICE_BLOCK_TIME_SEC 10
-
-#include <stdint.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <time.h>
-#include <stdbool.h>
-#include <ctype.h>
-#include <assert.h>
-
-#include <arpa/inet.h>
-#include <sys/socket.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <fcntl.h>
-
-#define INTERNAL static
-#define GLOBAL static
-
-typedef uint8_t u8;
-typedef uint32_t u32;
-typedef uint64_t u64;
-typedef float r32;
-
+#include "common.h"
 #include "io.c"
 #include "messages.h"
+
+#define DEVICE_BLOCK_TIME_SEC 10
 
 typedef struct
 {
@@ -69,6 +42,7 @@ main(int argc, char *argv[])
   {
     long int server_port = strtol(argv[1], NULL, 10);
     long int number_of_consecutive_failed_attempts = strtol(argv[2], NULL, 10);
+
     if (number_of_consecutive_failed_attempts > 0 && number_of_consecutive_failed_attempts < 6)
     {
       ClientCredentials client_credentials = parse_credentials("credentials.txt");
@@ -82,7 +56,7 @@ main(int argc, char *argv[])
           if (setsockopt(server_sock, SOL_SOCKET, SO_REUSEADDR, (void *)&opt_val, 
                 sizeof(opt_val)) == -1)
           {
-            fprintf(stderr, "Warning: unable to set resuable socket (%s)\n", strerror(errno));
+            FPRINTF(stderr, "Warning: unable to set resuable socket (%s)\n", strerror(errno));
           }
 
           struct sockaddr_in server_addr = {0};
@@ -105,49 +79,69 @@ main(int argc, char *argv[])
                   pid_t fork_res = fork();
                   if (fork_res == -1)
                   {
-                    fprintf(stderr, "Error: failed to fork client (%s)\n", strerror(errno));
+                    FPRINTF(stderr, "Error: failed to fork client (%s)\n", strerror(errno));
                   }
                   else
                   {
                     if (fork_res == FORK_CHILD_PID)
                     {
+                      Message msg = {0}; 
+
+                      int bytes_read = read(client_fd, &msg, sizeof(msg)); 
+                      if (bytes_read == -1)
+                      {
+                        FPRINTF(stderr, "Error: read failed (%s)\n", strerror(errno));
+                        exit(1);
+                      }
+
+                      switch (msg.type)
+                      {
+                        case AUTHENTICATION_REQUEST:
+                        {
+                          char *username = msg.username;      
+                          char *password = msg.password;      
+                          printf("%s\n", username);
+                        } break;
+
+                        ASSERT_DEFAULT_CASE()
+                      }
                     }
                   }
                 }
                 else
                 {
-                  fprintf(stderr, "Error: unable to accept connection\n");
+                  FPRINTF(stderr, "Error: unable to accept connection\n");
                 }
               }
             }
             else
             {
-              fprintf(stderr, "Error: unable to listen on socket\n");
+              FPRINTF(stderr, "Error: unable to listen on socket\n");
             }
           }
           else
           {
-            fprintf(stderr, "Error: unable to bind on socket\n");
+            FPRINTF(stderr, "Error: unable to bind on socket\n");
           }
         }
         else
         {
-          fprintf(stderr, "Error: unable to open socket\n");
+          FPRINTF(stderr, "Error: unable to open socket\n");
         }
       }
       else
       {
-        fprintf(stderr, "Error: invalid credentials file\n");
+        FPRINTF(stderr, "Error: invalid credentials file\n");
       }
     }
     else
     {
-      fprintf(stderr, "Error: argument <number-of-consecutive-failed-attempts> must be between 1-5\n");
+      FPRINTF(stderr, "Error: argument <number-of-consecutive-failed-attempts> must be between 1-5\n");
     }
   }
   else
   {
-    fprintf(stderr, "Usage: ./server <port> <number-of-consecutive-failed-attempts>\n");
+    FPRINTF(stderr, "Usage: ./server <port> <number-of-consecutive-failed-attempts>\n");
   }
 
 

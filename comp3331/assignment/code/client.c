@@ -1,4 +1,11 @@
 
+// TODO(Ryan):
+// Both the client and server MUST print meaningful messages at the
+// command prompt that capture the specific interactions taking place. You are free to choose the precise
+// text that is displayed.
+
+// TODO(Ryan): Are going to test automated? i.e. will have to use locks()?
+
 // Commands:
 // EDG (Edge Data Generation) which means the client side helps to generate data to simulate the data collection function in the real edge device, 
 // UED (Upload Edge Data) it allows the edge device to upload a particular edge data file to the central server,
@@ -94,13 +101,14 @@ main(int argc, char *argv[])
 #if 0
           while (true)
           {
-            printf("Enter one of the following commands (EDG, UED, SCS, DTE, AED, UVF, OUT): ");
-            char command_buffer[256] = {0};
-            fgets(command_buffer, sizeof(command_buffer), stdin);
-            command_buffer[strcspn(command_buffer, "\n")] = '\0';
-            
             Message command_request = {0};
+
+            printf("Enter one of the following commands (EDG, UED, SCS, DTE, AED, UVF, OUT): ");
+            fgets(command_request.buffer, sizeof(command_request.buffer), stdin);
+            command_request.buffer[strcspn(command_request.buffer, "\n")] = '\0';
+
             command_request.type = COMMAND_REQUEST;
+
             writex(server_sock, &command_request, sizeof(command_request));
 
             Message command_response = {0};

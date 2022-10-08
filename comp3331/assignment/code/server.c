@@ -79,6 +79,7 @@ typedef struct
 typedef struct
 {
   BlockedDevices blocked_devices;
+  u32 num_connected_devices;
 } SharedState;
 
 INTERNAL SharedState *
@@ -104,6 +105,33 @@ init_shared_state(u32 max_size)
   }
 
   return result;
+}
+
+INTERNAL void
+populate_timestamp(char *timestamp, u32 timestamp_size)
+{
+  time_t cur_time = time(NULL);
+  struct tm *lt = localtime(&cur_time);
+
+  char *month = NULL;
+  switch (lt->tm_mon)
+  {
+    case 0: month = "January"; break;
+    case 1: month = "Febuary"; break;
+    case 2: month = "March"; break;
+    case 3: month = "April"; break;
+    case 4: month = "May"; break;
+    case 5: month = "June"; break;
+    case 6: month = "July"; break;
+    case 7: month = "August"; break;
+    case 8: month = "September"; break;
+    case 9: month = "October"; break;
+    case 10: month = "November"; break;
+    case 11: month = "December"; break;
+  }
+
+  snprintf(timestamp, timestamp_size, "%02d %s %d %02d:%02d:%02d", lt->tm_mday, month, 
+           1900 + lt->tm_year, lt->tm_hour, lt->tm_min, lt->tm_sec); 
 }
 
 #define FORK_CHILD_PID 0
@@ -214,12 +242,19 @@ main(int argc, char *argv[])
                               {
                                 msg_response.authentication_status = AUTHENTICATION_REQUEST_SUCCESS;
                                 strncpy(msg_response.response_message, "Welcome!", sizeof(msg_response.response_message));
+
+                                char device_ip[INET_ADDRSTRLEN] = {0};
+                                inet_ntop(AF_INET, &client_addr.sin_addr, device_ip, INET_ADDRSTRLEN);
+
+                                shared_state->num_connected_devices++;
+
+                                // 1; 30 September 2022 10:31:13; supersmartwatch; 129.64.31.13; 5432
+                                // append_to_file("cse_edge_device_log.txt", );
+
                                 // recieve_UDP_port_number()
                                 //
                                 // Active edge device sequence number; timestamp; edge device name; edge
                                 // device IP address; edge device UDP server port number
-                                // 1; 30 September 2022 10:31:13; supersmartwatch; 129.64.31.13; 5432
-                                // write_to_device_log("cse_edge_device_log.txt")
                               }
                               else
                               {

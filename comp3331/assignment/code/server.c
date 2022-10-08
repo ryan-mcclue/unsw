@@ -16,7 +16,20 @@
 #include "io.c"
 #include "messages.h"
 
-#define DEVICE_BLOCK_TIME_SEC 10
+#define DEVICE_BLOCK_TIME_MS 10000
+
+INTERNAL u64
+get_ms_epoch(void)
+{
+  u64 result = 0;
+
+  struct timespec time_spec = {0};
+  clock_gettime(CLOCK_MONOTONIC_RAW, &time_spec);
+
+  result = (time_spec.tv_sec * 1000LL) + (time_spec.tv_nsec / 1000000.0f);
+
+  return result;
+}
 
 typedef struct
 {
@@ -50,14 +63,16 @@ obtain_mem(MemoryArena *arena, u32 size)
 
 typedef struct
 {
-  char name[64];
-  u64 time_blocked;
+  volatile bool is_blocked;
+  volatile char name[64];
+  u64 prev_time_blocked_ms_epoch;
+  u64 time_blocked_ms;
 } BlockedDevice;
 
 typedef struct
 {
   BlockedDevice *devices;
-  u32 num_devices;
+  u32 max_devices;
 } BlockedDevices;
 
 typedef struct
@@ -80,6 +95,7 @@ init_shared_state(u32 max_size)
 
     result = MEM_PUSH_STRUCT(&memory_arena, SharedState);
     result->blocked_devices.devices = MEM_PUSH_ARRAY(&memory_arena, BlockedDevice, 32);
+    result->blocked_devices.max_devices = 32; 
   }
   else
   {
@@ -225,11 +241,30 @@ main(int argc, char *argv[])
                     }
                     else
                     {
+                      BlockedDevices *blocked_devices = &shared_state->blocked_devices;
+
                       for (u32 blocked_device_i = 0; 
-                           blocked_device_i < 10;
+                           blocked_device_i < blocked_devices->max_devices;
                            blocked_device_i++)
                       {
+                        BlockedDevice *blocked_device = &blocked_devices->devices[blocked_device_i];
+                        if (blocked_device->is_blocked)
+                        {
+                          u64 prev_time_blocked_ms_epoch = blocked_device->prev_time_blocked_ms_epoch;
+                          u64 cur_ms_epoch = get_ms_epoch();
+                          u64 time_to_add_ms = cur_ms_epoch - prev_time_blocked_ms_epoch;
 
+                          blocked_device->time_blocked_ms += time_to_add_ms;
+
+                          blocked_device->prev_time_blocked_ms_epoch = cur_ms_epoch;
+
+                          if (blocked_device->time_blocked_ms >= DEVICE_BLOCK_TIME_MS)
+                          {
+                            blocked_device->is_blocked = false;
+                            blocked_device->prev_time_blocked_ms_epoch = 0;
+                            blocked_device->time_blocked_ms = 0;
+                          }
+                        }
                       }
                     }
                   }

@@ -79,6 +79,11 @@ main(int argc, char *argv[])
             {
               printf("Invalid password. Please try again\n");
             }
+            else if (authentication_response.authentication_status == AUTHENTICATION_REQUEST_CURRENTLY_BLOCKED)
+            {
+              printf("Your account is blocked due to multiple authentication failures. Please try again later\n");
+              exit(1);
+            }
             else if (authentication_response.authentication_status == AUTHENTICATION_REQUEST_BLOCKED)
             {
               printf("Invalid password. Your account has been blocked. Please try again\n");

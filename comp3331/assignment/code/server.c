@@ -69,10 +69,11 @@ typedef struct
   u64 time_blocked_ms;
 } BlockedDevice;
 
+#define MAX_BLOCKED_DEVICES 32
 typedef struct
 {
   BlockedDevice *devices;
-  u32 max_devices;
+  u32 circular_index;
 } BlockedDevices;
 
 typedef struct
@@ -94,8 +95,8 @@ init_shared_state(u32 max_size)
     memory_arena.size = max_size;
 
     result = MEM_PUSH_STRUCT(&memory_arena, SharedState);
-    result->blocked_devices.devices = MEM_PUSH_ARRAY(&memory_arena, BlockedDevice, 32);
-    result->blocked_devices.max_devices = 32; 
+    result->blocked_devices.devices = MEM_PUSH_ARRAY(&memory_arena, BlockedDevice, MAX_BLOCKED_DEVICES);
+    result->blocked_devices.circular_index = 0; 
   }
   else
   {
@@ -173,6 +174,8 @@ main(int argc, char *argv[])
                           FPRINTF(stderr, "Warning: failed to set exit child on parent exit (%s)\n", strerror(errno));
                         }
 
+                        u32 failed_device_connection_attempts = 0;
+
                         while (true)
                         {
                           Message msg_request = {0}; 
@@ -187,9 +190,25 @@ main(int argc, char *argv[])
                               char *device_name = msg_request.device_name;
                               char *password = msg_request.password;
 
-                              // check_if_device_blocked()
-
                               msg_response.type = AUTHENTICATION_RESPONSE;
+
+                              for (u32 blocked_device_i = 0; 
+                                  blocked_device_i < MAX_BLOCKED_DEVICES;
+                                  blocked_device_i++)
+                              {
+                                BlockedDevice *blocked_device = &shared_state->blocked_devices.devices[blocked_device_i];
+
+                                if ((strcmp((const char *)blocked_device->name, device_name) == 0) &&
+                                     blocked_device->is_blocked)
+                                {
+                                  msg_response.authentication_status = AUTHENTICATION_REQUEST_CURRENTLY_BLOCKED;
+                                }
+                              }
+
+                              if (msg_response.authentication_status == AUTHENTICATION_REQUEST_CURRENTLY_BLOCKED)
+                              {
+                                break;
+                              }
 
                               if (verify_credentials(&client_credentials, device_name, password))
                               {
@@ -204,7 +223,33 @@ main(int argc, char *argv[])
                               }
                               else
                               {
-                                msg_response.authentication_status = AUTHENTICATION_REQUEST_FAILED;
+                                failed_device_connection_attempts++;
+                                if (failed_device_connection_attempts == number_of_consecutive_failed_attempts)
+                                {
+                                  msg_response.authentication_status = AUTHENTICATION_REQUEST_BLOCKED;
+
+                                  u32 *blocked_device_index = &shared_state->blocked_devices.circular_index;
+                                  BlockedDevice *blocked_device = &shared_state->blocked_devices.devices[*blocked_device_index];
+                                  blocked_device->is_blocked = true;
+                                  blocked_device->prev_time_blocked_ms_epoch = get_ms_epoch();
+                                  strncpy((char * restrict)blocked_device->name, device_name, sizeof(blocked_device->name));
+
+                                  if (*blocked_device_index + 1 == MAX_BLOCKED_DEVICES)
+                                  {
+                                    // IMPORTANT(Ryan): Locked increments here, but
+                                    // we know devices aren't going to be blocked close together
+                                    *blocked_device_index = 0;
+                                  }
+                                  else
+                                  {
+                                    *blocked_device_index++;
+                                  }
+
+                                }
+                                else
+                                {
+                                  msg_response.authentication_status = AUTHENTICATION_REQUEST_FAILED;
+                                }
                               }
                             } break;
 
@@ -212,6 +257,13 @@ main(int argc, char *argv[])
                           }
 
                           writex(client_fd, &msg_response, sizeof(msg_response));
+
+                          if (msg_response.type == AUTHENTICATION_RESPONSE &&
+                              (msg_response.authentication_status == AUTHENTICATION_REQUEST_BLOCKED ||
+                               msg_response.authentication_status == AUTHENTICATION_REQUEST_CURRENTLY_BLOCKED))
+                          {
+                            exit(1);
+                          }
                         }
                       }
                       else
@@ -244,12 +296,15 @@ main(int argc, char *argv[])
                       BlockedDevices *blocked_devices = &shared_state->blocked_devices;
 
                       for (u32 blocked_device_i = 0; 
-                           blocked_device_i < blocked_devices->max_devices;
+                           blocked_device_i < MAX_BLOCKED_DEVICES;
                            blocked_device_i++)
                       {
                         BlockedDevice *blocked_device = &blocked_devices->devices[blocked_device_i];
+
                         if (blocked_device->is_blocked)
                         {
+                          printf("device %s currently blocked for: %lu \n", blocked_device->name, blocked_device->time_blocked_ms);
+
                           u64 prev_time_blocked_ms_epoch = blocked_device->prev_time_blocked_ms_epoch;
                           u64 cur_ms_epoch = get_ms_epoch();
                           u64 time_to_add_ms = cur_ms_epoch - prev_time_blocked_ms_epoch;

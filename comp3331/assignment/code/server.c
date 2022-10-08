@@ -22,16 +22,14 @@
 
 typedef struct
 {
-  u32 socket_handle;
-  char device_name[32];
-  char ip[32];
-  u32 port;
-  u32 p2p_port;
-  char date_active[32];
+  char device_name[64];
 } ConnectedClient;
 
-#define MAX_CONNECTED_CLIENTS 32
-GLOBAL ConnectedClient global_connected_clients[MAX_CONNECTED_CLIENTS];
+typedef struct
+{
+  ConnectedClient clients[32];
+  u32 num_clients;
+} ConnectedClients;
 
 #define FORK_CHILD_PID 0
 
@@ -48,6 +46,8 @@ main(int argc, char *argv[])
       ClientCredentials client_credentials = parse_credentials("credentials.txt");
       if (client_credentials.num_credentials != 0)
       {
+        ConnectedClients connected_clients = {0};
+
         // IMPORTANT(Ryan): This is the TCP welcoming socket. It will perform TCP handshake
         int server_sock = socket(AF_INET, SOCK_STREAM, 0);
         if (server_sock != -1)
@@ -94,44 +94,47 @@ main(int argc, char *argv[])
                       while (true)
                       {
                         Message msg_request = {0}; 
+                        readx(client_fd, &msg_request, sizeof(msg_request)); 
 
-                        int bytes_read = read(client_fd, &msg_request, sizeof(msg_request)); 
-                        if (bytes_read == -1)
-                        {
-                          FPRINTF(stderr, "Error: read failed (%s)\n", strerror(errno));
-                          exit(1);
-                        }
+                        Message msg_response = {0};
 
                         switch (msg_request.type)
                         {
                           case AUTHENTICATION_REQUEST:
                           {
-                            char *username = msg_request.username;
+                            char *device_name = msg_request.device_name;
                             char *password = msg_request.password;
 
-                            Message msg_response = {0};
+                            // check_if_device_blocked()
+
                             msg_response.type = AUTHENTICATION_RESPONSE;
 
-                            if (verify_credentials(&client_credentials, username, password))
+                            if (verify_credentials(&client_credentials, device_name, password))
                             {
                               msg_response.authentication_status = AUTHENTICATION_REQUEST_SUCCESS;
                               strncpy(msg_response.response_message, "Welcome!", sizeof(msg_response.response_message));
+                              
+                              ConnectedClient *cur_client = &connected_clients.clients[connected_clients.num_clients];
+                              strncpy(cur_client->device_name, device_name, sizeof(cur_client->device_name));
+
+                              connected_clients.num_clients++;
+                              // recieve_UDP_port_number()
+                              //
+                              // Active edge device sequence number; timestamp; edge device name; edge
+                              // device IP address; edge device UDP server port number
+                              // 1; 30 September 2022 10:31:13; supersmartwatch; 129.64.31.13; 5432
+                              // write_to_device_log("cse_edge_device_log.txt")
                             }
                             else
                             {
                               msg_response.authentication_status = AUTHENTICATION_REQUEST_FAILED;
                             }
-
-                            int bytes_sent = write(client_fd, &msg_response, sizeof(msg_response));
-                            if (bytes_sent == -1)
-                            {
-                              FPRINTF(stderr, "Error: write failed (%s)\n", strerror(errno));
-                            }
-
                           } break;
 
                           ASSERT_DEFAULT_CASE()
                         }
+                        
+                        writex(client_fd, &msg_response, sizeof(msg_response));
                       }
                     }
                     else

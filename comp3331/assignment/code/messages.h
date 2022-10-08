@@ -11,6 +11,8 @@ typedef enum
   AUTHENTICATION_REQUEST,
   AUTHENTICATION_RESPONSE,
 
+  COMMAND_REQUEST,
+  COMMAND_RESPONSE,
 
 } MESSAGE_TYPE;
 
@@ -22,7 +24,7 @@ typedef struct
     // AUTHENTICATION
     struct
     {
-      char username[32];
+      char device_name[32];
       char password[32];
     };
     struct
@@ -31,7 +33,16 @@ typedef struct
       char response_message[128];
     };
 
-    // ...
+    // COMMAND
+    struct
+    {
+      char buffer[128];
+    };
+    struct
+    {
+      char response[128];
+    };
 
+    // ...
   };
 } Message;

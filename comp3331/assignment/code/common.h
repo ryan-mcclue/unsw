@@ -30,6 +30,11 @@
 
 #define ASSERT_DEFAULT_CASE() default: { assert(!"UNREACHABLE DEFAULT CASE"); }
 
+typedef uint8_t u8;
+typedef uint32_t u32;
+typedef uint64_t u64;
+typedef float r32;
+
 INTERNAL void
 FPRINTF(FILE *stream, char *format, ...)
 {
@@ -41,7 +46,24 @@ FPRINTF(FILE *stream, char *format, ...)
   va_end(args);
 }
 
-typedef uint8_t u8;
-typedef uint32_t u32;
-typedef uint64_t u64;
-typedef float r32;
+INTERNAL void
+writex(int fd, void *buf, size_t count)
+{
+  int bytes_written = write(fd, buf, count);
+  if (bytes_written == -1)
+  {
+    FPRINTF(stderr, "Error: write failed (%s)\n", strerror(errno));
+    exit(1);
+  }
+}
+
+INTERNAL void
+readx(int fd, void *buf, size_t count)
+{
+  int bytes_read = read(fd, buf, count);
+  if (bytes_read == -1)
+  {
+    FPRINTF(stderr, "Error: read failed (%s)\n", strerror(errno));
+    exit(1);
+  }
+}

@@ -53,11 +53,10 @@ main(int argc, char *argv[])
           Message authentication_request = {0};
           authentication_request.type = AUTHENTICATION_REQUEST;
 
-          // TODO(Ryan): Should this be sent from the server? Don't think so
           printf("Username: ");
-          fgets(authentication_request.username, sizeof(authentication_request.username), stdin);
-          char *username = authentication_request.username;
-          username[strcspn(username, "\n")] = '\0';
+          fgets(authentication_request.device_name, sizeof(authentication_request.device_name), stdin);
+          char *device_name = authentication_request.device_name;
+          device_name[strcspn(device_name, "\n")] = '\0';
 
           while (!have_authenticated)
           {
@@ -66,20 +65,10 @@ main(int argc, char *argv[])
             char *password = authentication_request.password;
             password[strcspn(password, "\n")] = '\0';
 
-            int bytes_sent = write(server_sock, &authentication_request, sizeof(authentication_request));
-            if (bytes_sent == -1)
-            {
-              FPRINTF(stderr, "Error: write failed (%s)\n", strerror(errno));
-              exit(1);
-            }
+            writex(server_sock, &authentication_request, sizeof(authentication_request));
 
             Message authentication_response = {0};
-            int bytes_read = read(server_sock, &authentication_response, sizeof(authentication_response));
-            if (bytes_read == -1)
-            {
-              FPRINTF(stderr, "Error: read failed (%s)\n", strerror(errno));
-              exit(1);
-            }
+            readx(server_sock, &authentication_response, sizeof(authentication_response));
 
             if (authentication_response.authentication_status == AUTHENTICATION_REQUEST_SUCCESS)
             {
@@ -93,8 +82,26 @@ main(int argc, char *argv[])
             else if (authentication_response.authentication_status == AUTHENTICATION_REQUEST_BLOCKED)
             {
               printf("Invalid password. Your account has been blocked. Please try again\n");
+              exit(1);
             }
           }
+
+#if 0
+          while (true)
+          {
+            printf("Enter one of the following commands (EDG, UED, SCS, DTE, AED, UVF, OUT): ");
+            char command_buffer[256] = {0};
+            fgets(command_buffer, sizeof(command_buffer), stdin);
+            command_buffer[strcspn(command_buffer, "\n")] = '\0';
+            
+            Message command_request = {0};
+            command_request.type = COMMAND_REQUEST;
+            writex(server_sock, &command_request, sizeof(command_request));
+
+            Message command_response = {0};
+            readx(server_sock, &command_response, sizeof(command_response));
+          }
+#endif
 
           exit(1);
         }

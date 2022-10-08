@@ -73,14 +73,14 @@ consume_identifier(char **at)
 }
 
 INTERNAL bool
-verify_credentials(ClientCredentials *credentials, char *username, char *password)
+verify_credentials(ClientCredentials *credentials, char *device_name, char *password)
 {
   bool result = false;
 
   for (u32 credential_i = 0; credential_i < credentials->num_credentials; ++credential_i)
   {
     ClientCredential credential = credentials->credentials[credential_i];
-    if (strcmp(credential.name, username) == 0 && strcmp(credential.password, password) == 0)
+    if (strcmp(credential.name, device_name) == 0 && strcmp(credential.password, password) == 0)
     {
       result = true;
       break;

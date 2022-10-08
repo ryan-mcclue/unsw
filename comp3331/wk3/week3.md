@@ -3,14 +3,16 @@
 DNS UDP:53
 Request and response same format
 
-A domain is name of a network. A hostname is end-point
+A domain is string name of a network. A hostname is end-point
 Essentially, a hostname extends DNS to within a network, e.g. machine-host-name.domain
 So, 'could' use hostname to communicate with other machine on same network
 
 NOTE: multiple DNS servers for a domain will all have identical information in them
 
-mywebsite.com is apex domain.
-www.mywebsite.com and mail.mywebsite.com are sub-domains
+mywebsite.com is apex domain, it only has A record
+
+www.mywebsite.com and mail.mywebsite.com are sub-domains, specifically hostnames. 
+They can have CNAME records. This means, say using a www. allows for CDN usage
 
 DNS is application-level. DNSSEC authenticates domain name responses to ensure DNS requests can't be manipulated.
 Hierarchical in namespace and administration (zone) for scalability and fast lookups

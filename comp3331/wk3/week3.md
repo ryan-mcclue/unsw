@@ -7,6 +7,10 @@ A domain is string name of a network. A hostname is end-point
 Essentially, a hostname extends DNS to within a network, e.g. machine-host-name.domain
 So, 'could' use hostname to communicate with other machine on same network
 
+Can have internationalised domain names, e.g. not in English
+
+Authoratative name server typically have primary and secondary (which is just a duplicate to handle load balancing)
+
 NOTE: multiple DNS servers for a domain will all have identical information in them
 
 mywebsite.com is apex domain, it only has A record

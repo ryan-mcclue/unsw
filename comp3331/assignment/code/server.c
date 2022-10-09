@@ -230,6 +230,7 @@ main(int argc, char *argv[])
                                      blocked_device->is_blocked)
                                 {
                                   msg_response.authentication_status = AUTHENTICATION_REQUEST_CURRENTLY_BLOCKED;
+                                  break;
                                 }
                               }
 
@@ -242,19 +243,18 @@ main(int argc, char *argv[])
                               {
                                 msg_response.authentication_status = AUTHENTICATION_REQUEST_SUCCESS;
                                 strncpy(msg_response.response_message, "Welcome!", sizeof(msg_response.response_message));
+                                // recieve_UDP_port_number()
 
                                 char device_ip[INET_ADDRSTRLEN] = {0};
                                 inet_ntop(AF_INET, &client_addr.sin_addr, device_ip, INET_ADDRSTRLEN);
 
                                 shared_state->num_connected_devices++;
 
-                                // 1; 30 September 2022 10:31:13; supersmartwatch; 129.64.31.13; 5432
-                                // append_to_file("cse_edge_device_log.txt", );
-
-                                // recieve_UDP_port_number()
-                                //
-                                // Active edge device sequence number; timestamp; edge device name; edge
-                                // device IP address; edge device UDP server port number
+                                char timestamp[64] = {0};
+                                populate_timestamp(timestamp, sizeof(timestamp));
+                                append_to_file("cse_edge_device_log.txt", "%d; %s; %s; %s; %d\n", 
+                                               shared_state->num_connected_devices,
+                                               timestamp, device_name, device_ip, 1234);
                               }
                               else
                               {
@@ -286,6 +286,11 @@ main(int argc, char *argv[])
                                   msg_response.authentication_status = AUTHENTICATION_REQUEST_FAILED;
                                 }
                               }
+                            } break;
+
+                            case AUTHENTICATION_REQUEST:
+                            {
+
                             } break;
 
                             ASSERT_DEFAULT_CASE()

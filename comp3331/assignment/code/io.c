@@ -50,6 +50,42 @@ read_entire_file(char *file_name)
 }
 
 INTERNAL void
+append_to_file(char *file_name, char *format, ...)
+{
+  int file_fd = open(file_name, O_CREAT | O_RDWR); 
+  if (file_fd != -1) 
+  {
+    if (lseek(file_fd, 0, SEEK_END) != -1)
+    {
+      va_list args = {0};
+      va_start(args, format);
+
+      char append_buf[128] = {0};
+      vsnprintf(append_buf, sizeof(append_buf), format, args); 
+
+      if (write(file_fd, append_buf, strlen(append_buf)) != -1)
+      {
+        close(file_fd);
+      }
+      else
+      {
+        FPRINTF(stderr, "Error: unable to write to end of file %s (%s)\n", file_name, strerror(errno));
+      }
+
+      va_end(args);
+    }
+    else
+    {
+      FPRINTF(stderr, "Error: unable to lseek to end of file %s (%s)\n", file_name, strerror(errno));
+    }
+  }
+  else
+  {
+    FPRINTF(stderr, "Error: unable to open/read file %s (%s)\n", file_name, strerror(errno));
+  }
+}
+
+INTERNAL void
 consume_whitespace(char **at)
 {
   while (isspace((*at)[0]))

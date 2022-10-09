@@ -98,7 +98,6 @@ main(int argc, char *argv[])
             }
           }
 
-#if 0
           while (true)
           {
             Message command_request = {0};
@@ -113,8 +112,8 @@ main(int argc, char *argv[])
 
             Message command_response = {0};
             readx(server_sock, &command_response, sizeof(command_response));
+            printf("%s\n", command_response.response);
           }
-#endif
 
           exit(1);
         }

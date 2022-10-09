@@ -1,6 +1,21 @@
 // SPDX-License-Identifier: zlib-acknowledgement
 #include "io.h"
 
+INTERNAL void
+write_entire_file(char *file_name, void *buf, u32 buf_size)
+{
+  int file_fd = open(file_name, O_TRUNC | O_WRONLY); 
+  if (file_fd != -1) 
+  {
+    if (write(file_fd, buf, buf_size) == -1)
+    {
+      FPRINTF(stderr, "Error: unable to write to file %s (%s)\n", file_name, strerror(errno));
+    }
+
+    close(file_fd);
+  }
+}
+
 INTERNAL ReadFileResult
 read_entire_file(char *file_name)
 {

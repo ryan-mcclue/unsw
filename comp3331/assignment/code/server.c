@@ -134,6 +134,36 @@ populate_timestamp(char *timestamp, u32 timestamp_size)
            1900 + lt->tm_year, lt->tm_hour, lt->tm_min, lt->tm_sec); 
 }
 
+typedef struct
+{
+  char tokens[8][64];
+  u32 num_tokens;
+} Tokens;
+
+INTERNAL Tokens
+split_into_tokens(char *buffer)
+{
+  Tokens result = {0};
+
+  char *at = buffer;
+
+  u32 token_i = 0;
+  while (*at != '\0')
+  {
+    consume_whitespace(&at); 
+    char *token_start = at;
+    u32 token_len = consume_identifier(&at);
+    memcpy(result.tokens[token_i], token_start, token_len);
+    result.tokens[token_i][token_len] = '\0';
+
+    token_i++;
+  }
+
+  result.num_tokens = token_i;
+
+  return result;
+}
+
 #define FORK_CHILD_PID 0
 
 int
@@ -288,8 +318,65 @@ main(int argc, char *argv[])
                               }
                             } break;
 
-                            case AUTHENTICATION_REQUEST:
+                            case COMMAND_REQUEST:
                             {
+                              msg_response.type = COMMAND_RESPONSE;
+
+                              char *command_buffer = msg_request.buffer;
+
+                              Tokens tokens = split_into_tokens(command_buffer);
+                              char *command_name = tokens.tokens[0];
+
+                              if (strcmp(command_name, "EDG") == 0)
+                              {
+                                if (tokens.num_tokens == 3)
+                                {
+                                  long int file_id = strtol(tokens.tokens[1], NULL, 10);
+                                  if (file_id == -1)
+                                  {
+                                    strncpy(msg_response.response, "error", sizeof(msg_response.response));
+                                    break;
+                                  }
+                                  long int data_amount = strtol(tokens.tokens[2], NULL, 10);
+                                  if (data_amount == -1)
+                                  {
+                                    strncpy(msg_response.response, "error", sizeof(msg_response.response));
+                                    break;
+                                  }
+                                }
+                                else
+                                {
+                                   strncpy(msg_response.response, "error", sizeof(msg_response.response));
+                                }
+                              }
+                              else if (strcmp(command_name, "UED") == 0)
+                              {
+
+                              }
+                              else if (strcmp(command_name, "SCS") == 0)
+                              {
+
+                              }
+                              else if (strcmp(command_name, "DTE") == 0)
+                              {
+
+                              }
+                              else if (strcmp(command_name, "AED") == 0)
+                              {
+
+                              }
+                              else if (strcmp(command_name, "UVF") == 0)
+                              {
+
+                              }
+                              else if (strcmp(command_name, "OUT") == 0)
+                              {
+
+                              }
+                              else
+                              {
+                                strncpy(msg_response.response, "Error. Invalid command!", sizeof(msg_response.response));
+                              }
 
                             } break;
 

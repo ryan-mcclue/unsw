@@ -47,3 +47,9 @@ typedef struct
     // ...
   };
 } Message;
+
+typedef struct
+{
+  u32 size;
+  void *contents;
+} FileMessage;

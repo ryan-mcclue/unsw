@@ -10,6 +10,7 @@ TODO: byte size of protocol headers
 LAN utilisation is the percentage of network bandwidth used.
 
 CSE machines have firewalls that block external traffic like a UDP packet
+Firewalls break layering principle (i.e. Transport is end-to-end) by inspecting headers to shield hosts from uncessary traffic 
 
 Servers like the CSE machines aren't behind a NAT as we want them to have static publically addressable IPs.
 So, users logged into them will share same IP. 
@@ -28,7 +29,7 @@ write software for network-edge
 
 IMAP and POP recieve emails. 
 SMTP sends and exchanges between servers (atop TCP). 
-Although HTTPS email user agent, between mail servers (so from protonmail to gmail) often plain-text (some use TLS). So, use PGP to be safe
+Although HTTPS email user agent (i.e. HTTP to send to your mail server), between mail servers (so from protonmail to gmail) often plain-text (some use TLS). So, use PGP to be safe
 
 socket (communication endpoint) for a client process (sending) and server process (responding)
 
@@ -36,7 +37,9 @@ application protocol considerations (data loss, timing, throughput, security)
 
 TCP (flow/congestion control, reliable data transefer, connection oriented)
 
-HTTP is a pull protocol, i.e. will wait for recieved reply (as oppose to SMTP which is push)
+HTTP is a pull protocol, i.e. will wait for recieved reply 
+SMTP is push, ∴ not used for transferring files between mail server and host as this is a pull operation
+
 HTTP stateless. Responses/requests have status line, header lines, body
 
 sends out cookie id which will be included in every HTTP request
@@ -45,8 +48,9 @@ sends out cookie id which will be included in every HTTP request
 improve page load times with protocol enhancements, content providing location and caching
 
 HTTP1.0 one TCP connection per resource served (incurs RTT penalty of 3-way handshake for TCP) 
+IMPORTANT: when asked to calculate RTT, know if TCP being used to incorporate this handshake 
 
-HTTP1.1 introduced persistent TCP connection (allows pipelining, i.e. sending multiple objects one after the other without waiting for response)
+HTTP1.1 introduced persistent TCP connection (allows pipelining, i.e. sending multiple objects one after the other without waiting for response, i.e. back-to-back requests)
 The 'Keep-Alive' header sets the parameters for this persistence
 In essence, persistence is just maintaining a single connection for entire duration (so something like SMTP is connected until entire email is sent, hence persistent)
 Further prevents the 3-way handshake 2xRTT for each object, incurring this only for first object

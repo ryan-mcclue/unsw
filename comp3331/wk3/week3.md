@@ -3,6 +3,10 @@
 DNS UDP:53
 Request and response same format
 
+Iterative DNS is where you contact say root, which will then return to you where to go next.
+Recursive DNS will have the root contact next server and so on and finally return result to you.
+Obviously iterative is better at offloading root servers
+
 A domain is string name of a network. A hostname is end-point
 Essentially, a hostname extends DNS to within a network, e.g. machine-host-name.domain
 So, 'could' use hostname to communicate with other machine on same network
@@ -62,7 +66,9 @@ Tracker is a server that records all people downloading/uploading a file (differ
 A .torrent file contains all information to download file, e.g. size, tracker, hash of file chunks
 
 Torrent is collection of peers exchanging chunks of a file
-Peers may upload (periodicaly reevaluate what top-four peers they send to; tit-for-tat) and download chunks between other peers
+Peers may upload (periodicaly reevaluate what top-four peers they send to; tit-for-tat, i.e. send to whomever sending them more) and download chunks between other peers
+However, for a peer to initially recieve chunks, will be optimistically unchoked by a neighbour peer
+
 DHT (distributed hash table), i.e. a P2P hash table database
 New keys are assigned to closest current ID
 Circular DHT each peer aware of successor and predecessor
@@ -76,6 +82,9 @@ Exception is first server that owns all keys less than it normally (0,..1), but 
 When a request is recieved, a hash table lookup is performed. 
 Say request data key 4.2, will follow peers based on this rule to find destination
 If a server is removed, keys migrate to maintain this rule
+For new peers joining the network, there will be a designated contact peer where queries relating to particular successor/predecessor are forwarded
+
+TODO: distribution times for client-server and p2p
 
 
 80% of ISP bandwidth is video streaming (acheived with: compression + DASH + playout buffering)

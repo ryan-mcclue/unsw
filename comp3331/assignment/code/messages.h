@@ -48,8 +48,11 @@ typedef struct
   };
 } Message;
 
+// NOTE(Ryan): mtu given by $(ifconfig), however could probably set to 65535 as using loopback
+#define MTU 1500
 typedef struct
 {
-  u32 size;
-  void *contents;
+  u32 file_size;
+  u32 contents_size;
+  char contents[1024];
 } FileMessage;

@@ -17,8 +17,9 @@ TCP/UDP don't provide bandwidth or delay guarantees
 connection orientated demultiplexing TCP uses 4-tuple, where UDP only about port (hence why TCP is connection based)
 (so, these transport protocols differ in their demultiplexing procedures)
 
-UDP simpler, smaller, no handshaking (HTTP3 will use UDP), no head-of-line blocking (work when network service compromised)
-Implement reliability and congestion control
+UDP simpler, smaller, no handshaking (HTTP3 will use UDP; this is why DNS uses UDP as the process of contacting many name servers would require many handshakes), 
+no head-of-line blocking (work when network service compromised)
+Have to implement reliability and congestion control on top of
 
 Always refer to transport segments as will contain payload. 
 TCP and UDP header contains 16bit ones complement checksum of IP header and itself (can be disabled for UDP in IPv4) that will be checked by reciever

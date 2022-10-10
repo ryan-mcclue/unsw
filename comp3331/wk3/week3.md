@@ -34,6 +34,7 @@ For specific domains, where it adds are different, e.g. for .au is auda.org, .co
 The local DNS server given by DHCP, i.e. run by your ISP is not part of this hierarchy, rather it connects you to it.
 
 Once DNS server learns mapping it caches it for a TTL (can also have negative caching, i.e. storing what doesn't exist)
+So, a DNS response will have a TTL field (separate from TTL in IP protocol)
 So, a changed domain may not be known until TTL expires and is automatically updated.
 This caching is also performed by web browser and/or OS
 

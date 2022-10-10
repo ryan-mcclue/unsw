@@ -23,11 +23,14 @@ Implement reliability and congestion control
 Always refer to transport segments as will contain payload. 
 TCP and UDP header contains 16bit ones complement checksum of IP header and itself (can be disabled for UDP in IPv4) that will be checked by reciever
 
+window size is number of packets
+MTU for loopback is 65535 because packet len is 16bits
+
 Reliably ordered data:
 * checksum detects bit errors
 * sequence number to detect duplicates (just 0 and 1, i.e. reciever waiting for 0, then waiting for 1)
 * ACK on success, ACK with same sequence number on errors (so send and wait?)
 * wait on timeout for ACK and retransmit if necessary to handle lost data
 However, performance for stop-and-wait is poor, so implement pipelining (sliding windows for efficiency), i.e. send multiple unACK'd packets at once
-Go-Back-N (cumulative): So, send 4 packets, if packet 2 errors, retransmit 2,3,4,5
+Go-Back-N (cumulative): So, send 4 packets, if packet 2 errors, retransmit 2,3,4,5 (heuristic based)
 Selective-Repeat (selective): Only retransmit specific errored packet

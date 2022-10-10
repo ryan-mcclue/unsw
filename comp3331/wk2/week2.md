@@ -1,5 +1,10 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+only advantage of http is human-readable
+end-to-end delay increases with packet size, as well a storage size
+web caches not used when state is updated regularly e.g. games
+also very expensive to have a separate web cache for thousands of websites
+
 TODO: byte size of protocol headers
 
 LAN utilisation is the percentage of network bandwidth used.

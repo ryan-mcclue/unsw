@@ -13,6 +13,15 @@
 ; If we treat everything as a function, then never have to save registers assuming stack size isn't an issue?
 ; The registers we use here are call-clobbered
 
+; However can just do simple if we know not using large number of registers
+simple_func:
+  push r16
+  push r17
+  ; use freely
+  pop r17
+  pop r16
+  ret
+
 ; IMPORTANT(Ryan): Function call
 function:
 ; 1. SAVE STACK FRAME POINTER 

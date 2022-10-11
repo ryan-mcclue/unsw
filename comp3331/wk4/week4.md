@@ -24,7 +24,7 @@ Have to implement reliability and congestion control on top of
 Always refer to transport segments as will contain payload. 
 TCP and UDP header contains 16bit ones complement checksum of IP header and itself (can be disabled for UDP in IPv4) that will be checked by reciever
 
-window size is number of packets
+Window size is number of bytes
 MTU for loopback is 65535 because packet len is 16bits
 
 Reliably ordered data:
@@ -36,10 +36,10 @@ Reliably ordered data:
 * ACK on success, ACK with same sequence number on errors (are set in flags field)
 selective ACK sends a single ACK for each individual packet 
 cumulative ACK (TCP uses) sends a single ACK for a group of packets
-* wait on timeout for ACK and retransmit if necessary to handle lost data
+* wait on timeout for ACK and retransmit if necessary to handle lost data (also have max. retransmit counters)
 (`EstimatedRTT = (1- a)*EstimatedRTT + a*SampleRTT`)
 (timeout = `EstimatedRTT + 4*DevRTT`)
-(fast retransmit optimisation ignores this timer)
+(fast retransmit optimisation ignores this timer when it has recieved 3 duplicated ACKs)
 * However, performance for stop-and-wait is poor, so implement sliding windows for efficiency (pipelining), i.e. send multiple unACK'd packets at once
   - Go-Back-N: So, send 4 packets, if packet 2 errors, retransmit 2,3,4,5 (heuristic based)
   - Selective-Repeat: Only retransmit specific errored packet

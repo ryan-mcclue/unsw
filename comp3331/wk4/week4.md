@@ -29,11 +29,12 @@ MTU for loopback is 65535 because packet len is 16bits
 
 Reliably ordered data:
 * checksum detects 2-bit errors (is 1's complement of 1's complement sum of all 16-bit words in header) 
+will send NACK on corruption
 * sequence number to detect duplicates 
 (is byte offset within a particular direction, i.e. towards server or client. calculated by adding particular TCP payload size to random ISN)
 (acknowledgement number in an ACK mirrors (sequence number + 1)  in that it says I'm good until this byte offset)
 (can buffer out of sequence packets)
-* ACK on success, ACK with same sequence number on errors (are set in flags field)
+* ACK on success
 selective ACK sends a single ACK for each individual packet 
 cumulative ACK (TCP uses) sends a single ACK for a group of packets
 * wait on timeout for ACK and retransmit if necessary to handle lost data (also have max. retransmit counters)
@@ -43,3 +44,7 @@ cumulative ACK (TCP uses) sends a single ACK for a group of packets
 * However, performance for stop-and-wait is poor, so implement sliding windows for efficiency (pipelining), i.e. send multiple unACK'd packets at once
   - Go-Back-N: So, send 4 packets, if packet 2 errors, retransmit 2,3,4,5 (heuristic based)
   - Selective-Repeat: Only retransmit specific errored packet
+
+duplicate ACKs could be because of high latency
+will get duplicate ACKs when say sending 10 packets and packet 2 doesn't make it. 
+reciever will send same ACK back for all packets after 2 to indicate it hasn't recieved 2

@@ -33,7 +33,13 @@ Congestion detected with:
 Phases of congestion control:
   1. Discovering bandwidth/slow-start (start with CWND low, then increase exponentially until first loss, or RWND or ssthres)
   2. Adjusting to bandwidth/congestion-avoidance (AIMD (additive increase multiplicative decrease, i.e halve on loss) leads to saw-tooth)
+  (The various methods by which to update the CWND such as AIAD affect fairness (0.5 + 0.5 = 1) and efficiency (x + y = 1) differently)
+  (Therefore, CWND update methodolgy impacts on thoroughput)
 
 TCP-Tahoe, TCP-Reno (most common)
 
-IMPORTANT: ssthres. is continually updated. furthermore, the slow-start can be repeated
+IMPORTANT: ssthres. is continually updated.
+Furthermore, the slow-start can be repeated
+
+TODO: Understand ACK numbers for lost packets
+TODO: fast retransmit vs fast recovery?

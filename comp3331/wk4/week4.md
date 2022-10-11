@@ -28,10 +28,18 @@ window size is number of packets
 MTU for loopback is 65535 because packet len is 16bits
 
 Reliably ordered data:
-* checksum detects bit errors
-* sequence number to detect duplicates (just 0 and 1, i.e. reciever waiting for 0, then waiting for 1)
-* ACK on success, ACK with same sequence number on errors (so send and wait?)
+* checksum detects 2-bit errors (is 1's complement of 1's complement sum of all 16-bit words in header) 
+* sequence number to detect duplicates 
+(is byte offset within a particular direction, i.e. towards server or client. calculated by adding particular TCP payload size to random ISN)
+(acknowledgement number in an ACK mirrors (sequence number + 1)  in that it says I'm good until this byte offset)
+(can buffer out of sequence packets)
+* ACK on success, ACK with same sequence number on errors (are set in flags field)
+selective ACK sends a single ACK for each individual packet 
+cumulative ACK (TCP uses) sends a single ACK for a group of packets
 * wait on timeout for ACK and retransmit if necessary to handle lost data
-However, performance for stop-and-wait is poor, so implement pipelining (sliding windows for efficiency), i.e. send multiple unACK'd packets at once
-Go-Back-N (cumulative): So, send 4 packets, if packet 2 errors, retransmit 2,3,4,5 (heuristic based)
-Selective-Repeat (selective): Only retransmit specific errored packet
+(`EstimatedRTT = (1- a)*EstimatedRTT + a*SampleRTT`)
+(timeout = `EstimatedRTT + 4*DevRTT`)
+(fast retransmit optimisation ignores this timer)
+* However, performance for stop-and-wait is poor, so implement sliding windows for efficiency (pipelining), i.e. send multiple unACK'd packets at once
+  - Go-Back-N: So, send 4 packets, if packet 2 errors, retransmit 2,3,4,5 (heuristic based)
+  - Selective-Repeat: Only retransmit specific errored packet

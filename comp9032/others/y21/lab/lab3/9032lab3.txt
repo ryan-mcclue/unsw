@@ -1,0 +1,193 @@
+.include “m2560def.inc”
+
+;from lecture notes wk4_2, pg18
+.def row=r16				;current row number
+.def col=r17				;current column number
+.def rmask=r18			;mask for current row during scan
+.def cmask=r19			;mask for current column during scan
+.def temp1=r20
+.def temp2=r21
+.def a = r22
+.def b = r23
+.def flag = r26
+.def ten = r27
+.def temp = r28			;store the current value of the key pressed
+.equ PORTFDIR = 0xF0		;PF7-4:output, PF3-0:input, 0b11110000
+.equ ROWMASK = 0x0F		;for obtaining input from Port F
+.equ INITCOLMASK = 0xEF		;scan from the leftmost column, 0b11101111
+.equ INITROWMASK = 0x01		;scan from the top row, 0b00000001
+
+.macro OneSecondDealy
+	ldi r16,0x00			
+	ldi r17,0x8a
+	ldi r18,0x16
+	clr r19
+	clr r24
+	clr r25
+Loop:
+	cp r24,r16					;1
+	cpc r25,r17					;1
+	cpc r26,r18					;1
+	bush done					;1 / 2
+	adiw r25:24,1					;2
+	adc r26,r19					;1
+	nop						;1
+	rjmp loop					;2
+;16MHz, 16000000 cycles
+;6+5 + 10x = 16000000
+;x = 1600000 = 168a00
+done:
+.endmacro
+
+.macro flash
+	ldi temp, 0x00
+		out POTRC,temp
+		OneSecondDelay
+	ldi temp, 0xFF
+		out PORTC,temp
+		OneSecondDelay
+		ldi temp, 0x00
+		OneSecondDelay
+	ldi temp, 0xFF
+		out PORTC,temp
+		OneSecondDelay
+		ldi temp, 0x00
+		OneSecondDelay
+	ldi temp, 0xFF
+		out PORTC,temp
+		OneSecondDelay
+		ldi temp, 0x00
+		OneSecondDelay
+	ldi temp, 0xFF
+		out PORTC,temp
+		OneSecondDelay
+		ldi temp, 0x00
+		OneSecondDelay
+		mov temp,r0
+		jmp displayResult
+.endmacro
+	
+
+;from lecture notes week4_2, pg19
+Reset:
+	ldi temp1, PORTFDIR				;PF7:4/PF3:0, out/in
+	out DDRF, temp1
+	ser temp1					;PORTC is set output
+	out  DDRC,temp1				;to display ASCII of pressed
+	out PORTC,temp1				;initially LEDS are turned on
+	clr a
+	clr b
+	ldi ten, 10
+	clr temp
+
+main:
+	ldi cask, INITCOLMASK			;initial column mask
+	clr col						;initial column
+Collop:
+	cpi col,4
+	brew main					;if all keys are scanned, repeat
+	out PORTF,cmask				;else scan a column
+
+	ldi temp1,0xFF
+Delay:
+	dec temp1,0xFF				;slow down the scan operation
+							;temp - 1
+	brne delay					;if not 00000000, delay
+	in temp1, PINF				;read PORTF
+	andi temp1,ROWMASK			;get the keypad output value
+	cpi temp1, 0xF				;check if any row is low
+	breq nextcol					;if 00001111 next col(any row is not low)
+
+							;if there is any row that low(0), find it
+	ldi rmask, INITROWMASK			;initialize for row check
+	clr row;
+Rowloop:
+	cpi row,4
+	breq nextcol					;the row scan is over
+	mov temp2,temp1
+	and temp2,rmask				;check un-masked bit
+	breq convert					;if bit is clear, the key is pressed
+	
+	inc row						;else scan the next row
+	lsl rmask
+	rjmp rowloop	
+Nextcol:
+	lsl cmask
+	inc col
+	rjmp colloop
+
+Convert:
+;	cpi col,3		;if the pressed key is in col.3
+;	breq letters		;we have a letter
+;				;if not
+
+	cpi row,3		;if the key is in row3
+	breq symbols		;we have * or 0 or #
+
+				;else we have a number in 1-9
+	breq input_number
+input_number:
+	mov temp1,row
+	lsl temp1
+	add temp1,row
+	add temp1,col		;temp1 = row*3 + col
+	subi temp1,-1
+	ldi temp, temp1
+	cpi flag,0
+	breq input_a		;flag = 0: input a
+	cpi flag,1
+	breq input_b		;flag =1: input b
+input_a:
+	mul a,ten
+	add a,temp
+	mov temp,a
+	jmp convert_end
+input_b:
+	mul b,ten
+	add b,temp
+	mov temp,b
+	jmp convert_end
+;Letters:
+;	ldi temp1,’A’
+;	add temp1,row
+;	rjmp convert_end
+Symbols:
+	cpi col,0
+	breq star		;input is ‘*’
+	cpi col,1		;input is 0
+	breq input_zero
+				;else we have ‘#’
+	ldi flag,2
+	ldi temp,’#’
+	rjmp convert_end
+input_zero:
+	ldi temp,0
+	cpi flag,0
+	breq input_a
+	cpi flag,1
+	breq input_b
+	
+Star:
+	ldi flag, 1
+	ldi temp,’*’
+	jmp convert_end
+convert_end:
+	out PORTC,temp
+	cpi flag,2
+	breq dispalyResult
+	jmp main
+
+displayResult:
+	mul a,b
+	mov temp,r1
+	cpi temp,0		;if r1 != 0: overflow
+	brne flash
+	
+				;if not overflow
+	mov temp,r0
+	jmp displayResult
+displayResult:
+	out PORTC,temp
+	jmp displayResult
+
+

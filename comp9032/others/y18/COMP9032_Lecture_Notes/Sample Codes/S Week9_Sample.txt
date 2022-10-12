@@ -1,0 +1,42 @@
+; This example is to demonstrate the use of the shaft encoder which is needed in Lab 4. 
+; Connections: Port C --> LEDs, OpE-->+5v, OpO-->INT0
+; Operation: Turn the wheel (disc) on the board. When the hole is passing through the encoder, the display pattern is flipped. 
+
+
+.include "m2560def.inc"
+
+.def 	temp = r16
+.def 	output = r17
+.equ 	PATTERN = 0b01010101
+
+				; set up interrupt vectors
+	jmp RESET
+.org 	INT0addr			; defined in m2560def.inc
+	jmp EXT_INT0
+
+RESET:
+
+	ser temp			; set Port C as output
+	out DDRC, temp
+	ldi output, PATTERN
+	out PORTC, output
+
+	ldi temp, (2 << ISC00)	; set INT0 as falling edge triggered interrupt
+	sts EICRA, temp
+
+	in temp, EIMSK		; enable INT0
+	ori temp, (1<<INT0)
+	out EIMSK, temp
+
+	sei			; enable Global Interrupt
+	jmp main
+
+EXT_INT0:
+
+	com output	; flip the pattern
+	out PORTC, output
+	reti
+
+main:
+	rjmp main
+

@@ -1,0 +1,309 @@
+{\rtf1\ansi\ansicpg936\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fnil\fcharset134 PingFangSC-Regular;\f2\froman\fcharset0 Times-Roman;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red236\green92\blue7;\red13\green96\blue2;
+\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c94929\c44585\c0;\cssrgb\c506\c44277\c174;
+\cssrgb\c100000\c100000\c100000;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs22 \cf2 \
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; CODE 2 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\
+\
+; Test code from Hui Wu\
+; Board settings: 1. Connect LCD data pins D0-D7 to PORTF0-7.\
+; 2. Connect the four LCD control pins BE-RS to PORTA4-7.\
+  \
+.include "m2560def.inc"\
+\
+.macro do_lcd_command\
+	ldi r16, @0\
+	rcall lcd_command\
+	rcall lcd_wait\
+.endmacro\
+.macro do_lcd_data\
+	ldi r16, @0\
+	rcall lcd_data\
+	rcall lcd_wait\
+.endmacro\
+\pard\pardeftab720\partightenfactor0
+\cf3 .macro do_lcd_data_register		;write data to LCD data memory from \
+						;register being passed in\
+	mov r16, @0\
+	rcall lcd_data\
+	rcall lcd_wait\
+.endmacro\
+\pard\pardeftab720\partightenfactor0
+\cf2 ;.org 0		;
+\f1 \'b4\'fa\'c2\'eb\'c6\'f0\'ca\'bc\'b6\'cb\'d6\'c3
+\f0 0\
+;	jmp RESET\
+\
+.cseg\
+.org 0\
+	jmp RESET\
+.org INT0addr\
+	jmp holeInterrupt\
+.org INT1addr\
+	jmp displayRPS\
+\
+RESET:\
+	ldi r16, low(RAMEND)\
+	out SPL, r16\
+	\cf4 ;Set Stack Pointer to top of RAM \cf2 \
+	ldi r16, high(RAMEND)\
+	out SPH, r16\
+\
+	ser r16\
+	\cf4 ;set 0xFF to r16\cf2 \
+	out DDRF, r16		;set portF for LCD data(output)\
+	out DDRA, r16		;set portA for controlling LCD\
+	clr r16\
+	\cf4 ;DDRC
+\f1 \'ca\'c7
+\f0 C
+\f1 \'bf\'da\'b5\'c4\'b7\'bd\'cf\'f2\'bc\'c4\'b4\'e6\'c6\'f7\'a3\'ac
+\f0 PORTC
+\f1 \'ca\'c7
+\f0 C
+\f1 \'bf\'da\'b5\'c4\'ca\'fd\'be\'dd\'bc\'c4\'b4\'e6\'c6\'f7\'a3\'ac
+\f0 \
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf4 \cb5 	
+\f0 ;DDRC
+\f1 \'ce\'aa
+\f0 0
+\f1 \'ca\'b1\'a3\'ac
+\f0 C
+\f1 \'bf\'da\'ce\'aa\'ca\'e4\'c8\'eb\'a3\'ac
+\f0 IO
+\f1 \'b5\'c4\'b8\'df\'b5\'cd\'b4\'d3
+\f0 PORTC
+\f1 \'bf\'c9\'d2\'d4\'b6\'c1\'b3\'f6
+\f0 \
+	;DDRC
+\f1 \'ce\'aa
+\f0 1
+\f1 \'ca\'b1\'a3\'ac
+\f0 c
+\f1 \'ce\'aa\'ca\'e4\'b3\'f6\'a3\'ac\'ca\'e4\'b3\'f6\'b8\'df\'b5\'cd\'d3\'d0
+\f0 PORTC
+\f1 \'bf\'d8\'d6\'c6
+\f0 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb1 	out PORTF, r16		;clear ports\
+	out PORTA, r16\
+\
+	do_lcd_command 0b00111000 ; 2x5x7\
+	rcall sleep_5ms\
+	do_lcd_command 0b00111000 ; 2x5x7\
+	rcall sleep_1ms\
+	do_lcd_command 0b00111000 ; 2x5x7\
+	do_lcd_command 0b00111000 ; 2x5x7\
+	do_lcd_command 0b00001000 ; display off\
+	do_lcd_command 0b00000001 ; clear display\
+	do_lcd_command 0b00000110 ; increment, no display shift\
+	do_lcd_command 0b00001110 ; Cursor on, bar, no blink\
+	\
+	ldi temp,0b00000010	;set Port D bit1 as output\
+	out DDRD,temp1\
+	out PORTD,temp1\
+\
+	;enable INT0 and INT1 with falling edge\
+	ldi temp, (2<<ISC00)|(2<<ISC10)	;set INT0 and INT1 as falling edge\
+							;sensed interrupts\
+	sts EICRA,temp\
+	in temp, EIMSK				;enable INT0 and INT1\
+	ori temp,(1<<INT0)|(1<<INT1)\
+	out EIMSK,temp\
+\
+	\
+\
+	clr pinCount\
+	clr rpsL\
+	clr rpsH\
+	\
+	sei						;enable Global interrupt\
+	jmp main\
+\
+;Interrupt counts every hole passed. 4 holes = 1 revolution\
+holeInterrupt:\
+	push temp\
+	in temp,SREG\
+	push temp\
+	subi pinCount,-1		;add 1 to number of holes passed\
+holeInterrupt_loop:\
+	cpi pinCount,4\
+	brlo holeInterrupt_end	;branch if lower\
+	subi pinCount,4\
+	adiw rpsH:rpsL,1\
+	rjmp holeInterrupt_loop\
+holeInterrupt_end:\
+	pop temp\
+	out SREG,temp\
+	pop temp\
+	reti\
+\
+displayRPS:\
+	do_lcd_command 0b10000000	;set LCD address to start of LCD first\
+	ldi temp2, low(1000)		;check the digit in 1000s spot\
+	ldi temp3,high(1000)\
+	clr temp\
+displayRPS_loop:\
+	cp rpsL,temp2\
+	cpc rpsH,temp3\
+	brlo displayRPS_display\
+	sub rpsL,temp2\
+	sub rpsH,temp3\
+	inc temp\
+	rjmp displayRPS_loop\
+displayRPS_display:			;write temp1(digit) to LCD\
+	subi temp, -\'910\'92\
+	do_lcd_data_register temp\
+displayRPS_increment:\
+	sbrc temp3, 0	;Skip if Bit0 in temp3 Cleared 
+\f2\fs24 \
+	
+\f0 rjmp displayRPS_thousand\
+	sbrc temp2, 6
+\fs22 \
+	rjmp displayPRS_hundred\
+	sbrc temp2, 3\
+	rjmp displayRPS_ten\
+	rjmp displayRPS_one\
+displayRPS_thousand:\
+	ldi temp2, low(100)\
+	ldi temp3, high(100)\
+	clr temp\
+	rjmp displayRPS_loop\
+displayRPS_hundred:\
+	ldi temp2, low(10)\
+	ldi temp3, high(10)\
+	clr temp\
+	rjmp displayRPS_loop\
+displayRPS_one:\
+	clr pinCount\
+	sbi PORTD, 1\
+	reti\
+\
+\
+\
+Main:\
+	rcall sleep_1s\
+	cbi PORTD,1\
+	rjmp main\
+\
+.equ LCD_RS = 7	;Register Select\
+.equ LCD_E = 6	;Enable-Operation start signal\
+.equ LCD_RW = 5	;Signal to select Read or Write\
+.equ LCD_BE = 4\
+\
+.macro lcd_set\
+	sbi PORTA, @0\
+\pard\pardeftab720\partightenfactor0
+\cf4 ;sbi: set bit in I/O register\
+;cbi: clear bit in I/O register\
+\pard\pardeftab720\partightenfactor0
+\cf2 .endmacro\
+.macro lcd_clr\
+	cbi PORTA, @0\
+.endmacro\
+\
+;\
+; Send a command to the LCD (r16)\
+;\
+\
+lcd_command:\
+	out PORTF, r16\
+	nop\
+	lcd_set LCD_E	;turn on the enable pin\
+	nop\
+	nop\
+	nop\
+	lcd_clr LCD_E	;turn off the enable pin\
+	nop	\
+	nop\
+	nop\
+	ret\
+\
+lcd_data:\
+	out PORTF, r16\
+	lcd_set LCD_RS	;RS = 1, RW = 0 for data write\
+	nop\
+	nop\
+	nop\
+	lcd_set LCD_E	;turn on the enable pin		\
+	nop\
+	nop\
+	nop\
+	lcd_clr LCD_E	;turn off the enable pin\
+	nop\
+	nop\
+	nop\
+	lcd_clr LCD_RS\
+	ret\
+\
+lcd_wait:\
+	push r16\
+	clr r16\
+	out DDRF, r16	;make portF as an input port for now\
+	out PORTF, r16\
+	lcd_set LCD_RW	;RS=0, RW=1 for a command port read\
+lcd_wait_loop:\
+	nop\
+	lcd_set LCD_E	;turn on the enable pin\
+	nop\
+	nop\
+	nop\
+	in r16, PINF	;read value from LCD\
+	lcd_clr LCD_E	;turn off the enable pin\
+	sbrc r16, 7	;sbrc: r16(7)Skip if Bit in Register Cleared \
+	rjmp lcd_wait_loop\
+	lcd_clr LCD_RW	;else:\
+	ser r16\
+	out DDRF, r16	;make port F an output port again\
+	pop r16\
+	ret\
+\
+.equ F_CPU = 16000000\
+.equ DELAY_1MS = F_CPU / 4 / 1000 - 4\
+; 4 cycles per iteration - setup/call-return overhead\
+\
+sleep_1ms:\
+	push r24\
+	push r25\
+	ldi r25, high(DELAY_1MS)\
+	ldi r24, low(DELAY_1MS)\
+delayloop_1ms:\
+	sbiw r25:r24, 1\
+	\cf4 ;sbiw: Subtract Immediate from Word \cf2 \
+	brne delayloop_1ms\
+	\cf4 ;brne: 
+\f1 \'b2\'bb\'cf\'e0\'b5\'c8\'d7\'aa\'d2\'c6\'a3\'a8\'bb\'f2\'d5\'df\'bd\'e1\'b9\'fb\'b2\'bb\'ce\'aa
+\f0 0
+\f1 \'a3\'a9
+\f0 \cf2 \
+	pop r25\
+	pop r24\
+	ret\
+\
+sleep_5ms:\
+	rcall sleep_1ms\
+	rcall sleep_1ms\
+	rcall sleep_1ms\
+	rcall sleep_1ms\
+	rcall sleep_1ms\
+	ret\
+\
+sleep_1s:\
+	push r23\
+	ldi r23,200\
+delayloop_1s:\
+	rcall sleep_5ms\
+	subi r23,1\
+	brne delayloop_1s\
+	pop r23\
+	ret}

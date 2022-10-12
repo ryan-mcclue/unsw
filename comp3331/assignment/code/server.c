@@ -204,6 +204,9 @@ main(int argc, char *argv[])
               {
                 SharedState *shared_state = init_shared_state(MEGABYTES(8));
                 assert(shared_state != NULL);
+                
+                // TODO(Ryan): Create/clear log files
+                // clear_file("cse_edge_device_log.txt")
 
                 while (true)
                 {

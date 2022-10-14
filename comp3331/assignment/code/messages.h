@@ -15,6 +15,9 @@ typedef enum
   COMMAND_REQUEST,
   COMMAND_RESPONSE,
 
+  EDG_REQUEST,
+  EDG_RESPONSE,
+
 } MESSAGE_TYPE;
 
 typedef struct
@@ -35,14 +38,15 @@ typedef struct
       char response_message[128];
     };
 
-    // COMMAND
+    // EDG
     struct
     {
-      char buffer[128];
+      u32 file_id;
+      u32 data_amount; 
     };
     struct
     {
-      char response[128];
+      char edg_response[128];
     };
 
     // ...
@@ -53,6 +57,7 @@ typedef struct
 #define MTU 1500
 typedef struct
 {
+  u32 message_of;
   u32 file_size;
   u32 contents_size;
   char contents[1024];

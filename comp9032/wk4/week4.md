@@ -11,6 +11,9 @@ For a switch array, can feed into a multiplexor
 Switch matrix will have say rows as Vcc and columns to switches. 
 Will have diodes to prevent ghosting?
 
+column output, 0 to select, 0 if down
+row input, 1 to select, 1 if down
+
 Vdd (drain, power supply to chip)
 Vcc (collector, subsection of chip, i.e. supply voltage of circuit)
 Vss (sink, ground)

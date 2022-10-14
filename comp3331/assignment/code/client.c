@@ -59,6 +59,7 @@ main(int argc, char *argv[])
 
           Message authentication_request = {0};
           authentication_request.type = AUTHENTICATION_REQUEST;
+          authentication_request.udp_port_num = client_udp_port;
 
           printf("Username: ");
           fgets(authentication_request.device_name, sizeof(authentication_request.device_name), stdin);

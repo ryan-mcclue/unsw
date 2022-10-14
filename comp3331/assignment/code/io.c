@@ -4,7 +4,7 @@
 INTERNAL void
 write_entire_file(char *file_name, void *buf, u32 buf_size)
 {
-  int file_fd = open(file_name, O_TRUNC | O_WRONLY); 
+  int file_fd = open(file_name, O_CREAT | O_TRUNC | O_WRONLY, 0666); 
   if (file_fd != -1) 
   {
     if (write(file_fd, buf, buf_size) == -1)

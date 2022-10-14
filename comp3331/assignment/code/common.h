@@ -36,6 +36,19 @@ typedef uint32_t u32;
 typedef uint64_t u64;
 typedef float r32;
 
+INTERNAL u64
+get_ms_epoch(void)
+{
+  u64 result = 0;
+
+  struct timespec time_spec = {0};
+  clock_gettime(CLOCK_MONOTONIC_RAW, &time_spec);
+
+  result = (time_spec.tv_sec * 1000LL) + (time_spec.tv_nsec / 1000000.0f);
+
+  return result;
+}
+
 INTERNAL void
 FPRINTF(FILE *stream, char *format, ...)
 {

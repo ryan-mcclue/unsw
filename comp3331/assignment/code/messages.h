@@ -27,6 +27,7 @@ typedef struct
     {
       char device_name[32];
       char password[32];
+      u32 udp_port_num;
     };
     struct
     {

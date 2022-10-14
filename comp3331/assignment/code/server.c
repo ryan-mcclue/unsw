@@ -13,23 +13,11 @@
 // 1; 30 September 2022 10:31:13; supersmartwatch; 129.64.31.13; 5432
 
 #include "common.h"
-#include "io.c"
 #include "messages.h"
+#include "io.c"
+#include "commands.c"
 
 #define DEVICE_BLOCK_TIME_MS 10000
-
-INTERNAL u64
-get_ms_epoch(void)
-{
-  u64 result = 0;
-
-  struct timespec time_spec = {0};
-  clock_gettime(CLOCK_MONOTONIC_RAW, &time_spec);
-
-  result = (time_spec.tv_sec * 1000LL) + (time_spec.tv_nsec / 1000000.0f);
-
-  return result;
-}
 
 typedef struct
 {
@@ -134,36 +122,6 @@ populate_timestamp(char *timestamp, u32 timestamp_size)
            1900 + lt->tm_year, lt->tm_hour, lt->tm_min, lt->tm_sec); 
 }
 
-typedef struct
-{
-  char tokens[8][64];
-  u32 num_tokens;
-} Tokens;
-
-INTERNAL Tokens
-split_into_tokens(char *buffer)
-{
-  Tokens result = {0};
-
-  char *at = buffer;
-
-  u32 token_i = 0;
-  while (*at != '\0')
-  {
-    consume_whitespace(&at); 
-    char *token_start = at;
-    u32 token_len = consume_identifier(&at);
-    memcpy(result.tokens[token_i], token_start, token_len);
-    result.tokens[token_i][token_len] = '\0';
-
-    token_i++;
-  }
-
-  result.num_tokens = token_i;
-
-  return result;
-}
-
 #define FORK_CHILD_PID 0
 
 int
@@ -236,6 +194,8 @@ main(int argc, char *argv[])
                         }
 
                         u32 failed_device_connection_attempts = 0;
+                        char device_name[32] = {0};
+                        u32 udp_port_num = 0;
 
                         while (true)
                         {
@@ -248,7 +208,7 @@ main(int argc, char *argv[])
                           {
                             case AUTHENTICATION_REQUEST:
                             {
-                              char *device_name = msg_request.device_name;
+                              strncpy(device_name, msg_request.device_name, sizeof(device_name));
                               char *password = msg_request.password;
 
                               msg_response.type = AUTHENTICATION_RESPONSE;
@@ -276,7 +236,7 @@ main(int argc, char *argv[])
                               {
                                 msg_response.authentication_status = AUTHENTICATION_REQUEST_SUCCESS;
                                 strncpy(msg_response.response_message, "Welcome!", sizeof(msg_response.response_message));
-                                // recieve_UDP_port_number()
+                                udp_port_num = msg_request.udp_port_num;
 
                                 char device_ip[INET_ADDRSTRLEN] = {0};
                                 inet_ntop(AF_INET, &client_addr.sin_addr, device_ip, INET_ADDRSTRLEN);
@@ -287,7 +247,7 @@ main(int argc, char *argv[])
                                 populate_timestamp(timestamp, sizeof(timestamp));
                                 append_to_file("cse_edge_device_log.txt", "%d; %s; %s; %s; %d\n", 
                                                shared_state->num_connected_devices,
-                                               timestamp, device_name, device_ip, 1234);
+                                               timestamp, device_name, device_ip, udp_port_num);
                               }
                               else
                               {
@@ -325,62 +285,8 @@ main(int argc, char *argv[])
                             {
                               msg_response.type = COMMAND_RESPONSE;
 
-                              char *command_buffer = msg_request.buffer;
-
-                              Tokens tokens = split_into_tokens(command_buffer);
-                              char *command_name = tokens.tokens[0];
-
-                              if (strcmp(command_name, "EDG") == 0)
-                              {
-                                if (tokens.num_tokens == 3)
-                                {
-                                  long int file_id = strtol(tokens.tokens[1], NULL, 10);
-                                  if (file_id == -1)
-                                  {
-                                    strncpy(msg_response.response, "error", sizeof(msg_response.response));
-                                    break;
-                                  }
-                                  long int data_amount = strtol(tokens.tokens[2], NULL, 10);
-                                  if (data_amount == -1)
-                                  {
-                                    strncpy(msg_response.response, "error", sizeof(msg_response.response));
-                                    break;
-                                  }
-                                }
-                                else
-                                {
-                                   strncpy(msg_response.response, "error", sizeof(msg_response.response));
-                                }
-                              }
-                              else if (strcmp(command_name, "UED") == 0)
-                              {
-
-                              }
-                              else if (strcmp(command_name, "SCS") == 0)
-                              {
-
-                              }
-                              else if (strcmp(command_name, "DTE") == 0)
-                              {
-
-                              }
-                              else if (strcmp(command_name, "AED") == 0)
-                              {
-
-                              }
-                              else if (strcmp(command_name, "UVF") == 0)
-                              {
-
-                              }
-                              else if (strcmp(command_name, "OUT") == 0)
-                              {
-
-                              }
-                              else
-                              {
-                                strncpy(msg_response.response, "Error. Invalid command!", sizeof(msg_response.response));
-                              }
-
+                              process_command(msg_request.buffer, device_name, &msg_response);
+                              
                             } break;
 
                             ASSERT_DEFAULT_CASE()

@@ -88,7 +88,8 @@ process_command(char *command_buffer, char *device_name, Message *msg_response)
   }
   else if (strcmp(command_name, "UED") == 0)
   {
-
+    // NOTE(Ryan): Filenames of those uploaded can be of any format we choose,
+    // e.g could have same format as that of the server
   }
   else if (strcmp(command_name, "SCS") == 0)
   {

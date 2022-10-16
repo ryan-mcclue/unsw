@@ -131,7 +131,7 @@ main functions:
 1. packet forwarding (input to output)
 2. packet routing (routing algorithm, i.e. path determination based on header)
 we assume store-and-forward switching, i.e. router takes header and payload before transmitting (as oppose to 'cut through switching')
-packet switching utilises statistical multiplexing, i.e. educated assumption of bursty traffic
+packet switching utilises statistical multiplexing, i.e. educated assumption of bursty traffic (TDM (time) and FDM (frequency))
 if queue overloaded, packets go into buffer (transient overload) resulting in a delay
 if buffer excedded (persistent overload), packets dropped
 as a result, packet switching requires protocols to ensure reliable data transfer and congestion control

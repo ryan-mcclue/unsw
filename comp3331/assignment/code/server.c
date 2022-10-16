@@ -208,6 +208,8 @@ main(int argc, char *argv[])
                           {
                             case AUTHENTICATION_REQUEST:
                             {
+                              // TODO(Ryan): Perhaps allow passing in device name
+                              // separately and checking if it's valid, then asking for password
                               strncpy(device_name, msg_request.device_name, sizeof(device_name));
                               char *password = msg_request.password;
 
@@ -245,6 +247,9 @@ main(int argc, char *argv[])
 
                                 char timestamp[64] = {0};
                                 populate_timestamp(timestamp, sizeof(timestamp));
+                                // TODO(Ryan): Keep separate data structure containing active devices ordered by access time.
+                                // Write this entirely out each time to simplify reordering on device deletion
+                                // write_active_devices_to_log_file();
                                 append_to_file("cse_edge_device_log.txt", "%d; %s; %s; %s; %d\n", 
                                                shared_state->num_connected_devices,
                                                timestamp, device_name, device_ip, udp_port_num);

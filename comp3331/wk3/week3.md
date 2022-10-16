@@ -95,6 +95,7 @@ This allows client to choose appropriate rate for current bandwidth
 A video streaming CDN will typically implement a DASH server and so will send out a manifest file first
 
 A TCP server will have a 'welcoming' socket that clients use to perform 3way handshakes on. 
+(if not 3way, connection can hang as server not get ACK for its sequence number)
 Then a new 'connection' socket will be created
 Seems that multithreaded TCP server easier as specific connection sockets can be forked
 

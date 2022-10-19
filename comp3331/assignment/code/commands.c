@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: zlib-acknowledgement
 #pragma once
 
+#include <math.h>
+
 typedef struct
 {
   char tokens[8][64];
@@ -78,7 +80,7 @@ process_edg_command(Tokens *tokens, char *device_name)
 }
 
 INTERNAL void
-process_ued_command(Tokens *tokens, const char *device_name)
+process_ued_command(Tokens *tokens, const char *device_name, int server_sock)
 {
   if (tokens->num_tokens == 2)
   {
@@ -89,7 +91,46 @@ process_ued_command(Tokens *tokens, const char *device_name)
       snprintf(file_name, sizeof(file_name), "%s-%ld.txt", device_name, file_id);
       if (access(file_name, F_OK) == 0)
       {
+        ReadFileResult file_res = read_entire_file(file_name);
+        if (file_res.contents != NULL)
+        {
+          Message ued_request = {0};
+          ued_request.type = UED_REQUEST;
+          
+          ued_request.file_size = file_res.size;
 
+          u32 file_size_left = file_res.size;
+          u32 packet_i = 0;
+          u8 *file_cursor = (u8 *)file_res.contents;
+          while (file_size_left != 0)
+          {
+            ued_request.packet_i = packet_i;
+
+            if (file_size_left - MTU >= 0)
+            {
+              memcpy(ued_request.contents, file_cursor, MTU);
+              ued_request.contents_size = MTU;
+              file_cursor += MTU;
+              file_size_left -= MTU;
+              writex(server_sock, &ued_request, sizeof(ued_request));
+            }
+            else
+            {
+              memcpy(ued_request.contents, file_cursor, file_size_left);
+              ued_request.contents_size = file_size_left;
+              file_size_left = 0;
+              writex(server_sock, &ued_request, sizeof(ued_request));
+            }
+
+            packet_i++;
+          }
+          
+          free(file_res.contents);
+        }
+        else
+        {
+          FPRINTF(stderr, "Error: UED command cannot read file %s\n", file_name);
+        }
       }
       else
       {

@@ -164,6 +164,7 @@ main(int argc, char *argv[])
                 assert(shared_state != NULL);
                 
                 clear_file("cse_edge_device_log.txt");
+                clear_file("upload_log.txt");
 
                 while (true)
                 {
@@ -286,6 +287,16 @@ main(int argc, char *argv[])
                                 }
                               }
                             } break;
+
+                            case UED_REQUEST:
+                            {
+                              // first stage
+                              if (msg_request.packet_i == 0)
+                              {
+
+                              }
+                            } break;
+                            
 
                             ASSERT_DEFAULT_CASE()
                           }

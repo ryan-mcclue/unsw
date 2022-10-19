@@ -120,7 +120,7 @@ main(int argc, char *argv[])
               }
               else if (strcmp(command_name, "UED") == 0)
               {
-                process_ued_command(&tokens, device_name);
+                process_ued_command(&tokens, device_name, server_sock);
                 // NOTE(Ryan): Filenames of those uploaded can be of any format we choose,
                 // e.g could have same format as that of the server
               }

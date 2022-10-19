@@ -5,6 +5,6 @@ set -e
 
 mkdir -p build
 
-gcc -g -DDEBUG code/server.c -o build/server
+gcc -g -DDEBUG code/server.c -o build/server -lm
 
-gcc -g -DDEBUG code/client.c -o build/client
+gcc -g -DDEBUG code/client.c -o build/client -lm

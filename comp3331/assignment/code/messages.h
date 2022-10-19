@@ -7,10 +7,16 @@
 #define AUTHENTICATION_REQUEST_BLOCKED 2
 #define AUTHENTICATION_REQUEST_CURRENTLY_BLOCKED 3
 
+// NOTE(Ryan): mtu given by $(ifconfig), however could probably set to 65535 as using loopback
+#define MTU 32768
+
 typedef enum
 {
   AUTHENTICATION_REQUEST,
   AUTHENTICATION_RESPONSE,
+
+  UED_REQUEST,
+  UED_RESPONSE,
 
 } MESSAGE_TYPE;
 
@@ -33,16 +39,17 @@ typedef struct
       char response_message[128];
     };
 
+    // FILE SENDING
+    struct
+    {
+      u32 packet_i;
+      u32 file_size;
+      u32 contents_size;
+      // IMPORTANT(Ryan): CSE stack limit of 8192KB is plenty for our MTU of 64KB
+      char contents[MTU];
+    };
+
     // ...
   };
 } Message;
 
-// NOTE(Ryan): mtu given by $(ifconfig), however could probably set to 65535 as using loopback
-#define MTU 1500
-typedef struct
-{
-  u32 message_of;
-  u32 file_size;
-  u32 contents_size;
-  char contents[1024];
-} FileMessage;

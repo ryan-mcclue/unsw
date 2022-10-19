@@ -290,10 +290,13 @@ main(int argc, char *argv[])
 
                             case UED_REQUEST:
                             {
-                              // first stage
-                              if (msg_request.packet_i == 0)
+                              u32 byte_counter = 0;
+                              void *file_mem = mallocx(msg_request.file_size);
+                              u8 *file_cursor = file_cursor;
+                              while (byte_counter != msg_request.file_size)
                               {
-
+                                memcpy(file_curso
+                                // readx();    
                               }
                             } break;
                             

@@ -3,6 +3,8 @@
 DNS UDP:53
 Request and response same format
 
+DNS servers will have 'paired' A and NS records to forward requests
+
 Iterative DNS is where you contact say root, which will then return to you where to go next.
 Recursive DNS will have the root contact next server and so on and finally return result to you.
 Obviously iterative is better at offloading root servers
@@ -68,6 +70,9 @@ A .torrent file contains all information to download file, e.g. size, tracker, h
 Torrent is collection of peers exchanging chunks of a file
 Peers may upload (periodicaly reevaluate what top-four peers they send to; tit-for-tat, i.e. send to whomever sending them more) and download chunks between other peers
 However, for a peer to initially recieve chunks, will be optimistically unchoked by a neighbour peer
+Choke algorithm is peer selection strategy
+Rarest first algorithm is content selection strategy; 
+downloads rarest pieces first to ensure more nodes have this in case of disconnection
 
 DHT (distributed hash table), i.e. a P2P hash table database
 New keys are assigned to closest current ID

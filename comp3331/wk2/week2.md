@@ -22,6 +22,7 @@ HEAD request to only get header, however the Content-Length is the same as for G
 a socket connection must have unique combination of (local-ip, local-port, remote-ip, remote-port)
 ∴ possible for sockets to share same port 
 client sockets will use random port number assigned by OS
+socket is a form of IPC
 
 p2p, client+server are paradigms
 

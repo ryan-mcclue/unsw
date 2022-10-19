@@ -9,6 +9,8 @@ IMPORTANT: All TCP messages will have an ACK response (piggybacking is combining
 MTU is determined by IP, typically 1500 bytes.
 So TCP MSS (Maximum Segment Size) will be 1500 - 20 - 20 = 1460
 
+NOTE: SEQ and ACK numbers calculated on payload size
+
 Recieve window TCP header component is for flow control, i.e. to indicate how many bytes reciever is willing to recieve (to avoid overrunning host buffer)
 This is number of bytes (can be 0) 
 
@@ -16,6 +18,7 @@ handshake agrees upon starting sequence number (random to avoid ambigious connec
 SYN (synchronise with my ISN) -> SYN+ACK (acknowledge and synchronise with my ISN) -> ACK
 
 Both client and server send FIN bit in message to say no longer sending data
+(sending FIN is initiated by `close()`. handling corresponding ACK is what ties up the socket in TIME_WAIT)
 RST requires no acknowledgement. It won't send anything and won't recieve anything
 
 During the time SYN+ACK is waiting for ACK, buffers created. So, SYN flood as an attack

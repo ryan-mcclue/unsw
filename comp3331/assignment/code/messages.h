@@ -28,6 +28,7 @@ typedef struct
     // AUTHENTICATION
     struct
     {
+      // TODO(Ryan): Increase size to accomodate largest length names think they will test
       char device_name[32];
       char password[32];
       u32 udp_port_num;

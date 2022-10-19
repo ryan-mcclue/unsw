@@ -31,6 +31,8 @@ split_into_tokens(char *buffer)
   return result;
 }
 
+// TODO(Ryan): This generates a file that persists on the client side! It's not sent, just logged?
+// Will be uploaded by UED command!
 INTERNAL void
 process_edg_command(Tokens *tokens, char *device_name, Message *msg_response)
 {
@@ -103,6 +105,7 @@ process_command(char *command_buffer, char *device_name, Message *msg_response)
   {
 
   }
+  // TODO: require working directories for each user?
   else if (strcmp(command_name, "UVF") == 0)
   {
 

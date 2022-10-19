@@ -210,6 +210,8 @@ main(int argc, char *argv[])
                             {
                               // TODO(Ryan): Perhaps allow passing in device name
                               // separately and checking if it's valid, then asking for password
+                              //
+                              // Only block if device name is valid?
                               strncpy(device_name, msg_request.device_name, sizeof(device_name));
                               char *password = msg_request.password;
 

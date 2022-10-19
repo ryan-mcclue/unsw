@@ -2,6 +2,20 @@
 #include "io.h"
 
 INTERNAL void
+clear_file(const char *file_name)
+{
+  int file_fd = open(file_name, O_CREAT | O_TRUNC | O_WRONLY, 0666); 
+  if (file_fd != -1) 
+  {
+    close(file_fd);
+  }
+  else
+  {
+    FPRINTF(stderr, "Error: unable to open file %s (%s)\n", file_name, strerror(errno));
+  }
+}
+
+INTERNAL void
 write_entire_file(char *file_name, void *buf, u32 buf_size)
 {
   int file_fd = open(file_name, O_CREAT | O_TRUNC | O_WRONLY, 0666); 
@@ -13,6 +27,10 @@ write_entire_file(char *file_name, void *buf, u32 buf_size)
     }
 
     close(file_fd);
+  }
+  else
+  {
+    FPRINTF(stderr, "Error: unable to open file %s (%s)\n", file_name, strerror(errno));
   }
 }
 
@@ -59,6 +77,10 @@ read_entire_file(char *file_name)
     {
       FPRINTF(stderr, "Error: unable to fstat file %s (%s)\n", file_name, strerror(errno));
     }
+  }
+  else
+  {
+    FPRINTF(stderr, "Error: unable to open file %s (%s)\n", file_name, strerror(errno));
   }
     
   return result;

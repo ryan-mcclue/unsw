@@ -163,8 +163,7 @@ main(int argc, char *argv[])
                 SharedState *shared_state = init_shared_state(MEGABYTES(8));
                 assert(shared_state != NULL);
                 
-                // TODO(Ryan): Create/clear log files
-                // clear_file("cse_edge_device_log.txt")
+                clear_file("cse_edge_device_log.txt");
 
                 while (true)
                 {
@@ -286,14 +285,6 @@ main(int argc, char *argv[])
                                   msg_response.authentication_status = AUTHENTICATION_REQUEST_FAILED;
                                 }
                               }
-                            } break;
-
-                            case COMMAND_REQUEST:
-                            {
-                              msg_response.type = COMMAND_RESPONSE;
-
-                              process_command(msg_request.buffer, device_name, &msg_response);
-                              
                             } break;
 
                             ASSERT_DEFAULT_CASE()

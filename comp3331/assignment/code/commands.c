@@ -31,10 +31,8 @@ split_into_tokens(char *buffer)
   return result;
 }
 
-// TODO(Ryan): This generates a file that persists on the client side! It's not sent, just logged?
-// Will be uploaded by UED command!
 INTERNAL void
-process_edg_command(Tokens *tokens, char *device_name, Message *msg_response)
+process_edg_command(Tokens *tokens, char *device_name)
 {
   if (tokens->num_tokens == 3)
   {
@@ -44,6 +42,8 @@ process_edg_command(Tokens *tokens, char *device_name, Message *msg_response)
       long int data_amount = strtol(tokens->tokens[2], NULL, 10);
       if (data_amount != -1)
       {
+        FPRINTF(stderr, "The edge device is generating %ld data samples\n", data_amount);
+        
         char file_name[64] = {0}; 
         snprintf(file_name, sizeof(file_name), "%s-%ld.txt", device_name, file_id);
 
@@ -59,63 +59,50 @@ process_edg_command(Tokens *tokens, char *device_name, Message *msg_response)
 
         write_entire_file(file_name, data, data_cursor);
 
-        strncpy(msg_response->response, "Success: EDG command processed", sizeof(msg_response->response));
+        FPRINTF(stderr, "Data generation done, %ld data samples have been generated and stored in the file %s\n", data_amount, file_name);
       }
       else
       {
-        strncpy(msg_response->response, "Error: EDG command expects dataAmount to be an integer", sizeof(msg_response->response));
+        FPRINTF(stderr, "Error: EDG command expects dataAmount to be an integer\n");
       }
     }
     else
     {
-      strncpy(msg_response->response, "Error: EDG command expects fileID to be an integer", sizeof(msg_response->response));
+      FPRINTF(stderr, "Error: EDG command expects fileID to be an integer\n");
     }
   }
   else
   {
-    strncpy(msg_response->response, "Error: EDG command expects fileID and dataAmount arguments", sizeof(msg_response->response));
+    FPRINTF(stderr, "Error: EDG command expects fileID and dataAmount arguments\n");
   }
 }
 
 INTERNAL void
-process_command(char *command_buffer, char *device_name, Message *msg_response)
+process_ued_command(Tokens *tokens, const char *device_name)
 {
-  Tokens tokens = split_into_tokens(command_buffer);
-
-  char *command_name = tokens.tokens[0];
-
-  if (strcmp(command_name, "EDG") == 0)
+  if (tokens->num_tokens == 2)
   {
-    process_edg_command(&tokens, device_name, msg_response);
-  }
-  else if (strcmp(command_name, "UED") == 0)
-  {
-    // NOTE(Ryan): Filenames of those uploaded can be of any format we choose,
-    // e.g could have same format as that of the server
-  }
-  else if (strcmp(command_name, "SCS") == 0)
-  {
+    long int file_id = strtol(tokens->tokens[1], NULL, 10);
+    if (file_id != -1)
+    {
+      char file_name[128] = {0};
+      snprintf(file_name, sizeof(file_name), "%s-%ld.txt", device_name, file_id);
+      if (access(file_name, F_OK) == 0)
+      {
 
-  }
-  else if (strcmp(command_name, "DTE") == 0)
-  {
-
-  }
-  else if (strcmp(command_name, "AED") == 0)
-  {
-
-  }
-  // TODO: require working directories for each user?
-  else if (strcmp(command_name, "UVF") == 0)
-  {
-
-  }
-  else if (strcmp(command_name, "OUT") == 0)
-  {
-
+      }
+      else
+      {
+        FPRINTF(stderr, "Error: UED command cannot find file %s to upload\n", file_name);
+      }
+    }
+    else
+    {
+      FPRINTF(stderr, "Error: UED command expects fileID to be an integer\n");
+    }
   }
   else
   {
-    strncpy(msg_response->response, "Error: Invalid command!", sizeof(msg_response->response));
+    FPRINTF(stderr, "Error: UED command expects fileID as an argument\n");
   }
 }

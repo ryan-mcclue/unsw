@@ -17,6 +17,8 @@
 
 #include "common.h"
 #include "messages.h"
+#include "io.c"
+#include "commands.c"
 
 INTERNAL Message
 parse_command_buffer(char *command_buffer)
@@ -101,20 +103,55 @@ main(int argc, char *argv[])
 
           while (true)
           {
-            Message command_request = {0};
+            char command_buffer[1024] = {0};
 
             printf("Enter one of the following commands (EDG, UED, SCS, DTE, AED, UVF, OUT): ");
-            fgets(command_request.buffer, sizeof(command_request.buffer), stdin);
-            command_request.buffer[strcspn(command_request.buffer, "\n")] = '\0';
+            fgets(command_buffer, sizeof(command_buffer), stdin);
+            command_buffer[strcspn(command_buffer, "\n")] = '\0';
 
-            command_request.type = COMMAND_REQUEST;
+            Tokens tokens = split_into_tokens(command_buffer);
+            if (tokens.num_tokens > 0)
+            {
+              char *command_name = tokens.tokens[0];
 
-            writex(server_sock, &command_request, sizeof(command_request));
+              if (strcmp(command_name, "EDG") == 0)
+              {
+                process_edg_command(&tokens, device_name);
+              }
+              else if (strcmp(command_name, "UED") == 0)
+              {
+                process_ued_command(&tokens, device_name);
+                // NOTE(Ryan): Filenames of those uploaded can be of any format we choose,
+                // e.g could have same format as that of the server
+              }
+              else if (strcmp(command_name, "SCS") == 0)
+              {
 
-            Message command_response = {0};
-            readx(server_sock, &command_response, sizeof(command_response));
-            printf("%s\n", command_response.response);
+              }
+              else if (strcmp(command_name, "DTE") == 0)
+              {
+
+              }
+              else if (strcmp(command_name, "AED") == 0)
+              {
+
+              }
+              // TODO: require working directories for each user?
+              else if (strcmp(command_name, "UVF") == 0)
+              {
+
+              }
+              else if (strcmp(command_name, "OUT") == 0)
+              {
+
+              }
+              else
+              {
+                FPRINTF(stderr, "Error: Invalid command!\n");
+              }
+            }
           }
+
 
           exit(1);
         }

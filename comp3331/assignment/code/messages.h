@@ -12,12 +12,6 @@ typedef enum
   AUTHENTICATION_REQUEST,
   AUTHENTICATION_RESPONSE,
 
-  COMMAND_REQUEST,
-  COMMAND_RESPONSE,
-
-  EDG_REQUEST,
-  EDG_RESPONSE,
-
 } MESSAGE_TYPE;
 
 typedef struct
@@ -37,17 +31,6 @@ typedef struct
     {
       u32 authentication_status;
       char response_message[128];
-    };
-
-    // EDG
-    struct
-    {
-      u32 file_id;
-      u32 data_amount; 
-    };
-    struct
-    {
-      char edg_response[128];
     };
 
     // ...

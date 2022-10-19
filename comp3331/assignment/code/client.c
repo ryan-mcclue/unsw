@@ -13,7 +13,7 @@
 //do some basic computations on a particular data file, 
 // DTE (Delete the data file (server side)), 
 // AED (Active Edge Devices), request and display the active edge devices, OUT: exit this edge network, and
-// UVF (Peer-to-peer Uploading Video Files) (will need to implement reliable ordered messages)
+// UVF (Peer-to-peer Uploading Video Files)
 
 #include "common.h"
 #include "messages.h"
@@ -136,7 +136,8 @@ main(int argc, char *argv[])
               {
 
               }
-              // TODO: require working directories for each user?
+              // TODO: could have working directories for each user from EDG command and subsequent UVF
+              // This will first issue an AED command under the hood
               else if (strcmp(command_name, "UVF") == 0)
               {
 

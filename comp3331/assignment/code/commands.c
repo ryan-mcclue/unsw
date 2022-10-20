@@ -194,7 +194,7 @@ process_scs_command(Tokens *tokens, const char *device_name, int server_sock)
       else
       {
         FPRINTF(stderr, 
-               "Computation (%s) result on the file (ID:%ld) returned from the server is: %d\n",
+               "Computation (%s) result on the file (ID:%ld) returned from the server is: %ld\n",
                tokens->tokens[2], file_id, msg_response.computation_result);
       }
     }

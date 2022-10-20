@@ -341,7 +341,7 @@ main(int argc, char *argv[])
                               char file_name[256] = {0};
                               snprintf(file_name, sizeof(file_name), "server-%s-%d.txt", 
                                        device_name, msg_request.file_identification);
-                              if (access(file_name, F_OK))
+                              if (access(file_name, F_OK) == 0)
                               {
                                 ReadFileResult read_res = read_entire_file(file_name);  
                                 if (read_res.contents != NULL)

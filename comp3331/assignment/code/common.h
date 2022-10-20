@@ -33,7 +33,9 @@
 
 typedef uint8_t u8;
 typedef uint32_t u32;
+typedef int32_t s32;
 typedef uint64_t u64;
+typedef int64_t s64;
 typedef float r32;
 
 INTERNAL u64
@@ -80,4 +82,19 @@ readx(int fd, void *buf, size_t count)
     FPRINTF(stderr, "Error: read failed (%s)\n", strerror(errno));
     exit(1);
   }
+}
+
+INTERNAL void *
+mallocx(size_t size)
+{
+  void *result = NULL;
+
+  result = malloc(size);
+  if (result == NULL)
+  {
+    FPRINTF(stderr, "Error: malloc failed (%s)\n", strerror(errno));
+    exit(1);
+  }
+
+  return result;
 }

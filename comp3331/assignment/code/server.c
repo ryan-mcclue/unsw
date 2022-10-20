@@ -164,7 +164,7 @@ main(int argc, char *argv[])
                 assert(shared_state != NULL);
                 
                 clear_file("cse_edge_device_log.txt");
-                clear_file("upload_log.txt");
+                clear_file("upload-log.txt");
 
                 while (true)
                 {
@@ -286,32 +286,129 @@ main(int argc, char *argv[])
                                   msg_response.authentication_status = AUTHENTICATION_REQUEST_FAILED;
                                 }
                               }
+
+                              writex(client_fd, &msg_response, sizeof(msg_response));
+
+                              if (msg_response.type == AUTHENTICATION_RESPONSE &&
+                                  (msg_response.authentication_status == AUTHENTICATION_REQUEST_BLOCKED ||
+                                   msg_response.authentication_status == AUTHENTICATION_REQUEST_CURRENTLY_BLOCKED))
+                              {
+                                exit(1);
+                              }
+
                             } break;
 
                             case UED_REQUEST:
                             {
                               u32 byte_counter = 0;
                               void *file_mem = mallocx(msg_request.file_size);
-                              u8 *file_cursor = file_cursor;
+                              u8 *file_cursor = file_mem;
+
+                              memcpy(file_cursor, msg_request.contents, msg_request.contents_size);
+                              byte_counter += msg_request.contents_size;
+
                               while (byte_counter != msg_request.file_size)
                               {
-                                memcpy(file_curso
-                                // readx();    
+                                readx(client_fd, &msg_request, sizeof(msg_request)); 
+                                memcpy(file_cursor, msg_request.contents, msg_request.contents_size);
+                                byte_counter += msg_request.contents_size;
                               }
+
+                              char file_name[256] = {0};
+                              snprintf(file_name, sizeof(file_name), "server-%s-%d.txt", device_name, msg_request.file_id);
+
+                              write_entire_file(file_name, file_mem, msg_request.file_size);
+
+                              char timestamp[64] = {0};
+                              populate_timestamp(timestamp, sizeof(timestamp));
+                              append_to_file("upload-log.txt", "%s; %s; %d; %d\n", device_name,
+                                             timestamp, msg_request.file_id, msg_request.file_size);
+
+                              free(file_mem);
+
+                              msg_response.type = UED_RESPONSE;
+                              snprintf(msg_response.response, sizeof(msg_response.response),
+                                  "Data file with ID of %d has been uploaded to server",
+                                  msg_request.file_id);
+                              writex(client_fd, &msg_response, sizeof(msg_response));
+
+                            } break;
+
+                            case SCS_REQUEST:
+                            {
+                              msg_response.type = SCS_RESPONSE;
+
+                              char file_name[256] = {0};
+                              snprintf(file_name, sizeof(file_name), "server-%s-%d.txt", 
+                                       device_name, msg_request.file_identification);
+                              if (access(file_name, F_OK))
+                              {
+                                ReadFileResult read_res = read_entire_file(file_name);  
+                                if (read_res.contents != NULL)
+                                {
+                                  long int file_nums[1024] = {0};
+                                  char num_str[16] = {0};
+
+                                  u32 line_num = 0;
+                                  char *at = (char *)read_res.contents;     
+                                  while (at[0] != '\0')
+                                  {
+                                    consume_whitespace(&at);
+                                    char *num_start = at;
+                                    u32 num_len = consume_identifier(&at);
+
+                                    memcpy(num_str, num_start, num_len);
+                                    num_str[num_len] = '\0';
+                                    
+                                    file_nums[line_num++] = strtol(num_str, NULL, 10);
+
+                                    consume_whitespace(&at);
+                                  }
+
+                                  u64 sum = 0, average = 0, min = UINT32_MAX, max = 0;
+
+                                  for (u32 num_i = 0; num_i < line_num; ++num_i)
+                                  {
+                                    u32 val = file_nums[num_i];
+                                    sum += val; 
+                                    if (val > max) max = val;
+                                    if (val < min) min = val;
+                                  }
+                                  average = sum / line_num;
+
+                                  if (msg_request.computation_operation == SCS_REQUEST_SUM)
+                                  {
+                                    msg_response.computation_result = sum;
+                                  }
+                                  else if (msg_request.computation_operation == SCS_REQUEST_AVERAGE)
+                                  {
+                                    msg_response.computation_result = average;
+                                  }
+                                  else if (msg_request.computation_operation == SCS_REQUEST_MIN)
+                                  {
+                                    msg_response.computation_result = min;
+                                  }
+                                  else if (msg_request.computation_operation == SCS_REQUEST_MAX)
+                                  {
+                                    msg_response.computation_result = max;
+                                  }
+
+                                  free(read_res.contents);
+                                }
+                              }
+                              else
+                              {
+                                msg_response.computation_result = -1;
+                              }
+
+                              writex(client_fd, &msg_response, sizeof(msg_response));
+
                             } break;
                             
 
                             ASSERT_DEFAULT_CASE()
                           }
 
-                          writex(client_fd, &msg_response, sizeof(msg_response));
-
-                          if (msg_response.type == AUTHENTICATION_RESPONSE &&
-                              (msg_response.authentication_status == AUTHENTICATION_REQUEST_BLOCKED ||
-                               msg_response.authentication_status == AUTHENTICATION_REQUEST_CURRENTLY_BLOCKED))
-                          {
-                            exit(1);
-                          }
                         }
                       }
                       else

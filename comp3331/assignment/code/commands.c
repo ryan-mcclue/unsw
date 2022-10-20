@@ -98,14 +98,14 @@ process_ued_command(Tokens *tokens, const char *device_name, int server_sock)
           ued_request.type = UED_REQUEST;
           
           ued_request.file_size = file_res.size;
+          ued_request.file_id = file_id;
 
-          u32 file_size_left = file_res.size;
-          u32 packet_i = 0;
+          printf("file bytes: %d\n", file_res.size);
+
+          s32 file_size_left = file_res.size;
           u8 *file_cursor = (u8 *)file_res.contents;
           while (file_size_left != 0)
           {
-            ued_request.packet_i = packet_i;
-
             if (file_size_left - MTU >= 0)
             {
               memcpy(ued_request.contents, file_cursor, MTU);
@@ -121,9 +121,11 @@ process_ued_command(Tokens *tokens, const char *device_name, int server_sock)
               file_size_left = 0;
               writex(server_sock, &ued_request, sizeof(ued_request));
             }
-
-            packet_i++;
           }
+
+          Message msg_response = {0};
+          readx(server_sock, &msg_response, sizeof(msg_response));
+          FPRINTF(stderr, "%s\n", msg_response.response);
           
           free(file_res.contents);
         }
@@ -145,5 +147,64 @@ process_ued_command(Tokens *tokens, const char *device_name, int server_sock)
   else
   {
     FPRINTF(stderr, "Error: UED command expects fileID as an argument\n");
+  }
+}
+
+INTERNAL void
+process_scs_command(Tokens *tokens, const char *device_name, int server_sock)
+{
+  if (tokens->num_tokens == 3)
+  {
+    long int file_id = strtol(tokens->tokens[1], NULL, 10);
+    if (file_id != -1)
+    {
+      Message msg_request = {0};
+      msg_request.type = SCS_REQUEST;
+      msg_request.file_identification = file_id;
+
+      if (strcmp(tokens->tokens[2], "SUM") == 0)
+      {
+        msg_request.computation_operation = SCS_REQUEST_SUM;
+      }
+      else if (strcmp(tokens->tokens[2], "AVERAGE") == 0)
+      {
+        msg_request.computation_operation = SCS_REQUEST_AVERAGE;
+      }
+      else if (strcmp(tokens->tokens[2], "MAX") == 0)
+      {
+        msg_request.computation_operation = SCS_REQUEST_MAX;
+      }
+      else if (strcmp(tokens->tokens[2], "MIN") == 0)
+      {
+        msg_request.computation_operation = SCS_REQUEST_MIN;
+      }
+      else
+      {
+        FPRINTF(stderr, "Error: SCS command expects computationOperation argument to be either SUM/AVERAGE/MAX/MIN\n");
+      }
+
+      writex(server_sock, &msg_request, sizeof(msg_request));
+
+      Message msg_response = {0};
+      readx(server_sock, &msg_response, sizeof(msg_response));
+      if (msg_response.computation_result == -1)
+      {
+        FPRINTF(stderr, "Error: SCS command unable to find requested file on server\n");
+      }
+      else
+      {
+        FPRINTF(stderr, 
+               "Computation (%s) result on the file (ID:%ld) returned from the server is: %d\n",
+               tokens->tokens[2], file_id, msg_response.computation_result);
+      }
+    }
+    else
+    {
+      FPRINTF(stderr, "Error: SCS command expects fileID to be an integer\n");
+    }
+  }
+  else
+  {
+    FPRINTF(stderr, "Error: SCS command expects fileID and computationOperation as arguments\n");
   }
 }

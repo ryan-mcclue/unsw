@@ -126,7 +126,7 @@ main(int argc, char *argv[])
               }
               else if (strcmp(command_name, "SCS") == 0)
               {
-
+                process_scs_command(&tokens, device_name, server_sock);
               }
               else if (strcmp(command_name, "DTE") == 0)
               {

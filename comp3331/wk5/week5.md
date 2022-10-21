@@ -4,12 +4,26 @@ TODO: Search for Quiz in lecture slides
 
 No general 'optimally' sized packet, e.g. large size if error have be resent, link capacities etc.
 
-IMPORTANT: All TCP messages will have an ACK response (piggybacking is combining acknowledgement with next outgoing frame)
+IMPORTANT: All TCP messages will have an ACK response 
+(piggybacking is combining acknowledgement with next outgoing frame)
+
+FIN and SYN consume 1 byte, i.e. 1 sequence number
+
+RDT (reliable data transfer) 3.0 is stop-and-wait, ∴ ACKs don't require SEQ numbers
 
 MTU is determined by IP, typically 1500 bytes.
 So TCP MSS (Maximum Segment Size) will be 1500 - 20 - 20 = 1460
 
+ACK number indicates next sequence number it's ready for
+IMPORTANT: byte number will be -1 sequence number, e.g. seq 100, len 5: bytes from 100-104
+
+TCP reciever employs delayed ACK mechanism to send cumulutive ACKs to reduce bandwidth
+(if dropped packets in middle, may send back cumulative ACK, i.e. for multiple packets to avoid resending, however depends on selective-repeat or go-back-n)
+
 NOTE: SEQ and ACK numbers calculated on payload size
+
+Flow control: sender-reciever
+Congestion control: sender-network
 
 Recieve window TCP header component is for flow control, i.e. to indicate how many bytes reciever is willing to recieve (to avoid overrunning host buffer)
 This is number of bytes (can be 0) 
@@ -40,11 +54,14 @@ Phases of congestion control:
   2. Adjusting to bandwidth/congestion-avoidance (AIMD (additive increase multiplicative decrease, i.e halve on loss) leads to saw-tooth)
   (The various methods by which to update the CWND such as AIAD affect fairness (0.5 + 0.5 = 1) and efficiency (x + y = 1) differently)
   (Therefore, CWND update methodolgy impacts on thoroughput)
+  (So, if SSthreshold=6, will increase CWND by 2 each RTT until 6, then start congestion avoidance increasing by 1)
 
 TCP-Tahoe, TCP-Reno (most common)
 
 IMPORTANT: ssthres. is continually updated.
 Furthermore, the slow-start can be repeated
+
+For about to send, consider first sent and retransmission scenarios
 
 TODO: Understand ACK numbers for lost packets
 TODO: fast retransmit vs fast recovery?

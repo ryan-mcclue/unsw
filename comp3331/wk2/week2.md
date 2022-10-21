@@ -29,8 +29,11 @@ p2p, client+server are paradigms
 write software for network-edge
 
 IMAP and POP recieve emails. 
-SMTP sends and exchanges between servers (atop TCP). 
-Although HTTPS email user agent (i.e. HTTP to send to your mail server), between mail servers (so from protonmail to gmail) often plain-text (some use TLS). So, use PGP to be safe
+SMTP sends and exchanges between mail servers (atop TCP).
+SMTP can be from your PC to mail server if not using a web browser mail client.
+Although HTTPS email user agent (i.e. HTTP to send to your mail server), 
+between mail servers (so from protonmail to gmail) often plain-text (some use TLS). 
+So, use PGP to be safe
 
 socket (communication endpoint) for a client process (sending) and server process (responding)
 

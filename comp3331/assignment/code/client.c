@@ -49,6 +49,8 @@ main(int argc, char *argv[])
         FPRINTF(stderr, "Warning: unable to set resuable socket (%s)\n", strerror(errno));
       }
 
+      // TODO(Ryan): For UVF have another thread?
+
       struct sockaddr_in server_addr = {0};
       if (inet_pton(AF_INET, server_ip, &server_addr.sin_addr) == 1)
       {

@@ -77,6 +77,7 @@ downloads rarest pieces first to ensure more nodes have this in case of disconne
 DHT (distributed hash table), i.e. a P2P hash table database
 New keys are assigned to closest current ID
 Circular DHT each peer aware of successor and predecessor
+(DHT provides an alternative to trackers for P2P that allows other peers to join network) 
 
 DHT is a structured P2P, i.e. rigid way of finding peers to in turn find resource
 In DHT, each node only connected to its direct neighbours, i.e. successor and predecessor
@@ -105,3 +106,5 @@ Then a new 'connection' socket will be created
 Seems that multithreaded TCP server easier as specific connection sockets can be forked
 
 P2P network debugging use `xterm -hold`
+
+If cannot find record will do exponential backoff, i.e retry the same DNS server multiple times

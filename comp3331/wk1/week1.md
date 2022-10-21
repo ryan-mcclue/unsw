@@ -162,11 +162,12 @@ When sending time, normally use UTC/GMT(no offset from UTC)/Zulu
 Delays: 
 1. Processing; time to process header and determine where going and place into queue
 2. Queueing; time in routing queue to go onto output link (packets_arriving x packet_length / link_bandwidth) 
-3. Transmission; time to place a bit on the wire (packet_length / transmission_rate_10Mbps)
+3. Transmission; time to place entire packet on the wire (packet_length / transmission_rate_10Mbps)
 IMPORTANT: At the end of transmission delay, the last bit of the packet is on the wire.
 The router will wait for entire packet to arrive, i.e. wait for last bit to arrive
 IMPORTANT: Travelling through a router from A-to-B, the first packet transmission delay is times-2, but all others are times-1 due to overlap
-4. Propagation; time to cross physical medium
+4. Propagation; time for bit to cross physical medium
+IMPORTANT: As using store and forward switching, transmission and propagation (prop. normally less than trans.) are additive
 
 coaxial cables used in copper transmission lines (inner conductor surrounded by shield).
 ethernet twisted pair wires to reduce interference

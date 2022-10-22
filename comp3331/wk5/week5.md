@@ -56,9 +56,9 @@ Phases of congestion control:
   2. Adjusting to bandwidth/congestion-avoidance (AIMD (additive increase multiplicative decrease, i.e halve on loss) leads to saw-tooth)
   (The various methods by which to update the CWND such as AIAD affect fairness (0.5 + 0.5 = 1) and efficiency (x + y = 1) differently)
   (Therefore, CWND update methodolgy impacts on thoroughput)
-  (So, if SSthreshold=6, will increase CWND by 2 each RTT until 6, then start congestion avoidance increasing by 1)
+  (So, if SSthreshold=6, will increase CWND by 2 (1,2,4,6...) each RTT until 6, then start congestion avoidance increasing by 1)
 
-TCP-Tahoe, TCP-Reno (most common)
+TCP-Tahoe (window set to 1), TCP-Reno (most common; window halved)
 
 IMPORTANT: ssthres. is continually updated.
 Furthermore, the slow-start can be repeated

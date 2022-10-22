@@ -13,6 +13,7 @@ RDT (reliable data transfer) 3.0 is stop-and-wait, ∴ ACKs don't require SEQ nu
 
 MTU is determined by IP, typically 1500 bytes.
 So TCP MSS (Maximum Segment Size) will be 1500 - 20 - 20 = 1460
+IMPORTANT: MSS is number of bytes in TCP payload (as oppose to the encompassing header and payload in a TCP segment) 
 
 ACK number indicates next sequence number it's ready for
 IMPORTANT: byte number will be -1 sequence number, e.g. seq 100, len 5: bytes from 100-104
@@ -48,6 +49,12 @@ Network-assisted has routers send bit indicating congestion
 End-end congestion (TCP uses) has host infer congestion
   * CWND (congestion window) how many bytes sent to not overflow routers (so sender will use MIN(CWND, RWND))
 
+Window size is how many bytes. To avoid wrap-around issues,
+maximum window size is half of sequence number space
+(different to window number?)
+
+IMPORTANT: slow-start phase at the beginning of every TCP connection 
+
 Congestion detected with:
   1. Duplicated ACKS (CWDN /= 2)
   2. Timeout (much more serious, i.e. CWDN=1)
@@ -56,12 +63,11 @@ Phases of congestion control:
   2. Adjusting to bandwidth/congestion-avoidance (AIMD (additive increase multiplicative decrease, i.e halve on loss) leads to saw-tooth)
   (The various methods by which to update the CWND such as AIAD affect fairness (0.5 + 0.5 = 1) and efficiency (x + y = 1) differently)
   (Therefore, CWND update methodolgy impacts on thoroughput)
-  (So, if SSthreshold=6, will increase CWND by 2 (1,2,4,6...) each RTT until 6, then start congestion avoidance increasing by 1)
+  (So, if SSthreshold=6, will double CWND by 2 (1,2,4,8...) each RTT until 6, then start congestion avoidance increasing by 1)
+  (A CWND of 1 indicates sending 1xMSS, i.e. 1 packet)
 
-TCP-Tahoe (window set to 1), TCP-Reno (most common; window halved)
-
-IMPORTANT: ssthres. is continually updated.
-Furthermore, the slow-start can be repeated
+TCP-Tahoe (window set to 1, ssthres. halved always), 
+TCP-Reno (most common; window halved on triple duplicate; set to 1 on timeout)
 
 For about to send, consider first sent and retransmission scenarios
 

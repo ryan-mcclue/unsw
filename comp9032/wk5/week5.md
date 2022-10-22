@@ -4,7 +4,8 @@ LCD display controllers will have some RAM, ROM and registers (IR to say display
 
 Why go to a transceiver?
 
-timing requirements for write/read operations?
+when interfacing with other hardware, will have timing/synchronisation
+requirements, e.g. wait certain time for for write/read operations
 
 Component hardware reset related to power supply load, so may not be reliable.
 ∴ implement in software

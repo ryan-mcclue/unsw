@@ -25,7 +25,9 @@ NOTE: SEQ and ACK numbers calculated on payload size
 Flow control: sender-reciever
 Congestion control: sender-network
 
-Recieve window TCP header component is for flow control, i.e. to indicate how many bytes reciever is willing to recieve (to avoid overrunning host buffer)
+Recieve window TCP header component is for flow control, 
+i.e. to indicate how many bytes reciever is willing to recieve 
+(to avoid overrunning host buffer)
 This is number of bytes (can be 0) 
 
 handshake agrees upon starting sequence number (random to avoid ambigious connection from same hosts)

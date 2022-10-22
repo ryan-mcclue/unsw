@@ -1,7 +1,8 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 ## Fundamentals
 
-A POP (point-of-presence) is an artificial communication point between two networks, e.g. ISP POP   
+A POP (point-of-presence) is an artificial communication point between two networks, 
+e.g. ISP POP   
 
 In general, if doesn't know address of sorts, perform broadcast/flooding
 Note that a signal is unicast or broadcast, however the action of the device might be to flood
@@ -11,27 +12,30 @@ router networks designed to run as 'autonomous systems'.
 they use BGP (border gateway protocol) to exchange routing information
 BGP used by routers to decide what they should do with packet on their network
 e.g. should I go through path A or path B
-so, routers constantly sharing information with other directly connected routers via BGP (perhaps updating hop length to a network)
+so, routers constantly sharing information with other directly connected routers via BGP 
+(perhaps updating hop length to a network)
 
 IP addresses can be static or dynamic.
 (is from your ISP static?)
 (advantages just for security?)
 
-NAT used to extend IPv4 address space by converting from private IPs: 10.0.0.0 /8, 172.16.0.0 /12, 192.168.0.0 /16
+NAT used to extend IPv4 address space by converting from private IPs: 
+10.0.0.0 /8, 172.16.0.0 /12, 192.168.0.0 /16
 
 * Hosts: any device that sends or recieves traffic
   - client: initiates
   - server: respond
-  - to be connected to the Internet require 4 things (IP, subnet mask (/8, 255.0.0.0), default gateway, resolving DNS server IP)
+  - to be connected to the Internet require 4 things 
+  (IP, subnet mask (/8, 255.0.0.0), default gateway, resolving DNS server IP)
+  when a host first connects to a network it will send out a DHCP discover to get these 4 things (router will typically run this server)
   resolving name server should know how to get to root name server.
   from there, root name server will know where top level domain name servers are, e.g. .com, .org etc.
   from there, authoratative name server, e.g. example.com
   an authoratative name server has resource records for any DNS servers that been delegated to its authority, e.g. eecs.example.com
-  when a host first connects to a network it will send out a DHCP discover to get these 4 things (router will typically run this server)
 * IP Address: identifies each host
   - IPv4, 32bits, 4 octets
   - Assigned hierarchically, e.g. Ry, Inc. 10.x.x.x (broken up into hierarchies via subnetting, i.e. subnet of Ry, Inc IP space)
-  - 192.0.0.1 /24 means matches on first three octets
+  - 192.0.0.1 /24 means matches on LSB three octets
   - DNS converts domain names for websites and email to IP. Stored in OS host table
 * Network: connection of hosts. share IP address space
   - purpose is to share information
@@ -124,7 +128,8 @@ computer network work well?
 
 network speed faster if closer to the ISPs switching network
 
-network edge: hosts/end systems (run networked apps that provide services), access network (edge routers connecting to ISPs network core), physical media
+network edge: hosts/end systems (run networked apps that provide services), 
+access network (edge routers connecting to ISPs network core), physical media
 network core: packet switching (breaks into packets of header+payload ∴ each packet independent), i.e. routers, switches (imagine an ISP network is interconnected routers)
 (as oppose to message switching which will send entire message; more reliable but slower as packet switching allows transmission earlier)
 legacy circuit switching dedicates resources (not appropriate for bursty, variable data rate connections on the Internet. furthermore, not as economical as can't allow more users than hardware permits)

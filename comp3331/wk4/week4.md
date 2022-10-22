@@ -9,12 +9,15 @@ TODO(Ryan): https://www.quora.com/What-is-the-exact-difference-between-packets-a
 By distinguishing data streams, transport layer provides logical communication between different hosts
 Breaks and reassembles segments
 
-Handling data from multiple sockets is multiplexing, which is performed by sender when it adds Transport header.
-Reciever performs demultiplexing by inspecting IP of packet and ports of segment (i.e. segment and packet) to know what socket to direct to
+Handling data from multiple sockets is multiplexing, which is performed by sender 
+when it adds Transport header.
+Reciever performs demultiplexing by inspecting IP of packet and ports of segment 
+(i.e. segment and packet) to know what socket to direct to
 
 TCP/UDP don't provide bandwidth or delay guarantees
 
-connection orientated demultiplexing TCP uses 4-tuple, where UDP only about port (hence why TCP is connection based)
+connection orientated demultiplexing TCP uses 4-tuple, where UDP only about port 
+(hence why TCP is connection based)
 (so, these transport protocols differ in their demultiplexing procedures)
 
 UDP simpler, smaller, no handshaking (HTTP3 will use UDP; this is why DNS uses UDP as the process of contacting many name servers would require many handshakes), 
@@ -41,7 +44,8 @@ cumulative ACK (TCP uses) sends a single ACK for a group of packets
 (`EstimatedRTT = (1- a)*EstimatedRTT + a*SampleRTT`)
 (timeout = `EstimatedRTT + 4*DevRTT`)
 (fast retransmit optimisation ignores this timer when it has recieved 3 duplicated ACKs)
-* However, performance for stop-and-wait is poor, so implement sliding windows for efficiency (pipelining), i.e. send multiple unACK'd packets at once
+* However, performance for stop-and-wait is poor, so implement sliding windows for efficiency 
+(pipelining), i.e. send multiple unACK'd packets at once
   - Go-Back-N: So, send 4 packets, if packet 2 errors, retransmit 2,3,4,5 (heuristic based)
   - Selective-Repeat: Only retransmit specific errored packet
 

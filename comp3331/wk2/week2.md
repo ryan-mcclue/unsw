@@ -42,7 +42,8 @@ application protocol considerations (data loss, timing, throughput, security)
 TCP (flow/congestion control, reliable data transefer, connection oriented)
 
 HTTP is a pull protocol, i.e. will wait for recieved reply 
-SMTP is push, ∴ not used for transferring files between mail server and host as this is a pull operation
+SMTP is push, ∴ not used for transferring files between mail server and host 
+as this is a pull operation
 
 HTTP stateless. Responses/requests have status line, header lines, body
 

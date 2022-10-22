@@ -7,7 +7,7 @@ No general 'optimally' sized packet, e.g. large size if error have be resent, li
 IMPORTANT: All TCP messages will have an ACK response 
 (piggybacking is combining acknowledgement with next outgoing frame)
 
-FIN and SYN consume 1 byte, i.e. 1 sequence number
+IMPORTANT: FIN and SYN consume 1 byte, i.e. 1 sequence number
 
 RDT (reliable data transfer) 3.0 is stop-and-wait, ∴ ACKs don't require SEQ numbers
 

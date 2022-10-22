@@ -9,6 +9,8 @@ TODO(Ryan): https://www.quora.com/What-is-the-exact-difference-between-packets-a
 By distinguishing data streams, transport layer provides logical communication between different hosts
 Breaks and reassembles segments
 
+NACk only better for data being sent often and with few errors
+
 Handling data from multiple sockets is multiplexing, which is performed by sender 
 when it adds Transport header.
 Reciever performs demultiplexing by inspecting IP of packet and ports of segment 

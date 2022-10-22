@@ -41,7 +41,7 @@ application protocol considerations (data loss, timing, throughput, security)
 
 TCP (flow/congestion control, reliable data transefer, connection oriented)
 
-HTTP is a pull protocol, i.e. will wait for recieved reply 
+HTTP is a pull protocol, i.e. periodically check 
 SMTP is push, ∴ not used for transferring files between mail server and host 
 as this is a pull operation
 

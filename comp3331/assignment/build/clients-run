@@ -2,6 +2,26 @@
 
 set -e
 
-# terminator --title="dev1" --geometry= --working-dir= --command=
-terminator --title="dev1" --geometry="400x400+0+0" --working-dir="../run" \
-  -x client-run &
+if [ $# -ge 1 ]; then
+
+window_size_str=$(xrandr | grep '*')
+prev_ifs=$IFS
+IFS=' '
+set -- $window_size_str
+IFS=$prev_ifs
+window_size_str=$1
+window_width=${window_size_str%x*}
+window_height=${window_size_str#*x}
+
+
+
+else
+  printf "Usage: clients-run <num-clients> <max-num-cols>\n" >&2
+fi
+
+
+# pushd ../run >/dev/null
+# 
+# terminator --title="dev1" --geometry="400x400+0+0" -x bash '../build/client-run'
+# 
+# popd >/dev/null

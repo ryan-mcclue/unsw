@@ -8,11 +8,12 @@ do
  cnt=$((cnt+1))
 done
 echo ""
-bash
 
 #set -e
 #
 #
-## ../build/client 127.0.0.1 8000 1234
+## ../build/client 127.0.0.1 8000 1234 <<< $'dev\npass\n'
+# IMPORTANT: can send to stdin after a delay: https://unix.stackexchange.com/questions/48103/construct-a-command-by-putting-a-string-into-a-tty/48221 
+# https://serverfault.com/questions/178457/can-i-send-some-text-to-the-stdin-of-an-active-process-running-in-a-screen-sessi?newreg=fcacf224486d42f88f27528374ad103e 
 #
 #bash

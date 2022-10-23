@@ -32,6 +32,7 @@ TCP and UDP header contains 16bit ones complement checksum of IP header and itse
 Window size is number of bytes
 MTU for loopback is 65535 because packet len is 16bits
 
+IMPORTANT: TCP uses single timer for oldest unacknowledged segment
 Reliably ordered data:
 * checksum detects 2-bit errors (is 1's complement of 1's complement sum of all 16-bit words in header) 
 will send NACK on corruption
@@ -49,7 +50,7 @@ cumulative ACK (TCP uses) sends a single ACK for a group of packets
 * However, performance for stop-and-wait is poor, so implement sliding windows for efficiency 
 (pipelining), i.e. send multiple unACK'd packets at once
   - Go-Back-N: So, send 4 packets, if packet 2 errors, retransmit 2,3,4,5 (heuristic based)
-  - Selective-Repeat: Only retransmit specific errored packet
+  - Selective-Repeat: Only retransmit specific errored packet (out of order packets are buffered, meaning duplicate ACKs less likely)
 
 duplicate ACKs could be because of high latency
 will get duplicate ACKs when say sending 10 packets and packet 2 doesn't make it. 

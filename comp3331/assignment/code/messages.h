@@ -26,6 +26,9 @@ typedef enum
   SCS_REQUEST,
   SCS_RESPONSE,
 
+  DTE_REQUEST,
+  DTE_RESPONSE,
+
 } MESSAGE_TYPE;
 
 typedef struct
@@ -56,6 +59,15 @@ typedef struct
     struct
     {
       s64 computation_result;
+    };
+
+    struct
+    {
+      u32 dte_file_id;
+    };
+    struct
+    {
+      s32 dte_response_code;
     };
     
     // STRING RESPONSE

@@ -165,6 +165,7 @@ main(int argc, char *argv[])
                 
                 clear_file("cse_edge_device_log.txt");
                 clear_file("upload-log.txt");
+                clear_file("deletion-log.txt");
 
                 while (true)
                 {
@@ -403,6 +404,47 @@ main(int argc, char *argv[])
 
                               writex(client_fd, &msg_response, sizeof(msg_response));
 
+                            } break;
+                            
+                            case DTE_REQUEST:
+                            {
+                              msg_response.type = DTE_RESPONSE;
+
+                              char file_name[256] = {0};
+                              snprintf(file_name, sizeof(file_name), "server-%s-%d.txt", 
+                                       device_name, msg_request.dte_file_id);
+                              if (access(file_name, F_OK) == 0)
+                              {
+                                struct stat file_stat = {0};
+                                if (stat(file_name, &file_stat) != -1)
+                                {
+                                  u32 file_size = file_stat.st_size;
+                                  if (unlink(file_name) != -1)
+                                  {
+                                    char timestamp[64] = {0};
+                                    populate_timestamp(timestamp, sizeof(timestamp));
+                                    append_to_file("deletion-log.txt", "%s; %s; %d; %d\n", device_name,
+                                        timestamp, msg_request.dte_file_id, file_size);
+
+                                    msg_response.dte_response_code = 1;
+                                  }
+                                  else
+                                  {
+                                    FPRINTF(stderr, "Error: Unable to delete file %s (%s)\n", file_name, strerror(errno));
+                                  }
+                                }
+                                else
+                                {
+                                  FPRINTF(stderr, "Error: Unable to stat file %s (%s)\n", file_name, strerror(errno));
+                                }
+                              }
+                              else
+                              {
+                                msg_response.dte_response_code = -1;
+                              }
+
+                              writex(client_fd, &msg_response, sizeof(msg_response));
+                               
                             } break;
                             
 

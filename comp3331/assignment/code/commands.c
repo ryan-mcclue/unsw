@@ -208,3 +208,41 @@ process_scs_command(Tokens *tokens, const char *device_name, int server_sock)
     FPRINTF(stderr, "Error: SCS command expects fileID and computationOperation as arguments\n");
   }
 }
+
+INTERNAL void
+process_dte_command(Tokens *tokens, const char *device_name, int server_sock)
+{
+  if (tokens->num_tokens == 2)
+  {
+    long int file_id = strtol(tokens->tokens[1], NULL, 10);
+    if (file_id != -1)
+    {
+      Message msg_request = {0};
+      msg_request.type = DTE_REQUEST;
+      msg_request.dte_file_id = file_id;
+
+      writex(server_sock, &msg_request, sizeof(msg_request));
+
+      Message msg_response = {0};
+      readx(server_sock, &msg_response, sizeof(msg_response));
+      if (msg_response.dte_response_code == -1)
+      {
+        FPRINTF(stderr, "Error: DTE command unable to find requested file on server\n");
+      }
+      else
+      {
+        FPRINTF(stderr, 
+                "File with ID of %ld has been successfully removed from the central server\n", 
+                file_id);
+      }
+    }
+    else
+    {
+      FPRINTF(stderr, "Error: DTE command expects fileID to be an integer\n");
+    }
+  }
+  else
+  {
+    FPRINTF(stderr, "Error: DTE command expects fileID as an argument\n");
+  }
+}

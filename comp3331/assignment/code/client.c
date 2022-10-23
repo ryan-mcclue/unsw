@@ -132,7 +132,7 @@ main(int argc, char *argv[])
               }
               else if (strcmp(command_name, "DTE") == 0)
               {
-
+                process_dte_command(&tokens, device_name, server_sock);
               }
               else if (strcmp(command_name, "AED") == 0)
               {

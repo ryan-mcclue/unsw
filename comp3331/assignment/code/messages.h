@@ -29,7 +29,18 @@ typedef enum
   DTE_REQUEST,
   DTE_RESPONSE,
 
+  AED_REQUEST,
+  AED_RESPONSE,
+
 } MESSAGE_TYPE;
+
+typedef struct
+{
+  char aed_device_name[32];
+  char aed_ip[32];
+  u32 aed_port;
+  char aed_timestamp[64];
+} AedResponse;
 
 typedef struct
 {
@@ -60,7 +71,15 @@ typedef struct
     {
       s64 computation_result;
     };
+    
+    // AED
+    struct
+    {
+      u32 aed_count;
+      AedResponse aed_responses[32];
+    };
 
+    // DTE
     struct
     {
       u32 dte_file_id;

@@ -66,8 +66,17 @@ typedef struct
 
 typedef struct
 {
+  char device_name[32];
+  char ip[32];
+  char timestamp[64];
+  u32 port;
+} DeviceInfo;
+
+typedef struct
+{
   BlockedDevices blocked_devices;
   u32 num_connected_devices;
+  DeviceInfo device_infos[32];
 } SharedState;
 
 INTERNAL SharedState *
@@ -441,6 +450,31 @@ main(int argc, char *argv[])
                               else
                               {
                                 msg_response.dte_response_code = -1;
+                              }
+
+                              writex(client_fd, &msg_response, sizeof(msg_response));
+                               
+                            } break;
+
+                            case AED_REQUEST:
+                            {
+                              msg_response.type = AED_RESPONSE;
+                              msg_response.aed_count = shared_state->num_connected_devices; 
+                              
+                              for (u32 dev_i = 0; dev_i < shared_state->num_connected_devices; ++dev_i)
+                              {
+                                DeviceInfo dev_info = shared_state->device_infos[dev_i];
+
+                                AedResponse *aed_response = &msg_response.aed_responses[dev_i];
+
+                                strncpy(aed_response->aed_device_name, dev_info.device_name, 
+                                        sizeof(aed_response->aed_device_name));
+                                strncpy(aed_response->aed_ip, dev_info.ip, 
+                                        sizeof(aed_response->aed_ip));
+                                strncpy(aed_response->aed_timestamp, dev_info.timestamp, 
+                                        sizeof(aed_response->aed_timestamp));
+
+                                aed_response->aed_port = dev_info.port;
                               }
 
                               writex(client_fd, &msg_response, sizeof(msg_response));

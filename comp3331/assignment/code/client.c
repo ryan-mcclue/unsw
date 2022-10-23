@@ -136,7 +136,7 @@ main(int argc, char *argv[])
               }
               else if (strcmp(command_name, "AED") == 0)
               {
-
+                process_aed_command(&tokens, device_name, server_sock);
               }
               // TODO: could have working directories for each user from EDG command and subsequent UVF
               // This will first issue an AED command under the hood

@@ -258,10 +258,17 @@ process_aed_command(Tokens *tokens, const char *device_name, int server_sock)
   Message msg_response = {0};
   readx(server_sock, &msg_response, sizeof(msg_response));
 
-  for (u32 aed_i = 0; aed_i < msg_response.aed_count; ++aed_i)
+  if (msg_response.aed_count == 0)
   {
-    AedResponse aed_response = msg_response.aed_responses[aed_i];
-    printf("%s; %s; %d; active since %s\n", aed_response.aed_device_name, 
-        aed_response.aed_ip, aed_response.aed_port, aed_response.aed_timestamp);
+    printf("No other active edge devices\n");
+  }
+  else
+  {
+    for (u32 aed_i = 0; aed_i < msg_response.aed_count; ++aed_i)
+    {
+      AedResponse aed_response = msg_response.aed_responses[aed_i];
+      printf("%s; %s; %d; active since %s\n", aed_response.aed_device_name, 
+          aed_response.aed_ip, aed_response.aed_port, aed_response.aed_timestamp);
+    }
   }
 }

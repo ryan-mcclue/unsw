@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+# terminator --title="dev1" --geometry= --working-dir= --command=
+terminator --title="dev1" --geometry="400x400+0+0" --working-dir="../run" \
+  -x client-run &

@@ -255,8 +255,6 @@ main(int argc, char *argv[])
                                 char device_ip[INET_ADDRSTRLEN] = {0};
                                 inet_ntop(AF_INET, &client_addr.sin_addr, device_ip, INET_ADDRSTRLEN);
 
-                                shared_state->num_connected_devices++;
-
                                 char timestamp[64] = {0};
                                 populate_timestamp(timestamp, sizeof(timestamp));
                                 // TODO(Ryan): Keep separate data structure containing active devices ordered by access time.
@@ -265,6 +263,20 @@ main(int argc, char *argv[])
                                 append_to_file("cse_edge_device_log.txt", "%d; %s; %s; %s; %d\n", 
                                                shared_state->num_connected_devices,
                                                timestamp, device_name, device_ip, udp_port_num);
+
+                                u32 dev_info_index = shared_state->num_connected_devices;
+                                DeviceInfo *dev_info = &shared_state->device_infos[dev_info_index];
+
+                                strncpy(dev_info->device_name, device_name, 
+                                        sizeof(dev_info->device_name));
+                                strncpy(dev_info->ip, device_ip, 
+                                        sizeof(dev_info->ip));
+                                strncpy(dev_info->timestamp, timestamp, 
+                                        sizeof(dev_info->timestamp));
+
+                                dev_info->port = udp_port_num;
+
+                                shared_state->num_connected_devices++;
                               }
                               else
                               {
@@ -459,13 +471,15 @@ main(int argc, char *argv[])
                             case AED_REQUEST:
                             {
                               msg_response.type = AED_RESPONSE;
-                              msg_response.aed_count = shared_state->num_connected_devices; 
+                              msg_response.aed_count = shared_state->num_connected_devices - 1; 
                               
                               for (u32 dev_i = 0; dev_i < shared_state->num_connected_devices; ++dev_i)
                               {
                                 DeviceInfo dev_info = shared_state->device_infos[dev_i];
 
                                 AedResponse *aed_response = &msg_response.aed_responses[dev_i];
+
+                                if (strcmp(dev_info.device_name, device_name) == 0) continue;
 
                                 strncpy(aed_response->aed_device_name, dev_info.device_name, 
                                         sizeof(aed_response->aed_device_name));

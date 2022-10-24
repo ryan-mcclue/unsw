@@ -1,5 +1,8 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+IMPORTANT: if enable as input, the context of GPIO registers can change:
+e.g. as output, PORT is written to to get ouput. conversely, if input, PORT is pull-up/down and PIN is used to read input
+
 LCD display controllers will have some RAM, ROM and registers (IR to say display/clear, DR character, RS select which one)
 
 Why go to a transceiver?

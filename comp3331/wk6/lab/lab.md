@@ -60,6 +60,17 @@ subtract last ACK and first SEQ numbers to get bytes
 202 packet time minus packet 1 time
 
 ## 2. TCP Connection Management
+1. *What is the sequence number of the TCP SYN segment that is used to initiate the TCP 
+connection between the client computer and server?*
 
+2. What is the sequence number of the SYNACK segment sent by the server to the client computer in reply to the SYN? What is the value of the Acknowledgement field in the SYNACK segment? How did the server determine that value?
+
+3. What is the sequence number of the ACK segment sent by the client computer in response to the SYNACK? What is the value of the Acknowledgment field in this ACK segment? Does this segment contain any data?
+
+4. Who has done the active close? client or the server? how you have determined this? What type of closure has been performed? 3 Segment (FIN/FINACK/ACK), 4 Segment (FIN/ACK/FIN/ACK) or Simultaneous close?
+
+5. How many data bytes have been transferred from the client to the server and from the server to the client during the whole duration of the connection? What relationship does this have with the Initial Sequence Number and the final ACK received from the other side? 
+
+1. 
 4. simultaneous close as recieve 2 FIN packets consecutively 
 5. may have to subtract 1 for SYN and 1 for FIN from byte 'data' calculation

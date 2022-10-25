@@ -49,7 +49,8 @@ main(int argc, char *argv[])
         FPRINTF(stderr, "Warning: unable to set resuable socket (%s)\n", strerror(errno));
       }
 
-      // TODO(Ryan): For UVF have another thread?
+      // TODO(Ryan): For UVF have another thread
+      // This is because recieving a file like this should not block incoming commands
 
       struct sockaddr_in server_addr = {0};
       if (inet_pton(AF_INET, server_ip, &server_addr.sin_addr) == 1)

@@ -26,7 +26,7 @@ multiple sources of reset:
 AVR does not save any registers when transferring control to ISR 
 AVR has no software interrupt instruction
 
-AVR has external (tied to specific pins or pins can be configured) and internal interrupts (triggered by changes in internal AVR hardware)
+AVR has external (tied to specific pins or pins can be configured) and internal interrupts (triggered by changes in internal AVR hardware, e.g. timer)
 
 global interrupt bit (disable for performance code) and local interrupt bit
 by default, global interrupt bit cleared when inside an ISR (however can set to allow for nested)

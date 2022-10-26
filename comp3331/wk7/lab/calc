@@ -1,8 +1,17 @@
 #!/bin/python
 
-print(0.053937 -  0.026477) 
-print(0.077294 -  0.041737)
-print(0.124085 -  0.054026)
-print(0.169118 -  0.054690)
-print(0.217299 -  0.077405)
-print(0.267802 -  0.078157)
+def est(est_rtt, sample_rtt):
+  return ((1 - 0.125)*(est_rtt)) + (0.125 * sample_rtt)
+
+est_rtt = est(0.027460, 0.027460)
+print(est_rtt)
+est_rtt = est(est_rtt, 0.035557)
+print(est_rtt)
+est_rtt = est(est_rtt, 0.070059)
+print(est_rtt)
+est_rtt = est(est_rtt, 0.114428)
+print(est_rtt)
+est_rtt = est(est_rtt, 0.139894)
+print(est_rtt)
+est_rtt = est(est_rtt, 0.189645)
+print(est_rtt)

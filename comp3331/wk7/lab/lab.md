@@ -69,17 +69,35 @@ Divide by total time, which is the time of packet 202 being recieved.
 This gives `(232293103 - 232129012) / 5.455830` a throughput of approximately 30076 bytes per unit time
 
 ## 2. TCP Connection Management
-1. *What is the sequence number of the TCP SYN segment that is used to initiate the TCP 
-connection between the client computer and server?*
+1. *What is the sequence number of the TCP SYN segment that is used to initiate the TCP connection between the client computer and server?*
+`2818463618`
 
-2. What is the sequence number of the SYNACK segment sent by the server to the client computer in reply to the SYN? What is the value of the Acknowledgement field in the SYNACK segment? How did the server determine that value?
+2. *What is the sequence number of the SYNACK segment sent by the server to the client computer in reply to the SYN?*
+`1247095790`
 
-3. What is the sequence number of the ACK segment sent by the client computer in response to the SYNACK? What is the value of the Acknowledgment field in this ACK segment? Does this segment contain any data?
+*What is the value of the Acknowledgement field in the SYNACK segment?*
+`2818463619`
 
-4. Who has done the active close? client or the server? how you have determined this? What type of closure has been performed? 3 Segment (FIN/FINACK/ACK), 4 Segment (FIN/ACK/FIN/ACK) or Simultaneous close?
+*How did the server determine that value?*
+Added 1 to the sequence number provided by the client's SYN packet, to account for the 1 byte of data used in the SYN packet
 
-5. How many data bytes have been transferred from the client to the server and from the server to the client during the whole duration of the connection? What relationship does this have with the Initial Sequence Number and the final ACK received from the other side? 
+3. *What is the sequence number of the ACK segment sent by the client computer in response to the SYNACK?* 
+`2818463619`
 
-1. 
-4. simultaneous close as recieve 2 FIN packets consecutively 
-5. may have to subtract 1 for SYN and 1 for FIN from byte 'data' calculation
+*What is the value of the Acknowledgment field in this ACK segment?* 
+`1247095791`
+
+*Does this segment contain any data?*
+No
+
+4. *Who has done the active close? client or the server? how you have determined this? What type of closure has been performed?*
+A simultaneous close has been peformed, meaning the client and server simultaneous initiated the closure.
+We can see this by looking at the order of packets being FIN/FIN/ACK/ACK, i.e. neither client or server waits for the other's FIN before sending its own.
+
+5. *How many data bytes have been transferred from the client to the server and from the server to the client during the whole duration of the connection?*
+`2818463653 - 2818463618 - 2`
+33
+
+*What relationship does this have with the Initial Sequence Number and the final ACK received from the other side?*
+It's the final ACK number subtracted by the Initial Sequence Number. However, this includes the 1 byte for SYN packet and 1 byte for FIN packet.
+Therefore, subtract this value by 2 to get number of data bytes.

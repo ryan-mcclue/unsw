@@ -5,10 +5,13 @@ e.g. as output, PORT is written to to get ouput. conversely, if input, PORT is p
 
 LCD display controllers will have some RAM, ROM and registers (IR to say display/clear, DR character, RS select which one)
 
+
 Why go to a transceiver?
 
 when interfacing with other hardware, will have timing/synchronisation
 requirements, e.g. wait certain time for for write/read operations
+The busy flag for LCD is a primitive form of synchronisation.
+A more advanced is an interrupt
 
 Component hardware reset related to power supply load, so may not be reliable.
 ∴ implement in software

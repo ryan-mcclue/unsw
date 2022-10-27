@@ -31,7 +31,11 @@ parse_command_buffer(char *command_buffer)
 int
 main(int argc, char *argv[])
 {
+#if defined(AUTOMATE)
+  if (argc == 6)
+#else
   if (argc == 4)
+#endif
   {
     char server_ip[64] = {0};
     strncpy(server_ip, argv[1], sizeof(server_ip));
@@ -66,17 +70,31 @@ main(int argc, char *argv[])
           authentication_request.type = AUTHENTICATION_REQUEST;
           authentication_request.udp_port_num = client_udp_port;
 
+#if defined(AUTOMATE)
+          char *username = argv[4];
+          memcpy(authentication_request.device_name, username, strlen(username));
+          char *device_name = authentication_request.device_name;
+          device_name[strcspn(device_name, "\n")] = '\0';
+#else
           printf("Username: ");
           fgets(authentication_request.device_name, sizeof(authentication_request.device_name), stdin);
           char *device_name = authentication_request.device_name;
           device_name[strcspn(device_name, "\n")] = '\0';
+#endif
+
 
           while (!have_authenticated)
           {
+#if defined(AUTOMATE)
+            char *password = argv[5];
+            memcpy(authentication_request.password, password, strlen(password));
+            password[strcspn(password, "\n")] = '\0';
+#else
             printf("Password: ");
             fgets(authentication_request.password, sizeof(authentication_request.password), stdin);
             char *password = authentication_request.password;
             password[strcspn(password, "\n")] = '\0';
+#endif
 
             writex(server_sock, &authentication_request, sizeof(authentication_request));
 

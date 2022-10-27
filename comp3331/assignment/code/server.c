@@ -471,15 +471,19 @@ main(int argc, char *argv[])
                             case AED_REQUEST:
                             {
                               msg_response.type = AED_RESPONSE;
-                              msg_response.aed_count = shared_state->num_connected_devices - 1; 
+                              msg_response.aed_count = shared_state->num_connected_devices - 1;
                               
+                              u32 aed_response_i = 0;
                               for (u32 dev_i = 0; dev_i < shared_state->num_connected_devices; ++dev_i)
                               {
                                 DeviceInfo dev_info = shared_state->device_infos[dev_i];
 
-                                AedResponse *aed_response = &msg_response.aed_responses[dev_i];
+                                AedResponse *aed_response = &msg_response.aed_responses[aed_response_i];
 
-                                if (strcmp(dev_info.device_name, device_name) == 0) continue;
+                                if (strcmp(dev_info.device_name, device_name) == 0)
+                                {
+                                  continue;
+                                }
 
                                 strncpy(aed_response->aed_device_name, dev_info.device_name, 
                                         sizeof(aed_response->aed_device_name));
@@ -489,6 +493,8 @@ main(int argc, char *argv[])
                                         sizeof(aed_response->aed_timestamp));
 
                                 aed_response->aed_port = dev_info.port;
+
+                                aed_response_i++;
                               }
 
                               writex(client_fd, &msg_response, sizeof(msg_response));

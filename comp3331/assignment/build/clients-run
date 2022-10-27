@@ -7,7 +7,7 @@ if [ $# -eq 2 ]; then
 num_clients=$1
 num_cols=$2
 
-GLOBAL_DESKTOP_ENVIRONMENT_SCALE=2
+GLOBAL_DESKTOP_ENVIRONMENT_SCALE=1
 
 window_size_str=$(xrandr | grep '*')
 prev_ifs=$IFS
@@ -33,7 +33,7 @@ do
   do
     client_geometry="${client_width}x${client_height}+${client_x_offset}+${client_y_offset}"
     # IMPORTANT(Ryan): To persist after execution append "&& bash || bash"
-    terminator --title="client${client_i}" --geometry="$client_geometry" -x bash '../build/client-run' &
+    terminator --title="client${client_i}" --geometry="$client_geometry" -x bash "./client-run dev$client_i pass"
     # IMPORTANT(Ryan): Faster launching acheived by appended &, however then don't stack on top in order
     let client_x_offset+=client_width
     let client_i+=1
@@ -52,7 +52,3 @@ fi
 #       |       |
 # (+0-0)+-------+(-0-0)
 
-# pushd ../run >/dev/null
-# 
-# 
-# popd >/dev/null

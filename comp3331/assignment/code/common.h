@@ -31,6 +31,9 @@
 
 #define ASSERT_DEFAULT_CASE() default: { assert(!"UNREACHABLE DEFAULT CASE"); }
 
+#define ARRAY_LEN(arr) \
+  (sizeof(arr) / sizeof(arr[0]))
+
 typedef uint8_t u8;
 typedef uint32_t u32;
 typedef int32_t s32;

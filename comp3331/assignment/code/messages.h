@@ -32,6 +32,9 @@ typedef enum
   AED_REQUEST,
   AED_RESPONSE,
 
+  OUT_REQUEST,
+  OUT_RESPONSE,
+
 } MESSAGE_TYPE;
 
 typedef struct
@@ -76,7 +79,13 @@ typedef struct
     struct
     {
       u32 aed_count;
-      AedResponse aed_responses[32];
+      AedResponse aed_responses[64];
+    };
+
+    // OUT
+    struct
+    {
+      char out_device_name[32];
     };
 
     // DTE

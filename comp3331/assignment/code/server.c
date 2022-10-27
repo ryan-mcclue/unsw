@@ -76,7 +76,7 @@ typedef struct
 {
   BlockedDevices blocked_devices;
   u32 num_connected_devices;
-  DeviceInfo device_infos[32];
+  DeviceInfo device_infos[64];
 } SharedState;
 
 INTERNAL SharedState *
@@ -129,6 +129,29 @@ populate_timestamp(char *timestamp, u32 timestamp_size)
 
   snprintf(timestamp, timestamp_size, "%02d %s %d %02d:%02d:%02d", lt->tm_mday, month, 
            1900 + lt->tm_year, lt->tm_hour, lt->tm_min, lt->tm_sec); 
+}
+
+INTERNAL void
+write_active_devices_to_log_file(SharedState *shared_state, char *log_file)
+{
+  clear_file(log_file);
+
+  u32 active_dev_i = 1;
+  for (u32 dev_i = 0; dev_i < ARRAY_LEN(shared_state->device_infos); ++dev_i)
+  {
+    DeviceInfo dev_info = shared_state->device_infos[dev_i];
+
+    if (dev_info.port == 0)
+    {
+      continue;
+    }
+
+    append_to_file(log_file, "%d; %d; %s; %s; %s; %d\n", 
+                   active_dev_i, shared_state->num_connected_devices,
+                   dev_info.timestamp, dev_info.device_name, dev_info.ip, dev_info.port);
+
+    active_dev_i++;
+  }
 }
 
 #define FORK_CHILD_PID 0
@@ -257,12 +280,6 @@ main(int argc, char *argv[])
 
                                 char timestamp[64] = {0};
                                 populate_timestamp(timestamp, sizeof(timestamp));
-                                // TODO(Ryan): Keep separate data structure containing active devices ordered by access time.
-                                // Write this entirely out each time to simplify reordering on device deletion
-                                // write_active_devices_to_log_file();
-                                append_to_file("cse_edge_device_log.txt", "%d; %s; %s; %s; %d\n", 
-                                               shared_state->num_connected_devices,
-                                               timestamp, device_name, device_ip, udp_port_num);
 
                                 u32 dev_info_index = shared_state->num_connected_devices;
                                 DeviceInfo *dev_info = &shared_state->device_infos[dev_info_index];
@@ -277,6 +294,8 @@ main(int argc, char *argv[])
                                 dev_info->port = udp_port_num;
 
                                 shared_state->num_connected_devices++;
+
+                                write_active_devices_to_log_file(shared_state, "cse_edge_device_log.txt");
                               }
                               else
                               {
@@ -474,13 +493,18 @@ main(int argc, char *argv[])
                               msg_response.aed_count = shared_state->num_connected_devices - 1;
                               
                               u32 aed_response_i = 0;
-                              for (u32 dev_i = 0; dev_i < shared_state->num_connected_devices; ++dev_i)
+                              for (u32 dev_i = 0; dev_i < ARRAY_LEN(shared_state->device_infos); ++dev_i)
                               {
                                 DeviceInfo dev_info = shared_state->device_infos[dev_i];
 
                                 AedResponse *aed_response = &msg_response.aed_responses[aed_response_i];
 
                                 if (strcmp(dev_info.device_name, device_name) == 0)
+                                {
+                                  continue;
+                                }
+
+                                if (dev_info.port == 0)
                                 {
                                   continue;
                                 }
@@ -500,7 +524,28 @@ main(int argc, char *argv[])
                               writex(client_fd, &msg_response, sizeof(msg_response));
                                
                             } break;
-                            
+
+                            case OUT_REQUEST:
+                            {
+                              shared_state->num_connected_devices--;
+
+                              char *out_device_name = msg_request.out_device_name;
+
+                              // set want_to_run = false;
+                              for (u32 dev_i = 0; dev_i < ARRAY_LEN(shared_state->device_infos); ++dev_i)
+                              {
+                                DeviceInfo *dev_info = &shared_state->device_infos[dev_i];
+
+                                if (strcmp(dev_info->device_name, out_device_name) == 0)
+                                {
+                                  dev_info->port = 0;
+                                  break;
+                                }
+                              }
+
+                              write_active_devices_to_log_file(shared_state, "cse_edge_device_log.txt");
+
+                            } break;
 
                             ASSERT_DEFAULT_CASE()
                           }

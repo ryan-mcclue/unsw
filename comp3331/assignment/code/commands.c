@@ -273,3 +273,16 @@ process_aed_command(Tokens *tokens, const char *device_name, int server_sock)
     }
   }
 }
+
+INTERNAL void
+process_out_command(Tokens *tokens, const char *device_name, int server_sock)
+{
+  Message msg_request = {0};
+  msg_request.type = OUT_REQUEST;
+
+  strncpy(msg_request.out_device_name, device_name, sizeof(msg_request.out_device_name));
+
+  writex(server_sock, &msg_request, sizeof(msg_request));
+
+  printf("Goodbye %s\n", device_name);
+}

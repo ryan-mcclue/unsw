@@ -122,7 +122,8 @@ main(int argc, char *argv[])
             }
           }
 
-          while (true)
+          bool want_to_run = true;
+          while (want_to_run)
           {
             char command_buffer[1024] = {0};
 
@@ -165,7 +166,8 @@ main(int argc, char *argv[])
               }
               else if (strcmp(command_name, "OUT") == 0)
               {
-
+                process_out_command(&tokens, device_name, server_sock);
+                want_to_run = false;
               }
               else
               {
@@ -173,7 +175,6 @@ main(int argc, char *argv[])
               }
             }
           }
-
 
           exit(1);
         }

@@ -51,7 +51,7 @@ End-end congestion (TCP uses) has host infer congestion
 
 Window size is how many bytes. To avoid wrap-around issues,
 maximum window size is half of sequence number space
-(different to window number?)
+IMPORTANT: this is for MAX, so for general, just calculate binary as normal
 
 IMPORTANT: slow-start phase at the beginning of every TCP connection 
 

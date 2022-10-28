@@ -67,6 +67,8 @@ forwards packets not destined for themselves (wheres a host would just drop the 
   - IP address of router is gateway as it serves as host's way out of network
   a host will have a default gateway, which is a particular interface IP address of a router (router can have multiple interface IP addresses)
   - routers typically deployed in hierarchies, allowing better scaling, faster connections, more robusticity and route summarisation (i.e. reduction of routes through subnetting)
+  
+  - a host may have two interfaces, e.g. WiFi and ethernet
 
 
 * OSI (just a model to conceptualise, not rigid. e.g. router that has Access Control List will look at L4 header):

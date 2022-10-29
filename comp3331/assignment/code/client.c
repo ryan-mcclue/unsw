@@ -124,7 +124,59 @@ main(int argc, char *argv[])
             }
           }
 
-          // open up udp in another thread
+#if 0
+          pid_t fork_res = fork();
+          if (fork_res == -1)
+          {
+            FPRINTF(stderr, "Error: failed to fork udp listener (%s)\n", strerror(errno));
+          }
+          else
+          {
+            if (fork_res == 0)
+            {
+              int exit_on_parent_close = prctl(PR_SET_PDEATHSIG, SIGTERM); 
+              if (exit_on_parent_close == -1)
+              {
+                FPRINTF(stderr, "Warning: failed to set exit child on parent exit (%s)\n", strerror(errno));
+              }
+
+              int udp_sock = socket(AF_INET, SOCK_DGRAM, 0);
+              if (udp_sock != -1)
+              {
+                int opt_val = 1;
+                if (setsockopt(udp_sock, SOL_SOCKET, SO_REUSEADDR, (void *)&opt_val, 
+                      sizeof(opt_val)) == -1)
+                {
+                  FPRINTF(stderr, "Warning: unable to set resuable socket (%s)\n", strerror(errno));
+                }
+
+                struct sockaddr_in udp_addr = {0};
+                udp_addr.sin_family = AF_INET;
+                udp_addr.sin_addr.s_addr = INADDR_ANY;
+                udp_addr.sin_port = htons(client_udp_port);
+
+                if (bind(udp_sock, (struct sockaddr *)&udp_addr, sizeof(udp_addr)) != -1)
+                {
+                  while (true)
+                  {
+                    Message udp_request = {0};  
+
+                    readx(udp_sock, &udp_request, sizeof(udp_request));
+                    
+                  }
+                }
+                else
+                {
+                  FPRINTF(stderr, "Error: failed to bind on udp socket (%s)\n", strerror(errno));
+                }
+              }
+              else
+              {
+                FPRINTF(stderr, "Error: unable to create udp socket (%s)\n", strerror(errno));
+              }
+            }
+          }
+#endif
 
           bool want_to_run = true;
           while (want_to_run)
@@ -166,7 +218,7 @@ main(int argc, char *argv[])
               // This will first issue an AED command under the hood
               else if (strcmp(command_name, "UVF") == 0)
               {
-
+                process_uvf_command(&tokens, device_name, server_sock);
               }
               else if (strcmp(command_name, "OUT") == 0)
               {

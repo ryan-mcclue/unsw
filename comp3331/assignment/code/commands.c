@@ -288,3 +288,28 @@ process_out_command(Tokens *tokens, const char *device_name, int server_sock)
 
   printf("Goodbye %s\n", device_name);
 }
+
+INTERNAL void
+process_uvf_command(Tokens *tokens, const char *device_name, int server_sock)
+{
+  if (tokens->num_tokens == 3)
+  {
+    char *device_name = tokens->tokens[1];
+    char *file_name = tokens->tokens[2];
+
+    // check file exists
+    
+    //deviceName_filename
+
+    Message msg_request = {0};
+    msg_request.type = UVF_REQUEST;
+    strncpy(msg_request.uvf_device_name, device_name, sizeof(msg_request.uvf_device_name));
+
+    Message msg_response = {0};
+    writex()
+
+    if (msg_response.uvf_status == 1)
+    {
+
+    }
+}

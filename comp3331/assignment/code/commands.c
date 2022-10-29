@@ -49,6 +49,8 @@ process_edg_command(Tokens *tokens, char *device_name)
         char file_name[64] = {0}; 
         snprintf(file_name, sizeof(file_name), "%s-%ld.txt", device_name, file_id);
 
+        // TODO(Ryan): Increase this to a value suitable for large number
+        // TODO(Ryan): Generate more random numbers
         char data[1024] = {0};
         u32 data_cursor = 0;
         u32 data_seed = 0x12345678;

@@ -55,6 +55,7 @@ main(int argc, char *argv[])
 
       // TODO(Ryan): For UVF have another thread
       // This is because recieving a file like this should not block incoming commands
+      // However, don't have to implement case where device recieves two files simultaneously
 
       struct sockaddr_in server_addr = {0};
       if (inet_pton(AF_INET, server_ip, &server_addr.sin_addr) == 1)

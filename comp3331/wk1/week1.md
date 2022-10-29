@@ -57,7 +57,7 @@ dividing switch ports into isolated groups is creating VLANs
 forwards packets not destined for themselves (wheres a host would just drop the packet)
   - maintain knowledge of other networks they know about; a route stored in routing table (10.40.66.0 /24, i.e. a slash 24 route)
   0.0.0.0 /0 is default route, which matches all IPv4 addresses
-  packet matching multiple routes will go to more specific route entry
+  packet matching multiple routes will go to more specific route entry (longest prefix match)
   ∴, a router will have different IP address interfaces it uses to coordinate with various routes
   will also have an ARP table for directly connected routes
     route types (if router doesn't know how to get to IP, it will drop the packet):

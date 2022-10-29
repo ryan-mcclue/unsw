@@ -16,6 +16,8 @@ when it adds Transport header.
 Reciever performs demultiplexing by inspecting IP of packet and ports of segment 
 (i.e. segment and packet) to know what socket to direct to
 
+Reciever: ethernet demuxed to IP, IP demuxed to UDP, UDP demuxed to DHCP
+
 TCP/UDP don't provide bandwidth or delay guarantees
 
 connection orientated demultiplexing TCP uses 4-tuple, where UDP only about port 

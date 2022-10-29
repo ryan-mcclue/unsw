@@ -531,7 +531,6 @@ main(int argc, char *argv[])
 
                               char *out_device_name = msg_request.out_device_name;
 
-                              // set want_to_run = false;
                               for (u32 dev_i = 0; dev_i < ARRAY_LEN(shared_state->device_infos); ++dev_i)
                               {
                                 DeviceInfo *dev_info = &shared_state->device_infos[dev_i];
@@ -544,6 +543,8 @@ main(int argc, char *argv[])
                               }
 
                               write_active_devices_to_log_file(shared_state, "cse_edge_device_log.txt");
+
+                              exit(0);
 
                             } break;
 

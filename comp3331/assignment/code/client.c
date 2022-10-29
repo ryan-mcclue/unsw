@@ -77,6 +77,7 @@ main(int argc, char *argv[])
           char *device_name = authentication_request.device_name;
           device_name[strcspn(device_name, "\n")] = '\0';
 #else
+          // TODO(Ryan): If empty, allow to re-enter
           printf("Username: ");
           fgets(authentication_request.device_name, sizeof(authentication_request.device_name), stdin);
           char *device_name = authentication_request.device_name;
@@ -122,6 +123,8 @@ main(int argc, char *argv[])
               exit(1);
             }
           }
+
+          // open up udp in another thread
 
           bool want_to_run = true;
           while (want_to_run)
@@ -176,26 +179,11 @@ main(int argc, char *argv[])
               }
             }
           }
-
-          exit(1);
         }
         else
         {
           FPRINTF(stderr, "Error: failed to connect (%s)\n", strerror(errno));
         }
-
-#if 0
-        bool part_of_network = true;
-        while (part_of_network)
-        {
-          printf("Enter one of the following commands (EDG, UED, SCS, DTE, AED, UVF, OUT): ");
-          char command_buffer[128] = {0};
-          fgets(command_buffer, sizeof(command_buffer), stdin);
-
-          Message request_message = parse_command_buffer(command_buffer);
-        }
-#endif
-
       }
       else
       {
@@ -206,27 +194,11 @@ main(int argc, char *argv[])
     {
       FPRINTF(stderr, "Error: unable to create server socket (%s)\n", strerror(errno));
     }
-
-    // prompt_credentials()
-    // send_authentication()
-    // parse_return()
-    // if (success)
-    // {
-    //   send_udp_port_num()
-    //   prompt_for_command()
-    // }
-    
-    // running a udp server concurrently
-    // furthermore, new thread for client upload
   }
   else
   {
     FPRINTF(stderr, "Usage: ./client <server-ip> <server-port> <client-udp_port>\n");
   }
-  // request_connection()
-  // send_name_and_password() 
-  // --> recieve welcome message and command listing prompt
-  // send_p2p_udp_port_num()
 
   return 0;
 }

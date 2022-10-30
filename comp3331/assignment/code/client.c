@@ -124,7 +124,7 @@ main(int argc, char *argv[])
             }
           }
 
-#if 0
+          // IMPORTANT(Ryan): This only recieves files
           pid_t fork_res = fork();
           if (fork_res == -1)
           {
@@ -140,29 +140,51 @@ main(int argc, char *argv[])
                 FPRINTF(stderr, "Warning: failed to set exit child on parent exit (%s)\n", strerror(errno));
               }
 
-              int udp_sock = socket(AF_INET, SOCK_DGRAM, 0);
-              if (udp_sock != -1)
+              int uvf_sock = socket(AF_INET, SOCK_DGRAM, 0);
+              if (uvf_sock != -1)
               {
                 int opt_val = 1;
-                if (setsockopt(udp_sock, SOL_SOCKET, SO_REUSEADDR, (void *)&opt_val, 
+                if (setsockopt(uvf_sock, SOL_SOCKET, SO_REUSEADDR, (void *)&opt_val, 
                       sizeof(opt_val)) == -1)
                 {
                   FPRINTF(stderr, "Warning: unable to set resuable socket (%s)\n", strerror(errno));
                 }
 
-                struct sockaddr_in udp_addr = {0};
-                udp_addr.sin_family = AF_INET;
-                udp_addr.sin_addr.s_addr = INADDR_ANY;
-                udp_addr.sin_port = htons(client_udp_port);
+                struct sockaddr_in uvf_addr = {0};
+                uvf_addr.sin_family = AF_INET;
+                uvf_addr.sin_addr.s_addr = INADDR_ANY;
+                uvf_addr.sin_port = htons(client_udp_port);
 
-                if (bind(udp_sock, (struct sockaddr *)&udp_addr, sizeof(udp_addr)) != -1)
+                if (bind(uvf_sock, (struct sockaddr *)&uvf_addr, sizeof(uvf_addr)) != -1)
                 {
                   while (true)
                   {
-                    Message udp_request = {0};  
+                    Message uvf_request = {0};  
 
-                    readx(udp_sock, &udp_request, sizeof(udp_request));
-                    
+                    readx(uvf_sock, &uvf_request, sizeof(uvf_request));
+
+                    u32 byte_counter = 0;
+                    void *file_mem = mallocx(uvf_request.file_size);
+                    u8 *file_cursor = file_mem;
+
+                    memcpy(file_cursor, uvf_request.contents, uvf_request.contents_size);
+                    byte_counter += uvf_request.contents_size;
+
+                    while (byte_counter != uvf_request.file_size)
+                    {
+                      readx(uvf_sock, &uvf_request, sizeof(uvf_request)); 
+                      memcpy(file_cursor, uvf_request.contents, uvf_request.contents_size);
+                      byte_counter += uvf_request.contents_size;
+                    }
+
+                    // TODO(Ryan): This will overwrite files in the case of uploading same file to multiple peers
+                    // deviceName_filename
+                    char file_name[128] = {0};
+                    snprintf(file_name, sizeof(file_name), "%s_%s", uvf_request.uvf_device_name, uvf_request.uvf_file_name);
+
+                    write_entire_file(file_name, file_mem, uvf_request.uvf_file_size);
+
+                    free(file_mem);
                   }
                 }
                 else
@@ -176,7 +198,6 @@ main(int argc, char *argv[])
               }
             }
           }
-#endif
 
           bool want_to_run = true;
           while (want_to_run)
@@ -224,6 +245,9 @@ main(int argc, char *argv[])
               {
                 process_out_command(&tokens, device_name, server_sock);
                 want_to_run = false;
+
+                // TODO(Ryan): have to close child UDP listener
+                // https://unix.stackexchange.com/questions/158727/is-there-any-unix-variant-on-which-a-child-process-dies-with-its-parent
               }
               else
               {

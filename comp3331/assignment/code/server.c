@@ -445,6 +445,36 @@ main(int argc, char *argv[])
                               writex(client_fd, &msg_response, sizeof(msg_response));
 
                             } break;
+
+                            case UVF_VERIFY:
+                            {
+                              msg_response.type = UVF_VERIFY_RESPONSE;
+
+                              bool is_device_active = false;
+
+                              for (u32 dev_i = 0; dev_i < ARRAY_LEN(shared_state->device_infos); ++dev_i)
+                              {
+                                DeviceInfo dev_info = shared_state->device_infos[dev_i];
+
+                                if (strcmp(dev_info.device_name, msg_response.uvf_remote_device_name) == 0)
+                                {
+                                  is_device_active = true;
+                                  break;
+                                }
+                              }
+
+                              if (is_device_active)
+                              {
+                                msg_response.uvf_response = UVF_RESPONSE_DEVICE_ACTIVE;
+                              }
+                              else
+                              {
+                                msg_response.uvf_response = UVF_RESPONSE_DEVICE_NOT_ACTIVE;
+                              }
+
+                              writex(client_fd, &msg_response, sizeof(msg_response));
+
+                            } break;
                             
                             case DTE_REQUEST:
                             {
@@ -499,12 +529,12 @@ main(int argc, char *argv[])
 
                                 AedResponse *aed_response = &msg_response.aed_responses[aed_response_i];
 
-                                if (strcmp(dev_info.device_name, device_name) == 0)
+                                if (dev_info.port == 0)
                                 {
                                   continue;
                                 }
 
-                                if (dev_info.port == 0)
+                                if (strcmp(dev_info.device_name, device_name) == 0)
                                 {
                                   continue;
                                 }
@@ -538,6 +568,7 @@ main(int argc, char *argv[])
                                 if (strcmp(dev_info->device_name, out_device_name) == 0)
                                 {
                                   dev_info->port = 0;
+                                  strncpy(dev_info->device_name, "", sizeof(dev_info->device_name));
                                   break;
                                 }
                               }

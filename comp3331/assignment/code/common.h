@@ -77,6 +77,17 @@ writex(int fd, void *buf, size_t count)
 }
 
 INTERNAL void
+sendtox(int sockfd, void *buf, u32 len, int flags, struct sockaddr *dest_addr, socklen_t addrlen)
+{
+  int bytes_written = sendto(sockfd, buf, len, flags, dest_addr, addrlen);
+  if (bytes_written == -1)
+  {
+    FPRINTF(stderr, "Error: sendto failed (%s)\n", strerror(errno));
+    exit(1);
+  }
+}
+
+INTERNAL void
 readx(int fd, void *buf, size_t count)
 {
   int bytes_read = read(fd, buf, count);

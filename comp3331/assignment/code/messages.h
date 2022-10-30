@@ -12,6 +12,9 @@
 #define SCS_REQUEST_MAX 2
 #define SCS_REQUEST_MIN 3
 
+#define UVF_RESPONSE_DEVICE_ACTIVE 0
+#define UVF_RESPONSE_DEVICE_NOT_ACTIVE 1
+
 // NOTE(Ryan): mtu given by $(ifconfig), however could probably set to 65535 as using loopback
 #define MTU 16384
 
@@ -35,10 +38,16 @@ typedef enum
   OUT_REQUEST,
   OUT_RESPONSE,
 
+  UVF_VERIFY,
+  UVF_VERIFY_RESPONSE,
+  UVF_REQUEST,
+  UVF_RESPONSE,
+
 } MESSAGE_TYPE;
 
 typedef struct
 {
+  // IMPORTANT(Ryan): strcmp() cannot be used with NULL pointers, so this stack-string makes things easier
   char aed_device_name[32];
   char aed_ip[32];
   u32 aed_port;
@@ -104,7 +113,29 @@ typedef struct
       char response[128];
     };
 
-    // FILE SENDING
+    // UVF
+    struct
+    {
+      char uvf_remote_device_name[64];
+    };
+    struct
+    {
+      s32 uvf_response;
+      u32 uvf_response_port;
+    };
+
+    // UVF FILE SENDING
+    struct
+    {
+      char uvf_device_name[32];
+      char uvf_file_name[64];
+      u32 uvf_file_size;
+      u32 uvf_contents_size;
+      // IMPORTANT(Ryan): CSE stack limit of 8192KB is plenty for our MTU
+      char uvf_contents[MTU];
+    };
+
+    // UED FILE SENDING
     struct
     {
       u32 file_id;

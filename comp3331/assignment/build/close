@@ -2,6 +2,6 @@
 
 set -e
 
-pkill server
+sudo pkill server
 
-pkill clients
+sudo pkill clients

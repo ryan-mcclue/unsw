@@ -350,6 +350,9 @@ main(int argc, char *argv[])
 
                               while (byte_counter != msg_request.file_size)
                               {
+                                fprintf(stderr, "%.*s\n", msg_request.contents_size, msg_request.contents);
+                                fprintf(stderr, "byte counter: %d msg request file size: %d, content size: %d \n", byte_counter, msg_request.file_size, msg_request.contents_size);
+
                                 file_cursor += byte_counter; 
 
                                 readx(client_fd, &msg_request, sizeof(msg_request)); 

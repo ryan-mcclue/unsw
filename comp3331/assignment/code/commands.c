@@ -111,26 +111,32 @@ process_ued_command(Tokens *tokens, const char *device_name, int server_sock)
           ued_request.file_size = file_res.size;
           ued_request.file_id = file_id;
 
-          printf("file bytes: %d\n", file_res.size);
-
-          s32 file_size_left = file_res.size;
+          s64 file_size_left = file_res.size;
           u8 *file_cursor = (u8 *)file_res.contents;
           while (file_size_left != 0)
           {
             if (file_size_left - MTU >= 0)
             {
               memcpy(ued_request.contents, file_cursor, MTU);
+              fprintf(stderr, "%.*s\n", MTU, ued_request.contents);
+
               ued_request.contents_size = MTU;
               file_cursor += MTU;
               file_size_left -= MTU;
               writex(server_sock, &ued_request, sizeof(ued_request));
+
+              fprintf(stderr, "file size left: %ld\n", file_size_left);
             }
             else
             {
               memcpy(ued_request.contents, file_cursor, file_size_left);
+              fprintf(stderr, "%.*s\n", MTU, ued_request.contents);
+
               ued_request.contents_size = file_size_left;
-              file_size_left = 0;
               writex(server_sock, &ued_request, sizeof(ued_request));
+              file_size_left = 0;
+
+              fprintf(stderr, "file size left: %ld\n", file_size_left);
             }
           }
 

@@ -17,6 +17,7 @@
 
 // NOTE(Ryan): mtu given by $(ifconfig), however could probably set to 65535 as using loopback
 #define MTU 16384
+//#define MTU 32768
 
 typedef enum
 {

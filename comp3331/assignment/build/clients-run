@@ -7,7 +7,7 @@ if [ $# -eq 2 ]; then
 num_clients=$1
 num_cols=$2
 
-GLOBAL_DESKTOP_ENVIRONMENT_SCALE=1
+GLOBAL_DESKTOP_ENVIRONMENT_SCALE=2
 
 window_size_str=$(xrandr | grep '*')
 prev_ifs=$IFS

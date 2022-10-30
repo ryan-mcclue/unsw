@@ -350,6 +350,8 @@ main(int argc, char *argv[])
 
                               while (byte_counter != msg_request.file_size)
                               {
+                                file_cursor += byte_counter; 
+
                                 readx(client_fd, &msg_request, sizeof(msg_request)); 
                                 memcpy(file_cursor, msg_request.contents, msg_request.contents_size);
                                 byte_counter += msg_request.contents_size;
@@ -456,9 +458,10 @@ main(int argc, char *argv[])
                               {
                                 DeviceInfo dev_info = shared_state->device_infos[dev_i];
 
-                                if (strcmp(dev_info.device_name, msg_response.uvf_remote_device_name) == 0)
+                                if (strcmp(dev_info.device_name, msg_request.uvf_remote_device_name) == 0)
                                 {
                                   is_device_active = true;
+                                  msg_response.uvf_response_port = dev_info.port;
                                   break;
                                 }
                               }

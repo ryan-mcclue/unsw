@@ -34,6 +34,15 @@ split_into_tokens(char *buffer)
 }
 
 INTERNAL void
+sleep_ms(int ms)
+{
+  struct timespec sleep_time = {0};
+  sleep_time.tv_nsec = ms * 1000000;
+  struct timespec leftover_sleep_time = {0};
+  nanosleep(&sleep_time, &leftover_sleep_time);
+}
+
+INTERNAL void
 process_edg_command(Tokens *tokens, char *device_name)
 {
   if (tokens->num_tokens == 3)
@@ -307,7 +316,7 @@ process_uvf_command(Tokens *tokens, const char *device_name, int server_sock)
       Message uvf_response = {0};
       readx(server_sock, &uvf_response, sizeof(uvf_response));
 
-      if (uvf_response.uvf_response != UVF_RESPONSE_DEVICE_NOT_ACTIVE)
+      if (uvf_response.uvf_response == UVF_RESPONSE_DEVICE_ACTIVE)
       {
         int sending_sock = socket(AF_INET, SOCK_DGRAM, 0);
         if (sending_sock != -1)
@@ -337,7 +346,10 @@ process_uvf_command(Tokens *tokens, const char *device_name, int server_sock)
                 file_cursor += MTU;
                 file_size_left -= MTU;
 
-                sendtox(sending_sock, &uvf_request, sizeof(uvf_request), 0, (struct sockaddr *)&sending_sock_addr,  sizeof(sending_sock_addr));
+                sendtox(sending_sock, &uvf_request, sizeof(uvf_request), 0, (struct sockaddr *)&sending_sock_addr, sizeof(sending_sock_addr));
+
+                // TODO(Ryan): Sleep after this to avoid overflowing OS socket buffer space
+                //sleep_ms(100);
               }
               else
               {
@@ -345,7 +357,7 @@ process_uvf_command(Tokens *tokens, const char *device_name, int server_sock)
                 uvf_request.uvf_contents_size = file_size_left;
                 file_size_left = 0;
 
-                sendtox(sending_sock, &uvf_request, sizeof(uvf_request), 0, (struct sockaddr *)&sending_sock_addr,  sizeof(sending_sock_addr));
+                sendtox(sending_sock, &uvf_request, sizeof(uvf_request), 0, (struct sockaddr *)&sending_sock_addr, sizeof(sending_sock_addr));
               }
             }
 
@@ -375,5 +387,8 @@ process_uvf_command(Tokens *tokens, const char *device_name, int server_sock)
       FPRINTF(stderr, "Error: UVF command cannot find file %s to upload\n", file_name);
     }
   }
-
+  else
+  {
+    FPRINTF(stderr, "Error: UVF command expects deviceName and fileName\n");
+  }
 }

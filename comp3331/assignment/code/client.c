@@ -164,17 +164,19 @@ main(int argc, char *argv[])
                     readx(uvf_sock, &uvf_request, sizeof(uvf_request));
 
                     u32 byte_counter = 0;
-                    void *file_mem = mallocx(uvf_request.file_size);
+                    void *file_mem = mallocx(uvf_request.uvf_file_size);
                     u8 *file_cursor = file_mem;
 
-                    memcpy(file_cursor, uvf_request.contents, uvf_request.contents_size);
-                    byte_counter += uvf_request.contents_size;
+                    memcpy(file_cursor, uvf_request.uvf_contents, uvf_request.uvf_contents_size);
+                    byte_counter += uvf_request.uvf_contents_size;
 
-                    while (byte_counter != uvf_request.file_size)
+                    while (byte_counter != uvf_request.uvf_file_size)
                     {
+                      file_cursor += byte_counter;
+
                       readx(uvf_sock, &uvf_request, sizeof(uvf_request)); 
-                      memcpy(file_cursor, uvf_request.contents, uvf_request.contents_size);
-                      byte_counter += uvf_request.contents_size;
+                      memcpy(file_cursor, uvf_request.uvf_contents, uvf_request.uvf_contents_size);
+                      byte_counter += uvf_request.uvf_contents_size;
                     }
 
                     // TODO(Ryan): This will overwrite files in the case of uploading same file to multiple peers
@@ -185,6 +187,8 @@ main(int argc, char *argv[])
                     write_entire_file(file_name, file_mem, uvf_request.uvf_file_size);
 
                     free(file_mem);
+
+                    printf("Recieved %s from %s\n", file_name, uvf_request.uvf_device_name);
                   }
                 }
                 else
@@ -245,9 +249,6 @@ main(int argc, char *argv[])
               {
                 process_out_command(&tokens, device_name, server_sock);
                 want_to_run = false;
-
-                // TODO(Ryan): have to close child UDP listener
-                // https://unix.stackexchange.com/questions/158727/is-there-any-unix-variant-on-which-a-child-process-dies-with-its-parent
               }
               else
               {

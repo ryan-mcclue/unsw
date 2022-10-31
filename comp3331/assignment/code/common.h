@@ -5,6 +5,10 @@
 #error "This program is structured to only work on little-endian devices!"
 #endif
 
+#define _XOPEN_SOURCE 500
+// TODO(Ryan): Required for MAP_ANONYMOUS to be defined?
+#define _GNU_SOURCE
+
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
@@ -16,6 +20,8 @@
 #include <assert.h>
 #include <signal.h>
 #include <stdarg.h>
+
+#include <ftw.h>
 
 #include <arpa/inet.h>
 #include <sys/socket.h>
@@ -73,6 +79,10 @@ writex(int fd, void *buf, size_t count)
   {
     FPRINTF(stderr, "Error: write failed (%s)\n", strerror(errno));
     exit(1);
+  }
+  if (bytes_written != count)
+  {
+    FPRINTF(stderr, "Warning: write failed to write all bytes (%s)\n", strerror(errno));
   }
 }
 

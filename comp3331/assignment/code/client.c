@@ -58,6 +58,7 @@ main(int argc, char *argv[])
       // However, don't have to implement case where device recieves two files simultaneously
 
       struct sockaddr_in server_addr = {0};
+      // TODO(Ryan): More recent getaddrinfo() structure
       if (inet_pton(AF_INET, server_ip, &server_addr.sin_addr) == 1)
       {
         server_addr.sin_family = AF_INET;
@@ -78,6 +79,7 @@ main(int argc, char *argv[])
           device_name[strcspn(device_name, "\n")] = '\0';
 #else
           // TODO(Ryan): If empty, allow to re-enter
+          // TODO(Ryan): First verify if username is valid
           printf("Username: ");
           fgets(authentication_request.device_name, sizeof(authentication_request.device_name), stdin);
           char *device_name = authentication_request.device_name;
@@ -162,6 +164,16 @@ main(int argc, char *argv[])
                     Message uvf_request = {0};  
 
                     readx(uvf_sock, &uvf_request, sizeof(uvf_request));
+
+                    // TODO(Ryan): clear folders on startup
+                    char *uvf_device_name = uvf_request.uvf_device_name;
+                    if (access(uvf_device_name, F_OK) != 0)
+                    {
+                      printf("FOLDER %s NOT PRESENT!\n", uvf_device_name);
+                    }
+                    //struct stat folder_stat = {0};
+                    //if (stat(uvf_device_name, &folder_stat) == 0 && 
+                    // determine who from and create directory if not existing
 
                     u32 byte_counter = 0;
                     void *file_mem = mallocx(uvf_request.uvf_file_size);

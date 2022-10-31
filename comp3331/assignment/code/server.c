@@ -3,14 +3,7 @@
 // fork() copies memory (however, optimisation is copy-on-write making vfork() obsolete)
 // clone() is actual syscall allowing for sharing memory and execution space (file desriptors etc.)
 //
-// message logging
-//
-// authenticate() 'credentials.txt'
-
-// record_connection() 'edge-device-log.txt'
-// Active edge device sequence number; timestamp; edge device name; edge
-// device IP address; edge device UDP server port number
-// 1; 30 September 2022 10:31:13; supersmartwatch; 129.64.31.13; 5432
+// TODO(Ryan): Print out command logging
 
 // TODO(Ryan): add comments and 'clean' code 
 
@@ -346,19 +339,19 @@ main(int argc, char *argv[])
                               u32 byte_counter = 0;
                               void *file_mem = mallocx(msg_request.file_size);
                               u8 *file_cursor = file_mem;
+                              u32 file_size = msg_request.file_size;
 
                               memcpy(file_cursor, msg_request.contents, msg_request.contents_size);
                               byte_counter += msg_request.contents_size;
 
-                              while (byte_counter != msg_request.file_size)
+                              while (byte_counter != file_size)
                               {
-                                fprintf(stderr, "%.*s\n", msg_request.contents_size, msg_request.contents);
-                                fprintf(stderr, "byte counter: %d msg request file size: %d, content size: %d \n", byte_counter, msg_request.file_size, msg_request.contents_size);
-
                                 file_cursor = file_mem + byte_counter; 
 
                                 readx(client_fd, &msg_request, sizeof(msg_request)); 
+
                                 memcpy(file_cursor, msg_request.contents, msg_request.contents_size);
+
                                 byte_counter += msg_request.contents_size;
                               }
 
@@ -373,6 +366,8 @@ main(int argc, char *argv[])
                                              timestamp, msg_request.file_id, msg_request.file_size);
 
                               free(file_mem);
+
+                              printf("UED command processed\n");
 
                               msg_response.type = UED_RESPONSE;
                               snprintf(msg_response.response, sizeof(msg_response.response),

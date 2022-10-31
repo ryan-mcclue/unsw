@@ -118,19 +118,16 @@ process_ued_command(Tokens *tokens, const char *device_name, int server_sock)
             if (file_size_left - MTU >= 0)
             {
               memcpy(ued_request.contents, file_cursor, MTU);
-              fprintf(stderr, "%.*s\n", MTU, ued_request.contents);
 
               ued_request.contents_size = MTU;
-              file_cursor = (u8 *)file_res.contents + MTU;
+              file_cursor += MTU;
               file_size_left -= MTU;
               writex(server_sock, &ued_request, sizeof(ued_request));
 
-              fprintf(stderr, "file size left: %ld\n", file_size_left);
             }
             else
             {
               memcpy(ued_request.contents, file_cursor, file_size_left);
-              fprintf(stderr, "%.*s\n", MTU, ued_request.contents);
 
               ued_request.contents_size = file_size_left;
               writex(server_sock, &ued_request, sizeof(ued_request));
@@ -307,6 +304,7 @@ process_out_command(Tokens *tokens, const char *device_name, int server_sock)
 INTERNAL void
 process_uvf_command(Tokens *tokens, const char *device_name, int server_sock)
 {
+  // TODO(Ryan): This has to be done in another thread to allow other commands to execute will file is being uploaded
   if (tokens->num_tokens == 3)
   {
     char *remote_device_name = tokens->tokens[1];
@@ -354,8 +352,8 @@ process_uvf_command(Tokens *tokens, const char *device_name, int server_sock)
 
                 sendtox(sending_sock, &uvf_request, sizeof(uvf_request), 0, (struct sockaddr *)&sending_sock_addr, sizeof(sending_sock_addr));
 
-                // TODO(Ryan): Sleep after this to avoid overflowing OS socket buffer space
-                //sleep_ms(100);
+                // TODO(Ryan): is artificial throttling necessary here?
+                sleep_ms(100);
               }
               else
               {

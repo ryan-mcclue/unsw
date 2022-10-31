@@ -15,15 +15,62 @@ clear_file(const char *file_name)
   }
 }
 
+INTERNAL int 
+__unlink_cb(const char *fpath, const struct stat *sb, int typeflag, struct FTW *ftwbuf)
+{
+  int rv = remove(fpath);
+
+  if (rv == -1)
+  {
+    FPRINTF(stderr, "Error: Unable to remove path %s (%s)\n", fpath, strerror(errno));
+  }
+
+  return rv;
+}
+
+INTERNAL int 
+rm_rf(char *path)
+{
+  return nftw(path, __unlink_cb, 64, FTW_DEPTH | FTW_PHYS);
+}
+
 INTERNAL void
-write_entire_file(char *file_name, void *buf, u32 buf_size)
+clear_directory(char *path)
+{
+  // TODO(Ryan): Investigate useful POSIX C functions
+  // Also, some require the definition of cryptic macros to be included
+  if (access(path, F_OK) == 0)
+  {
+    rm_rf(path);
+  }
+
+  // IMPORTANT(Ryan): Executable important to enter
+  mkdir(path, 0777);
+}
+
+
+INTERNAL void
+write_entire_file(char *file_name, void *buf, u64 buf_size)
 {
   int file_fd = open(file_name, O_CREAT | O_TRUNC | O_WRONLY, 0666); 
   if (file_fd != -1) 
   {
-    if (write(file_fd, buf, buf_size) == -1)
+    u8 *byte_location = (u8 *)buf;
+    u32 bytes_to_write = buf_size;
+
+    while (bytes_to_write > 0) 
     {
-      FPRINTF(stderr, "Error: unable to write to file %s (%s)\n", file_name, strerror(errno));
+      int write_res = write(file_fd, byte_location, bytes_to_write); 
+      if (write_res != -1) 
+      {
+        bytes_to_write -= write_res;
+        byte_location += write_res;
+      }
+      else
+      {
+        FPRINTF(stderr, "Error: unable to write file %s (%s)\n", file_name, strerror(errno));
+        break;
+      }
     }
 
     close(file_fd);
@@ -87,9 +134,37 @@ read_entire_file(char *file_name)
 }
 
 INTERNAL void
+append_to_file_buf(char *file_name, char *buf, u32 buf_len)
+{
+  int file_fd = open(file_name, O_CREAT | O_RDWR, 0666); 
+  if (file_fd != -1) 
+  {
+    if (lseek(file_fd, 0, SEEK_END) != -1)
+    {
+      if (write(file_fd, buf, buf_len) != -1)
+      {
+        close(file_fd);
+      }
+      else
+      {
+        FPRINTF(stderr, "Error: unable to write to end of file %s (%s)\n", file_name, strerror(errno));
+      }
+    }
+    else
+    {
+      FPRINTF(stderr, "Error: unable to lseek to end of file %s (%s)\n", file_name, strerror(errno));
+    }
+  }
+  else
+  {
+    FPRINTF(stderr, "Error: unable to open/read file %s (%s)\n", file_name, strerror(errno));
+  }
+}
+
+INTERNAL void
 append_to_file(char *file_name, char *format, ...)
 {
-  int file_fd = open(file_name, O_CREAT | O_RDWR); 
+  int file_fd = open(file_name, O_CREAT | O_RDWR, 0666); 
   if (file_fd != -1) 
   {
     if (lseek(file_fd, 0, SEEK_END) != -1)
@@ -214,3 +289,5 @@ parse_credentials(char *credentials)
 
   return result;
 }
+
+

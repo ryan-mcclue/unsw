@@ -12,6 +12,8 @@
 // device IP address; edge device UDP server port number
 // 1; 30 September 2022 10:31:13; supersmartwatch; 129.64.31.13; 5432
 
+// TODO(Ryan): add comments and 'clean' code 
+
 #include "common.h"
 #include "messages.h"
 #include "io.c"
@@ -353,7 +355,7 @@ main(int argc, char *argv[])
                                 fprintf(stderr, "%.*s\n", msg_request.contents_size, msg_request.contents);
                                 fprintf(stderr, "byte counter: %d msg request file size: %d, content size: %d \n", byte_counter, msg_request.file_size, msg_request.contents_size);
 
-                                file_cursor += byte_counter; 
+                                file_cursor = file_mem + byte_counter; 
 
                                 readx(client_fd, &msg_request, sizeof(msg_request)); 
                                 memcpy(file_cursor, msg_request.contents, msg_request.contents_size);

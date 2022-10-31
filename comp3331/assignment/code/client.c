@@ -172,7 +172,7 @@ main(int argc, char *argv[])
 
                     while (byte_counter != uvf_request.uvf_file_size)
                     {
-                      file_cursor += byte_counter;
+                      file_cursor = file_mem + byte_counter;
 
                       readx(uvf_sock, &uvf_request, sizeof(uvf_request)); 
                       memcpy(file_cursor, uvf_request.uvf_contents, uvf_request.uvf_contents_size);

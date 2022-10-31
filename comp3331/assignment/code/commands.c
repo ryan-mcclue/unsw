@@ -121,7 +121,7 @@ process_ued_command(Tokens *tokens, const char *device_name, int server_sock)
               fprintf(stderr, "%.*s\n", MTU, ued_request.contents);
 
               ued_request.contents_size = MTU;
-              file_cursor += MTU;
+              file_cursor = (u8 *)file_res.contents + MTU;
               file_size_left -= MTU;
               writex(server_sock, &ued_request, sizeof(ued_request));
 

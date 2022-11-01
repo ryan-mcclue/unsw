@@ -17,7 +17,7 @@ All this occurs as a result of a loss event.
 
 Slow start phase restarts.
 
-2.  *What is the average throughput of TCP in this case? (both in number of packets per second and bps)*
+2. *What is the average throughput of TCP in this case? (both in number of packets per second and bps)*
 
 ![](q2.png)
 
@@ -25,8 +25,7 @@ Slow start phase restarts.
 
 `540 * 8 * 190 = 820800bps`
 
-3. 
-*Rerun the above script, each time with different values for the max congestion window size 
+3. *Rerun the above script, each time with different values for the max congestion window size 
 but the same RTT (i.e. 100ms).*
 
 *How does TCP respond to the variation of this parameter?*
@@ -69,7 +68,7 @@ Will never be exactly link capacity due to slow-start congestion control.
 *What does the TCP flow do when the congestion window reaches this value? Why?*
 
 Window size is divided by 2. Slow start threshold is divided by 2. 
-All this occurs as a result of a loss event.
+All this occurs as a result of a triple duplicated ACK.
 
 *What happens next?*
 
@@ -93,6 +92,7 @@ As we see no timeout loss event, we also observe the average throughput of TCP R
 
 ## 2. Flow Fairness with TCP
 1. *Does each flow get an equal share of the capacity of the common link (i.e., is TCP fair)?* 
+
 ![](fairness_pkt.png)
 
 Yes
@@ -107,20 +107,20 @@ They decrease
 
 *Explain the mechanisms of TCP which contribute to this behaviour.* 
 
-TCP flow control ensures that ...
+Part of TCP congestion control is to provide fair sharing of bandwith between concurrent flows
 
 *Argue about whether you consider this behaviour to be fair or unfair.*
 
-It's fair working under the directive that all connections are equal. 
+It's fair working under the assumption that all connections have similar RTT.
+If one connection has a very high RTT, then its window size will change disproportionally to concurrent flows, meaning it will get less than a even share of bandwidth.
+In this sense, it's not fair.
 
 ## 3. TCP competing with UDP
-1.
-*How do you expect the TCP flow and the UDP flow to behave if the capacity of the link is 5 Mbps?*
+1. *How do you expect the TCP flow and the UDP flow to behave if the capacity of the link is 5 Mbps?*
 
 UDP flow throughput will be much higher than TCP flow
 
-2.
-*Why does one flow achieve higher throughput than the other?* 
+2. *Why does one flow achieve higher throughput than the other?* 
 
 ![](q6.png)
 
@@ -129,14 +129,18 @@ TCP employs congestion control.
 Window size changes based on AIMD will result in average TCP throughput to be much less than link capacity
 
 *Try to explain what mechanisms force the two flows to stabilise to the observed throughput*
-UDP stabilises due to link capacity bandwidth (will try and send as fast as the link provides) 
+
+UDP stabilises due to link capacity bandwidth (will try and send as fast as the link provides). 
 TCP stabilises due to congestion control
 
-3.
-*List the advantages and the disadvantages of using UDP instead of TCP for a file transfer, when our connection has to compete with other flows for the same link.* 
+3. *List the advantages and the disadvantages of using UDP instead of TCP for a file transfer, when our connection has to compete with other flows for the same link.* 
 
 **Advantages**: Much higher throughput 
+
 **Disadvantages**: Packet loss/reordering possible
 
 *What would happen if everybody started using UDP instead of TCP for that same reason?*
-Congestion would increase at user's links and router's links. This would increase time and networks go down 
+
+The throughput at all nodes across the network would be close to link capacity. 
+This would lead to significant increase in congestion and subsequent packet loss.
+Ultimately this would increase latency to incredibly high levels to the point where network's would effectively appear offline to end users.

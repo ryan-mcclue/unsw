@@ -190,6 +190,8 @@ main(int argc, char *argv[])
                 SharedState *shared_state = init_shared_state(MEGABYTES(8));
                 assert(shared_state != NULL);
                 
+                // TODO(Ryan): Ensure these are named as those in the spec
+                // Some files provided don't match
                 clear_file("cse_edge_device_log.txt");
                 clear_file("upload-log.txt");
                 clear_file("deletion-log.txt");

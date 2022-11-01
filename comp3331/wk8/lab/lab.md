@@ -98,32 +98,45 @@ As we see no timeout loss event, we also observe the average throughput of TCP R
 Yes
 
 *Explain which observations lead you to this conclusion.*
+
 After all TCP flows are initiated, we see that the throughput of each is roughly the same (approximately 20 packets/sec) as time progesses.
 
 2. *What happens to the throughput of the pre-existing TCP flows when a new flow is created?* 
+
+They decrease
+
 *Explain the mechanisms of TCP which contribute to this behaviour.* 
+
+TCP flow control ensures that ...
+
 *Argue about whether you consider this behaviour to be fair or unfair.*
 
-throughput decrease as have to share
+It's fair working under the directive that all connections are equal. 
 
 ## 3. TCP competing with UDP
 1.
 *How do you expect the TCP flow and the UDP flow to behave if the capacity of the link is 5 Mbps?*
-UDP flow will be much higher than TCP flow
+
+UDP flow throughput will be much higher than TCP flow
 
 2.
 *Why does one flow achieve higher throughput than the other?* 
+
 ![](q6.png)
+
+UDP will send as fast as the link capacity can support.
+TCP employs congestion control. 
+Window size changes based on AIMD will result in average TCP throughput to be much less than link capacity
 
 *Try to explain what mechanisms force the two flows to stabilise to the observed throughput*
 UDP stabilises due to link capacity bandwidth (will try and send as fast as the link provides) 
 TCP stabilises due to congestion control
 
-3.2 
-UDP can send as fast as it can (no congestion control).
-also no changing window size
+3.
+*List the advantages and the disadvantages of using UDP instead of TCP for a file transfer, when our connection has to compete with other flows for the same link.* 
 
-3.2
-UDP much faster as no connection
-UDP could get file loss
-If everyone starting use UDP, congestion increase, networks go down
+**Advantages**: Much higher throughput 
+**Disadvantages**: Packet loss/reordering possible
+
+*What would happen if everybody started using UDP instead of TCP for that same reason?*
+Congestion would increase at user's links and router's links. This would increase time and networks go down 

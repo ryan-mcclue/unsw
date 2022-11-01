@@ -52,7 +52,7 @@ $ns attach-fmon $flink $fmon
 
 #Create a TCP agent and attach it to node n0
 # [new Agent/TCP/Reno]
-set tcp0 [new Agent/TCP] 
+set tcp0 [new Agent/TCP/Reno] 
 $tcp0 set window_ $windowSize
 $tcp0 set fid_ 1
 $tcp0 set packetSize_ 500B

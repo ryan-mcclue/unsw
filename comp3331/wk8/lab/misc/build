@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -e
+
+pandoc lab.md --pdf-engine=xelatex -o mcclue-5346008-lab05.pdf

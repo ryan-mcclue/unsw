@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -e
+
+pandoc report.md --pdf-engine=xelatex -o mcclue-5346008-report.pdf

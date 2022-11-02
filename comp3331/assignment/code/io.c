@@ -35,10 +35,8 @@ rm_rf(char *path)
 }
 
 INTERNAL void
-clear_directory(char *path)
+clear_folder(char *path)
 {
-  // TODO(Ryan): Investigate useful POSIX C functions
-  // Also, some require the definition of cryptic macros to be included
   if (access(path, F_OK) == 0)
   {
     rm_rf(path);

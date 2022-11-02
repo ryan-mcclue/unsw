@@ -303,95 +303,113 @@ process_out_command(Tokens *tokens, const char *device_name, int server_sock)
 INTERNAL void
 process_uvf_command(Tokens *tokens, const char *device_name, int server_sock)
 {
-  // TODO(Ryan): This has to be done in another thread to allow other commands to execute will file is being uploaded
-  if (tokens->num_tokens == 3)
+  pid_t fork_res = fork();
+  if (fork_res == -1)
   {
-    char *remote_device_name = tokens->tokens[1];
-    char *file_name = tokens->tokens[2];
-
-    if (access(file_name, F_OK) == 0)
-    {
-      Message uvf_request = {0};
-      uvf_request.type = UVF_VERIFY;
-      strncpy(uvf_request.uvf_remote_device_name, remote_device_name, sizeof(uvf_request.uvf_remote_device_name));
-      writex(server_sock, &uvf_request, sizeof(uvf_request));
-
-      Message uvf_response = {0};
-      readx(server_sock, &uvf_response, sizeof(uvf_response));
-
-      if (uvf_response.uvf_response == UVF_RESPONSE_DEVICE_ACTIVE)
-      {
-        int sending_sock = socket(AF_INET, SOCK_DGRAM, 0);
-        if (sending_sock != -1)
-        {
-          struct sockaddr_in sending_sock_addr = {0}; 
-          sending_sock_addr.sin_family = AF_INET; 
-          sending_sock_addr.sin_port = htons(uvf_response.uvf_response_port); 
-          sending_sock_addr.sin_addr.s_addr = INADDR_ANY; 
-
-          ReadFileResult file_res = read_entire_file(file_name);
-          if (file_res.contents != NULL)
-          {
-            uvf_request = (Message){0};
-            uvf_request.type = UVF_REQUEST;
-            strncpy(uvf_request.uvf_device_name, device_name, sizeof(uvf_request.uvf_device_name));
-            strncpy(uvf_request.uvf_file_name, file_name, sizeof(uvf_request.uvf_file_name));
-            uvf_request.uvf_file_size = file_res.size;
-
-            s32 file_size_left = file_res.size;
-            u8 *file_cursor = (u8 *)file_res.contents;
-            while (file_size_left != 0)
-            {
-              if (file_size_left - MTU >= 0)
-              {
-                memcpy(uvf_request.uvf_contents, file_cursor, MTU);
-                uvf_request.uvf_contents_size = MTU;
-                file_cursor += MTU;
-                file_size_left -= MTU;
-
-                sendtox(sending_sock, &uvf_request, sizeof(uvf_request), 0, (struct sockaddr *)&sending_sock_addr, sizeof(sending_sock_addr));
-
-                // TODO(Ryan): is artificial throttling necessary here?
-                sleep_ms(100);
-              }
-              else
-              {
-                memcpy(uvf_request.uvf_contents, file_cursor, file_size_left);
-                uvf_request.uvf_contents_size = file_size_left;
-                file_size_left = 0;
-
-                sendtox(sending_sock, &uvf_request, sizeof(uvf_request), 0, (struct sockaddr *)&sending_sock_addr, sizeof(sending_sock_addr));
-              }
-            }
-
-            printf("Uploaded: %s to %s\n", file_name, remote_device_name);
-
-            free(file_res.contents);
-          }
-          else
-          {
-            FPRINTF(stderr, "Error: UVF command cannot read file %s\n", file_name);
-          }
-        }
-        else
-        {
-          FPRINTF(stderr, "Error: UVF command unable to open udp socket for sending %s\n", strerror(errno));
-        }
-
-      }
-      else
-      {
-        FPRINTF(stderr, "Error: UVF command cannot upload file %s to disconnected device %s\n", file_name, remote_device_name);
-      }
-
-    }
-    else
-    {
-      FPRINTF(stderr, "Error: UVF command cannot find file %s to upload\n", file_name);
-    }
+    FPRINTF(stderr, "Error: failed to fork uvf uploader (%s)\n", strerror(errno));
   }
   else
   {
-    FPRINTF(stderr, "Error: UVF command expects deviceName and fileName\n");
+    if (fork_res == 0)
+    {
+      int exit_on_parent_close = prctl(PR_SET_PDEATHSIG, SIGTERM); 
+      if (exit_on_parent_close == -1)
+      {
+        FPRINTF(stderr, "Warning: failed to set exit child on parent exit (%s)\n", strerror(errno));
+      }
+
+      if (tokens->num_tokens == 3)
+      {
+        char *remote_device_name = tokens->tokens[1];
+        char *file_name = tokens->tokens[2];
+
+        if (access(file_name, F_OK) == 0)
+        {
+          Message uvf_request = {0};
+          uvf_request.type = UVF_VERIFY;
+          strncpy(uvf_request.uvf_remote_device_name, remote_device_name, sizeof(uvf_request.uvf_remote_device_name));
+          writex(server_sock, &uvf_request, sizeof(uvf_request));
+
+          Message uvf_response = {0};
+          readx(server_sock, &uvf_response, sizeof(uvf_response));
+
+          if (uvf_response.uvf_response == UVF_RESPONSE_DEVICE_ACTIVE)
+          {
+            int sending_sock = socket(AF_INET, SOCK_DGRAM, 0);
+            if (sending_sock != -1)
+            {
+              struct sockaddr_in sending_sock_addr = {0}; 
+              sending_sock_addr.sin_family = AF_INET; 
+              sending_sock_addr.sin_port = htons(uvf_response.uvf_response_port); 
+              sending_sock_addr.sin_addr.s_addr = INADDR_ANY; 
+
+              ReadFileResult file_res = read_entire_file(file_name);
+              if (file_res.contents != NULL)
+              {
+                uvf_request = (Message){0};
+                uvf_request.type = UVF_REQUEST;
+                strncpy(uvf_request.uvf_device_name, device_name, sizeof(uvf_request.uvf_device_name));
+                strncpy(uvf_request.uvf_file_name, file_name, sizeof(uvf_request.uvf_file_name));
+                uvf_request.uvf_file_size = file_res.size;
+
+                s32 file_size_left = file_res.size;
+                u8 *file_cursor = (u8 *)file_res.contents;
+                while (file_size_left != 0)
+                {
+                  if (file_size_left - MTU >= 0)
+                  {
+                    memcpy(uvf_request.uvf_contents, file_cursor, MTU);
+                    uvf_request.uvf_contents_size = MTU;
+                    file_cursor += MTU;
+                    file_size_left -= MTU;
+
+                    sendtox(sending_sock, &uvf_request, sizeof(uvf_request), 0, (struct sockaddr *)&sending_sock_addr, sizeof(sending_sock_addr));
+
+                    // TODO(Ryan): is artificial throttling necessary here?
+                    sleep_ms(100);
+                  }
+                  else
+                  {
+                    memcpy(uvf_request.uvf_contents, file_cursor, file_size_left);
+                    uvf_request.uvf_contents_size = file_size_left;
+                    file_size_left = 0;
+
+                    sendtox(sending_sock, &uvf_request, sizeof(uvf_request), 0, (struct sockaddr *)&sending_sock_addr, sizeof(sending_sock_addr));
+                  }
+                }
+
+                printf("Uploaded: %s to %s\n", file_name, remote_device_name);
+
+                free(file_res.contents);
+              }
+              else
+              {
+                FPRINTF(stderr, "Error: UVF command cannot read file %s\n", file_name);
+              }
+            }
+            else
+            {
+              FPRINTF(stderr, "Error: UVF command unable to open udp socket for sending %s\n", strerror(errno));
+            }
+
+          }
+          else
+          {
+            FPRINTF(stderr, "Error: UVF command cannot upload file %s to disconnected device %s\n", file_name, remote_device_name);
+          }
+
+        }
+        else
+        {
+          FPRINTF(stderr, "Error: UVF command cannot find file %s to upload\n", file_name);
+        }
+      }
+      else
+      {
+        FPRINTF(stderr, "Error: UVF command expects deviceName and fileName\n");
+      }
+
+      exit(0);
+    }
   }
 }

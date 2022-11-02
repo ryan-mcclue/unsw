@@ -168,21 +168,13 @@ main(int argc, char *argv[])
 
                 if (bind(uvf_sock, (struct sockaddr *)&uvf_addr, sizeof(uvf_addr)) != -1)
                 {
+                  clear_folder(device_name);
+
                   while (true)
                   {
                     Message uvf_request = {0};  
 
                     readx(uvf_sock, &uvf_request, sizeof(uvf_request));
-
-                    // TODO(Ryan): clear folders on startup
-                    char *uvf_device_name = uvf_request.uvf_device_name;
-                    if (access(uvf_device_name, F_OK) != 0)
-                    {
-                      printf("FOLDER %s NOT PRESENT!\n", uvf_device_name);
-                    }
-                    //struct stat folder_stat = {0};
-                    //if (stat(uvf_device_name, &folder_stat) == 0 && 
-                    // determine who from and create directory if not existing
 
                     u32 byte_counter = 0;
                     void *file_mem = mallocx(uvf_request.uvf_file_size);
@@ -200,10 +192,9 @@ main(int argc, char *argv[])
                       byte_counter += uvf_request.uvf_contents_size;
                     }
 
-                    // TODO(Ryan): This will overwrite files in the case of uploading same file to multiple peers
-                    // deviceName_filename
                     char file_name[128] = {0};
-                    snprintf(file_name, sizeof(file_name), "%s_%s", uvf_request.uvf_device_name, uvf_request.uvf_file_name);
+                    snprintf(file_name, sizeof(file_name), "%s/%s_%s", device_name, 
+                             uvf_request.uvf_device_name, uvf_request.uvf_file_name);
 
                     write_entire_file(file_name, file_mem, uvf_request.uvf_file_size);
 
@@ -261,8 +252,6 @@ main(int argc, char *argv[])
               {
                 process_aed_command(&tokens, device_name, server_sock);
               }
-              // TODO: could have working directories for each user from EDG command and subsequent UVF
-              // This will first issue an AED command under the hood
               else if (strcmp(command_name, "UVF") == 0)
               {
                 process_uvf_command(&tokens, device_name, server_sock);

@@ -6,7 +6,6 @@
 #endif
 
 #define _XOPEN_SOURCE 500
-// TODO(Ryan): Required for MAP_ANONYMOUS to be defined?
 #define _GNU_SOURCE
 
 #include <stdint.h>

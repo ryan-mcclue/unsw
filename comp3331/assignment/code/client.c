@@ -1,20 +1,3 @@
-
-// TODO(Ryan):
-// Both the client and server MUST print meaningful messages at the
-// command prompt that capture the specific interactions taking place. You are free to choose the precise
-// text that is displayed.
-
-// TODO(Ryan): Are going to test automated? i.e. will have to use locks()?
-
-// Commands:
-// EDG (Edge Data Generation) which means the client side helps to generate data to simulate the data collection function in the real edge device, 
-// UED (Upload Edge Data) it allows the edge device to upload a particular edge data file to the central server,
-// SCS (Server Computation Service) the edge device can practice this command to request the server to
-//do some basic computations on a particular data file, 
-// DTE (Delete the data file (server side)), 
-// AED (Active Edge Devices), request and display the active edge devices, OUT: exit this edge network, and
-// UVF (Peer-to-peer Uploading Video Files)
-
 #include "common.h"
 #include "messages.h"
 #include "io.c"
@@ -53,12 +36,7 @@ main(int argc, char *argv[])
         FPRINTF(stderr, "Warning: unable to set resuable socket (%s)\n", strerror(errno));
       }
 
-      // TODO(Ryan): For UVF have another thread
-      // This is because recieving a file like this should not block incoming commands
-      // However, don't have to implement case where device recieves two files simultaneously
-
       struct sockaddr_in server_addr = {0};
-      // TODO(Ryan): More recent getaddrinfo() structure
       if (inet_pton(AF_INET, server_ip, &server_addr.sin_addr) == 1)
       {
         server_addr.sin_family = AF_INET;
@@ -74,24 +52,29 @@ main(int argc, char *argv[])
 
           char *device_name = NULL;
 
+          bool username_entered = false;
+          bool username_valid = false;
+
           while (!have_authenticated)
           {
-            bool username_entered = false;
-            while (!username_entered)
+            if (!username_valid)
             {
+              username_entered = false;
+              while (!username_entered)
+              {
 #if defined(AUTOMATE)
-              char *username = argv[4];
-              memcpy(authentication_request.device_name, username, strlen(username));
-              device_name = authentication_request.device_name;
-              device_name[strcspn(device_name, "\n")] = '\0';
+                char *username = argv[4];
+                memcpy(authentication_request.device_name, username, strlen(username));
+                device_name = authentication_request.device_name;
+                device_name[strcspn(device_name, "\n")] = '\0';
 #else
-              // TODO(Ryan): First verify if username is valid
-              printf("Username: ");
-              fgets(authentication_request.device_name, sizeof(authentication_request.device_name), stdin);
-              device_name = authentication_request.device_name;
-              device_name[strcspn(device_name, "\n")] = '\0';
+                printf("Username: ");
+                fgets(authentication_request.device_name, sizeof(authentication_request.device_name), stdin);
+                device_name = authentication_request.device_name;
+                device_name[strcspn(device_name, "\n")] = '\0';
 #endif
-              username_entered = strlen(device_name);
+                username_entered = strlen(device_name);
+              }
             }
 
 #if defined(AUTOMATE)
@@ -122,6 +105,7 @@ main(int argc, char *argv[])
             else if (authentication_response.authentication_status == AUTHENTICATION_REQUEST_FAILED)
             {
               printf("Invalid password. Please try again\n");
+              username_valid = true;
             }
             else if (authentication_response.authentication_status == AUTHENTICATION_REQUEST_CURRENTLY_BLOCKED)
             {
@@ -202,6 +186,7 @@ main(int argc, char *argv[])
 
                     printf("Recieved %s from %s\n", file_name, uvf_request.uvf_device_name);
                     printf("Enter one of the following commands (EDG, UED, SCS, DTE, AED, UVF, OUT): ");
+                    fflush(stdout);
                   }
                 }
                 else
@@ -215,6 +200,8 @@ main(int argc, char *argv[])
               }
             }
           }
+
+          srand(time(NULL));
 
           bool want_to_run = true;
           while (want_to_run)

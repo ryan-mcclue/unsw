@@ -1,11 +1,4 @@
 // SPDX-License-Identifier: zlib-acknowledgement
-//
-// fork() copies memory (however, optimisation is copy-on-write making vfork() obsolete)
-// clone() is actual syscall allowing for sharing memory and execution space (file desriptors etc.)
-//
-// TODO(Ryan): Print out command logging
-
-// TODO(Ryan): add comments and 'clean' code 
 
 #include "common.h"
 #include "messages.h"
@@ -189,8 +182,6 @@ main(int argc, char *argv[])
                 SharedState *shared_state = init_shared_state(MEGABYTES(8));
                 assert(shared_state != NULL);
                 
-                // TODO(Ryan): Ensure these are named as those in the spec
-                // Some files provided don't match
                 clear_file("edge-device-log.txt");
                 clear_file("upload-log.txt");
                 clear_file("deletion-log.txt");
@@ -237,10 +228,6 @@ main(int argc, char *argv[])
                           {
                             case AUTHENTICATION_REQUEST:
                             {
-                              // TODO(Ryan): Perhaps allow passing in device name
-                              // separately and checking if it's valid, then asking for password
-                              //
-                              // Only block if device name is valid?
                               strncpy(device_name, msg_request.device_name, sizeof(device_name));
                               char *password = msg_request.password;
 
@@ -256,13 +243,9 @@ main(int argc, char *argv[])
                                      blocked_device->is_blocked)
                                 {
                                   msg_response.authentication_status = AUTHENTICATION_REQUEST_CURRENTLY_BLOCKED;
-                                  break;
+                                  writex(client_fd, &msg_response, sizeof(msg_response));
+                                  exit(0);
                                 }
-                              }
-
-                              if (msg_response.authentication_status == AUTHENTICATION_REQUEST_CURRENTLY_BLOCKED)
-                              {
-                                break;
                               }
 
                               int verification_status = verify_credentials(&client_credentials, device_name, password);
@@ -456,7 +439,7 @@ main(int argc, char *argv[])
 
                                   free(read_res.contents);
 
-                                  printf("Edge device %s requested a computation on operation on the file with ID of %d\n", 
+                                  printf("Edge device %s requested a computation operation on the file with ID of %d\n", 
                                       device_name, msg_request.file_identification);
                                   printf("Return message: \n"); 
                                   printf("%s computation has been made on edge device %s data file (ID:%d), the result is %ld\n", 
@@ -679,7 +662,7 @@ main(int argc, char *argv[])
 
                         if (blocked_device->is_blocked)
                         {
-                          printf("device %s currently blocked for: %lu \n", blocked_device->name, blocked_device->time_blocked_ms);
+                          //printf("device %s currently blocked for: %lu \n", blocked_device->name, blocked_device->time_blocked_ms);
 
                           u64 prev_time_blocked_ms_epoch = blocked_device->prev_time_blocked_ms_epoch;
                           u64 cur_ms_epoch = get_ms_epoch();

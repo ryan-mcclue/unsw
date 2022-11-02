@@ -58,16 +58,12 @@ process_edg_command(Tokens *tokens, char *device_name)
         char file_name[64] = {0}; 
         snprintf(file_name, sizeof(file_name), "%s-%ld.txt", device_name, file_id);
 
-        // TODO(Ryan): Increase this to a value suitable for large number
-        // TODO(Ryan): Generate more random numbers
-        char data[1024] = {0};
+        char data[8192] = {0};
         u32 data_cursor = 0;
-        u32 data_seed = 0x12345678;
         for (u32 i = 0; i < data_amount; ++i)
         {
-          data_seed ^= (u32)get_ms_epoch();
           data_cursor += snprintf(data + data_cursor, sizeof(data) - data_cursor,
-                                  "%d\n", data_seed);
+                                  "%d\n", rand());
         }
 
         write_entire_file(file_name, data, data_cursor);
@@ -132,8 +128,6 @@ process_ued_command(Tokens *tokens, const char *device_name, int server_sock)
               ued_request.contents_size = file_size_left;
               writex(server_sock, &ued_request, sizeof(ued_request));
               file_size_left = 0;
-
-              fprintf(stderr, "file size left: %ld\n", file_size_left);
             }
           }
 
@@ -408,6 +402,10 @@ process_uvf_command(Tokens *tokens, const char *device_name, int server_sock)
       {
         FPRINTF(stderr, "Error: UVF command expects deviceName and fileName\n");
       }
+
+      printf("Enter one of the following commands (EDG, UED, SCS, DTE, AED, UVF, OUT): ");
+      // NOTE(Ryan): This seems necessary becausing of being inside a fork? 
+      fflush(stdout);
 
       exit(0);
     }

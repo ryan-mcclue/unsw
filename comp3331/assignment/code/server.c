@@ -141,9 +141,8 @@ write_active_devices_to_log_file(SharedState *shared_state, char *log_file)
       continue;
     }
 
-    append_to_file(log_file, "%d; %d; %s; %s; %s; %d\n", 
-                   active_dev_i, shared_state->num_connected_devices,
-                   dev_info.timestamp, dev_info.device_name, dev_info.ip, dev_info.port);
+    append_to_file(log_file, "%d; %s; %s; %s; %d\n", 
+                   active_dev_i, dev_info.timestamp, dev_info.device_name, dev_info.ip, dev_info.port);
 
     active_dev_i++;
   }
@@ -192,7 +191,7 @@ main(int argc, char *argv[])
                 
                 // TODO(Ryan): Ensure these are named as those in the spec
                 // Some files provided don't match
-                clear_file("cse_edge_device_log.txt");
+                clear_file("edge-device-log.txt");
                 clear_file("upload-log.txt");
                 clear_file("deletion-log.txt");
 
@@ -298,7 +297,9 @@ main(int argc, char *argv[])
 
                                 shared_state->num_connected_devices++;
 
-                                write_active_devices_to_log_file(shared_state, "cse_edge_device_log.txt");
+                                write_active_devices_to_log_file(shared_state, "edge-device-log.txt");
+
+                                printf("%s has joined\n", device_name);
                               }
                               else
                               {
@@ -375,7 +376,9 @@ main(int argc, char *argv[])
 
                               free(file_mem);
 
-                              printf("UED command processed\n");
+                              printf("UED command issued by device %s\n", device_name);
+                              printf("Return message: \nThe file with ID %d has been uploaded and stored as %s\n", 
+                                     msg_request.file_id, file_name);
 
                               msg_response.type = UED_RESPONSE;
                               snprintf(msg_response.response, sizeof(msg_response.response),
@@ -452,6 +455,8 @@ main(int argc, char *argv[])
                                 msg_response.computation_result = -1;
                               }
 
+                              printf("SCS command issued for device %s\n", device_name);
+
                               writex(client_fd, &msg_response, sizeof(msg_response));
 
                             } break;
@@ -524,6 +529,8 @@ main(int argc, char *argv[])
                                 msg_response.dte_response_code = -1;
                               }
 
+                              printf("DTE command processed on file %s from device %s\n", file_name, device_name);
+
                               writex(client_fd, &msg_response, sizeof(msg_response));
                                
                             } break;
@@ -563,6 +570,28 @@ main(int argc, char *argv[])
                               }
 
                               writex(client_fd, &msg_response, sizeof(msg_response));
+
+                              printf("AED command processed for device %s\n", device_name);
+                              printf("Returned messages: \n");
+
+                              for (u32 dev_i = 0; dev_i < ARRAY_LEN(shared_state->device_infos); ++dev_i)
+                              {
+                                DeviceInfo dev_info = shared_state->device_infos[dev_i];
+
+                                if (dev_info.port == 0)
+                                {
+                                  continue;
+                                }
+
+                                if (strcmp(dev_info.device_name, device_name) == 0)
+                                {
+                                  continue;
+                                }
+
+                                printf("%s; %s; %d; active since %s\n", dev_info.device_name, 
+                                       dev_info.ip, dev_info.port, dev_info.timestamp);
+                              }
+
                                
                             } break;
 
@@ -584,7 +613,9 @@ main(int argc, char *argv[])
                                 }
                               }
 
-                              write_active_devices_to_log_file(shared_state, "cse_edge_device_log.txt");
+                              printf("OUT command processed for device %s\n", device_name);
+
+                              write_active_devices_to_log_file(shared_state, "edge-device-log.txt");
 
                               exit(0);
 

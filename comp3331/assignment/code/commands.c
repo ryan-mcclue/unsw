@@ -278,7 +278,6 @@ process_aed_command(Tokens *tokens, const char *device_name, int server_sock)
   }
   else
   {
-    // TODO(Ryan): Not picking up most recently connected device
     for (u32 aed_i = 0; aed_i < msg_response.aed_count; ++aed_i)
     {
       AedResponse aed_response = msg_response.aed_responses[aed_i];

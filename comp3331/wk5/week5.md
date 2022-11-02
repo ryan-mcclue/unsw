@@ -66,7 +66,7 @@ Phases of congestion control:
   (So, if SSthreshold=6, will double CWND by 2 (1,2,4,8...) each RTT until 6, then start congestion avoidance increasing by 1)
   (A CWND of 1 indicates sending 1xMSS, i.e. 1 packet)
 
-have exponential and additive phases
+have exponential (a.k.a slow start) and additive (a.k.a congestion avoidance) phases
 
 TCP-Tahoe (window set to 1, ssthres. halved always), 
 TCP-Reno (most common; window halved on triple duplicate; set to 1 on timeout)

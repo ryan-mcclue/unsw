@@ -376,9 +376,10 @@ main(int argc, char *argv[])
 
                               free(file_mem);
 
-                              printf("UED command issued by device %s\n", device_name);
-                              printf("Return message: \nThe file with ID %d has been uploaded and stored as %s\n", 
-                                     msg_request.file_id, file_name);
+                              printf("Edge device %s issued UED command\n", device_name);
+                              printf("A data file is received from edge device %s\n", device_name);
+                              printf("Return message: \n");
+                              printf("The file with ID of %d has been received, upload-log.txt file has been updated\n", msg_request.file_id);
 
                               msg_response.type = UED_RESPONSE;
                               snprintf(msg_response.response, sizeof(msg_response.response),
@@ -430,24 +431,36 @@ main(int argc, char *argv[])
                                   }
                                   average = sum / line_num;
 
+                                  char *computation_str = NULL;
+
                                   if (msg_request.computation_operation == SCS_REQUEST_SUM)
                                   {
                                     msg_response.computation_result = sum;
+                                    computation_str = "SUM";
                                   }
                                   else if (msg_request.computation_operation == SCS_REQUEST_AVERAGE)
                                   {
                                     msg_response.computation_result = average;
+                                    computation_str = "AVG";
                                   }
                                   else if (msg_request.computation_operation == SCS_REQUEST_MIN)
                                   {
                                     msg_response.computation_result = min;
+                                    computation_str = "MIN";
                                   }
                                   else if (msg_request.computation_operation == SCS_REQUEST_MAX)
                                   {
                                     msg_response.computation_result = max;
+                                    computation_str = "MAX";
                                   }
 
                                   free(read_res.contents);
+
+                                  printf("Edge device %s requested a computation on operation on the file with ID of %d\n", 
+                                      device_name, msg_request.file_identification);
+                                  printf("Return message: \n"); 
+                                  printf("%s computation has been made on edge device %s data file (ID:%d), the result is %ld\n", 
+                                      computation_str, device_name, msg_request.file_identification, msg_response.computation_result);
                                 }
                               }
                               else
@@ -455,7 +468,6 @@ main(int argc, char *argv[])
                                 msg_response.computation_result = -1;
                               }
 
-                              printf("SCS command issued for device %s\n", device_name);
 
                               writex(client_fd, &msg_response, sizeof(msg_response));
 
@@ -513,6 +525,11 @@ main(int argc, char *argv[])
                                         timestamp, msg_request.dte_file_id, file_size);
 
                                     msg_response.dte_response_code = 1;
+
+                                    printf("Edge device %s issued DTE command, the file ID is %d\n", device_name, msg_request.dte_file_id);
+                                    printf("Return message: \n");
+                                    printf("The file with ID of %d from edge device %s has been deleted, deletion log file has been updated\n",
+                                            msg_request.dte_file_id, device_name);
                                   }
                                   else
                                   {
@@ -529,7 +546,6 @@ main(int argc, char *argv[])
                                 msg_response.dte_response_code = -1;
                               }
 
-                              printf("DTE command processed on file %s from device %s\n", file_name, device_name);
 
                               writex(client_fd, &msg_response, sizeof(msg_response));
                                
@@ -571,8 +587,8 @@ main(int argc, char *argv[])
 
                               writex(client_fd, &msg_response, sizeof(msg_response));
 
-                              printf("AED command processed for device %s\n", device_name);
-                              printf("Returned messages: \n");
+                              printf("The edge device %s issued AED command\n", device_name);
+                              printf("Return message: \n");
 
                               for (u32 dev_i = 0; dev_i < ARRAY_LEN(shared_state->device_infos); ++dev_i)
                               {
@@ -613,7 +629,7 @@ main(int argc, char *argv[])
                                 }
                               }
 
-                              printf("OUT command processed for device %s\n", device_name);
+                              printf("%s exited the edge network\n", device_name);
 
                               write_active_devices_to_log_file(shared_state, "edge-device-log.txt");
 

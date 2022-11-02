@@ -210,6 +210,7 @@ main(int argc, char *argv[])
                     free(file_mem);
 
                     printf("Recieved %s from %s\n", file_name, uvf_request.uvf_device_name);
+                    printf("Enter one of the following commands (EDG, UED, SCS, DTE, AED, UVF, OUT): ");
                   }
                 }
                 else

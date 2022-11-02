@@ -72,23 +72,28 @@ main(int argc, char *argv[])
           authentication_request.type = AUTHENTICATION_REQUEST;
           authentication_request.udp_port_num = client_udp_port;
 
-#if defined(AUTOMATE)
-          char *username = argv[4];
-          memcpy(authentication_request.device_name, username, strlen(username));
-          char *device_name = authentication_request.device_name;
-          device_name[strcspn(device_name, "\n")] = '\0';
-#else
-          // TODO(Ryan): If empty, allow to re-enter
-          // TODO(Ryan): First verify if username is valid
-          printf("Username: ");
-          fgets(authentication_request.device_name, sizeof(authentication_request.device_name), stdin);
-          char *device_name = authentication_request.device_name;
-          device_name[strcspn(device_name, "\n")] = '\0';
-#endif
-
+          char *device_name = NULL;
 
           while (!have_authenticated)
           {
+            bool username_entered = false;
+            while (!username_entered)
+            {
+#if defined(AUTOMATE)
+              char *username = argv[4];
+              memcpy(authentication_request.device_name, username, strlen(username));
+              device_name = authentication_request.device_name;
+              device_name[strcspn(device_name, "\n")] = '\0';
+#else
+              // TODO(Ryan): First verify if username is valid
+              printf("Username: ");
+              fgets(authentication_request.device_name, sizeof(authentication_request.device_name), stdin);
+              device_name = authentication_request.device_name;
+              device_name[strcspn(device_name, "\n")] = '\0';
+#endif
+              username_entered = strlen(device_name);
+            }
+
 #if defined(AUTOMATE)
             char *password = argv[5];
             memcpy(authentication_request.password, password, strlen(password));
@@ -109,6 +114,10 @@ main(int argc, char *argv[])
             {
               printf("%s\n", authentication_response.response_message);
               have_authenticated = true; 
+            }
+            else if (authentication_response.authentication_status == AUTHENTICATION_REQUEST_DEVICE_NAME_INVALID)
+            {
+              printf("Invalid device name. Please try again\n");
             }
             else if (authentication_response.authentication_status == AUTHENTICATION_REQUEST_FAILED)
             {

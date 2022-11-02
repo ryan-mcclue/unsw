@@ -220,19 +220,39 @@ consume_identifier(char **at)
   return result;
 }
 
-INTERNAL bool
+#define VERIFICATION_INVALID_CREDENTIALS 0
+#define VERIFICATION_VALID_CREDENTIALS 1
+#define VERIFICATION_INVALID_DEVICE_NAME 2
+
+INTERNAL int
 verify_credentials(ClientCredentials *credentials, char *device_name, char *password)
 {
-  bool result = false;
+  int result = VERIFICATION_INVALID_CREDENTIALS;
+
+  bool device_present = false;
+  bool credentials_valid = false;
 
   for (u32 credential_i = 0; credential_i < credentials->num_credentials; ++credential_i)
   {
     ClientCredential credential = credentials->credentials[credential_i];
-    if (strcmp(credential.name, device_name) == 0 && strcmp(credential.password, password) == 0)
+    if (strcmp(credential.name, device_name) == 0)
     {
-      result = true;
-      break;
+      device_present = true;
+      if (strcmp(credential.password, password) == 0)
+      {
+        credentials_valid = true;
+        break;
+      }
     }
+  }
+  
+  if (device_present && credentials_valid)
+  {
+    result = VERIFICATION_VALID_CREDENTIALS;
+  }
+  else if (!device_present)
+  {
+    result = VERIFICATION_INVALID_DEVICE_NAME;
   }
 
   return result;

@@ -9,6 +9,7 @@ mkdir -p build
 # gcc -fsanitize=address -g -DDEBUG -DAUTOMATE code/server.c -o build/server -lm
 gcc -g -DDEBUG -DAUTOMATE code/server.c -o build/server -lm
  
-gcc -fsanitize=address -g -DDEBUG -DAUTOMATE code/client.c -o build/client -lm
+# gcc -fsanitize=address -g -DDEBUG -DAUTOMATE code/client.c -o build/client -lm
+gcc -fsanitize=address -g -DDEBUG code/client.c -o build/client -lm
 
 # gcc -g code/stackoverflow.c -o build/stackoverflow

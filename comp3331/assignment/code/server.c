@@ -266,7 +266,13 @@ main(int argc, char *argv[])
                                 break;
                               }
 
-                              if (verify_credentials(&client_credentials, device_name, password))
+                              int verification_status = verify_credentials(&client_credentials, device_name, password);
+
+                              if (verification_status == VERIFICATION_INVALID_DEVICE_NAME)
+                              {
+                                msg_response.authentication_status = AUTHENTICATION_REQUEST_DEVICE_NAME_INVALID;
+                              }
+                              else if (verification_status == VERIFICATION_VALID_CREDENTIALS)
                               {
                                 msg_response.authentication_status = AUTHENTICATION_REQUEST_SUCCESS;
                                 strncpy(msg_response.response_message, "Welcome!", sizeof(msg_response.response_message));

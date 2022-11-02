@@ -2,15 +2,21 @@
 
 set -e
 
-if [ $# -eq 2 ]; then
+#if [ $# -eq 2 ]; then
+#  pushd ../run >/dev/null
+#
+#  ../build/client 127.0.0.1 8000 $(( $RANDOM % 8000 + 4000 )) $1 $2
+#
+#  popd >/dev/null
+#else
+#  printf "Usage: ./client-run <username> <password>\n" >&2
+#fi
+
   pushd ../run >/dev/null
 
-  ../build/client 127.0.0.1 8000 $(( $RANDOM % 8000 + 4000 )) $1 $2
+  ../build/client 127.0.0.1 8000 $(( $RANDOM % 8000 + 4000 ))
 
   popd >/dev/null
-else
-  printf "Usage: ./client-run <username> <password>\n" >&2
-fi
 
 # IMPORTANT(Ryan): This will not work as once all input is passed, stdin will be closed resulting in future fgets() commands to return NULL 
 # { echo "dev" & sleep 0.1; echo "pass"; } | ../build/stackoverflow 0</dev/stdin

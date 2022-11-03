@@ -47,6 +47,18 @@ IPs geographical, e.g. ICANN -> APNIC -> Telstra -> UNSW -> CSE -> host
 Host may get IP from DHCP or /etc/rc.config 
 Network get IP from block of IPs allocated to ISP
 
+NAT addresses cannot be routed
+All devices on network share one public IPv4 address
+Requires NAT router to maintain NAT translation table to replace outgoing and incoming datagrams to appropriate sources
+(∴ IP checksum must be recalculated)
+IMPORTANT: Some legacy protocols embed port number payload, so NAT would have to translate these
+IMPORTANT: NAT no issues if acting as client
+If server behind a NAT:
+1. Statically configure NAT to forward based on port number
+2. UPnP (Universal Plug and Play; protocols that allow devices to discover each other's presence on network) 
+   IGN (Internet Gateway Device) automates NAT port configuration with lease times   
+3. Client communicates with a relay server (what Skype uses) that then communicates to the NAT server 
+
 * On refragmentation, will next router wait for all fragments to be recieved and re-assembled 
 before sending to next hop?
 * Network classes obselete, they why mentioned in questions?

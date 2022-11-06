@@ -44,7 +44,7 @@ Will recursively break down chunks as get closer to host, e.g. 12.0.0.0/8 -> 12.
 
 IPs geographical, e.g. ICANN -> APNIC -> Telstra -> UNSW -> CSE -> host
 
-Host may get IP from DHCP or /etc/rc.config 
+Host may get IP from DHCP (which itself could be dynamically or statically allocated) or /etc/rc.config 
 Network get IP from block of IPs allocated to ISP
 
 NAT addresses cannot be routed

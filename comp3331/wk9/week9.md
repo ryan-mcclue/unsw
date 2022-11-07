@@ -18,7 +18,7 @@ in practice bit errors in bursts, so parity not that useful.
 ∴, CRC is widely used (which performs a more computational intensive operation, i.e. division and check if remainder is 0)
 
 wireless is broadcast (share medium/link)
-ethernet can be point-to-point or broadcast
+ethernet can be point-to-point or broadcast, i.e. bus or switched (this is most common today)
 
 broadcast implies multiple access-network, meaning nodes could simultaneously transmit can cause a collision
 so, multiple access protocols exist to determine how to best share channel (part of link layer protocol)
@@ -37,3 +37,20 @@ share channel efficiently at low load
   - Polling (captain node invites other nodes to transmit in turn) 
   - Token passing (central token passed sequentially to nodes)
   (bluetooth, fddi (fibre optic LAN))
+
+48bit MAC a.k.a LAN address
+IEEE allocates MAC addresses. NIC manufacturer buys portion of MAC addresses
+Hardcoded and not hierarchical like IP
+
+Hosts will have ARP table. Possible for ARP poisoning, however have to be on same network (how does Uni prevent against this?)
+
+Ethernet byte layout:
+  * preamble (synchronise reciever/sender rates)
+  * type (indicates higher level protocol to allow for demultiplexing)
+unreliable (no ACKs), connectionless
+
+Switch is link-layer device (store-forward also). 
+Allows for no collisions, full-duplex connections (this is where the concept of output links become more apparent)
+Has switching table
+Is self-learning (i.e. no explicit routing protocol) by flooding and recording
+By sending spoofed MAC source addresses, could slow down network by overflowing switching table and requiring more broadcasts

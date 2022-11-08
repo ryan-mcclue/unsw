@@ -79,6 +79,8 @@ Without HTTPS, passwords just in base64 (binary-to-text)
 
 SNMP (simple network management protocol) get information about network devices
 
+Throughput includes headers. Goodput just payload
+
 > if traceroute '*' out, what does this mean? just use last IP for determining location?
 '*' and further traffic indicates it did pass router
 if '*' tail at end, routers sensititve to information leaking and cannot say where it ends 

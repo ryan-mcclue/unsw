@@ -59,6 +59,8 @@ If server behind a NAT:
    IGN (Internet Gateway Device) automates NAT port configuration with lease times   
 3. Client communicates with a relay server (what Skype uses) that then communicates to the NAT server 
 
+As TCP is stream orientated, will automatically handle size larger than MTU for us
+
 * On refragmentation, will next router wait for all fragments to be recieved and re-assembled 
 before sending to next hop?
 * Network classes obselete, they why mentioned in questions?

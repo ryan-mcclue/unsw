@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+IMPORTANT: MAC is about accessing the physical channel, wire or wireless
+
 link layer technology underpin LANs, as devices in a LAN will typically share same channel, e.g. 6 node LAN
 
 link layer occurences localised to subnet

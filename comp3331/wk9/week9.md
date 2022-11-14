@@ -13,6 +13,8 @@ each link protocol provides different services, e.g. ethernet low bit error link
 TODO(Ryan): Why both link-level and end-end reliability (some form of bit checking in UDP/IP/Ethernet)?
 (is it because to say transport checksum only on its headers, so not all encompassing?)
 
+IMPORTANT: bandwidth is for channel, rate is for node
+
 link layer implemented by NIC
 
 parity bits (even or odd number of 1s) form of error detection in link layer (as oppose to checksums used by higher layers)

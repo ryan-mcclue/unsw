@@ -73,6 +73,8 @@ TCP-Reno (most common; window halved on triple duplicate; set to 1 on timeout)
 IMPORTANT: at least a triple duplicate, i.e. four duplicates same, etc.
 timeout indicates all packets lost, hence treated more severely
 
+TCP-Reno will set SSthres to half current window size
+
 For about to send, consider first sent and retransmission scenarios
 
 TODO: Understand ACK numbers for lost packets

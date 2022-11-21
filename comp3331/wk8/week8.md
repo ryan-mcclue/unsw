@@ -17,7 +17,7 @@ Djikstra's link state algorithm: (centralised; each router implement algorithm o
 IMPORTANT: O(n²) messages sent; may have oscillations; slower error propagation 
 Implementations: OSPF, IS-IS
 
-Bellman-Ford distance vector algorithm: (decentralised)
+Bellman-Ford distance vector algorithm: (decentralised; iterative; takes time for information to propagate)
 * from time to time, each node sends out its own distance vector estimate to neighbours   
 * under natural conditions, estimate converges to actual least cost
 * issues arise with slow convergence 

@@ -19,7 +19,10 @@ link layer implemented by NIC
 
 parity bits (even or odd number of 1s) form of error detection in link layer (as oppose to checksums used by higher layers)
 in practice bit errors in bursts, so parity not that useful.
+(the parity bit set is determined if using say either a even or odd parity protocol)
 ∴, CRC is widely used (which performs a more computational intensive operation, i.e. division and check if remainder is 0)
+
+IMPORTANT: CRC can't provide error correction (rather error detection)
 
 wireless is broadcast (share medium/link)
 ethernet can be point-to-point or broadcast, i.e. bus or switched (this is most common today)

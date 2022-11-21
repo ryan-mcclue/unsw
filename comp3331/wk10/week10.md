@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+A high/strong signal-to-noise ratio allows more sophisticated modulation techniques, allowing for higher throughput
+
 SDN (software defined networking) uses software over say hardware routers/switches
 * Cloud applications could not function without this?
 (essentially moves control plane to software, actual data plane the forwards packets is still hardware)

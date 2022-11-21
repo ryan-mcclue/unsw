@@ -21,7 +21,7 @@ Reciever: ethernet demuxed to IP, IP demuxed to UDP, UDP demuxed to DHCP
 TCP/UDP don't provide bandwidth or delay guarantees
 
 connection orientated demultiplexing TCP uses 4-tuple, where UDP only about port 
-(hence why TCP is connection based)
+(hence why TCP is connection based; ∴ TCP can theoretically support more connections)
 (so, these transport protocols differ in their demultiplexing procedures)
 
 UDP simpler, smaller, no handshaking (HTTP3 will use UDP; this is why DNS uses UDP as the process of contacting many name servers would require many handshakes), 

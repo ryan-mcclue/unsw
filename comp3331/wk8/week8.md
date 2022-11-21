@@ -10,14 +10,14 @@ Internet routing two levels:
 Routing algorithms balance static/dynamic (e.g how frequently routes update) 
 and global/decentralised (are routes known beforehand or iteratively determined) 
 
-Djikstra's link state algorithm:
+Djikstra's link state algorithm: (centralised; each router implement algorithm on their own)
 * link state is directly attached links and costs
 * each node floods neighbour with link states which will then forward it on to its neighbours
 * eventually all nodes learn entire network topology, i.e. via link state broadcast
 IMPORTANT: O(n²) messages sent; may have oscillations; slower error propagation 
 Implementations: OSPF, IS-IS
 
-Bellman-Ford distance vector algorithm:
+Bellman-Ford distance vector algorithm: (decentralised)
 * from time to time, each node sends out its own distance vector estimate to neighbours   
 * under natural conditions, estimate converges to actual least cost
 * issues arise with slow convergence 

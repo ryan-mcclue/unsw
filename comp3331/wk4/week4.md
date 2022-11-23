@@ -34,6 +34,8 @@ TCP and UDP header contains 16bit ones complement checksum of IP header and itse
 Window size is number of bytes
 MTU for loopback is 65535 because packet len is 16bits
 
+IMPORTANT: Sequence number based on last IN-SEQUENCE data recieved, i.e. won't increment if out-of-order
+
 IMPORTANT: TCP uses single timer for oldest unacknowledged segment
 Reliably ordered data:
 * checksum detects 2-bit errors (is 1's complement of 1's complement sum of all 16-bit words in header) 

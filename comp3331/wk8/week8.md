@@ -12,15 +12,17 @@ and global/decentralised (are routes known beforehand or iteratively determined)
 
 Djikstra's link state algorithm: (centralised; each router implement algorithm on their own)
 * link state is directly attached links and costs
-* each node floods neighbour with link states which will then forward it on to its neighbours
+* each node floods neighbour with link states which will then forward it on to its neighbours (more bandwidth)
 * eventually all nodes learn entire network topology, i.e. via link state broadcast
+* converges fast
 IMPORTANT: O(n²) messages sent; may have oscillations; slower error propagation 
 Implementations: OSPF, IS-IS
 
 Bellman-Ford distance vector algorithm: (decentralised; iterative; takes time for information to propagate)
 * from time to time, each node sends out its own distance vector estimate to neighbours   
 * under natural conditions, estimate converges to actual least cost
-* issues arise with slow convergence 
+* issues arise with slow convergence (good news fast, bad news slow)
+* node's don't know entire network topology
 Poisoned Reverse rule is a heuristic to avoid count-to-infinity
 (B routes via C to A, tells C its distance to A is ∞ to avoid routing A through B)
 IMPORTANT: only send messages to neighbours; convergence time varies, may have routing loops;

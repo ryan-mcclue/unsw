@@ -3,6 +3,7 @@
 IMPORTANT: MAC is about accessing the physical channel, wire or wireless
 
 link layer technology underpin LANs, as devices in a LAN will typically share same channel, e.g. 6 node LAN
+LAN address a.k.a MAC address
 
 link layer occurences localised to subnet
 
@@ -58,6 +59,6 @@ unreliable (no ACKs), connectionless
 
 Switch is link-layer device (store-forward also). 
 Allows for no collisions, full-duplex connections (this is where the concept of output links become more apparent)
-Has switching table
+Has switching table (which populates via backward learning algorithm)
 Is self-learning (i.e. no explicit routing protocol) by flooding and recording
 By sending spoofed MAC source addresses, could slow down network by overflowing switching table and requiring more broadcasts

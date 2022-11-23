@@ -2,8 +2,10 @@
 
 IMPORTANT: TCP segment in lectures means just data bytes (going against convention....)
 
-routers route (determine end-to-end path taken; routing algorithm; control plane) and then
-forward (determine from input link to what output link; forwarding table; data plane)
+IMPORTANT: technically when a router recieves packet it will first perform forwarding,
+however to complete forwarding, must perform routing:
+* routers route (determine end-to-end path taken; routing algorithm; control plane) and then
+* forward (determine from input link to what output link; forwarding table; data plane)
 
 control plane approaches: 
 1. per-router (traditional)
@@ -39,7 +41,8 @@ Allows for heirarchical structure, therefore more efficient routing
 
 Router can be attached to various subnets (DHCP request/offer/accept/ack)
 
-CIDR (classless interdomain routing)
+CIDR (classless interdomain routing) have network/subnet part and host part each of 
+(arbitrary length dictates use of subnet masks)
 Will recursively break down chunks as get closer to host, e.g. 12.0.0.0/8 -> 12.0.0.0/16 etc 
 
 IPs geographical, e.g. ICANN -> APNIC -> Telstra -> UNSW -> CSE -> host

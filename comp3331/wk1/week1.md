@@ -60,6 +60,7 @@ forwards packets not destined for themselves (wheres a host would just drop the 
   packet matching multiple routes will go to more specific route entry (longest prefix match)
   ∴, a router will have different IP address interfaces it uses to coordinate with various routes
   will also have an ARP table for directly connected routes
+  (similarly will have multiple MAC addresses)
     route types (if router doesn't know how to get to IP, it will drop the packet):
     * directly connected
     * static route (directly entered by administrator)

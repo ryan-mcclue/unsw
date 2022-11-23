@@ -29,5 +29,7 @@ IMPORTANT: only send messages to neighbours; convergence time varies, may have r
 Implementations: RIP, IGRP-Cisco, BGP 
 TODO: Does dynamic programming mean value is converged on?
 
+Efficiency of network is maximised if propagation delay is 0 (as can detect collisions instantly)
+
 ICMP used by hosts and routers to communicate network information (not reachable, TTL expired, etc.)
 Not TCP or UDP, only 8 bytes of IP payload

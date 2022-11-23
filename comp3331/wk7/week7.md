@@ -28,6 +28,7 @@ Subnet part is higher-order bits, host part lower-order
 not assigned to any host are:
 * broadcast address has all host bits as 1, e.g. .255
 * network address has all host bits as 0, e.g. .0
+IMPORTANT: so, when calculating IP address range for a subnet, the two end-points are not usable
 
 Network classes:
 * A (8 bit net-id)
@@ -64,6 +65,7 @@ If server behind a NAT:
 
 As TCP is stream orientated, will automatically handle size larger than MTU for us
 
+IMPORTANT: fragmentation occurs on IP payload
 * On refragmentation, will next router wait for all fragments to be recieved and re-assembled 
 before sending to next hop?
 * Network classes obselete, they why mentioned in questions?

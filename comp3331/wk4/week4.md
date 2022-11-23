@@ -9,6 +9,8 @@ TODO(Ryan): https://www.quora.com/What-is-the-exact-difference-between-packets-a
 By distinguishing data streams, transport layer provides logical communication between different hosts
 Breaks and reassembles segments
 
+A duplicate packet from the sender will be dropped by the receiver in TCP
+
 NACk only better for data being sent often and with few errors
 
 Handling data from multiple sockets is multiplexing, which is performed by sender 
@@ -31,7 +33,7 @@ Have to implement reliability and congestion control on top of
 Always refer to transport segments as will contain payload. 
 TCP and UDP header contains 16bit ones complement checksum of IP header and itself (can be disabled for UDP in IPv4) that will be checked by reciever
 
-Window size is number of bytes
+Window size is number of bytes that can be sent before having to wait for an ACK
 MTU for loopback is 65535 because packet len is 16bits
 
 IMPORTANT: Sequence number based on last IN-SEQUENCE data recieved, i.e. won't increment if out-of-order

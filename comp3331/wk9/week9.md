@@ -11,7 +11,8 @@ link layer connect adajacent nodes via wireless (ethernet) or wired (WiFi, 4G, s
 
 each link protocol provides different services, e.g. ethernet low bit error link so reliability typically only used in WiFi
 (half-duplex, error detection, error correction, flow control, etc.)
-TODO(Ryan): Why both link-level and end-end reliability (some form of bit checking in UDP/IP/Ethernet)?
+TODO(Ryan): Why both link-level and end-end reliability 
+(some form of bit checking in UDP/IP/Ethernet)?
 (is it because to say transport checksum only on its headers, so not all encompassing?)
 
 IMPORTANT: bandwidth is for channel, rate is for node
@@ -28,8 +29,10 @@ IMPORTANT: CRC can't provide error correction (rather error detection)
 wireless is broadcast (share medium/link)
 ethernet can be point-to-point or broadcast, i.e. bus or switched (this is most common today)
 
-broadcast implies multiple access-network, meaning nodes could simultaneously transmit can cause a collision
-so, multiple access protocols exist to determine how to best share channel (part of link layer protocol)
+broadcast implies multiple access-network, meaning nodes could simultaneously transmit 
+can cause a collision
+so, multiple access protocols exist to determine how to best share channel 
+(part of link layer protocol)
 various categories:
 * Channel Partitioning (divide into slots. not decentralised):
 share channel efficiently at high load
@@ -58,7 +61,8 @@ Ethernet byte layout:
 unreliable (no ACKs), connectionless
 
 Switch is link-layer device (store-forward also). 
-Allows for no collisions, full-duplex connections (this is where the concept of output links become more apparent)
+Allows for no collisions, full-duplex connections 
+(this is where the concept of output links become more apparent)
 Has switching table (which populates via backward learning algorithm)
 Is self-learning (i.e. no explicit routing protocol) by flooding and recording
 By sending spoofed MAC source addresses, could slow down network by overflowing switching table and requiring more broadcasts

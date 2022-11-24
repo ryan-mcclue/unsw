@@ -16,7 +16,7 @@ so, routers constantly sharing information with other directly connected routers
 (perhaps updating hop length to a network)
 
 IP addresses can be static or dynamic.
-(is from your ISP static?)
+(typically dynamic from ISP. static if want to be publically addressable)
 (advantages just for security?)
 
 NAT used to extend IPv4 address space by converting from private IPs: 
@@ -53,9 +53,11 @@ only concerned with MAC (media access control)
   - Forward: use MAC address table
 dividing switch ports into isolated groups is creating VLANs
 
-* Router: facilitate connection between networks. traffic control point (security, filtering, etc.)
+* Router: facilitate connection between networks. 
+traffic control point (security, filtering, etc.)
 forwards packets not destined for themselves (wheres a host would just drop the packet)
-  - maintain knowledge of other networks they know about; a route stored in routing table (10.40.66.0 /24, i.e. a slash 24 route)
+  - maintain knowledge of other networks they know about; a route stored in routing table
+  (10.40.66.0 /24, i.e. a slash 24 route)
   0.0.0.0 /0 is default route, which matches all IPv4 addresses
   packet matching multiple routes will go to more specific route entry (longest prefix match)
   ∴, a router will have different IP address interfaces it uses to coordinate with various routes
@@ -72,8 +74,10 @@ forwards packets not destined for themselves (wheres a host would just drop the 
   - a host may have two interfaces, e.g. WiFi and ethernet
 
 
-* OSI (just a model to conceptualise, not rigid. e.g. router that has Access Control List will look at L4 header):
-  - layer of rules that govern network communication (layered so as each protocol does not have to reimplement network technologies, however can make packet sizes large)
+* OSI (just a model to conceptualise, not rigid. 
+e.g. router that has Access Control List will look at L4 header):
+  - layer of rules that govern network communication 
+  (layered so as each protocol does not have to reimplement network technologies, however can make packet sizes large)
    L1: Physical (transport bits). ethernet, wifi, bluetooth
    L2: Data (hop-to-hop; places and retrieves bits). From one NIC to another NIC
    Each NIC uses MAC addressing scheme, 48bits, 12 hex digits

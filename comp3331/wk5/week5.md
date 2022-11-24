@@ -2,7 +2,8 @@
 
 TODO: Search for Quiz in lecture slides
 
-No general 'optimally' sized packet, e.g. large size if error have be resent, link capacities etc.
+No general 'optimally' sized packet, e.g. large size if error have be resent, 
+link capacities etc.
 
 IMPORTANT: All TCP messages will have an ACK response 
 (piggybacking is combining acknowledgement with next outgoing frame)

@@ -31,7 +31,8 @@ no head-of-line blocking (work when network service compromised)
 Have to implement reliability and congestion control on top of
 
 Always refer to transport segments as will contain payload. 
-TCP and UDP header contains 16bit ones complement checksum of IP header and itself (can be disabled for UDP in IPv4) that will be checked by reciever
+TCP and UDP header contains 16bit ones complement checksum of IP header and itself 
+(can be disabled for UDP in IPv4) that will be checked by reciever
 
 Window size is number of bytes that can be sent before having to wait for an ACK
 MTU for loopback is 65535 because packet len is 16bits

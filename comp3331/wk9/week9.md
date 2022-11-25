@@ -49,11 +49,15 @@ share channel efficiently at low load
   - Token passing (central token passed sequentially to nodes)
   (bluetooth, fddi (fibre optic LAN))
 
+IMPORTANT: Nodes connected on LAN, are in affect on same broadcast LAN.
+∴ adapter's may process frames not intended for them, in which case they will not forward up to protocol stack
+
 48bit MAC a.k.a LAN address
 IEEE allocates MAC addresses. NIC manufacturer buys portion of MAC addresses
 Hardcoded and not hierarchical like IP
 
 Hosts will have ARP table. Possible for ARP poisoning, however have to be on same network (how does Uni prevent against this?)
+IMPORTANT: ARP request is a broadcast
 
 Ethernet byte layout:
   * preamble (synchronise reciever/sender rates)

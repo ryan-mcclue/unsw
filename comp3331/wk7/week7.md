@@ -22,6 +22,8 @@ TTL, fragmentation (different links have different MTUs),
 fragmentation-flags (MF-more-fragmentation, NF-no-fragmentation:in this case, could get ICMP telling us MTU),
 higher-level protocol? etc. 
 
+IMPORTANT: fragment must be a multiple of 8 bytes
+
 Subnet contains devices that can communicate with each other with no router?
 Subnet part is higher-order bits, host part lower-order
 /24 == 255.255.255.0
@@ -56,12 +58,14 @@ All devices on network share one public IPv4 address
 Requires NAT router to maintain NAT translation table to replace outgoing and incoming datagrams to appropriate sources
 (∴ IP checksum must be recalculated)
 IMPORTANT: Some legacy protocols embed port number payload, so NAT would have to translate these
-IMPORTANT: NAT no issues if acting as client
+IMPORTANT: NAT no issues if acting as client (however, must be specifically configured to act as server, i.e. accept incoming packets)
 If server behind a NAT:
 1. Statically configure NAT to forward based on port number
 2. UPnP (Universal Plug and Play; protocols that allow devices to discover each other's presence on network) 
    IGN (Internet Gateway Device) automates NAT port configuration with lease times   
 3. Client communicates with a relay server (what Skype uses) that then communicates to the NAT server 
+
+NAT will have to change IP src/dst/checksum fields as well as transport src port and checksum
 
 As TCP is stream orientated, will automatically handle size larger than MTU for us
 

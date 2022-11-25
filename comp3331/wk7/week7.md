@@ -2,8 +2,8 @@
 
 IMPORTANT: TCP segment in lectures means just data bytes (going against convention....)
 
-IMPORTANT: technically when a router recieves packet it will first perform forwarding,
-however to complete forwarding, must perform routing:
+IMPORTANT: routing will happen periodically, not just when a data packet is received
+to complete forwarding, must perform routing:
 * routers route (determine end-to-end path taken; routing algorithm; control plane) and then
 * forward (determine from input link to what output link; forwarding table; data plane)
 

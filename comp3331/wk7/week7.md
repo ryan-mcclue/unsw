@@ -6,6 +6,7 @@ IMPORTANT: routing will happen periodically, not just when a data packet is rece
 to complete forwarding, must perform routing:
 * routers route (determine end-to-end path taken; routing algorithm; control plane) and then
 * forward (determine from input link to what output link; forwarding table; data plane)
+(so, router consults forwarding table when determing what output interface, e.g network to network)
 
 control plane approaches: 
 1. per-router (traditional)

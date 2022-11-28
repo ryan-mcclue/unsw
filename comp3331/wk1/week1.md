@@ -69,9 +69,10 @@ forwards packets not destined for themselves (wheres a host would just drop the 
     * dynamic route (routers learning/sharing information via a routing protocol; essentially automatically adding a static route)
   - IP address of router is gateway as it serves as host's way out of network
   a host will have a default gateway, which is a particular interface IP address of a router (router can have multiple interface IP addresses)
-  - routers typically deployed in hierarchies, allowing better scaling, faster connections, more robusticity and route summarisation (i.e. reduction of routes through subnetting)
+  - routers typically deployed in hierarchies, allowing better scaling, faster connections, more robusticity and route summarisation 
+  (i.e. reduction of routes through subnetting)
   
-  - a host may have two interfaces, e.g. WiFi and ethernet
+  - a host may have two adapters, e.g. WiFi and ethernet
 
 
 * OSI (just a model to conceptualise, not rigid. 
@@ -95,7 +96,7 @@ e.g. router that has Access Control List will look at L4 header):
 i.e. L3 header and its data is known as packet, L2 header and its data is known as frame, etc.
 So, a frame is the largest encapsulation
 * De-encapsulation: will iteratively strip away headers if matches 
-i.e. checks L3 header and sees it matches, so moves up to L2
+i.e. checks L2 header and sees it matches, so moves up to L3
 
 * Hosts on Same Network:
 A host will have a MAC, IP, a subnet mask (identifies size of IP network, e.g. 255.255.255.0, /24), and a default gateway

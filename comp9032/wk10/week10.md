@@ -5,3 +5,5 @@ are configured as outputs."
 
 In other words, a program can trigger any one of these interrupts by writing to an interrupt-enabled pin. 
 A "poor man's" Software Interrupt can be implemented by manipulating an otherwise-unused output pin.
+
+For ADC, will have minimum (at least) and maximum (no reason for more) number of bits required for output resolution

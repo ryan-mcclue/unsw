@@ -18,7 +18,7 @@ PWM requires low-pass filter (attenuates frequencies higher) to smooth inherent 
 
 Pulse width directly proportional to output voltage.
 higher voltage means motor goes faster 
-fast-pwm 0-255
-phase-correct-pwm 0-255-0 (half frequency of fast-pwm) 
+fast-pwm 0-255 (higher frequencies; more commonly used) (count to max, then to 0)
+phase-correct-pwm 0-255-0 (half frequency of fast-pwm)  (count to max, then decrement to 0)
 (phase correct meaning timer slope up and slope down match as oppose to fast where slope up greater than vertical slope down)
 (there will be a threshold value on timer slope corresponding to active)

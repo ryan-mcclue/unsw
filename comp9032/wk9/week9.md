@@ -1,6 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
-Parallel interface more expensive with more wires (also, for long distance more wires increases susceptibility to noise)
+Parallel interface more expensive with more wires 
+(also, for long distance more wires increases susceptibility to noise)
 
 At reciever transmitter side, will convert the parallel signal from MCU into serial.
 Conversely, reciever will convert serial to parallel
@@ -20,7 +21,8 @@ Connection types:
   * full-duplex (each way same time)
 
 Devices:
-  * DCM (data communications equipment), e.g. modem (modulator/demodulator, typically converts for use over telephone line)
+  * DCM (data communications equipment), 
+    e.g. modem (modulator/demodulator, typically converts for use over telephone line)
   * DTE (data terminal equipment), e.g. PC
 
 RS-232-C common serial standard (defining handshake, data direction flow, signal levels, etc.)

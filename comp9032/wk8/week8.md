@@ -17,7 +17,8 @@ Glitch occurs if switching from 1 to 0 faster than 0 to 1
 
 Binary-weighted vs ladder DAC?
 
-ADC typically have a transducer (energy from one form to another, e.g. microphone, light-dependent resistor) 
+ADC typically have a transducer 
+(energy from one form to another, e.g. microphone, light-dependent resistor) 
 to convert from physical analog to electrical analog
 ADC will recieve a sampled signal from a sample-and-hold circuit.
 

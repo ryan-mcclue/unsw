@@ -1,10 +1,11 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
 IMPORTANT: if enable as input, the context of GPIO registers can change:
-e.g. as output, PORT is written to to get ouput. conversely, if input, PORT is pull-up/down and PIN is used to read input
+e.g. as output, PORT is written to to get output.
+conversely, if input, PORT is pull-up/down and PIN is used to read input
 
-LCD display controllers will have some RAM, ROM and registers (IR to say display/clear, DR character, RS select which one)
-
+LCD display controllers will have some RAM, ROM and registers 
+(IR to say display/clear, DR character, RS select which one)
 
 Why go to a transceiver?
 
@@ -29,12 +30,15 @@ multiple sources of reset:
 AVR does not save any registers when transferring control to ISR 
 AVR has no software interrupt instruction
 
-AVR has external (tied to specific pins or pins can be configured) and internal interrupts (triggered by changes in internal AVR hardware, e.g. timer)
+AVR has external (tied to specific pins or pins can be configured) and 
+internal interrupts (triggered by changes in internal AVR hardware, e.g. timer)
 
 global interrupt bit (disable for performance code) and local interrupt bit
-by default, global interrupt bit cleared when inside an ISR (however can set to allow for nested)
+by default, global interrupt bit cleared when inside an ISR 
+(however can set to allow for nested)
 
-priority of vectors determined by order of 2-word vectors (instruction to execute) in program memory
+priority of vectors determined by order of 2-word vectors 
+(instruction to execute) in program memory
 (indicated by interrupt vector table)
 ```
 .cseg 0x0000

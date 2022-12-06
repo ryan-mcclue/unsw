@@ -2,7 +2,8 @@
 
 Pullup/down refer to when pin is disconnected from input.
 When using GPIO input, consider pull-up/down resistor
-Although enabling internal resistors, must look at board schematic as external resistors might overrule
+IMPORTANT: Although enabling internal resistors, 
+must look at board schematic as external resistors might overrule
 
 Button debouncing in hardware with NAND latch or in software with counter?
 

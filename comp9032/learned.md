@@ -16,9 +16,8 @@ AVR does not save registers on interrupt, nor any software interrupt instruction
 must preserve status register value inside interrupt to avoid nasty logic errors
 Interrupt priorities purely based on memory order (unlike NVIC)
 
-AVR has separations commonly merged in modern MCUs, 
-e.g. lpm (almost harvard), out/ld (different instruction decoders)
-
 Differing word-size/address and register size
 
+AVR has separations commonly merged in modern MCUs (to make most out of limited hardware), 
+e.g. lpm (almost harvard), out/ld (different instruction decoders)
 Different sized instructions, e.g. ld 16-bit only index registers, lds 32-bit all registers, rcall/rjmp/call/jmp

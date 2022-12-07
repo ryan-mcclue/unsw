@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -eou pipefail
+
+avra -I code code/exam.asm

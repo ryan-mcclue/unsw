@@ -12,6 +12,8 @@ mul typically in two different output registers
 carry is for unsigned arithmetic
 overflow is for signed arithmetic
 
+variable length instruction of same operation to account for small relative jumps
+
 AVR does not save registers on interrupt, nor any software interrupt instruction
 must preserve status register value inside interrupt to avoid nasty logic errors
 Interrupt priorities purely based on memory order (unlike NVIC)

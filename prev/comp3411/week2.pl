@@ -8,7 +8,8 @@
 % If one heuristic always gives larger than another it dominates the other and is better. 
 % This is because it is closer to the actual cost.
 
-% Greedy (a greedy algorithm is memory efficient to implement, however gets caught in situations like cycles) best first search is like DFS, except it picks next node based on heuristic
+% Greedy (a greedy algorithm is memory efficient to implement, however gets caught in situations like cycles) best first search is like DFS, 
+% except it picks next node based on heuristic
 
 % A* stores total cost and current heuristic (combines memory efficient best-first-search and optimal+complete ucs). 
 % It adds frontier nodes to a priority queue, which is what makes the algorithm optimal.

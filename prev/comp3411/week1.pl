@@ -20,7 +20,8 @@
 % 5. Learning agent
 
 % Uninformed search (not knowing the goal, i.e. a blind search. We often initially have to do an uninformed search first to find the goal)
-% To consider search problems, it is useful to compare with a delivery robot example. In this example, we create a weighted directed graph with each node being a location.
+% To consider search problems, it is useful to compare with a delivery robot example. 
+% In this example, we create a weighted directed graph with each node being a location.
 % Note that a 'cycle' can be represented in a tree as a continual succession of the same nodes (doesn't necessarily have to be a graph structure)
 % 1. DFS:
 %   - Is suboptimal, i.e. may miss shortest path as it expands in the wrong order

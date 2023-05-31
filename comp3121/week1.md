@@ -1,38 +1,45 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+## Introduction
+Course more computer science as about designing and proving correctness of algorithm
+Want to gain problem solving skills and algorithm design techniques, e.g. divide-conquer, greedy, dynamic, etc.
 
-but the general proof ideas (contradiction, induction etc.) are very useful so I would focus on them.
+A informal algorithm is solved in prose rather than pseudocode
 
-priority queue typically implemented as a heap, but could also be implemented in say a splay tree
+Big-Oh (asymptotic upper bound)
+f(n) = O(g(n)), i.e. f(n) grows at most g(n)
+Omega (asymptotic lower bound)
+f(n) = Ω(g(n)), i.e. f(n) grows at least g(n)
+Theta (same asymptotic growth rate)
+f(n) = θ(g(n))
 
-about designing and proving correctness of algorithm
-so, this is more computer science (as engineers implement from this paper)
-mathematical reasoning required to proove, e.g. justify that sorting algorithm will sort?
-practical problem solving, i.e. learning algorithm design techniques (divide-conquer, greedy, dynamic, etc.)
-gain skill, not necessarily knowledge
+Proof ideas:
+Induction (true for case k, true for case k+1 etc.) (might involve partial/infinite sums)
+Contradiction
 
-informal algorithm is using words rather than pseudocode? 
+Mathematical reasoning required to proove only if non-obvious:
+  * Valid time complexity assertion
+  * Is finite, i.e. won't enter an infinite loop
+  * Produce desired solution, e.g sorting algorithm will sort
 
-mathematical proof only required if non-obvious
-sometimes not clear will enter infinite loop
-sometimes not clear will run in exponentially many steps
-sometimes not clear will produce desired solution
+Merge Sort:
+1. Loglinear: logarithmic recursion depth, linear merge at each depth
+2. Terminates: subarray length will always reach 1
+3. Induction: merging sorted arrays at any depth k will always create sorted array
 
-want to show algorithm:
-terminates (hospital cannot make more than one offer to a doctor)
-runs in reasonable time (each hospital can make at most n offers)
-produces correct output 
+Factorial time complexity is exponential, i.e. n! ≈ (n/e)^n
 
-proof of contradiction popular, e.g. assume that ...
-
-
-n! ≈ (n/e)^n
-
-
-the merge sort proof is an informal proof by induction?
-inductive step is assuming previous step is sorted and then this bubbles up
-in each depth of recursion, have O(n) merge step
+Gale-Shapely Algorithm (Stable Matching Problem):
+1. Quadratic: each hospital can make at most n offers and there are n hospitals
+2. Terminates: each hospital cannot make more than one offer to a doctor
+3. Contradiction (good proof to start with?): 
+   Assume produces non-stable match (h, d), (h', d')
+   h would offer to d' first
+   d' would reject if already at higher. we know this didn't happen
+   d' would accept and later recind. would not recind for lower
 
 
+The general rule of thumb is that algorithms introduced in this course (in either the lectures, tutorial, problem sets) does not need citation - 
+simply citing which slide / problem set number (question #) is typically enough
 
-in-person inspera (done in a CSE lab; so is it on a lab computer or your own computer?)
+TODO: in-person inspera (done in a CSE lab; so is it on a lab computer or your own computer?)
 (cormen, leiserson et. Introduction to Algorithms 'bible of algorithms', i.e. reference manual for later work)

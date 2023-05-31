@@ -1,43 +1,45 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-Computer science aspect of computer vision is developing theories and methods to extract visual information
-(this also involves optimally using prior knowledge to acheive a better interpretation)
-Computer engineering implements algorithms and software tools
+## Introduction
+Computer science aspect of computer vision is developing theories and methods to extract visual information, e.g. write papers
+Computer engineering implements these algorithms and software tools
 
-Computer vision good for consistent, well defined data
-Output of a neural network still has a lot of noise, i.e. error margins
-So computer vision, still used to refine this output for more general tasks. 
+Computer vision good for consistent, well defined data.
+AI -> machine learning -> neural networks -> deep learning
+For more generalised problems solved with AI, computer vision can still be used to refine the noise output from neural networks 
 
-Human eye is susceptible to optical illusions (more paramount for microscopic analysis, e.g. brain tumour cell analysis)
+Human eye is susceptible to optical illusions.
+More readily seen in say 'abnormal'/microscopic analysis, e.g. brain tumour cell analysis
 
-Collision detection, autonomous monitoring (e.g. rover on Mars), OCR, object detection, medical imaging (image guided surgery)
+Computer vision used in collision detection, autonomous monitoring (e.g. rover on Mars), OCR, object detection, medical imaging (image guided surgery)
+It's a multiscaled operation: pixels -> regions -> objects -> multiple images
+Low-level image processing, i.e. image in -> image out (enhance/suppress certain characteristics)
+High-level image analysis, i.e. image in -> knowledge out (also involves using prior knowledge to acheive a better interpretation)
 
-Computer vision is multiscaled: pixels ➞ regions ➞ objects ➞ multiple images
+## Image Formation
+An image is a 'interaction' of light reflecting off an object
+So source of light affects the result
 
-low-level cv, i.e. image processing, i.e. image in - image out (enhance/suppress certain characteristics)
-high-level cv, i.e. image analysis, i.e. image in - knowledge out
+Light reflects off a single point on a object in multiple directions
+So, a simple photosensitive plane will capture same point on different areas, creating a blurry image. 
+A pinhole/aperture can be used to get a unique reflected light wave for each point.
+Distance of aperture to image plane is focal length
+A larger focal length will result magnification. 
+As a result, distance, angles and areas are not preserved when projected onto the image sensor
+Lens contains an aperture and helps to more intelligently block out light
 
-image is 'interaction' of light reflecting off object (so source of light is important for result)
-
-want to capture unique points of reflected light to not look blurry, i.e. each point will be reflected in many different directions
-could have pinhole/aperture
-
-camera lens models RGB cones in our retina
-
-rgb inefficient
-
-HSV
-hue is colour
-saturation how much deviate from white
-value is brightness
-
-Y(brightness)Cb(deviation of blue)Cr(deviation from red) (good for compression)
-
-LAB
-lightness
-b (deviation of yellow to blue)
-a (deviation of red to green)
-(changes more to what the eye percieves)
-
+Camera lens models RGB cones in our retina
+RGB is limiting in expressing subtle colour changes
+So, other colour scales:
+  * HSV
+    Hue is colour
+    Saturation how much deviation from white
+    Value is brightness
+  * Y(brightness)Cb(deviation of blue)Cr(deviation from red) (good for compression)
+  * LAB
+    Lightness
+    b (deviation of yellow to blue)
+    a (deviation of red to green)
+    This is most effective
 
 
-TODO: appendix A szeliski numerical
+IMPORTANT: appendix A szeliski numerical

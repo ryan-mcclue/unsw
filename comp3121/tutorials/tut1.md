@@ -41,4 +41,5 @@ Time Complexity:
   Guaranteed capacity is is sum(packages).
   Binary search between these until one search after capacity sufficient is no longer sufficient.
   O(nlog(n)) as each step of log(n) binary search, execute O(n) algorithm to verify capacity
-
+* Monotonically increasing for as package number and package weights increase
+  Monotonically decreasing as capacity increases

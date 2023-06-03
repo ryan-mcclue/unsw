@@ -117,27 +117,33 @@ Swap 100 with 6 and remove
     Otherwise, add to the running sum and proceed to next package
   * Once iterated over all packages, if required delivery days is <= K, it's possible to deliver
   Correctness:
+  * The packages are loaded onto the truck in the order of their position on the belt.
+    Therefore, summing from the start of the package list is the only valid weight calculation
+  * The algorithm will terminate, as the package list is finite
   Time Complexity:
+  * Iterating over *n* packages yeilds `O(n)`
 4. 
   * We know that the best possible scenario for minimising C is if all packages are the same weight.
     In this case, `C = sum(packages) / K`
-  * We know that from question 2, `C = sum(packages)` is an hard upper limit
+  * We know that from part 3.2, `C = sum(packages)` is an hard upper limit
   * Therefore, as we have an upper and lower bound to the solution, binary search is feasible
 5. Algorithm:
   * Perform a binary search as stated in part 3.4, to obtain a possible C.
   * Input this value of C into the algorithm stated in part 3.3
-  * If the algorithm indicates not possible, then pick larger C via binary search. 
-    Otherwise if possible, record capacity value. 
-  * Then run algorithm again with smaller C obtained via binary search.
-    If still possible to deliver, overwrite previous C value and continue until not possible.
+  * If the algorithm indicates not possible, then pick larger C via binary search and recurse. 
+  * Otherwise if possible, record capacity value. 
+    Then run algorithm again with smaller C obtained via binary search.
+    If still possible to deliver, overwrite previous C value and recurse.
+    Otherwise, the optimal C value has been found and terminate
   Correctness:
+  * We know a solution exists, *x*, such that `sum(packages)/K <= x <= sum(packages)` 
+    Therefore, we know the optimal solution will be found by binary searching across this range.
+    Furthermore, we know the algorithm will terminate because of these known endpoints
   Time Complexity:
-  * Binary search is `O(log(n))`. Algorithm to check if delivery possible is `O(n)`.
-    Therefore, `O(log(n)) · O(n) = `O(nlog(nM))`
-
-
-
-
+  * We can say that range of values for which binary search operates on is `n·M`, as `n·M >= sum(packages)`.
+    Therefore, binary search is `O(log(n·M))`. 
+    On each iteration of the binary search, we run algorithm to check if delivery possible in `O(n)`.
+    Therefore, `O(log(n·M)) · O(n) = `O(n·log(n·M))`
 
 
 

@@ -1,5 +1,5 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-
+# Take Home Quiz
 ## Question 1.
 * From BST definition, all elements in node X's left subtree \< node X 
 * Therefore, successor of X cannot be in node X's left subtree. 
@@ -16,8 +16,8 @@
    1. All *h - 1* levels are filled, i.e. all nodes have left and right children
    2. Level *h* is filled left to right, i.e. left child added on left subtree, then right child of added on right subtree etc.
 2. A heap is a complete binary tree that satisifies either:
-   1. For max-heap, all children \< parent
-   2. For min-heap, all children \> parent
+   1. For max-heap, all children \<= parent
+   2. For min-heap, all children \>= parent
 3. Starting max-heap
 Node 100 has two children, so swap with largest child 30
 ```
@@ -26,7 +26,6 @@ Node 100 has two children, so swap with largest child 30
   _20         30
  /   \       /
 10    5     6
-
 ```
 Node 100 has one child, so swap with child 6
 ```
@@ -35,7 +34,6 @@ Node 100 has one child, so swap with child 6
   _20        100
  /   \      /
 10    5    6
-
 ```
 Node 100 has no child, so delete
 ```
@@ -44,7 +42,6 @@ Node 100 has no child, so delete
   _20         _6
  /   \       /
 10    5    100
-
 ```
 Resultant max-heap
 ```
@@ -53,7 +50,6 @@ Resultant max-heap
   _20      6
  /   \
 10    5
-
 ```
 4. Swapping node 20 and node 30 from previous starting max-heap:
 ```
@@ -62,7 +58,6 @@ Resultant max-heap
   _30         20
  /   \       /
 10    5     6
-
 ```
 The resultant max-heap is:
 ```
@@ -71,11 +66,47 @@ The resultant max-heap is:
 10        20
   \      /
    5    6
-
 ```
 This does not preserve completeness property of heap.
 Therefore, algorithm does not correctly implement pop operation.
-5.
+5. Algorithm:
+  * Swap root with last element and remove 
+  * Until root is \>= both its children, swap it with the largest of its two children and recurse
+Starting max-heap
+```
+     ___100__
+    /        \
+  _30         20
+ /   \       /
+10    5     6
+```
+Swap 100 with 6 and remove
+```
+     ___6
+    /    \
+  _30     20
+ /   \
+10    5
+```
+
+6 is \< children. Swap with largest, 30
+```
+     __30
+    /    \
+  _6      20
+ /  \
+10   5
+```
+6 is \< 10. Swap with 10
+```
+    ___30
+   /     \
+  10      20
+ /  \
+6    5
+```
+
+## Question 3
 
 
 

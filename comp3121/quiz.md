@@ -107,8 +107,33 @@ Swap 100 with 6 and remove
 ```
 
 ## Question 3
-
-
+1. 
+  * No, e.g: day 1 [1, 2, 3, 4], day 2 [5, 6], day 3 [7], day 4 [8], day 5 [9], day 6 [10]
+  * Yes, e.g: day 1 [1, 2, 3, 4, 5], day 2 [6, 7], day 3 [8, 9], day 4 [10]
+2. As truck can carry all packages in a single day, and K \>= 1
+3. Algorithm:
+  * Iterate over all packages and maintain a running sum of their weights
+  * If the current package weight added to the running sum exceeds C, add one to required delivery days
+    Otherwise, add to the running sum and proceed to next package
+  * Once iterated over all packages, if required delivery days is <= K, it's possible to deliver
+  Correctness:
+  Time Complexity:
+4. 
+  * We know that the best possible scenario for minimising C is if all packages are the same weight.
+    In this case, `C = sum(packages) / K`
+  * We know that from question 2, `C = sum(packages)` is an hard upper limit
+  * Therefore, as we have an upper and lower bound to the solution, binary search is feasible
+5. Algorithm:
+  * Perform a binary search as stated in part 3.4, to obtain a possible C.
+  * Input this value of C into the algorithm stated in part 3.3
+  * If the algorithm indicates not possible, then pick larger C via binary search. 
+    Otherwise if possible, record capacity value. 
+  * Then run algorithm again with smaller C obtained via binary search.
+    If still possible to deliver, overwrite previous C value and continue until not possible.
+  Correctness:
+  Time Complexity:
+  * Binary search is `O(log(n))`. Algorithm to check if delivery possible is `O(n)`.
+    Therefore, `O(log(n)) · O(n) = `O(nlog(nM))`
 
 
 

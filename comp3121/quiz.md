@@ -19,6 +19,7 @@
    1. For max-heap, all children \<= parent
    2. For min-heap, all children \>= parent
 3. Starting max-heap
+
 Node 100 has two children, so swap with largest child 30
 ```
      ___100__
@@ -69,9 +70,11 @@ The resultant max-heap is:
 ```
 This does not preserve completeness property of heap.
 Therefore, algorithm does not correctly implement pop operation.
+
 5. Algorithm:
   * Swap root with last element and remove 
   * Until root is \>= both its children, swap it with the largest of its two children and recurse
+
 Starting max-heap
 ```
      ___100__
@@ -107,9 +110,8 @@ Swap 100 with 6 and remove
 ```
 
 ## Question 3
-1. 
-  * No, e.g: day 1 [1, 2, 3, 4], day 2 [5, 6], day 3 [7], day 4 [8], day 5 [9], day 6 [10]
-  * Yes, e.g: day 1 [1, 2, 3, 4, 5], day 2 [6, 7], day 3 [8, 9], day 4 [10]
+1. * No, e.g: day 1 [1, 2, 3, 4], day 2 [5, 6], day 3 [7], day 4 [8], day 5 [9], day 6 [10]
+   * Yes, e.g: day 1 [1, 2, 3, 4, 5], day 2 [6, 7], day 3 [8, 9], day 4 [10]
 2. As truck can carry all packages in a single day, and K \>= 1
 3. Algorithm:
   * Iterate over all packages and maintain a running sum of their weights
@@ -140,10 +142,10 @@ Swap 100 with 6 and remove
     Therefore, we know the optimal solution will be found by binary searching across this range.
     Furthermore, we know the algorithm will terminate because of these known endpoints
   Time Complexity:
-  * We can say that range of values for which binary search operates on is `n·M`, as `n·M >= sum(packages)`.
-    Therefore, binary search is `O(log(n·M))`. 
+  * We can say that range of values for which binary search operates on is no greater than `n·M`, as `n·M >= sum(packages)`.
+    Therefore, we can say binary search is `O(log(n·M))`. 
     On each iteration of the binary search, we run algorithm to check if delivery possible in `O(n)`.
-    Therefore, `O(log(n·M)) · O(n) = `O(n·log(n·M))`
+    Therefore, `O(log(n·M)) · O(n) = O(n·log(n·M))`
 
 
 

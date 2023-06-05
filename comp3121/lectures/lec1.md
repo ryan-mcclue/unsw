@@ -12,6 +12,8 @@ f(n) = Ω(g(n)), i.e. f(n) grows at least g(n)
 Theta (same asymptotic growth rate)
 f(n) = θ(g(n))
 
+NOTE: When calculating asymptotic relation, ignore constants and lower factors
+
 Proof ideas:
 Induction (true for case k, true for case k+1 etc.) (might involve partial/infinite sums)
 Contradiction
@@ -37,18 +39,57 @@ Stable Matching Problem (Gale-Shapely Algorithm):
    d' would reject if already at higher. we know this didn't happen
    d' would accept and later recind. would not recind for lower
 
-TODO: n-thieves write up
+TODO: n-thieves write up (start)
+TODO: handshake write up (end)
 
 ## Divide and Conquer (useful to increase speed from say quadratic to loglinear)
-counterfeit coin puzzle
-array inversion count (merge sort variant)
+Counterfeit Coin Puzzle:
+* Divide coins into n piles
+* Finding which pile's mass is different to the others says this pile has counterfeit
+* Then recursively divide that pile until 1 coin remaining
 
-estimation of growth rate of recurrences
+Array Inversion Count:
+TODO: array inversion count (merge sort variant)
+
+Left-shift mask can be represented mathematically as `2^(n)`
+
+For digit multiplication: `T(n) = 4·T(n/2) + cn`
+Evaluating T(n/2) and inserting into T(n) and so we obtain `T(n) = n^2·(c + 1) - cn = θ(n^2)`
+
+Master Theorem allows us to estimate growth rate without explicitly solving recurrences.
+Divide and conquer growth rate: `T(n) = a·T(n/b) + f(n)`, e.g. merge sort: `T(n) = 2·T(n/2) + cn`
+* a = number of subproblems
+* b = size of subproblems
+* f(n) = subproblem combination overhead
+Critical polynomial is `n^(logbᵃ)`
+1. f(n) < critical polynomial, then: `θ(n^(logbᵃ))`
+  * 4·T(n/2) + n
+  * critical polynomial = n^(log2⁴) 
+  * n < n^2
+2. f(n) = critical polynomial, then: `θ(n^(logbᵃ)·log2ⁿ)`
+3. f(n) > critical polynomial, and `a·f(n/b) <= c·f(n)`, then: `θ(f(n))`
+
+NOTE: logarithms of any base have same growth rate
+
 
 order statistics is position in array if sorted.
 so, used for problem like find second most populous
 has linear time?
 
+
+redefine median as kth smallest value in an unordered set 
+i.e. n/2 values smaller than it
+pivot just means value to which putting elements to the right or left of
+
+median of medians, find median of each 5 block than
+find true median of these n/5 elements recursively
+
+https://edstem.org/au/courses/11846/discussion/1418436
+https://edstem.org/au/courses/11846/discussion/1422278
+
+
+
+TODO: petrol station problem write up (end)
 
 ## Textbook Chapter 1
 Competitive Facility Location Problem

@@ -1,4 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+
+Ask for tutor email on direct chat
+
 # Take Home Quiz
 ## Question 1.
 * From BST definition, all elements in node X's left subtree \< node X 

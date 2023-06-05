@@ -64,3 +64,7 @@ points in direction of steepest intensity increase
 gradient magnitude (useful to compute edges; laplacean also used for edge detection)
 
 laplacean also used for sharpening  
+
+https://edstem.org/au/courses/11999/discussion/1425954
+
+https://www.reddit.com/r/learnmath/comments/rcgj3r/is_there_a_simple_function_that_equals_1_when/

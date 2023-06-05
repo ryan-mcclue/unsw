@@ -51,9 +51,11 @@ Counterfeit Coin Puzzle:
 Array Inversion Count:
 TODO: array inversion count (merge sort variant)
 
+Divide-and-conquer method for large integer multiplication splits number into halves `a = a1·2^(n/2) + a0`
+Karatsuba trick says we don't need all 4 products, only 3
 Left-shift mask can be represented mathematically as `2^(n)`
 
-For digit multiplication: `T(n) = 4·T(n/2) + cn`
+For digit multiplication (non-Karatsuba): `T(n) = 4·T(n/2) + cn`
 Evaluating T(n/2) and inserting into T(n) and so we obtain `T(n) = n^2·(c + 1) - cn = θ(n^2)`
 
 Master Theorem allows us to estimate growth rate without explicitly solving recurrences.
@@ -86,7 +88,6 @@ find true median of these n/5 elements recursively
 
 https://edstem.org/au/courses/11846/discussion/1418436
 https://edstem.org/au/courses/11846/discussion/1422278
-
 
 
 TODO: petrol station problem write up (end)

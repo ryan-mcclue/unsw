@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 # SPDX-License-Identifier: zlib-acknowledgement
 
+# TODO: only merge branch into master if that branch passes CI
+
 import pathlib
 import os
 import sys

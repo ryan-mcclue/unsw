@@ -71,13 +71,17 @@ input light distribution is what lens can capture. so, lens can only capture cer
     - piecewise linear transformation
     - gray-level slicing
     - bit-plane slicing (with bits, the more MSB, the more meaningful the value is)
+    - arithmetic operations 
+       (subtraction to determine what has changed between two images)
+       (logical and with a white rectangle mask)
+    - averaging (to reduce noise; better results with a higher value of N, i.e. averaging over same image multiple times)
 
     histogram counts how many pixels have particular intensities
     could show image is of low/high contrast
     normalising histogram is in effect generating a probability function
 
     (for images with complex histograms)
-    histogram equalisation (equal distribution). contrast enhancement
+    histogram equalisation (equal distribution). contrast enhancement (make better use of ranges of colours)
     increases contrast between histogram peaks and reduce and troughs
     (contrast stretching for multiple ranges)
 

@@ -83,7 +83,15 @@ redefine median as kth smallest value in an unordered set
 i.e. n/2 values smaller than it
 pivot just means value to which putting elements to the right or left of
 
-median of medians, find median of each 5 block than
+median of medians, divide list into blocks each of size 5
+sort these lists. consider this linear as 5 elements very quick
+put median of these lists into another list
+sort that list and get median.
+this is now pivot, put all elements in original list < to left of pivot and > right of it
+based on index of pivot, we can see if need to recurse on left or right side
+
+
+find median of each 5 block than
 find true median of these n/5 elements recursively
 
 https://edstem.org/au/courses/11846/discussion/1418436

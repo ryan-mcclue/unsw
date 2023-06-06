@@ -9,7 +9,7 @@ Ask for tutor email on direct chat
 * From BST definition, if node X is left child of parent, then parent is \> node X
 * From BST definition, all elements in node X's right subtree \> node X
 * So, node X's parent will only be successor if node X is left child and node X has no right subtree.
-* This is because elements in node X's right subtree are \> node X but \< node X's parent. 
+* This is because elements in node X's right subtree are \> node X but \< node X's parent's ancestors. 
 * So, if node X has a right subtree, its successor will be minimum value its right subtree.
 * From BST definition, the minimum value in right subtree cannot have a left child, as this child would be \< its parent, therefore making it the successor.
 * As a result, if node X has a right child, i.e. right subtree, then the successor of node X does not have a left child.
@@ -17,13 +17,11 @@ Ask for tutor email on direct chat
 ## Question 2.
 1. Given a binary tree of height *h*, a complete binary tree satisfies both:
    1. All *h - 1* levels are filled, i.e. all nodes have left and right children
-   2. Level *h* is filled left to right, i.e. left child added on left subtree, then right child of added on right subtree etc.
+   2. Level *h* is filled left to right, i.e. left child added on left subtree, then right child added on right subtree etc.
 2. A heap is a complete binary tree that satisifies either:
    1. For max-heap, all children \<= parent
    2. For min-heap, all children \>= parent
-3. Starting max-heap
-
-Node 100 has two children, so swap with largest child 30
+3. Node 100 has two children, so swap with largest child 30
 ```
      ___100__
     /        \
@@ -74,10 +72,9 @@ The resultant max-heap is:
 This does not preserve completeness property of heap.
 Therefore, algorithm does not correctly implement pop operation.
 
-5. Algorithm:
+5. **Algorithm:**
   * Swap root with last element and remove 
   * Until root is \>= both its children, swap it with the largest of its two children and recurse
-
 Starting max-heap
 ```
      ___100__
@@ -116,23 +113,23 @@ Swap 100 with 6 and remove
 1. * No, e.g: day 1 [1, 2, 3, 4], day 2 [5, 6], day 3 [7], day 4 [8], day 5 [9], day 6 [10]
    * Yes, e.g: day 1 [1, 2, 3, 4, 5], day 2 [6, 7], day 3 [8, 9], day 4 [10]
 2. As truck can carry all packages in a single day, and K \>= 1
-3. Algorithm:
+3. **Algorithm:**
   * Iterate over all packages and maintain a running sum of their weights
   * If the current package weight added to the running sum exceeds C, add one to required delivery days
     Otherwise, add to the running sum and proceed to next package
   * Once iterated over all packages, if required delivery days is <= K, it's possible to deliver
-  Correctness:
+  **Correctness:**
   * The packages are loaded onto the truck in the order of their position on the belt.
     Therefore, summing from the start of the package list is the only valid weight calculation
   * The algorithm will terminate, as the package list is finite
-  Time Complexity:
+  **Time Complexity:**
   * Iterating over *n* packages yeilds `O(n)`
 4. 
   * We know that the best possible scenario for minimising C is if all packages are the same weight.
     In this case, `C = sum(packages) / K`
   * We know that from part 3.2, `C = sum(packages)` is an hard upper limit
   * Therefore, as we have an upper and lower bound to the solution, binary search is feasible
-5. Algorithm:
+5. **Algorithm:**
   * Perform a binary search as stated in part 3.4, to obtain a possible C.
   * Input this value of C into the algorithm stated in part 3.3
   * If the algorithm indicates not possible, then pick larger C via binary search and recurse. 
@@ -140,11 +137,11 @@ Swap 100 with 6 and remove
     Then run algorithm again with smaller C obtained via binary search.
     If still possible to deliver, overwrite previous C value and recurse.
     Otherwise, the optimal C value has been found and terminate
-  Correctness:
+  **Correctness:**
   * We know a solution exists, *x*, such that `sum(packages)/K <= x <= sum(packages)` 
     Therefore, we know the optimal solution will be found by binary searching across this range.
     Furthermore, we know the algorithm will terminate because of these known endpoints
-  Time Complexity:
+  **Time Complexity:**
   * We can say that range of values for which binary search operates on is no greater than `n·M`, as `n·M >= sum(packages)`.
     Therefore, we can say binary search is `O(log(n·M))`. 
     On each iteration of the binary search, we run algorithm to check if delivery possible in `O(n)`.

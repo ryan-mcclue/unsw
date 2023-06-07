@@ -59,6 +59,11 @@ def clamp(val, limit):
   
   return clamped_val
 
+def translate(x0, x1, val, x2, x3):
+  val_fraction = ((val - x0) / (x1 - x0))
+  
+  return x2 + (val_fraction * (x3 - x2))
+
 def make_k3x3_laplace():
   k3x3 = make_empty_matrix(3)
 
@@ -76,6 +81,15 @@ def make_k3x3_laplace():
 
   return k3x3
 
+def convolve_k3x3_laplace(k3x3, m3x3):
+  result = 0
+
+  for x in range(3):
+    for y in range(3):
+      result += (k3x3[y][x] * m3x3[y][x])
+
+  return result
+
 def make_m3x3_from_cv_image(cv_img, centre_x, centre_y):
   m3x3 = make_empty_matrix(3)
 
@@ -91,7 +105,7 @@ def make_m3x3_from_cv_image(cv_img, centre_x, centre_y):
   y01 = clamp(centre_y, h)
   y02 = clamp(centre_y + 1, h)
 
-  # first pixel is fine as greyscale
+  # NOTE(Ryan): First pixel is fine as greyscale
   m3x3[0][0] = cv_img[y00, x00][0] 
   m3x3[0][1] = cv_img[y00, x01][0]
   m3x3[0][2] = cv_img[y00, x02][0]
@@ -107,23 +121,6 @@ def make_m3x3_from_cv_image(cv_img, centre_x, centre_y):
   return m3x3
 
 
-def convolve_3x3(k3x3, m3x3):
-  result = 0
-
-  #k3x3_sum = 0
-
-  for x in range(3):
-    for y in range(3):
-      result += (k3x3[y][x] * m3x3[y][x])
-      #k3x3_sum += k3x3[y][x]
-
-  # avoid numpy runtime error
-  # assert(k3x3_sum != 0)
-  # result /= k3x3_sum
-
-  return result
-
-
 def main():
   trace(f"opencv: {cv.__version__}")
 
@@ -137,29 +134,27 @@ def main():
 
   k3x3_laplace = make_k3x3_laplace() 
 
+  output_img_gray_values = [0] * (img_width * img_height)
+  
   for x in range(img_width):
     for y in range(img_height):
       m3x3 = make_m3x3_from_cv_image(img, x, y)
-      gray_value = convolve_3x3(k3x3_laplace, m3x3)
-      # TODO: map gray value to 0-255
-      output_img[y, x] = [gray_value] * 3
 
+      gray_value = convolve_k3x3_laplace(k3x3_laplace, m3x3)
 
-  #cv.imshow('image', img)
+      output_img_gray_values[y * img_width + x] = gray_value
+
+  min_convolved = min(output_img_gray_values)
+  max_convolved = max(output_img_gray_values)
+
+  for x in range(img_width):
+    for y in range(img_height):
+      cur_gray = output_img_gray_values[y * img_width + x]
+      normalised_gray = translate(min_convolved, max_convolved, cur_gray, 0, 255);
+      output_img[y, x] = [normalised_gray] * 3
+
   cv.imshow('image', output_img)
   cv.waitKey()
-# 
-# for i in range(0, height):
-#     for j in range(0, (width/4)):
-#         img[i,j] = [0,0,0]  
-# 
-# for i in range(0, height):
-#     for j in range(3*(width/4), width):
-#         img[i,j] = [0,0,0]        
-
-
-
-
 
 if __name__ == "__main__":
   # NOTE(Ryan): Disable breakpoints if not running under a debugger

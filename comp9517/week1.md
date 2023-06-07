@@ -94,6 +94,8 @@ input light distribution is what lens can capture. so, lens can only capture cer
     histogram specification ()
 
   * neighbourhood operations (groups of pixels)
+
+
 2. transform domain (fourier/frequency space)
 
 

@@ -1,15 +1,48 @@
+% TODO: difference between intermediate and final output images?
 
+\documentclass[11pt, english]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[useregional]{datetime2}
+\usepackage{tabularx}
 
+\begin{document}
+
+\pagenumbering{gobble}% Remove page numbers (and reset to 1)
+\thispagestyle{empty}
+\begin{titlepage}
+\begin{center}
+  \centering
+  
+  \Huge \textbf{COMP9517 - Assignment 1} \\
+  \vspace{5cm}
+     
+  \huge \textbf{Ryan McClue} \\
+  (z5346008)
+  \vspace{5cm}
+    
+  \today
+\end{center}
+\end{titlepage}
+
+\section{Q1}
+\section{Q2}
+\section{Q3}
+\section{Q4}
 \begin{table}[ht]
 \centering
-\begin{tabular}{c|c|c|c|c}
+\begin{tabularx}{\linewidth}{X|X|X|X|X}
 Input Image & Histogram & Otsu Thresholding & Isodata Thresholding & Triangle Thresholding \\\hline
-\includegraphics[scale=0.5]{Algae.png} & \includegraphics[scale=0.5]{Algae.png} & \includegraphics[scale=0.5]{Algae.png} & \includegraphics[scale=0.5]{Algae.png} & \includegraphics[scale=0.5]{Algae.png} \\
-\end{tabular}
-\caption{\label{tab:widgets}An example table.}
+\includegraphics[width=0.18\textwidth]{Algae.png} & \includegraphics[width=0.18\textwidth]{Algae.png} & \includegraphics[width=0.18\textwidth]{Algae.png} & \includegraphics[width=0.18\textwidth]{Algae.png} & \includegraphics[width=0.18\textwidth]{Algae.png} \\
+\includegraphics[width=0.18\textwidth]{Algae.png} & \includegraphics[width=0.18\textwidth]{Algae.png} & \includegraphics[width=0.18\textwidth]{Algae.png} & \includegraphics[width=0.18\textwidth]{Algae.png} & \includegraphics[width=0.18\textwidth]{Algae.png} \\
+
+\end{tabularx}
+\caption{An example table.}
 \end{table}
 
-% TODO: difference between intermediate and final output images?
+
+\end{document}
+
 
 % The report can be
 % written in Word, LaTeX, or a similar text processor, but must be submitted as a PDF and

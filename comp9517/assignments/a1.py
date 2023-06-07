@@ -25,6 +25,23 @@ def trace(msg):
   if __debug__:
     logging.debug(msg)
 
+
+import cv2 as cv
+
+#reading an image
+img = cv.imread('image.jpg')
+height, width, depth = img.shape
+
+for i in range(0, height):
+    for j in range(0, (width/4)):
+        img[i,j] = [0,0,0]  
+
+for i in range(0, height):
+    for j in range(3*(width/4), width):
+        img[i,j] = [0,0,0]        
+
+cv.imshow('image',img)
+
 # what is format of input image?
 # 1. Open and read image files.
 # 2. Display and write image files. (binary segmented image)

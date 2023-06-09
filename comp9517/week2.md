@@ -84,6 +84,40 @@ gradient magnitude (useful to compute edges; laplacean also used for edge detect
 
 laplacean also used for sharpening  
 
+
+## Fourier
+Downsampling is in effect, skipping pixels, i.e. take only every 2nd pixel (could also be considered 'pooling'?)
+Downsampling removes details, i.e. removes high frequencies
+To upsample, could perform linear interpolation on pixels
+Fourier any univariate function can be rewritten as a weighted sum of sines and cosines at different frequencies,
+i.e. represent any function as a spectrum of frequencies
+Basic building block is sine: asine(wx + p), i.e. add any number of these to get signal you want
+Sum functions require almost infinite sum of sines to approximate effectively
+So in frequency domains, modifications are done on the rate of changes in the image
+So, you are apply frequency filtering
+There will be a Fourier representation of kernel
+Fourier more efficient when using higher dimensions or large kernels
+IMPORTANT: operations like convolution are defined differently in spatial and fourier
+As not dealing with continuous functions, we are using discretised Fourier transform
+
+Each individual point/pixel in the Fourier represents a full image. All these images are added together to get final image
+Fourier is frequencies, not intensities
+
+DFT will repeat itself, so can centre, i.e. 0 - n == -n/2 - n/2
+Shifting in spatial is multiplying by complex harmonic in DFT?
+multiplying (-1)^(x+y) in spatial offsets DFT to centre (would require a centred filter by same trick)
+NOTE: have to multiply (-1)^(x+y) again to get original
+when showing a DFT, would actually be showing magntiude as complex?
+blurring is supressing high frequencies, i.e. low-pass filtering
+A vertical line creates frequency changes in x domain
+TODO: notch filtering (remove specific frequency?) (same as band-pass filtering?)
+More intuitive to design filters in Fourier
+DifferenceOfGuassian is a high-pass filter in Fourier?
+Pyramid structure of image, i.e. multiresolution sampling for efficiency
+Larger objects have more lower frequencies, so can do with lower resolutions to find these objects
+Once object found in lower resolution, go back to original resolution to do analysis on
+
+
 https://edstem.org/au/courses/11999/discussion/1425954
 
 https://www.reddit.com/r/learnmath/comments/rcgj3r/is_there_a_simple_function_that_equals_1_when/

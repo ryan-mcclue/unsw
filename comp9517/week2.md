@@ -118,6 +118,15 @@ Larger objects have more lower frequencies, so can do with lower resolutions to 
 Once object found in lower resolution, go back to original resolution to do analysis on
 
 
+for tut:
+create new anaconda environment for each lab
+juptyer notebook select kernel is selecting anacondan enviroinment?
+anaconda also package manager for juptyer?
+notebook is .ipynb file?
+cv2 image is numpy array
+matplotlib to show image with axises
+
+
 https://edstem.org/au/courses/11999/discussion/1425954
 
 https://www.reddit.com/r/learnmath/comments/rcgj3r/is_there_a_simple_function_that_equals_1_when/

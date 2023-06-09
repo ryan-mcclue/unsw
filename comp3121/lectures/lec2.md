@@ -94,6 +94,7 @@ connects all vertices with smallest weight of edges
 Prims algorithm similar to Djikstras
 Kruskal algorithm builds up forest 
 Order vertices by edge weight. Add vertex only if doesn't introduce cycle
+(example of backtracking algorithm? common in graph problems?)
 Efficient implementation uses Union-Find data structure to store connected components we have built up and perform cycle detection on
 O(n^2logn)
 

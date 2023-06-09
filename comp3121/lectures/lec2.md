@@ -6,6 +6,7 @@ splitting into 3 sections with polynomials faster than Karatsuba
 although asymoptotically faster slicing into smaller pieces, constants (i.e. coefficients) grow very fast, e.g. 1million·n or 10^8·n etc.
 so, most always know what constants are. 
 not enough to just look at asymptotic to say faster than another
+(this follows for divide-and-conquer, i.e. faster for small lists if do linearly)
 
 TODO: warden puzzle write-up
 
@@ -55,5 +56,54 @@ TODO: after lectures do practice problems (as reinforce lecture problem solving)
 TODO: know what type of greedy to use particular proof
 
 NOTE: seems that for greedy just sort on desired trait?
+
+Huffman Code:
+For efficient encoding scheme, would want to give frequent characters to have short codes,
+and less frequent longer codes
+To allow for coding identify, ensure that no code has same prefix (prefix codes)
+Long branches least frequent symbols, short branches frequent symbols
+
+Tsunami Warning:
+(NOTE: for nested-connections, use graph over simply sorting and greedy?)
+strongly connected component in graph is where can travel from one vertex to another and back 
+to find these strongly connected components:
+BFS finds all vertices acessible from a particular vertex
+So, use this to create graph 1
+Then, create another graph with edges reversed
+Now, look at intersection of vertices to create strongly connected component
+Repeat for all vertices
+Condensation graph is graph of all strongly connected components (in effect, set of super-towers)
+Find strongly connected component that doesn't have an incoming edge. Put sensor there
+Then remove component and repeat
+Backtracking search viable as condensation graph is acyclic
+O(V(V + E))
+
+DAG allows for Topological Sort (so could be used to determine if cycle exists):
+Take list of all vertices that are empty and add
+Then for all vertices with zero in-degrees, i.e. no incoming edges, add 
+O(V + E)
+
+Single Shortest Path:
+Djikstra's greedy algorithm
+O(n^2)
+vertices kept in augmented (i.e. heap element is a pair, so sorted on distance, also contain original vertex position) min-heap
+O(mlogn)
+
+## Minimum Spanning Tree:
+connects all vertices with smallest weight of edges
+Prims algorithm similar to Djikstras
+Kruskal algorithm builds up forest 
+Order vertices by edge weight. Add vertex only if doesn't introduce cycle
+Efficient implementation uses Union-Find data structure to store connected components we have built up and perform cycle detection on
+O(n^2logn)
+
+## K-Clustering of Maximum Spacing
+Kruskal for MST tries to join subtrees with smallest edges. 
+We do this until whole forest becomes single tree
+Here, we stop when we reach k many subtrees, i.e. k distinct labels
+O(n^2logn)
+
+TODO: padlock box sending
+
 
 greedy won't work if local and global maximas?

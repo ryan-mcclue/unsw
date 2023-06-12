@@ -150,7 +150,7 @@ def main():
   for x in range(img_width):
     for y in range(img_height):
       cur_gray = output_img_gray_values[y * img_width + x]
-      normalised_gray = translate(min_convolved, max_convolved, cur_gray, 0, 255);
+      normalised_gray = translate(min_convolved, max_convolved, cur_gray, 0, 255)
       output_img[y, x] = [normalised_gray] * 3
 
   cv.imshow('image', output_img)

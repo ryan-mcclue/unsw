@@ -16,7 +16,7 @@ eigenvector used to google page rank algorithm?
 chooses choice which assumes is best at that time (dynamic programming is more global?)
 greedy most useful technique for solving problem? 
 
-Activity Selection (pick largest number of non-conflicting activities):
+## Activity Selection (pick largest number of non-conflicting activities):
 greedy with respect to time, i.e picking shortest activity is suboptimal
 greedy with respect to least conflicts is suboptimal
 working left to right, greedy with respect to earliest finishing time is optimal
@@ -25,29 +25,29 @@ we know that at any stage, any better solution activity can be replaced with gre
 as anything on right we know won't conflict with (as earlier)
 O(nlogn) as sort by earliest finishing time
 
-Petrol Stations:
+## Petrol Stations:
 pick furthest petrol station from where at
 *Greedy Proof 2*: proof greedy stays ahead (no other solution beats greedy at any stage)
 
-Cell Towers:
+## Cell Towers:
 Start from first house not covered. place tower 5km from that house. repeat
 proof exchange: any solution can be shifted
 
-Minimising Job Lateness:
+## Minimising Job Lateness:
 sort jobs in increasing order of deadlines
 
 suppose alternative solution that pick out-of-order
 show that swapping will increase, i.e. will be more optimal
 (i.e. swapping adjacent inverted jobs reduces lateness)
 
-Tape Storage:
+## Tape Storage:
 pick where probability/file-size is smallest
 proof: show that optimal solution does not have inversions (subtract lists)
 
-Interval Stabbing:
+## Interval Stabbing:
 stab in the interval that ends the earliest at this place
 
-Fractional Knapsack:
+## Fractional Knapsack:
 Take most valuable per unit weight. However, if don't fill entire knapsack; suboptimal
 So, trial and error
 
@@ -57,13 +57,14 @@ TODO: know what type of greedy to use particular proof
 
 NOTE: seems that for greedy just sort on desired trait?
 
-Huffman Code:
+## Huffman Code:
 For efficient encoding scheme, would want to give frequent characters to have short codes,
 and less frequent longer codes
 To allow for coding identify, ensure that no code has same prefix (prefix codes)
-Long branches least frequent symbols, short branches frequent symbols
+Short branches frequent symbols
+Long branches infrequent symbols
 
-Tsunami Warning:
+## Tsunami Warning:
 (NOTE: for nested-connections, use graph over simply sorting and greedy?)
 strongly connected component in graph is where can travel from one vertex to another and back 
 to find these strongly connected components:
@@ -78,23 +79,26 @@ Then remove component and repeat
 Backtracking search viable as condensation graph is acyclic
 O(V(V + E))
 
-DAG allows for Topological Sort (so could be used to determine if cycle exists):
+## DAG allows for Topological Sort (so could be used to determine if cycle exists):
 Take list of all vertices that are empty and add
 Then for all vertices with zero in-degrees, i.e. no incoming edges, add 
 O(V + E)
 
-Single Shortest Path:
-Djikstra's greedy algorithm
+## Single Shortest Path to all Vertices:
+Djikstra's greedy algorithm for DAG
+Claim: Picking path that shortest, will find total shortest path
+Contrapositive: Assume another point exists that is shorter path.
 O(n^2)
-vertices kept in augmented (i.e. heap element is a pair, so sorted on distance, also contain original vertex position) min-heap
+most efficient uses vertices kept in augmented min-heap (i.e. heap element is a pair, so sorted on distance, also contain original vertex identifier) as oppose to array
 O(mlogn)
 
 ## Minimum Spanning Tree:
 connects all vertices with smallest weight of edges
 Prims algorithm similar to Djikstras
-Kruskal algorithm builds up forest 
-Order vertices by edge weight. Add vertex only if doesn't introduce cycle
+Kruskal algorithm builds up forest (O(mlogn))
+Order vertices by edge weight (is this topological sort?). Add vertex only if doesn't introduce cycle
 (example of backtracking algorithm? common in graph problems?)
+Want quick way to determine if two ends of edges belong to same tree to avoid a loop
 Efficient implementation uses Union-Find data structure to store connected components we have built up and perform cycle detection on
 O(n^2logn)
 

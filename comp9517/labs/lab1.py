@@ -11,6 +11,7 @@ import platform
 from dataclasses import dataclass
 
 import cv2 as cv
+import matplotlib.pyplot as plt
 
 def fatal_error(msg):
   logging.critical(msg)
@@ -27,23 +28,6 @@ def warn(msg):
 def trace(msg):
   if __debug__:
     logging.debug(msg)
-
-
-
-
-# what is format of input image?
-# 1. Open and read image files.
-# 2. Display and write image files. (binary segmented image)
-# 3. Perform basic image processing operations on images.
-# 4. Implement and apply various automatic thresholding techniques to images.
-
-# For this assignment (same as for the labs), make sure that in your Jupyter notebook the
-# input images are readable from the location specified as an argument, and all output images
-# and other requested results are displayed in the notebook environment. All cells in your
-# notebook should have been executed so that the tutor/marker does not have to execute the
-# notebook again to see the results.
-def otsu(image):
-  pass
 
 def make_empty_matrix(n):
   return [[0] * n for i in range(n)]
@@ -121,16 +105,11 @@ def make_m3x3_from_cv_image(cv_img, centre_x, centre_y):
   return m3x3
 
 
-def main():
-  trace(f"opencv: {cv.__version__}")
+def compute_laplacian(img):
+  output_img = img.copy()
 
-  images_dir="COMP9517_23T2_Lab1_Images"
-
-  img = cv.imread(f"{images_dir}/Einstein.png")
   img_width = img.shape[1]
   img_height = img.shape[0]
-
-  output_img = img.copy()
 
   k3x3_laplace = make_k3x3_laplace() 
 
@@ -152,17 +131,65 @@ def main():
       cur_gray = output_img_gray_values[y * img_width + x]
       normalised_gray = translate(min_convolved, max_convolved, cur_gray, 0, 255)
       output_img[y, x] = [normalised_gray] * 3
+ 
+  return output_img
 
-  cv.imshow('image', output_img)
-  cv.waitKey()
+def contrast_stretch(i, a, b, c, d):
+  return (i - c) * ((b - a) / (d - c)) + a
+
+# TODO(Ryan): For BGR, generalise for number of channels
+def contrast_stretch_grayscale(img):
+  output_img = img.copy()
+
+  img_width = img.shape[1]
+  img_height = img.shape[0]
+
+  min_input = sys.maxsize
+  max_input = 0
+  for x in range(img_width):
+    for y in range(img_height):
+      gray_value = img[y, x][0]
+      if gray_value > max_input:
+        max_input = gray_value
+      if gray_value < min_input:
+        min_input = gray_value
+
+  for x in range(img_width):
+    for y in range(img_height):
+      output_img[y, x] = [contrast_stretch(img[y, x][0], 0, 255, min_input, max_input)] * 3
+
+  return output_img
+
+
+def main():
+  trace(f"opencv: {cv.__version__}")
+
+  images_dir="COMP9517_23T2_Lab1_Images"
+
+  einstein_img = cv.imread(f"{images_dir}/Einstein.png")
+
+  laplacian_img = compute_laplacian(einstein_img)
+  plt.imshow(laplacian_img)
+  plt.title('Laplacian')
+  plt.show()
+
+  contrast_stretched_laplacian_img = contrast_stretch_grayscale(laplacian_img)
+  plt.imshow(contrast_stretched_laplacian_img)
+  plt.title('Contrast Stretched')
+  plt.show()
+
+  #plt.imshow(cv.cvtColor(image, cv2.COLOR_BGR2RGB)) # cv2 uses BGR but plt uses RGB, hence the conversion
+  # cv.imshow('contrast_stretched_laplacian_img', contrast_stretched_laplacian_img)
+  # cv.waitKey()
+
 
 if __name__ == "__main__":
   # NOTE(Ryan): Disable breakpoints if not running under a debugger
-  if sys.gettrace() is None:
-    os.environ["PYTHONBREAKPOINT"] = "0"
+  # if sys.gettrace() is None:
+  #   os.environ["PYTHONBREAKPOINT"] = "0"
 
-  directory_of_running_script = pathlib.Path(__file__).parent.resolve()
-  os.chdir(directory_of_running_script)
+  # directory_of_running_script = pathlib.Path(__file__).parent.resolve()
+  # os.chdir(directory_of_running_script)
 
   logging.basicConfig(level=logging.DEBUG)
 

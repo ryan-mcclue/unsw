@@ -17,7 +17,8 @@ Also have differences, i.e. max(a, b) - min(a, b)?
 2nlogn = nlogn
 
 ## Squaring Edge Weights
-TODO: same MST as squaring is monotonic operation, i.e. preserves order?
+same MST as squaring is monotonic operation (monotonic means preserves order)
+
 not same shortest paths
 
 # Flow Networks

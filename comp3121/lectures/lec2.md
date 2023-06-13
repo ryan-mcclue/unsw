@@ -95,7 +95,7 @@ O(mlogn)
 ## Minimum Spanning Tree:
 connects all vertices with smallest weight of edges
 Prims algorithm similar to Djikstras
-Kruskal algorithm builds up forest (O(mlogn))
+Kruskal algorithm builds up forest (O(mlogn). where m is number of edges)
 Order vertices by edge weight (is this topological sort?). Add vertex only if doesn't introduce cycle
 (example of backtracking algorithm? common in graph problems?)
 Want quick way to determine if two ends of edges belong to same tree to avoid a loop

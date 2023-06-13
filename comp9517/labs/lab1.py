@@ -12,14 +12,17 @@ from dataclasses import dataclass
 
 import cv2 as cv
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+
+global global_logger
 
 def fatal_error(msg):
-  logging.critical(msg)
+  global_logger.critical(msg)
   breakpoint()
   sys.exit()
 
 def warn(msg):
-  logging.warning(msg)
+  global_logger.warning(msg)
   # NOTE(Ryan): Disable by passing -O to interpreter
   if __debug__:
     breakpoint()
@@ -27,7 +30,7 @@ def warn(msg):
 
 def trace(msg):
   if __debug__:
-    logging.debug(msg)
+    global_logger.debug(msg)
 
 def make_empty_matrix(n):
   return [[0] * n for i in range(n)]
@@ -163,6 +166,7 @@ def contrast_stretch_grayscale(img):
 
 def main():
   trace(f"opencv: {cv.__version__}")
+  mpl.rcParams['figure.dpi']= 150
 
   images_dir="COMP9517_23T2_Lab1_Images"
 
@@ -190,8 +194,13 @@ if __name__ == "__main__":
 
   # directory_of_running_script = pathlib.Path(__file__).parent.resolve()
   # os.chdir(directory_of_running_script)
-
-  logging.basicConfig(level=logging.DEBUG)
+  global_logger = logging.getLogger(__name__)
+  global_logger.setLevel(logging.DEBUG)
+  global_logger_handler = logging.StreamHandler()
+  global_logger_handler.setLevel(logging.DEBUG)
+  global_logger_formatter = logging.Formatter('%(asctime)s - %(name)s%(levelname)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S%p')
+  global_logger_handler.setFormatter(global_logger_formatter)
+  global_logger.addHandler(global_logger_handler)
 
   trace(f"python: {platform.python_version()}")
 

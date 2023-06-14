@@ -111,24 +111,27 @@ Swap 100 with 6 and remove
 
 ## Question 3
 1. * No, e.g: day 1 [1, 2, 3, 4], day 2 [5, 6], day 3 [7], day 4 [8], day 5 [9], day 6 [10]
+   As packages are loaded onto the truck in the order of their position, no other possible schedule exists
    * Yes, e.g: day 1 [1, 2, 3, 4, 5], day 2 [6, 7], day 3 [8, 9], day 4 [10]
 2. As truck can carry all packages in a single day, and K \>= 1
 3. **Algorithm:**
   * Iterate over all packages and maintain a running sum of their weights
   * If the current package weight added to the running sum exceeds C, add one to required delivery days
     Otherwise, add to the running sum and proceed to next package
-  * Once iterated over all packages, if required delivery days is <= K, it's possible to deliver
   **Correctness:**
   * The packages are loaded onto the truck in the order of their position on the belt.
-    Therefore, summing from the start of the package list is the only valid weight calculation
-  * The algorithm will terminate, as the package list is finite
+    Therefore, summing from the start of the package list will mimic this behaviour and produce a correct answer.
+  * The algorithm will terminate as the package list is finite.
+    If the returned required delivery days is <= K, it's possible to deliver, otherwise not possible to deliver
   **Time Complexity:**
   * Iterating over *n* packages yeilds `O(n)`
 4. 
-  * We know that the best possible scenario for minimising C is if all packages are the same weight.
-    In this case, `C = sum(packages) / K`
+  * We know that the best possible scenario for minimising C is if it's possible to have `C = min(package_weight)`
   * We know that from part 3.2, `C = sum(packages)` is an hard upper limit
-  * Therefore, as we have an upper and lower bound to the solution, binary search is feasible
+  * There is a monotonic relationship between C and being able to deliver it.
+    In other words, if it's possible to deliver with C, then also possible for all capacities greater.
+    Conversely, if it's not possible to deliver with C, then also not possible for all capacities smaller.
+  * Therefore, as we have an upper/lower bound to the solution and inherent monotonicity, binary search is feasible.
 5. **Algorithm:**
   * Perform a binary search as stated in part 3.4, to obtain a possible C.
   * Input this value of C into the algorithm stated in part 3.3
@@ -138,7 +141,7 @@ Swap 100 with 6 and remove
     If still possible to deliver, overwrite previous C value and recurse.
     Otherwise, the optimal C value has been found and terminate
   **Correctness:**
-  * We know a solution exists, *x*, such that `sum(packages)/K <= x <= sum(packages)` 
+  * We know a solution exists, *x*, such that `min(package_weight) <= x <= sum(packages)` 
     Therefore, we know the optimal solution will be found by binary searching across this range.
     Furthermore, we know the algorithm will terminate because of these known endpoints
   **Time Complexity:**
@@ -146,8 +149,6 @@ Swap 100 with 6 and remove
     Therefore, we can say binary search is `O(log(n·M))`. 
     On each iteration of the binary search, we run algorithm to check if delivery possible in `O(n)`.
     Therefore, `O(log(n·M)) · O(n) = O(n·log(n·M))`
-
-
 
 
 The general rule of thumb is that algorithms introduced in this course (in either the lectures, tutorial, problem sets) does not need citation - 

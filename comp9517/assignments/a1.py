@@ -9,6 +9,7 @@ import os
 import sys
 import subprocess
 import logging
+import bisect
 import platform
 
 from dataclasses import dataclass
@@ -168,14 +169,20 @@ def contrast_stretch_grayscale(img):
 
 
 def find_first_index_larger(arr, val):
-  result = -1
+  possible_index = bisect.bisect_left(arr, val)
 
-  for i, j in enumerate(arr):
-    if j > val:
-      result = i
-      break
+  # NOTE(Ryan): No index found, i.e. returns last element
+  if arr[possible_index] < val:
+    return -1
 
-  return result
+  # NOTE(Ryan): Could return index of same value
+  while possible_index < (len(arr) - 1) and arr[possible_index] == val:
+    possible_index += 1
+  # NOTE(Ryan): Only equal values found
+  if arr[possible_index] == val:
+    return -1
+
+  return possible_index
 
 def get_grayscale(img):
   w = img.shape[1]
@@ -192,11 +199,23 @@ def get_grayscale_sums(grayscale_values):
   sums = [0] * len(grayscale_values)
 
   running_sum = 0
-  for i in range(sums):
+  for i in range(len(sums)):
     running_sum += grayscale_values[i]
     sums[i] = running_sum 
 
   return sums
+
+def get_avg(sums, l, r):
+  if l == 0:
+    avg_sum = sums[r]
+  else:
+    avg_sum = sums[r] - sums[l - 1]
+  avg_count = (r - l)
+  assert(avg_count > 0)
+
+  avg = avg_sum / (r - l)
+
+  return avg
 
 def apply_threshold(img, threshold):
   w = img.shape[1]
@@ -239,8 +258,8 @@ def otsu_thresholding(img):
     p0 = p0_end / len(grayscale_values)
     p1 = (1.0 - p0)
 
-    p0_mean = sum(grayscale_values[0:(p0_end+1)]) / (p0_end)
-    p1_mean = sum(grayscale_values[p1_start:(p1_end+1)]) / (p1_end - p1_start)
+    p0_mean = get_avg(grayscale_sums, 0, p0_end)
+    p1_mean = get_avg(grayscale_sums, p1_start, p1_end)
 
     interclass_variance = (p0 * p1) * ((p0_mean - p1_mean)**2)
 
@@ -274,9 +293,14 @@ def main():
 
   output_img = otsu_thresholding(img)
 
-  plt.imshow(output_img)
-  plt.title('Otsu')
+  f, axarr = plt.subplots(2, 2)
+  axarr[0,0].imshow(img)
+  axarr[0,1].imshow(output_img)
   plt.show()
+
+  #plt.imshow(output_img)
+  #plt.title('Otsu')
+  #plt.show()
 
   #plt.imshow(cv.cvtColor(image, cv2.COLOR_BGR2RGB)) # cv2 uses BGR but plt uses RGB, hence the conversion
   # cv.imshow('contrast_stretched_laplacian_img', contrast_stretched_laplacian_img)

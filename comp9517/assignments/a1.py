@@ -206,6 +206,8 @@ def get_grayscale_sums(grayscale_values):
   return sums
 
 def get_avg(sums, l, r):
+  assert(r < len(sums))
+
   if l == 0:
     avg_sum = sums[r]
   else:
@@ -269,6 +271,7 @@ def otsu_thresholding(img):
 
     threshold_test += 1
 
+  trace(f"Otsu threshold: {otsu_threshold}")
   apply_threshold(img_copy, otsu_threshold)
 
   return img_copy
@@ -282,41 +285,74 @@ def isodata_thresholding(img):
 
   grayscale_sums = get_grayscale_sums(grayscale_values)
 
+  # NOTE(Ryan): Lowering this makes it more like otsu
   cur_threshold = 128
   while True:
-    p0_start = 0
-    # NOTE(Ryan): No elements larger, resulting in 0
-    p1_start = find_first_index_larger(grayscale_values, threshold_test)
-    if p1_start == -1:
-      break
+    # NOTE(Ryan): No elements smaller
+    all_larger = (grayscale_values[0] > cur_threshold)
 
-    p0_end = p1_start - 1
-    p1_end = len(grayscale_values) - 1
+    # NOTE(Ryan): No elements larger
+    p1_start = find_first_index_larger(grayscale_values, cur_threshold)
+    all_smaller = (p1_start == -1)
 
-    p0_mean = get_avg(grayscale_sums, 0, p0_end)
-    p1_mean = get_avg(grayscale_sums, p1_start, p1_end)
+    # NOTE(Ryan): In this case, calculate mean for all pixels
+    if all_larger or all_smaller:
+      mean = get_avg(grayscale_sums, 0, len(grayscale_sums) - 1)
+      new_threshold = mean / 2
+    else:
+      p0_start = 0
+      p0_end = p1_start - 1
+      p1_end = len(grayscale_values) - 1
 
-    new_threshold = (p0_mean + p1_mean) / 2
+      p0_mean = get_avg(grayscale_sums, p0_start, p0_end)
+      p1_mean = get_avg(grayscale_sums, p1_start, p1_end)
+
+      new_threshold = (p0_mean + p1_mean) / 2
+
     if new_threshold != cur_threshold:
       cur_threshold = new_threshold
     else:
       cur_threshold = new_threshold
       break
 
-  apply_threshold(img_copy, otsu_threshold)
+  trace(f"Isodata threshold: {cur_threshold}")
+  apply_threshold(img_copy, cur_threshold)
 
   return img_copy
+
+
+def construct_histogram(gray_values):
+  histogram = [0] * 255
+
+  for val in gray_values:
+    histogram[val] += 1
+
+  return histogram
+
+# NOTE(Ryan): Line is (x0, y0), (x1, y1).
+# Point is (x2, y2)
+def distance_to_line(x0, y0, x1, y1, x2, y2):
+ d = abs((x2-x1)*(y1-y3) - (x1-x3)*(y2-y1)) / math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1))
 
 
 def triangle_thresholding(img):
   result = img.copy()
 
-  histogram = construct_histogram()
+  grayscale_values = get_grayscale(img_copy)
+  grayscale_values.sort()
 
-  max_gray_index = gray_values[-1]
+  histogram = construct_histogram(grayscale_values)
+
+  grayscale_sums = get_grayscale_sums(grayscale_values)
+
+  max_gray_histogram_index = grayscale_values[-1]
+
   histogram_peak = max(histogram)
-
-
+  hisogram_peak_index = -1
+  for i in range(len(histogram)):
+    if histogram[i] == histogram_peak:
+      histogram_peak_index = i
+      break
 
   return result
 
@@ -324,11 +360,13 @@ def main():
   images_dir="COMP9517_23T2_Assignment_Images"
   img = cv.imread(f"{images_dir}/Algae.png")
 
-  output_img = otsu_thresholding(img)
+  otsu_img = otsu_thresholding(img)
+  iso_img = isodata_thresholding(img)
 
   f, axarr = plt.subplots(2, 2)
   axarr[0,0].imshow(img)
-  axarr[0,1].imshow(output_img)
+  axarr[0,1].imshow(otsu_img)
+  axarr[1,0].imshow(iso_img)
   plt.show()
 
   #plt.imshow(output_img)

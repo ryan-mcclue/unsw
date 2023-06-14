@@ -186,14 +186,25 @@ def main():
   # cv.imshow('contrast_stretched_laplacian_img', contrast_stretched_laplacian_img)
   # cv.waitKey()
 
+def running_on_jupyter():
+  try:
+    shell_name = get_ipython().__class__.__name__ 
+    if shell_name == "ZMQInteractiveShell":
+      return True
+    else:
+      return False
+  except NameError:
+      return False
+
 
 if __name__ == "__main__":
+  if not running_on_jupyter():
   # NOTE(Ryan): Disable breakpoints if not running under a debugger
-  # if sys.gettrace() is None:
-  #   os.environ["PYTHONBREAKPOINT"] = "0"
+    if sys.gettrace() is None:
+      os.environ["PYTHONBREAKPOINT"] = "0"
+    directory_of_running_script = pathlib.Path(__file__).parent.resolve()
+    os.chdir(directory_of_running_script)
 
-  # directory_of_running_script = pathlib.Path(__file__).parent.resolve()
-  # os.chdir(directory_of_running_script)
   global_logger = logging.getLogger(__name__)
   global_logger.setLevel(logging.DEBUG)
   global_logger_handler = logging.StreamHandler()

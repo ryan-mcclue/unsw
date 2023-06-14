@@ -274,16 +274,49 @@ def otsu_thresholding(img):
   return img_copy
 
 
-
 def isodata_thresholding(img):
-  result = img.copy()
+  img_copy = img.copy()
 
-  # start with 128
+  grayscale_values = get_grayscale(img_copy)
+  grayscale_values.sort()
 
-  return result
+  grayscale_sums = get_grayscale_sums(grayscale_values)
+
+  cur_threshold = 128
+  while True:
+    p0_start = 0
+    # NOTE(Ryan): No elements larger, resulting in 0
+    p1_start = find_first_index_larger(grayscale_values, threshold_test)
+    if p1_start == -1:
+      break
+
+    p0_end = p1_start - 1
+    p1_end = len(grayscale_values) - 1
+
+    p0_mean = get_avg(grayscale_sums, 0, p0_end)
+    p1_mean = get_avg(grayscale_sums, p1_start, p1_end)
+
+    new_threshold = (p0_mean + p1_mean) / 2
+    if new_threshold != cur_threshold:
+      cur_threshold = new_threshold
+    else:
+      cur_threshold = new_threshold
+      break
+
+  apply_threshold(img_copy, otsu_threshold)
+
+  return img_copy
+
 
 def triangle_thresholding(img):
   result = img.copy()
+
+  histogram = construct_histogram()
+
+  max_gray_index = gray_values[-1]
+  histogram_peak = max(histogram)
+
+
 
   return result
 

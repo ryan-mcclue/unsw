@@ -20,14 +20,14 @@ greedy most useful technique for solving problem?
 greedy with respect to time, i.e picking shortest activity is suboptimal
 greedy with respect to least conflicts is suboptimal
 working left to right, greedy with respect to earliest finishing time is optimal
-*Greedy Proof 1*: proof exchange argument (show that any allegedely better solution can be morphed into our greedy solution)
+*Greedy Proof 1*: proof exchange argument (contradiction: show that any allegedely better solution can be morphed into our greedy solution)
 we know that at any stage, any better solution activity can be replaced with greedy solution
 as anything on right we know won't conflict with (as earlier)
 O(nlogn) as sort by earliest finishing time
 
 ## Petrol Stations:
 pick furthest petrol station from where at
-*Greedy Proof 2*: proof greedy stays ahead (no other solution beats greedy at any stage)
+*Greedy Proof 2*: proof greedy stays ahead (induction: no other solution beats greedy at any stage)
 
 ## Cell Towers:
 Start from first house not covered. place tower 5km from that house. repeat

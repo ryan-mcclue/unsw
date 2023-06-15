@@ -4,6 +4,7 @@
 # matplotlib.pyplot.bar for histogram
 # It's normal that the Otsu's method and Isodata produce very similar results
 
+
 import pathlib
 import os
 import sys
@@ -11,12 +12,14 @@ import subprocess
 import logging
 import bisect
 import platform
+import math
 
 from dataclasses import dataclass
 
 import cv2 as cv
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+import numpy as np
 
 global global_logger
 
@@ -322,26 +325,28 @@ def isodata_thresholding(img):
 
 
 def construct_histogram(gray_values):
-  histogram = [0] * 255
+  histogram = [0] * 256
 
   for val in gray_values:
     histogram[val] += 1
 
   return histogram
 
-# NOTE(Ryan): Line is (x0, y0), (x1, y1).
-# Point is (x2, y2)
-def distance_to_line(x0, y0, x1, y1, x2, y2):
+# NOTE(Ryan): Line is (x1, y1), (x2, y2).
+# Point is (x3, y3)
+def distance_to_line(x1, y1, x2, y2, x3, y3):
  d = abs((x2-x1)*(y1-y3) - (x1-x3)*(y2-y1)) / math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1))
+ return d
 
 
 def triangle_thresholding(img):
-  result = img.copy()
+  img_copy = img.copy()
 
   grayscale_values = get_grayscale(img_copy)
   grayscale_values.sort()
 
   histogram = construct_histogram(grayscale_values)
+  # plt.bar(np.arange(len(histogram)), histogram)
 
   grayscale_sums = get_grayscale_sums(grayscale_values)
 
@@ -354,19 +359,42 @@ def triangle_thresholding(img):
       histogram_peak_index = i
       break
 
-  return result
+  x0 = histogram_peak_index
+  y0 = histogram_peak
+  x1 = max_gray_histogram_index
+  y1 = histogram[x1]
+
+  max_line_distance = 0
+  max_gray_val = 0
+
+  for i in range(x0, len(histogram)):
+    x2 = i
+    y2 = histogram[x2]
+    distance = distance_to_line(x0, y0, x1, y1, x2, y2)
+    if distance > max_line_distance:
+      max_line_distance = distance
+      max_gray_val = x2
+
+  trace(f"Triangle threshold: {max_gray_val}")
+  apply_threshold(img_copy, max_gray_val)
+
+  return img_copy
 
 def main():
   images_dir="COMP9517_23T2_Assignment_Images"
   img = cv.imread(f"{images_dir}/Algae.png")
 
+  # img = cv2.imread('/Nuclei', cv2.IMREAD_GRAYSCALE) 
+
   otsu_img = otsu_thresholding(img)
   iso_img = isodata_thresholding(img)
+  triangle_img = triangle_thresholding(img)
 
   f, axarr = plt.subplots(2, 2)
   axarr[0,0].imshow(img)
   axarr[0,1].imshow(otsu_img)
   axarr[1,0].imshow(iso_img)
+  axarr[1,1].imshow(triangle_img)
   plt.show()
 
   #plt.imshow(output_img)

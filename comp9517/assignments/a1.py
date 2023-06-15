@@ -265,6 +265,7 @@ def triangle_thresholding(img):
   histogram_start, histogram_end = get_histogram_endpoints(histogram)
   # NOTE(Ryan): Flipping triangle
   # https://edstem.org/au/courses/11999/discussion/1440316
+  #if (histogram_peak_index - histogram_start) < (histogram_end - histogram_peak_index):
   if histogram_peak_index > 128:
     x1 = histogram_start
     test_end = histogram_start
@@ -281,7 +282,11 @@ def triangle_thresholding(img):
   for i in range(x0, test_end, test_inc):
     x2 = i
     y2 = histogram[x2]
+    # NOTE(Ryan): Only compute distances for gray intensities > 0 
+    if y2 == 0:
+      continue
     distance = distance_to_line(x0, y0, x1, y1, x2, y2)
+
     if distance > max_line_distance:
       max_line_distance = distance
       max_gray_val = x2
@@ -356,8 +361,8 @@ def main():
   # img = cv.imread(f"{images_dir}/Algae.png")
   # img = cv.imread(f"{images_dir}/CT.png", cv.IMREAD_GRAYSCALE)
   # img = cv.imread(f"{images_dir}/Nuclei.png", cv.IMREAD_GRAYSCALE)
-  img = cv.imread(f"{images_dir}/Rubik.png", cv.IMREAD_GRAYSCALE)
-  # img = cv.imread(f"{images_dir}/Satellite.png", cv.IMREAD_GRAYSCALE)
+  # img = cv.imread(f"{images_dir}/Rubik.png", cv.IMREAD_GRAYSCALE)
+  img = cv.imread(f"{images_dir}/Satellite.png", cv.IMREAD_GRAYSCALE)
 
   otsu_img = otsu_thresholding(img)
   iso_img = isodata_thresholding(img)

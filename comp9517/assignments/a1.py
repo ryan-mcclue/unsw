@@ -194,7 +194,8 @@ def get_grayscale(img):
 
   for x in range(w):
     for y in range(h):
-      grayscale[y * w + x] = img[y, x][0]
+      #grayscale[y * w + x] = img[y, x][0]
+      grayscale[y * w + x] = img[y, x]
 
   return grayscale
 
@@ -215,10 +216,13 @@ def get_avg(sums, l, r):
     avg_sum = sums[r]
   else:
     avg_sum = sums[r] - sums[l - 1]
-  avg_count = (r - l)
-  assert(avg_count > 0)
 
-  avg = avg_sum / (r - l)
+  avg_count = (r - l)
+
+  if avg_count == 0:
+    avg = 0
+  else:
+    avg = avg_sum / (r - l)
 
   return avg
 
@@ -227,10 +231,14 @@ def apply_threshold(img, threshold):
   h = img.shape[0]
   for x in range(w):
     for y in range(h):
-      if img[y, x][0] > threshold:
-        img[y, x] = [255] * 3
+      #if img[y, x][0] > threshold:
+      #  img[y, x] = [255] * 3
+      #else:
+      #  img[y, x] = [0] * 3
+      if img[y, x] > threshold:
+        img[y, x] = 255
       else:
-        img[y, x] = [0] * 3
+        img[y, x] = 0
 
 # NOTE(Ryan): variance = max(p0p1(u0 - u1)^2) 
 def otsu_thresholding(img):
@@ -301,7 +309,7 @@ def isodata_thresholding(img):
     # NOTE(Ryan): In this case, calculate mean for all pixels
     if all_larger or all_smaller:
       mean = get_avg(grayscale_sums, 0, len(grayscale_sums) - 1)
-      new_threshold = mean / 2
+      new_threshold = mean // 2
     else:
       p0_start = 0
       p0_end = p1_start - 1
@@ -310,7 +318,7 @@ def isodata_thresholding(img):
       p0_mean = get_avg(grayscale_sums, p0_start, p0_end)
       p1_mean = get_avg(grayscale_sums, p1_start, p1_end)
 
-      new_threshold = (p0_mean + p1_mean) / 2
+      new_threshold = (p0_mean + p1_mean) // 2
 
     if new_threshold != cur_threshold:
       cur_threshold = new_threshold
@@ -332,11 +340,37 @@ def construct_histogram(gray_values):
 
   return histogram
 
+def histogram_highest(histogram):
+  highest = 0
+  for i in range(len(histogram)):
+    if histogram[i] > highest:
+      highest = i
+  return highest
+
+def get_histogram_endpoints(histogram):
+  histogram_start = -1
+  histogram_end = -1
+
+  for i in range(len(histogram)):
+    if histogram[i] != 0:
+      if histogram_start == -1:
+        histogram_start = i
+      else:
+        histogram_end = i
+  
+  return (histogram_start, histogram_end)
+   
+
 # NOTE(Ryan): Line is (x1, y1), (x2, y2).
 # Point is (x3, y3)
 def distance_to_line(x1, y1, x2, y2, x3, y3):
- d = abs((x2-x1)*(y1-y3) - (x1-x3)*(y2-y1)) / math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1))
- return d
+  numerator = abs((x2-x1)*(y1-y3) - (x1-x3)*(y2-y1))
+  denominator = math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1))
+
+  if denominator == 0:
+    return 0
+  else:
+    return (numerator / denominator)
 
 
 def triangle_thresholding(img):
@@ -346,11 +380,8 @@ def triangle_thresholding(img):
   grayscale_values.sort()
 
   histogram = construct_histogram(grayscale_values)
-  # plt.bar(np.arange(len(histogram)), histogram)
 
-  grayscale_sums = get_grayscale_sums(grayscale_values)
-
-  max_gray_histogram_index = grayscale_values[-1]
+  # max_gray_histogram_index = grayscale_values[-1]
 
   histogram_peak = max(histogram)
   hisogram_peak_index = -1
@@ -361,13 +392,29 @@ def triangle_thresholding(img):
 
   x0 = histogram_peak_index
   y0 = histogram_peak
-  x1 = max_gray_histogram_index
+  x1 = 0
+  y1 = 0
+
+  test_end = 0
+  test_inc = 0
+
+  histogram_start, histogram_end = get_histogram_endpoints(histogram)
+  # NOTE(Ryan): Flipping triangle
+  # https://edstem.org/au/courses/11999/discussion/1440316
+  if histogram_peak_index > 128:
+    x1 = histogram_start
+    test_end = histogram_start
+    test_inc = -1
+  else:
+    x1 = histogram_end
+    test_end = histogram_end
+    test_inc = 1
   y1 = histogram[x1]
 
   max_line_distance = 0
   max_gray_val = 0
 
-  for i in range(x0, len(histogram)):
+  for i in range(x0, test_end, test_inc):
     x2 = i
     y2 = histogram[x2]
     distance = distance_to_line(x0, y0, x1, y1, x2, y2)
@@ -382,19 +429,29 @@ def triangle_thresholding(img):
 
 def main():
   images_dir="COMP9517_23T2_Assignment_Images"
-  img = cv.imread(f"{images_dir}/Algae.png")
+  # this may be affecting histogram?
+  # img = cv.imread(f"{images_dir}/Algae.png", cv.IMREAD_GRAYSCALE) 
 
-  # img = cv2.imread('/Nuclei', cv2.IMREAD_GRAYSCALE) 
+  # img = cv.imread(f"{images_dir}/Algae.png")
+  # img = cv.imread(f"{images_dir}/CT.png", cv.IMREAD_GRAYSCALE)
+  # img = cv.imread(f"{images_dir}/Nuclei.png", cv.IMREAD_GRAYSCALE)
+  img = cv.imread(f"{images_dir}/Rubik.png", cv.IMREAD_GRAYSCALE)
+  # img = cv.imread(f"{images_dir}/Satellite.png", cv.IMREAD_GRAYSCALE)
 
   otsu_img = otsu_thresholding(img)
   iso_img = isodata_thresholding(img)
   triangle_img = triangle_thresholding(img)
 
-  f, axarr = plt.subplots(2, 2)
-  axarr[0,0].imshow(img)
-  axarr[0,1].imshow(otsu_img)
-  axarr[1,0].imshow(iso_img)
-  axarr[1,1].imshow(triangle_img)
+  grayscale_values = get_grayscale(img)
+  histogram = construct_histogram(grayscale_values)
+  #trace(histogram_highest(histogram))
+
+  f, axarr = plt.subplots(2, 3)
+  axarr[0,0].imshow(img, cmap='gray')
+  axarr[0,1].bar(np.arange(len(histogram)), histogram)
+  axarr[1,0].imshow(otsu_img, cmap='gray')
+  axarr[1,1].imshow(iso_img, cmap='gray')
+  axarr[1,2].imshow(triangle_img, cmap='gray')
   plt.show()
 
   #plt.imshow(output_img)

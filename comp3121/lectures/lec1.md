@@ -7,14 +7,17 @@ A informal algorithm is solved in prose rather than pseudocode
 
 Big-Oh (asymptotic upper bound, i.e takes at most as long)
 f(n) = O(g(n)), i.e. f(n) grows at most g(n)
+* f(n)/g(n) <= C
+* lim∞ f'(n)/g'(n) = 0 (limit asymptotic theorem)
 Omega (asymptotic lower bound, i.e takes at least as long)
 f(n) = Ω(g(n)), i.e. f(n) grows at least g(n)
+* f(n)/g(n) > C
+* lim∞ f'(n)/g'(n) = ∞
 Theta (same asymptotic growth rate)
 f(n) = θ(g(n))
+* lim∞ f'(n)/g'(n) = 0
 
-TODO: put in limit asymptotic theorem
-TODO: for C's and N's, rewrite as f(n)/g(n) < C
-https://www.youtube.com/watch?v=DjfYhHSkWqo
+IMPORTANT: An algorithm of O(n) isn't necessarily slower than O(logn). Must show Ω(n)
 
 
 NOTE: When calculating asymptotic relation, ignore constants and lower factors

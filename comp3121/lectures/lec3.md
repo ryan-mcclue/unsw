@@ -2,6 +2,9 @@
 Fibonacci matrix used to compute.
 Squaring matrix can be done logarithmically, so fibonacci computed logarithmic
 
+Types of proofs to use:
+https://edstem.org/au/courses/11846/discussion/1446944
+
 ## Interval Joining
 Find shortest distance between intervals and join on them iteratively
 

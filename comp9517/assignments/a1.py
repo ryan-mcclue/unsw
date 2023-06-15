@@ -1,10 +1,6 @@
 #!/usr/bin/python3
 # SPDX-License-Identifier: zlib-acknowledgement
 
-# matplotlib.pyplot.bar for histogram
-# It's normal that the Otsu's method and Isodata produce very similar results
-
-
 import pathlib
 import os
 import sys
@@ -38,138 +34,6 @@ def warn(msg):
 def trace(msg):
   if __debug__:
     global_logger.debug(msg)
-
-def make_empty_matrix(n):
-  return [[0] * n for i in range(n)]
-
-
-def clamp(val, limit):
-  clamped_val = val
-
-  if val < 0:
-    clamped_val = 0
-  elif val >= limit:
-    clamped_val = limit - 1
-  
-  return clamped_val
-
-def translate(x0, x1, val, x2, x3):
-  val_fraction = ((val - x0) / (x1 - x0))
-  
-  return x2 + (val_fraction * (x3 - x2))
-
-def make_k3x3_laplace():
-  k3x3 = make_empty_matrix(3)
-
-  k3x3[0][0] = 0 
-  k3x3[1][0] = 1 
-  k3x3[2][0] = 0 
-
-  k3x3[0][1] = 1 
-  k3x3[1][1] = -4 
-  k3x3[2][1] = 1 
-
-  k3x3[0][2] = 0 
-  k3x3[1][2] = 1 
-  k3x3[2][2] = 0 
-
-  return k3x3
-
-def convolve_k3x3_laplace(k3x3, m3x3):
-  result = 0
-
-  for x in range(3):
-    for y in range(3):
-      result += (k3x3[y][x] * m3x3[y][x])
-
-  return result
-
-def make_m3x3_from_cv_image(cv_img, centre_x, centre_y):
-  m3x3 = make_empty_matrix(3)
-
-  w = cv_img.shape[1]
-  h = cv_img.shape[0]
-
-  # NOTE(Ryan): Duplicating last pixel for border problem   
-  x00 = clamp(centre_x - 1, w)
-  x01 = clamp(centre_x, w)
-  x02 = clamp(centre_x + 1, w)
-
-  y00 = clamp(centre_y - 1, h)
-  y01 = clamp(centre_y, h)
-  y02 = clamp(centre_y + 1, h)
-
-  # NOTE(Ryan): First pixel is fine as greyscale
-  m3x3[0][0] = cv_img[y00, x00][0] 
-  m3x3[0][1] = cv_img[y00, x01][0]
-  m3x3[0][2] = cv_img[y00, x02][0]
-
-  m3x3[1][0] = cv_img[y01, x00][0]
-  m3x3[1][1] = cv_img[y01, x01][0]
-  m3x3[1][2] = cv_img[y01, x02][0]
-
-  m3x3[2][0] = cv_img[y02, x00][0] 
-  m3x3[2][1] = cv_img[y02, x01][0]
-  m3x3[2][2] = cv_img[y02, x02][0]
-
-  return m3x3
-
-
-def compute_laplacian(img):
-  output_img = img.copy()
-
-  img_width = img.shape[1]
-  img_height = img.shape[0]
-
-  k3x3_laplace = make_k3x3_laplace() 
-
-  output_img_gray_values = [0] * (img_width * img_height)
-  
-  for x in range(img_width):
-    for y in range(img_height):
-      m3x3 = make_m3x3_from_cv_image(img, x, y)
-
-      gray_value = convolve_k3x3_laplace(k3x3_laplace, m3x3)
-
-      output_img_gray_values[y * img_width + x] = gray_value
-
-  min_convolved = min(output_img_gray_values)
-  max_convolved = max(output_img_gray_values)
-
-  for x in range(img_width):
-    for y in range(img_height):
-      cur_gray = output_img_gray_values[y * img_width + x]
-      normalised_gray = translate(min_convolved, max_convolved, cur_gray, 0, 255)
-      output_img[y, x] = [normalised_gray] * 3
- 
-  return output_img
-
-def contrast_stretch(i, a, b, c, d):
-  return (i - c) * ((b - a) / (d - c)) + a
-
-# TODO(Ryan): For BGR, generalise for number of channels
-def contrast_stretch_grayscale(img):
-  output_img = img.copy()
-
-  img_width = img.shape[1]
-  img_height = img.shape[0]
-
-  min_input = sys.maxsize
-  max_input = 0
-  for x in range(img_width):
-    for y in range(img_height):
-      gray_value = img[y, x][0]
-      if gray_value > max_input:
-        max_input = gray_value
-      if gray_value < min_input:
-        min_input = gray_value
-
-  for x in range(img_width):
-    for y in range(img_height):
-      output_img[y, x] = [contrast_stretch(img[y, x][0], 0, 255, min_input, max_input)] * 3
-
-  return output_img
-
 
 def find_first_index_larger(arr, val):
   possible_index = bisect.bisect_left(arr, val)
@@ -427,7 +291,64 @@ def triangle_thresholding(img):
 
   return img_copy
 
+def produce_output_images():
+  images_dir="COMP9517_23T2_Assignment_Images"
+  images = ["Algae.png", "CT.png", "Nuclei.png", "Rubik.png", "Satellite.png"]
+
+  output_folder="processed_images"
+  if not os.path.exists(output_folder):
+    os.mkdir(output_folder)
+
+  for image in images:
+    img = cv.imread(f"{images_dir}/{image}", cv.IMREAD_GRAYSCALE)
+
+    plt.clf()
+
+    grayscale_values = get_grayscale(img)
+    histogram = construct_histogram(grayscale_values)
+
+    plt.bar(np.arange(len(histogram)), histogram)
+    plt.savefig(f"{output_folder}/Histogram-{image}", dpi=150)
+
+    otsu_img = otsu_thresholding(img)
+    plt.imsave(f"{output_folder}/Otsu-{image}", otsu_img, cmap="gray", dpi=150)
+
+    isodata_img = isodata_thresholding(img)
+    plt.imsave(f"{output_folder}/Isodata-{image}", isodata_img, cmap="gray", dpi=150)
+
+    triangle_img = triangle_thresholding(img)
+    plt.imsave(f"{output_folder}/Triangle-{image}", triangle_img, cmap="gray", dpi=150)
+
+
+def jupyter_display():
+  images_dir="COMP9517_23T2_Assignment_Images"
+  images = ["Algae.png", "CT.png", "Nuclei.png", "Rubik.png", "Satellite.png"]
+
+  for image in images:
+    img = cv.imread(f"{images_dir}/{image}", cv.IMREAD_GRAYSCALE)
+
+    plt.clf()
+
+    grayscale_values = get_grayscale(img)
+    histogram = construct_histogram(grayscale_values)
+
+    f, axarr = plt.subplots(2, 3)
+    axarr[0,0].imshow(img, cmap='gray')
+    axarr[0,0].title.set_text(f"{image}")
+    axarr[0,1].bar(np.arange(len(histogram)), histogram)
+    axarr[0,1].title.set_text("Histogram")
+    axarr[1,0].imshow(otsu_img, cmap='gray')
+    axarr[1,0].title.set_text("Otsu")
+    axarr[1,1].imshow(iso_img, cmap='gray')
+    axarr[1,1].title.set_text("Isodata")
+    axarr[1,2].imshow(triangle_img, cmap='gray')
+    axarr[1,2].title.set_text("Triangle")
+    plt.show()
+
+
 def main():
+  #produce_output_images()
+
   images_dir="COMP9517_23T2_Assignment_Images"
   # this may be affecting histogram?
   # img = cv.imread(f"{images_dir}/Algae.png", cv.IMREAD_GRAYSCALE) 
@@ -448,10 +369,15 @@ def main():
 
   f, axarr = plt.subplots(2, 3)
   axarr[0,0].imshow(img, cmap='gray')
+  axarr[0,0].title.set_text("original")
   axarr[0,1].bar(np.arange(len(histogram)), histogram)
+  axarr[0,1].title.set_text("histogram")
   axarr[1,0].imshow(otsu_img, cmap='gray')
+  axarr[1,0].title.set_text("otsu")
   axarr[1,1].imshow(iso_img, cmap='gray')
+  axarr[1,1].title.set_text("isodata")
   axarr[1,2].imshow(triangle_img, cmap='gray')
+  axarr[1,2].title.set_text("triangle")
   plt.show()
 
   #plt.imshow(output_img)
@@ -494,3 +420,5 @@ if __name__ == "__main__":
   mpl.rcParams['figure.dpi']= 150
 
   main()
+
+

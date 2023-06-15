@@ -12,6 +12,11 @@ f(n) = Ω(g(n)), i.e. f(n) grows at least g(n)
 Theta (same asymptotic growth rate)
 f(n) = θ(g(n))
 
+TODO: put in limit asymptotic theorem
+TODO: for C's and N's, rewrite as f(n)/g(n) < C
+https://www.youtube.com/watch?v=DjfYhHSkWqo
+
+
 NOTE: When calculating asymptotic relation, ignore constants and lower factors
 
 Proof ideas:

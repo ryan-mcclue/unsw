@@ -110,21 +110,26 @@ Swap 100 with 6 and remove
 ```
 
 ## Question 3
-1. * No, e.g: day 1 [1, 2, 3, 4], day 2 [5, 6], day 3 [7], day 4 [8], day 5 [9], day 6 [10]
-   As packages are loaded onto the truck in the order of their position, no other possible schedule exists
+1. * No. To maximise packages sent each day, load as many packages onto truck as C allows for that day:
+   e.g: day 1 [1, 2, 3, 4], day 2 [5, 6], day 3 [7], day 4 [8], day 5 [9], day 6 [10]
+   As packages are loaded onto the truck in the order of their position, cannot rearrange order of packages.
+   As this is the best possible arrangement, no other better solution exists.
    * Yes, e.g: day 1 [1, 2, 3, 4, 5], day 2 [6, 7], day 3 [8, 9], day 4 [10]
 2. As truck can carry all packages in a single day, and K \>= 1
 3. **Algorithm:**
   * Iterate over all packages and maintain a running sum of their weights
-  * If the current package weight added to the running sum exceeds C, add one to required delivery days
+  * If the current package weight added to the running sum exceeds C, add one to required delivery days and reset running sum
     Otherwise, add to the running sum and proceed to next package
+  * If the returned required delivery days is <= K, it's possible to deliver, otherwise not possible to deliver 
   **Correctness:**
+  * To maximise packages sent each day, load as many packages onto truck as C allows for that day.
+    Doing this, we can say that we can load at least as many packages for any day than that of another solution.
+    Therefore, this equates to maximising packages sent in K days.
   * The packages are loaded onto the truck in the order of their position on the belt.
-    Therefore, summing from the start of the package list will mimic this behaviour and produce a correct answer.
+    Therefore, summing from the start of the package list is the only possible package configuration
   * The algorithm will terminate as the package list is finite.
-    If the returned required delivery days is <= K, it's possible to deliver, otherwise not possible to deliver
   **Time Complexity:**
-  * Iterating over *n* packages yeilds `O(n)`
+  * Iterating over *n* packages yields `O(n)`
 4. 
   * We know that the best possible scenario for minimising C is if it's possible to have `C = min(package_weight)`
   * We know that from part 3.2, `C = sum(packages)` is an hard upper limit

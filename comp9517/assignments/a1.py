@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 # SPDX-License-Identifier: zlib-acknowledgement
 
+# For opencv functions: https://edstem.org/au/courses/11999/discussion/1448595
+
+# Triangle:
+# The way I understand it intuitively is that when there is an object of interest in front of a background, there should be clusters of pixels around two main intensity buckets, represented on the histogram as two humps. In this case the triangle method should choose the threshold approximately at the turning point of these two humps, thus optimally separating the object from the background 
+
 import pathlib
 import os
 import sys
@@ -340,50 +345,65 @@ def jupyter_display():
     f, axarr = plt.subplots(2, 3)
     axarr[0,0].imshow(img, cmap='gray')
     axarr[0,0].title.set_text(f"{image}")
+    axarr[0,0].axis("off")
+
     axarr[0,1].bar(np.arange(len(histogram)), histogram)
     axarr[0,1].title.set_text("Histogram")
+
+    axarr[0,2].axis("off")
+
+    otsu_img = otsu_thresholding(img)
     axarr[1,0].imshow(otsu_img, cmap='gray')
     axarr[1,0].title.set_text("Otsu")
-    axarr[1,1].imshow(iso_img, cmap='gray')
+    axarr[1,0].axis("off")
+
+    isodata_img = isodata_thresholding(img)
     axarr[1,1].title.set_text("Isodata")
+    axarr[1,1].imshow(isodata_img, cmap='gray')
+    axarr[1,1].axis("off")
+
+    triangle_img = triangle_thresholding(img)
     axarr[1,2].imshow(triangle_img, cmap='gray')
     axarr[1,2].title.set_text("Triangle")
+    axarr[1,2].axis("off")
+
     plt.show()
 
 
 def main():
-  #produce_output_images()
+  # produce_output_images()
+  jupyter_display()
 
-  images_dir="COMP9517_23T2_Assignment_Images"
-  # this may be affecting histogram?
-  # img = cv.imread(f"{images_dir}/Algae.png", cv.IMREAD_GRAYSCALE) 
+  #images_dir="COMP9517_23T2_Assignment_Images"
+  ## this may be affecting histogram?
+  ## img = cv.imread(f"{images_dir}/Algae.png", cv.IMREAD_GRAYSCALE) 
 
-  # img = cv.imread(f"{images_dir}/Algae.png")
-  # img = cv.imread(f"{images_dir}/CT.png", cv.IMREAD_GRAYSCALE)
-  # img = cv.imread(f"{images_dir}/Nuclei.png", cv.IMREAD_GRAYSCALE)
-  # img = cv.imread(f"{images_dir}/Rubik.png", cv.IMREAD_GRAYSCALE)
-  img = cv.imread(f"{images_dir}/Satellite.png", cv.IMREAD_GRAYSCALE)
+  ## img = cv.imread(f"{images_dir}/Algae.png")
+  ## img = cv.imread(f"{images_dir}/CT.png", cv.IMREAD_GRAYSCALE)
+  ## img = cv.imread(f"{images_dir}/Nuclei.png", cv.IMREAD_GRAYSCALE)
+  ## img = cv.imread(f"{images_dir}/Rubik.png", cv.IMREAD_GRAYSCALE)
+  #img = cv.imread(f"{images_dir}/Satellite.png", cv.IMREAD_GRAYSCALE)
 
-  otsu_img = otsu_thresholding(img)
-  iso_img = isodata_thresholding(img)
-  triangle_img = triangle_thresholding(img)
+  #otsu_img = otsu_thresholding(img)
+  #iso_img = isodata_thresholding(img)
+  #triangle_img = triangle_thresholding(img)
 
-  grayscale_values = get_grayscale(img)
-  histogram = construct_histogram(grayscale_values)
-  #trace(histogram_highest(histogram))
+  #grayscale_values = get_grayscale(img)
+  #histogram = construct_histogram(grayscale_values)
+  ##trace(histogram_highest(histogram))
 
-  f, axarr = plt.subplots(2, 3)
-  axarr[0,0].imshow(img, cmap='gray')
-  axarr[0,0].title.set_text("original")
-  axarr[0,1].bar(np.arange(len(histogram)), histogram)
-  axarr[0,1].title.set_text("histogram")
-  axarr[1,0].imshow(otsu_img, cmap='gray')
-  axarr[1,0].title.set_text("otsu")
-  axarr[1,1].imshow(iso_img, cmap='gray')
-  axarr[1,1].title.set_text("isodata")
-  axarr[1,2].imshow(triangle_img, cmap='gray')
-  axarr[1,2].title.set_text("triangle")
-  plt.show()
+  #f, axarr = plt.subplots(2, 3)
+  #axarr[0,0].imshow(img, cmap='gray')
+  #axarr[0,0].title.set_text("original")
+  #axarr[0,1].bar(np.arange(len(histogram)), histogram)
+  #axarr[0,1].title.set_text("histogram")
+  #axarr[1,0].imshow(otsu_img, cmap='gray')
+  #axarr[1,0].title.set_text("otsu")
+  #axarr[1,1].imshow(iso_img, cmap='gray')
+  #axarr[1,1].title.set_text("isodata")
+  #axarr[1,2].imshow(triangle_img, cmap='gray')
+  #axarr[1,2].title.set_text("triangle")
+  #plt.show()
 
   #plt.imshow(output_img)
   #plt.title('Otsu')

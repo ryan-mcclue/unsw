@@ -7,6 +7,7 @@ import sys
 import subprocess
 import logging
 import platform
+import math
 
 from dataclasses import dataclass
 
@@ -175,6 +176,7 @@ def q1():
 
   sift = cv.SIFT_create()
   kp = sift.detect(house_img_gray, None)
+  num_kp = len(kp)
   house_kp_orig = cv.drawKeypoints(house_img_gray, kp, house_img_bgr)
 
   f, axarr = plt.subplots(2, 2)
@@ -182,34 +184,87 @@ def q1():
   axarr[0,0].title.set_text("orig")
   axarr[0,0].axis("off")
 
-# Hint: Vary the parameter contrastThreshold or nfeatures so that the number of keypoints
-# becomes about 10% of all default keypoints.
-# sift = cv.SIFT_create(nfeatures=, contrastThreshold=)
-# could just count for nfeatures?
-# default threshold is 0.04 
+  desired_kp_count = num_kp // 10
   default_contrast_threshold = 0.04
-  sift_10p = cv.SIFT_create(contrastThreshold=(default_contrast_threshold + 0.15))
-  kp_10p = sift_10p.detect(house_img_gray, None)
-  house_kp_10p = cv.drawKeypoints(house_img_gray, kp_10p, house_img_bgr)
+  contrast_threshold = default_contrast_threshold + 0.01
 
+  trace(f"desired kp: {desired_kp_count}")
+
+  sift_10p = 0
+  kp_10p = 0
+  actual_kp_count = num_kp
+  while actual_kp_count > desired_kp_count:
+    sift_10p = cv.SIFT_create(contrastThreshold=contrast_threshold)
+    kp_10p = sift_10p.detect(house_img_gray, None)
+
+    actual_kp_count = len(kp_10p)
+
+    trace(f"kp: {actual_kp_count}, threshold: {contrast_threshold}")
+    contrast_threshold += 0.01
+
+  house_kp_10p = cv.drawKeypoints(house_img_gray, kp_10p, house_img_bgr)
   axarr[0,1].imshow(house_kp_10p)
   axarr[0,1].title.set_text("10%")
   axarr[0,1].axis("off")
 
   plt.show()
 
-def main():
-  trace(f"opencv: {cv.__version__}")
-  mpl.rcParams['figure.dpi']= 150
-
+def q2(contrast_threshold):
   images_dir="COMP9517_23T2_Lab2_Images"
 
   house_img_bgr = cv.imread(f"{images_dir}/House.png")
   sp_noised_image = random_noise(house_img_bgr, mode='s&p', amount=0.09)
-  plt.imshow(sp_noised_image)
+
+  house_img_gray = cv.cvtColor(house_img_bgr, cv.COLOR_BGR2GRAY)
+  sift = cv.SIFT_create(contrastThreshold=contrast_threshold)
+  kp = sift.detect(house_img_gray, None)
+  house_kp = cv.drawKeypoints(house_img_gray, kp, house_img_bgr)
+
+  plt.imshow(house_kp)
+
   plt.show()
 
-  # house_img_gray = cv.cvtColor(house_img_bgr, cv.COLOR_BGR2GRAY)
+def q3():
+  images_dir="COMP9517_23T2_Lab2_Images"
+
+  scene1_img_bgr = cv.imread(f"{images_dir}/Scene1.png")
+  scene2_img_bgr = cv.imread(f"{images_dir}/Scene2.png")
+
+  scene1_img_gray = cv.cvtColor(scene1_img_bgr, cv.COLOR_BGR2GRAY)
+  sift = cv.SIFT_create(contrastThreshold=0.18)
+  kp = sift.detect(scene1_img_gray, None)
+  scene1_kp = cv.drawKeypoints(scene1_img_gray, kp, scene1_img_bgr)
+
+  scene2_img_gray = cv.cvtColor(scene2_img_bgr, cv.COLOR_BGR2GRAY)
+  sift = cv.SIFT_create(contrastThreshold=0.18)
+  kp = sift.detect(scene2_img_gray, None)
+  scene2_kp = cv.drawKeypoints(scene2_img_gray, kp, scene2_img_bgr)
+
+  show_images({"scene1": scene1_img_bgr, "scene2": scene2_img_bgr, "scene1_kp": scene1_kp, "scene2_kp": scene2_kp})
+
+def show_images(images):
+  num_rows = math.ceil(len(images) / 2)
+
+  f, ax = plt.subplots(num_rows, 2)
+  ax = ax.ravel()
+
+  for i, (title, image) in enumerate(images.items()):
+    ax[i].imshow(image)
+    ax[i].set_title(title)
+    ax[i].axis("off")
+
+  f.tight_layout()
+
+  plt.show()
+
+
+def main(): 
+  trace(f"opencv: {cv.__version__}")
+  mpl.rcParams['figure.dpi']= 150
+
+  # q1()
+  # q2(0.18)
+  q3()
 
   #plt.imshow(cv.cvtColor(image, cv2.COLOR_BGR2RGB)) # cv2 uses BGR but plt uses RGB, hence the conversion
   # cv.imshow('contrast_stretched_laplacian_img', contrast_stretched_laplacian_img)

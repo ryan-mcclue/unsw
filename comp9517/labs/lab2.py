@@ -14,6 +14,7 @@ from dataclasses import dataclass
 import cv2 as cv
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+import numpy as np
 
 from skimage.util import random_noise 
 
@@ -231,16 +232,56 @@ def q3():
   scene2_img_bgr = cv.imread(f"{images_dir}/Scene2.png")
 
   scene1_img_gray = cv.cvtColor(scene1_img_bgr, cv.COLOR_BGR2GRAY)
-  sift = cv.SIFT_create(contrastThreshold=0.18)
-  kp = sift.detect(scene1_img_gray, None)
-  scene1_kp = cv.drawKeypoints(scene1_img_gray, kp, scene1_img_bgr)
+  sift = cv.SIFT_create(contrastThreshold=0.15)
+  kp1, desc1 = sift.detectAndCompute(scene1_img_gray, None)
+  # NOTE(Ryan): Prevent overriding; returns output and takes output?
+  scene1_kp = 0
+  scene1_kp = cv.drawKeypoints(scene1_img_bgr, kp1, scene1_kp)
 
   scene2_img_gray = cv.cvtColor(scene2_img_bgr, cv.COLOR_BGR2GRAY)
-  sift = cv.SIFT_create(contrastThreshold=0.18)
-  kp = sift.detect(scene2_img_gray, None)
-  scene2_kp = cv.drawKeypoints(scene2_img_gray, kp, scene2_img_bgr)
+  sift = cv.SIFT_create(contrastThreshold=0.15)
+  kp2, desc2 = sift.detectAndCompute(scene2_img_gray, None)
+  scene2_kp = 0
+  scene2_kp = cv.drawKeypoints(scene2_img_bgr, kp2, scene2_kp)
 
-  show_images({"scene1": scene1_img_bgr, "scene2": scene2_img_bgr, "scene1_kp": scene1_kp, "scene2_kp": scene2_kp})
+  matcher = cv.BFMatcher()
+  matches = matcher.knnMatch(desc1, desc2, k=2)
+# Use your own criteria based on the keypoint distances to select the
+# best keypoint correspondences between the two images.
+  good = []
+  for m,n in matches:
+    if m.distance < 0.75*n.distance:
+      good.append(m)
+
+  # creates array of pairs
+  src_pts = np.float32([ kp1[m.queryIdx].pt for m in good ]).reshape(-1,1,2)
+  dst_pts = np.float32([ kp2[m.trainIdx].pt for m in good ]).reshape(-1,1,2)
+
+  M, mask = cv.findHomography(src_pts, dst_pts, cv.RANSAC,5.0)
+  matchesMask = mask.ravel().tolist()
+
+  w = scene1_img_bgr.shape[1]
+  h = scene1_img_bgr.shape[0]
+  pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2)
+  dst = cv.perspectiveTransform(pts,M)
+
+  img2 = cv.polylines(scene2_img_bgr,[np.int32(dst)],True,255,3, cv.LINE_AA)
+
+  stitcher = cv.Stitcher_create()
+  img3 = stitcher.stitch([scene1_img_bgr, scene2_img_bgr])
+
+
+  # findHomography() uses RANSAC to determine best matches
+
+  # img3 = cv.drawMatchesKnn(scene1_img_bgr,kp1,
+  #                          scene2_img_bgr,kp2,
+  #                          good,None,flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
+
+  show_images({"scene1": scene1_img_bgr, "scene2": scene2_img_bgr, 
+               "scene1_kp": scene1_kp, "scene2_kp": scene2_kp,
+               "matches": img2, "stitched": img3,
+               })
+
 
 def show_images(images):
   num_rows = math.ceil(len(images) / 2)

@@ -2,6 +2,8 @@
 
 # Image Segmentation (main problem in computer vision)
 
+tangential direction is direction at moment of time
+
 Partition image into meaningful regions, i.e. with labels, e.g. face, hand, etc.
 (theoretically could do repeated thresholding...)
 

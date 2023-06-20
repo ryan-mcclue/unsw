@@ -280,6 +280,8 @@ def q3():
   dst = cv.warpPerspective(scene1_img_bgr, M, (scene2_img_bgr.shape[1] + scene1_img_bgr.shape[1], scene2_img_bgr.shape[0]))
   dst[0:scene2_img_bgr.shape[0],0:scene2_img_bgr.shape[1]] = scene2_img_bgr
 
+  # do some trim here to get better stitching
+
   show_images({#"scene1": scene1_img_bgr, "scene2": scene2_img_bgr, 
                "scene1_kp": scene1_kp, "scene2_kp": scene2_kp,
                "correspondance": correspondance_img, "polylines": polyline_img,

@@ -56,10 +56,10 @@ sum independent on how you chose the augmentating paths, i.e. can arbitrarily ch
 IMPORTANT: distribution may be different, but sum is the same (always maximum)
 
 sum of cut is capacity of all edges leaving S to T (S to T, means across disjoint sets S and T)
-TODO: so edges connecting dijoint sets? or more geometric subsections?
+TODO: so edges connecting disjoint sets? or more geometric subsections?
 flow of cut is flow all edges leaving S to T minus flow of edges leaving T to S
 
-max flow equal to capacity of cut of minimal capacity
+max flow equal to capacity of cut of minimal capacity (minimal cut are all vertices accessible from source)
 so, if flow of cut equals capacity of cut, flow must be maximal, capacity minimal (as flow bounded by capacity)
 so ford-fulkerson terminates with this flow of this cut:
   * after termination, see that still augmentating paths, just not to T

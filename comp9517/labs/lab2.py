@@ -178,12 +178,9 @@ def q1():
   sift = cv.SIFT_create()
   kp = sift.detect(house_img_gray, None)
   num_kp = len(kp)
-  house_kp_orig = cv.drawKeypoints(house_img_gray, kp, house_img_bgr)
 
-  f, axarr = plt.subplots(2, 2)
-  axarr[0,0].imshow(house_kp_orig)
-  axarr[0,0].title.set_text("orig")
-  axarr[0,0].axis("off")
+  house_kp_orig = 0
+  house_kp_orig = cv.drawKeypoints(house_img_bgr, kp, house_kp_orig, (0, 0, 255))
 
   desired_kp_count = num_kp // 10
   default_contrast_threshold = 0.04
@@ -203,31 +200,40 @@ def q1():
     trace(f"kp: {actual_kp_count}, threshold: {contrast_threshold}")
     contrast_threshold += 0.01
 
-  trace(f"include a brief description of the approach you used for b)")
+  trace(f"The number of keypoints equating to 10% of the original image was calculated.")
+  trace(f"Various values of contrastThreshold were tested on SIFT_create() until the number of keypoints it returned matched the required 10%")
 
-  house_kp_10p = cv.drawKeypoints(house_img_gray, kp_10p, house_img_bgr)
-  axarr[0,1].imshow(house_kp_10p)
-  axarr[0,1].title.set_text("10%")
-  axarr[0,1].axis("off")
+  house_kp_10p = 0
+  house_kp_10p = cv.drawKeypoints(house_img_bgr, kp_10p, house_kp_10p, (0, 0, 255))
 
-  plt.show()
+  show_colour_images({"original": house_kp_orig, "10%": house_kp_10p})
 
 def q2(contrast_threshold):
   images_dir="COMP9517_23T2_Lab2_Images"
 
   house_img_bgr = cv.imread(f"{images_dir}/House.png")
-  sp_noised_image = random_noise(house_img_bgr, mode='s&p', amount=0.09)
-
   house_img_gray = cv.cvtColor(house_img_bgr, cv.COLOR_BGR2GRAY)
+
+  sp_noised_img = random_noise(house_img_bgr, mode='s&p', amount=0.09)
+  # NOTE(Ryan): Convert floating point image
+  sp_noised_img = np.array(255*sp_noised_img, dtype='uint8')
+  sp_noised_img_gray = cv.cvtColor(sp_noised_img, cv.COLOR_BGR2GRAY)
+
   sift = cv.SIFT_create(contrastThreshold=contrast_threshold)
-  kp = sift.detect(house_img_gray, None)
-  house_kp = cv.drawKeypoints(house_img_gray, kp, house_img_bgr)
+  kp_orig = sift.detect(house_img_gray, None)
+  kp_noisy = sift.detect(sp_noised_img_gray, None)
 
-  trace(f"Are the keypoints of the noisy image roughly the same as those of the original image? What does this mean?")
+  house_kp_orig = 0
+  house_kp_orig = cv.drawKeypoints(house_img_bgr, kp_orig, house_kp_orig, (0, 0, 255))
 
-  plt.imshow(house_kp)
+  house_kp_noisy = 0
+  house_kp_noisy = cv.drawKeypoints(sp_noised_img, kp_noisy, house_kp_noisy, (0, 0, 255))
 
-  plt.show()
+  trace(f"The keypoints of the noisy image are roughly the same as those of the original image.\
+          This means SIFT is not affected by noise.\
+          This is because SIFT finds local keypoints.")
+
+  show_colour_images({"Original": house_kp_orig, "Salt And Pepper Noise": house_kp_noisy })
 
 def q3():
   images_dir="COMP9517_23T2_Lab2_Images"
@@ -326,9 +332,9 @@ def main():
   trace(f"opencv: {cv.__version__}")
   mpl.rcParams['figure.dpi']= 150
 
-  # q1()
-  # q2(0.18)
-  q3()
+  #q1()
+  q2(0.17)
+  #q3()
 
   #plt.imshow(cv.cvtColor(image, cv2.COLOR_BGR2RGB)) # cv2 uses BGR but plt uses RGB, hence the conversion
   # cv.imshow('contrast_stretched_laplacian_img', contrast_stretched_laplacian_img)

@@ -231,76 +231,88 @@ def q3():
   scene1_img_bgr = cv.imread(f"{images_dir}/Scene1.png")
   scene2_img_bgr = cv.imread(f"{images_dir}/Scene2.png")
 
-  # NOTE(Ryan): Hardcoded; padding height 1 to 2
+  # NOTE(Ryan): Hardcoded; account for height discrepancy of 4 pixels
   scene1_img_bgr = cv.copyMakeBorder(scene1_img_bgr, 2, 2, 0, 0, cv.BORDER_DEFAULT)
+  img1_w = scene1_img_bgr.shape[1]
+  img1_h = scene1_img_bgr.shape[0]
+  img2_w = scene2_img_bgr.shape[1]
+  img2_h = scene2_img_bgr.shape[0]
 
+  contrast_threshold = 0.15
   scene1_img_gray = cv.cvtColor(scene1_img_bgr, cv.COLOR_BGR2GRAY)
-  sift = cv.SIFT_create(contrastThreshold=0.15)
+  sift = cv.SIFT_create(contrastThreshold=contrast_threshold)
   kp1, desc1 = sift.detectAndCompute(scene1_img_gray, None)
   # NOTE(Ryan): Prevent overriding; returns output and takes output?
   scene1_kp = 0
-  scene1_kp = cv.drawKeypoints(scene1_img_bgr, kp1, scene1_kp, (255, 0, 0))
+  scene1_kp = cv.drawKeypoints(scene1_img_bgr, kp1, scene1_kp, (0, 0, 255))
 
   scene2_img_gray = cv.cvtColor(scene2_img_bgr, cv.COLOR_BGR2GRAY)
-  sift = cv.SIFT_create(contrastThreshold=0.15)
+  sift = cv.SIFT_create(contrastThreshold=contrast_threshold)
   kp2, desc2 = sift.detectAndCompute(scene2_img_gray, None)
   scene2_kp = 0
-  scene2_kp = cv.drawKeypoints(scene2_img_bgr, kp2, scene2_kp, (255, 0, 0))
+  scene2_kp = cv.drawKeypoints(scene2_img_bgr, kp2, scene2_kp, (0, 0, 255))
 
   matcher = cv.BFMatcher()
   matches = matcher.knnMatch(desc1, desc2, k=2)
-# Use your own criteria based on the keypoint distances to select the
-# best keypoint correspondences between the two images.
-  good = []
-  for m,n in matches:
-    if m.distance < 0.75*n.distance:
-      good.append(m)
+
+  distance_factor=0.4
+  best_matches = []
+  for m, n in matches:
+    if m.distance < (distance_factor * n.distance):
+      best_matches.append(m)
 
   draw_params = {"matchColor": (0,255,0),
                  "singlePointColor": None,
                  "flags": 2}
-  correspondance_img = cv.drawMatches(scene1_img_bgr, kp1, scene2_img_bgr, kp2, good, None, **draw_params)
+  correspondance_img = cv.drawMatches(scene1_img_bgr, kp1, scene2_img_bgr, kp2, best_matches, None, **draw_params)
 
-  # creates array of pairs
-  src_pts = np.float32([ kp1[m.queryIdx].pt for m in good ]).reshape(-1,1,2)
-  dst_pts = np.float32([ kp2[m.trainIdx].pt for m in good ]).reshape(-1,1,2)
+  # NOTE(Ryan): opencv wants format (x, n, y) where 'n' is number of planes.
+  # So here, we are changing (num_matches, 2) to (num_matches, 1, 2)
+  img1_match_points = np.float32([ kp1[m.queryIdx].pt for m in best_matches ]).reshape(-1, 1, 2)
+  img2_match_points = np.float32([ kp2[m.trainIdx].pt for m in best_matches ]).reshape(-1, 1, 2)
 
-  M, mask = cv.findHomography(src_pts, dst_pts, cv.RANSAC,5.0)
-  matchesMask = mask.ravel().tolist()
+  img2_perspective_transformation, mask = cv.findHomography(img1_match_points, img2_match_points, cv.RANSAC, 5.0)
 
-  w = scene1_img_bgr.shape[1]
-  h = scene1_img_bgr.shape[0]
-  pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2)
-  dst = cv.perspectiveTransform(pts,M)
+  # NOTE(Ryan): Transform img1 to img2 perspective
+  img1_outline_pts = np.float32([ [0, 0], [0, img1_h-1], [img1_w-1, img1_h-1], [img1_w-1, 0] ]).reshape(-1, 1, 2)
+  img1_transformed_pts = cv.perspectiveTransform(img1_outline_pts, img2_perspective_transformation)
 
-  # performed on left
-  polyline_img = cv.polylines(scene2_img_bgr,[np.int32(dst)],True,255,3, cv.LINE_AA)
+  # IMPORTANT(Ryan): Overwrites scene2_img_bgr
+  img2_with_img1_transformation = cv.polylines(scene2_img_bgr, [np.int32(img1_transformed_pts)], True, 255, 3, cv.LINE_AA)
 
-  # performed on right
-  dst = cv.warpPerspective(scene1_img_bgr, M, (scene2_img_bgr.shape[1] + scene1_img_bgr.shape[1], scene2_img_bgr.shape[0]))
-  dst[0:scene2_img_bgr.shape[0],0:scene2_img_bgr.shape[1]] = scene2_img_bgr
+  img1_warped = cv.warpPerspective(scene1_img_bgr, img2_perspective_transformation, (img1_w + img2_w, img2_h))
+  img1_warped[0:img2_h, 0:img2_w] = scene2_img_bgr
 
-  # do some trim here to get better stitching
-
-  show_images({#"scene1": scene1_img_bgr, "scene2": scene2_img_bgr, 
-               "scene1_kp": scene1_kp, "scene2_kp": scene2_kp,
-               "correspondance": correspondance_img, "polylines": polyline_img,
-               "dst": dst
+  show_colour_images({#"scene1": scene1_img_bgr, "scene2": scene2_img_bgr, 
+               f"Scene1 Keypoints (constrastThreshold={contrast_threshold})": scene1_kp, 
+               f"Scene2 Keypoints (constrastThreshold={contrast_threshold})": scene2_kp,
+               "Scene1 and Scene2 Keypoint Correspondance": correspondance_img, 
+               "polylines": img2_with_img1_transformation,
+               "stitched": img1_warped,
                })
 
 
-def show_images(images):
+def show_colour_images(images):
   num_rows = math.ceil(len(images) / 2)
 
   f, ax = plt.subplots(num_rows, 2)
   ax = ax.ravel()
 
   for i, (title, image) in enumerate(images.items()):
-    ax[i].imshow(image)
+    # NOTE(Ryan): Convert opencv bgr to matplotlib rgb
+    b, g, r = cv.split(image)
+    rgb_img = cv.merge([r, g, b])
+
+    ax[i].imshow(rgb_img)
     ax[i].set_title(title)
     ax[i].axis("off")
 
   f.tight_layout()
+
+  # NOTE(Ryan): Making figure fullscreen dependent on matplotlib gui backend
+  if not running_on_jupyter() and "ubuntu" in platform.version().lower():
+    mng = plt.get_current_fig_manager()
+    mng.resize(*mng.window.maxsize())
 
   plt.show()
 

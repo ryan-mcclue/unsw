@@ -203,6 +203,8 @@ def q1():
     trace(f"kp: {actual_kp_count}, threshold: {contrast_threshold}")
     contrast_threshold += 0.01
 
+  trace(f"include a brief description of the approach you used for b)")
+
   house_kp_10p = cv.drawKeypoints(house_img_gray, kp_10p, house_img_bgr)
   axarr[0,1].imshow(house_kp_10p)
   axarr[0,1].title.set_text("10%")
@@ -220,6 +222,8 @@ def q2(contrast_threshold):
   sift = cv.SIFT_create(contrastThreshold=contrast_threshold)
   kp = sift.detect(house_img_gray, None)
   house_kp = cv.drawKeypoints(house_img_gray, kp, house_img_bgr)
+
+  trace(f"Are the keypoints of the noisy image roughly the same as those of the original image? What does this mean?")
 
   plt.imshow(house_kp)
 
@@ -281,14 +285,15 @@ def q3():
   img2_with_img1_transformation = cv.polylines(scene2_img_bgr, [np.int32(img1_transformed_pts)], True, 255, 3, cv.LINE_AA)
 
   img1_warped = cv.warpPerspective(scene1_img_bgr, img2_perspective_transformation, (img1_w + img2_w, img2_h))
+  # NOTE(Ryan): Fill in img1_warped with contents of img2
   img1_warped[0:img2_h, 0:img2_w] = scene2_img_bgr
 
-  show_colour_images({#"scene1": scene1_img_bgr, "scene2": scene2_img_bgr, 
+  show_colour_images({
                f"Scene1 Keypoints (constrastThreshold={contrast_threshold})": scene1_kp, 
                f"Scene2 Keypoints (constrastThreshold={contrast_threshold})": scene2_kp,
-               "Scene1 and Scene2 Keypoint Correspondance": correspondance_img, 
-               "polylines": img2_with_img1_transformation,
-               "stitched": img1_warped,
+               f"Scene1 and Scene2 Keypoint Correspondance (distance_factor={distance_factor})": correspondance_img, 
+               "Scene2 with Scene1 Transformation": img2_with_img1_transformation,
+               "Scene2 and Scene1 Stitched": img1_warped,
                })
 
 

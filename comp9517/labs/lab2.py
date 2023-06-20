@@ -295,11 +295,11 @@ def q3():
   img1_warped[0:img2_h, 0:img2_w] = scene2_img_bgr
 
   show_colour_images({
-               f"Scene1 Keypoints (constrastThreshold={contrast_threshold})": scene1_kp, 
-               f"Scene2 Keypoints (constrastThreshold={contrast_threshold})": scene2_kp,
-               f"Scene1 and Scene2 Keypoint Correspondance (distance_factor={distance_factor})": correspondance_img, 
-               "Scene2 with Scene1 Transformation": img2_with_img1_transformation,
-               "Scene2 and Scene1 Stitched": img1_warped,
+               f"Scene1": scene1_kp, 
+               f"Scene2": scene2_kp,
+               f"Scene1 & Scene2": correspondance_img, 
+               "Scene2 Transformation": img2_with_img1_transformation,
+               "Scene2 + Scene1": img1_warped,
                })
 
 
@@ -332,9 +332,9 @@ def main():
   trace(f"opencv: {cv.__version__}")
   mpl.rcParams['figure.dpi']= 150
 
-  #q1()
+  q1()
   q2(0.17)
-  #q3()
+  q3()
 
   #plt.imshow(cv.cvtColor(image, cv2.COLOR_BGR2RGB)) # cv2 uses BGR but plt uses RGB, hence the conversion
   # cv.imshow('contrast_stretched_laplacian_img', contrast_stretched_laplacian_img)

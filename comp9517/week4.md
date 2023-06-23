@@ -1,6 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
 # Image Segmentation (main problem in computer vision)
+NOTE: most used is deep neural networks for segmentation (these techniques used mainly for post-processing)
 
 tangential direction is direction at moment of time
 
@@ -80,7 +81,64 @@ Simple Linear Iterative Clustering:
   - random name as part of energy function computed with probability of pixel matching with a class
 
 7. Active Contour Segmentation
+  (snakes algorithm)
   - curve matching
+  - start with points. then connect points with interpolated curve. 
+  then determine if curve fixed to object, i.e on image boundary via edge detection (see how edges correspond to curve)
+  - works well with poor gradient information. typically manual interaction, i.e. define points near where boundary is
+    we impose say looking for a circular, ellipitcal solution, etc.
 
+  - TODO: integrate along gradient direction? what does integrating along curve give?
+NOTE: must rely on prior knowledge, when cannot derive information from image data
 
+8. Level Set Segmentation (uses level set function? better than 7?)
+  implicit as oppose to explicit boundary in 7.
+  - in general define energy function that indicates if matching boundary
+  - then iterative optimisation process to get it have closer fit 
 
+## Evaluating Segmentation Methods
+Truth pixels. Segmented pixels.
+Four subsets:
+  * true pixels fg
+  * true pixels bg
+  * false positives
+  * false negatives
+- Sensitivity (true-positive) how much fg/object is correctly segmented
+- Specifity ... (false-positive) how much bg is correctly segmented
+Reciever Operator Characteristics (ROC), plots Sensitivity/(1 - Specifity)
+Better methods have higher area under curve (AUC)
+- Precision (fraction of segmented object that is correctly segmented)
+- Recall (fraction of true object correctly segmented, i.e. same as sensitivity)
+
+## Improve Segmentation
+1. reduce noise with pre-processing
+2. post-processing with mathematical morphology (nonlinear, unlike earlier methods like Guassian, Laplacian etc. so repeated invocations don't cancel each other out):
+  * binary images (i.e. black and white)
+   
+  represent fg pixels as a set of coordinates
+  set operations: translation, reflection, complement, union, intersection, difference, cardinality
+
+  - Binary Dilation
+  structuring element is 3x3 like a linear kernel that is typically all fg
+  for each pixel, if structuring element overlaps at this point, then include pixel
+  as structuring element is symettrical, reflection not matter
+    * cheaper computationally to do 3x1 dilatation and then 1x3 dilatation
+  - Binary Erosion:
+  for each pixel, if structuring element completely overlaps/subset at this point, then include pixel
+  - Binary Opening (remove small elements, i.e. smaller than structuring element outside of image):
+    * erosion and then dilation
+  - Binary Closing (add small elements, i.e. smaller than structuring element inside of image):
+    * dilation and then erosion
+  - Edge Detection (produce inner and outer edges)
+  difference between dilated and erosion
+  - Object Selection
+    with seed pixels in same area as object, iteratively build up with dilation
+    (can do subsequent removing)
+ 
+  Ultimate erosion computes distance transform (labelling with iterative erosion) and then find local maxima to get centerline
+  NOTE: dilation reconstruction has seed pixels
+
+  * gray-scale images
+    - umbra is 3D binary image of grayscale (height, i.e. number of 1s is grayscale value, e.g. 255 equates to 255 1s)
+    - dilation would be performed on umbra and then inverse umbra obtained
+    dilation in grayscale will remove bits?

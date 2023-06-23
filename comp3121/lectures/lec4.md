@@ -28,8 +28,9 @@
    - choose with minimal sum c + j
 8. Activity Selection (largest number of noncompeting):
 9. Circular Activity Selection (Overlapping Intervals):
-   - TODO: remove jobs crossing midnight ... (around 1hr mark in recording).
-   - have 12hr point be start of linear?
+   - TODO: remove jobs crossing midnight. solve remaining same as before
+   - then solve separately with each job crossing midnight as starting point 
+   - solution is largest between all cases
 10. Shortest Hotel Path 
    - IMPORTANT: when vertex has weight, split into two vertices for Djikstra
 11. Quickest Increase

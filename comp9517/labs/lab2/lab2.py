@@ -276,7 +276,7 @@ def q3():
                  "flags": 2}
   correspondance_img = cv.drawMatches(scene1_img_bgr, kp1, scene2_img_bgr, kp2, best_matches, None, **draw_params)
 
-  # NOTE(Ryan): opencv wants format (x, n, y) where 'n' is number of planes.
+  # NOTE(Ryan): opencv wants format (num_items, n, item_count) where 'n' is number of planes.
   # So here, we are changing (num_matches, 2) to (num_matches, 1, 2)
   img1_match_points = np.float32([ kp1[m.queryIdx].pt for m in best_matches ]).reshape(-1, 1, 2)
   img2_match_points = np.float32([ kp2[m.trainIdx].pt for m in best_matches ]).reshape(-1, 1, 2)

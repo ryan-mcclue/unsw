@@ -16,8 +16,12 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 import numpy as np
 
-from skimage.util import random_noise 
 from sklearn.cluster import MeanShift, estimate_bandwidth 
+from skimage.color import label2rgb
+from skimage.feature import peak_local_max
+
+from skimage.segmentation import watershed
+from scipy import ndimage as ndi
 
 global global_logger
 
@@ -181,44 +185,73 @@ def q1():
   w = balloons_bgr.shape[1]
   h = balloons_bgr.shape[0]
 
-  resized = cv.resize(balloons_bgr, (w//10, h//10), interpolation = cv.INTER_AREA)
-  #flattened_img = np.reshape(balloons_bgr, [-1, 3])
+  # filter to reduce noise
+  #balloons_bgr = cv.medianBlur(balloons_bgr, 3)
+
+  resize_factor = 1
+  resized = cv.resize(balloons_bgr, (w//resize_factor, h//resize_factor), interpolation = cv.INTER_AREA)
   flattened_img = np.reshape(resized, [-1, 3])
+  #flattened_img = np.reshape(balloons_bgr, [-1, 3])
 
-  # too computationally expensive without defining area around samples to look (however does this automatically?)
-  # TODO: what should these parameters be? 
-  # IMPORTANT: faster this way
-  # bandwidth = estimate_bandwidth(flattened_img, quantile=0.1, n_samples=1000)
-  # meanshift = MeanShift(bandwidth=bandwidth)
-  # meanshift.fit(flattened_img)
-  # labels = meanshift.labels_
-  # labels_unique = np.unique(labels)
-  # n_clusters_ = len(labels_unique)
-
-  labels = MeanShift().fit_predict(flattened_img)
+  #bandwidth = estimate_bandwidth(flattened_img, quantile=0.1, n_samples=1000, n_jobs=-1)
+  bandwidth = estimate_bandwidth(flattened_img, quantile=0.06, n_samples=3000, n_jobs=-1)
+  meanshift = MeanShift(bandwidth=bandwidth, bin_seeding=True, n_jobs=-1, max_iter=800)
+  labels = meanshift.fit_predict(flattened_img)
   labels_unique = np.unique(labels)
-  num_segments = len(labels_unique)
+  num_labels = len(labels_unique)
 
-  # get number of segments
-  segments = np.unique(labeled)
-  print('Number of segments: ', segments.shape[0])
-  
-  # get the average color of each segment
-  total = np.zeros((segments.shape[0], 3), dtype=float)
-  count = np.zeros(total.shape, dtype=float)
-  for i, label in enumerate(labeled):
-      total[label] = total[label] + flat_image[i]
-      count[label] += 1
-  avg = total/count
-  avg = np.uint8(avg)
+  cluster_centres = meanshift.cluster_centers_
+  result = np.reshape(labels, resized.shape[:2])
+  result = label2rgb(result, balloons_bgr, kind="avg")
 
-  # cast the labeled image into the corresponding average color
-  res = avg[labeled]
-  result = res.reshape((img.shape))
+  # IMPORTANT:
+  # Notice that if the methods you use do not yield a binary map, but they directly produce labelled output images, it makes no sense to apply gray-scale operations to these output images, as the gray values have no semantic meaning (they are just random labels), unlike in the original input images.
+  # So in order to meaningfully apply binary morphological operations to the output images, you would need to extract the binary maps of the individual labelled regions.
 
+  # fit_predict() equates to: self.fit(X); return self.labels_
 
-  show_images({"colour": balloons_bgr, "gray": balloons_gray})
+  # print('Number of labels: ', labels_unique.shape[0])
 
+  show_images({"colour": balloons_bgr, "segment": result})
+
+def q2():
+  images_dir="COMP9517_23T2_Lab3_Images"
+
+  balloons_bgr, balloons_gray = read_img(f"{images_dir}/Balloons.png")
+  w = balloons_bgr.shape[1]
+  h = balloons_bgr.shape[0]
+
+  ret, balloons_binary = cv.threshold(balloons_gray, 245, 256, cv.THRESH_BINARY_INV)
+  #ret, balloons_binary = cv.threshold(balloons_gray,0,255,cv.THRESH_BINARY_INV+cv.THRESH_OTSU)
+
+  # TODO: morphology to separate objects
+  # https://opencv24-python-tutorials.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_watershed/py_watershed.html 
+
+  #print_histogram(balloons_gray)
+
+  distance_transform = ndi.distance_transform_edt(balloons_binary) 
+
+  # TODO: Experiment with different local search region sizes in this step and
+  # the threshold value in Step 1 above for good segmentation results. 
+
+  # these are pixels that are the furthest away from the background
+  region_size= (4, ) * 2
+  coords = peak_local_max(distance_transform, footprint=np.ones(region_size), labels=balloons_binary)
+  mask = np.zeros(distance_transform.shape, dtype=bool)
+  mask[tuple(coords.T)] = True
+  markers, _ = ndi.label(mask) 
+  labels = watershed(-distance_transform, markers, mask=balloons_binary)
+
+  # TODO: example uses -distance?
+  show_images({"colour": balloons_bgr, "binary": balloons_binary, "d": -distance_transform, "watershed": labels})
+
+def print_histogram(img):
+  final_img = img
+  if len(img.shape) == 3:
+    final_img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+  hist = cv.calcHist([final_img], [0], None, [256], [0, 256])
+  plt.plot(hist)
+  plt.xlim([0, 256])
 
 def show_images(images):
   num_rows = math.ceil(len(images) / 2)
@@ -235,6 +268,8 @@ def show_images(images):
       b, g, r = cv.split(image)
       rgb_img = cv.merge([r, g, b])
       ax[i].imshow(rgb_img)
+    elif title == "watershed":
+      ax[i].imshow(image, cmap=plt.cm.nipy_spectral)
     else:
       ax[i].imshow(image, cmap='gray')
 
@@ -252,7 +287,8 @@ def main():
   trace(f"opencv: {cv.__version__}")
   mpl.rcParams['figure.dpi']= 150
 
-  q1()
+  #q1()
+  q2()
 
 def running_on_jupyter():
   try:

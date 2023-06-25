@@ -59,8 +59,8 @@ Meyer's Flooding Algorithm (priority queue):
 
 4. Mean Shifting 
 (weight function for mean calculation could be Guassian, i.e. give points closer to centre more weight)
-each pixel has point in L and U and V, i.e point in 3D space
-k-means sensitive to outliers
+each pixel has point in L and U and V (or RGB etc.), i.e point in 3D space
+k-means is sensitive to outliers
   - convert image to a point cloud of particular feature space, e.g. could be colour
   - start with a set of seed points
   - calculate mean of region. then move region to that region and repeat until convergence.

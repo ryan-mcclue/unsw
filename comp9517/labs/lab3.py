@@ -199,6 +199,7 @@ def q1():
   labels = meanshift.fit_predict(flattened_img)
   labels_unique = np.unique(labels)
   num_labels = len(labels_unique)
+  #print(num_labels)
 
   cluster_centres = meanshift.cluster_centers_
   result = np.reshape(labels, resized.shape[:2])
@@ -207,6 +208,7 @@ def q1():
   # IMPORTANT:
   # Notice that if the methods you use do not yield a binary map, but they directly produce labelled output images, it makes no sense to apply gray-scale operations to these output images, as the gray values have no semantic meaning (they are just random labels), unlike in the original input images.
   # So in order to meaningfully apply binary morphological operations to the output images, you would need to extract the binary maps of the individual labelled regions.
+  # Would have to produce binary images from labels and morph on them
 
   # fit_predict() equates to: self.fit(X); return self.labels_
 
@@ -227,6 +229,11 @@ def q2():
   # TODO: morphology to separate objects
   # https://opencv24-python-tutorials.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_watershed/py_watershed.html 
 
+  # noise removal
+  kernel = np.ones((3,3),np.uint8)
+  binary_opening = cv.morphologyEx(balloons_binary, cv.MORPH_OPEN, kernel, iterations=2)
+  # perhaps use: cv.erosion(opening,kernel,iterations=3)
+
   #print_histogram(balloons_gray)
 
   distance_transform = ndi.distance_transform_edt(balloons_binary) 
@@ -243,7 +250,7 @@ def q2():
   labels = watershed(-distance_transform, markers, mask=balloons_binary)
 
   # TODO: example uses -distance?
-  show_images({"colour": balloons_bgr, "binary": balloons_binary, "d": -distance_transform, "watershed": labels})
+  show_images({"colour": balloons_bgr, "binary": balloons_binary, "opening": binary_opening, "d": -distance_transform, "watershed": labels})
 
 def print_histogram(img):
   final_img = img

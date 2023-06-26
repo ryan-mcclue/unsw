@@ -22,6 +22,7 @@ from skimage.feature import peak_local_max
 
 from skimage.segmentation import watershed
 from scipy import ndimage as ndi
+from scipy.ndimage import grey_closing
 
 global global_logger
 
@@ -228,14 +229,24 @@ def q1():
     w = img_bgr.shape[1]
     h = img_bgr.shape[0]
 
+    # TODO(Ryan): Experiment with thresholding on distance transform 
+    # kernel = np.ones((3,3),np.uint8)
+    # morph = cv.morphologyEx(img_binary, cv.MORPH_OPEN, kernel, iterations=2)
+    # morph = cv.erode(img_binary, kernel, iterations=4)
+    # ret, morph = cv.threshold(distance_transform, 0.7*distance_transform.max(), 255, 0)
+
     # NOTE(Ryan): Pre-processing to reduce noise
-    img_bgr_blurred = cv.medianBlur(img_bgr, 3)
+    blur_amount = 3
+    img_bgr_blurred = cv.medianBlur(img_bgr, blur_amount)
 
     flattened_img = np.reshape(img_bgr_blurred, [-1, 3])
 
     bandwidth = estimate_bandwidth(flattened_img, quantile=0.06, n_samples=3000, n_jobs=-1)
     meanshift = MeanShift(bandwidth=bandwidth, bin_seeding=True, n_jobs=-1, max_iter=800)
     labels = meanshift.fit_predict(flattened_img)
+
+    # TODO(Ryan): morphology on labels to remove holes?
+    # grey_closing(label, size=(10, 10))
     labels_unique = np.unique(labels)
 
     imgs_num_segments[i] = len(labels_unique)
@@ -266,16 +277,16 @@ def q2():
     w = img_bgr.shape[1]
     h = img_bgr.shape[0]
 
+    # NOTE(Ryan): Contrast enhance
+    alpha = 1.5 # Contrast control (1.0-3.0)
+    beta = 0 # Brightness control (0-100)
+    adjusted = cv.convertScaleAbs(img_bgr, alpha=alpha, beta=beta)
+    img_gray = cv.cvtColor(adjusted, cv.COLOR_BGR2GRAY)
+
     # NOTE(Ryan): Noise removal
-    img_gray = cv.GaussianBlur(img_gray, (7, 7), 0)
+    img_gray = cv.GaussianBlur(img_gray, (9, 9), 0)
 
     ret, img_binary = cv.threshold(img_gray, 0, 255, cv.THRESH_BINARY_INV+cv.THRESH_TRIANGLE)
-
-    # TODO(Ryan): Experiment with thresholding on distance transform 
-    # kernel = np.ones((3,3),np.uint8)
-    # morph = cv.morphologyEx(img_binary, cv.MORPH_OPEN, kernel, iterations=2)
-    # morph = cv.erode(img_binary, kernel, iterations=4)
-    # ret, morph = cv.threshold(distance_transform, 0.7*distance_transform.max(), 255, 0)
 
     # print_histogram(img_gray)
 
@@ -314,10 +325,10 @@ def main():
   # mean_shift_objects = [10, 20, 30]
   # watershed_objects = [40, 50, 60]
 
-  # mean_shift_objects = q1()
-  # print(mean_shift_objects)
-  watershed_objects = q2()
-  print(watershed_objects)
+  mean_shift_objects = q1()
+  print(mean_shift_objects)
+  #watershed_objects = q2()
+  #print(watershed_objects)
 
   #q3(mean_shift_objects, watershed_objects)
 

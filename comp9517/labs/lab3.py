@@ -172,85 +172,6 @@ def contrast_stretch_grayscale(img):
 
   return output_img
 
-def read_img(path):
-  img_bgr = cv.imread(path)
-  img_gray = cv.cvtColor(img_bgr, cv.COLOR_BGR2GRAY)
-
-  return (img_bgr, img_gray)
-
-def q1():
-  images_dir="COMP9517_23T2_Lab3_Images"
-
-  balloons_bgr, balloons_gray = read_img(f"{images_dir}/Balloons.png")
-  w = balloons_bgr.shape[1]
-  h = balloons_bgr.shape[0]
-
-  # filter to reduce noise
-  #balloons_bgr = cv.medianBlur(balloons_bgr, 3)
-
-  resize_factor = 1
-  resized = cv.resize(balloons_bgr, (w//resize_factor, h//resize_factor), interpolation = cv.INTER_AREA)
-  flattened_img = np.reshape(resized, [-1, 3])
-  #flattened_img = np.reshape(balloons_bgr, [-1, 3])
-
-  #bandwidth = estimate_bandwidth(flattened_img, quantile=0.1, n_samples=1000, n_jobs=-1)
-  bandwidth = estimate_bandwidth(flattened_img, quantile=0.06, n_samples=3000, n_jobs=-1)
-  meanshift = MeanShift(bandwidth=bandwidth, bin_seeding=True, n_jobs=-1, max_iter=800)
-  labels = meanshift.fit_predict(flattened_img)
-  labels_unique = np.unique(labels)
-  num_labels = len(labels_unique)
-  #print(num_labels)
-
-  cluster_centres = meanshift.cluster_centers_
-  result = np.reshape(labels, resized.shape[:2])
-  result = label2rgb(result, balloons_bgr, kind="avg")
-
-  # IMPORTANT:
-  # Notice that if the methods you use do not yield a binary map, but they directly produce labelled output images, it makes no sense to apply gray-scale operations to these output images, as the gray values have no semantic meaning (they are just random labels), unlike in the original input images.
-  # So in order to meaningfully apply binary morphological operations to the output images, you would need to extract the binary maps of the individual labelled regions.
-  # Would have to produce binary images from labels and morph on them
-
-  # fit_predict() equates to: self.fit(X); return self.labels_
-
-  # print('Number of labels: ', labels_unique.shape[0])
-
-  show_images({"colour": balloons_bgr, "segment": result})
-
-def q2():
-  images_dir="COMP9517_23T2_Lab3_Images"
-
-  balloons_bgr, balloons_gray = read_img(f"{images_dir}/Balloons.png")
-  w = balloons_bgr.shape[1]
-  h = balloons_bgr.shape[0]
-
-  ret, balloons_binary = cv.threshold(balloons_gray, 245, 256, cv.THRESH_BINARY_INV)
-  #ret, balloons_binary = cv.threshold(balloons_gray,0,255,cv.THRESH_BINARY_INV+cv.THRESH_OTSU)
-
-  # TODO: morphology to separate objects
-  # https://opencv24-python-tutorials.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_watershed/py_watershed.html 
-
-  # noise removal
-  kernel = np.ones((3,3),np.uint8)
-  binary_opening = cv.morphologyEx(balloons_binary, cv.MORPH_OPEN, kernel, iterations=2)
-  # perhaps use: cv.erosion(opening,kernel,iterations=3)
-
-  #print_histogram(balloons_gray)
-
-  distance_transform = ndi.distance_transform_edt(balloons_binary) 
-
-  # TODO: Experiment with different local search region sizes in this step and
-  # the threshold value in Step 1 above for good segmentation results. 
-
-  # these are pixels that are the furthest away from the background
-  region_size= (4, ) * 2
-  coords = peak_local_max(distance_transform, footprint=np.ones(region_size), labels=balloons_binary)
-  mask = np.zeros(distance_transform.shape, dtype=bool)
-  mask[tuple(coords.T)] = True
-  markers, _ = ndi.label(mask) 
-  labels = watershed(-distance_transform, markers, mask=balloons_binary)
-
-  # TODO: example uses -distance?
-  show_images({"colour": balloons_bgr, "binary": balloons_binary, "opening": binary_opening, "d": -distance_transform, "watershed": labels})
 
 def print_histogram(img):
   final_img = img
@@ -289,13 +210,123 @@ def show_images(images):
 
   plt.show()
 
+def read_img(path):
+  img_bgr = cv.imread(path)
+  img_gray = cv.cvtColor(img_bgr, cv.COLOR_BGR2GRAY)
+
+  return (img_bgr, img_gray)
+
+def q1():
+  images_dir="COMP9517_23T2_Lab3_Images"
+
+  imgs_bgr = [0] * 3
+  imgs_segment = [0] * 3
+  imgs_num_segments = [0] * 3
+
+  #balloons_bgr, balloons_gray = read_img(f"{images_dir}/Balloons.png")
+  #balloons_bgr, balloons_gray = read_img(f"{images_dir}/Balls.png")
+  balloons_bgr, balloons_gray = read_img(f"{images_dir}/Brains.png")
+  w = balloons_bgr.shape[1]
+  h = balloons_bgr.shape[0]
+
+  # NOTE(Ryan): Pre-processing to reduce noise
+  balloons_bgr_blurred = cv.medianBlur(balloons_bgr, 3)
+  # blurred = cv2.GaussianBlur(gray, (7, 7), 0)
+
+  flattened_img = np.reshape(balloons_bgr_blurred, [-1, 3])
+
+  bandwidth = estimate_bandwidth(flattened_img, quantile=0.06, n_samples=3000, n_jobs=-1)
+  meanshift = MeanShift(bandwidth=bandwidth, bin_seeding=True, n_jobs=-1, max_iter=800)
+  labels = meanshift.fit_predict(flattened_img)
+  labels_unique = np.unique(labels)
+  num_labels = len(labels_unique)
+  count = len(np.unique(labels.flatten()))
+  print(num_labels)
+
+  result = np.reshape(labels, balloons_bgr.shape[:2])
+  result = label2rgb(result, balloons_bgr, kind="avg")
+
+  # IMPORTANT:
+  # Notice that if the methods you use do not yield a binary map, but they directly produce labelled output images, it makes no sense to apply gray-scale operations to these output images, as the gray values have no semantic meaning (they are just random labels), unlike in the original input images.
+  # So in order to meaningfully apply binary morphological operations to the output images, you would need to extract the binary maps of the individual labelled regions.
+  # Would have to produce binary images from labels and morph on them
+
+  # fit_predict() equates to: self.fit(X); return self.labels_
+
+  show_images({"colour": balloons_bgr, "segment": result})
+
+  return imgs_num_segments
+
+def q2():
+  images_dir="COMP9517_23T2_Lab3_Images"
+
+  imgs_bgr = [0] * 3
+  imgs_segment = [0] * 3
+  imgs_num_segments = [0] * 3
+
+  #balloons_bgr, balloons_gray = read_img(f"{images_dir}/Balloons.png")
+  balloons_bgr, balloons_gray = read_img(f"{images_dir}/Balls.png")
+  #balloons_bgr, balloons_gray = read_img(f"{images_dir}/Brains.png")
+  w = balloons_bgr.shape[1]
+  h = balloons_bgr.shape[0]
+
+  balloons_gray = cv.GaussianBlur(balloons_gray, (7, 7), 0)
+
+  #ret, balloons_binary = cv.threshold(balloons_gray, 245, 256, cv.THRESH_BINARY_INV)
+  ret, balloons_binary = cv.threshold(balloons_gray, 0, 255, cv.THRESH_BINARY_INV+cv.THRESH_TRIANGLE)
+
+  # TODO: morphology to separate objects
+  # https://opencv24-python-tutorials.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_watershed/py_watershed.html 
+
+  # noise removal
+  kernel = np.ones((3,3),np.uint8)
+  #morph = cv.morphologyEx(balloons_binary, cv.MORPH_OPEN, kernel, iterations=2)
+  #morph = cv.erode(balloons_binary, kernel, iterations=4)
+
+  # print_histogram(balloons_gray)
+
+  distance_transform = ndi.distance_transform_edt(balloons_binary) 
+  
+  ret, morph = cv.threshold(distance_transform, 0.7*distance_transform.max(), 255, 0)
+
+  # TODO: Experiment with different local search region sizes in this step and
+  # the threshold value in Step 1 above for good segmentation results. 
+
+  # these are pixels that are the furthest away from the background
+  region_size= (4, ) * 2
+  coords = peak_local_max(distance_transform, footprint=np.ones(region_size), labels=balloons_binary)
+  mask = np.zeros(distance_transform.shape, dtype=bool)
+  mask[tuple(coords.T)] = True
+  markers, _ = ndi.label(mask) 
+  labels = watershed(-distance_transform, markers, mask=balloons_binary)
+  unique_labels = np.unique(labels)
+  num_unique_labels = len(unique_labels)
+  print(num_unique_labels)
+
+  # TODO: example uses -distance?
+  show_images({"colour": balloons_bgr, "binary": balloons_binary, "morph": morph, "d": -distance_transform, "watershed": labels})
+
+  return imgs_num_segments
+
+def q3(mean_shift, watershed):
+  print(f"{'Image': <20} {'#Objects Meanshift': <20} {'#Objects Watershed': <20}")
+  print("=" * 60)
+  print(f"{'Balloons':<20} {mean_shift[0]:^20} {watershed[0]:^20}")
+  print(f"{'Balls':<20} {mean_shift[1]:^20} {watershed[1]:^20}")
+  print(f"{'Brains':<20} {mean_shift[2]:^20} {watershed[2]:^20}")
 
 def main(): 
   trace(f"opencv: {cv.__version__}")
   mpl.rcParams['figure.dpi']= 150
 
-  #q1()
-  q2()
+  # mean_shift_objects = [10, 20, 30]
+  # watershed_objects = [40, 50, 60]
+
+  # mean_shift_objects = q1()
+  watershed_objects = q2()
+
+  #q3(mean_shift_objects, watershed_objects)
+
 
 def running_on_jupyter():
   try:

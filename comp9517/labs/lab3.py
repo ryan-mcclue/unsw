@@ -196,7 +196,7 @@ def show_images(images):
       b, g, r = cv.split(image)
       rgb_img = cv.merge([r, g, b])
       ax[i].imshow(rgb_img)
-    elif title == "watershed":
+    elif title.startswith("WaterShed"):
       ax[i].imshow(image, cmap=plt.cm.nipy_spectral)
     else:
       ax[i].imshow(image, cmap='gray')
@@ -219,32 +219,30 @@ def read_img(path):
 def q1():
   images_dir="COMP9517_23T2_Lab3_Images"
 
-  imgs_bgr = [0] * 3
-  imgs_segment = [0] * 3
+  imgs_to_show = {}
+
   imgs_num_segments = [0] * 3
 
-  #balloons_bgr, balloons_gray = read_img(f"{images_dir}/Balloons.png")
-  #balloons_bgr, balloons_gray = read_img(f"{images_dir}/Balls.png")
-  balloons_bgr, balloons_gray = read_img(f"{images_dir}/Brains.png")
-  w = balloons_bgr.shape[1]
-  h = balloons_bgr.shape[0]
+  for i, img in enumerate(["Balloons.png", "Balls.png", "Brains.png"]):
+    img_bgr, img_gray = read_img(f"{images_dir}/{img}")
+    w = img_bgr.shape[1]
+    h = img_bgr.shape[0]
 
-  # NOTE(Ryan): Pre-processing to reduce noise
-  balloons_bgr_blurred = cv.medianBlur(balloons_bgr, 3)
-  # blurred = cv2.GaussianBlur(gray, (7, 7), 0)
+    # NOTE(Ryan): Pre-processing to reduce noise
+    img_bgr_blurred = cv.medianBlur(img_bgr, 3)
 
-  flattened_img = np.reshape(balloons_bgr_blurred, [-1, 3])
+    flattened_img = np.reshape(img_bgr_blurred, [-1, 3])
 
-  bandwidth = estimate_bandwidth(flattened_img, quantile=0.06, n_samples=3000, n_jobs=-1)
-  meanshift = MeanShift(bandwidth=bandwidth, bin_seeding=True, n_jobs=-1, max_iter=800)
-  labels = meanshift.fit_predict(flattened_img)
-  labels_unique = np.unique(labels)
-  num_labels = len(labels_unique)
-  count = len(np.unique(labels.flatten()))
-  print(num_labels)
+    bandwidth = estimate_bandwidth(flattened_img, quantile=0.06, n_samples=3000, n_jobs=-1)
+    meanshift = MeanShift(bandwidth=bandwidth, bin_seeding=True, n_jobs=-1, max_iter=800)
+    labels = meanshift.fit_predict(flattened_img)
+    labels_unique = np.unique(labels)
 
-  result = np.reshape(labels, balloons_bgr.shape[:2])
-  result = label2rgb(result, balloons_bgr, kind="avg")
+    imgs_num_segments[i] = len(labels_unique)
+
+    result = np.reshape(labels, img_bgr.shape[:2])
+    imgs_to_show[f"{img}"] = img_bgr
+    imgs_to_show[f"MeanShift-{img}"] = label2rgb(result, img_bgr, kind="avg")
 
   # IMPORTANT:
   # Notice that if the methods you use do not yield a binary map, but they directly produce labelled output images, it makes no sense to apply gray-scale operations to these output images, as the gray values have no semantic meaning (they are just random labels), unlike in the original input images.
@@ -253,58 +251,52 @@ def q1():
 
   # fit_predict() equates to: self.fit(X); return self.labels_
 
-  show_images({"colour": balloons_bgr, "segment": result})
+  show_images(imgs_to_show)
 
   return imgs_num_segments
 
 def q2():
   images_dir="COMP9517_23T2_Lab3_Images"
 
-  imgs_bgr = [0] * 3
-  imgs_segment = [0] * 3
+  imgs_to_show = {}
   imgs_num_segments = [0] * 3
 
-  #balloons_bgr, balloons_gray = read_img(f"{images_dir}/Balloons.png")
-  balloons_bgr, balloons_gray = read_img(f"{images_dir}/Balls.png")
-  #balloons_bgr, balloons_gray = read_img(f"{images_dir}/Brains.png")
-  w = balloons_bgr.shape[1]
-  h = balloons_bgr.shape[0]
+  for i, img in enumerate(["Balloons.png", "Balls.png", "Brains.png"]):
+    img_bgr, img_gray = read_img(f"{images_dir}/{img}")
+    w = img_bgr.shape[1]
+    h = img_bgr.shape[0]
 
-  balloons_gray = cv.GaussianBlur(balloons_gray, (7, 7), 0)
+    # NOTE(Ryan): Noise removal
+    img_gray = cv.GaussianBlur(img_gray, (7, 7), 0)
 
-  #ret, balloons_binary = cv.threshold(balloons_gray, 245, 256, cv.THRESH_BINARY_INV)
-  ret, balloons_binary = cv.threshold(balloons_gray, 0, 255, cv.THRESH_BINARY_INV+cv.THRESH_TRIANGLE)
+    ret, img_binary = cv.threshold(img_gray, 0, 255, cv.THRESH_BINARY_INV+cv.THRESH_TRIANGLE)
 
-  # TODO: morphology to separate objects
-  # https://opencv24-python-tutorials.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_watershed/py_watershed.html 
+    # TODO(Ryan): Experiment with thresholding on distance transform 
+    # kernel = np.ones((3,3),np.uint8)
+    # morph = cv.morphologyEx(img_binary, cv.MORPH_OPEN, kernel, iterations=2)
+    # morph = cv.erode(img_binary, kernel, iterations=4)
+    # ret, morph = cv.threshold(distance_transform, 0.7*distance_transform.max(), 255, 0)
 
-  # noise removal
-  kernel = np.ones((3,3),np.uint8)
-  #morph = cv.morphologyEx(balloons_binary, cv.MORPH_OPEN, kernel, iterations=2)
-  #morph = cv.erode(balloons_binary, kernel, iterations=4)
+    # print_histogram(img_gray)
 
-  # print_histogram(balloons_gray)
+    distance_transform = ndi.distance_transform_edt(img_binary) 
 
-  distance_transform = ndi.distance_transform_edt(balloons_binary) 
-  
-  ret, morph = cv.threshold(distance_transform, 0.7*distance_transform.max(), 255, 0)
+    # NOTE(Ryan): These are pixels that are the furthest away from the background
+    region_size= (4, ) * 2
+    coords = peak_local_max(distance_transform, footprint=np.ones(region_size), labels=img_binary)
+    mask = np.zeros(distance_transform.shape, dtype=bool)
+    mask[tuple(coords.T)] = True
+    markers, _ = ndi.label(mask) 
+    labels = watershed(-distance_transform, markers, mask=img_binary)
+    unique_labels = np.unique(labels)
+    num_unique_labels = len(unique_labels)
 
-  # TODO: Experiment with different local search region sizes in this step and
-  # the threshold value in Step 1 above for good segmentation results. 
+    imgs_num_segments[i] = num_unique_labels
 
-  # these are pixels that are the furthest away from the background
-  region_size= (4, ) * 2
-  coords = peak_local_max(distance_transform, footprint=np.ones(region_size), labels=balloons_binary)
-  mask = np.zeros(distance_transform.shape, dtype=bool)
-  mask[tuple(coords.T)] = True
-  markers, _ = ndi.label(mask) 
-  labels = watershed(-distance_transform, markers, mask=balloons_binary)
-  unique_labels = np.unique(labels)
-  num_unique_labels = len(unique_labels)
-  print(num_unique_labels)
+    imgs_to_show[f"{img}"] = img_bgr
+    imgs_to_show[f"WaterShed-{img}"] = labels 
 
-  # TODO: example uses -distance?
-  show_images({"colour": balloons_bgr, "binary": balloons_binary, "morph": morph, "d": -distance_transform, "watershed": labels})
+  show_images(imgs_to_show)
 
   return imgs_num_segments
 
@@ -322,8 +314,9 @@ def main():
   # mean_shift_objects = [10, 20, 30]
   # watershed_objects = [40, 50, 60]
 
-  # mean_shift_objects = q1()
+  #mean_shift_objects = q1()
   watershed_objects = q2()
+  print(watershed_objects)
 
   #q3(mean_shift_objects, watershed_objects)
 

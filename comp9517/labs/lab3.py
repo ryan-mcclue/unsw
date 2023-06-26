@@ -282,7 +282,7 @@ def q2():
     distance_transform = ndi.distance_transform_edt(img_binary) 
 
     # NOTE(Ryan): These are pixels that are the furthest away from the background
-    region_size= (4, ) * 2
+    region_size= (64, ) * 2
     coords = peak_local_max(distance_transform, footprint=np.ones(region_size), labels=img_binary)
     mask = np.zeros(distance_transform.shape, dtype=bool)
     mask[tuple(coords.T)] = True
@@ -314,7 +314,8 @@ def main():
   # mean_shift_objects = [10, 20, 30]
   # watershed_objects = [40, 50, 60]
 
-  #mean_shift_objects = q1()
+  # mean_shift_objects = q1()
+  # print(mean_shift_objects)
   watershed_objects = q2()
   print(watershed_objects)
 

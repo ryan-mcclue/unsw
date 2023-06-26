@@ -37,6 +37,24 @@ Supervised Learning:
   Also conditional probability, e.g. pSalmon_len > 50cm = 0.4
   Posterior probability is prior * conditional. The conditional we must input
   Assign class with highest posterior probability (which is just what Bayes Decision rule is)
+  However, conditional probabilities might have conditional risk, i.e. cost if wrong. 
+  This will be loss function, e.g. pSalmon_wrong = 0.1
+  So, optimal Bayes is to minimise conditional risk
+  TODO: distinction between decision and classification?
+  4. Decision Tree
+  Represented as tree with each node being an 'if statement'/feature. leaf nodes are labels
+  Nominal data is also catageroical
+  To determine what feature to split on use information theory (entropy and information gain?)
+  Entropy considered average uncertainty of data
+  Calculate entropy with formula, inputting prior probabilities of type, e.g fish type
+  Base entropy is just how often type appears in training
+  Information gain based on entropy. 
+  Use feature with highest information gain to split on in the decision tree (based on formula)
+  5. Ensemble Learning
+  Combines multiple models.
+  Random forests construct an ensemble of decision trees. Uses Breiman's algorithm, which uses randomness to construct trees
+  Works best if trees in forest are uncorrelated
+  Overcomes decision tree overfitting issues (overfitting is major problem in Machine Learning)
 
   * Regression
 

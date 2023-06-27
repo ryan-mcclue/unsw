@@ -53,12 +53,3 @@ then find max matching with Edmonds-Karp = O(V·E^2)
 E = nm + n (all person to source) + m (all job to sink)
 
 IMPORTANT: when creating graph, incorporate say 'defective' squares
-
-# Dynamic Programming
-We want overlapping subproblems, so can reuse later in recursive construction
-1. Define subproblem (hardest part). Often by adding restriction to subproblem, makes combining easier?
-2. Recurrence relation (how subproblems combine)
-3. Base case
-
-## Longest Increasing Subsequence
-

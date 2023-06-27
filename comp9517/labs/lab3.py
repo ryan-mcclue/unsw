@@ -229,17 +229,22 @@ def q1():
     w = img_bgr.shape[1]
     h = img_bgr.shape[0]
 
+    # NOTE(Ryan): Pre-processing to reduce noise
+    blur_amount = 3
+    img_bgr_blurred = cv.medianBlur(img_bgr, blur_amount)
+
+    # NOTE(Ryan): Contrast enhance
+    alpha = 1.5 # Contrast control (1.0-3.0)
+    beta = 0 # Brightness control (0-100)
+    img_bgr_enhanced = cv.convertScaleAbs(img_bgr_blurred, alpha=alpha, beta=beta)
+
     # TODO(Ryan): Experiment with thresholding on distance transform 
     # kernel = np.ones((3,3),np.uint8)
     # morph = cv.morphologyEx(img_binary, cv.MORPH_OPEN, kernel, iterations=2)
     # morph = cv.erode(img_binary, kernel, iterations=4)
     # ret, morph = cv.threshold(distance_transform, 0.7*distance_transform.max(), 255, 0)
 
-    # NOTE(Ryan): Pre-processing to reduce noise
-    blur_amount = 3
-    img_bgr_blurred = cv.medianBlur(img_bgr, blur_amount)
-
-    flattened_img = np.reshape(img_bgr_blurred, [-1, 3])
+    flattened_img = np.reshape(img_bgr_enhanced, [-1, 3])
 
     bandwidth = estimate_bandwidth(flattened_img, quantile=0.06, n_samples=3000, n_jobs=-1)
     meanshift = MeanShift(bandwidth=bandwidth, bin_seeding=True, n_jobs=-1, max_iter=800)
@@ -284,7 +289,8 @@ def q2():
     img_gray = cv.cvtColor(adjusted, cv.COLOR_BGR2GRAY)
 
     # NOTE(Ryan): Noise removal
-    img_gray = cv.GaussianBlur(img_gray, (9, 9), 0)
+    blur_size = (19, ) * 2
+    img_gray = cv.GaussianBlur(img_gray, blur_size, 0)
 
     ret, img_binary = cv.threshold(img_gray, 0, 255, cv.THRESH_BINARY_INV+cv.THRESH_TRIANGLE)
 
@@ -318,6 +324,22 @@ def q3(mean_shift, watershed):
   print(f"{'Balls':<20} {mean_shift[1]:^20} {watershed[1]:^20}")
   print(f"{'Brains':<20} {mean_shift[2]:^20} {watershed[2]:^20}")
 
+#|| Image                #Objects Meanshift   #Objects Watershed  
+#|| ============================================================
+#|| Balloons(5)                      57                   8          
+#|| Balls(24)                        24                   25         
+#|| Brains(4)                        33                   5          
+  trace(f"Meanshift works well for images that have objects of interest with distinct colour intensities.")
+  trace(f"In 'Balloons', the objects have areas of white in and around them (i.e. scattered) that differ from their 'base' colour.")
+  trace(f"In 'Balls', the areas of white in the objects are localised whilst the rest of the object is of a distinct colour.")
+  trace(f"In 'Brains', whilst the objects are distinct colours, they cast shadows of varying intensities, which are picked up as objects.")
+
+  trace(f"Watershed works best for images that that have objects separated by distinct colour intensities.")
+  trace(f"In 'Balloons', adjacent objects are all of distinct colours. However, the white around their boundaries are picked up as objects.")
+  trace(f"In 'Balls' and 'Brains', adjacent objects are all of distinct colours.")
+
+  trace(f"Therefore, meanshift works best for 'Balls' and watershed works best for 'Balloons' and 'Brains'.")
+
 def main(): 
   trace(f"opencv: {cv.__version__}")
   mpl.rcParams['figure.dpi']= 150
@@ -325,10 +347,10 @@ def main():
   # mean_shift_objects = [10, 20, 30]
   # watershed_objects = [40, 50, 60]
 
-  mean_shift_objects = q1()
-  print(mean_shift_objects)
-  #watershed_objects = q2()
-  #print(watershed_objects)
+  #mean_shift_objects = q1()
+  #print(mean_shift_objects)
+  watershed_objects = q2()
+  print(watershed_objects)
 
   #q3(mean_shift_objects, watershed_objects)
 

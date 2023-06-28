@@ -251,6 +251,7 @@ def q1():
     labels = meanshift.fit_predict(flattened_img)
 
     # TODO(Ryan): morphology on labels to remove holes?
+    # would have to extract binary map from label and then morph on it
     # grey_closing(label, size=(10, 10))
     labels_unique = np.unique(labels)
 
@@ -330,12 +331,12 @@ def q3(mean_shift, watershed):
 #|| Balls(24)                        24                   25         
 #|| Brains(4)                        33                   5          
   trace(f"Meanshift works well for images that have objects of interest with distinct colour intensities.")
-  trace(f"In 'Balloons', the objects have areas of white in and around them (i.e. scattered) that differ from their 'base' colour.")
-  trace(f"In 'Balls', the areas of white in the objects are localised whilst the rest of the object is of a distinct colour.")
-  trace(f"In 'Brains', whilst the objects are distinct colours, they cast shadows of varying intensities, which are picked up as objects.")
+  trace(f"In 'Balloons', the objects have areas of white in and around them (i.e. scattered) that differ from their 'base' colour. This leads to false positives.")
+  trace(f"In 'Balls', the areas of white/texture in the objects are localised whilst the rest of the object is of a distinct colour.")
+  trace(f"In 'Brains', whilst the objects are distinct colours, they cast shadows of varying intensities, which are falsely picked up as objects.")
 
   trace(f"Watershed works best for images that that have objects separated by distinct colour intensities.")
-  trace(f"In 'Balloons', adjacent objects are all of distinct colours. However, the white around their boundaries are picked up as objects.")
+  trace(f"In 'Balloons', adjacent objects are all of distinct colours. However, the white around their boundaries are falsely picked up as objects.")
   trace(f"In 'Balls' and 'Brains', adjacent objects are all of distinct colours.")
 
   trace(f"Therefore, meanshift works best for 'Balls' and watershed works best for 'Balloons' and 'Brains'.")

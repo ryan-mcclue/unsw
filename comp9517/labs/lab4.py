@@ -24,6 +24,10 @@ from skimage.segmentation import watershed
 from scipy import ndimage as ndi
 from scipy.ndimage import grey_closing
 
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import SGDClassifier
+
 global global_logger
 
 def fatal_error(msg):
@@ -217,6 +221,18 @@ def read_img(path):
 
   return (img_bgr, img_gray)
 
+def q():
+  # 12500 each
+  # dogs with humans, multiple dogs, dogs holding toys
+  # 25000 -> 10000 training, 5000 testing?
+
+  # label.num.jpg
+
+  # want array of labels? so extract from name?
+  # train, test = train_test_split(df_review_bal, test_size=0.33, random_state=42)
+
+  # https://kapernikov.com/tutorial-image-classification-with-scikit-learn/  
+
 def q1():
   images_dir="COMP9517_23T2_Lab3_Images"
 
@@ -330,30 +346,21 @@ def q3(mean_shift, watershed):
 #|| Balloons(5)                      57                   8          
 #|| Balls(24)                        24                   25         
 #|| Brains(4)                        33                   5          
-  trace(f"Meanshift works well for images that have objects of interest with distinct colour intensities.")
-  trace(f"In 'Balloons', the objects have areas of white in and around them (i.e. scattered) that differ from their 'base' colour. This leads to false positives.")
-  trace(f"In 'Balls', the areas of white/texture in the objects are localised whilst the rest of the object is of a distinct colour.")
-  trace(f"In 'Brains', whilst the objects are distinct colours, they cast shadows of varying intensities, which are falsely picked up as objects.")
+  print(f"Meanshift works well for images that have objects of interest with distinct colour intensities.")
+  print(f"In 'Balloons', the objects have areas of white in and around them (i.e. scattered) that differ from their 'base' colour. This leads to false positives.")
+  print(f"In 'Balls', the areas of white/texture in the objects are localised whilst the rest of the object is of a distinct colour.")
+  print(f"In 'Brains', whilst the objects are distinct colours, they cast shadows of varying intensities, which are falsely picked up as objects.")
 
-  trace(f"Watershed works best for images that that have objects separated by distinct colour intensities.")
-  trace(f"In 'Balloons', adjacent objects are all of distinct colours. However, the white around their boundaries are falsely picked up as objects.")
-  trace(f"In 'Balls' and 'Brains', adjacent objects are all of distinct colours.")
+  print(f"Watershed works best for images that that have objects separated by distinct colour intensities.")
+  print(f"In 'Balloons', adjacent objects are all of distinct colours. However, the white around their boundaries are falsely picked up as objects.")
+  print(f"In 'Balls' and 'Brains', adjacent objects are all of distinct colours.")
 
-  trace(f"Therefore, meanshift works best for 'Balls' and watershed works best for 'Balloons' and 'Brains'.")
+  print(f"Therefore, meanshift works best for 'Balls' and watershed works best for 'Balloons' and 'Brains'.")
 
 def main(): 
   trace(f"opencv: {cv.__version__}")
   mpl.rcParams['figure.dpi']= 150
 
-  # mean_shift_objects = [10, 20, 30]
-  # watershed_objects = [40, 50, 60]
-
-  #mean_shift_objects = q1()
-  #print(mean_shift_objects)
-  watershed_objects = q2()
-  print(watershed_objects)
-
-  #q3(mean_shift_objects, watershed_objects)
 
 
 def running_on_jupyter():

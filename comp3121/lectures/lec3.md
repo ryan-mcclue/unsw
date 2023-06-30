@@ -39,7 +39,7 @@ For vertices with capacities, split into two vertices with connecting edge
 
 NOTE: V \ {s, t} means all V that aren't 's' or 't'
 
-## Maximum Flow (Ford-Fulkerson Algorithm)
+## Maximum Flow (Ford-Fulkerson Algorithm) (however Edmonds-Karp is actually used)
 (without residual network, i.e. with greedy, will create bottlenecks as ignores 'chains')
 Construct residual flow network which shows leftover capacity, as well as reverse virtual capacities (to indicate rerouting flow)
 From this determine bottleneck, i.e. smallest of largest path. Then send this bottleneck value.

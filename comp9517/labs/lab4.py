@@ -221,17 +221,6 @@ def read_img(path):
 
   return (img_bgr, img_gray)
 
-def q():
-  # 12500 each
-  # dogs with humans, multiple dogs, dogs holding toys
-  # 25000 -> 10000 training, 5000 testing?
-
-  # label.num.jpg
-
-  # want array of labels? so extract from name?
-  # train, test = train_test_split(df_review_bal, test_size=0.33, random_state=42)
-
-  # https://kapernikov.com/tutorial-image-classification-with-scikit-learn/  
 
 def q1():
   images_dir="COMP9517_23T2_Lab3_Images"
@@ -357,9 +346,84 @@ def q3(mean_shift, watershed):
 
   print(f"Therefore, meanshift works best for 'Balls' and watershed works best for 'Balloons' and 'Brains'.")
 
+
+def classify(train_size, test_size):
+  imgs_dir="/home/ryan/Downloads/dogs-vs-cats"
+  train_dir=f"{imgs_dir}/train"
+
+  train_imgs = []
+  train_labels = []
+
+  total_size = train_size + test_size
+  cat_size = total_size // 2
+  cat_count = 0
+  dog_size = total_size // 2
+  dog_count = 0
+
+  # TODO(Ryan): Use averages?
+  min_w = 42
+  max_w = 1050
+  min_h = 32
+  max_h = 768
+  resize_w = 512
+  resize_h = 512
+  for img_name in os.listdir(train_dir):
+    img_label = img_name.split(".")[0]
+    assert(img_label == "cat" or img_label == "dog")
+    if (img_label == "cat" and cat_count >= cat_size) or (img_label == "dog" and dog_count >= dog_size):
+      continue
+
+    # TODO: preprocessing
+    # NOTE(Ryan): Images contain dogs with humans, multiple dogs, dogs holding toys
+    img = cv.imread(f"{train_dir}/{img_name}")
+    img = cv.resize(img, (resize_w, resize_h))
+
+    train_imgs.append(img)
+    train_labels.append(img_label)
+    #train_imgs.append(img.flatten())
+    #train_labels.append(img_label)
+    if img_label == "cat":
+      cat_count += 1
+    else:
+      dog_count += 1
+
+  # TODO(Ryan): joblib.dump(data, pklname) to save computation?
+  # subsequently: data = joblib.load(f'{base_name}_{width}x{width}px.pkl')
+
+  #data = np.asarray(train_imgs)
+  #labels = np.asarray(train_labels)
+
+  #test_percentage = total_size / test_size
+  #x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=test_percentage, shuffle=True, stratify=labels)
+
+  # now instantiate classifiers
+  # neigh = KNeighborsClassifier(n_neighbours=3)
+  # neigh.fit(x_train, y_train)
+  # y_prediction = neigh.predict(x_test) 
+  # from sklearn.metrics import accuracy_score 
+  #  score = accuracy_score(y_prediction, y_test) 
+  # print('{}% of samples were correctly classified'.format(str(score * 100))) 
+
+
+  #DecisionTreeClassifier
+  #SGDClassifier
+  #
+  #classifier = SVC()
+  #parameters = [{'gamma': [0.01, 0.001, 0.0001], 'C': [1, 10, 100, 1000]}]
+  #grid_search = GridSearchCV(classifier, parameters)
+
+
+
 def main(): 
   trace(f"opencv: {cv.__version__}")
   mpl.rcParams['figure.dpi']= 150
+
+  train_size = 10000
+  test_size = 5000
+  classify(train_size, test_size)
+
+  #train_size = 20000
+  #classify(train_size, test_size)
 
 
 

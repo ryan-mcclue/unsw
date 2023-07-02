@@ -8,6 +8,7 @@ import subprocess
 import logging
 import platform
 import math
+import joblib
 
 from dataclasses import dataclass
 
@@ -27,6 +28,11 @@ from scipy.ndimage import grey_closing
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import SGDClassifier
+from sklearn.model_selection import train_test_split
+
+from skimage.feature import hog
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, classification_report
 
 global global_logger
 
@@ -347,7 +353,9 @@ def q3(mean_shift, watershed):
   print(f"Therefore, meanshift works best for 'Balls' and watershed works best for 'Balloons' and 'Brains'.")
 
 
+# TODO: where does tensorflow come into this?
 def classify(train_size, test_size):
+# https://kapernikov.com/tutorial-image-classification-with-scikit-learn/
   imgs_dir="/home/ryan/Downloads/dogs-vs-cats"
   train_dir=f"{imgs_dir}/train"
 
@@ -365,53 +373,101 @@ def classify(train_size, test_size):
   max_w = 1050
   min_h = 32
   max_h = 768
-  resize_w = 512
-  resize_h = 512
-  for img_name in os.listdir(train_dir):
-    img_label = img_name.split(".")[0]
-    assert(img_label == "cat" or img_label == "dog")
-    if (img_label == "cat" and cat_count >= cat_size) or (img_label == "dog" and dog_count >= dog_size):
-      continue
 
-    # TODO: preprocessing
-    # NOTE(Ryan): Images contain dogs with humans, multiple dogs, dogs holding toys
-    img = cv.imread(f"{train_dir}/{img_name}")
-    img = cv.resize(img, (resize_w, resize_h))
+  resize_w = 128 # 128 * 4 generated 6.1G
+  resize_h = 128 # 64 * 4
+ 
+  data = {}
 
-    train_imgs.append(img)
-    train_labels.append(img_label)
-    #train_imgs.append(img.flatten())
-    #train_labels.append(img_label)
-    if img_label == "cat":
-      cat_count += 1
-    else:
-      dog_count += 1
+  pickle_filename = f"{train_size}+{test_size}:{resize_w}x{resize_h}.pkl"
+  if os.path.exists(pickle_filename):
+    data = joblib.load(pickle_filename)
+  else:
+    data["data"] = []
+    data["label"] = []
+    for i, img_name in enumerate(os.listdir(train_dir)):
+      img_label = img_name.split(".")[0]
+      assert(img_label == "cat" or img_label == "dog")
+      if (img_label == "cat" and cat_count >= cat_size) or (img_label == "dog" and dog_count >= dog_size):
+        continue
 
-  # TODO(Ryan): joblib.dump(data, pklname) to save computation?
-  # subsequently: data = joblib.load(f'{base_name}_{width}x{width}px.pkl')
+      # TODO: additional preprocessing
+      # NOTE(Ryan): Images contain dogs with humans, multiple dogs, dogs holding toys
+      img_bgr, img_gray = read_img(f"{train_dir}/{img_name}")
+      img_gray = cv.resize(img_gray, (resize_w, resize_h))
+      ## NOTE(Ryan): img_hog_img can be drawn
+      # decreasing pixels per cell increase accuracy
+      img_hog, img_hog_img = hog(img_gray, pixels_per_cell=(16, 16), cells_per_block=(4, 4), 
+                                 orientations=9, visualize=True, block_norm='L2-Hys')
+      trace(f"hog done {i}")
 
-  #data = np.asarray(train_imgs)
-  #labels = np.asarray(train_labels)
+      # feature descriptor preprocessing, i.e. HOG used for classification (SIFT for detecting specific objects using BoW)
+      # to reduce data point comparisons
 
-  #test_percentage = total_size / test_size
-  #x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=test_percentage, shuffle=True, stratify=labels)
+      data["data"].append(img_hog)
+      data["label"].append(img_label)
+      if img_label == "cat":
+        cat_count += 1
+      else:
+        dog_count += 1
 
-  # now instantiate classifiers
-  # neigh = KNeighborsClassifier(n_neighbours=3)
-  # neigh.fit(x_train, y_train)
-  # y_prediction = neigh.predict(x_test) 
-  # from sklearn.metrics import accuracy_score 
-  #  score = accuracy_score(y_prediction, y_test) 
-  # print('{}% of samples were correctly classified'.format(str(score * 100))) 
+    X = np.array(data["data"])
+    data["data"] = X
+    Y = np.array(data["label"])
+    data["label"] = Y
 
+    joblib.dump(data, pickle_filename)
 
-  #DecisionTreeClassifier
-  #SGDClassifier
-  #
-  #classifier = SVC()
-  #parameters = [{'gamma': [0.01, 0.001, 0.0001], 'C': [1, 10, 100, 1000]}]
-  #grid_search = GridSearchCV(classifier, parameters)
+  # show_images({"img1": data["data"][10], "img2": data["data"][8000]})
 
+  np_data = data["data"]
+  np_labels = data["label"]
+  test_percentage = test_size / total_size
+  #  x are images, y are labels
+  x_train, x_test, y_train, y_test = train_test_split(np_data, np_labels, test_size=test_percentage, shuffle=True, random_state=42)
+  scalify = StandardScaler() # could use PCA instead to reduce dimensionality?
+  x_train_prepared = scalify.fit_transform(x_train)
+  trace(x_train_prepared.shape)
+
+  sgd_clf = SGDClassifier(random_state=42, max_iter=1000, tol=1e-3)
+  sgd_clf.fit(x_train_prepared, y_train)
+  # NOTE(Ryan): No fit_transform as could optimise?
+  x_test_prepared = scalify.transform(x_test)
+  y_pred = sgd_clf.predict(x_test_prepared)
+  #trace(np.array(y_pred == y_test)[:25])
+  #trace('')
+  #trace(f'Percentage correct: {100*np.sum(y_pred == y_test)/len(y_test)}')
+  # accuracy, precision, recall, and the F1-score
+  trace("SGD\n" + classification_report(y_test, y_pred, digits=4))
+  label_names=["cat", "dog"]
+  cmx = confusion_matrix(y_test, y_pred, labels=label_names)
+  disp = ConfusionMatrixDisplay(confusion_matrix=cmx, display_labels=label_names)
+  disp.plot()
+
+  neigh_clf = KNeighborsClassifier(n_neighbors=3)
+  neigh_clf.fit(x_train_prepared, y_train)
+  y_pred = neigh_clf.predict(x_test_prepared) 
+  trace("Neigh\n" + classification_report(y_test, y_pred, digits=4))
+  cmx = confusion_matrix(y_test, y_pred, labels=label_names)
+  disp = ConfusionMatrixDisplay(confusion_matrix=cmx, display_labels=label_names)
+  disp.plot()
+
+  dct_clf = DecisionTreeClassifier(random_state=42)
+  dct_clf.fit(x_train_prepared, y_train)
+  y_pred = dct_clf.predict(x_test_prepared) 
+  trace("DCT\n" + classification_report(y_test, y_pred, digits=4))
+  cmx = confusion_matrix(y_test, y_pred, labels=label_names)
+  disp = ConfusionMatrixDisplay(confusion_matrix=cmx, display_labels=label_names)
+  disp.plot()
+
+  ## IMPORTANT(Ryan): Seems higher accuracy obtained with CNN (so use TensorFlow)
+  # The general opinion is that Convolutional Neural Networks (CNN) are the most viable for problems involving large quantities of complex data from which abstract features like form and colour must be obtained to get accurate results.
+  # NOTE: Could also use sklearn regression models instead of classifiers
+
+# the feature set for each image is of size 12288 which can be large for the dataset size of 25000 images and can be led to overfitting of the model.
+# Due to the large resolution of images which converts to large feature vector for each imag
+
+  plt.show()
 
 
 def main(): 

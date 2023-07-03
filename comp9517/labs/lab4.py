@@ -476,10 +476,10 @@ def main():
 
   train_size = 10000
   test_size = 5000
-  classify(train_size, test_size)
-
-  #train_size = 20000
   #classify(train_size, test_size)
+
+  train_size = 20000
+  classify(train_size, test_size)
 
 
 

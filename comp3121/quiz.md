@@ -167,6 +167,18 @@ You can include pseudocode as a supplement to an otherwise complete response, bu
 
 You may wish to have separate sections for the algorithm, proof and time complexity, or you could combine them; and you may wish to describe your algorithm in paragraphs, dot points/numbered lists, or a mix of both.
 
+* We know that the best possible scenario for minimising C is if it's possible to have `C = min(package_weight)`
+* We know that from part 3.2, `C = sum(packages)` is an hard upper limit
+* If it's possible to deliver with C, then also possible for all capacities greater. 
+  This is because the maximum amount of packages that can be sent per day is determined by C.
+  So, for larger values of C, will still be able to deliver at least the same amount of packages per day as for the original C.
+  Subsequently, the same delivery schedule can be followed for larger values of C.
+  Conversely, if it's not possible to deliver with C, then also not possible for all capacities smaller.
+  Following along from previous relation, this is because a smaller C can only deliver at most the same number of packages as for the original C.
+  As a result, the same delivery schedule cannot be followed for smaller values of C.
+  This demonstrates a monotonic relationship between C and being able to deliver all the packages.
+* Therefore, as we have an upper/lower bound to the solution and inherent monotonicity, binary search is feasible.
+
 1. 
 
 ```

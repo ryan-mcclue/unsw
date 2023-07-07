@@ -69,6 +69,8 @@ NOTE: first step adds bottleneck, i.e. add smallest capacity
 
 arrangement of paths affects efficiency.
 O(E·f) where f is maximal flow (total number of steps is C)
+
+IMPORTANT: Edmonds-Karp O(|E|·|V|^2) or O(|E|·|f|) (absolute sign means simplified big-oh!)
 ### Edmonds-Karp (improves by choosing augmenting path with fewest edges O(VE^2))
 Faster yet is Dinic's O(V^2E), Preflow-Push O(V^3) (although these are pessimistic, so ok to use Edmonds-Karp)
 

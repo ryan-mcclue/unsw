@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 # SPDX-License-Identifier: zlib-acknowledgement
 
+# Although we do not expect you to develop everything from scratch, we do expect to see some
+# new combination of methods, or some tweaks of existing methods, or the use of more state-
+# of-the-art methods that have not been tried before for the given problem.
+
 # don't have enough training images for neural network?
 
 # train/train/image_id_001.jpg (for supervised learning)
@@ -36,6 +40,7 @@
 # During inference, let each classifier independently classify the new image, and the final prediction can be determined through majority voting or averaging the probabilities/confidences from different classifiers
 # this voting would be an example of (bagging, i.e. random forests as oppose to boosting) 
 
+# bounding box from contours?
 # train genetic model based on ensemble learning? or not really applicable as we know what optimal is and could just check all combinations?
 # 1. SAVE feature extractors on valid images (RST, HOG, SIFT, SURF, etc.)
 # 2. SAVE preprocessed training images

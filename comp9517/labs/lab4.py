@@ -443,31 +443,38 @@ def classify(train_size, test_size):
   cmx = confusion_matrix(y_test, y_pred, labels=label_names)
   disp = ConfusionMatrixDisplay(confusion_matrix=cmx, display_labels=label_names)
   disp.plot()
+  disp.ax_.set_title("SGD Confusion Matrix")
 
   neigh_clf = KNeighborsClassifier(n_neighbors=3)
   neigh_clf.fit(x_train_prepared, y_train)
   y_pred = neigh_clf.predict(x_test_prepared) 
-  trace("Neigh\n" + classification_report(y_test, y_pred, digits=4))
+  trace("KNN\n" + classification_report(y_test, y_pred, digits=4))
   cmx = confusion_matrix(y_test, y_pred, labels=label_names)
   disp = ConfusionMatrixDisplay(confusion_matrix=cmx, display_labels=label_names)
   disp.plot()
+  disp.ax_.set_title("KNN Confusion Matrix")
 
   dct_clf = DecisionTreeClassifier(random_state=42)
   dct_clf.fit(x_train_prepared, y_train)
   y_pred = dct_clf.predict(x_test_prepared) 
-  trace("DCT\n" + classification_report(y_test, y_pred, digits=4))
+  trace("DT\n" + classification_report(y_test, y_pred, digits=4))
   cmx = confusion_matrix(y_test, y_pred, labels=label_names)
   disp = ConfusionMatrixDisplay(confusion_matrix=cmx, display_labels=label_names)
   disp.plot()
-
-  ## IMPORTANT(Ryan): Seems higher accuracy obtained with CNN (so use TensorFlow)
-  # The general opinion is that Convolutional Neural Networks (CNN) are the most viable for problems involving large quantities of complex data from which abstract features like form and colour must be obtained to get accurate results.
-  # NOTE: Could also use sklearn regression models instead of classifiers
-
-# the feature set for each image is of size 12288 which can be large for the dataset size of 25000 images and can be led to overfitting of the model.
-# Due to the large resolution of images which converts to large feature vector for each imag
+  disp.ax_.set_title("DT Confusion Matrix")
 
   plt.show()
+
+  trace(f"The large number of images as well as the high-dimensionality of each image affects the accuracy of the classifiers.")
+  trace(f"Decision Tree's are susceptible to overfitting when dataset is large. This is most likely why it performs the worst.")
+  trace(f"SGD implements regularisation to help prevent overfitting. This is probably why it performs the best for this large data set.")
+  trace(f"The similarities calculated by KNN are less meaningful for high-dimension data. This is possibly why it performs worse than SGD.\n")
+
+  trace(f"In relation to the Kaggle leaderboard, would place 110th.")
+  trace(f"To attain greater accuracy similar to those higher up on the leaderboard, the use of a Convolutional Neural Network would be required.")
+  trace(f"This is because the data set is large and each image contains complex features, e.g. multiple animals in image, humans next to animals, etc.")
+  trace(f"Neural networks specialise in abstracting varied feature sets.")
+  trace(f"On the other hand, traditional techniques would require more rigorous ensemble approaches and large permutation of hyperparameters to possibly get higher accuracy.")
 
 
 def main(): 

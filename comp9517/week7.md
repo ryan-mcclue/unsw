@@ -26,9 +26,10 @@ n-convolutions produce activation map of depth n.
 by increasing stride of convolution (i.e. pixel steps for sliding window), resulting output is smaller
 can use padding to allow for any stride length
 
-pooling just resizes activation map, e.g. average of local areas
+pooling just resizes activation map, e.g. average of local areas, max of area etc.
 
 ConvNet is sequence of convolution layers interspersed with activation functions
+TODO: So, a CNN has convolutional layers?
 
 difference between fully-connected layer and ...?
 
@@ -57,3 +58,37 @@ regularisation adds penalty to loss function to reduce overfitting
 batch normalisation stables training and thereby accelerates it
 
 most DL frameworks have various optimisation methods, e.g. internal covariate shift, batch normalisation etc. 
+
+Applications: captioning, detection, classification, generation, etc.
+
+NOTE: can use MobileNet for say FPGAs (IMPORTANT: so type of model choose dependent on research on specific problem)
+Various different network models combine layers in different ways
+But in all cases, have to learn weights/parameters for task
+
+Unsupervised learning would generate possible class labels.
+This would then be fed into a supervised model?
+This is self-supervised learning?
+
+## DNN Design Concerns 
+1. Semantic Segmentation:
+   * although output has each pixel with class label.
+     have class label for centre of pixel region
+     the CNN will classify centre pixel of a predefined region/patch size of pixels
+   * will have convolutional layers and non-linear activation functions.
+     however will have no pooling layers interspersed, as require output to be same size as input
+     but for efficiency, will have a downsampling/encoder at start then an upsampler/decoder at end
+   * unpooling/upsampling, e.g. nearest neighbour does not have parameters to learn like in pooling
+     strided convolution is downsampling, transpose convolution is upsampling
+     so two options for upsampling and downsampling?
+   - Other tasks relating to pixel-by-pixel classification (i.e. model similar to this), e.g. unblurring, reflection removing, etc.
+     In other words, dense prediction tasks that output pixel-wise map
+2. Object Detection:
+   * sliding window. bbox regions are proposed based on say HOG features
+   however, typically integrate a region proposal network into entire network. 
+   - one-stage methods like YOLO (i.e. single pass through DNN)
+3. Instance Segmentation:
+   * more advanced form of object detection. Uses similar architecture, however includes a mask prediction
+
+RNN (recurrent) -> used for action recognition, image captioning (so better for advanced tasks that have sequential data?)
+Also have generative NN models?
+Also have Transformer based networks

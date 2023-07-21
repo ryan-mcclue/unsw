@@ -77,10 +77,24 @@ Cook's Theorem states that every NP problem polynomially reducible to SAT proble
 (so can find function to convert input to SAT problem)
 SAT is NP-complete (SAT is hardest type of NP problems)
 NP-complete is if every other NP problem is polynomially reducible to it
-IMPORTANT: P != NP, so NP-complete no polynomial time solution
+IMPORTANT: P != NP-C, so NP-complete no polynomial time solution
 (however P is subset of NP, just not other way around)
 
-NP-Complete Problems: 
+NP-Complete Problems (intractable problems): 
   * Travelling Salesman
   * Register Allocation (possible to colour vertices with at most K colours, so no edge has ends with same colour?)
   TODO: graph colouring seems to be NP-Complete?
+
+IMPORTANT: To prove that problem is NP-C, reduce it to your problem 
+
+NP-hard are optimisation problems, not decision problems?
+relatively computability
+NP-hard is polynomial number of steps and polynomial number of queries to oracle/black-box?
+
+NP-Hard Problems:
+  * travelling salesman shortest path
+    - can use black-box to solve travelling salesman. then query blackbox?
+Often finding optimal solution infeasible; so use an approximiation algorithm,
+e.g. find length at most twice the length of optimal solution
+NP-Hard might allows us to get within a constant factor of optimal answer,
+so can be easier than NP-Complete?

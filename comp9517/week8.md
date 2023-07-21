@@ -45,3 +45,26 @@ Bayesian Inference (iterative prediction and correction):
 if probabilty, than expressed as a distribution?
 conditional probabily P(X|Y), can be written as a joint probability (just probabilities multiplied/divided etc.?)
 
+Once have object tracked, i.e. series of points, can compute motion features, e.g. angle, speed
+Can pass these motion features into a classifier to determine type of object
+
+MSD analysis: if straight line then random motion; directed motion would be parabolic
+
+# Biomedical Computer Vision (motion estimation and subsequent tracking)
+if know what motion is, can 'correct' it out in comparison images
+* xray of blood vessels. when iodine added head moves, so account for motion change 
+* timelapse of brain, i.e. use motion estimates (template matching, optical flow etc.) to show where new area of brain is
+* cell tracking as they split out to construct cell lineage
+
+NOTE: timelapse tracking will require terabytes of data for long periods of time
+
+IMPORTANT: optical flow best for images with well defined local gradients 
+
+Bayesian inference for many moving objects results in adding many dimensions to feature space for each object
+So, 1 object 2D state space, 2 objects 4D etc.
+So, require exponentially more number of samples to keep for probability distribution
+So, use linear combination of single-target bayesion inference mechanisms
+
+Diagonalise matrix to obtain eigenvectors
+
+Level Sets, i.e. gradient detection on neighbouring pixels to find boundaries

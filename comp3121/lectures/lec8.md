@@ -14,6 +14,8 @@ for i in string:
     
 horner's rule: polynomial rolling hash?
 
+distinction between little and big h()
+
 by computing hash from previous hash, can compare hash value of shifted string (i.e. one character up) from previous string
 
 ## Finite Automata (Knuth-Morris-Pratt, DP algorithm)
@@ -47,6 +49,8 @@ So, feasible solutions to primal are lower bounds for dual; solutions for dual a
 So LP algorithms know when optimal solution is found, i.e when to stop, when solution is also solution for dual 
 
 # Intractability
+IMPORTANT: class P etc. only for decision problems. However, optimisation problems can be converted into a decision problem
+
 Problems considered easily solvable can be solved in polynomial time (even though say n^10 not really feasible)
 Decision problem has answer either TRUE or FALSE. 
 Would be in class P, is exists polynomial time solution

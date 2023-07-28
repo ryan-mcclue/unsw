@@ -26,3 +26,5 @@ the stage number correspond entries to number in transition table
 maximise f(x)
 
 for number of variables and constraints in P, switch in P-star (dual)
+
+line up all x1s etc.

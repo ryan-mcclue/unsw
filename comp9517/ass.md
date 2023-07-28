@@ -122,3 +122,11 @@ and report the mean and standard deviation."
 
 
 ## References
+
+Everyone - have slides and notes on your own model/methods
+
+Ryan McClue - can you create a visual demonstration of how your model works
+(with focus on the unique aspects like the genetic algorithms), 
+
+and maybe an animation of the raw image being segmented into bounding boxes?
+(draw contours? then their boxes?)

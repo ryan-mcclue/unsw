@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 # String Matching
-## Rabin-Karp Algorithm (linear average case)
+## Rabin-Karp Algorithm (linear average case: best for multiple substring searches)
 Hashing + recursion
 
 hash(string) = hash(digit_array) · mod(large_prime)
@@ -18,7 +18,7 @@ distinction between little and big h()
 
 by computing hash from previous hash, can compare hash value of shifted string (i.e. one character up) from previous string
 
-## Finite Automata (Knuth-Morris-Pratt, DP algorithm)
+## Finite Automata (Knuth-Morris-Pratt, DP algorithm: best for general case)
 Maintain a table with current match count
 
 Failure function is longest prefix of substring which is a suffix of string 

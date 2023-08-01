@@ -1,9 +1,5 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-use IEEE overleaf template for report
-make title like "Genetic algorithm with neural network ensemble"
-watch in wk10 consultation then overflow into lecture as cannot watch all videos
-
-https://docs.google.com/document/d/116BPTJ-hUhcxuee4d-eX56j7eNPp76EqDtLiif75ZTs/edit?invite=CIrp__AB
+RECORDING: and when they start presenting, they must mention their name.
 
 ## Literature Review
 Review relevant techniques in literature, along with any necessary
@@ -11,9 +7,18 @@ background to understand the methods you selected.
 
 TODO(Ryan): Just reference lecture slides for others?
 
-Centeno, Tania & Lopes, Heitor & Felisberto, Marcelo & Arruda, Lúcia. (2005). Object Detection for Computer Vision Using a Robust Genetic Algorithm. 284-293. 10.1007/978-3-540-32003-6_29. 
-Equates object detection as an exhaustive search problem. 
-Suggests a genetic algorithm to spend less computational effort to find properties describing object
+A border following algorithm plays an important role in detecting image contours. It starts by finding a boundary pixel and moving this to a neighbouring boundary pixel for as long as possible. The particular connectivity scheme in use determines what neighbouring pixels to consider, e.g. vertical, horizontal, diagonal etc. The result is an effective trace/outline of edges in an image. However, this lacks certain topological information. Specifically, all edges are not uniquely identified, their specific coordinates are absent and the relationship between edges are not known. Contours can be defined as edges with this information added, i.e. an augmentation of the border following algorithm. By adding this data, the contours detected can be considered hierarchical structures representing continuous curves as a series of (x, y) points. This allows for further shape analysis such as determining contour areas, heights, widths, etc. 
+
+This additional information present in contours was utilised in computing possible bounding boxes. 
+
+https://www.sciencedirect.com/science/article/abs/pii/0734189X85900167 
+
+Genetic Algorithms (Ryan) 
+
+To perform object detection there are a large number of non-constant factors to be considered that make it a complex problem to solve using traditional computer vision techniques. Such factors include rotation, translation, scale, lighting, occlusion, colour etc. For an object in question, a series of features extracted from an image can constitute a detection. Therefore, if these features are found in an image, the object can be considered detected. The large number of possible feature permutations means this can be considered an exhaustive search problem. To reduce computational effort in finding these features, a genetic algorithm can be used. This class of algorithms are intended to optimise problems involving large search spaces. By modelling the process of natural selection, solutions are iteratively refined via mutation, crossover and fitness evaluation. 
+
+The foundations of this method inspired the use of a genetic algorithm to optimise the search of hyperparameters for contour detection that led to bounding boxes of greater IOU. 
+
 
 ## Method
 Motivate and explain the selection of the methods you implemented, using

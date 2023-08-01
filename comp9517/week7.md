@@ -1,4 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+(data augmentation can be used to, i.e add more data to train off)
+(also ensembling good)
+
 # Deep Learning
 
 1. start with a linear classifier (machine learning)

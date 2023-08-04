@@ -49,3 +49,16 @@ Consider two subproblems:
 I(i) = optimal weight of subtree if root included
 E(i) = optimal weight of subtree if root not included
 solution = max(I(i), E(i))
+
+## Shortest Paths
+Unweighted: BFS
+Weighted: Djikstra
+Negative: Bellman-Ford (topological sort + DP)
+opt(t, i) shortest path from s to t with i many edges (so relaxation on number of edges)
+
+All vertices: Flloyd-Warshall
+opt(v1, v2, [v3, v4, ...]) shortest path from v1 to v2 using only vertices in set
+
+## lin algo
+Maximise or minimise objective is standard form expected by linear programming algorithms
+Might have to convert equality, unconstrained variables to standard form

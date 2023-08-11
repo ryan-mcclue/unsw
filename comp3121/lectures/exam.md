@@ -15,11 +15,13 @@ Prims (minimum spanning tree): `O(|V^2|)`
 BFS (find all vertices accessible): `O(|V| + |E|)` 
 Heap:
 SelfBalancingTree:
+EdmondsKarp: `O(|E||f|)`,  
 
 #### Divide and Conquer
 `T(n) = a·T(n/b) + f(n)`, *a = num-subproblems*, *b = size-subproblems*
 critical: `n^(logbᵃ)`, `< θ(n^(logbᵃ))`, `= θ(n^(logbᵃ)·log2ⁿ)`, `(> and a·f(n/b) <= c·f(n)) θ(f(n))` 
-TODO: binary-search monotonicity, upper/lower bounds
+**Binary-Search**
+If possible for n, possible larger values; monotonicity. Also have upper/lower bound
 **Algorithm**
 1. Recursively divide into two subarrays of approximately equal parts. Find distinct cards in the first `k/2` and last `k/2`.
 2. Merge the results of 2 subarrays by checking through each card one by one in both halves to get a subarray with distinct cards.
@@ -31,18 +33,21 @@ For `n=k+1`, by problem definition, merging two collections will always produce 
 So, merging two collections of `n=k` will produce a distinct collection at `n=k+1`.
 #### Greedy
 **Stays-Ahead**
-1. Let greedy solution be G = (g1, g2, g3, ..., gn) where gi represents a particular rod. 
-   Let an alternative supposed optimal solution be O = (o1, o2, o3, ..., on)
+1. Let greedy solution be `G=(g1, g2, g3, ..., gn)` where `gi` represents a particular rod. 
+   Let an alternative supposed optimal solution be `O=(o1, o2, o3, ..., on)`
 2. Base case is welding the 2 shortest rods. 
-   Welding g1 + g2 will yield the absolute shortest welded rod of absolute minimal cost of any 2 rods. 
-   Therefore, welding g1 + g2 costs no more than welding o1 + o2.
-3. Assume that welding rods up to gk−1 costs no more than welding rods up to ok−1  
-4.  As stated previously, the cost of the resultant
-rod from gk−1 welds is no more than ok−1. Therefore, gk−1 + gk cannot cost any
-more than ok−1 +ok as the length of ok (and by definition the cost increase) cannot
-be greater than that incurred by welding gk. As a result, since O is arbitrary, G
-must be optimal
-ALTERNATE: If these rods were not present at this location in O, then they must appear closer to the centre of O. 
+   Welding `g1 + g2` will yield the absolute shortest welded rod of absolute minimal cost of any 2 rods. 
+   Therefore, welding `g1 + g2` costs no more than welding `o1 + o2`
+3. Assume that welding rods up to `gk−1` costs no more than welding rods up to `ok−1`  
+4. As the cost of the resultant rod from `gk−1` welds is no more than `ok−1`, `gk−1 + gk` cannot cost any
+more than `ok−1 + ok`. As a result, since O is arbitrary, G must be optimal
+*ALTERNATE: If these rods were not present at this location in O, then they must appear closer to the centre of O.*
+**Exchange**
+1. Let x be the activity that starts last overall
+2. Consider an alternative schedule S that doesn't contain x 
+3. Let y be that activity in S that starts last 
+4. Since we know x is activity that starts last, x must start after y. y won't clash, meaning x won't clash
+5. Therefore, can iteratively transform S into a new schedule S' that contains the activity that starts last
 TODO: **Contradiction**
 Moreover, since the greedy algorithm deletes vertices from G, it must
 have arrived at graphs that contain H as a subgraph. In particular, the greedy algorithm
@@ -55,11 +60,51 @@ vertices that are not adjacent to less than k vertices, i.e. wouldn’t delete v
 contradicts assumption that D represents a smaller optimal solution. Therefore,
 algorithm is optimal.
 
+#### Flow
+Create a flow network with:
+– Source vertex S and sink vertex T
+– n children vertices R
+– For each child i, an edge (S, R) with capacity 1
+**Correctness**
+For particular edge, flow conservation ensures that cannot recieve more ...
+For particular vertex, capacity constraint ensures cannot hold more ...
+Maximum flow is constrained by the total number of children, i.e. `|f| = n`
+
+#### Dynamic Programming
+**Subproblem:**
+Let `min(i, a)` be minimum time taken to travel to city `ci` arriving on
+animal `a`.
+Let `animal(i)` be the animal that was used to arrive at city `ci` on a journey
+of minimal time.
+**Recurrences:**
+`min(i, a) = minimum{min(i − 1, a1) + d(i)/v(a), if R(i − 1, a1, a)}`
+`animal(i) = argmin{min(i,a)}` *a -> G,M,A,I,L*
+**Base Case:** 
+**Order:**
+Initialise 2D table `min[n][5]` bottom-up with an outer loop from `i = 1..n` and inner loop `j = 1..5`
+Set all entries to ∞ to handle cases where no animal can arrive at a particular city.
+To obtain list of animals, backtrack from `i = n..1`
+**Final Solution:**
+Minimal Amount of Time: `minimum{min(n, a)}`
+**Proof:**
+1. Base case
+2. Assume that optimal determined by the optimal choice of between consecutive cities `ck` and `ck+1`.
+Suppose an alternative optimal solution is where the choice between consecutive cities is not optimal. 
+In this case, the total travel time could be reduced by changing the animals between these cities. 
+For example, if this solution has animals `a1, a2` there exists animals `a3, a4` such that smaller.
+This contradicts assumption that this alternative solution is optimal. 
+Therefore, optimal solution is built up from optimal solutions to its subproblems.
+3. Explaining recurrence, considering minimum of all allowable combinations between `ci−1, ci` the optimal choice for `ci−1, ci` will be made.  
+
+#### Strings
+
+#### Linear
+
+#### Intractability
+TODO: Venn diagram
+
+
+  algorithm
   terminates
   correctness
   time-complexity
-
-#### Flow
-`O(|V| + |E|)`, `O()`
-
-dp

@@ -99,6 +99,14 @@ Therefore, optimal solution is built up from optimal solutions to its subproblem
 #### Strings
 
 #### Linear
+maximise `P = 5x1 + 3x2 + 4x3`
+: `x1 + 2x2 + x3 <= 6`
+: `3x1 + x2 + x3 <= 4`
+minimise `P* = 6y1 + 4y2`
+: `y1 + 3y2 >= 5`
+: `2y1 + y2 >= 3`
+: `y1 + y2 >= 4` 
+unconstrained `x -> R`; `x = x' - x''`
 
 #### Intractability
 TODO: Venn diagram

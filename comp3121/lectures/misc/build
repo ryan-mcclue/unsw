@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pandoc -V documentclass=extarticle -V fontsize=17pt -V pagestyle=empty -V geometry:margin=1cm -V mainfont="DejaVu Sans" \
+  'exam.md' --pdf-engine=xelatex -o 'exam.pdf'
+xdg-open exam.pdf

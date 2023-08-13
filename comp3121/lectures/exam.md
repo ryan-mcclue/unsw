@@ -1,25 +1,41 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 https://courageous-postbox-384.notion.site/COMP3121-Tutorials-7490cbbb823044fcac4453661746ab42
 
+**Algorithm**
+**Terminates**
+**Correctness**
+**Time Complexity**
+
 `f(n) = O(g(n))`, if `f(n)/g(n) <= C` or `lim∞ f'(n)/g'(n) = 0` *(limit asymptotic theorem)*
 `f(n) = Ω(g(n))`, if `f(n)/g(n) > C` or `lim∞ f'(n)/g'(n) = ∞`
 `f(n) = θ(g(n))`, if `O(n) = Ω(n)` or `lim∞ f'(n)/g'(n) = 0`
 
-TODO: LOG-RULES
-TODO: arithmetic/geometric sums
+`logb(xy)=logb(x)+logb(y)`
+`logb(x/y)=logb(x)-logb(y)`
+`logb(x^n)=nlogb(x)`
+`logb(x)=loga(x)/loga(b)`
+`logb(1)=0`
+`logb(b)=1`
+`b^(logb(x))=x`
 
-TODO: data-structures and algorithms time complexity
-Topological (vertices connected left to right): `O(|V| + |E|)` 
-Djisktra (shortest path to all vertices): `O(|V^2|)`
-Prims (minimum spanning tree): `O(|V^2|)`
-BFS (find all vertices accessible): `O(|V| + |E|)` 
-Heap:
-SelfBalancingTree:
-EdmondsKarp: `O(|E||f|)`,  
+`arithmetic-sum=n/2*(2a + (n-1)d)`
+`geometric-sum=(a*(1-r^n))/(1-r)`
+
+Topological (vertices connected left to right): `O(|V|+|E|)` 
+Djisktra (positive shortest path to all vertices): `O(|V^2|)`
+Bellman-Ford (negative-non-cycles shortest path to all vertices): `O(|V||E|)`
+Floyd-Warshall (negative-non-cycles shortest path for all pairs of vertices): `O(|V|^3)`
+Prims/Kruskal (minimum spanning tree): `O(|V^2|)`
+BFS (find all vertices accessible): `O(|V|+|E|)` 
+Heap: `O(logn)`
+SelfBalancingTree: `O(logn)`
+EdmondsKarp: `O(|E||f|)`, `O(|V||E^2|)` 
+Bipartite-Graph (): 
+Quicksort (divide different to merge):
 
 #### Divide and Conquer
 `T(n) = a·T(n/b) + f(n)`, *a = num-subproblems*, *b = size-subproblems*
-critical: `n^(logbᵃ)`, `< θ(n^(logbᵃ))`, `= θ(n^(logbᵃ)·log2ⁿ)`, `(> and a·f(n/b) <= c·f(n)) θ(f(n))` 
+critical: `n^(logba)`, `< θ(n^(logba))`, `= θ(n^(logba)·log2ⁿ)`, `(> and a·f(n/b) <= c·f(n)) θ(f(n))` 
 **Binary-Search**
 If possible for n, possible larger values; monotonicity. Also have upper/lower bound
 **Algorithm**
@@ -97,6 +113,13 @@ Therefore, optimal solution is built up from optimal solutions to its subproblem
 3. Explaining recurrence, considering minimum of all allowable combinations between `ci−1, ci` the optimal choice for `ci−1, ci` will be made.  
 
 #### Strings
+**Rabin-Karp O(n), O(mn)**
+*'m' as could have false positive at every point with 'm' comparisons to verify*
+1. alphabet `{"a": 0, "b": 1, "c": 2}` compute all particular length substrings `"abc" = 012`
+2. with example prime of 5, compute horner's rule hash `0121 % 5 = 5`
+3. compare polynomial rolling hash with horner hash and traverse if equal
+**Knuth-Morris-Pratt O(n+m)**
+For substring "abc", 4 states in finite-automaton which is traversed by character `(0, a, ab, abc)`
 
 #### Linear
 maximise `P = 5x1 + 3x2 + 4x3`
@@ -109,10 +132,5 @@ minimise `P* = 6y1 + 4y2`
 unconstrained `x -> R`; `x = x' - x''`
 
 #### Intractability
-TODO: Venn diagram
-
-
-  algorithm
-  terminates
-  correctness
-  time-complexity
+![Venn-Diagram](np.png)
+Polynomial-time reduction is one-way

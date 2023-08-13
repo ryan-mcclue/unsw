@@ -19,12 +19,19 @@ This is self-supervised learning?
 * Ensembling of local feature types SIFT, SURF etc. for BoW
   Ensembling segmentation methods
   Ensembling classifiers
+  (stacking based ensemble, i.e. combine classifiers with logistic regression. then ensemble results with probability voting)
+* Break into stages, e.g. first detect if something there, then define (to allow for further ensembling compensating for weaknesses)
 * DFT operations to limit FLOPS for convolution in higher dimension kernels
 * Look at different evaluation metrics?
 IMPORTANT: Because of this, computer vision is largely probalistic rather than deterministic
 IMPORTANT: Always assumptions in success of computer vision algorithms, e.g. lighting conditions remain the same, distance of object to camera similar
 NOTE: timelapse tracking will require terabytes of data for long periods of time
-
+## Results
+high recall (ability to find positive), low precision (many false positives)
+most networks convolutional, i.e. have convolution layers
+residual neural network (resnet) used for training deep networks by having 'skip/shortcut connections', i.e. not updating along all nodes
+batch normalisation layers for deeper neural networks
+ReLu (rectified linear unit) is an activation function
 
 
 1. Introduction: 

@@ -134,3 +134,4 @@ unconstrained `x -> R`; `x = x' - x''`
 **INTRACTABILITY**  
 ![Venn-Diagram](np.png)
 Polynomial-time reduction is one-way
+NP-Hard at least as difficult as NP, with no known polynomial time solution.

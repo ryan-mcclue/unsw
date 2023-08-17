@@ -14,7 +14,9 @@
 `logb(x)=loga(x)/loga(b)`  
 `logb(1)=0`  
 `logb(b)=1`  
-`b^(logb(x))=x`  
+`b^(logb(x))=x`   
+`a^n = a^n * ln(a)`  
+`ln(x) = 1/x`  
 `arithmetic-sum = (n/2)*(2a + (n-1)d)`  
 `geometric-sum = (a*(1-r^n))/(1-r)`  
 
@@ -28,20 +30,17 @@
 **SelfBalancingTree** `O(logn)`  
 **EdmondsKarp** `O(|E||f|)`, `O(|V||E^2|)`   
 **Bipartite-Graph** (vertices in disjoint sets with edges connecting only to other set)  
-**Quicksort** (divide different to merge): 
 \    
 \    
 \    
 \    
 \  
 
-<!-- won't go on new page otherwise --> 
-*pg1.*   
 **DIVIDE AND CONQUER**  
 `T(n) = a·T(n/b) + f(n)`, *a = num-subproblems*, *b = size-subproblems*  
 critical: `n^(logba)`  
 `f(n) <, t(n^(logba))`  
-`f(n) =, t(n^(logba)·log2ⁿ)`   
+`f(n) =, t(n^(logba)·log2n)`   
 `f(n) > and a·f(n/b) <= c·f(n), t(f(n))`  
 **Binary-Search**  
 If possible for n, possible larger values; monotonicity. Also have upper/lower bound  
@@ -119,12 +118,14 @@ Therefore, optimal solution is built up from optimal solutions to its subproblem
 2. with example prime of 5, compute horner's rule hash `0121 % 5 = 5`  
 3. compare polynomial rolling hash with horner hash and traverse if equal  
 **Knuth-Morris-Pratt O(n+m)**  
-For substring "abc", 4 states in finite-automaton which is traversed by character `(0, a, ab, abc)`  
+"abccbbcabc", substring "bca"  
+![Transition-Table](string.png)
 
 **LINEAR**  
 maximise `P = 5x1 + 3x2 + 4x3`  
 : `x1 + 2x2 + x3 <= 6`  
 : `3x1 + x2 + x3 <= 4`  
+*possible sign reversal from -1 multiplication to get <= maximise standard form*
 minimise `P* = 6y1 + 4y2`  
 : `y1 + 3y2 >= 5`  
 : `2y1 + y2 >= 3`  
@@ -133,5 +134,5 @@ unconstrained `x -> R`; `x = x' - x''`
 
 **INTRACTABILITY**  
 ![Venn-Diagram](np.png)
-Polynomial-time reduction is one-way
+Polynomial-time reduction is one-way  
 NP-Hard at least as difficult as NP, with no known polynomial time solution.

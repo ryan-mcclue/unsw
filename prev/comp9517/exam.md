@@ -19,7 +19,7 @@ This is self-supervised learning?
 * Ensembling of local feature types SIFT, SURF etc. for BoW
   Ensembling segmentation methods
   Ensembling classifiers
-  (stacking based ensemble, i.e. combine classifiers with logistic regression. then ensemble results with probability voting)
+  (stacking based ensemble, i.e. combine classifiers with logistic regression (binary classification). then ensemble results with probability voting)
 * Break into stages, e.g. first detect if something there, then define (to allow for further ensembling compensating for weaknesses)
 * DFT operations to limit FLOPS for convolution in higher dimension kernels
 * Look at different evaluation metrics?

@@ -14,7 +14,7 @@ sqlite3 serverless
 `session.add(user)`
 
 Data model, e.g Book entity with attribute title and many-to-many relationship
-ER diagram would be in-between formality
+ER diagram would be in-between formality (ER diagram not formalised)
 Relational schema would specify primary/foreign keys
 
 quizzes, tut, pracs
@@ -49,4 +49,9 @@ psql \d command for describe
 `*` represents a tuple?
 
 ## Data Modellling
-Book BOUGHT and OWNED
+Book BOUGHT and OWNED. Relationships and operations modelled by tables
+
+how would model something linked to multiple, e.g. array for foreign keys
+`Course: code, name, description, uoc, convenor(user), outcome*`
+`PartOf: assessment, course`
+array of foreign keys vs seperate table, e.g. PartOf table (only if relationship as multiple attributes would you create a table?)

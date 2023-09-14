@@ -41,10 +41,19 @@ psql \d
 Aggregate function operate on series of tuples
 
 ## Data Modelling
-Book BOUGHT and OWNED. Relationships and operations modelled by tables
+Create a table for relationship, e.g. OWNED-BY not operation, e.g BOUGHT 
 
 how would model something linked to multiple, e.g. array for foreign keys
-`Course: code, name, description, uoc, convenor(user), outcome*`
+`Course: code, name, description, uoc, convenor(user), outcome\*`
 `PartOf: assessment, course`
 array of foreign keys vs seperate table, e.g. PartOf table (only if relationship as multiple attributes would you create a table?)
 separate relation allows for independent access
+
+weak entities not that common. occur when entity only exists in the context of another entity
+
+subclasses disjoint (either-or) or overlapping (both)
+common superclass would be a Person
+
+Split large diagrams onto multiple pages, e.g. first attributes (e.g. classes), second relations
+
+To reduce a 3-way relationship, could add a new entity

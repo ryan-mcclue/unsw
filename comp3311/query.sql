@@ -1,5 +1,6 @@
 select 
   distinct family_name || ', ' || given_name, 
+  age1 + age2,
   count(family_name) as family_num
 from Directors 
 where age >= 18

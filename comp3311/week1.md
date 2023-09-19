@@ -8,7 +8,7 @@ SQL standard is language for managing RDBMS.
 Postgresql documentation explicit in standard conformance.
 Could also have noSQL or time-series (i.e. optimised for time-based queries, i.e. index of data determines efficiency) 
 
-Data model -> ER diagram -> Relational schema
+Data model -> ER diagram -> Relational schema (defintion and query language subsets)
 
 psql 13.0, sqlite 3.x, python 3.7+, psycopg 2.8+
 
@@ -40,6 +40,8 @@ psql \d
 
 Aggregate function operate on series of tuples
 
+All names go to lowercase
+
 ## Data Modelling
 Create a table for relationship, e.g. OWNED-BY not operation, e.g BOUGHT 
 
@@ -56,4 +58,4 @@ common superclass would be a Person
 
 Split large diagrams onto multiple pages, e.g. first attributes (e.g. classes), second relations
 
-To reduce a 3-way relationship, could add a new entity
+To reduce a 3-way relationship, could add a new entity for the relationship

@@ -21,7 +21,10 @@ So, will require creating own user with a password
 `$(sudo -i -u postgres)`
 `$(createuser --interactive)`
 `$(psql; ALTER USER ryan WITH ENCRYPTED PASSWORD 'ryan')`
-`$(GRANT ALL PRIVELEGES ON Example TO ryan)`
+`$(GRANT ALL PRIVILEGES ON Example TO ryan)`
+
+Inside of ~/.psqlrc
+\set my_alias SELECT column1, column2 FROM my_table WHERE column3 = 'value';
 
 creating pgadmin server would be localhost and name of user created 
 
@@ -43,6 +46,11 @@ Aggregate function operate on series of tuples
 All names go to lowercase
 
 ## Data Modelling
+Aims to gain high level structure of database and establish relationships between data
+
+For ER diagram, a foreign key will be a relation
+ER superclass no direct mapping in SQL. Could just do single table like a C discriminated union  
+
 Create a table for relationship, e.g. OWNED-BY not operation, e.g BOUGHT 
 
 how would model something linked to multiple, e.g. array for foreign keys

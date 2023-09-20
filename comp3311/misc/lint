@@ -1,0 +1,16 @@
+#!/bin/bash
+
+file_name="$1"
+
+output=$(sqlfluff parse --dialect postgres "$file_name")
+if [[ $? -eq 1 ]]; then
+  errors=$(echo "$output" | awk '/==== parsing violations ====/ {p=1; next} p{print}')
+  printf "$errors"
+fi
+
+# NOTE(Ryan): This pattern is for CMocka. 
+#             %.%# is wildcard for everything
+# let &errorformat = "%.%#---\ %f:%l%.%#"
+
+# L:   8 | P:   1 |  PRS | Line 8, Position 1: Found unparsable section: 'graham\n-- check
+#                        | (length(value) >= 3)\n\n--...'

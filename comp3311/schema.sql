@@ -11,7 +11,7 @@ create domain f64 as double precision;
 -- check only applies for values if present, so can still be NULL
 -- if don't provide value on insertion, might default to NULL
 
-create type Other as enum ('str1', 'str2'); -- text for string
+create type Other as enum (asdasd, 'str1', 'str2'); -- text for string
 
 -- IMPORTANT: use plural for table names
 CREATE OR REPLACE FUNCTION drop_table_if_empty(table_name text)

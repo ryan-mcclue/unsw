@@ -1,6 +1,5 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-## Overview
-DBMS for efficient concurrent manipulation of large amounts of data using set theory and constraints.
+## Overview DBMS for efficient concurrent manipulation of large amounts of data using set theory and constraints.
 Queries converted to relational algebra which is built upon set theory, e.g. a table/relation is a set of tuples/rows.
 So, relational algebra is a sort of machine code for psql.
 
@@ -21,10 +20,12 @@ So, will require creating own user with a password
 `$(sudo -i -u postgres)`
 `$(createuser --interactive)`
 `$(psql; ALTER USER ryan WITH ENCRYPTED PASSWORD 'ryan')`
-`$(GRANT ALL PRIVILEGES ON Example TO ryan)`
+`$(GRANT ALL PRIVILEGES ON Database TO ryan)` (this just manages who can connect)
+`$(GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ryan)`
 
 Inside of ~/.psqlrc
 \set my_alias SELECT column1, column2 FROM my_table WHERE column3 = 'value';
+run external command: `\! clear`
 
 creating pgadmin server would be localhost and name of user created 
 
@@ -48,8 +49,13 @@ All names go to lowercase
 ## Data Modelling
 Aims to gain high level structure of database and establish relationships between data
 
+n:m implies bold and neutral line, while n:n would have both lines the same
+cannot map n:m in sql
+(could create functions when inserting data to adhere to certain constraints that schema cannot capture)
+
+Table(attribute) --> Table.attribute
+
 For ER diagram, a foreign key will be a relation
-ER superclass no direct mapping in SQL. Could just do single table like a C discriminated union  
 
 Create a table for relationship, e.g. OWNED-BY not operation, e.g BOUGHT 
 
@@ -62,6 +68,7 @@ separate relation allows for independent access
 weak entities not that common. occur when entity only exists in the context of another entity
 
 subclasses disjoint (either-or) or overlapping (both)
+could have 'isa' triangles
 common superclass would be a Person
 
 Split large diagrams onto multiple pages, e.g. first attributes (e.g. classes), second relations

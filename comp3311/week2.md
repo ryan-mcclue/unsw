@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-Constraints largely refer to uniqueness, e.g. key, unqiue, referential
+Constraints largely refer to uniqueness, e.g. key, unique, referential
 
-Relation is just foreign keys? These foreign keys are primary key?
+A foreign key can be null and duplicate
 
 ## SQL Modelling
 Effectively '1' will have foreign key, 'n' will be modelled by relationship table
@@ -10,11 +10,26 @@ Effectively '1' will have foreign key, 'n' will be modelled by relationship tabl
   however redudancy comes up, only requiring one foreign key for one of them (as can access other through them)
   what side foreign key is one depends on participation
 * 1:n
-  '1' side with foreign key
-  relationship table with '1' and 'n' foreign key
-  two tables; 'n' side with foreign key 
+  '1' side with foreign key only
 * n:m (cannot create n:m with total participation in sql)
-  single relationship table, i.e. no attributes in host tables
+  create new relationship table, i.e. no attributes in host tables
 
 A foreign key can have multiple attributes.
 Can also have multiple foreign keys.
+
+Composite attribute can be mapped to one attribute or multiple separate
+Superclass  could be multiple tables with foreign keys or single table with nulls.
+Multivalued attribute in standard sql would have it as it a separate table. However extensions allow for arrays
+
+Cyclical references solved by building table incrementally using `alter table`
+
+Weak entity will have its primary key the foreign key of strong entity
+
+## Populating Database
+`insert into table(order2, order1) values (x, y), (a, b)`
+
+\pset null NUL (pset for printing settings)
+
+inserting with `copy` will fail if any of the tuples are invalid (unlike `insert`)
+
+`pg_dump -O -x db > db.dump`

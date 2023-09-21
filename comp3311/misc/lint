@@ -12,3 +12,11 @@ if [[ $? -eq 1 ]]; then
     fi
   done <<< "$errors"
 fi
+
+# Test schema
+db="ass1"
+dropdb "$db"
+createdb "$db"
+psql "$db" -f schema.sql > .errs 2>&1
+grep ERR log 
+# continue until log error free

@@ -1,7 +1,11 @@
-create or replace view q1
+drop view if exists q1; -- necessary to allow columns being renamed in view
+create or replace view q1(region, nbreweries)
 as
-select l.region
+select l.region, count(l.region)
 from locations l
+join breweries b on (b.located_in = l.id)
+where l.region is not null and l.country = 'Australia'
+group by l.region
 ;
 
 select * from q1; 

@@ -14,7 +14,8 @@ file_name="$1"
 # fi
 
 export PGPASSWORD="ryan"
-psql -U ryan -h localhost -d ass1 -f "$file_name" | tail +2
+num_views=0
+PGOPTIONS='--client-min-messages=warning' psql -U ryan -h localhost -d ass1 -q -f "$file_name" | tail +$((num_views * 2 + 1))
 
 # Test schema
 # db="ass1"

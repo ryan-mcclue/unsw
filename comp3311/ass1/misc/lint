@@ -1,0 +1,25 @@
+#!/bin/bash
+
+file_name="$1"
+
+# output=$(sqlfluff parse --dialect postgres "$file_name")
+# if [[ $? -eq 1 ]]; then
+#   errors=$(echo "$output" | awk '/==== parsing violations ====/ {p=1; next} p{print}')
+#   # append filename to each error line
+#   while IFS= read -r line; do
+#     if [[ $line == L:* ]]; then
+#       echo "$file_name: $line"
+#     fi
+#   done <<< "$errors"
+# fi
+
+export PGPASSWORD="ryan"
+psql -U ryan -h localhost -d ass1 -f "$file_name" | tail +2
+
+# Test schema
+# db="ass1"
+# dropdb "$db"
+# createdb "$db"
+# psql "$db" -f schema.sql > .errs 2>&1
+# grep ERR log 
+# continue until log error free

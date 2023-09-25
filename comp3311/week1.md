@@ -20,12 +20,8 @@ So, will require creating own user with a password
 `$(sudo -i -u postgres)`
 `$(createuser --interactive)`
 `$(psql; ALTER USER ryan WITH ENCRYPTED PASSWORD 'ryan')`
-`$(GRANT ALL PRIVILEGES ON Database TO ryan)` (this just manages who can connect)
+`$(GRANT ALL PRIVILEGES ON Database.* TO ryan)` (this just manages who can connect)
 `$(GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ryan)`
-
-Inside of ~/.psqlrc
-\set my_alias SELECT column1, column2 FROM my_table WHERE column3 = 'value';
-run external command: `\! clear`
 
 creating pgadmin server would be localhost and name of user created 
 

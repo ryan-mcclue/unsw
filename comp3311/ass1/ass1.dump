@@ -133,7 +133,7 @@ CREATE TABLE public.beers (
     sold_in public.containertype,
     volume public.milliliters,
     notes text,
-    rating integer NOT NULL,
+    rating integer,
     CONSTRAINT beers_rating_check CHECK (((rating >= 0) AND (rating <= 10)))
 );
 
@@ -247,8 +247,8 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 377	American IPA	2023	255	6.8	\N	can	375	\N	7
 378	Amplifier	2021	239	8	50	can	375	2021 GABS 6-pack	8
 379	Angel's Share	2023	246	13	\N	can	500	Rum barrel-aged	9
-380	Angry Reg	2023	256	8.8	\N	can	440	\N	1
-381	Animal	2023	241	6.2	\N	can	440	\N	1
+380	Angry Reg	2023	256	8.8	\N	can	440	\N	\N
+381	Animal	2023	241	6.2	\N	can	440	\N	\N
 382	Anniversary Ale 11	2017	238	10	\N	bottle	640	belgian-style	7
 383	Antivirus	2022	241	7	\N	can	440	\N	7
 384	Anvil of Hope	2019	257	7.5	\N	can	440	\N	8
@@ -256,7 +256,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 386	Apollo After Dark	2020	246	9.7	\N	can	440	\N	8
 387	Aro Street	2019	251	7.2	\N	can	440	Hapi Sessions vol.1	9
 388	Arrogant Bastard Ale	2020	258	7.2	\N	can	473	\N	8
-389	Arthur Smoked Porter	2023	259	6.3	\N	can	375	smoked	1
+389	Arthur Smoked Porter	2023	259	6.3	\N	can	375	smoked	\N
 390	Astrolabe	2020	260	7.4	\N	can	330	\N	7
 391	At the Bay	2022	241	7.1	\N	can	440	double dry-hopped	8
 392	Atomic Torpedo	2021	256	8.2	\N	can	568	\N	8
@@ -268,8 +268,8 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 398	Aviation Cocktail	2021	262	5.1	\N	can	355	GABS 2021 6-pack	6
 399	Axe Man	2021	241	7.2	\N	can	473	\N	8
 400	B-Side	2023	263	8.1	\N	can	440	\N	8
-401	Explosivo	2023	264	7	34	can	440	\N	1
-402	Extra Special Bitter	2023	265	8.5	\N	can	375	whisky barrel aged	1
+401	Explosivo	2023	264	7	34	can	440	\N	\N
+402	Extra Special Bitter	2023	265	8.5	\N	can	375	whisky barrel aged	\N
 403	Back to Basics	2022	266	8	\N	can	440	\N	8
 404	Back to Cali	2020	266	7.6	\N	can	500	\N	8
 405	Bakery Banana Bread	2019	246	10.2	\N	can	473	aged in bourbon barrels	8
@@ -283,7 +283,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 413	Be Happy	2021	269	5.7	\N	can	440	\N	9
 414	Be Kind, Rewind	2021	251	7.3	\N	can	500	\N	8
 415	Beavis	2023	267	8	\N	can	500	\N	8
-416	Bee Line	2023	270	10.8	\N	can	440	\N	1
+416	Bee Line	2023	270	10.8	\N	can	440	\N	\N
 417	Beer	2019	271	4.8	60	can	330	\N	7
 418	Belgian Style Black IPA	2013	272	7.7	\N	bottle	354	Beer Camp series	6
 419	Best in Show	2023	239	7	\N	can	440	\N	8
@@ -292,7 +292,6 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 422	Ball's Falls	2021	274	4.5	\N	can	473	\N	6
 423	Bentshovel xBa	2021	275	6	\N	can	375	\N	8
 424	Berserker	2019	276	6.2	\N	can	375	\N	6
-425	Betamax	2021	243	7.5	\N	can	500	\N	8
 426	Betelgeuse	2020	277	10	\N	can	375	\N	8
 427	Bicycle Day	2022	278	10	\N	can	500	microdosed	8
 428	Bigfoot	2020	236	9.6	90	bottle	355	\N	8
@@ -300,7 +299,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 430	Big Nut	2020	280	7	\N	can	375	\N	8
 431	Big Spoon, Little Spoon	2022	273	8	\N	can	440	\N	8
 432	Big Sur	2021	266	6.7	\N	can	375	\N	7
-433	Bigger on the Inside	2023	281	5.4	\N	can	440	\N	1
+433	Bigger on the Inside	2023	281	5.4	\N	can	440	\N	\N
 434	Big'n Juicy NEIPA	2019	251	6	\N	can	440	\N	7
 435	BIPA 13.2 Cascade	2021	272	13.2	100	can	375	single hop	8
 436	Bishop's Best	2019	282	4.7	\N	bottle	330	\N	7
@@ -312,7 +311,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 442	Black Nordic Skies	2021	246	10	\N	can	440	\N	9
 443	Black Spur Draught	2019	235	4.7	25	can	375	\N	4
 444	Blaze	2022	283	7.3	\N	can	473	\N	5
-445	Blazing Saddles BA Tex Mex	2023	246	9.8	\N	can	375	bourbon barrel aged	1
+445	Blazing Saddles BA Tex Mex	2023	246	9.8	\N	can	375	bourbon barrel aged	\N
 446	Bless the Haze	2021	243	7.2	\N	can	440	double dry-hopped	8
 447	Bling Bling	2020	284	8.5	60	can	330	\N	8
 448	Bliss	2020	285	4.5	\N	can	330	\N	6
@@ -320,7 +319,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 450	Blood Buccaneer	2021	273	9.9	\N	can	375	\N	8
 451	Blood Orange Kviek IPA	2020	241	6.5	\N	can	250	\N	4
 452	Bloodshot Red IPA	2020	258	6.5	\N	can	375	\N	8
-453	Bloodzilla 2023	2023	267	7.5	\N	can	375	\N	1
+453	Bloodzilla 2023	2023	267	7.5	\N	can	375	\N	\N
 454	Blur Vines	2020	257	8.5	\N	can	440	\N	8
 455	Bohemian Lager	2023	271	4.6	\N	can	440	4x4 series	7
 456	Boozy Fruit	2022	257	9	\N	can	375	\N	9
@@ -328,7 +327,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 458	Botany Bay Lager	2020	285	4.3	20	can	275	\N	4
 459	Bounty Hunter	2020	252	7.3	\N	can	355	\N	6
 460	Bourbon County Stout	2016	246	14.5	\N	bottle	473	aged in bourbon barrels	8
-461	Bourbon Orange County	2023	246	12.5	\N	can	440	aged in bourbon barrels	1
+461	Bourbon Orange County	2023	246	12.5	\N	can	440	aged in bourbon barrels	\N
 462	Bramble	2021	286	8.5	\N	can	440	\N	6
 463	Breakfast at Stepney	2017	287	6	18	bottle	330	\N	7
 464	Breakfast Stout	2018	287	8.3	60	bottle	355	\N	10
@@ -401,13 +400,13 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 531	Dabble	2018	284	8.2	20	can	355	\N	8
 532	Dad Bod	2020	235	5	35	can	330	\N	7
 533	Daisy Chained	2021	256	8.2	\N	can	440	\N	8
-534	Dank you for Hopping	2023	266	6	\N	can	440	\N	1
+534	Dank you for Hopping	2023	266	6	\N	can	440	\N	\N
 535	Dankful	2020	241	7.4	55	can	330	\N	8
 536	Dark Age	2018	246	12.3	\N	bottle	375	aged in bourbon barrels	8
 537	Dark Cherry	2020	294	7	\N	can	440	\N	7
 538	Dark Chocolate Beer	2020	300	5.2	\N	can	330	nitro	8
-539	Nevermore Old & Husky	2023	301	7	40	can	440	\N	1
-540	Dark Matter	2023	249	8	\N	can	440	\N	1
+539	Nevermore Old & Husky	2023	301	7	40	can	440	\N	\N
+540	Dark Matter	2023	249	8	\N	can	440	\N	\N
 541	Dark Rum Spiked Porter	2020	259	6.5	\N	can	375	\N	7
 542	Dead Ringer	2023	266	6.7	\N	can	440	\N	7
 543	Deadly Combination	2021	251	7.4	\N	can	473	\N	8
@@ -416,7 +415,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 546	Daughters of the Neptune	2020	257	9	\N	can	440	\N	8
 547	Day Trip	2020	256	9	\N	can	440	\N	8
 548	Daydream	2023	269	4.7	\N	can	440	\N	7
-549	Daydream	2023	235	5	\N	can	375	\N	1
+549	Daydream	2023	235	5	\N	can	375	\N	\N
 550	Daydreaming in Spring	2020	269	5.7	\N	can	440	double dry-hopped	8
 551	DDH Everywhere	2023	266	6.4	\N	can	440	double-dry hopped	7
 552	DDH Hi-Res	2019	256	11.1	111	can	355	double dry-hopped	8
@@ -476,7 +475,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 606	Elara	2020	239	7	\N	can	440	\N	8
 607	Electric Terrain	2021	267	8	\N	can	473	\N	8
 608	Electrojet	2022	241	6.8	56	can	473	\N	8
-609	Elementary	2023	316	5.4	\N	can	440	\N	1
+609	Elementary	2023	316	5.4	\N	can	440	\N	\N
 610	Elephant in the Room	2023	235	5.5	\N	can	440	double dry-hopped	8
 611	Eleventh Hour	2023	269	5.6	\N	can	440	\N	8
 612	Elsie's Other Udder	2018	291	7.3	\N	can	440	nitro	7
@@ -501,8 +500,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 631	F-11.1% Jet Red IIIPA	2020	318	11.1	\N	can	375	\N	8
 632	F/A-18% Rhino IIIIIPA	2019	319	18	\N	can	375	\N	8
 633	F/A-18% Black Rhino	2019	246	18	\N	can	375	\N	8
-634	Fade into Darkness	2023	246	13	\N	can	440	bourbon barrel aged	1
-635	Fairy Floss Sour	2023	262	6.9	\N	can	440	\N	7
+634	Fade into Darkness	2023	246	13	\N	can	440	bourbon barrel aged	\N
 636	Fairy Floss Sour	2023	262	8.5	\N	can	440	\N	7
 637	Familiar Ground	2022	239	7.5	\N	can	440	\N	8
 638	Fanta Pants	2017	318	7.5	\N	bottle	375	\N	6
@@ -513,7 +511,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 643	Fat Charmer	2018	320	8.3	85	bottle	640	\N	8
 644	Fat Man, Red Suit, Big Sack	2020	258	7.5	\N	can	355	\N	7
 645	Fear of the Dark	2021	321	4.5	\N	bottle	500	Trooper Series	6
-646	Feel Me Flow	2023	257	8.2	\N	can	440	\N	1
+646	Feel Me Flow	2023	257	8.2	\N	can	440	\N	\N
 647	Feelin' Fine	2020	243	5.9	16	can	375	\N	7
 648	Feels Good Man	2020	322	4.9	15	can	330	\N	7
 649	Festively Plump	2022	258	7	\N	can	355	\N	9
@@ -537,7 +535,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 667	Fresh	2021	251	7	\N	can	440	\N	8
 668	Fresh Harvest IPA	2020	241	6.5	\N	can	330	double dry-hopped	7
 669	Fresh Static	2022	256	8	\N	can	440	\N	8
-670	Frostfire	2023	327	8	\N	can	440	oak aged	1
+670	Frostfire	2023	327	8	\N	can	440	oak aged	\N
 671	Frozen Sea	2021	249	8.5	\N	can	375	\N	10
 672	Fruit Salad	2023	241	7	\N	can	440	double dry-hopped	9
 673	Fruitopia (#2)	2020	239	7	\N	can	440	\N	5
@@ -554,7 +552,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 684	Garden Snake	2021	251	6.9	\N	can	440	wet hops	8
 685	Genetically Green	2019	241	6.5	\N	can	440	double dry-hopped	8
 686	George the Fox	2023	329	4.5	\N	can	375	barrel-aged	6
-687	Geuze Mariage Parfait	2018	330	8	\N	bottle	375	\N	1
+687	Geuze Mariage Parfait	2018	330	8	\N	bottle	375	\N	\N
 688	Giblin	2019	246	7.7	\N	bottle	330	\N	6
 689	Give You All My Love	2022	241	6.7	\N	can	440	double dry-hopped	8
 690	Glow Up	2022	239	6.2	\N	can	440	\N	7
@@ -570,7 +568,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 700	Grand Cru	2018	296	6	\N	bottle	330	aged in oak barrels	7
 701	Grapefruit IPA	2022	241	6	45	can	355	\N	7
 702	Green Hills	2019	285	4.2	30	bottle	330	\N	6
-703	Green Matter?	2023	239	6.8	\N	can	440	\N	1
+703	Green Matter?	2023	239	6.8	\N	can	440	\N	\N
 704	Groovy Rhythm	2022	239	6.7	\N	can	330	\N	7
 705	Ground Control	2020	241	7	\N	can	375	west coast style	7
 706	Groundhog Daze	2021	239	6.2	\N	can	330	\N	7
@@ -581,7 +579,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 711	Happy Little Tree	2020	261	5.8	\N	can	330	\N	6
 712	Hangry Donut Hopiscus Wheat	2020	335	5.1	19	can	330	\N	6
 713	Harry	2021	241	8.8	\N	can	500	double dry-hopped	8
-714	Hasta la Vista	2023	269	4.2	\N	can	440	\N	1
+714	Hasta la Vista	2023	269	4.2	\N	can	440	\N	\N
 715	Haze Cake	2019	257	9	\N	can	440	\N	8
 716	Haze Jones	2021	256	8.2	\N	can	440	double dry-hopped	8
 717	Hazelnut Brown	2021	261	5.6	29	can	355	\N	7
@@ -590,7 +588,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 720	Hazy Daze	2022	269	5.8	\N	can	440	\N	8
 721	Hazy IPA	2021	251	7.1	\N	can	440	\N	8
 722	Hazy IPA	2022	239	4.2	15	can	375	brewed in Aus	5
-723	Hazy IPA	2023	239	6	\N	can	440	\N	1
+723	Hazy IPA	2023	239	6	\N	can	440	\N	\N
 724	Hazy IPA	2021	239	6.2	\N	can	375	\N	8
 725	Hazy IPA	2020	239	6.8	\N	can	500	\N	7
 726	Hazy IPA	2020	269	4.5	30	can	500	\N	8
@@ -673,8 +671,8 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 803	Imperial Pink Grapefruit Sour	2020	262	7	\N	can	375	\N	7
 804	India Red Ale	2019	273	7.9	60	can	375	\N	8
 805	Is It A Banger?	2023	241	7.2	\N	can	440	double dry-hopped	7
-806	iStout	2023	246	10	\N	can	440	\N	1
-807	It's Gonna Be a Good Day	2023	256	8	\N	can	500	\N	1
+806	iStout	2023	246	10	\N	can	440	\N	\N
+807	It's Gonna Be a Good Day	2023	256	8	\N	can	500	\N	\N
 808	It's Time	2022	266	6.5	\N	can	375	\N	7
 809	I'll Be Back	2022	235	5.8	\N	can	440	double dry-hopped	8
 810	Intergalatic Lovechild	2020	256	8	\N	can	440	Sour + Hazy	8
@@ -716,7 +714,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 846	Lettuce Soup	2023	241	7.6	\N	can	500	double dry-hopped	8
 847	Lezajsk	2016	285	5.2	\N	bottle	500	\N	6
 848	Lid Ripper	2023	239	6.9	\N	can	440	\N	8
-849	Lil' Hazy	2023	239	3.5	\N	can	375	\N	1
+849	Lil' Hazy	2023	239	3.5	\N	can	375	\N	\N
 850	Lincoln's Double Stout	2022	252	6.2	\N	can	355	\N	8
 851	Little Tripel	2019	348	9	\N	bottle	330	\N	8
 852	Liquid Cocoa	2021	283	10.1	\N	can	440	too sweet	6
@@ -798,12 +796,12 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 928	Narwhal	2022	246	10.2	\N	bottle	355	\N	9
 929	Narwhal (BA)	2019	246	11.5	\N	can	473	aged in bourbon barrels	10
 930	Natt	2018	238	10	\N	bottle	330	\N	7
-931	Navigator	2022	258	6.5	50	can	375	\N	1
+931	Navigator	2022	258	6.5	50	can	375	\N	\N
 932	Nectaron	2020	256	8.5	\N	bottle	500	\N	7
 933	Nectaron	2021	269	5.3	\N	can	375	\N	7
 934	NEeD vol.1	2020	257	7.6	\N	can	440	\N	8
 935	NEeD vol.2	2020	266	6.9	\N	can	440	\N	8
-936	Needs More Dog	2023	359	7.3	\N	can	440	\N	1
+936	Needs More Dog	2023	359	7.3	\N	can	440	\N	\N
 937	Neipers Creepers	2022	251	7.2	\N	can	500	\N	8
 938	Neverending Haze	2020	332	4	\N	can	355	\N	7
 939	New	2000	285	4.6	20	can	375	\N	1
@@ -856,7 +854,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 986	Onyx Amburana	2019	360	11	\N	bottle	330	aged in wood barrels	7
 987	Orderville	2019	239	7.2	\N	can	473	\N	8
 988	Orval	2019	361	6.2	\N	bottle	330	dry-hopped, trappist	8
-989	Oude Geuze	2022	330	7	\N	bottle	375	\N	1
+989	Oude Geuze	2022	330	7	\N	bottle	375	\N	\N
 990	Outdoor Escape	2020	241	7.2	\N	can	473	\N	8
 991	Pacific Red Ale	2019	258	6.8	\N	can	440	\N	7
 992	Pale Ale	2021	235	5	\N	can	375	\N	6
@@ -896,10 +894,10 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 1026	Ponderosa	2023	241	6.5	\N	can	375	\N	6
 1027	Poolside	2020	256	8.5	\N	can	473	tastes like a pina colada	8
 1028	Popular Octopus Session	2021	241	6.3	\N	can	375	random name series	8
-1029	Pork Chop Express	2023	257	8	\N	can	440	\N	1
+1029	Pork Chop Express	2023	257	8	\N	can	440	\N	\N
 1030	Porter	2018	259	6	\N	can	375	\N	7
 1031	Porter	2022	259	5.6	30	can	500	\N	8
-1032	Portermass	2022	238	11.5	\N	bottle	330	\N	1
+1032	Portermass	2022	238	11.5	\N	bottle	330	\N	\N
 1033	Possum Paradise	2023	366	6	11	can	440	\N	8
 1034	Potts Point	2020	259	5.5	\N	can	375	\N	7
 1035	Premium Bounce	2022	239	7.4	\N	can	440	\N	7
@@ -926,11 +924,11 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 1056	Rainbows Are Real	2020	239	6.8	\N	can	375	\N	7
 1057	Ramjet	2018	246	10.6	\N	bottle	330	aged in whisky barrels	8
 1058	Ransack the Metaverse	2023	251	6.8	\N	can	500	\N	8
-1059	Ready and Super Siked	2023	273	8.1	\N	can	500	\N	1
+1059	Ready and Super Siked	2023	273	8.1	\N	can	500	\N	\N
 1060	Really Really Really Bitter	2022	368	5.8	\N	can	355	\N	7
 1061	Red Bellied Black	2021	318	12.3	\N	can	375	\N	9
 1062	Red IPA	2021	258	6	50	can	375	\N	8
-1063	Red Nectar	2023	258	7.1	\N	can	440	\N	1
+1063	Red Nectar	2023	258	7.1	\N	can	440	\N	\N
 1064	Red Nut	2020	258	7.1	56	can	375	\N	9
 1065	Red Racer	2020	241	6.5	\N	can	500	\N	8
 1066	Red Right Hand	2019	318	6.9	\N	can	375	\N	6
@@ -944,7 +942,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 1074	Retro Shift	2023	258	7.7	\N	can	440	\N	8
 1075	Revision IPA	2020	241	6.5	50	can	355	tastes like a 2nd-rate Sculpin	7
 1076	Ripple Effect	2021	239	7.2	\N	can	440	\N	8
-1077	Risfactor	2022	246	11.5	\N	bottle	330	\N	1
+1077	Risfactor	2022	246	11.5	\N	bottle	330	\N	\N
 1078	Road Conan	2021	241	7	\N	can	440	\N	7
 1079	Road Tripper	2020	256	8.1	\N	can	375	west coast style	7
 1080	Rock Paper Scissors	2020	251	6.2	\N	can	440	\N	8
@@ -989,15 +987,15 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 1119	Sizpence	2021	239	6.8	\N	can	440	\N	8
 1120	Slay Ride	2020	246	10.4	\N	can	330	\N	7
 1121	Smalltowner	2019	256	7.9	72	can	375	\N	7
-1122	Snakes	2023	266	6.6	\N	can	440	\N	1
+1122	Snakes	2023	266	6.6	\N	can	440	\N	\N
 1123	Snot Block	2020	241	6	35	can	440	nitro	7
 1124	Snow Wit	2018	366	5.3	\N	bottle	355	\N	6
 1125	Softly Spoken Magic Spells	2020	267	8.6	\N	can	473	\N	7
-1126	Something so Strong	2023	256	8	\N	can	440	NZ hops	1
+1126	Something so Strong	2023	256	8	\N	can	440	NZ hops	\N
 1127	Sonic Boom	2020	256	7.8	\N	can	440	\N	7
 1128	Sour Brett Ale	2018	379	5.8	\N	bottle	750	brettanomyces	7
 1129	Sour Red	2020	380	4.9	\N	can	355	\N	6
-1130	South Melbourne Draught	2023	285	4.5	\N	can	375	\N	1
+1130	South Melbourne Draught	2023	285	4.5	\N	can	375	\N	\N
 1131	Southern Fried	2022	241	7.7	\N	can	500	\N	8
 1132	S.P.X	2019	381	9	\N	bottle	330	aged in Pedro Ximinez barrels	8
 1133	Space Joose	2020	239	6.5	\N	can	440	\N	8
@@ -1007,7 +1005,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 1137	Speedway Stout	2002	246	12	70	bottle	670	\N	9
 1138	Speedway Stout Bourbon	2002	246	12	70	bottle	670	aged in bourbon barrels	9
 1139	Speedway Stout Double Barrel	2002	246	13	70	bottle	670	aged in bourbon and port barrels	9
-1140	Spicy Pickle Beer	2023	367	4.3	\N	can	330	\N	1
+1140	Spicy Pickle Beer	2023	367	4.3	\N	can	330	\N	\N
 1141	Splicer	2020	297	4.4	\N	can	375	\N	8
 1142	Splicer	2022	297	4.4	\N	can	375	\N	7
 1143	Spotlight	2022	239	6.7	\N	can	440	\N	8
@@ -1035,7 +1033,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 1165	Supajuice	2022	239	6.2	\N	can	440	\N	7
 1166	Super Ghouls	2020	239	6.5	\N	can	473	\N	8
 1167	Super Juicy	2019	251	7.2	35	can	375	\N	8
-1168	Surrender to the Void	2023	246	11.5	\N	can	440	\N	1
+1168	Surrender to the Void	2023	246	11.5	\N	can	440	\N	\N
 1169	Red Racer Super Solar IPA	2020	241	6	\N	can	500	\N	8
 1170	Supertrooper	2020	383	10	30	can	440	\N	8
 1171	Survivor Skills	2023	344	5.3	\N	can	440	\N	8
@@ -1067,7 +1065,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 1197	The Druid	2019	334	10	\N	bottle	330	barrel-aged	8
 1198	The Duke of Chifley	2020	236	12.2	\N	bottle	650	aged in Starward whisky barrels	8
 1199	The Eagle	2021	311	12	\N	can	375	\N	7
-1200	The Fix	2023	256	8.2	\N	can	500	\N	1
+1200	The Fix	2023	256	8.2	\N	can	500	\N	\N
 1201	The Floor is Lava	2022	258	6.5	\N	can	440	\N	8
 1202	The Future is Bright	2019	241	6.6	\N	can	440	Solar Powered	7
 1203	The Harvest	2019	241	6	\N	bottle	330	fresh hop ipa	6
@@ -1115,9 +1113,9 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 1245	Trees are for Huggin'	2022	241	6.8	\N	can	440	double dry-hopped	8
 1246	Trinity	2021	239	6.5	\N	can	440	triple dry-hopped	8
 1247	Trinity Porter	2020	393	4.8	60	can	440	\N	6
-1248	Trio of Dips (i)	2023	266	6.5	\N	can	440	dry hopped with NZ-grown cascade	1
-1249	Trio of Dips (ii)	2023	266	6.5	\N	can	440	dry hopped with UK-grown cascade	1
-1250	Trio of Dips (iii)	2023	266	6.5	\N	can	440	dry hopped with US-grown cascade	1
+1248	Trio of Dips (i)	2023	266	6.5	\N	can	440	dry hopped with NZ-grown cascade	\N
+1249	Trio of Dips (ii)	2023	266	6.5	\N	can	440	dry hopped with UK-grown cascade	\N
+1250	Trio of Dips (iii)	2023	266	6.5	\N	can	440	dry hopped with US-grown cascade	\N
 1251	Triple Crush	2021	295	10	\N	can	500	\N	7
 1252	Trippy Hippy's Voodoo Gold	2019	394	5.6	\N	can	440	\N	8
 1253	Tropical Blender IPA	2022	241	7	\N	can	473	fruited	7
@@ -1125,7 +1123,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 1255	Tropical Marmalade	2021	239	7.1	\N	can	473	\N	8
 1256	Tsingtao	2001	289	4.8	\N	bottle	330	\N	4
 1257	Turbo Fuzz	2023	396	10	\N	can	440	\N	8
-1258	Twilight	2023	266	6.5	\N	can	375	\N	1
+1258	Twilight	2023	266	6.5	\N	can	375	\N	\N
 1259	Twist and Stout	2021	264	6.5	43	can	355	\N	7
 1260	Twisted Fate	2020	284	8	\N	can	440	double dry-hopped	8
 1261	Two if by Sea	2022	257	8.1	\N	can	473	\N	7
@@ -1133,7 +1131,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 1263	Under the Topical Sun	2019	397	4	\N	can	375	\N	6
 1264	Unicorns and Rainbows	2022	241	6.8	\N	can	500	double dry-hopped	8
 1265	Union Jack	2020	241	7	60	can	355	\N	7
-1266	Uptown Craft Lager	2021	285	0.5	16	can	375	low alcohol	4
+1266	Uptown Craft Lager	2021	237	0.5	16	can	375	low alcohol	4
 1267	Ursa Major	2020	398	5.2	40	can	440	\N	7
 1268	Vampyre Lovers	2021	258	8	\N	can	375	\N	7
 1269	Variations on a Theme IV	2020	399	8	\N	can	440	\N	8
@@ -1161,7 +1159,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 1291	West Coast	2021	266	7	\N	can	375	\N	8
 1292	West Coast IPA	2021	266	6.2	\N	can	440	\N	8
 1293	West Coast IPA	2020	266	6.2	\N	can	355	\N	7
-1294	West Coast IPA	2023	266	7	\N	can	440	\N	1
+1294	West Coast IPA	2023	266	7	\N	can	440	\N	\N
 1295	What a Trip	2023	367	7.5	\N	can	440	dry-hopped	7
 1296	When You're Strange	2021	273	7.5	\N	can	375	\N	7
 1297	Where Strides the Behemoth	2020	403	10.5	\N	can	375	\N	8
@@ -1170,7 +1168,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 1300	Whisky Barrel Aged Stout	2018	252	8.5	\N	bottle	750	aged in Limeburners whisky barrels	8
 1301	Whisky Butte Porter	2021	238	9	35	bottle	355	barrel-aged	8
 1302	White Mischief	2020	262	2.9	\N	can	330	\N	5
-1303	Why Not A Brown Ale	2023	261	6.5	\N	can	375	\N	1
+1303	Why Not A Brown Ale	2023	261	6.5	\N	can	375	\N	\N
 1304	Widow Maker	2022	256	8.2	\N	can	440	west coast style	8
 1305	Wild Little Thing	2022	367	5.5	\N	can	355	fruited	8
 1306	Wild Thing Vanilla	2017	246	10	\N	bottle	330	\N	8
@@ -1185,7 +1183,7 @@ COPY public.beers (id, name, brewed, style, abv, ibu, sold_in, volume, notes, ra
 1315	Wooden Leg	2021	311	9.1	\N	can	375	\N	7
 1316	World's Best Chef	2023	243	7.5	\N	can	500	\N	8
 1317	Wormhole Traveller	2023	239	6.3	\N	can	440	\N	8
-1318	Wrong Coast Bro!	2023	266	6.5	\N	can	440	\N	1
+1318	Wrong Coast Bro!	2023	266	6.5	\N	can	440	\N	\N
 1319	XPA	2019	235	5.1	24	can	375	\N	4
 1320	XS	2016	284	9.5	74	bottle	750	\N	8
 1321	XXXX Bitter	2021	289	4.4	\N	bottle	375	\N	1
@@ -1296,7 +1294,6 @@ COPY public.brewed_by (beer, brewery) FROM stdin;
 423	36
 423	173
 424	97
-425	188
 426	152
 427	188
 428	246
@@ -1522,7 +1519,6 @@ COPY public.brewed_by (beer, brewery) FROM stdin;
 632	148
 633	148
 634	82
-635	206
 636	206
 637	287
 638	104
@@ -2295,7 +2291,7 @@ COPY public.breweries (id, name, founded, website, located_in) FROM stdin;
 38	Big Shed Brewing	2013	bigshed.beer	36
 39	Billson's Brewery	2017	billsons.com.au	37
 40	Birra del Borgo	2005	birradelborgo.it	38
-41	Blackmanâ€™s Brewery	2015	blackmansbrewery.com.au	39
+41	Blackman’s Brewery	2015	blackmansbrewery.com.au	39
 42	Black Hops	2014	blackhops.com.au	40
 43	Blasta Brewing Co	2017	blastabrewing.com	41
 44	Boatrocker Brewers and Distillers	2009	boatrocker.com.au	42
@@ -2902,8 +2898,6 @@ COPY public.contains (beer, ingredient) FROM stdin;
 634	260
 634	186
 634	159
-635	261
-635	194
 636	262
 636	184
 637	127
@@ -4349,7 +4343,7 @@ COPY public.styles (id, name, min_abv, max_abv) FROM stdin;
 281	Extra Special Bitter	4.8	5.9
 282	Dark Lager	4	5
 246	Imperial Stout	8	19
-285	Lager	0.1	0.5
+285	Lager	4.5	5.9
 286	Imperial Fruited Sour	7.9	9
 287	Oatmeal Stout	5	8
 289	Pale Lager	3	5
@@ -4608,5 +4602,4 @@ ALTER TABLE ONLY public.contains
 --
 -- PostgreSQL database dump complete
 --
-
 

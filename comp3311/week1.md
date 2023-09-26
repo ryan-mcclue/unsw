@@ -22,6 +22,7 @@ So, will require creating own user with a password
 `$(psql; ALTER USER ryan WITH ENCRYPTED PASSWORD 'ryan')`
 `$(GRANT ALL PRIVILEGES ON Database.* TO ryan)` (this just manages who can connect)
 `$(GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ryan)`
+(might be easier to just change ownership?)
 
 creating pgadmin server would be localhost and name of user created 
 

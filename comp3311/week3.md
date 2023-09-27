@@ -30,5 +30,13 @@ SELECT * FROM #temp WHERE RN = 1
 ```
 data transformations through SSIS instead of views/procedures etc.?
 
-`update sells set price = price * 1.1;`
-`delete from drinkers where addr='Randwick' cascade;`
+union compatible mean same number and same type of attributes
+
+`select name as "Beer" from beers;`
+(double quotes is for an identifier, single quotes for string)
+
+`select count(distinct name) from beers;`
+
+stored procedure doesn't return a value like a function.
+it's precompiled; so faster than dynamic query 
+

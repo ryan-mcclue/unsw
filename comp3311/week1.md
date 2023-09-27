@@ -67,6 +67,15 @@ weak entities not that common. occur when entity only exists in the context of a
 subclasses disjoint (either-or) or overlapping (both)
 could have 'isa' triangles
 common superclass would be a Person
+(total participation would not have foreign keys)
+(disjoint and overlapping cannot make distinction in sql)
+TODO: A trigger would prevent invalid tuple insertions 
+1. ER style
+Each relation a table with foreign keys
+2. OO 
+Each relation a table with foreign keys
+Each relation duplicates superclass attributes in them
+3. Table with nulls
 
 Split large diagrams onto multiple pages, e.g. first attributes (e.g. classes), second relations
 

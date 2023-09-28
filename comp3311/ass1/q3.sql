@@ -2,7 +2,7 @@ drop view if exists q3;
 create or replace view q3
 as
 select distinct s.name,
-(select min(b1.abv) from beers b1 where b1.style = s.id), 
+(select min(b1.abv) from beers b1 where b1.style = s.id), -- correlated subquery
 (select max(b1.abv) from beers b1 where b1.style = s.id),
 s.min_abv, s.max_abv
 from styles s

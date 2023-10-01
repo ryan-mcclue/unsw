@@ -18,8 +18,7 @@ export PGPASSWORD="ryan"
 # select 'MARKER' as marker union all
 # output=$(echo "$psql_output" | awk '/MARKER/ {p=1; next} p{print}')
 
-num_views=0
-PGOPTIONS='--client-min-messages=warning' psql -U ryan -h localhost -d ass1 -q -f "$file_name" | tail +$((num_views * 2 + 1))
+PGOPTIONS='--client-min-messages=warning' psql -U ryan -h localhost -d quiz -q -f "$file_name"
 
 # Test schema
 # db="ass1"

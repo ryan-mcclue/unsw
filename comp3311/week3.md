@@ -67,3 +67,5 @@ set operations `union/intersect/except`
 
 For psycopg2 'call-level' interface, generic to each DBMS
 For something like C, more lower level and specific to each DBMS 
+
+`distinct` often required if no `group by`

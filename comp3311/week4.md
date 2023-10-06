@@ -12,7 +12,7 @@ Plpgsql gives data structures, looping constructs, recursion, overloading functi
 `returns setof r -> r.x, r.y and return next r`
 
 `raise notice 'Name is %', name`
-`raise exception` will go into error log
+`raise exception` (will go into error log)
 
 `select ...; if not found then` (found is a special local variable inside each function for previous query status)
 
@@ -32,3 +32,16 @@ serial is shorthand for associating column with an integer sequence
 
 psql won't delete/update in place, i.e. will mark it for deletion at some point
 
+```
+exception
+  when division_by_zero then
+```
+
+DBMS can filter really fast if have an index on that attribute, i.e. won't have to do an entire table scan
+
+```
+func(c integer, OUT square integer)
+square := square * square
+```
+
+`create aggregate agg(numeric)`

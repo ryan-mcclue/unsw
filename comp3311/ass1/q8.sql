@@ -7,7 +7,7 @@ create or replace function q8(pattern text) returns
 as $$
 declare
   res beerhops;
-  beer_id integer;
+  beer_id integer; -- perhaps prefix variable names with _
 begin
   for beer_id in
     select b.id from beers b

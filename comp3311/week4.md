@@ -12,5 +12,23 @@ Plpgsql gives data structures, looping constructs, recursion, overloading functi
 `returns setof r -> r.x, r.y and return next r`
 
 `raise notice 'Name is %', name`
+`raise exception` will go into error log
 
-`select ...; if not found then`
+`select ...; if not found then` (found is a special local variable inside each function for previous query status)
+
+A tuple type can be implicitly created with a table/view or explicitly
+with `create type`
+
+To get new id, `select max(id)+1 into new_id from Beers`
+`insert into Beers values (name) returning id`
+
+`create sequence my_seq start 1 increment 1;`
+`select nextval('my_seq'), currval('my_seq')` (this is atomic)
+(for default table) `select nextval(Table_attr_seq)` 
+serial is shorthand for associating column with an integer sequence
+
+`query_str := 'select count(*) from ' || quote_ident(table_name);`, `quote_literal()`
+`execute query_str into num_tups;`
+
+psql won't delete/update in place, i.e. will mark it for deletion at some point
+

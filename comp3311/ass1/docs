@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# NOTE(Ryan): This is arbitrary to allow okular instances to attach
+readonly sleep_amt=.3
+
+okular 'spec.pdf' --page 7 &
+sleep $sleep_amt 
+okular 'examples.pdf' --page 7 &
+sleep $sleep_amt 
+okular 'schema.pdf' --page 1 &

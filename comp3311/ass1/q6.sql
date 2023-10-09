@@ -11,7 +11,12 @@ as $$
 $$
 language sql ;
 
-select * from q6('au');
+-- select * from q6('australia') order by country;
+-- select * from q6('aust') order by country;
+-- select * from q6('land') order by country;
+select * from q6('oo') order by country;
+
+
 
 -- Write an SQL function Q6(pattern text) whose argument is a string
 -- representing part of a country name. The function returns a set of 0 or more

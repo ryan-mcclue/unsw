@@ -1,3 +1,77 @@
+drop type if exists collab cascade;
+create type collab as (brewery text, collaborator text);
+
+drop function if exists q9 cascade;
+create or replace function q9(breweryid integer) returns 
+  setof collab
+as $$
+declare
+  collabs collab;
+  bw_name text;
+  collab record;
+  collab_count integer = 0;
+begin
+  -- Check if valid
+  select bw.name into bw_name
+  from breweries bw
+  where bw.id = breweryid;
+
+  if (not found) then
+    collabs.brewery := 'No such brewery (' || breweryid || ')'; 
+    collabs.collaborator := 'none';
+    return next collabs;
+    return;
+  end if;
+
+  -- Collaborations
+  for collab in 
+    with base as (
+      select *
+      from brewed_by
+      where brewery = breweryid
+    )
+    -- seems to be duplicate entries?
+    select distinct bw_by.brewery 
+    from brewed_by bw_by
+    join base b on bw_by.beer = b.beer
+    where bw_by.brewery != breweryid
+    order by bw_by.brewery
+  loop
+    select bw.name into collabs.collaborator
+    from breweries bw
+    where bw.id = collab.brewery;
+
+    if (collab_count = 0) then
+      collabs.brewery := bw_name;
+    else
+      collabs.brewery := null;
+    end if;
+
+    return next collabs;
+
+    collab_count := collab_count + 1;
+  end loop;
+  
+  if (collab_count = 0) then
+    collabs.brewery := bw_name;
+    collabs.collaborator := 'none';
+    return next collabs;
+  end if;
+
+end;
+$$ 
+language plpgsql ;
+
+--select * from q9(0);
+--select * from q9(49);
+--select * from q9(149);
+--select * from q9(267);
+--select * from q9(118);
+--select * from q9(183);
+select * from q9(184);
+
+
+
 
 
 -- Write a PLpgSQL function Q9(breweryID integer) whose argument is

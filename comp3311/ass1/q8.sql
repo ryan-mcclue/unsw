@@ -36,7 +36,14 @@ end;
 $$
 language plpgsql ;
 
-select * from q8('dank');
+--select * from q8('korb') order by beer;
+-- select * from q8('hoppiness') order by beer;
+-- select * from q8('yakima') order by beer;
+-- select * from q8('dank') order by beer;
+--select * from q8('zzz') order by beer;
+select * from q8('zz') order by beer;
+-- select * from q8('show') order by beer;
+
 
 -- Write a PLpgSQL function Q8(pattern text) whose argument is a string
 -- representing part of a beer name. The function returns a set of 0 or more tuples

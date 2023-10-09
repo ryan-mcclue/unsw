@@ -6,7 +6,7 @@ declare
   beer_id integer;
   beer_name text;
   ingredient record;
-  has_ingredients integer = 0;
+  ingredients_count integer = 0;
   ret text;
 begin
   select b.id, b.name into beer_id, beer_name
@@ -27,12 +27,16 @@ begin
     where b.id = beer_id
     order by i.name
   loop
-    has_ingredients := 1;
+    if (ingredients_count = 0) then
+      ret := ret || E'\n' || '  contains:';
+    end if;
 
-    ret := ret || E'\n' || '    ' || ingredient.name || '(' || ingredient.itype || ')';
+    ret := ret || E'\n' || '    ' || ingredient.name || ' (' || ingredient.itype || ')';
+
+    ingredients_count := ingredients_count + 1;
   end loop;
 
-  if (has_ingredients <> 1) then
+  if (ingredients_count = 0) then
     ret := ret || E'\n' || '  no ingredients recorded';
   end if;
 
@@ -41,7 +45,16 @@ end;
 $$
 language plpgsql ;
 
-select * from q7(891);
+--select q7(123);
+-- select q7(366);
+-- select q7(891);
+-- select q7(893);
+--select q7(1202);
+ select q7(1226);
+
+
+
+
 
 -- Write a PLpgSQL function Q7(_beerID integer) whose argument is an
 -- integer representing a beer ID ( Beers.id ) value. The function returns a

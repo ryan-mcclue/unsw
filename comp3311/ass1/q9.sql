@@ -68,7 +68,7 @@ language plpgsql ;
 --select * from q9(267);
 --select * from q9(118);
 --select * from q9(183);
-select * from q9(184);
+--select * from q9(184);
 
 
 

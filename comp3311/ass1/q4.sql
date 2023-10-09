@@ -20,7 +20,7 @@ where rating = (select max(rating) from brewery_ratings)
 
 --select * from q4; 
 
-select * from q4 order by brewery
+--select * from q4 order by brewery
 
 -- Write a view Q4(brewery,rating) that returns the brewery (or breweries)
 -- with the maximum average rating for all their beers.

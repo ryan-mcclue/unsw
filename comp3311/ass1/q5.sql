@@ -10,7 +10,7 @@ language sql ;
 -- select * from q5('extra') order by beer;
 -- select * from q5('fairy floss') order by beer;
 -- select * from q5('oop') order by beer;
-select * from q5('zz') order by beer;
+--select * from q5('zz') order by beer;
 
 
 -- Alcohol consumption is often measured in term of "standard drinks". This can

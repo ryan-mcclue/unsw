@@ -9,7 +9,7 @@ group by l.region
 ;
 
 --select * from q1; 
-select * from q1 order by state;
+--select * from q1 order by state;
 
 -- Write a view Q1(state,nbreweries) that returns a list of Australian
 -- states and a count of the number of breweries in each state.

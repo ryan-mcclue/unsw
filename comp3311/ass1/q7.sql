@@ -50,7 +50,7 @@ language plpgsql ;
 -- select q7(891);
 -- select q7(893);
 --select q7(1202);
- select q7(1226);
+ --select q7(1226);
 
 
 

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# find . -type f -iname "q*.sql" -exec cat {} >> "ass1.test.sql" \;
+name="ass1.test.sql"
+[[ -f "$name" ]] && rm -f "$name"
+find . -type f -iname "q*.sql" | sort | xargs cat >> "$name" 
+
+
+# createdb example
+# psql example -f /home/cs3311/web/23T3/assignments/ass1/ass1.dump
+# psql example -f ass1.sql
+# run tests (https://webcms3.cse.unsw.edu.au/COMP3311/23T3/resources/89168)
+# 
+# 3. Order of styles is different
+# 8. order of beer different
+
+

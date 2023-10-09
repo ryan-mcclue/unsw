@@ -11,7 +11,7 @@ where (s.min_abv != s.max_abv) and (b.abv < s.min_abv or b.abv > s.max_abv)
 ;
 
 --select * from q3; 
-select * from q3 order by style;
+-- select * from q3 order by style;
 
 
 -- Write a view Q3(style,lo_abv,hi_abv,min_abv,max_abv) that

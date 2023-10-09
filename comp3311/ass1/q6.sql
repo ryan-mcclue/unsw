@@ -14,7 +14,7 @@ language sql ;
 -- select * from q6('australia') order by country;
 -- select * from q6('aust') order by country;
 -- select * from q6('land') order by country;
-select * from q6('oo') order by country;
+--select * from q6('oo') order by country;
 
 
 

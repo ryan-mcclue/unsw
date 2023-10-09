@@ -7,7 +7,7 @@ where (s1.max_abv - s1.min_abv) = (select max(s.max_abv - s.min_abv) from styles
 ;
 
 -- select * from q2; 
-select * from q2 order by style;
+--select * from q2 order by style;
 
 -- Write a view Q2(style,min_abv,max_abv) that determines which
 -- style(s) have the largest difference between their minimum and maximum ABV

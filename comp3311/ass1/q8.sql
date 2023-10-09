@@ -41,7 +41,7 @@ language plpgsql ;
 -- select * from q8('yakima') order by beer;
 -- select * from q8('dank') order by beer;
 --select * from q8('zzz') order by beer;
-select * from q8('zz') order by beer;
+--select * from q8('zz') order by beer;
 -- select * from q8('show') order by beer;
 
 

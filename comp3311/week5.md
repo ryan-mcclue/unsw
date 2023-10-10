@@ -36,6 +36,7 @@ create assertion namecount check (
 );
 ```
 
+triggers are atomic
 ```
 create trigger mytrigger
 before/after insert/delete or update on table
@@ -47,3 +48,26 @@ delete --> old
 An exception in a trigger cause a roll-back
 each row --> trigger on each tuple
 each statement --> trigger when all tuples updated (so no new and old)
+
+foreign key existance will be checked automatically, however:
+```
+create function
+  check_fk() returns trigger
+as $$
+begin
+  perform * from S where id = new.s;
+  if (not found) then
+    raise NOTICE 'Invalid';
+    if (TG_OP = 'INSERT') then
+      return NULL;
+    endif;
+    if (TG_OP = 'UPDATE') then
+      return old; -- return old to not pass changes
+    endif;
+  else
+    return new;
+  end if;
+end;
+```
+
+When working with sql in say python, try to construct as much logic into single query as possible

@@ -71,3 +71,38 @@ end;
 ```
 
 When working with sql in say python, try to construct as much logic into single query as possible
+
+```
+try:
+  if on_vxdb2:
+    db = "dbname=ass2"
+  else:
+    db_params = {
+        "host": "localhost",
+        "port": "5432",
+        "dbname": "mydb",
+        "user": "graham",
+        "password": "mypass",
+    }
+    db = psycopg2.extensions.make_dsn(db_params)
+
+  c = psycopg2.connect(db)
+  cur  = c.cursor()
+
+  -- sql_str = cur.mogrigfy() debugging
+
+  -- IMPORTANT(Ryan): This won't create an injection issue, as sql template understands the expected format
+  -- i.e. will wrap with quotes correctly
+  -- so, just use sql templates to prevent injection issues
+  cur.execute("select * from R where x = %s", ["hi there"])
+  for tup in cur.fetchall():
+    x, y, z = tup
+
+  c.commit()
+except Exception as e:
+  print()
+finally:
+  if c:
+    c.close()
+
+```

@@ -45,3 +45,5 @@ square := square * square
 ```
 
 `create aggregate agg(numeric)`
+
+SQL function parameters don't have names, i.e access with '$1' etc.

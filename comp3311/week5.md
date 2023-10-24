@@ -95,8 +95,12 @@ try:
   -- i.e. will wrap with quotes correctly
   -- so, just use sql templates to prevent injection issues
   cur.execute("select * from R where x = %s", ["hi there"])
-  for tup in cur.fetchall():
-    x, y, z = tup
+  res = cur.fetchall()
+  if not res:
+    print("no results")
+  else:
+    for tup in res:
+      x, y, z = tup
 
   c.commit()
 except Exception as e:

@@ -19,6 +19,7 @@ create aggregate product(integer) (
   initcond = 1,
   sfunc = product_accum,
   -- finalfunc = finalise_func 
+  -- sortop = min/max ordering
 );
 
 -- anyelement type
@@ -36,6 +37,7 @@ create assertion namecount check (
 );
 ```
 
+NOTE: standard constraints are checked before trigger entered
 triggers are atomic
 ```
 create trigger mytrigger

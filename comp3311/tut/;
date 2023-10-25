@@ -1,0 +1,14 @@
+create trigger pk_check before insert or update on R
+for each row execute pk_check_trig();
+
+create function pk_check_trig() returns trigger as $$
+begin
+
+end;
+$$ language plpgsql;
+
+create aggregate my_avg(numeric) (
+  stype = numeric,
+  initcond = 0,
+  sfunc = my_avg_func,
+)

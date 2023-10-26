@@ -30,6 +30,19 @@ def sql_execute(query, args):
     print(f"[ECHO-QUERY]: {global_cursor.mogrify(query, args)}")
   global_cursor.execute(query, args)
 
+# people id and zid
+# Ass2:
+# gened -> FREE#### (the # is any valid character based on given context)
+# regex -> COMP[2468]###
+# program --> bachelor of engineering, bachelor of computer science
+# stream --> seng, embedded
+#  OrgUnit --> 0 (unsw), faculties (science), schools (chemistry)
+# Requirement (marks and amount of course types)
+# people id and zid
+
+# might do DFS on courses? e.g have buckets for each course type
+# assume gen-ed first then go through and populate
+
 def main():
   print(f"python: {platform.python_version()} ({platform.version()})")
 

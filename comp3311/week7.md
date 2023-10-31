@@ -16,7 +16,7 @@ So, when looking for dependencies look for unique and identical values
 Inference rules to simplify and rearrange functional dependencies
 A closure is all fds from a relation
 
-Attribute closures:
+Attribute closures (to determine key candidates):
 R = ABCDEFG
 FD = {A->B, C->D, E->FG}
 A+ = AB
@@ -28,5 +28,5 @@ Boyce-Codd and 3rd-NF usually used
 
 1NF all values must be atomic (so no arrays)
 2NF all non-key attributes depend on key
-3NF no attributes depend on non-key attributes (so cannot have key ABC and B->C)
+3NF no attributes depend on non-key attributes (so cannot have key ABC and B->C; therefore possible update anomalies)
 BCNF may not preserve functional dependencies

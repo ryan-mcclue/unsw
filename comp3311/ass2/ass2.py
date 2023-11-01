@@ -25,10 +25,15 @@ def fatal_error(msg):
 
 global_cursor = None
 
-def sql_execute(query, args):
+def sql_execute_all(query, args=[]):
   if __debug__:
     print(f"[ECHO-QUERY]: {global_cursor.mogrify(query, args)}")
   global_cursor.execute(query, args)
+  return global_cursor.fetchall()
+
+def sql(query, args=[]):
+  for res in sql_execute_all(query, args):
+    print(res)
 
 # people id and zid
 # Ass2:
@@ -43,6 +48,10 @@ def sql_execute(query, args):
 # might do DFS on courses? e.g have buckets for each course type
 # assume gen-ed first then go through and populate
 
+def q1():
+  print("#Locl  #Intl Proportion")
+  # print(f"{TermCode} {Locals:6d} {Internationals:6d} {Proportion:6.1f}")
+
 def main():
   print(f"python: {platform.python_version()} ({platform.version()})")
 
@@ -54,34 +63,23 @@ def main():
   os.chdir(directory_of_running_script)
 
   try:
+    global global_cursor
     db = None
     # NOTE(Ryan): Will set this env. variable on local machine to differentiate running on vxdb2
     local_db_pass = os.environ.get("LOCALDBPASS")
     if local_db_pass is None:
       db = "dbname=ass2"
     else:
-      db_params = {
-          "host": "localhost",
-          "port": "5432",
-          "dbname": "ass2",
-          "user": "ryan",
-          "password": local_db_pass,
-      }
-      db = psycopg2.extensions.make_dsn(db_params)
+      db = f"host=localhost, port=5432 dbname=ass2 user=ryan password={local_db_pass}"
 
     connection = psycopg2.connect(db)
     global_cursor = connection.cursor()
+
+    sql('select * from students')
+
+
+
   except psycopg2.DatabaseError as error:
     fatal_error(f"psycopg2 error ({error.pgcode}): {error.pgerror}")
-
-  if len(sys.argv) < 2:
-    fatal_error("Usage: ./{sys.argv[0]} abs-binary-path build_time flash_time flash-size ram-size arena-size loc")
-  else:
-    abs_binary_path = sys.argv[1]
-    if not os.path.exists(abs_binary_path):
-      fatal_error(f"No file found at {abs_binary_path}")
-    print(get_top10_symbols(abs_binary_path))
-    print(get_sizes(abs_binary_path))
-    print(get_hashes())
 
 if __name__ == "__main__": main()

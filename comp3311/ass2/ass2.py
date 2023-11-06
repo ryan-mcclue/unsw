@@ -97,7 +97,8 @@ def q1():
 
 def q2(subject_code="COMP1521"):
   q = '''
-    select t.code, c.satisfact, c.nresponses, p.full_name, s.title
+    select t.code, coalesce(c.satisfact, -1), coalesce(c.nresponses, -1), 
+    coalesce(p.full_name, \'?\'), s.title
     from subjects s
     join courses c on (c.subject = s.id)
     join terms t on (t.id = c.term)
@@ -125,15 +126,22 @@ def q2(subject_code="COMP1521"):
     q_res = sql_execute_all(q, [subject_code])
     subject_title = q_res[0][4]
     print(f"{subject_code} {subject_title}")
-    print("Term   Satis   #resp   #stu Convenor")
+    print("Term  Satis  #resp   #stu  Convenor")
     for res in q_res:
       term = res[0]
-      satisfaction = res[1]
-      nresponses = res[2]
+      satisfaction = str(res[1])
+      if satisfaction == "-1":
+        satisfaction = "?"
+      nresponses = str(res[2])
+      if nresponses == "-1":
+        nresponses = "?"
       convenor = res[3]
 
       nstudents = sql_execute_all(q2, [subject_code, term], False)[0][0]
-      print(f"{term} {satisfaction:6d} {nresponses:6d} {nstudents:6d}  {convenor}")
+      print(f"{term} {satisfaction:>6} {nresponses:>6} {nstudents:6d}  {convenor}")
+
+def q3(code=""):
+  pass
 
 
 
@@ -161,7 +169,7 @@ def main():
     connection = psycopg2.connect(db)
     global_cursor = connection.cursor()
 
-    q2()
+    q3("ACCT1511")
 
 
 

@@ -25,8 +25,8 @@ def fatal_error(msg):
 
 global_cursor = None
 
-def sql_execute_all(query, args=[]):
-  if __debug__:
+def sql_execute_all(query, args=[], log=True):
+  if log:
     print(f"[ECHO-QUERY]: {global_cursor.mogrify(query, args).decode('utf-8')}")
   global_cursor.execute(query, args)
   return global_cursor.fetchall()
@@ -47,8 +47,8 @@ def sql(query, args=[]):
 
 # might do DFS on courses? e.g have buckets for each course type
 # assume gen-ed first then go through and populate
-F = False;
-T = True;
+F = False
+T = True
 
 def q1():
   q = '''
@@ -95,8 +95,45 @@ def q1():
     # NOTE(Ryan): Print final row
     print(f"{terms[i]} {local_count:6d} {intl_count:6d} {local_count/intl_count:6.1f}")
 
-def q2():
-  pass
+def q2(subject_code="COMP1521"):
+  q = '''
+    select t.code, c.satisfact, c.nresponses, p.full_name, s.title
+    from subjects s
+    join courses c on (c.subject = s.id)
+    join terms t on (t.id = c.term)
+    join staff stf on (c.convenor = stf.id)
+    join people p on (p.id = stf.id)
+    where t.starting between '2019-02-18' and '2023-09-11'
+    and s.code = %s
+    order by t.code
+  '''
+
+  q2 = '''
+    select count(*)
+    from courses c
+    join terms t on (t.id = c.term)
+    join course_enrolments ce on (ce.course = c.id)
+    join subjects s on (c.subject = s.id)
+    where s.code = %s and t.code = %s
+  '''
+
+  d = F
+  if d:
+    sql(q, [subject_code])
+    # sql(q2, [subject_code, '19T2'])
+  else:
+    q_res = sql_execute_all(q, [subject_code])
+    subject_title = q_res[0][4]
+    print(f"{subject_code} {subject_title}")
+    print("Term   Satis   #resp   #stu Convenor")
+    for res in q_res:
+      term = res[0]
+      satisfaction = res[1]
+      nresponses = res[2]
+      convenor = res[3]
+
+      nstudents = sql_execute_all(q2, [subject_code, term], False)[0][0]
+      print(f"{term} {satisfaction:6d} {nresponses:6d} {nstudents:6d}  {convenor}")
 
 
 
@@ -124,7 +161,7 @@ def main():
     connection = psycopg2.connect(db)
     global_cursor = connection.cursor()
 
-    q1()
+    q2()
 
 
 

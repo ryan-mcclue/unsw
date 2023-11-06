@@ -6,6 +6,8 @@ import platform
 import pathlib
 import subprocess
 
+import re
+
 from dataclasses import dataclass
 
 from urllib.parse import urlparse
@@ -140,8 +142,112 @@ def q2(subject_code="COMP1521"):
       nstudents = sql_execute_all(q2, [subject_code, term], False)[0][0]
       print(f"{term} {satisfaction:>6} {nresponses:>6} {nstudents:6d}  {convenor}")
 
-def q3(code=""):
-  pass
+def q3(code="3707"):
+  is_stream = False
+
+  # TODO(Ryan): Is just checking length sufficient?
+  if len(code) == 6:
+    q = 'select 1 from streams s where s.code = %s limit 1'
+    if not sql_execute_all(q, [code]):
+      print(f"Invalid program code {code}")
+    else:
+      is_stream = True
+  elif len(code) == 4:
+    q = 'select 1 from programs p where p.code = %s limit 1'
+    if not sql_execute_all(q, [code]):
+      print(f"Invalid stream code {code}")
+  else:
+    print("Invalid code")
+
+  q_start = None
+  if is_stream:
+    q_start = '''
+      select r.name, r.rtype, r.acadobjs, r.min_req, r.max_req, s.name
+      from requirements r
+      join streams s on (r.for_stream = s.id)
+      where s.code = %s
+    '''
+  else:
+    q_start = '''
+      select r.name, r.rtype, r.acadobjs, r.min_req, r.max_req, p.name
+      from requirements r
+      join programs p on (r.for_program = p.id)
+      where p.code = %s
+    '''
+
+  q = q_start + \
+    '''
+    order by case
+      when r.rtype = 'uoc' then 1 
+      when r.rtype = 'stream' then 2
+      when r.rtype = 'core' then 3
+      when r.rtype = 'elective' then 4
+      when r.rtype = 'gened' then 5
+      when r.rtype = 'free' then 6
+      else 7
+    end
+    '''
+
+  res = sql_execute_all(q, [code])
+
+  print(f"{code} {res[0][-1]}")
+  print("Academic Requirements: ")
+
+  for t in res:
+    req_name = t[0]
+    req_type = t[1]
+    acad = t[2]
+    min_req = t[3]
+    max_req = t[4]
+
+# IMPORTANT(Ryan): Lots of ifs to match examples
+    if min_req and not max_req:
+      req_str = f"at least {min_req}"
+    elif not min_req and max_req:
+      req_str = f"up to {max_req}"
+    elif min_req and max_req:
+      if min_req < max_req:
+        req_str = f"between {min_req} and {max_req}"
+      elif min_req == max_req:
+        req_str = f"{min_req}"
+
+    if req_type == "uoc":
+      req_str += " UOC" 
+    elif req_type == "stream":
+      req_str += " stream" 
+
+    if req_name == "Total UOC":
+      print(f"Total UOC {req_str}")
+      continue
+
+    if req_type == "core":
+      print(f"all courses from {req_name}")
+
+    if req_type == "gened":
+      print(f"{req_str} UOC of General Education")
+    
+  #print(res)
+  #return
+  # acad = ''
+  # for acad_tokens in acad.split(','):
+  #   if acad_token[0] == '{':
+  #     # {s1;s2}
+  #   else if '#' in acad_token:
+  #     # ####s####
+
+
+  stream_req = '''
+    select coalesce(s.name, \'None\')
+    from streams s
+    where s.code = %s
+  '''
+
+  core_req = '''
+
+  '''
+  # TODO(Ryan): Handle same requirement type
+
+  
 
 
 
@@ -169,7 +275,7 @@ def main():
     connection = psycopg2.connect(db)
     global_cursor = connection.cursor()
 
-    q3("ACCT1511")
+    q3()
 
 
 

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# NOTE(Ryan): This is arbitrary to allow okular instances to attach
+readonly sleep_amt=.3
+
+declare -A docs
+docs["spec.pdf"]=6
+# docs["schema.pdf"]="1"
+docs["examples.pdf"]="1"
+
+for key in "${!docs[@]}"; do
+  okular "$key" --page "${docs[$key]}" &
+  sleep $sleep_amt 
+done

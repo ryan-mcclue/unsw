@@ -27,7 +27,7 @@ global_cursor = None
 
 def sql_execute_all(query, args=[]):
   if __debug__:
-    print(f"[ECHO-QUERY]: {global_cursor.mogrify(query, args)}")
+    print(f"[ECHO-QUERY]: {global_cursor.mogrify(query, args).decode('utf-8')}")
   global_cursor.execute(query, args)
   return global_cursor.fetchall()
 
@@ -47,11 +47,60 @@ def sql(query, args=[]):
 
 # might do DFS on courses? e.g have buckets for each course type
 # assume gen-ed first then go through and populate
+F = False;
+T = True;
 
 def q1():
-  print("#Locl  #Intl Proportion")
-  # print(f"{TermCode} {Locals:6d} {Internationals:6d} {Proportion:6.1f}")
+  q = '''
+    select t.starting, s.status, count(distinct s.id)
+    from students s 
+    join program_enrolments pe on (pe.student = s.id)
+    join terms t on (t.id = pe.term)
+    where t.starting between '2019-02-18' and '2023-09-11'
+    group by s.status, t.starting
+    order by t.starting, s.status
+  '''
 
+  d = F
+  if d:
+    sql(q)
+  else:
+    student_counts = sql_execute_all(q)
+    terms = ["19T1", "19T2", "19T3", 
+             "20T0", "20T1", "20T2", "20T3",
+             "21T0", "21T1", "21T2", "21T3",
+             "22T0", "22T1", "22T2", "22T3",
+             "23T0", "23T1", "23T2", "23T3"]
+    i = 0
+    intl_count = 0
+    local_count = 0
+    cur_starting = student_counts[0][0]
+    print("Term  #Locl  #Intl Proportion")
+    for res in student_counts:
+      starting = res[0]
+      if starting != cur_starting:
+        print(f"{terms[i]} {local_count:6d} {intl_count:6d} {local_count/intl_count:6.1f}")
+        
+        cur_starting = starting
+        local_count = 0
+        intl_count = 0
+
+        i += 1
+
+      if res[1] == 'INTL':
+        intl_count = res[2]
+      else:
+        local_count += res[2]
+
+    # NOTE(Ryan): Print final row
+    print(f"{terms[i]} {local_count:6d} {intl_count:6d} {local_count/intl_count:6.1f}")
+
+def q2():
+  pass
+
+
+
+# IMPORTANT(Ryan): Stay up-to-date on Fixes+Updates page
 def main():
   print(f"python: {platform.python_version()} ({platform.version()})")
 
@@ -75,7 +124,7 @@ def main():
     connection = psycopg2.connect(db)
     global_cursor = connection.cursor()
 
-    sql('select * from students')
+    q1()
 
 
 

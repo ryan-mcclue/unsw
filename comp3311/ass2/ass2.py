@@ -142,22 +142,59 @@ def q2(subject_code="COMP1521"):
       nstudents = sql_execute_all(q2, [subject_code, term], False)[0][0]
       print(f"{term} {satisfaction:>6} {nresponses:>6} {nstudents:6d}  {convenor}")
 
+def get_course_name(code):
+  q = '''
+      select s.name from streams s
+      where s.code = %s
+   '''
+  res = sql_execute_all(q, [code], False)
+
+  if len(res) == 0:
+    q = '''
+        select s.title from subjects s
+        where s.code = %s
+    '''
+    return sql_execute_all(q, [code], False)[0][0]
+  else:
+    return res[0][0]
+
+def print_acad(acad):
+  for acad_token in acad.split(','):
+    if acad_token[0] == '{':
+      acad_plain = acad_token.strip('{}')
+      stream_codes = acad_plain.split(';')
+      stream_names = []
+      for stream_code in stream_codes:
+        stream_names += [get_course_name(stream_code)]
+      final_str = ""
+      for i in range(len(stream_names)):
+        final_str += f"{stream_codes[i]} {stream_names[i]} or "
+      print(f"- {final_str[:-4]}")
+    else:
+      stream_name = get_course_name(acad_token)
+      print(f"- {acad_token} {stream_name}")
+
+
 def q3(code="3707"):
   is_stream = False
 
+  # TODO(Ryan): Handle same requirement type
   # TODO(Ryan): Is just checking length sufficient?
   if len(code) == 6:
     q = 'select 1 from streams s where s.code = %s limit 1'
-    if not sql_execute_all(q, [code]):
+    if len(sql_execute_all(q, [code])) == 0:
       print(f"Invalid program code {code}")
+      return
     else:
       is_stream = True
   elif len(code) == 4:
     q = 'select 1 from programs p where p.code = %s limit 1'
-    if not sql_execute_all(q, [code]):
+    if len(sql_execute_all(q, [code])) == 0:
       print(f"Invalid stream code {code}")
+      return
   else:
     print("Invalid code")
+    return
 
   q_start = None
   if is_stream:
@@ -200,7 +237,6 @@ def q3(code="3707"):
     min_req = t[3]
     max_req = t[4]
 
-# IMPORTANT(Ryan): Lots of ifs to match examples
     if min_req and not max_req:
       req_str = f"at least {min_req}"
     elif not min_req and max_req:
@@ -213,39 +249,25 @@ def q3(code="3707"):
 
     if req_type == "uoc":
       req_str += " UOC" 
+      if req_name == "Total UOC":
+        print(f"Total UOC {req_str}")
+      else:
+        print(f"{req_str} from {req_name}")
     elif req_type == "stream":
       req_str += " stream" 
-
-    if req_name == "Total UOC":
-      print(f"Total UOC {req_str}")
-      continue
-
-    if req_type == "core":
+      print(f"{req_str} from {req_name}")
+      print_acad(acad)
+    elif req_type == "core":
       print(f"all courses from {req_name}")
-
-    if req_type == "gened":
+      print_acad(acad)
+    elif req_type == "gened":
       print(f"{req_str} UOC of General Education")
+    elif req_type == "free":
+      print(f"{req_str} UOC of Free Electives")
+    elif req_type == "elective":
+      print(f"{req_str} UOC courses from {req_name}")
+      print(f"- {acad}")
     
-  #print(res)
-  #return
-  # acad = ''
-  # for acad_tokens in acad.split(','):
-  #   if acad_token[0] == '{':
-  #     # {s1;s2}
-  #   else if '#' in acad_token:
-  #     # ####s####
-
-
-  stream_req = '''
-    select coalesce(s.name, \'None\')
-    from streams s
-    where s.code = %s
-  '''
-
-  core_req = '''
-
-  '''
-  # TODO(Ryan): Handle same requirement type
 
   
 def q4():

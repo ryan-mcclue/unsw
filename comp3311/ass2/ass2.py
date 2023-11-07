@@ -248,6 +248,33 @@ def q3(code="3707"):
   # TODO(Ryan): Handle same requirement type
 
   
+def q4():
+  pass
+
+def q5():
+  # NOTE(Ryan): UOC might not add up correctly
+  # order of course assignments to requirements: core -> discipline elective -> gened -> stream electives -> free electives
+  # (only consider courses that are passed)
+  # e.g. first does course fit core requirement? no. does it fit discipline? etc.
+
+  # then after iterating through all subjects on transcript, 
+  # check if all uoc requirements satisfied and number of majors
+
+  # subject = {name, mark, requirement_allocated}
+  # progression = subjects[]
+
+  # total_uoc = 0
+  # stream_uoc = 0
+ 
+  # iterate over these and check if course matches it.
+  # if it does, remove from list
+  # ultimately want all requirement arrays to be empty
+  # requirement_maths_acad = [math1081, {math1231;math1241}, math2211]
+  # ensure this doesn't exceed uoc
+  # requirement_maths_uoc = range(current, required)
+ 
+  # IMPORTANT(Ryan): computing electives no max. but treat the min as max. as well
+  pass
 
 
 

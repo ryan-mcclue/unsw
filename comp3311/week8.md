@@ -42,11 +42,3 @@ ryan_bars(Bars.*) = sel[drinker=ryan](Bars)
 loc_bars(bar) = sel[drinker=loc](Bars)
 both_bars(bar) = ryan_bars union loc_bars
 ```
-
-Generally a correlated sub query can be replaced by a join, which is more efficient in a RDBMS.
-
-Query Processing:
-SQL is parsed into relational algebra then query optimiser.
-(sql parser allows for user-defined operators?)
-
-Transaction Processing:

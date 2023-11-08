@@ -268,7 +268,7 @@ def q3(code="3707"):
       print(f"{req_str} UOC courses from {req_name}")
       print(f"- {acad}")
     
-def q4(zid="5893146"):
+def q4(zid="3892140"):
   if zid[0] == 'z':
     zid = zid[1:8]
   digits = re.compile("^\d{7}$")
@@ -299,11 +299,12 @@ def q4(zid="5893146"):
     group by (pr.code, pr.name, str.code)
   '''
   res = sql_execute_all(q, [zid], False)
-  recent_enrolment = res[1]
+  recent_enrolment = res[0]
   cur_max_term = '19T0' # 19T0 - 23T3
 
   #sql(q, [zid]); return
 
+  # TODO(Ryan): Examples show both programs?
   for enrolment in res:
     terms = enrolment[3]
     max_term = terms.split(',')[0]
@@ -335,58 +336,57 @@ def q4(zid="5893146"):
     t.code in
   ''' + terms_str + ' order by t.code, subj.code'
 
-  wam = 0
   uoc_acheived = 0
   uoc_attempted = 0
-  for row in sql_execute_all(q, [zid], False):
-    course_code = row[0]
-    term = row[1]
-    subject_title = row[2][:32]
-    mark = row[3]
-    if not mark:
-      mark = '-'
-    grade = row[4]
-    if not grade:
-      grade = '-'
-    uoc = row[5]
+  weighted_mark = 0
 
-    if grade in ():
-
-    print(f"{course_code} {term} {subject_title:<32s}{mark:>3} {grade:>2s}  {uoc:2d}uoc")
-
-def parse_grade(grade):
   uoc_grades = ["A", "A+", "A-", "B", "B+", "B-", "C", "C+", "C-", "D", "D+", "D-",
                 "HD", "DN", "CR", "PS",
                 "XE", "T", 
                 "SY", "EC", "RC", "NC"]
-  req_grades = uoc_grades
 
   wam_grades = ["HD", "DN", "CR", "PS", 
                 "AF", "FL", "UF", "E", "F"]
 
   print_fail = ["AF", "FL", "UF", "E", "F"]
   print_unresolved = ["AS","AW","NA","PW","RD","NF","LE","PE","WD","WJ"]
+  for row in sql_execute_all(q, [zid], False):
+    course_code = row[0]
+    term = row[1]
+    # TODO(Ryan): Examples cut to 31?
+    subject_title = row[2][:32]
+    mark = row[3]
+    grade = row[4]
+    uoc = int(row[5])
 
-  if grade in uoc_grades:
-    uoc_acheived += uoc
-  if grade in wam_grades:
-    uoc_attempted += uoc
-    if mark:
-      weighted_mark += (uoc * mark)
+    if grade in uoc_grades:
+      uoc_acheived += uoc
+    if grade in wam_grades:
+      uoc_attempted += uoc
+      if mark:
+        weighted_mark += (uoc * mark)
 
-  line = f"{course_code} {term} {subject_title:<32s}{mark:>3} {grade:>2s}  "
-  if grade in print_fail:
-    line += "fail"
-  elif grade in print_unresolved:
-    line += "unrs"
-  else:
-    line += f"{uoc:2d}uoc"
-  print(line)
+    print_mark = mark
+    print_grade = grade
+    if not mark:
+      print_mark = '-'
+    if not grade:
+      print_grade = '-'
+
+    line = f"{course_code} {term} {subject_title:<32s}{print_mark:>3} {print_grade:>2s}  "
+    if grade in print_fail:
+      line += " fail"
+    elif grade in print_unresolved:
+      line += " unrs"
+    else:
+      line += f"{uoc:2d}uoc"
+    print(line)
 
   uoc = uoc_acheived
   wam = weighted_mark / uoc_attempted
 
   print(f"UOC = {uoc}, WAM = {wam}")
+  print(f"weighted_mark = {weighted_mark}, uoc_attempted = {uoc_attempted}")
 
 
 def q5():

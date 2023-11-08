@@ -268,10 +268,83 @@ def q3(code="3707"):
       print(f"{req_str} UOC courses from {req_name}")
       print(f"- {acad}")
     
+def q4(zid="5893146"):
+  if zid[0] == 'z':
+    zid = zid[1:8]
+  digits = re.compile("^\d{7}$")
+  if not digits.match(zid):
+    print(f"Invalid student ID {zid}")
+    return
 
-  
-def q4():
-  pass
+  q = '''
+     select p.family_name, p.given_names
+     from people p
+     where p.zid = %s
+  '''
+  info = sql_execute_all(q, [zid], False)[0]
+  family_name = info[0]
+  given_names = info[1]
+  print(f"{zid} {family_name}, {given_names}")
+
+  q = '''
+    select pr.code, pr.name, str.code, string_agg(t.code, ',' order by t.code)
+    from people p
+    join students s on (s.id = p.id)
+    join program_enrolments pe on (pe.student = s.id)
+    join stream_enrolments se on (se.part_of = pe.id)
+    join streams str on (se.stream = str.id)
+    join programs pr on (pr.id = pe.program)
+    join terms t on (pe.term = t.id)
+    where p.zid = %s
+    group by (pr.code, pr.name, str.code)
+  '''
+  recent_enrolment = None
+  cur_min_term = '23T3'
+
+  sql(q, [zid]); return
+
+  for enrolment in sql_execute_all(q, [zid], False):
+    terms = enrolment[3]
+    min_term = terms.split(',')[0]
+    if min_term < cur_min_term:
+      cur_min_term = min_term
+      recent_enrolment = enrolment
+ 
+  program_code = recent_enrolment[0]
+  program_name = recent_enrolment[1]
+  stream_code = recent_enrolment[2]
+
+  print(f"{program_code} {stream_code} {program_name}")
+
+  terms = recent_enrolment[3].split(',')
+  terms_str = "("
+  for term in terms:
+    terms_str += f"'{term}',"
+  terms_str = terms_str[:-1]
+  terms_str += ')'
+  q = '''
+    select subj.code, t.code, subj.title, ce.mark, ce.grade, subj.uoc
+    from people p
+    join students s on (s.id = p.id)
+    join course_enrolments ce on (ce.student = s.id)
+    join courses c on (ce.course = c.id)
+    join subjects subj on (c.subject = subj.id)
+    join terms t on (c.term = t.id)
+    where p.zid = %s and
+    t.code in
+  ''' + terms_str + ' order by t.code, subj.code'
+
+  for row in sql_execute_all(q, [zid], False):
+    course_code = row[0]
+    term = row[1]
+    subject_title = row[2][:32]
+    mark = row[3]
+    if not mark:
+      mark = '-'
+    grade = row[4]
+    uoc = row[5]
+    print(f"{course_code} {term} {subject_title:<32s}{mark:>3} {grade:>2s}  {uoc:2d}uoc")
+
 
 def q5():
   # NOTE(Ryan): UOC might not add up correctly
@@ -324,7 +397,7 @@ def main():
     connection = psycopg2.connect(db)
     global_cursor = connection.cursor()
 
-    q3()
+    q4()
 
 
 

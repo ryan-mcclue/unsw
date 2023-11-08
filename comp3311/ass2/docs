@@ -6,7 +6,7 @@ readonly sleep_amt=.3
 declare -A docs
 docs["spec.pdf"]=7
 # docs["schema.pdf"]="1"
-docs["examples.pdf"]="3"
+docs["examples.pdf"]="6"
 docs["grades.pdf"]="1"
 
 for key in "${!docs[@]}"; do

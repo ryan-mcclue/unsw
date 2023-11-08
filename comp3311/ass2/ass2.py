@@ -298,16 +298,17 @@ def q4(zid="5893146"):
     where p.zid = %s
     group by (pr.code, pr.name, str.code)
   '''
-  recent_enrolment = None
-  cur_min_term = '23T3'
+  res = sql_execute_all(q, [zid], False)
+  recent_enrolment = res[1]
+  cur_max_term = '19T0' # 19T0 - 23T3
 
-  sql(q, [zid]); return
+  #sql(q, [zid]); return
 
-  for enrolment in sql_execute_all(q, [zid], False):
+  for enrolment in res:
     terms = enrolment[3]
-    min_term = terms.split(',')[0]
-    if min_term < cur_min_term:
-      cur_min_term = min_term
+    max_term = terms.split(',')[0]
+    if max_term > cur_max_term:
+      cur_max_term = max_term
       recent_enrolment = enrolment
  
   program_code = recent_enrolment[0]
@@ -334,6 +335,9 @@ def q4(zid="5893146"):
     t.code in
   ''' + terms_str + ' order by t.code, subj.code'
 
+  wam = 0
+  uoc_acheived = 0
+  uoc_attempted = 0
   for row in sql_execute_all(q, [zid], False):
     course_code = row[0]
     term = row[1]
@@ -342,8 +346,47 @@ def q4(zid="5893146"):
     if not mark:
       mark = '-'
     grade = row[4]
+    if not grade:
+      grade = '-'
     uoc = row[5]
+
+    if grade in ():
+
     print(f"{course_code} {term} {subject_title:<32s}{mark:>3} {grade:>2s}  {uoc:2d}uoc")
+
+def parse_grade(grade):
+  uoc_grades = ["A", "A+", "A-", "B", "B+", "B-", "C", "C+", "C-", "D", "D+", "D-",
+                "HD", "DN", "CR", "PS",
+                "XE", "T", 
+                "SY", "EC", "RC", "NC"]
+  req_grades = uoc_grades
+
+  wam_grades = ["HD", "DN", "CR", "PS", 
+                "AF", "FL", "UF", "E", "F"]
+
+  print_fail = ["AF", "FL", "UF", "E", "F"]
+  print_unresolved = ["AS","AW","NA","PW","RD","NF","LE","PE","WD","WJ"]
+
+  if grade in uoc_grades:
+    uoc_acheived += uoc
+  if grade in wam_grades:
+    uoc_attempted += uoc
+    if mark:
+      weighted_mark += (uoc * mark)
+
+  line = f"{course_code} {term} {subject_title:<32s}{mark:>3} {grade:>2s}  "
+  if grade in print_fail:
+    line += "fail"
+  elif grade in print_unresolved:
+    line += "unrs"
+  else:
+    line += f"{uoc:2d}uoc"
+  print(line)
+
+  uoc = uoc_acheived
+  wam = weighted_mark / uoc_attempted
+
+  print(f"UOC = {uoc}, WAM = {wam}")
 
 
 def q5():

@@ -74,21 +74,6 @@ def sql(query, args=[], log=True):
   for res in sql_execute_all(query, args, log):
     print(res)
 
-# people id and zid
-# Ass2:
-# gened -> FREE#### (the # is any valid character based on given context)
-# regex -> COMP[2468]###
-# program --> bachelor of engineering, bachelor of computer science
-# stream --> seng, embedded
-#  OrgUnit --> 0 (unsw), faculties (science), schools (chemistry)
-# Requirement (marks and amount of course types)
-# people id and zid
-
-# might do DFS on courses? e.g have buckets for each course type
-# assume gen-ed first then go through and populate
-F = False
-T = True
-
 def q1():
   q = '''
     select t.starting, s.status, count(distinct s.id)
@@ -100,41 +85,43 @@ def q1():
     order by t.starting, s.status
   '''
 
-  d = F
-  if d:
-    sql(q)
-  else:
-    student_counts = sql_execute_all(q)
-    terms = ["19T1", "19T2", "19T3", 
-             "20T0", "20T1", "20T2", "20T3",
-             "21T0", "21T1", "21T2", "21T3",
-             "22T0", "22T1", "22T2", "22T3",
-             "23T0", "23T1", "23T2", "23T3"]
-    i = 0
-    intl_count = 0
-    local_count = 0
-    cur_starting = student_counts[0][0]
-    print("Term  #Locl  #Intl Proportion")
-    for res in student_counts:
-      starting = res[0]
-      if starting != cur_starting:
-        print(f"{terms[i]} {local_count:6d} {intl_count:6d} {local_count/intl_count:6.1f}")
-        
-        cur_starting = starting
-        local_count = 0
-        intl_count = 0
+  student_counts = sql_execute_all(q, [], False)
+  terms = ["19T1", "19T2", "19T3", 
+           "20T0", "20T1", "20T2", "20T3",
+           "21T0", "21T1", "21T2", "21T3",
+           "22T0", "22T1", "22T2", "22T3",
+           "23T0", "23T1", "23T2", "23T3"]
+  i = 0
+  intl_count = 0
+  local_count = 0
+  cur_starting = student_counts[0][0]
+  print("Term  #Locl  #Intl Proportion")
+  for res in student_counts:
+    starting = res[0]
+    if starting != cur_starting:
+      proportion = 0
+      if intl_count != 0:
+        proportion = local_count / intl_count
+      print(f"{terms[i]} {local_count:6d} {intl_count:6d} {proportion:6.1f}")
+      
+      cur_starting = starting
+      local_count = 0
+      intl_count = 0
 
-        i += 1
+      i += 1
 
-      if res[1] == 'INTL':
-        intl_count = res[2]
-      else:
-        local_count += res[2]
+    if res[1] == 'INTL':
+      intl_count = res[2]
+    else:
+      local_count += res[2]
 
-    # NOTE(Ryan): Print final row
-    print(f"{terms[i]} {local_count:6d} {intl_count:6d} {local_count/intl_count:6.1f}")
+  # NOTE(Ryan): Print final row
+  proportion = 0
+  if intl_count != 0:
+    proportion = local_count / intl_count
+  print(f"{terms[i]} {local_count:6d} {intl_count:6d} {proportion:6.1f}")
 
-def q2(subject_code="COMP1521"):
+def q2(subject_code="COMP1010"):
   q = '''
     select t.code, coalesce(c.satisfact, -1), coalesce(c.nresponses, -1), 
     coalesce(p.full_name, \'?\'), s.title
@@ -157,27 +144,22 @@ def q2(subject_code="COMP1521"):
     where s.code = %s and t.code = %s
   '''
 
-  d = F
-  if d:
-    sql(q, [subject_code])
-    # sql(q2, [subject_code, '19T2'])
-  else:
-    q_res = sql_execute_all(q, [subject_code])
-    subject_title = q_res[0][4]
-    print(f"{subject_code} {subject_title}")
-    print("Term  Satis  #resp   #stu  Convenor")
-    for res in q_res:
-      term = res[0]
-      satisfaction = str(res[1])
-      if satisfaction == "-1":
-        satisfaction = "?"
-      nresponses = str(res[2])
-      if nresponses == "-1":
-        nresponses = "?"
-      convenor = res[3]
+  q_res = sql_execute_all(q, [subject_code], False)
+  subject_title = q_res[0][4]
+  print(f"{subject_code} {subject_title}")
+  print("Term  Satis  #resp   #stu  Convenor")
+  for res in q_res:
+    term = res[0]
+    satisfaction = str(res[1])
+    if satisfaction == "-1":
+      satisfaction = "?"
+    nresponses = str(res[2])
+    if nresponses == "-1":
+      nresponses = "?"
+    convenor = res[3]
 
-      nstudents = sql_execute_all(q2, [subject_code, term], False)[0][0]
-      print(f"{term} {satisfaction:>6} {nresponses:>6} {nstudents:6d}  {convenor}")
+    nstudents = sql_execute_all(q2, [subject_code, term], False)[0][0]
+    print(f"{term} {satisfaction:>6} {nresponses:>6} {nstudents:6d}  {convenor}")
 
 def get_course_name(code):
   q = '''
@@ -218,7 +200,7 @@ def print_acad(acad, completed):
 
 
 
-def q3(code="3707"):
+def q3(code="12345"):
   stream_name = ""
   stream_code = ""
   program_name = ""
@@ -271,7 +253,7 @@ def q3(code="3707"):
       if req_name == "uoc":
         req_str += " UOC" 
         if r.name == "Total UOC":
-          print(f"Total UOC {req_str}")
+          print(f"Total UOC at least {r.minimum} UOC")
         else:
           print(f"{req_str} from {r.name}")
       elif req_name == "stream":
@@ -284,9 +266,10 @@ def q3(code="3707"):
       elif req_name == "gened":
         print(f"{req_str} UOC of General Education")
       elif req_name == "free":
-        print(f"{req_str} UOC of Free Electives")
+        print(f"{req_str} UOC of {stream_code} Free Electives")
       elif req_name == "elective":
-        print(f"{req_str} UOC courses from {r.name}")
+        # TODO(Ryan): print 'at least'?
+        print(f"at least {req_str} UOC courses from {r.name}")
         print(f"- {r.acad}")
 
 def gather_subjects(zid):
@@ -305,7 +288,7 @@ def gather_subjects(zid):
   for row in sql_execute_all(q, [zid], False):
     course_code = row[0]
     term = row[1]
-    subject_title = row[2][:32]
+    subject_title = row[2][:31]
     mark = row[3]
     grade = row[4]
     uoc = row[5]
@@ -324,14 +307,14 @@ def check_grade_type(grade, grade_type):
   uoc = ["A", "A+", "A-", "B", "B+", "B-", "C", "C+", "C-", "D", "D+", "D-",
                 "HD", "DN", "CR", "PS",
                 "XE", "T", 
-                "SY", "EC", "RC", "NC"]
+                "SY", "EC", "RC"]
   req = uoc
 
   wam = ["HD", "DN", "CR", "PS", 
                 "AF", "FL", "UF", "E", "F"]
 
   fail = ["AF", "FL", "UF", "E", "F"]
-  unresolved = ["AS","AW","NA","PW","RD","NF","LE","PE","WD","WJ"]
+  unresolved = ["AS","AW","NA","PW","RD","NF","NC","LE","PE","WD","WJ"]
 
   grade_types = [uoc, req, wam, fail, unresolved]
 
@@ -362,7 +345,6 @@ def print_subjects(subjects):
     if not subject.grade:
       print_grade = '-'
 
-    # TODO(Ryan): NC printing check
     uoc_str = ""
     if not subj_allocated:
       uoc_str = " 0uoc" 
@@ -427,14 +409,13 @@ def get_person(zid):
      from people p
      where p.zid = %s
   '''
-  info = sql_execute_all(q, [zid], False)[0]
-  family_name = info[0]
-  given_names = info[1]
+  res = sql_execute_all(q, [zid], False)
+  if res:
+    return Person(zid, res[0][0], res[0][1])
+  else:
+    return Person(-1, "", "")
 
-  return Person(zid, family_name, given_names)
-
-
-def q4(zid="5893146"):
+def q4(zid="1234567"):
   if zid[0] == 'z':
     zid = zid[1:8]
   digits = re.compile("^\d{7}$")
@@ -443,6 +424,10 @@ def q4(zid="5893146"):
     return
 
   person = get_person(zid)
+  if person.zid == -1:
+    print(f"Invalid student ID {zid}")
+    return
+    
   print(f"{person.zid} {person.family_name}, {person.given_names}")
  
   enrolment = get_recent_enrolment(zid)
@@ -473,6 +458,9 @@ def get_ordered_requirements(stream_code, program_code):
     reqs += program_requirements
 
   requirements = OrderedDict()
+  # NOTE(Ryan): Required for q3
+  requirements['uoc'] = []
+
   requirements['stream'] = []
   requirements['core'] = []
   requirements['elective'] = []
@@ -483,9 +471,9 @@ def get_ordered_requirements(stream_code, program_code):
     name = r[0]
     r_type = r[1]
     acad = r[2]
+    rid = int(r[5])
     maximum = 0
     minimum = 0
-    rid = int(r[5])
     if r[3]:
       minimum = int(r[3])
     maximum = r[4]
@@ -495,9 +483,6 @@ def get_ordered_requirements(stream_code, program_code):
     if r_type == 'core':
       minimum = len(acad.split(','))
       maximum = minimum
-
-    if name == 'Total UOC' or r_type == 'stream':
-      continue
 
     r = Requirement(name, minimum, maximum, acad, 0, rid)
 
@@ -543,7 +528,7 @@ def code_matches_acad_code(code, acad_code):
   return True
 
 
-def q5(zid="5893146", program_code="3778", stream_code="COMPD1"):
+def q5(zid="5893146", program_code="3778", stream_code="COMPA1"):
   if zid[0] == 'z':
     zid = zid[1:8]
   digits = re.compile("^\d{7}$")
@@ -552,6 +537,10 @@ def q5(zid="5893146", program_code="3778", stream_code="COMPD1"):
     return
 
   person = get_person(zid)
+  if person.zid == -1:
+    print(f"Invalid student ID {zid}")
+    return
+
   print(f"{person.zid} {person.family_name}, {person.given_names}")
 
   p_code = None
@@ -582,6 +571,8 @@ def q5(zid="5893146", program_code="3778", stream_code="COMPD1"):
     subject_assigned = False
 
     for req_name, reqs in requirements.items():
+      if req_name == 'uoc' or req_name == 'stream':
+        continue
       for req in reqs:
         if not subject_assigned and req.counter < req.maximum \
         and code_matches_acad(subject.course_code, req.acad) \
@@ -601,6 +592,8 @@ def q5(zid="5893146", program_code="3778", stream_code="COMPD1"):
 
   eligible = True
   for req_name, reqs in requirements.items():
+    if req_name == 'uoc' or req_name == 'stream':
+      continue
     for req in reqs:
       remaining_uoc = req.minimum - req.counter
       if remaining_uoc > 0:

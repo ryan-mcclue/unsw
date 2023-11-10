@@ -528,7 +528,7 @@ def code_matches_acad_code(code, acad_code):
   return True
 
 
-def q5(zid="5893146", program_code="3778", stream_code="COMPA1"):
+def q5(zid="5892943", program_code="", stream_code=""):
   if zid[0] == 'z':
     zid = zid[1:8]
   digits = re.compile("^\d{7}$")

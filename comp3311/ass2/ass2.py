@@ -14,6 +14,36 @@ from urllib.parse import urlparse
 
 import psycopg2
 
+@dataclass
+class Subject:
+  course_code: str
+  term_code: str
+  title: str
+  mark: str
+  grade: str
+  uoc: str
+  req_assigned: str
+
+@dataclass
+class Enrolment:
+  program_code: str
+  program_name: str
+  stream_code: str
+
+@dataclass
+class Person:
+  zid: str
+  family_name: str
+  given_names: str
+
+@dataclass
+class Requirement:
+  name: str
+  minimum: int
+  maximum: int
+  acad: str
+  counter: int
+
 def warn(msg):
   print(msg)
   if __debug__:
@@ -33,8 +63,8 @@ def sql_execute_all(query, args=[], log=True):
   global_cursor.execute(query, args)
   return global_cursor.fetchall()
 
-def sql(query, args=[]):
-  for res in sql_execute_all(query, args):
+def sql(query, args=[], log=True):
+  for res in sql_execute_all(query, args, log):
     print(res)
 
 # people id and zid
@@ -267,25 +297,83 @@ def q3(code="3707"):
     elif req_type == "elective":
       print(f"{req_str} UOC courses from {req_name}")
       print(f"- {acad}")
-    
-def q4(zid="3892140"):
-  if zid[0] == 'z':
-    zid = zid[1:8]
-  digits = re.compile("^\d{7}$")
-  if not digits.match(zid):
-    print(f"Invalid student ID {zid}")
-    return
 
+def gather_subjects(zid):
   q = '''
-     select p.family_name, p.given_names
-     from people p
-     where p.zid = %s
+    select subj.code, t.code, subj.title, ce.mark, ce.grade, subj.uoc
+    from people p
+    join students s on (s.id = p.id)
+    join course_enrolments ce on (ce.student = s.id)
+    join courses c on (ce.course = c.id)
+    join subjects subj on (c.subject = subj.id)
+    join terms t on (c.term = t.id)
+    where p.zid = %s
+    order by t.code, subj.code
   '''
-  info = sql_execute_all(q, [zid], False)[0]
-  family_name = info[0]
-  given_names = info[1]
-  print(f"{zid} {family_name}, {given_names}")
+  subjects = []
+  for row in sql_execute_all(q, [zid], False):
+    course_code = row[0]
+    term = row[1]
+    subject_title = row[2][:32]
+    mark = row[3]
+    grade = row[4]
+    uoc = row[5]
 
+    subject = Subject(course_code, term, subject_title, mark, grade, uoc, "")
+    subjects += [subject]
+
+  return subjects
+
+def print_subjects(subjects):
+  uoc_acheived = 0
+  uoc_attempted = 0
+  weighted_mark = 0
+
+  uoc_grades = ["A", "A+", "A-", "B", "B+", "B-", "C", "C+", "C-", "D", "D+", "D-",
+                "HD", "DN", "CR", "PS",
+                "XE", "T", 
+                "SY", "EC", "RC", "NC"]
+  req_grades = uoc_grades
+
+  wam_grades = ["HD", "DN", "CR", "PS", 
+                "AF", "FL", "UF", "E", "F"]
+
+  print_fail = ["AF", "FL", "UF", "E", "F"]
+  print_unresolved = ["AS","AW","NA","PW","RD","NF","LE","PE","WD","WJ"]
+
+  for subject in subjects:
+    uoc = int(subject.uoc)
+
+    if subject.grade in uoc_grades:
+      uoc_acheived += uoc
+    if subject.grade in wam_grades:
+      uoc_attempted += uoc
+      if subject.mark:
+        weighted_mark += (uoc * subject.mark)
+
+    print_mark = subject.mark
+    print_grade = subject.grade
+    if not subject.mark:
+      print_mark = '-'
+    if not subject.grade:
+      print_grade = '-'
+
+    line = f"{subject.course_code} {subject.term_code} {subject.title:<32s}{print_mark:>3} {print_grade:>2s}  "
+    if subject.grade in print_fail:
+      line += " fail"
+    elif subject.grade in print_unresolved:
+      line += " unrs"
+    else:
+      line += f"{uoc:2d}uoc"
+    print(line)
+
+  uoc = uoc_acheived
+  wam = weighted_mark / uoc_attempted
+
+  print(f"UOC = {uoc}, WAM = {wam:.1f}")
+  print(f"weighted_mark = {weighted_mark}, uoc_attempted = {uoc_attempted}")
+
+def get_recent_enrolment(zid):
   q = '''
     select pr.code, pr.name, str.code, string_agg(t.code, ',' order by t.code)
     from people p
@@ -302,9 +390,6 @@ def q4(zid="3892140"):
   recent_enrolment = res[0]
   cur_max_term = '19T0' # 19T0 - 23T3
 
-  #sql(q, [zid]); return
-
-  # TODO(Ryan): Examples show both programs?
   for enrolment in res:
     terms = enrolment[3]
     max_term = terms.split(',')[0]
@@ -316,80 +401,139 @@ def q4(zid="3892140"):
   program_name = recent_enrolment[1]
   stream_code = recent_enrolment[2]
 
-  print(f"{program_code} {stream_code} {program_name}")
+  e = Enrolment(program_code, program_name, stream_code)
 
-  terms = recent_enrolment[3].split(',')
-  terms_str = "("
-  for term in terms:
-    terms_str += f"'{term}',"
-  terms_str = terms_str[:-1]
-  terms_str += ')'
+  return e
+
+def get_person(zid):
   q = '''
-    select subj.code, t.code, subj.title, ce.mark, ce.grade, subj.uoc
-    from people p
-    join students s on (s.id = p.id)
-    join course_enrolments ce on (ce.student = s.id)
-    join courses c on (ce.course = c.id)
-    join subjects subj on (c.subject = subj.id)
-    join terms t on (c.term = t.id)
-    where p.zid = %s and
-    t.code in
-  ''' + terms_str + ' order by t.code, subj.code'
+     select p.family_name, p.given_names
+     from people p
+     where p.zid = %s
+  '''
+  info = sql_execute_all(q, [zid], False)[0]
+  family_name = info[0]
+  given_names = info[1]
 
-  uoc_acheived = 0
-  uoc_attempted = 0
-  weighted_mark = 0
+  return Person(zid, family_name, given_names)
 
-  uoc_grades = ["A", "A+", "A-", "B", "B+", "B-", "C", "C+", "C-", "D", "D+", "D-",
-                "HD", "DN", "CR", "PS",
-                "XE", "T", 
-                "SY", "EC", "RC", "NC"]
 
-  wam_grades = ["HD", "DN", "CR", "PS", 
-                "AF", "FL", "UF", "E", "F"]
+def q4(zid="5893146"):
+  if zid[0] == 'z':
+    zid = zid[1:8]
+  digits = re.compile("^\d{7}$")
+  if not digits.match(zid):
+    print(f"Invalid student ID {zid}")
+    return
 
-  print_fail = ["AF", "FL", "UF", "E", "F"]
-  print_unresolved = ["AS","AW","NA","PW","RD","NF","LE","PE","WD","WJ"]
-  for row in sql_execute_all(q, [zid], False):
-    course_code = row[0]
-    term = row[1]
-    # TODO(Ryan): Examples cut to 31?
-    subject_title = row[2][:32]
-    mark = row[3]
-    grade = row[4]
-    uoc = int(row[5])
+  person = get_person(zid)
+  print(f"{person.zid} {person.family_name}, {person.given_names}")
+ 
+  enrolment = get_recent_enrolment(zid)
+  print(f"{enrolment.program_code} {enrolment.stream_code} {enrolment.program_name}")
 
-    if grade in uoc_grades:
-      uoc_acheived += uoc
-    if grade in wam_grades:
-      uoc_attempted += uoc
-      if mark:
-        weighted_mark += (uoc * mark)
+  subjects = gather_subjects(zid)
+  print_subjects(subjects)
 
-    print_mark = mark
-    print_grade = grade
-    if not mark:
-      print_mark = '-'
-    if not grade:
-      print_grade = '-'
+def get_requirements(stream_code, program_code):
+  reqs = []
+  if stream_code:
+    q = '''
+      select r.name, r.rtype, r.acadobjs, r.min_req, r.max_req, s.name
+      from requirements r
+      join streams s on (r.for_stream = s.id)
+      where s.code = %s
+    '''
+    stream_requirements = sql_execute_all(q, [stream_code], False)
+    reqs += stream_requirements
+  if program_code:
+    q_start = '''
+      select r.name, r.rtype, r.acadobjs, r.min_req, r.max_req, p.name
+      from requirements r
+      join programs p on (r.for_program = p.id)
+      where p.code = %s
+    '''
+    program_requirements = sql_execute_all(q, [program_code], False)
+    reqs += program_requirements
 
-    line = f"{course_code} {term} {subject_title:<32s}{print_mark:>3} {print_grade:>2s}  "
-    if grade in print_fail:
-      line += " fail"
-    elif grade in print_unresolved:
-      line += " unrs"
+  requirements = {}
+
+  for r in reqs:
+    name = r[0]
+    r_type = r[1]
+    acad = r[2]
+    minimum = int(r[3])
+    maximum = r[4]
+    if not maximum:
+      maximum = minimum
+
+    r = Requirement(r_name, minimum, maximum, acad, 0)
+
+    if reqs.get(r_type):
+      requirements[r_type] += [[r]]
     else:
-      line += f"{uoc:2d}uoc"
-    print(line)
+      requirements[r_type] = [r]
 
-  uoc = uoc_acheived
-  wam = weighted_mark / uoc_attempted
+  return requirements
 
-  print(f"UOC = {uoc}, WAM = {wam}")
-  print(f"weighted_mark = {weighted_mark}, uoc_attempted = {uoc_attempted}")
+def q5(zid="5893146", program_code="", stream_code=""):
+  if zid[0] == 'z':
+    zid = zid[1:8]
+  digits = re.compile("^\d{7}$")
+  if not digits.match(zid):
+    print(f"Invalid student ID {zid}")
+    return
 
+  if program_code and stream_code:
+    program_info = 0
+    stream_info = 0
+  else:
+    person = get_person(zid)
+    print(f"{person.zid} {person.family_name}, {person.given_names}")
 
-def q5():
+    enrolment = get_recent_enrolment(zid)
+    print(f"{enrolment.program_code} {enrolment.stream_code} {enrolment.program_name}")
+
+    requirements = get_requirements(enrolment.stream_code, enrolment.program_name)
+    print(requirements)
+
+    subjects = gather_subjects(zid)
+    print_subjects(subjects); return
+
+    # subject = Subject(course_code, term, subject_title, mark, grade, uoc)
+
+    # if grade not in req_grades:
+    #   subject.req_assigned = ""
+    #   subjects += [subject]
+    #   continue
+
+    # subject_assigned = False
+    # for core_reqs in reqs['core']:
+    #   if core_req.uoc_counter < core_req.uoc_max:
+    #     if code_matches_acad(course_code, core_req.acad):
+    #       core_req.uoc_counter += uoc
+    #       subject.req_assigned = core_req.name
+    #       subject_assigned = True
+
+    # if not subject_assigned:
+    #   for core_reqs in reqs['elective/gened/free']:
+    #     if core_req.uoc_counter < core_req.uoc_max:
+    #       if code_matches_acad(course_code, core_req.acad):
+    #         core_req.uoc_counter += uoc
+    #        subject.req_assigned = core_req.name
+    #        subject_assigned = True
+
+    # subject.req_assigned = "Could not be allocated"
+
+  print_subjects(subjects)
+
+  for req_name, reqs in reqs.items():
+    for req in reqs:
+      if req.uoc_counter < req.uoc_min:
+        remaining_uoc = req.uoc_min - req.uoc_counter
+        if remaining_uoc > 0:
+          print(f"Need {remaining_uoc} more UOC for {req.name}")
+
   # NOTE(Ryan): UOC might not add up correctly
   # order of course assignments to requirements: core -> discipline elective -> gened -> stream electives -> free electives
   # (only consider courses that are passed)
@@ -412,7 +556,6 @@ def q5():
   # requirement_maths_uoc = range(current, required)
  
   # IMPORTANT(Ryan): computing electives no max. but treat the min as max. as well
-  pass
 
 
 

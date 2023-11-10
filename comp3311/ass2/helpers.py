@@ -36,5 +36,4 @@ def getStudent(db,zid):
   if not info:
     return None
   else:
-    return info
-
+    return info-

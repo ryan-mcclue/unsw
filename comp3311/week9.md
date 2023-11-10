@@ -13,7 +13,12 @@ So, a relational algebra projection could be implemented as a binary search, joi
 Index (auxiliary data structure on attribute) can speed up for equality searches, i.e. filtering
 (hash index if `id = 12345`, b-tree `id > 60`)
 (an index would only work when you know entire key value, e.g. no `like %str%`)
+By default, psql creates index on primary key
+
 So, for a web app we would know what queries are going to be run and so can optimise with indexes?
 Generally a correlated sub query can be replaced by a join, which is more efficient in a RDBMS.
+
+Can do `\timing query`
+Can see execution plan `explain query`
 
 Transaction Processing:

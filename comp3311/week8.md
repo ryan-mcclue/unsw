@@ -13,6 +13,7 @@ Could also finish when no relevent fds
 1. Reduce fds to single attributes on LHS (this is minimal cover?)
 2. Create tables on each fd
 3. Add in key as a new table if key not present in a table
+(would remove redundant dependencies as you go)
 
 IMPORTANT: redundant data might be for performance reasons
 

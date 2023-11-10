@@ -10,6 +10,7 @@ import re
 
 import pprint
 
+from operator import attrgetter
 
 from dataclasses import dataclass
 
@@ -48,6 +49,7 @@ class Requirement:
   maximum: int
   acad: str
   counter: int
+  rid: int
 
 def warn(msg):
   print(msg)
@@ -193,115 +195,99 @@ def get_course_name(code):
   else:
     return res[0][0]
 
-def print_acad(acad):
+def print_acad(acad, completed):
   for acad_token in acad.split(','):
     if acad_token[0] == '{':
       acad_plain = acad_token.strip('{}')
       stream_codes = acad_plain.split(';')
       stream_names = []
       for stream_code in stream_codes:
-        stream_names += [get_course_name(stream_code)]
+        if stream_code in completed:
+          break
+        else:
+          stream_names += [get_course_name(stream_code)]
       final_str = ""
       for i in range(len(stream_names)):
         final_str += f"{stream_codes[i]} {stream_names[i]} or "
-      print(f"- {final_str[:-4]}")
+      if final_str:
+        print(f"- {final_str[:-4]}")
     else:
-      stream_name = get_course_name(acad_token)
-      print(f"- {acad_token} {stream_name}")
+      if acad_token not in completed:
+        stream_name = get_course_name(acad_token)
+        print(f"- {acad_token} {stream_name}")
+
 
 
 def q3(code="3707"):
-  is_stream = False
+  stream_name = ""
+  stream_code = ""
+  program_name = ""
+  program_code = ""
 
-  # TODO(Ryan): Handle same requirement type
-  # TODO(Ryan): Is just checking length sufficient?
   if len(code) == 6:
-    q = 'select 1 from streams s where s.code = %s limit 1'
-    if len(sql_execute_all(q, [code])) == 0:
+    q = 'select s.name from streams s where s.code = %s limit 1'
+    res = sql_execute_all(q, [code], False)
+    if len(res) == 0:
+      print(f"Invalid stream code {code}")
+      return
+    else:
+      stream_name = res[0][0]
+      stream_code = code
+  elif len(code) == 4:
+    q = 'select p.name from programs p where p.code = %s limit 1'
+    res = sql_execute_all(q, [code], False)
+    if len(res) == 0:
       print(f"Invalid program code {code}")
       return
     else:
-      is_stream = True
-  elif len(code) == 4:
-    q = 'select 1 from programs p where p.code = %s limit 1'
-    if len(sql_execute_all(q, [code])) == 0:
-      print(f"Invalid stream code {code}")
-      return
+      program_name = res[0][0]
+      program_code = code
   else:
     print("Invalid code")
     return
 
-  q_start = None
-  if is_stream:
-    q_start = '''
-      select r.name, r.rtype, r.acadobjs, r.min_req, r.max_req, s.name
-      from requirements r
-      join streams s on (r.for_stream = s.id)
-      where s.code = %s
-    '''
+  requirements = get_ordered_requirements(stream_code, program_code)
+
+  if stream_name:
+    print(f"{code} {stream_name}")
   else:
-    q_start = '''
-      select r.name, r.rtype, r.acadobjs, r.min_req, r.max_req, p.name
-      from requirements r
-      join programs p on (r.for_program = p.id)
-      where p.code = %s
-    '''
+    print(f"{code} {program_name}")
 
-  q = q_start + \
-    '''
-    order by case
-      when r.rtype = 'uoc' then 1 
-      when r.rtype = 'stream' then 2
-      when r.rtype = 'core' then 3
-      when r.rtype = 'elective' then 4
-      when r.rtype = 'gened' then 5
-      when r.rtype = 'free' then 6
-      else 7
-    end
-    '''
-
-  res = sql_execute_all(q, [code])
-
-  print(f"{code} {res[0][-1]}")
   print("Academic Requirements: ")
 
-  for t in res:
-    req_name = t[0]
-    req_type = t[1]
-    acad = t[2]
-    min_req = t[3]
-    max_req = t[4]
+  for req_name, reqs in requirements.items():
+    for r in reqs:
+      req_str = ""
+      if r.minimum and not r.maximum:
+        req_str = f"at least {r.minimum}"
+      elif not r.minimum and r.maximum:
+        req_str = f"up to {r.maximum}"
+      elif r.minimum and r.maximum:
+        if r.minimum < r.maximum:
+          req_str = f"between {r.minimum} and {r.maximum}"
+        elif r.minimum == r.maximum:
+          req_str = f"{r.minimum}"
 
-    if min_req and not max_req:
-      req_str = f"at least {min_req}"
-    elif not min_req and max_req:
-      req_str = f"up to {max_req}"
-    elif min_req and max_req:
-      if min_req < max_req:
-        req_str = f"between {min_req} and {max_req}"
-      elif min_req == max_req:
-        req_str = f"{min_req}"
-
-    if req_type == "uoc":
-      req_str += " UOC" 
-      if req_name == "Total UOC":
-        print(f"Total UOC {req_str}")
-      else:
-        print(f"{req_str} from {req_name}")
-    elif req_type == "stream":
-      req_str += " stream" 
-      print(f"{req_str} from {req_name}")
-      print_acad(acad)
-    elif req_type == "core":
-      print(f"all courses from {req_name}")
-      print_acad(acad)
-    elif req_type == "gened":
-      print(f"{req_str} UOC of General Education")
-    elif req_type == "free":
-      print(f"{req_str} UOC of Free Electives")
-    elif req_type == "elective":
-      print(f"{req_str} UOC courses from {req_name}")
-      print(f"- {acad}")
+      if req_name == "uoc":
+        req_str += " UOC" 
+        if r.name == "Total UOC":
+          print(f"Total UOC {req_str}")
+        else:
+          print(f"{req_str} from {r.name}")
+      elif req_name == "stream":
+        req_str += " stream" 
+        print(f"{req_str} from {r.name}")
+        print_acad(r.acad, [])
+      elif req_name == "core":
+        print(f"all courses from {r.name}")
+        print_acad(r.acad, [])
+      elif req_name == "gened":
+        print(f"{req_str} UOC of General Education")
+      elif req_name == "free":
+        print(f"{req_str} UOC of Free Electives")
+      elif req_name == "elective":
+        print(f"{req_str} UOC courses from {r.name}")
+        print(f"- {r.acad}")
 
 def gather_subjects(zid):
   q = '''
@@ -360,7 +346,9 @@ def print_subjects(subjects):
   for subject in subjects:
     uoc = int(subject.uoc)
 
-    if check_grade_type(subject.grade, GRADE_TYPE_UOC):
+    subj_allocated = (subject.req_assigned != "Could not be allocated")
+
+    if subj_allocated and check_grade_type(subject.grade, GRADE_TYPE_UOC):
       uoc_acheived += uoc
     if check_grade_type(subject.grade, GRADE_TYPE_WAM):
       uoc_attempted += uoc
@@ -374,8 +362,9 @@ def print_subjects(subjects):
     if not subject.grade:
       print_grade = '-'
 
+    # TODO(Ryan): NC printing check
     uoc_str = ""
-    if subject.req_assigned == "Could not be allocated":
+    if not subj_allocated:
       uoc_str = " 0uoc" 
     elif check_grade_type(subject.grade, GRADE_TYPE_FAIL):
       uoc_str = " fail"
@@ -398,7 +387,7 @@ def print_subjects(subjects):
   wam = weighted_mark / uoc_attempted
 
   print(f"UOC = {uoc}, WAM = {wam:.1f}")
-  print(f"weighted_mark = {weighted_mark}, uoc_attempted = {uoc_attempted}")
+  # print(f"weighted_mark = {weighted_mark}, uoc_attempted = {uoc_attempted}")
 
 def get_recent_enrolment(zid):
   q = '''
@@ -466,7 +455,7 @@ def get_ordered_requirements(stream_code, program_code):
   reqs = []
   if stream_code:
     q = '''
-      select r.name, r.rtype, r.acadobjs, r.min_req, r.max_req, s.name
+      select r.name, r.rtype, r.acadobjs, r.min_req, r.max_req, r.id
       from requirements r
       join streams s on (r.for_stream = s.id)
       where s.code = %s
@@ -475,7 +464,7 @@ def get_ordered_requirements(stream_code, program_code):
     reqs += stream_requirements
   if program_code:
     q = '''
-      select r.name, r.rtype, r.acadobjs, r.min_req, r.max_req, p.name
+      select r.name, r.rtype, r.acadobjs, r.min_req, r.max_req, r.id
       from requirements r
       join programs p on (r.for_program = p.id)
       where p.code = %s
@@ -495,6 +484,8 @@ def get_ordered_requirements(stream_code, program_code):
     r_type = r[1]
     acad = r[2]
     maximum = 0
+    minimum = 0
+    rid = int(r[5])
     if r[3]:
       minimum = int(r[3])
     maximum = r[4]
@@ -508,9 +499,15 @@ def get_ordered_requirements(stream_code, program_code):
     if name == 'Total UOC' or r_type == 'stream':
       continue
 
-    r = Requirement(name, minimum, maximum, acad, 0)
+    r = Requirement(name, minimum, maximum, acad, 0, rid)
 
     requirements[r_type] += [r]
+
+  requirements['stream'] = sorted(requirements['stream'], key=attrgetter('rid'))
+  requirements['core'] = sorted(requirements['core'], key=attrgetter('rid'))
+  requirements['elective'] = sorted(requirements['elective'], key=attrgetter('rid'))
+  requirements['gened'] = sorted(requirements['gened'], key=attrgetter('rid'))
+  requirements['free'] = sorted(requirements['free'], key=attrgetter('rid'))
 
   return requirements
 
@@ -546,7 +543,7 @@ def code_matches_acad_code(code, acad_code):
   return True
 
 
-def q5(zid="5892943", program_code="", stream_code=""):
+def q5(zid="5893146", program_code="3778", stream_code="COMPD1"):
   if zid[0] == 'z':
     zid = zid[1:8]
   digits = re.compile("^\d{7}$")
@@ -554,48 +551,70 @@ def q5(zid="5892943", program_code="", stream_code=""):
     print(f"Invalid student ID {zid}")
     return
 
-  if program_code and stream_code:
-    program_info = 0
-    stream_info = 0
+  person = get_person(zid)
+  print(f"{person.zid} {person.family_name}, {person.given_names}")
+
+  p_code = None
+  s_code = None
+  p_name = ""
+  if stream_code and program_code: 
+    s_code = stream_code
+    p_code = program_code
+    q = 'select p.name from programs p where p.code = %s limit 1'
+    res = sql_execute_all(q, [p_code], False)
+    p_name = res[0][0]
   else:
-    person = get_person(zid)
-    print(f"{person.zid} {person.family_name}, {person.given_names}")
-
     enrolment = get_recent_enrolment(zid)
-    print(f"{enrolment.program_code} {enrolment.stream_code} {enrolment.program_name}")
+    p_code = enrolment.program_code
+    s_code = enrolment.stream_code
+    p_name = enrolment.program_name
 
-    requirements = get_ordered_requirements(enrolment.stream_code, enrolment.program_code)
+  print(f"{p_code} {s_code} {p_name}")
 
-    subjects = gather_subjects(zid)
-    # print_subjects(subjects); return
+  requirements = get_ordered_requirements(s_code, p_code)
 
-    for subject in subjects:
-      subject_assigned = False
+  subjects = gather_subjects(zid)
+  # print_subjects(subjects); return
 
-      for req_name, reqs in requirements.items():
-        for req in reqs:
-          if not subject_assigned and req.counter < req.maximum \
-          and code_matches_acad(subject.course_code, req.acad) \
-          and check_grade_type(subject.grade, GRADE_TYPE_REQ):
-            if req_name == 'core':
-              req.counter += 1
-            else:
-              req.counter += subject.uoc
-            subject.req_assigned = req.name
-            subject_assigned = True
+  completed = []
 
-      if not subject_assigned and check_grade_type(subject.grade, GRADE_TYPE_REQ):
-        subject.req_assigned = "Could not be allocated"
-
-    print_subjects(subjects)
+  for subject in subjects:
+    subject_assigned = False
 
     for req_name, reqs in requirements.items():
       for req in reqs:
-        remaining_uoc = req.minimum - req.counter
-        if remaining_uoc > 0:
+        if not subject_assigned and req.counter < req.maximum \
+        and code_matches_acad(subject.course_code, req.acad) \
+        and check_grade_type(subject.grade, GRADE_TYPE_REQ):
+          if req_name == 'core':
+            req.counter += 1
+          else:
+            req.counter += subject.uoc
+          subject.req_assigned = req.name
+          subject_assigned = True
+          completed += [subject.course_code]
+
+    if not subject_assigned and check_grade_type(subject.grade, GRADE_TYPE_REQ):
+      subject.req_assigned = "Could not be allocated"
+
+  print_subjects(subjects)
+
+  eligible = True
+  for req_name, reqs in requirements.items():
+    for req in reqs:
+      remaining_uoc = req.minimum - req.counter
+      if remaining_uoc > 0:
+        eligible = False
+        if req_name == 'core':
+          print(f"Need {remaining_uoc * 6} more UOC for {req.name}")
+          print_acad(req.acad, completed)
+        else:
           print(f"Need {remaining_uoc} more UOC for {req.name}")
 
-    pprint.pprint(requirements);
+  if eligible:
+    print("Eligible to graduate")
+
+    # pprint.pprint(requirements);
 
   # NOTE(Ryan): UOC might not add up correctly
   # order of course assignments to requirements: core -> discipline elective -> gened -> stream electives -> free electives

@@ -381,6 +381,10 @@ def print_subjects(subjects):
       line += " unrs"
     else:
       line += f"{uoc:2d}uoc"
+
+    if subject.req_assigned:
+      line += f" {subject.req_assigned}"
+
     print(line)
 
   uoc = uoc_acheived
@@ -490,6 +494,10 @@ def get_ordered_requirements(stream_code, program_code):
     if not maximum:
       maximum = minimum
 
+    if r_type == 'core':
+      minimum = len(acad.split(','))
+      maximum = minimum
+
     if name == 'Total UOC':
       continue
 
@@ -561,7 +569,7 @@ def q5(zid="5893146", program_code="", stream_code=""):
         for req in reqs:
           if not subject_assigned and req.counter < req.maximum \
           and code_matches_acad(subject.course_code, req.acad) \
-          and not check_grade_type(subject.grade, GRADE_TYPE_FAIL):
+          and check_grade_type(subject.grade, GRADE_TYPE_REQ):
             if req_name == 'core':
               req.counter += 1
             else:
@@ -569,10 +577,10 @@ def q5(zid="5893146", program_code="", stream_code=""):
             subject.req_assigned = req.name
             subject_assigned = True
 
-      if not subject_assigned:
+      if not subject_assigned and check_grade_type(subject.grade, GRADE_TYPE_REQ):
         subject.req_assigned = "Could not be allocated"
 
-    # print_subjects()
+    print_subjects(subjects)
 
     for req_name, reqs in requirements.items():
       for req in reqs:
@@ -580,7 +588,7 @@ def q5(zid="5893146", program_code="", stream_code=""):
         if remaining_uoc > 0:
           print(f"Need {remaining_uoc} more UOC for {req.name}")
 
-    # pprint.pprint(requirements);
+    pprint.pprint(requirements);
 
   # NOTE(Ryan): UOC might not add up correctly
   # order of course assignments to requirements: core -> discipline elective -> gened -> stream electives -> free electives

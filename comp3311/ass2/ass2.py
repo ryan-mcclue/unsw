@@ -10,6 +10,7 @@ import re
 
 import pprint
 
+
 from dataclasses import dataclass
 
 from collections import OrderedDict
@@ -328,29 +329,40 @@ def gather_subjects(zid):
 
   return subjects
 
+GRADE_TYPE_UOC = 0
+GRADE_TYPE_REQ = 1
+GRADE_TYPE_WAM = 2
+GRADE_TYPE_FAIL = 3
+GRADE_TYPE_UNRESOLVED = 4
+def check_grade_type(grade, grade_type):
+  uoc = ["A", "A+", "A-", "B", "B+", "B-", "C", "C+", "C-", "D", "D+", "D-",
+                "HD", "DN", "CR", "PS",
+                "XE", "T", 
+                "SY", "EC", "RC", "NC"]
+  req = uoc
+
+  wam = ["HD", "DN", "CR", "PS", 
+                "AF", "FL", "UF", "E", "F"]
+
+  fail = ["AF", "FL", "UF", "E", "F"]
+  unresolved = ["AS","AW","NA","PW","RD","NF","LE","PE","WD","WJ"]
+
+  grade_types = [uoc, req, wam, fail, unresolved]
+
+  return grade in grade_types[grade_type]
+
+
 def print_subjects(subjects):
   uoc_acheived = 0
   uoc_attempted = 0
   weighted_mark = 0
 
-  uoc_grades = ["A", "A+", "A-", "B", "B+", "B-", "C", "C+", "C-", "D", "D+", "D-",
-                "HD", "DN", "CR", "PS",
-                "XE", "T", 
-                "SY", "EC", "RC", "NC"]
-  req_grades = uoc_grades
-
-  wam_grades = ["HD", "DN", "CR", "PS", 
-                "AF", "FL", "UF", "E", "F"]
-
-  print_fail = ["AF", "FL", "UF", "E", "F"]
-  print_unresolved = ["AS","AW","NA","PW","RD","NF","LE","PE","WD","WJ"]
-
   for subject in subjects:
     uoc = int(subject.uoc)
 
-    if subject.grade in uoc_grades:
+    if check_grade_type(subject.grade, GRADE_TYPE_UOC):
       uoc_acheived += uoc
-    if subject.grade in wam_grades:
+    if check_grade_type(subject.grade, GRADE_TYPE_WAM):
       uoc_attempted += uoc
       if subject.mark:
         weighted_mark += (uoc * subject.mark)
@@ -363,9 +375,9 @@ def print_subjects(subjects):
       print_grade = '-'
 
     line = f"{subject.course_code} {subject.term_code} {subject.title:<32s}{print_mark:>3} {print_grade:>2s}  "
-    if subject.grade in print_fail:
+    if check_grade_type(subject.grade, GRADE_TYPE_FAIL):
       line += " fail"
-    elif subject.grade in print_unresolved:
+    elif check_grade_type(subject.grade, GRADE_TYPE_UNRESOLVED):
       line += " unrs"
     else:
       line += f"{uoc:2d}uoc"
@@ -547,17 +559,20 @@ def q5(zid="5893146", program_code="", stream_code=""):
 
       for req_name, reqs in requirements.items():
         for req in reqs:
-          # TODO: also check grade passed
-          if not subject_assigned and req.counter < req.maximum and code_matches_acad(subject.course_code, req.acad):
+          if not subject_assigned and req.counter < req.maximum \
+          and code_matches_acad(subject.course_code, req.acad) \
+          and not check_grade_type(subject.grade, GRADE_TYPE_FAIL):
             if req_name == 'core':
               req.counter += 1
             else:
               req.counter += subject.uoc
-            subject.req_assigned = req_name
+            subject.req_assigned = req.name
             subject_assigned = True
 
       if not subject_assigned:
         subject.req_assigned = "Could not be allocated"
+
+    # print_subjects()
 
     for req_name, reqs in requirements.items():
       for req in reqs:
@@ -565,7 +580,7 @@ def q5(zid="5893146", program_code="", stream_code=""):
         if remaining_uoc > 0:
           print(f"Need {remaining_uoc} more UOC for {req.name}")
 
-    pprint.pprint(requirements);
+    # pprint.pprint(requirements);
 
   # NOTE(Ryan): UOC might not add up correctly
   # order of course assignments to requirements: core -> discipline elective -> gened -> stream electives -> free electives
@@ -574,19 +589,6 @@ def q5(zid="5893146", program_code="", stream_code=""):
 
   # then after iterating through all subjects on transcript, 
   # check if all uoc requirements satisfied and number of majors
-
-  # subject = {name, mark, requirement_allocated}
-  # progression = subjects[]
-
-  # total_uoc = 0
-  # stream_uoc = 0
- 
-  # iterate over these and check if course matches it.
-  # if it does, remove from list
-  # ultimately want all requirement arrays to be empty
-  # requirement_maths_acad = [math1081, {math1231;math1241}, math2211]
-  # ensure this doesn't exceed uoc
-  # requirement_maths_uoc = range(current, required)
  
   # IMPORTANT(Ryan): computing electives no max. but treat the min as max. as well
 

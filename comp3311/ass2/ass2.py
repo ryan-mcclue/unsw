@@ -374,13 +374,20 @@ def print_subjects(subjects):
     if not subject.grade:
       print_grade = '-'
 
-    line = f"{subject.course_code} {subject.term_code} {subject.title:<32s}{print_mark:>3} {print_grade:>2s}  "
-    if check_grade_type(subject.grade, GRADE_TYPE_FAIL):
-      line += " fail"
+    uoc_str = ""
+    if subject.req_assigned == "Could not be allocated":
+      uoc_str = " 0uoc" 
+    elif check_grade_type(subject.grade, GRADE_TYPE_FAIL):
+      uoc_str = " fail"
     elif check_grade_type(subject.grade, GRADE_TYPE_UNRESOLVED):
-      line += " unrs"
+      uoc_str = " unrs"
+    elif not subject.mark and not subject.grade:
+      uoc_str = ""
     else:
-      line += f"{uoc:2d}uoc"
+      uoc_str = f"{uoc:2d}uoc"
+
+    line = f"{subject.course_code} {subject.term_code} {subject.title:<32s}{print_mark:>3} {print_grade:>2s}  "
+    line += uoc_str
 
     if subject.req_assigned:
       line += f" {subject.req_assigned}"
@@ -498,7 +505,7 @@ def get_ordered_requirements(stream_code, program_code):
       minimum = len(acad.split(','))
       maximum = minimum
 
-    if name == 'Total UOC':
+    if name == 'Total UOC' or r_type == 'stream':
       continue
 
     r = Requirement(name, minimum, maximum, acad, 0)
@@ -539,7 +546,7 @@ def code_matches_acad_code(code, acad_code):
   return True
 
 
-def q5(zid="5893146", program_code="", stream_code=""):
+def q5(zid="5892943", program_code="", stream_code=""):
   if zid[0] == 'z':
     zid = zid[1:8]
   digits = re.compile("^\d{7}$")

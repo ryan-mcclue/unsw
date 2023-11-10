@@ -8,7 +8,11 @@ import subprocess
 
 import re
 
+import pprint
+
 from dataclasses import dataclass
+
+from collections import OrderedDict
 
 from urllib.parse import urlparse
 
@@ -435,7 +439,7 @@ def q4(zid="5893146"):
   subjects = gather_subjects(zid)
   print_subjects(subjects)
 
-def get_requirements(stream_code, program_code):
+def get_ordered_requirements(stream_code, program_code):
   reqs = []
   if stream_code:
     q = '''
@@ -447,7 +451,7 @@ def get_requirements(stream_code, program_code):
     stream_requirements = sql_execute_all(q, [stream_code], False)
     reqs += stream_requirements
   if program_code:
-    q_start = '''
+    q = '''
       select r.name, r.rtype, r.acadobjs, r.min_req, r.max_req, p.name
       from requirements r
       join programs p on (r.for_program = p.id)
@@ -456,25 +460,64 @@ def get_requirements(stream_code, program_code):
     program_requirements = sql_execute_all(q, [program_code], False)
     reqs += program_requirements
 
-  requirements = {}
+  requirements = OrderedDict()
+  requirements['stream'] = []
+  requirements['core'] = []
+  requirements['elective'] = []
+  requirements['gened'] = []
+  requirements['free'] = []
 
   for r in reqs:
     name = r[0]
     r_type = r[1]
     acad = r[2]
-    minimum = int(r[3])
+    maximum = 0
+    if r[3]:
+      minimum = int(r[3])
     maximum = r[4]
     if not maximum:
       maximum = minimum
 
-    r = Requirement(r_name, minimum, maximum, acad, 0)
+    if name == 'Total UOC':
+      continue
 
-    if reqs.get(r_type):
-      requirements[r_type] += [[r]]
-    else:
-      requirements[r_type] = [r]
+    r = Requirement(name, minimum, maximum, acad, 0)
+
+    requirements[r_type] += [r]
 
   return requirements
+
+def code_matches_acad(code, acad):
+  for acad_token in acad.split(','):
+    if acad_token[0] == '{':
+      acad_plain = acad_token.strip('{}')
+      stream_codes = acad_plain.split(';')
+      for stream_code in stream_codes:
+        if code_matches_acad_code(code, stream_code):
+          return True
+    else:
+      if code_matches_acad_code(code, acad_token):
+        return True
+   
+  return False
+
+def code_matches_acad_code(code, acad_code):
+  if acad_code == 'FREE####' or acad_code == 'GEN#####':
+    return True
+
+  at = 0
+  while at < len(code):
+    acad_ch = acad_code[at]
+    code_ch = code[at]
+    if acad_ch == '#':
+      if (at < 4 and not code_ch.isalpha()) or not code_ch.isdigit():
+        return False
+    elif acad_ch != code_ch:
+      return False
+    at += 1
+
+  return True
+
 
 def q5(zid="5893146", program_code="", stream_code=""):
   if zid[0] == 'z':
@@ -494,45 +537,35 @@ def q5(zid="5893146", program_code="", stream_code=""):
     enrolment = get_recent_enrolment(zid)
     print(f"{enrolment.program_code} {enrolment.stream_code} {enrolment.program_name}")
 
-    requirements = get_requirements(enrolment.stream_code, enrolment.program_name)
-    print(requirements)
+    requirements = get_ordered_requirements(enrolment.stream_code, enrolment.program_code)
 
     subjects = gather_subjects(zid)
-    print_subjects(subjects); return
+    # print_subjects(subjects); return
 
-    # subject = Subject(course_code, term, subject_title, mark, grade, uoc)
+    for subject in subjects:
+      subject_assigned = False
 
-    # if grade not in req_grades:
-    #   subject.req_assigned = ""
-    #   subjects += [subject]
-    #   continue
+      for req_name, reqs in requirements.items():
+        for req in reqs:
+          # TODO: also check grade passed
+          if not subject_assigned and req.counter < req.maximum and code_matches_acad(subject.course_code, req.acad):
+            if req_name == 'core':
+              req.counter += 1
+            else:
+              req.counter += subject.uoc
+            subject.req_assigned = req_name
+            subject_assigned = True
 
-    # subject_assigned = False
-    # for core_reqs in reqs['core']:
-    #   if core_req.uoc_counter < core_req.uoc_max:
-    #     if code_matches_acad(course_code, core_req.acad):
-    #       core_req.uoc_counter += uoc
-    #       subject.req_assigned = core_req.name
-    #       subject_assigned = True
+      if not subject_assigned:
+        subject.req_assigned = "Could not be allocated"
 
-    # if not subject_assigned:
-    #   for core_reqs in reqs['elective/gened/free']:
-    #     if core_req.uoc_counter < core_req.uoc_max:
-    #       if code_matches_acad(course_code, core_req.acad):
-    #         core_req.uoc_counter += uoc
-    #        subject.req_assigned = core_req.name
-    #        subject_assigned = True
-
-    # subject.req_assigned = "Could not be allocated"
-
-  print_subjects(subjects)
-
-  for req_name, reqs in reqs.items():
-    for req in reqs:
-      if req.uoc_counter < req.uoc_min:
-        remaining_uoc = req.uoc_min - req.uoc_counter
+    for req_name, reqs in requirements.items():
+      for req in reqs:
+        remaining_uoc = req.minimum - req.counter
         if remaining_uoc > 0:
           print(f"Need {remaining_uoc} more UOC for {req.name}")
+
+    pprint.pprint(requirements);
 
   # NOTE(Ryan): UOC might not add up correctly
   # order of course assignments to requirements: core -> discipline elective -> gened -> stream electives -> free electives
@@ -583,7 +616,7 @@ def main():
     connection = psycopg2.connect(db)
     global_cursor = connection.cursor()
 
-    q4()
+    q5()
 
 
 

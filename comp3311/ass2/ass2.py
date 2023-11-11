@@ -200,7 +200,7 @@ def print_acad(acad, completed):
 
 
 
-def q3(code="12345"):
+def q3(code="ACCTAH"):
   stream_name = ""
   stream_code = ""
   program_name = ""
@@ -228,7 +228,7 @@ def q3(code="12345"):
     print("Invalid code")
     return
 
-  requirements = get_ordered_requirements(stream_code, program_code)
+  requirements = get_ordered_requirements(stream_code, program_code, True)
 
   if stream_name:
     print(f"{code} {stream_name}")
@@ -253,7 +253,7 @@ def q3(code="12345"):
       if req_name == "uoc":
         req_str += " UOC" 
         if r.name == "Total UOC":
-          print(f"Total UOC at least {r.minimum} UOC")
+          print(f"Total UOC {req_str}")
         else:
           print(f"{req_str} from {r.name}")
       elif req_name == "stream":
@@ -268,8 +268,7 @@ def q3(code="12345"):
       elif req_name == "free":
         print(f"{req_str} UOC of {stream_code} Free Electives")
       elif req_name == "elective":
-        # TODO(Ryan): print 'at least'?
-        print(f"at least {req_str} UOC courses from {r.name}")
+        print(f"{req_str} UOC courses from {r.name}")
         print(f"- {r.acad}")
 
 def gather_subjects(zid):
@@ -436,7 +435,7 @@ def q4(zid="1234567"):
   subjects = gather_subjects(zid)
   print_subjects(subjects)
 
-def get_ordered_requirements(stream_code, program_code):
+def get_ordered_requirements(stream_code, program_code, raw=False):
   reqs = []
   if stream_code:
     q = '''
@@ -474,15 +473,19 @@ def get_ordered_requirements(stream_code, program_code):
     rid = int(r[5])
     maximum = 0
     minimum = 0
-    if r[3]:
-      minimum = int(r[3])
-    maximum = r[4]
-    if not maximum:
-      maximum = minimum
 
     if r_type == 'core':
       minimum = len(acad.split(','))
       maximum = minimum
+    elif raw:
+      minimum = r[3]
+      maximum = r[4]
+    else:
+      if r[3]:
+        minimum = int(r[3])
+      maximum = r[4]
+      if not maximum:
+        maximum = minimum
 
     r = Requirement(name, minimum, maximum, acad, 0, rid)
 
@@ -645,7 +648,7 @@ def main():
     connection = psycopg2.connect(db)
     global_cursor = connection.cursor()
 
-    q5()
+    q3()
 
 
 

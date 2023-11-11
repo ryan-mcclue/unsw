@@ -5,20 +5,37 @@ import sys
 import platform
 import pathlib
 import subprocess
-
 import re
-
 import pprint
+import psycopg2
 
 from operator import attrgetter
-
 from dataclasses import dataclass
-
 from collections import OrderedDict
-
 from urllib.parse import urlparse
 
-import psycopg2
+def warn(msg):
+  print(msg)
+  if __debug__:
+    breakpoint()
+    sys.exit()
+
+def fatal_error(msg):
+  print(msg)
+  breakpoint()
+  sys.exit()
+
+global_cursor = None
+
+def sql_execute_all(query, args=[], log=True):
+  if log:
+    print(f"[ECHO-QUERY]: {global_cursor.mogrify(query, args).decode('utf-8')}")
+  global_cursor.execute(query, args)
+  return global_cursor.fetchall()
+
+def sql(query, args=[], log=True):
+  for res in sql_execute_all(query, args, log):
+    print(res)
 
 @dataclass
 class Subject:
@@ -51,28 +68,9 @@ class Requirement:
   counter: int
   rid: int
 
-def warn(msg):
-  print(msg)
-  if __debug__:
-    breakpoint()
-    sys.exit()
 
-def fatal_error(msg):
-  print(msg)
-  breakpoint()
-  sys.exit()
 
-global_cursor = None
 
-def sql_execute_all(query, args=[], log=True):
-  if log:
-    print(f"[ECHO-QUERY]: {global_cursor.mogrify(query, args).decode('utf-8')}")
-  global_cursor.execute(query, args)
-  return global_cursor.fetchall()
-
-def sql(query, args=[], log=True):
-  for res in sql_execute_all(query, args, log):
-    print(res)
 
 def q1():
   q = '''
@@ -649,9 +647,6 @@ def main():
     global_cursor = connection.cursor()
 
     q3()
-
-
-
   except psycopg2.DatabaseError as error:
     fatal_error(f"psycopg2 error ({error.pgcode}): {error.pgerror}")
 

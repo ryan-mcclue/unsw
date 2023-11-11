@@ -2,6 +2,7 @@
 # add here any functions to share between Python scripts 
 # you must submit this even if you add nothing
 
+# NOTE(Ryan): Pre-existing ...
 def getProgram(db,code):
   cur = db.cursor()
   cur.execute("select * from Programs where code = %s",[code])
@@ -36,4 +37,4 @@ def getStudent(db,zid):
   if not info:
     return None
   else:
-    return info-
+    return info

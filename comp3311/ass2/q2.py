@@ -3,19 +3,7 @@
 
 from helpers import *
 
-global_cursor = None
-
-def sql_execute_all(query, args=[], log=True):
-  if log:
-    print(f"[ECHO-QUERY]: {global_cursor.mogrify(query, args).decode('utf-8')}")
-  global_cursor.execute(query, args)
-  return global_cursor.fetchall()
-
-def sql(query, args=[], log=True):
-  for res in sql_execute_all(query, args, log):
-    print(res)
-
-def q2(subject_code="COMP1010"):
+def q2(c, subject_code="COMP1010"):
   # TODO(Ryan): Print if invalid
   # subjectInfo = getSubject(db,subject)
   # if not subjectInfo:
@@ -43,7 +31,7 @@ def q2(subject_code="COMP1010"):
     where s.code = %s and t.code = %s
   '''
 
-  q_res = sql_execute_all(q, [subject_code], False)
+  q_res = sql_execute_all(c, q, [subject_code], False)
   subject_title = q_res[0][4]
   print(f"{subject_code} {subject_title}")
   print("Term  Satis  #resp   #stu  Convenor")
@@ -57,7 +45,7 @@ def q2(subject_code="COMP1010"):
       nresponses = "?"
     convenor = res[3]
 
-    nstudents = sql_execute_all(q2, [subject_code, term], False)[0][0]
+    nstudents = sql_execute_all(c, q2, [subject_code, term], False)[0][0]
     print(f"{term} {satisfaction:>6} {nresponses:>6} {nstudents:6d}  {convenor}")
 
 
@@ -72,7 +60,6 @@ def main():
   os.chdir(directory_of_running_script)
 
   try:
-    global global_cursor
     db = None
     # NOTE(Ryan): Will set this env. variable on local machine to differentiate running on vxdb2
     local_db_pass = os.environ.get("LOCALDBPASS")
@@ -82,7 +69,7 @@ def main():
       db = f"host=localhost, port=5432 dbname=ass2 user=ryan password={local_db_pass}"
 
     connection = psycopg2.connect(db)
-    global_cursor = connection.cursor()
+    c = connection.cursor()
 
     usage = f"Usage: {sys.argv[0]} SubjectCode"
     argc = len(sys.argv)
@@ -95,7 +82,7 @@ def main():
       print("Invalid subject code")
       exit(1)
 
-    q2(subject)
+    q2(c, subject)
   except psycopg2.DatabaseError as error:
     fatal_error(f"psycopg2 error ({error.pgcode}): {error.pgerror}")
 

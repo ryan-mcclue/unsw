@@ -2,19 +2,7 @@
 # COMP3311 23T3 Ass2 ... track proportion of overseas students
 from helpers import *
 
-global_cursor = None
-
-def sql_execute_all(query, args=[], log=True):
-  if log:
-    print(f"[ECHO-QUERY]: {global_cursor.mogrify(query, args).decode('utf-8')}")
-  global_cursor.execute(query, args)
-  return global_cursor.fetchall()
-
-def sql(query, args=[], log=True):
-  for res in sql_execute_all(query, args, log):
-    print(res)
-
-def q1():
+def q1(c):
   q = '''
     select t.starting, s.status, count(distinct s.id)
     from students s 
@@ -25,7 +13,7 @@ def q1():
     order by t.starting, s.status
   '''
 
-  student_counts = sql_execute_all(q, [], False)
+  student_counts = sql_execute_all(c, q, [], False)
   terms = ["19T1", "19T2", "19T3", 
            "20T0", "20T1", "20T2", "20T3",
            "21T0", "21T1", "21T2", "21T3",
@@ -70,7 +58,6 @@ def main():
   os.chdir(directory_of_running_script)
 
   try:
-    global global_cursor
     db = None
     # NOTE(Ryan): Will set this env. variable on local machine to differentiate running on vxdb2
     local_db_pass = os.environ.get("LOCALDBPASS")
@@ -80,9 +67,9 @@ def main():
       db = f"host=localhost, port=5432 dbname=ass2 user=ryan password={local_db_pass}"
 
     connection = psycopg2.connect(db)
-    global_cursor = connection.cursor()
+    c = connection.cursor()
 
-    q1()
+    q1(c)
   except psycopg2.DatabaseError as error:
     fatal_error(f"psycopg2 error ({error.pgcode}): {error.pgerror}")
 

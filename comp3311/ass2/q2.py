@@ -1,30 +1,7 @@
 #!/usr/bin/python3
 # COMP3311 23T3 Ass2 ... track satisfaction in a given subject
 
-import os
-import sys
-import platform
-import pathlib
-import subprocess
-import re
-import pprint
-import psycopg2
-
-from operator import attrgetter
-from dataclasses import dataclass
-from collections import OrderedDict
-from urllib.parse import urlparse
-
-def warn(msg):
-  print(msg)
-  if __debug__:
-    breakpoint()
-    sys.exit()
-
-def fatal_error(msg):
-  print(msg)
-  breakpoint()
-  sys.exit()
+from helpers import *
 
 global_cursor = None
 

@@ -63,6 +63,7 @@ class Requirement:
   acad: str
   counter: int
   rid: int
+  is_stream: bool
 
 def get_course_name(c, code):
   q = '''
@@ -87,17 +88,23 @@ def get_code_uoc(c, code):
 
 def get_remaining_acad_codes(acad, completed):
   codes = []
-  for acad_token in acad.split(','):
+  acad_split = acad.split(',')
+  for acad_token in acad_split:
     if acad_token[0] == '{':
       acad_plain = acad_token.strip('{}')
       stream_codes = acad_plain.split(';')
+      possible_codes = []
       for stream_code in stream_codes:
         if stream_code in completed:
+          possible_codes = []
           break
         else:
           # NOTE(Ryan): Assume either/or are all of same uoc
-          codes += [stream_code]
-          break
+          possible_codes += [stream_code]
+      if len(possible_codes) > 1:
+        codes += [possible_codes[-1]]
+      else:
+        codes += possible_codes
     else:
       if acad_token not in completed:
         codes += [acad_token]
@@ -199,9 +206,9 @@ def print_subjects(subjects):
 
     print_mark = subject.mark
     print_grade = subject.grade
-    if not subject.mark:
+    if subject.mark is None:
       print_mark = '-'
-    if not subject.grade:
+    if subject.grade is None:
       print_grade = '-'
 
     uoc_str = ""
@@ -275,7 +282,8 @@ def get_person(c, zid):
     return Person(-1, "", "")
 
 def get_ordered_requirements(c, stream_code, program_code, raw=False):
-  reqs = []
+  sreqs = []
+  preqs = []
   if stream_code:
     q = '''
       select r.name, r.rtype, r.acadobjs, r.min_req, r.max_req, r.id
@@ -283,8 +291,7 @@ def get_ordered_requirements(c, stream_code, program_code, raw=False):
       join streams s on (r.for_stream = s.id)
       where s.code = %s
     '''
-    stream_requirements = sql_execute_all(c, q, [stream_code], False)
-    reqs += stream_requirements
+    sreqs = sql_execute_all(c, q, [stream_code], False)
   if program_code:
     q = '''
       select r.name, r.rtype, r.acadobjs, r.min_req, r.max_req, r.id
@@ -292,8 +299,7 @@ def get_ordered_requirements(c, stream_code, program_code, raw=False):
       join programs p on (r.for_program = p.id)
       where p.code = %s
     '''
-    program_requirements = sql_execute_all(c, q, [program_code], False)
-    reqs += program_requirements
+    preqs = sql_execute_all(c, q, [program_code], False)
 
   requirements = OrderedDict()
   # NOTE(Ryan): Required for q3
@@ -305,7 +311,7 @@ def get_ordered_requirements(c, stream_code, program_code, raw=False):
   requirements['gened'] = []
   requirements['free'] = []
 
-  for r in reqs:
+  for r in sreqs:
     name = r[0]
     r_type = r[1]
     acad = r[2]
@@ -326,7 +332,32 @@ def get_ordered_requirements(c, stream_code, program_code, raw=False):
       if not maximum:
         maximum = minimum
 
-    r = Requirement(name, minimum, maximum, acad, 0, rid)
+    r = Requirement(name, minimum, maximum, acad, 0, rid, True)
+
+    requirements[r_type] += [r]
+
+  for r in preqs:
+    name = r[0]
+    r_type = r[1]
+    acad = r[2]
+    rid = int(r[5])
+    maximum = 0
+    minimum = 0
+
+    if r_type == 'core':
+      minimum = len(acad.split(','))
+      maximum = minimum
+    elif raw:
+      minimum = r[3]
+      maximum = r[4]
+    else:
+      if r[3]:
+        minimum = int(r[3])
+      maximum = r[4]
+      if not maximum:
+        maximum = minimum
+
+    r = Requirement(name, minimum, maximum, acad, 0, rid, False)
 
     requirements[r_type] += [r]
 

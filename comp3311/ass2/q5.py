@@ -36,8 +36,30 @@ def q5(c, zid="5892943", program_code="", stream_code=""):
   print(f"{p_code} {s_code} {p_name}")
 
   requirements = get_ordered_requirements(c, s_code, p_code)
+  stream_reqs = []
+  other_reqs = []
+  for creq in requirements['core']:
+    if creq.is_stream:
+      stream_reqs += [creq]
+    else:
+      other_reqs += [creq]
+  stream_reqs = sorted(stream_reqs, key=attrgetter('rid'))
+  other_reqs = sorted(other_reqs, key=attrgetter('rid'))
+  requirements['core'] = stream_reqs + other_reqs
+
+  stream_reqs = []
+  other_reqs = []
+  for creq in requirements['elective']:
+    if creq.is_stream:
+      stream_reqs += [creq]
+    else:
+      other_reqs += [creq]
+  stream_reqs = sorted(stream_reqs, key=attrgetter('rid'))
+  other_reqs = sorted(other_reqs, key=attrgetter('rid'))
+  requirements['elective'] = stream_reqs + other_reqs
 
   subjects = gather_subjects(c, zid)
+  # print(subjects)
   # print_subjects(subjects); return
 
   completed = []
@@ -54,14 +76,20 @@ def q5(c, zid="5892943", program_code="", stream_code=""):
         if not subject_assigned and req.counter < req.maximum \
         and code_matches_acad(subject.course_code, req.acad) \
         and check_grade_type(subject.grade, GRADE_TYPE_REQ):
+          allocated = False
           if req_name == 'core':
-            req.counter += 1
+            if req.counter + 1 <= req.maximum:
+              req.counter += 1
+              allocated = True
           else:
-            req.counter += subject.uoc
-          subject.req_assigned = req.name
-          subject_assigned = True
-          completed += [subject.course_code]
-          break
+            if req.counter + subject.uoc <= req.maximum:
+              req.counter += subject.uoc
+              allocated = True
+          if allocated:
+            subject.req_assigned = req.name
+            subject_assigned = True
+            completed += [subject.course_code]
+            break
 
     if not subject_assigned and check_grade_type(subject.grade, GRADE_TYPE_REQ):
       subject.req_assigned = "Could not be allocated"

@@ -42,8 +42,6 @@ def q5(c, zid="5892943", program_code="", stream_code=""):
 
   completed = []
 
-  # pprint.pprint(requirements)
-
   for subject in subjects:
     subject_assigned = False
 
@@ -61,7 +59,6 @@ def q5(c, zid="5892943", program_code="", stream_code=""):
           subject.req_assigned = req.name
           subject_assigned = True
           completed += [subject.course_code]
-          break
 
     if not subject_assigned and check_grade_type(subject.grade, GRADE_TYPE_REQ):
       subject.req_assigned = "Could not be allocated"
@@ -75,16 +72,9 @@ def q5(c, zid="5892943", program_code="", stream_code=""):
     for req in reqs:
       remaining_uoc = req.minimum - req.counter
       if remaining_uoc > 0:
-        # print(f"{req_name}: {req}")
         eligible = False
         if req_name == 'core':
-          core_uoc_remaining = 0
-          codes = get_remaining_acad_codes(req.acad, completed)
-          for code in codes:
-            uoc = get_code_uoc(c, code)
-            core_uoc_remaining += uoc
-          #print(f"Need {remaining_uoc * 6} more UOC for {req.name}")
-          print(f"Need {core_uoc_remaining} more UOC for {req.name}")
+          print(f"Need {remaining_uoc * 6} more UOC for {req.name}")
           print_acad(c, req.acad, completed)
         else:
           print(f"Need {remaining_uoc} more UOC for {req.name}")

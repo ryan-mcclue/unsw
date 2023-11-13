@@ -80,29 +80,6 @@ def get_course_name(c, code):
   else:
     return res[0][0]
 
-def get_code_uoc(c, code):
-  q = 'select s.uoc from subjects s where s.code=%s'
-  res = sql_execute_all(c, q, [code], False)
-  return res[0][0]
-
-def get_remaining_acad_codes(acad, completed):
-  codes = []
-  for acad_token in acad.split(','):
-    if acad_token[0] == '{':
-      acad_plain = acad_token.strip('{}')
-      stream_codes = acad_plain.split(';')
-      for stream_code in stream_codes:
-        if stream_code in completed:
-          break
-        else:
-          # NOTE(Ryan): Assume either/or are all of same uoc
-          codes += [stream_code]
-          break
-    else:
-      if acad_token not in completed:
-        codes += [acad_token]
-  return codes
-
 def print_acad(c, acad, completed):
   for acad_token in acad.split(','):
     if acad_token[0] == '{':
@@ -110,21 +87,15 @@ def print_acad(c, acad, completed):
       stream_codes = acad_plain.split(';')
       stream_names = []
       for stream_code in stream_codes:
-        # NOTE(Ryan): If at end of codes, remove other codes
         if stream_code in completed:
-          stream_names = []
           break
         else:
           stream_names += [get_course_name(c, stream_code)]
       final_str = ""
       for i in range(len(stream_names)):
-        if i == 0:
-          print(f"- {stream_codes[i]} {stream_names[i]}")
-        else:
-          print(f"  or {stream_codes[i]} {stream_names[i]}")
-     #   final_str += f"{stream_codes[i]} {stream_names[i]} or "
-     # if final_str:
-     #   print(f"- {final_str[:-4]}")
+        final_str += f"{stream_codes[i]} {stream_names[i]} or "
+      if final_str:
+        print(f"- {final_str[:-4]}")
     else:
       if acad_token not in completed:
         stream_name = get_course_name(c, acad_token)
@@ -330,7 +301,6 @@ def get_ordered_requirements(c, stream_code, program_code, raw=False):
 
     requirements[r_type] += [r]
 
-  requirements['uoc'] = sorted(requirements['uoc'], key=attrgetter('rid'))
   requirements['stream'] = sorted(requirements['stream'], key=attrgetter('rid'))
   requirements['core'] = sorted(requirements['core'], key=attrgetter('rid'))
   requirements['elective'] = sorted(requirements['elective'], key=attrgetter('rid'))

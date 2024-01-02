@@ -8,7 +8,7 @@ Effectively '1' will have foreign key, 'n' will be modelled by relationship tabl
 * 1:1 
   could have two tables each with foreign key referencing other primary key
   however redudancy comes up, only requiring one foreign key for one of them (as can access other through them)
-  what side foreign key is one depends on participation
+  what side foreign key is on depends on participation
 * 1:n
   '1' side with foreign key only
 * n:m (cannot create n:m with total participation in sql)

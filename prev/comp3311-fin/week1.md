@@ -7,7 +7,7 @@ SQL standard is language for managing RDBMS.
 Postgresql documentation explicit in standard conformance.
 Could also have noSQL or time-series (i.e. optimised for time-based queries, i.e. index of data determines efficiency) 
 
-Data model -> ER diagram -> Relational schema (defintion and query language subsets)
+Data model -> ER diagram -> Relational schema (definition and query language subsets)
 
 psql 13.0, sqlite 3.x, python 3.7+, psycopg 2.8+
 

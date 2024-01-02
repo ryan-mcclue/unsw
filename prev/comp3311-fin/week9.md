@@ -26,9 +26,11 @@ Transaction is an atomic unit of work. Can be abstracted to only read/write oper
 A schedule outlines execution of transactions; often they are run concurrently
 For DBMS, serialisation means that a concurrent transaction can be transformed to an iterative transaction
 1. conflict serialisability means read/write occur in 'right' order
-(no cycles in precendance graphs)
-2. view serialisability  means reads see 'correct' version of data
+(no cycles in precedance graphs)
+(draw arrow if Read and Write. arrow direction from first)
+2. view serialisability means reads see 'correct' version of data
 (less conservative than conflict; so some schedules could be view but not conflict)
+
 Lock-based concurrency or multi-version concurrency (i.e. at start, each see unique snapshot so no blocking) common.
 In MVCC, each tuple effectively a linked list of recent versions. periodic vacuum process deletes tuples no longer accessible
 

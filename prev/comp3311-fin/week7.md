@@ -27,8 +27,15 @@ ACE+ = ABCDEFG (so key)
 Normalisation uses normal forms, which state what level of redundancy is allowed
 Boyce-Codd and 3rd-NF usually used
 
-1NF all values must be atomic (so no arrays)
-2NF all non-key attributes depend on key
+IMPORTANT: key is specific to a single table
+1NF all values must be atomic (e.g. no arrays)
+2NF all non-key attributes must depend on key (e.g. key of table gives field1 and field1 gives field2)
+3NF all non-key attributes must directly (e.g. no transitive) depend on some part of key
+1. determine candidate key(s) by finding what no arrows point to
+IMPORTANT: if this does not give complete candidate key, make combination which may result in multiple candidate keys
+2. is lhs of fd. a superkey or rhs a prime attribute. if not split into table
+3. after splitting all fds. into tables, make final candidate key table
+IMPORTANT: if multiple candidate key tables, only add one where fds. flow
 
-3NF all non-key attributes depend on key attributes 
+BCNF everything related to the whole key and nothing but the key so help me Codd (or nothing in table)
 BCNF may not preserve functional dependencies and cannot have key ABC and B->C; therefore possible update anomalies)

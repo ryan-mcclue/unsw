@@ -35,6 +35,7 @@ IMPORTANT: join size can be larger of two table sizes as single attribute can ma
 TODO: theta join must common in sql?
 * division (table dividing by must share attribute name)
 returns tuples that for each instance of an attribute, have a corresponding value for each divisor
+(so, division table has all columns minus primary key)
 so, use in 'for all' scenarios
 ```
 -- sel[drinker=ryan || drinker=loc]

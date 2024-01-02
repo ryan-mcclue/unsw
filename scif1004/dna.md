@@ -18,9 +18,6 @@ however, dna is nucleus and has to extracted, purified and amplified before dete
 
 can't really make designer babies as whilst genome project gave all letters, don't know all gene functions to sucessfully perfrom dna recombination
 
-significance of dolly is that she wasn't born from an egg, rather a cell
-(the most difficult part of cloning is getting the donor cell into the egg)
-
 ## Gattaca
 determine individuals genes and see if they give advantage
 atgc base sequence

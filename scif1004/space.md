@@ -24,6 +24,14 @@ The process of developing this has applications for Earth as well
 Nearest star alpha centeari 4years at speed of light; so worm hole, warp space time, or generation ship required
 
 ## Apollo 13
+Complacency with expected success of previous missions
+Drama on Earth with Jims wife
+Loss of oxygen and co2 levels rising
+Psychological challenges, maintaining calm on ship and at nasa
 
 ## Martian
-
+2035, Sol is martian solar day
+Explores sustainability planting
+Complexity involved, e.g. electrical, mechanical, botany all required
+Geopolitical relations with china space agency helping
+Lots of responsibility when operating afar; tendency for mutiny

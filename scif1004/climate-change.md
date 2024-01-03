@@ -23,6 +23,20 @@ reason countries of same latitude aren't same temperautre is because of currents
 so, if this current was disrupted, i.e. warm water not allowed to travel, then global cooling
 e.g, glaciers melt (greenland 80%) and freshwater stops current
 
+only ice sheets melting increase sea levels
+
+sea levels can rise due to low pressure systems like cyclones over say warm water
+
+when snow falls, traps air bubbles. ice forms, getting accumulation of trapped air
+
+thermal expansion can cause sea levels to rise
+
 ## Day After Tomorrow
-speed of ice formation off
-scale of ice formation off
+speed and scale of ice formation off
+so, mechanism right, timescale off
+temperature of troposphere off
+climate model would require supercomputer
+
+to turn anecdotes into science, have to use statistics
+
+## An Inconvient Truth

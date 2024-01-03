@@ -5,6 +5,24 @@ anthropegenic climate change
 
 ocean affects climate
 
-if you pass infrared through greenhouse gasses, they block them, but allow solar radiation to pass through.
+if you pass infrared through greenhouse gasses, they block them, 
+but allow solar radiation (uv, visible light) to pass through.
+
+greenhouse gases (CO2, methane, nitrous oxide) are necessary to have the earth at a liveably warm temperature
+
+short-term dips in historical temperature result from catastrophic volcanic eruptions block solar radiation
+
+IMPORTANT: temperature triggers and then feedback cycles augment
+
+ice-ages are triggered by orbits, e.g. eccentricity cycle of 100kyears, obliquity cycle; not CO2
+then, sea ice melts causing less solar radiation to be reflected, so heating
+futhermore, increasing heat of ocean causes it to release more CO2, enhancing greenhouse
+so, whilst CO2 levels have fluctuated, never accelerated this fast or been at this level for millions of years 
+
+reason countries of same latitude aren't same temperautre is because of currents (north atlantic/gulf stream)
+so, if this current was disrupted, i.e. warm water not allowed to travel, then global cooling
+e.g, glaciers melt (greenland 80%) and freshwater stops current
 
 ## Day After Tomorrow
+speed of ice formation off
+scale of ice formation off

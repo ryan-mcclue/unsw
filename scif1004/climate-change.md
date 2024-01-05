@@ -31,6 +31,11 @@ when snow falls, traps air bubbles. ice forms, getting accumulation of trapped a
 
 thermal expansion can cause sea levels to rise
 
+1/3 of CO2 we release goes into ocean, causing acidification
+plankton form calcium carbonate shelves
+
+removing trees as made of carbon, will release into atmosphere
+
 ## Day After Tomorrow
 speed and scale of ice formation off
 so, mechanism right, timescale off

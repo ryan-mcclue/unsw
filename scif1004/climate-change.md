@@ -8,7 +8,7 @@ ocean affects climate
 if you pass infrared through greenhouse gasses, they block them, 
 but allow solar radiation (uv, visible light) to pass through.
 
-greenhouse gases (CO2, methane, nitrous oxide) are necessary to have the earth at a liveably warm temperature
+greenhouse gases (CO2, methane, nitrous oxide, water vapour) are necessary to have the earth at a liveably warm temperature
 
 short-term dips in historical temperature result from catastrophic volcanic eruptions block solar radiation
 
@@ -23,7 +23,7 @@ reason countries of same latitude aren't same temperautre is because of currents
 so, if this current was disrupted, i.e. warm water not allowed to travel, then global cooling
 e.g, glaciers melt (greenland 80%) and freshwater stops current
 
-only ice sheets melting increase sea levels
+only ice sheets/glaciers(land) melting increase sea levels
 
 sea levels can rise due to low pressure systems like cyclones over say warm water
 
@@ -35,6 +35,8 @@ thermal expansion can cause sea levels to rise
 plankton form calcium carbonate shelves
 
 removing trees as made of carbon, will release into atmosphere
+
+last ice age about 10kya
 
 ## Day After Tomorrow
 speed and scale of ice formation off

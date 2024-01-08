@@ -27,6 +27,7 @@ immune system can overreact, e.g. allergic reaction
 bringing back spanish flu from dead soldier in permafrost
 
 mosquito very common virus vector 
+bats better harbour of virus and mutation as only mammal that flies
 
 ## Outbreak
 political, economical and technical issues associated with scientific issues

@@ -21,16 +21,15 @@ Advancements in cybernetics have allowed for the creation of agents that are phy
 Powered orthosis is the process of adding energy to supporting plastic/metal that's molded to a limb to augment its function. (stanford)
 This technology is evidenced where Tyrell states "More human than human is our motto" and when Inspector Bryant comments on the Replicants "They were designed to copy human beings in every way"
 As a result of these innovations, society devalues natural things, which ultimately leads to their removal.
-
-(show dystopian)
-Wide angle shots of the environment show excessive pollution, towering machinery, dirty streets with no trees or greenery.
-The majority of the movie is filmed in dark lighting with accompanying fog, which obscures any living details. 
-A constant source of light are spotlights that filter through windows, following a sweeping pattern back and forth.
-Their mechanical motion is disruptive and irritating, symbolising that the idea of light streaming in from outside, like the Sun naturally does, 
-is an intrusion.
-The soundtrack employs digital synthesisers with no physical instruments, demonstrating the extent to which even natural music has been replaced.
-The presence of the bonsai tree and origami (natural) seem out of place.
-An artificial owl and snake.
+A dystopian landscape is depicted to highlight the consequences of nothing natural. 
+Expansive views of the city reveal an overwhelming presence of pollution, dirty machinery, unkept roads and absolutely no greenery.
+Dim lighting in conjunction with a persistent smog minimises the visual appeal of the cities human inhabitants who are the only natural things.
+The bright spotlights that constantly sweep through windows disturb the normally dark ambience.
+The spotlights act as a metaphor for the Sun's rays, symbolising the reversal of normally comforting natural light.
+The presence of the bonsai tree in Tyrell's office appears incongruous, standing out as a remnant of the natural world in a starkly artificial environment. 
+When Deckard asks Rachel about her owl "Is it artificial?", she immedietely replies with "of course" emphasising that having something natural is against societal norms.
+Tyrell's supreme opulence and high regard as the "god father of bioengineering" positions him as representative of what society aspires to live like.
+His building towering above the ground is symbolic of him living so far apart from the natural world. 
 
 Scientific advancements in *Blade Runner* are also portrayed as allowing for the emulation of emotions.
 The detrimental affects of these are demonstrated by presenting a society that has devalued the importance of emotion.
@@ -43,7 +42,8 @@ A billboard advertising the Replicants with the text "Use your new friend as a p
 The emotions of the Replicants are contrasted with the absence of emotions in society.
 As the Replicants are fundamentally artificial, emotions are therefore viewed as artificial.
 The opening credits set the scene for an emotionally anemic society.
-They are deviod of colour and vitality with white text on a black background accompanied by digital synthesised music.
+The white text on black background is deviod of colour and vitality.
+The soundtrack is also exclusively digital synthesised music, underscoring how even the organic quality of traditional music has been replaced by the synthetic.
 The text mentions 'retiring' Replicants, which is a flippant term for executing.
 Slurs like 'skinjob' and 'skinner' also serve to dehumanise the Replicants.
 The Replicants represent emotions society has lost.
@@ -53,7 +53,7 @@ Tyrell callously refers to Rachel as "an experiment. Nothing more".
 J.F Sebastian expresses emotional immaturity "I make friends. They're toys. My friends are toys".
 Furthermore, the main protaganist Deckard is portrayed as a social loner with no friends and very monotonous approach to life.
 He is unaware that informing Rachel that she is a Replicant might upset her, highlighting that such compassion in humans is not typical.
-
+His indifference to the Replicants is epitomised with "Replicants are like any other machine".
 
 In conclusion, *Blade Runner* portrays scientific technologies in bio-engineering, robotics and artificial intelligence as having harmful effects on society.
 As a result of these technologies, society is shown to be disrupted from nature and emotionally devoid.

@@ -8,7 +8,7 @@ developments/progressions/
 
 Scientific technologies have the potential to negatively influence many aspects of life.
 In the film *Blade Runner* (Ridley Scott, 2007), science is shown to be a force of evil. 
-The film explores how the pursuit of scentific developments in the areas of bio-engineering,
+The film explores how the pursuit of scentific developments in the areas of bioengineering,
 cybernetics and artificial intelligence (AI) can have catastrophic results. 
 These results are portrayed through the depiction of a society that is devoid of natural life and emotion. 
 
@@ -19,17 +19,20 @@ Undifferentiated stem cells can be cultivated to differentiate into specific cel
 This science is highlighted by J.F Sebastian, where he remarks "Cause I do genetic design work" and by Dr Chew when he says "I design your eyes".
 Advancements in cybernetics have allowed for the creation of agents that are physically superior to humans.
 Powered orthosis is the process of adding energy to supporting plastic/metal that's molded to a limb to augment its function. (stanford)
-This technology is evidenced where Tyrell states "More human than human is our motto" and when Inspector Bryant comments on the Replicants "They were designed to copy human beings in every way"
+This technology is evidenced where Tyrell states "More human than human is our motto" and when Inspector Bryant comments on the Replicants "They were designed to copy human beings in every way".
 As a result of these innovations, society devalues natural things, which ultimately leads to their removal.
-A dystopian landscape is depicted to highlight the consequences of nothing natural. 
+A dystopian landscape is depicted to show the consequences of a society with nothing natural. 
 Expansive views of the city reveal an overwhelming presence of pollution, dirty machinery, unkept roads and absolutely no greenery.
-Dim lighting in conjunction with a persistent smog minimises the visual appeal of the cities human inhabitants who are the only natural things.
+Dim lighting in conjunction with a persistent smog obscures the visibility of the city's human inhabitants who are the only things natural.
+This minimises the importance of the human presence, making them appear almost incidental, having been consumed by surrounding technologies.
 The bright spotlights that constantly sweep through windows disturb the normally dark ambience.
 The spotlights act as a metaphor for the Sun's rays, symbolising the reversal of normally comforting natural light.
 The presence of the bonsai tree in Tyrell's office appears incongruous, standing out as a remnant of the natural world in a starkly artificial environment. 
 When Deckard asks Rachel about her owl "Is it artificial?", she immedietely replies with "of course" emphasising that having something natural is against societal norms.
 Tyrell's supreme opulence and high regard as the "god father of bioengineering" positions him as representative of what society aspires to live like.
-His building towering above the ground is symbolic of him living so far apart from the natural world. 
+His building towering above the ground is symbolic of his god-like status and living so far apart from the natural world. 
+It's clear that scientific advancements in bioengineering and cybernetics are portrayed as removing the natural life by causing the substitution of organic lifeforms with artificial counterparts.
+Science is therefore shown to be a force of evil.
 
 Scientific advancements in *Blade Runner* are also portrayed as allowing for the emulation of emotions.
 The detrimental affects of these are demonstrated by presenting a society that has devalued the importance of emotion.
@@ -54,8 +57,10 @@ J.F Sebastian expresses emotional immaturity "I make friends. They're toys. My f
 Furthermore, the main protaganist Deckard is portrayed as a social loner with no friends and very monotonous approach to life.
 He is unaware that informing Rachel that she is a Replicant might upset her, highlighting that such compassion in humans is not typical.
 His indifference to the Replicants is epitomised with "Replicants are like any other machine".
+It's clear that scientific advancements in artificial intelligence have caused society to become emotionally isolated.
+It therefore challenges what it means to be human.
 
-In conclusion, *Blade Runner* portrays scientific technologies in bio-engineering, robotics and artificial intelligence as having harmful effects on society.
+In conclusion, *Blade Runner* portrays scientific technologies in bioengineering, cybernetics and AI as having harmful effects on society.
 As a result of these technologies, society is shown to be disrupted from nature and emotionally devoid.
 Therefore, the film portrays science as a force of evil, warning of its catastrophic consequences if left unchecked.
 

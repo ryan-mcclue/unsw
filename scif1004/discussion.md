@@ -41,31 +41,22 @@ The Replicant's versatility and adaptability is further evidence of additional A
 Large language models (LLMs) can be trained on custom data so they can learn about an individual and generate responses tailored specifically for them (replit)
 A billboard advertising the Replicants with the text "Use your new friend as a personal body servant or a tireless field hand" shows their varied nature.
 The emotions of the Replicants are contrasted with the absence of emotions in society.
-As the Replicants are fundamentally artificial, emotions are therefore portrayed as artificial.
+As the Replicants are fundamentally artificial, emotions are therefore viewed as artificial.
+The opening credits set the scene for an emotionally anemic society.
+They are deviod of colour and vitality with white text on a black background accompanied by digital synthesised music.
+The text mentions 'retiring' Replicants, which is a flippant term for executing.
+Slurs like 'skinjob' and 'skinner' also serve to dehumanise the Replicants.
+The Replicants represent emotions society has lost.
+Pris is cheeky, Roy is cunning, Rachel is caring, Leon is loyal and Zora is flirtatious.
+The humans on the other hand are shown to have stowed away their emotions.
+Tyrell callously refers to Rachel as "an experiment. Nothing more".
+J.F Sebastian expresses emotional immaturity "I make friends. They're toys. My friends are toys".
+Furthermore, the main protaganist Deckard is portrayed as a social loner with no friends and very monotonous approach to life.
+He is unaware that informing Rachel that she is a Replicant might upset her, highlighting that such compassion in humans is not typical.
 
-The opening black-and-white credits accompanied by digital synthesisers are devoid of colour and vitality. 
-
-Even J.F Sebastian, the only human who shows any signs of happiness views emotions as a mechanical construct "I make my friends".
-
-The opening of the film which describes the '4 year fail-safe' (termination) builtin to the 
-Replicants is evident of society's disregard for their ability to develop emotion.
-The dehumanising slurs to refer to the Replicants like 'skinjob' and 'skinner' serves to 
-further enhance this state of affairs. 
-Roy expresses sorrow after the loss of Pris, Leon demonstrates devotion to the Replicant's plight
-and Zora shows amorous desires in her work. 
-Deckard's isolated, emotionally anemic life is symbolic of humanity. 
-There are no scenes of him in a social setting, only work.
-He is awkward and uncomforting relaying emotional information to Rachel.
-When subject to an event of high emotional impact, such as when he shoots Zora or witnesses Roy's 
-animalistic howling, he undergoes physical shakes instead of healthy emotional expressions. 
-It's clear that scientific advancements in artificial intelligence have caused society to become emotionally isolated.
-It therefore challenges what it means to be human.
-
-Tyrell, 
-“Rachel is an experiment. Nothing more.”
 
 In conclusion, *Blade Runner* portrays scientific technologies in bio-engineering, robotics and artificial intelligence as having harmful effects on society.
-As a result of these technologies, society is shown to be disrupted from nature, emotionally devoid and self-centered.
+As a result of these technologies, society is shown to be disrupted from nature and emotionally devoid.
 Therefore, the film portrays science as a force of evil, warning of its catastrophic consequences if left unchecked.
 
 ## References

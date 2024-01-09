@@ -7,49 +7,33 @@
 developments/progressions/
 
 Scientific technologies have the potential to negatively influence many aspects of life.
-In Ridley Scott's film *Blade Runner*, science is shown to be a force of evil. 
-The film explores how the pursuit of scentific developments in the areas of bio-engineering, robotics and artificial intelligence (AI)
-can have catastrophic results. 
-These results are portrayed through the depiction of a society that is devoid of nature and emotionally isolated. 
+In the film *Blade Runner* (Ridley Scott, 2007), science is shown to be a force of evil. 
+The film explores how the pursuit of scentific developments in the areas of bio-engineering,
+cybernetics and artificial intelligence (AI) can have catastrophic results. 
+These results are portrayed through the depiction of a society that is devoid of natural life and emotion. 
 
-In *Blade Runner*, scientific advancements are pursued in order to develop synthetic intelligent life.
-These developments are negatively portrayed by presenting a society that is lacking natural life. 
+In *Blade Runner*, scientific progress is portrayed as a means to create synthetic intelligent beings known as Replicants.
+These developments are shown to have a harmful effect on society by causing the removal of natural life. 
+Progress in the field of bio-engineering is shown through the creation of synthetic organs.
+Undifferentiated stem cells can be cultivated to differentiate into specific cell types based on the desired organ. (Ajmal, L. et al. 2023)
+This science is highlighted by J.F Sebastian, where he remarks "Cause I do genetic design work" and by Dr Chew when he says "I design your eyes".
+Advancements in cybernetics have allowed for the creation of agents that are physically superior to humans.
+Powered orthosis is the process of adding energy to supporting plastic/metal that's molded to a limb to augment its function. (stanford)
+This technology is evidenced where Tyrell states "More human than human is our motto" and when Inspector Bryant comments on the Replicants "They were designed to copy human beings in every way"
+As a result of these innovations, society devalues natural things, which ultimately leads to their removal.
 
-Advancements in bio-engineering have allowed for the ability to grow artificial organs.
-Stem cells can be grown on scaffolds specific to the particular organ desired.
-Takes the idea of stem cells ...
-
-The role of a conventional doctor has been replaced by a genetic designer as evidenced in the
-scene with Hannibal Chew and the Replicants, where Chew remarks "I design your eyes".
-
-Advancements in robotics have allowed for fluid, human-like movements to be performed by robots.
-Improvements in multiple feedback loop systems are acheived, so as to create agents that have a 
-changing centre of gravity.
-
-Advancements in AI have ... 
-chatgpt, dalle-2 etc. mode of expression
-
-The accumulation of these The ability to emulate nature results in society devaluing the importance of natural things. This leads
-to the removal of all things natural.
-
-
-
-Wide angle shots of the environment show excessive pollution, towering machinery, 
-dirty streets with no trees or greenery.
+Wide angle shots of the environment show excessive pollution, towering machinery, dirty streets with no trees or greenery.
 The majority of the movie is filmed in dark lighting with accompanying fog, which obscures any living details. 
 A constant source of light are spotlights that filter through windows, following a sweeping pattern back and forth.
 Their mechanical motion is disruptive and irritating, symbolising that the idea of light streaming in from outside, like the Sun naturally does, 
 is an intrusion.
-From this, we can see the vast deterioration of the natural world.
 The soundtrack employs digital synthesisers with no physical instruments, demonstrating the extent to which even natural music has been replaced.
-When Deckard asks Rachel about the composition of her owl "is it artificial?" her blunt response
-"of course" demonstrates the dim resignation society has towards the natural being replaced.
-It's clear that the scientific advancements in bio-engineering and robotics have disrupted nature by causing the replacement of natural things. 
-They therefore challenge what it means to be human.
+The presence of the bonsai tree and origami (natural) seem out of place.
 
-The scientific advancements prevalent throughout society in *Blade Runner*
-create a civilisation that is emotionally isolated, thus challenging what it means to be human.
-Advancements in artificial intelligence have allowed for agents to learn and adapt to complex 
+
+The opening black-and-white credits accompanied by digital synthesisers are devoid of colour and vitality. 
+
+AI advancements in *Blade Runner* have allowed for agents to learn and adapt to complex 
 and unpredictable situations.
 An increase in the speed of machine learning algorithms used greatly decreases the time taken 
 for an agent to make an informed decision.
@@ -73,11 +57,22 @@ It's clear that scientific advancements in artificial intelligence have caused s
 It therefore challenges what it means to be human.
 
 
+An artificial owl and snake.
+"robots can teach themselves new skills quicker than humans"
 
+Advancements in AI have ... 
+chatgpt, dalle-2 etc. mode of expression
+
+The scientific advancements prevalent throughout society in *Blade Runner*
+create a civilisation that is emotionally isolated
+Tyrell, 
+“Rachel is an experiment. Nothing more.”
 
 In conclusion, *Blade Runner* portrays scientific technologies in bio-engineering, robotics and artificial intelligence as having harmful effects on society.
 As a result of these technologies, society is shown to be disrupted from nature, emotionally devoid and self-centered.
 Therefore, the film portrays science as a force of evil, warning of its catastrophic consequences if left unchecked.
 
 ## References
-Blade Runner: The Final Cut. (2007). [Blu-ray] Warner House, 98 Theobalds Road, Holborn, London: Warner Bros. Entertainment UK Limited.
+> Ridley Scott (Director). Blade Runner: The Final Cut. (2007). [Blu-ray] Warner House, 98 Theobalds Road, Holborn, London: Warner Bros. Entertainment UK Limited.
+> Ajmal, L., Ajmal, S., Ajmal, M. and Nawaz, G. (2023). Organ Regeneration Through Stem Cells and Tissue Engineering. Cureus. doi:https://doi.org/10.7759/cureus.34336.
+https://engineering.stanford.edu/magazine/article/steven-h-collins-new-prosthetics-should-be-better-real-thing

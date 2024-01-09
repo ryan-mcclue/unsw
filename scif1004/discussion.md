@@ -2,10 +2,6 @@
 
 # The Dangers of Science
 
-**DISCUSS THE PORTRAYAL OF SCIENCE**
-
-developments/progressions/
-
 Scientific technologies have the potential to negatively influence many aspects of life.
 In the film *Blade Runner* (Ridley Scott, 2007), science is shown to be a force of evil. 
 The film explores how the pursuit of scentific developments in the areas of bioengineering,
@@ -31,7 +27,7 @@ The presence of the bonsai tree in Tyrell's office appears incongruous, standing
 When Deckard asks Rachel about her owl "Is it artificial?", she immedietely replies with "of course" emphasising that having something natural is against societal norms.
 Tyrell's supreme opulence and high regard as the "god father of bioengineering" positions him as representative of what society aspires to live like.
 His building towering above the ground is symbolic of his god-like status and living so far apart from the natural world. 
-It's clear that scientific advancements in bioengineering and cybernetics are portrayed as removing the natural life by causing the substitution of organic lifeforms with artificial counterparts.
+It's clear that scientific advancements in bioengineering and cybernetics are portrayed as causing the removal of natural life by substituting organic lifeforms with artificial counterparts.
 Science is therefore shown to be a force of evil.
 
 Scientific advancements in *Blade Runner* are also portrayed as allowing for the emulation of emotions.
@@ -54,15 +50,15 @@ Pris is cheeky, Roy is cunning, Rachel is caring, Leon is loyal and Zora is flir
 The humans on the other hand are shown to have stowed away their emotions.
 Tyrell callously refers to Rachel as "an experiment. Nothing more".
 J.F Sebastian expresses emotional immaturity "I make friends. They're toys. My friends are toys".
-Furthermore, the main protaganist Deckard is portrayed as a social loner with no friends and very monotonous approach to life.
-He is unaware that informing Rachel that she is a Replicant might upset her, highlighting that such compassion in humans is not typical.
-His indifference to the Replicants is epitomised with "Replicants are like any other machine".
-It's clear that scientific advancements in artificial intelligence have caused society to become emotionally isolated.
-It therefore challenges what it means to be human.
+Furthermore, the main protaganist Deckard is portrayed as a social loner with no friends and a very monotonous approach to life.
+He is unaware that informing Rachel that she is a Replicant might upset her, highlighting that such compassion in the current society is not typical.
+His indifference to the Replicants is epitomised when he says "Replicants are like any other machine".
+It's clear that scientific advancements in AI have caused society to become emotionally isolated.
+Science is therefore shown to be a force of evil.
 
 In conclusion, *Blade Runner* portrays scientific technologies in bioengineering, cybernetics and AI as having harmful effects on society.
 As a result of these technologies, society is shown to be disrupted from nature and emotionally devoid.
-Therefore, the film portrays science as a force of evil, warning of its catastrophic consequences if left unchecked.
+Therefore, the film portrays science as a force of evil, warning of humanity's place in a future where technology is left unchecked.
 
 ## References
 > Ridley Scott (Director). Blade Runner: The Final Cut. (2007). [Blu-ray] Warner House, 98 Theobalds Road, Holborn, London: Warner Bros. Entertainment UK Limited.

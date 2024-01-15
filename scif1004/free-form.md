@@ -1,4 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+If you are writing an article, it should look like an article
+(images, captions etc.)
+
 ## Supporting Statement
 This free-form piece is written as an article. 
 It's intended to be published in a science education magazine.
@@ -38,16 +41,13 @@ It's important to realise that film often leaves out the nuanced and undeniably 
 
 consider the points that movies often misrepresent about scientists:
 * a single scientist is able to acheive an innovation largely by themselves
+the boys from brazil (josef; dolly or crispr?), ex machina (bateman;)
 * a scientific breakthrough is acheived in a short period of time
+outbreak (dustin; vaccine development), day after tomorrow (dennis; climate models)
 * scientist is viewed as a rock star after their innovation
-for the movies jurassic park, outbreak, gattaca, blade runner and the boys from brazil, describe how these movies relate to these points 
-
-
-jurassic:
-Misrepresentation 2: The film suggests that de-extinction is a quick and straightforward process, whereas in reality, the scientific challenges and ethical considerations involved in resurrecting extinct species are far more complex and time-consuming.
+blade runner (tyrell; transistor), i robot (lanning; asimo)
 
 outbreak:
-Misrepresentation 1: The film implies that a single scientist, played by Dustin Hoffman's character, can heroically combat a deadly virus almost single-handedly. In reality, responding to a viral outbreak requires collaboration among various experts, including epidemiologists, virologists, and healthcare professionals.
 Misrepresentation 2: The timeline of finding a cure in the movie is compressed for dramatic effect. In real-world scenarios, vaccine development and approval take a much longer time, involving extensive clinical trials and regulatory processes.
 
 blade runner:
@@ -57,6 +57,9 @@ Misrepresentation 3: Tyrell is a powerful and influential figure, but the film q
 the boys from brazil:
 Misrepresentation 1: The film involves a plot where a single scientist, Dr. Josef Mengele, attempts to clone Adolf Hitler. The scientific and ethical complexities of cloning and genetic engineering are oversimplified for dramatic effect.
 
+day after tomorrow:
+Misrepresentation 1: The film presents a climatologist, Jack Hall, as the singular expert who predicts and addresses extreme climate events. 
+In reality, climate science involves collaboration among experts across various disciplines.
 
 
 

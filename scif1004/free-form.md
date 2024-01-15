@@ -10,15 +10,55 @@ In doing so, the article intends to provide information to assist in fostering a
 ## Reality Check: The Complexity Behind Scientific Heroes in Film 
 
 Scientists in film are often portrayed as infallible characters. 
-They are depicted as having incredible intelligence and an ability to solve the most difficult of problems in a short period of time.   
-In the pursuit of exciting plotlines, films can obscure the authentic scientific struggle.
+They are depicted as having incredible intelligence and an ability to individually solve the most difficult of problems in a short period of time.   
+In the pursuit of exciting plotlines, films can obscure the authentic scientific process.
 I believe it's worth questioning the facades that cinema constructs around the figure of the scientist for the sake of younger minds interested in pursuing a career in science.
+As parents often play a crucial role in guiding their children's career choices, I also believe this exploration can benefit them as well.
 The disparity between film and real world science can potentially dishearten individuals who fall short of the idealised experiences they have seen on film.
-It's important to recognise that actual scientific innovations involve persistent challenges, collaborative efforts and moments of uncertainty. 
-For example, it took ... and was not an overnight discovery
-Furthermore, the speed of is ... (consider covid vaccine speed)
-In addition how society views is ... (consider inventor of transistor no one knows)
-Film often leaves out the nuanced and undeniably human journey of a career in science.
+
+Scientific breakthroughs are seldom achieved by a lone scientist. 
+It's unlikely for a single scientist to have enough knowledge to solve a problem
+e.g. mRNA vaccine
+Take, for instance, the development of the mRNA vaccine. While the names of key figures like Dr. Katalin Karikó and Dr. Drew Weissman are associated with the foundational work in mRNA technology, the collaborative efforts of interdisciplinary teams, including molecular biologists, pharmacologists, clinicians, statisticians, and regulatory experts, were essential. 
+nobel: https://www.nobelprize.org/prizes/medicine/2023/press-release/
+other groundwork: https://publichealth.jhu.edu/2021/the-long-history-of-mrna-vaccines 
+
+It's unlikely for a single scientist to achieve a breakthrough in weekend. it would take a lot longer.
+e.g. CRISPR
+working 2012: https://www.jax.org/personalized-medicine/precision-medicine-and-you/what-is-crispr
+long history: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9377665/ 
+
+It's unlikely for society to view a scientist with rockstar fandom from an innovation
+e.g. transistor
+nobel prize: https://www.nobelprize.org/prizes/physics/1956/summary/
+unsuspecting life: https://www.bbvaopenmind.com/en/science/leading-figures/william-shockley-and-the-invention-of-the-transistor/
+
+It's important to realise that film often leaves out the nuanced and undeniably human journey of a career in science.
+
+
+consider the points that movies often misrepresent about scientists:
+* a single scientist is able to acheive an innovation largely by themselves
+* a scientific breakthrough is acheived in a short period of time
+* scientist is viewed as a rock star after their innovation
+for the movies jurassic park, outbreak, gattaca, blade runner and the boys from brazil, describe how these movies relate to these points 
+
+
+jurassic:
+Misrepresentation 2: The film suggests that de-extinction is a quick and straightforward process, whereas in reality, the scientific challenges and ethical considerations involved in resurrecting extinct species are far more complex and time-consuming.
+
+outbreak:
+Misrepresentation 1: The film implies that a single scientist, played by Dustin Hoffman's character, can heroically combat a deadly virus almost single-handedly. In reality, responding to a viral outbreak requires collaboration among various experts, including epidemiologists, virologists, and healthcare professionals.
+Misrepresentation 2: The timeline of finding a cure in the movie is compressed for dramatic effect. In real-world scenarios, vaccine development and approval take a much longer time, involving extensive clinical trials and regulatory processes.
+
+blade runner:
+Misrepresentation 1: Blade Runner features the character of Tyrell, a scientist who appears to be the sole creator of highly advanced humanoid robots. The reality of artificial intelligence development involves interdisciplinary teams and collaborative efforts.
+Misrepresentation 3: Tyrell is a powerful and influential figure, but the film questions the ethical implications of his creations and challenges the notion of a celebrated scientist as a rockstar.
+
+the boys from brazil:
+Misrepresentation 1: The film involves a plot where a single scientist, Dr. Josef Mengele, attempts to clone Adolf Hitler. The scientific and ethical complexities of cloning and genetic engineering are oversimplified for dramatic effect.
+
+
+
 
 Scientists, akin to everyone else, are human and susceptible to making mistakes. 
 When watching films, it's beneficial to bear in mind that while the scientific content might be accurate, the speed of discoveries is often exaggerated, the lifestyle of the scientist is glamorized, and the reverence for scientists is often overly emphasized.

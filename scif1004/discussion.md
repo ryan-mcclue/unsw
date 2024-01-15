@@ -19,16 +19,15 @@ Powered orthosis is the process of adding energy to supporting plastic/metal tha
 This technology is evidenced where Tyrell states "More human than human is our motto" and when Inspector Bryant comments on the Replicants "They were designed to copy human beings in every way".
 As a result of these innovations, society devalues natural things, which ultimately leads to their removal.
 A dystopian landscape is depicted to show the consequences of a society with nothing natural. 
-Expansive views of the city reveal an overwhelming presence of pollution, dirty machinery, unkept roads and absolutely no greenery.
+Expansive views of the city reveal an overwhelming presence of pollution, decrepit buildings, neon lights and absolutely no greenery.
 Dim lighting in conjunction with a persistent smog obscures the visibility of the city's human inhabitants who are the only things natural.
 This minimises the importance of the human presence, making them appear almost incidental, having been consumed by surrounding industrialisation.
-The bright spotlights that constantly sweep through windows disturb the normally dark ambience.
-The spotlights act as a metaphor for the Sun's rays, symbolising the reversal of normally comforting natural light.
+Throughout the film, bright spotlights constantly sweep through the windows of buildings and disturb the dark ambience of scene.
+The irritating nature of the spotlight symbolises the extent of society's distaste for the natural, in that normally comforting natural light is viewed as intrusive.
 The presence of the bonsai tree in Tyrell's office appears out of place, standing out as a remnant of the natural world in a starkly artificial environment. 
-When Deckard asks Rachel about her owl "Is it artificial?", she immedietely replies with "of course" emphasising that having something natural is against societal norms.
 Tyrell's supreme opulence and high regard as the "god father of bioengineering" positions him as representative of what society aspires to live like.
 His building towering above the ground is symbolic of his god-like status and living so far apart from the natural world. 
-It's clear that scientific advancements in bioengineering and cybernetics are portrayed as causing the removal of natural life by substituting organic lifeforms with artificial counterparts.
+It's apparent that scientific innovations in bioengineering and cybernetics are portrayed as causing the removal of natural life by substituting organic lifeforms with artificial counterparts.
 Science is therefore shown to be a force of evil.
 
 Scientific advancements in *Blade Runner* (1982) are also portrayed as allowing for the emulation of emotions.
@@ -44,8 +43,8 @@ As the Replicants are fundamentally artificial, emotions are therefore viewed as
 The opening credits set the scene for an emotionally anemic society.
 The white text on black background is deviod of colour and vitality.
 The soundtrack is also exclusively digital synthesised music, underscoring how even the organic quality of traditional music has been replaced by the synthetic.
-The text mentions 'retiring' Replicants, which is a flippant term for execution.
-Slurs like 'skinjob' and 'skinner' also serve to dehumanise the Replicants.
+The text mentions 'retiring' Replicants, which is a flippant term for their execution.
+Referring to the Replicants with derogatory terms such as 'tinhead' and 'skinjob' further contributes to their dehumanisation.
 The Replicants represent emotions society has lost.
 Pris is cheeky, Roy is cunning, Rachel is caring, Leon is loyal and Zora is flirtatious.
 The humans on the other hand are shown to have stowed away their emotions.
@@ -54,7 +53,7 @@ J.F Sebastian expresses emotional immaturity "I make friends. They're toys. My f
 Furthermore, the main protaganist Deckard is portrayed as a social loner with no friends and a very monotonous approach to life.
 He is unaware that informing Rachel that she is a Replicant might upset her, highlighting that such compassion in the current society is not typical.
 His indifference to the Replicants is epitomised when he says "Replicants are like any other machine".
-It's clear that scientific advancements in AI have caused society to become emotionally isolated.
+It's clear that advancements in AI have caused society to become emotionally isolated.
 Science is therefore shown to be a force of evil.
 
 In conclusion, *Blade Runner* (1982) portrays scientific technologies in bioengineering, cybernetics and AI as having harmful effects on society.
@@ -62,8 +61,8 @@ As a result of these technologies, society is shown to be disrupted from nature 
 Therefore, the film portrays science as a force of evil, warning of humanity's place in a future where technology is left unchecked.
 
 ## References
-> Scott, R. (Director). (1982). Blade Runner. United States: Warner Bros. Film.
-> Ajmal, L., Ajmal, S., Ajmal, M. and Nawaz, G. (2023). Organ Regeneration Through Stem Cells and Tissue Engineering. National Library of Medicine. Available at: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9973391/
-> Collins, S. H. (2019). New prosthetics should be better than the real thing. Stanford Engineering Magazine.  Available at: https://engineering.stanford.edu/magazine/article/steven-h-collins-new-prosthetics-should-be-better-real-thing 
-> Palmer, N. (2023). Computers have emotions too: New research shows AI can teach technology to recognize emotions with 98% accuracy. Brunel University News. Available at: https://www.brunel.ac.uk/news-and-events/news/articles/Computers-have-emotions-too-New-research-shows-AI-can-teach-technology-to-recognize-emotions-with-98-accuracy.
-> Replit AI Team (2023). How to train your own Large Language Models. Replit Blog. Available at: https://blog.replit.com/llm-training.
+* Scott, R. (Director). (1982). Blade Runner. United States: Warner Bros. Film.
+* Ajmal, L., Ajmal, S., Ajmal, M. and Nawaz, G. (2023). Organ Regeneration Through Stem Cells and Tissue Engineering. National Library of Medicine. Available at: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9973391/
+* Collins, S. H. (2019). New prosthetics should be better than the real thing. Stanford Engineering Magazine.  Available at: https://engineering.stanford.edu/magazine/article/steven-h-collins-new-prosthetics-should-be-better-real-thing 
+* Palmer, N. (2023). Computers have emotions too: New research shows AI can teach technology to recognize emotions with 98% accuracy. Brunel University News. Available at: https://www.brunel.ac.uk/news-and-events/news/articles/Computers-have-emotions-too-New-research-shows-AI-can-teach-technology-to-recognize-emotions-with-98-accuracy.
+* Replit AI Team (2023). How to train your own Large Language Models. Replit Blog. Available at: https://blog.replit.com/llm-training.

@@ -22,6 +22,19 @@ When watching scientists in film, it's important to realise that film often leav
 It's common for scientific progress to be marked by long periods of time. 
 Scientific research is iterative by nature to allow for thorough experimentation. 
 Although this is a time consuming process, it's to ensure reliable and valid results are obtained.
+In the film Outbreak, Sam Daniels and his team are able to isolate motaba virus.
+
+daniels 'separate samples, thaw them and under microscope'
+major 'results ready in a few hours' with a smile of face. relaxed, not looking busy
+
+looking at pictures of testing on kidney cells with virus 8 hours.
+
+make determination that it invades, kills and replicates in 5 hours.
+even spacey remarks that 'these numbers can't be right', 
+but major responds 'these numbers are correct'
+
+isolate virus (reference)
+
 * a scientific breakthrough is acheived in a short period of time
 outbreak (sam daniels; vaccine development)
 - isolating motaba virus
@@ -31,6 +44,9 @@ day after tomorrow (jack hall; climate models)
 - incorporating storms into climate model and getting results in hours 
 e.g. IPCC's Fourth Assessment Report (AR4), released in 2007, years of refinement
 ...
+
+
+
 good science often thrives on openness and collaboration
 It's crucial not to perceive the scientific journey as one of isolation but rather as a collective effort to advance knowledge for the betterment of society. By embracing collaboration and remaining open to diverse perspectives, aspiring scientists can contribute to a more dynamic and impactful scientific landscape,
 
@@ -67,8 +83,15 @@ blade runner (eldon tyrell; advanced biotech);
 e.g. transistor
 unsuspecting life: https://www.bbvaopenmind.com/en/science/leading-figures/william-shockley-and-the-invention-of-the-transistor/
 
-i, robot (alfred lanning; viki);
+i, robot (alfred lanning; VIKI);
 claude shannon, father of information theory (not as well known as george boole)
+VIKI (virtual interactive kinetic intelligence) is AI that controls uplink to NS5's
+
+susan calvin to del spooner 'Alfred Lanning was everything here'
+'robots are realisation of a dream. dr lannings dream'
+As put by woman, NS5's are Dr Lanning's dream to be embraced by whole world
+
+positronic operating core, 'lanning's first creation' in centre of building which controls building, i.e. everyone sees it
 
 It's crucial to recognize that a lack of widespread recognition does not diminish the value of one's contributions to science, 
 and individuals should not be deterred by societal expectations of fame. 

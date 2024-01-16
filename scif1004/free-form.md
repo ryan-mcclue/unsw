@@ -86,8 +86,6 @@ Misrepresentation 1: The film presents a climatologist, Jack Hall, as the singul
 In reality, climate science involves collaboration among experts across various disciplines.
 
 
-
-
 It's important to understand that Real world science often involves persistent challenges, setbacks, moments of uncertainty and long time scales. 
 Scientists are humans like the rest of us and make mistakes.
 Often in film, it's good to keep in mind that the science shown might be accurate, but the speed of discoveries is exaggerated, the lifestyle of the scientist glamourised and the reverence of the scientist is overhyped
@@ -105,37 +103,9 @@ The article can offer insights into the potential impact of cinematic representa
 Additionally, it can provide parents with information on fostering a realistic understanding of STEM careers and encouraging resilience in the face of challenges.
 
 ## References
-
-
-
-
-
-Give detailed outline for:
-An article/magazine piece/editorial that comes under the general headline 'Science and the Cinema'.
-The author discusses how films heroise scientists and how this can affect the perception of young people interested in science.
-e.g. disingenuous of the scientific struggle obscuring the fact that scientists are human and can make mistakes,
-might dissuade younger people from persisting as they couldn't achieve such feats
-The target audience is young people interested in STEM.
-
-
-It is to contain these topics and associated films:
-* Genes/DNA: Blade Runner
-* De-Extinction: Jurassic Park
-* Viruses: Outbreak
-* Gattaca: 
-
-The work should have these points addressed: 
-Medium (e.g. article, journal, etc.):
-Scientific Theme:
-Headline Addressing:
-Target Audience:
-Message to Convey:
-
-
-It is to contain some of these topics and associated films:
-* Genes/DNA: Blade Runner
-* De-Extinction: Jurassic Park (tassie tiger, wooly mammoth etc.)
-* Viruses: Outbreak (injecting serum)
-
-movies occur in short time lines so have to exaggerate progress
-covid vaccine?
+* Scott, R. (Director). (1982). Blade Runner. Warner Bros. Pictures. Film.
+* Emmerich, R. (Director). (2004). The Day After Tomorrow. 20th Century Studios. Film.
+* Schaffner J., F. (Director). (1978). The Boys From Brazil. 20th Century Studios. Film.
+* Garland, A. (Director). (2015). Ex Machina. Universal Pictures. Film.
+* Proyas, A. (Director). (2004). I, Robot. 20th Century Fox. Film.
+* Peterson, W. (Director). (1995). Outbreak. Warner Bros. Pictures. Film.

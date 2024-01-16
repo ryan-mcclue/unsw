@@ -1,7 +1,4 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-If you are writing an article, it should look like an article
-(images, captions etc.)
-
 ## Supporting Statement
 This free-form piece is written as an article. 
 It's intended to be published in a science education magazine.
@@ -22,23 +19,24 @@ In film, the speed of scientific discoveries are often exaggerated, the image of
 Scientists, akin to everyone else, are human and susceptible to making mistakes. 
 When watching scientists in film, it's important to realise that film often leaves out the nuanced and undeniably human journey of a career in science.
 
+It's common for scientific progress to be marked by long periods of time. 
+Scientific research is iterative by nature to allow for thorough experimention. 
+Although this is a time consuming process, it's to ensure reliable and valid results.
+good science often thrives on openness and collaboration
+It's crucial not to perceive the scientific journey as one of isolation but rather as a collective effort to advance knowledge for the betterment of society. By embracing collaboration and remaining open to diverse perspectives, aspiring scientists can contribute to a more dynamic and impactful scientific landscape,
+
 Scientific breakthroughs are seldom achieved by a lone scientist. 
 Due to the increasingly complex nature of contemporary science, a collaborative approach is required.
+The journey in science is inherently iterative and marked by continuous learning and adaptation. 
+Patience and dedication are paramount, and individuals should recognize that the pursuit of knowledge is a gradual process.
 
-e.g. mRNA vaccine
-Take, for instance, the development of the mRNA vaccine. 
-While the names of key figures like Dr. Katalin Karikó and Dr. Drew Weissman are associated with the 
-foundational work in mRNA technology, the collaborative efforts of interdisciplinary teams, 
-including molecular biologists, pharmacologists, clinicians, statisticians, and regulatory experts, were essential. 
-nobel: https://www.nobelprize.org/prizes/medicine/2023/press-release/
-other groundwork: https://publichealth.jhu.edu/2021/the-long-history-of-mrna-vaccines 
+It's unlikely for society to elevate a scientist to celebrity status for their work. 
+The complex and specialised knowledge involved isn't immediately relatable to the average person.
+...
+It's crucial to recognize that a lack of widespread recognition does not diminish the value of one's contributions to science, 
+and individuals should not be deterred by societal expectations of fame. 
+The true fulfillment lies in the passion for discovery and the impact on the scientific community, even if it may not always translate into widespread public acclaim.
 
-
-It's unlikely for society to view a scientist with rockstar fandom from an innovation
-e.g. transistor
-nobel prize: https://www.nobelprize.org/prizes/physics/1956/summary/
-
-It's unlikely for a single scientist to achieve a breakthrough in weekend. it would take a lot longer.
 
 * a single scientist is able to acheive an innovation largely by themselves
 the boys from brazil (josef; dolly or crispr?), 

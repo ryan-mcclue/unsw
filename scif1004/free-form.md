@@ -62,19 +62,13 @@ him owning the powerful landscape (waterfalls, glaciers) is implicit of his powe
 
 * a scientific breakthrough is acheived in a short period of time
 outbreak (sam daniels; vaccine development)
-- vaccine for motaba virus
-
-
+- isolating motaba virus
 day after tomorrow (dennis; climate models)
-- 
+- incorporating storms into climate model and getting results in hours 
 * scientist is viewed as a rock star after their innovation
 blade runner (tyrell; transistor); 
 
-
 i robot (lanning; asimo);
-
-
-
 
 
 outbreak:

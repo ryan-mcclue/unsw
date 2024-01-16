@@ -10,7 +10,7 @@ It's expected that this audience has a basic understanding of fundamental scient
 The article aims to deconstruct the glamourisation of scientists in cinema, emphasising the challenges and mistakes they face in reality.
 In doing so, the article intends to provide information to assist in fostering a realistic understanding of a scientific career and encouraging resilience in the face of challenges experienced on this journey.
 
-## Reality Check: The Complexity Behind Scientific Heroes in Film 
+## Reality Check: The Complexity Behind Scientists in Film 
 
 Scientists in film are often portrayed as infallible characters. 
 They are depicted as having incredible intelligence and an ability to individually solve the most difficult of problems in a short period of time.   
@@ -18,9 +18,14 @@ In the pursuit of exciting plotlines, films can obscure the authentic scientific
 I believe it's worth questioning the facades that cinema constructs around the figure of the scientist for the sake of younger minds interested in pursuing a career in science.
 As parents often play a crucial role in guiding their children's career choices, I also believe this exploration can benefit them as well.
 The disparity between film and real world science can potentially dishearten individuals who fall short of the idealised experiences they have seen on film.
+In film, the speed of scientific discoveries are often exaggerated, the image of a scientist working in isolation is perpetuated and the reverence for scientists is often overly emphasised.
+Scientists, akin to everyone else, are human and susceptible to making mistakes. 
+When watching scientists in film, it's important to realise that film often leaves out the nuanced and undeniably human journey of a career in science.
 
 Scientific breakthroughs are seldom achieved by a lone scientist. 
-It's unlikely for a single scientist to have enough knowledge to solve a problem
+Due to the increasingly complex nature of contemporary science, a collaborative approach is required.
+In 
+
 e.g. mRNA vaccine
 Take, for instance, the development of the mRNA vaccine. While the names of key figures like Dr. Katalin Karikó and Dr. Drew Weissman are associated with the foundational work in mRNA technology, the collaborative efforts of interdisciplinary teams, including molecular biologists, pharmacologists, clinicians, statisticians, and regulatory experts, were essential. 
 nobel: https://www.nobelprize.org/prizes/medicine/2023/press-release/
@@ -36,16 +41,41 @@ e.g. transistor
 nobel prize: https://www.nobelprize.org/prizes/physics/1956/summary/
 unsuspecting life: https://www.bbvaopenmind.com/en/science/leading-figures/william-shockley-and-the-invention-of-the-transistor/
 
-It's important to realise that film often leaves out the nuanced and undeniably human journey of a career in science.
-
 
 consider the points that movies often misrepresent about scientists:
 * a single scientist is able to acheive an innovation largely by themselves
-the boys from brazil (josef; dolly or crispr?), ex machina (bateman;)
+the boys from brazil (josef; dolly or crispr?), 
+- mengele distinguised from others wearing a white suit, people bowing to him, guest of honour commanding respect by people of many backgrounds
+- "Do not question your orders. Simply obey them" to captain Mundt
+- "I have created a scientific miracle" to colonel seibert
+"I am a scientist. I have done my job" 
+- At university of Vienna, dr remarks cloning is 'impossible' to liebermann
+he had to develop 'special instruments' and 'whole micro-injection system'
+lucky if 1/10 survives micro-surgery
+(remarks that mengele is a primitive genetiscist)
+
+ex machina (bateman;)
+- remove himself from humanity, nestled in nathan's isolated huge estate making his opus
+him owning the powerful landscape (waterfalls, glaciers) is implicit of his power
+- showing structured gel her brain that is not circuitry, face masks
+- nathan remarks 'the greatest scientific event in the history of man'
+
 * a scientific breakthrough is acheived in a short period of time
-outbreak (dustin; vaccine development), day after tomorrow (dennis; climate models)
+outbreak (sam daniels; vaccine development)
+- vaccine for motaba virus
+
+
+day after tomorrow (dennis; climate models)
+- 
 * scientist is viewed as a rock star after their innovation
-blade runner (tyrell; transistor), i robot (lanning; asimo)
+blade runner (tyrell; transistor); 
+
+
+i robot (lanning; asimo);
+
+
+
+
 
 outbreak:
 Misrepresentation 2: The timeline of finding a cure in the movie is compressed for dramatic effect. In real-world scenarios, vaccine development and approval take a much longer time, involving extensive clinical trials and regulatory processes.
@@ -63,8 +93,6 @@ In reality, climate science involves collaboration among experts across various 
 
 
 
-Scientists, akin to everyone else, are human and susceptible to making mistakes. 
-When watching films, it's beneficial to bear in mind that while the scientific content might be accurate, the speed of discoveries is often exaggerated, the lifestyle of the scientist is glamorized, and the reverence for scientists is often overly emphasized.
 
 It's important to understand that Real world science often involves persistent challenges, setbacks, moments of uncertainty and long time scales. 
 Scientists are humans like the rest of us and make mistakes.

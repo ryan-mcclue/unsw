@@ -24,25 +24,22 @@ When watching scientists in film, it's important to realise that film often leav
 
 Scientific breakthroughs are seldom achieved by a lone scientist. 
 Due to the increasingly complex nature of contemporary science, a collaborative approach is required.
-In 
 
 e.g. mRNA vaccine
-Take, for instance, the development of the mRNA vaccine. While the names of key figures like Dr. Katalin Karikó and Dr. Drew Weissman are associated with the foundational work in mRNA technology, the collaborative efforts of interdisciplinary teams, including molecular biologists, pharmacologists, clinicians, statisticians, and regulatory experts, were essential. 
+Take, for instance, the development of the mRNA vaccine. 
+While the names of key figures like Dr. Katalin Karikó and Dr. Drew Weissman are associated with the 
+foundational work in mRNA technology, the collaborative efforts of interdisciplinary teams, 
+including molecular biologists, pharmacologists, clinicians, statisticians, and regulatory experts, were essential. 
 nobel: https://www.nobelprize.org/prizes/medicine/2023/press-release/
 other groundwork: https://publichealth.jhu.edu/2021/the-long-history-of-mrna-vaccines 
 
-It's unlikely for a single scientist to achieve a breakthrough in weekend. it would take a lot longer.
-e.g. CRISPR
-working 2012: https://www.jax.org/personalized-medicine/precision-medicine-and-you/what-is-crispr
-long history: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9377665/ 
 
 It's unlikely for society to view a scientist with rockstar fandom from an innovation
 e.g. transistor
 nobel prize: https://www.nobelprize.org/prizes/physics/1956/summary/
-unsuspecting life: https://www.bbvaopenmind.com/en/science/leading-figures/william-shockley-and-the-invention-of-the-transistor/
 
+It's unlikely for a single scientist to achieve a breakthrough in weekend. it would take a lot longer.
 
-consider the points that movies often misrepresent about scientists:
 * a single scientist is able to acheive an innovation largely by themselves
 the boys from brazil (josef; dolly or crispr?), 
 - mengele distinguised from others wearing a white suit, people bowing to him, guest of honour commanding respect by people of many backgrounds
@@ -53,23 +50,33 @@ the boys from brazil (josef; dolly or crispr?),
 he had to develop 'special instruments' and 'whole micro-injection system'
 lucky if 1/10 survives micro-surgery
 (remarks that mengele is a primitive genetiscist)
+e.g. CRISPR collaborative
+working 2012: https://www.jax.org/personalized-medicine/precision-medicine-and-you/what-is-crispr
+long history: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9377665/ 
 
-ex machina (bateman;)
+ex machina (nathan bateman;)
 - remove himself from humanity, nestled in nathan's isolated huge estate making his opus
 him owning the powerful landscape (waterfalls, glaciers) is implicit of his power
 - showing structured gel her brain that is not circuitry, face masks
 - nathan remarks 'the greatest scientific event in the history of man'
+e.g. self-driving cars collaboration
 
 * a scientific breakthrough is acheived in a short period of time
 outbreak (sam daniels; vaccine development)
 - isolating motaba virus
-day after tomorrow (dennis; climate models)
+e.g. ebola 1976, sars 2002 months to identify
+
+day after tomorrow (jack hall; climate models)
 - incorporating storms into climate model and getting results in hours 
+e.g. IPCC's Fourth Assessment Report (AR4), released in 2007, years of refinement
+
 * scientist is viewed as a rock star after their innovation
-blade runner (tyrell; transistor); 
+blade runner (eldon tyrell; advanced biotech); 
+e.g. transistor
+unsuspecting life: https://www.bbvaopenmind.com/en/science/leading-figures/william-shockley-and-the-invention-of-the-transistor/
 
-i robot (lanning; asimo);
-
+i, robot (alfred lanning; viki);
+claude shannon, father of information theory (not as well known as george boole)
 
 outbreak:
 Misrepresentation 2: The timeline of finding a cure in the movie is compressed for dramatic effect. In real-world scenarios, vaccine development and approval take a much longer time, involving extensive clinical trials and regulatory processes.

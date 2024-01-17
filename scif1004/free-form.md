@@ -27,37 +27,23 @@ Daniels instructs Major Salt to "Separate samples, thaw them and put under micro
 Within 8 hours they make a determination based on the samples effects on kidney cells.
 Later on in a similar fashion, Major Schuler quickly ascertains that the "protein code has changed" of the new Cedar Creek strain. 
 This depiction dramatically accelerates the scientific procedures involved in virus identification.
-The process of sequencing a virus's genome, studying its proteins and understanding its molecular characteristics require a significant amount of time.
-(https://www.pennmedicine.org/news/news-releases/2019/may/how-do-you-find-a-virus-thats-completely-unknown-study-says-look-to-the-genome)
+The process of sequencing a virus's genome, studying its proteins and understanding its molecular characteristics require a significant amount of time (Dothard, M. et al. 2019).
 This can be seen in the real world SARS (Severe Acute Respiratory Syndrome) virus.
-In what was considered a "technological Blitzkrieg", it took approximately 5 months from first reported case to completely sequence. 
-(https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7086556/)
-Not a matter of days or weeks.
+In what was considered a "technological Blitzkrieg", it took approximately 5 months from the first reported case to completely sequence (Cherry, J., and Krogstad, P., 2004).
+Not a matter of a few days or weeks.
 This acclerated scientific process is also seen in the film The Day After Tomorrow (2004).
-Jack Hall and his team are able to 
-
-Nevertheless, Jack gets to work converting his “paleoclimate model” to a “forecast model” so he can predict the path of the storm. It is likely that this conversion involves building a new high-resolution grid and adding dozens of new climatic processes to the model, a task which would take months to years of work by a large team of scientists. However, Jack appears to have superhuman programming abilities: he writes all the code by himself in 24 hours!
-When he has finished, he decides to get some rest until the simulation has finished running. In the real world, this would take at least a week, but Jack’s colleagues wake him up after just a few hours. Evidently, their lab has access to computing resources more powerful than anything known to science today. Then, Jack’s colleagues hand him “the results” on a single sheet of paper. Real climate model output comes in the form of terabytes of data tables, which can be converted to digital maps, animations, and time plots using special software. Jack’s model appeared to simply spit out a few numbers, and what these numbers may have referred to is beyond comprehension.
-(https://climatesight.org/2012/04/26/the-day-after-tomorrow-a-scientific-critique/)
-
-
-'factor in storm scenarios'
-make bold claim that in 6-8 weeks for a 'major climate shift'
-
-where the characters in the film swiftly adjust climate models to predict extreme climate events within a matter of days
-
-Modifying climate models to predict and understand climate change involves continuous research, data collection, and collaboration among scientists. It is an ongoing and evolving process that takes years, if not decades, to refine and improve.
-
-
-day after tomorrow (jack hall; climate models)
-- incorporating storms into climate model and getting results in hours 
-e.g. IPCC's Fourth Assessment Report (AR4), released in 2007, years of refinement
-https://www.ipcc.ch/about/history/
-...
-The journey in science is inherently iterative and marked by continuous learning and adaptation. 
-Patience and dedication are paramount, and individuals should recognize that the pursuit of knowledge is a gradual process.
-
-
+Jack Hall and his team are able to convert their climate model to "factor in storm scenarios" as suggested by Janet Tokada.
+This modification is made and subsequent results obtained within 24 hours.
+From this, they are able to make the claim that in 6 to 8 weeks, there will be a "major climate shift".
+In reality, modeling the intracacies of climatic processes takes months to years.
+Not only this, but the results of these models output significant amounts of data to sift through. 
+A series of numbers that are easily interpreted are not what is produced (Naughten, K., 2012).
+An example of a climate model in the real world is IPCC (Intergovernmental Panel on Climate Change) Fourth Assessment Report.
+Extensive research and data collection over a period of years took place to develop this.
+It was an evolving, intricate process that couldn't simply factor in a weather scenario without many points of refinement (IPCC Team, 2024).
+It's important for aspiring scientists to not be disheartened by a lack of quick results. 
+Scientific progress is inherently iterative and requires continuous learning and adaptation.
+Embrace the complexity and remember that patience and dedication are paramount.
 
 
 Scientific breakthroughs are seldom achieved by a lone scientist. 
@@ -118,3 +104,31 @@ Ultimately, appreciating the human, iterative, and collaborative aspects of scie
 * Garland, A. (Director). (2015). Ex Machina. Universal Pictures. Film.
 * Proyas, A. (Director). (2004). I, Robot. 20th Century Fox. Film.
 * Peterson, W. (Director). (1995). Outbreak. Warner Bros. Pictures. Film.
+
+* 
+Dothard, M., Leiby, J., Fitzgerald A., and Khatib L.
+(2019).
+How Do You Find a Virus That’s Completely Unknown?.
+Penn Medicine News.
+Available at: https://www.pennmedicine.org/news/news-releases/2019/may/how-do-you-find-a-virus-thats-completely-unknown-study-says-look-to-the-genome
+
+*
+Cherry, J., and Krogstad, P.
+(2004).
+SARS: The First Pandemic of the 21st Century.
+National Library of Medicine.
+Available at: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7086556/
+
+* 
+Naughten, K.
+(2012).
+The Day After Tomorrow: A Scientific Critique.
+ClimateSight.
+Available at: https://climatesight.org/2012/04/26/the-day-after-tomorrow-a-scientific-critique/
+
+* 
+IPCC Team.
+(2024).
+IPCC Preparing Reports.
+IPCC.
+Available at: https://www.ipcc.ch/about/preparingreports/

@@ -48,19 +48,17 @@ Embrace the complexity and remember that patience and dedication are paramount.
 
 Scientific breakthroughs are seldom achieved by a lone scientist. 
 Due to the increasingly complex nature of contemporary science, a collaborative approach is required.
-In the film The Boys From Brazil (1978), Dr Josef Mengele is presented as a lone scientist who is single handedely able to clone humans.
-the boys from brazil (josef; dolly or crispr?), 
-- mengele distinguised from others wearing a white suit, people bowing to him, guest of honour commanding respect by people of many backgrounds
-- "Do not question your orders. Simply obey them" to captain Mundt
-- "I have created a scientific miracle" to colonel seibert
-"I am a scientist. I have done my job" 
-- At university of Vienna, dr remarks cloning is 'impossible' to liebermann
-he had to develop 'special instruments' and 'whole micro-injection system'
-lucky if 1/10 survives micro-surgery
-(remarks that mengele is a primitive genetiscist)
-e.g. CRISPR collaborative
-working 2012: https://www.jax.org/personalized-medicine/precision-medicine-and-you/what-is-crispr
-long history: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9377665/ 
+In the film The Boys From Brazil (1978), Dr Josef Mengele is presented as a lone scientist who is able to become the first person to clone humans.
+At the beginning of the film, Mengele's bright white suit in amongst greys and blues highlights his solitary nature.
+His unwillingness to accept advice is reflected when he says to Captain Mundt "Do not question your orders. Simply obey them".
+The difficulty of Mengele's innovation is expressed in the film when Professor Brucknor says "impossible" to Liebermann when asked about the possibility of cloning humans.
+In the real world, the first mammal to be cloned from an adult cell occurred with Dolly the sheep in 1996 (The Roslin Institute, 2021).
+The film predates this milestone, dramatically evelating the complexity of Mengele's acheivements.
+By looking at the gene editing technology CRIPSR, it can be seen that a collective effort from scientists is required for innovation.
+Major breakthroughs in the fields of molecular biology, bioinformatics and genetics were attained.
+This knowledge was pooled together to ultimately allow scientists to edit specific DNA sequences (Gostimskaya, I., 2022).
+As a result, it's unrealistic to think that a single scientist would be able to successfully implement human cloning on their own.
+
 ex machina (nathan bateman;)
 - remove himself from humanity, nestled in nathan's isolated huge estate making his opus
 him owning the powerful landscape (waterfalls, glaciers) is implicit of his power
@@ -132,3 +130,17 @@ IPCC Team.
 IPCC Preparing Reports.
 IPCC.
 Available at: https://www.ipcc.ch/about/preparingreports/
+
+* 
+The Roslin Institute.
+(2021).
+The Life of Dolly.
+University of Edinburgh.
+Available at: https://www.ed.ac.uk/roslin/about/dolly/facts/life-of-dolly
+
+*
+Gostimskaya, I.
+(2022).
+CRISPR–Cas9: A History of Its Discovery and Ethical Considerations of Its Use in Genome Editing.
+National Library of Medicine.
+Available at: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9377665/  

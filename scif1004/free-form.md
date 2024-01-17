@@ -22,33 +22,43 @@ When watching scientists in film, it's important to realise that film often leav
 It's common for scientific progress to be marked by long periods of time. 
 Scientific research is iterative by nature to allow for thorough experimentation. 
 Although this is a time consuming process, it's to ensure reliable and valid results are obtained.
-In the film Outbreak, Sam Daniels and his team are able to isolate motaba virus.
+In the film Outbreak (1995), Colonel Daniels and his team are able to isolate the Motaba virus in a remarkably short period of time.
+Daniels instructs Major Salt to "Separate samples, thaw them and put under microscope". 
+Within 8 hours they make a determination based on the samples effects on kidney cells.
+Later on in a similar fashion, Major Schuler quickly ascertains that the "protein code has changed" of the new Cedar Creek strain. 
+This depiction dramatically accelerates the scientific procedures involved in virus identification.
+The process of sequencing a virus's genome, studying its proteins and understanding its molecular characteristics require a significant amount of time.
+(https://www.pennmedicine.org/news/news-releases/2019/may/how-do-you-find-a-virus-thats-completely-unknown-study-says-look-to-the-genome)
+This can be seen in the real world SARS (Severe Acute Respiratory Syndrome) virus.
+In what was considered a "technological Blitzkrieg", it took approximately 5 months from first reported case to completely sequence. 
+(https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7086556/)
+Not a matter of days or weeks.
+This acclerated scientific process is also seen in the film The Day After Tomorrow (2004).
+Jack Hall and his team are able to 
 
-daniels 'separate samples, thaw them and under microscope'
-major 'results ready in a few hours' with a smile of face. relaxed, not looking busy
+Nevertheless, Jack gets to work converting his “paleoclimate model” to a “forecast model” so he can predict the path of the storm. It is likely that this conversion involves building a new high-resolution grid and adding dozens of new climatic processes to the model, a task which would take months to years of work by a large team of scientists. However, Jack appears to have superhuman programming abilities: he writes all the code by himself in 24 hours!
+When he has finished, he decides to get some rest until the simulation has finished running. In the real world, this would take at least a week, but Jack’s colleagues wake him up after just a few hours. Evidently, their lab has access to computing resources more powerful than anything known to science today. Then, Jack’s colleagues hand him “the results” on a single sheet of paper. Real climate model output comes in the form of terabytes of data tables, which can be converted to digital maps, animations, and time plots using special software. Jack’s model appeared to simply spit out a few numbers, and what these numbers may have referred to is beyond comprehension.
+(https://climatesight.org/2012/04/26/the-day-after-tomorrow-a-scientific-critique/)
 
-looking at pictures of testing on kidney cells with virus 8 hours.
 
-make determination that it invades, kills and replicates in 5 hours.
-even spacey remarks that 'these numbers can't be right', 
-but major responds 'these numbers are correct'
+'factor in storm scenarios'
+make bold claim that in 6-8 weeks for a 'major climate shift'
 
-isolate virus (reference)
+where the characters in the film swiftly adjust climate models to predict extreme climate events within a matter of days
 
-* a scientific breakthrough is acheived in a short period of time
-outbreak (sam daniels; vaccine development)
-- isolating motaba virus
-e.g. ebola 1976, sars 2002 months to identify
+Modifying climate models to predict and understand climate change involves continuous research, data collection, and collaboration among scientists. It is an ongoing and evolving process that takes years, if not decades, to refine and improve.
+
 
 day after tomorrow (jack hall; climate models)
 - incorporating storms into climate model and getting results in hours 
 e.g. IPCC's Fourth Assessment Report (AR4), released in 2007, years of refinement
+https://www.ipcc.ch/about/history/
 ...
+The journey in science is inherently iterative and marked by continuous learning and adaptation. 
+Patience and dedication are paramount, and individuals should recognize that the pursuit of knowledge is a gradual process.
 
 
 
-good science often thrives on openness and collaboration
-It's crucial not to perceive the scientific journey as one of isolation but rather as a collective effort to advance knowledge for the betterment of society. By embracing collaboration and remaining open to diverse perspectives, aspiring scientists can contribute to a more dynamic and impactful scientific landscape,
 
 Scientific breakthroughs are seldom achieved by a lone scientist. 
 Due to the increasingly complex nature of contemporary science, a collaborative approach is required.
@@ -72,8 +82,8 @@ him owning the powerful landscape (waterfalls, glaciers) is implicit of his powe
 - nathan remarks 'the greatest scientific event in the history of man'
 e.g. self-driving cars collaboration
 ...
-The journey in science is inherently iterative and marked by continuous learning and adaptation. 
-Patience and dedication are paramount, and individuals should recognize that the pursuit of knowledge is a gradual process.
+good science often thrives on openness and collaboration
+It's crucial not to perceive the scientific journey as one of isolation but rather as a collective effort to advance knowledge for the betterment of society. By embracing collaboration and remaining open to diverse perspectives, aspiring scientists can contribute to a more dynamic and impactful scientific landscape,
 
 It's unlikely for society to elevate a scientist to celebrity status for their work. 
 The complex and specialised knowledge involved isn't immediately relatable to the average person.
@@ -86,6 +96,7 @@ unsuspecting life: https://www.bbvaopenmind.com/en/science/leading-figures/willi
 i, robot (alfred lanning; VIKI);
 claude shannon, father of information theory (not as well known as george boole)
 VIKI (virtual interactive kinetic intelligence) is AI that controls uplink to NS5's
+5 robots to every 1 human
 
 susan calvin to del spooner 'Alfred Lanning was everything here'
 'robots are realisation of a dream. dr lannings dream'

@@ -59,15 +59,19 @@ Major breakthroughs in the fields of molecular biology, bioinformatics and genet
 This knowledge was pooled together to ultimately allow scientists to edit specific DNA sequences (Gostimskaya, I., 2022).
 As a result, it's unrealistic to think that a single scientist would be able to successfully implement human cloning on their own.
 
-ex machina (nathan bateman;)
-- remove himself from humanity, nestled in nathan's isolated huge estate making his opus
-him owning the powerful landscape (waterfalls, glaciers) is implicit of his power
-- showing structured gel her brain that is not circuitry, face masks
-- nathan remarks 'the greatest scientific event in the history of man'
-e.g. self-driving cars collaboration
-...
-good science often thrives on openness and collaboration
-It's crucial not to perceive the scientific journey as one of isolation but rather as a collective effort to advance knowledge for the betterment of society. By embracing collaboration and remaining open to diverse perspectives, aspiring scientists can contribute to a more dynamic and impactful scientific landscape,
+In the film Ex Machina (2014), Nathan Bateman is portrayed as a reclusive scientist who is able to create an advanced artificial intelligence (AI) known as Ava. 
+Sweeping shots of his huge estate showcasing mountains, waterfalls and glaciers that can only be reached by helicopter hammer home how isolated he is.
+The significance of his acheivements is made clear when he expresses to Caleb that Ava is "The greatest scientific event in the history of man".
+Ava's brain is described as a revolution of material science "Away from circuitry; able to arrange and rearrange at the molecular level".
+In the real world, to create even the most rudimentary artifical brain requires extensive knowledge in electrical engineering, neuroscience and bioengineering (Chu, J., 2020).
+This exemplifies the unrealistic level of knowledge Nathan must have.
+Inspecting the development of self driving cars demonstrates the extensive collaboration required in making cutting edge technological advancements.
+Like Ava, they require electrical engineers to develop complex hardware and sensor arrays, computer science specialists for advanced algorithms and AI experts for autonomous operation (Y Mobility Team, 2023).
+This collaborative approach stands in stark contrast to the isolated genius of Nathan Bateman.
+For aspiring scientists, it's essential to understand that a successul career doesn't hinge on having all encompassing knowledge. 
+Embracing collaboration, learning from mentors and being open to interdisciplinary teamwork are keys to success.
+
+
 
 It's unlikely for society to elevate a scientist to celebrity status for their work. 
 The complex and specialised knowledge involved isn't immediately relatable to the average person.
@@ -99,7 +103,7 @@ Ultimately, appreciating the human, iterative, and collaborative aspects of scie
 * Scott, R. (Director). (1982). Blade Runner. Warner Bros. Pictures. Film.
 * Emmerich, R. (Director). (2004). The Day After Tomorrow. 20th Century Studios. Film.
 * Schaffner J., F. (Director). (1978). The Boys From Brazil. 20th Century Studios. Film.
-* Garland, A. (Director). (2015). Ex Machina. Universal Pictures. Film.
+* Garland, A. (Director). (2014). Ex Machina. Universal Pictures. Film.
 * Proyas, A. (Director). (2004). I, Robot. 20th Century Fox. Film.
 * Peterson, W. (Director). (1995). Outbreak. Warner Bros. Pictures. Film.
 
@@ -144,3 +148,17 @@ Gostimskaya, I.
 CRISPR–Cas9: A History of Its Discovery and Ethical Considerations of Its Use in Genome Editing.
 National Library of Medicine.
 Available at: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9377665/  
+
+*
+Chu, J.
+(2020).
+Engineers put tens of thousands of artificial brain synapses on a single chip.
+MIT News.
+Available at: https://news.mit.edu/2020/thousands-artificial-brain-synapses-single-chip-0608
+
+* 
+Y Mobolity Team.
+(2023).
+The Role of Partnerships & Collaboration in Autonomous Driving.
+Y Mobility.
+Available at: https://www.y-mobility.co.uk/the-role-of-partnerships-collaboration-in-autonomous-driving/

@@ -113,86 +113,37 @@ As long as you are resilient, open minded and humble, you will be able to naviga
 * Peterson, W. (Director). (1995). Outbreak. Warner Bros. Pictures. Film.
 
 * 
-Dothard, M., Leiby, J., Fitzgerald A., and Khatib L.
-(2019).
-How Do You Find a Virus That’s Completely Unknown?.
-Penn Medicine News.
-Available at: https://www.pennmedicine.org/news/news-releases/2019/may/how-do-you-find-a-virus-thats-completely-unknown-study-says-look-to-the-genome
+Dothard, M., Leiby, J., Fitzgerald A., and Khatib L. (2019). How Do You Find a Virus That’s Completely Unknown?. Penn Medicine News. Available at: https://www.pennmedicine.org/news/news-releases/2019/may/how-do-you-find-a-virus-thats-completely-unknown-study-says-look-to-the-genome
 
 *
-Cherry, J., and Krogstad, P.
-(2004).
-SARS: The First Pandemic of the 21st Century.
-National Library of Medicine.
-Available at: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7086556/
+Cherry, J., and Krogstad, P. (2004). SARS: The First Pandemic of the 21st Century. National Library of Medicine. Available at: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7086556/
 
 * 
-Naughten, K.
-(2012).
-The Day After Tomorrow: A Scientific Critique.
-ClimateSight.
-Available at: https://climatesight.org/2012/04/26/the-day-after-tomorrow-a-scientific-critique/
+Naughten, K. (2012). The Day After Tomorrow: A Scientific Critique. ClimateSight. Available at: https://climatesight.org/2012/04/26/the-day-after-tomorrow-a-scientific-critique/
 
 * 
-IPCC Team.
-(2024).
-IPCC Preparing Reports.
-IPCC.
-Available at: https://www.ipcc.ch/about/preparingreports/
+IPCC Team. (2024). IPCC Preparing Reports. IPCC. Available at: https://www.ipcc.ch/about/preparingreports/
 
 * 
-The Roslin Institute.
-(2021).
-The Life of Dolly.
-University of Edinburgh.
-Available at: https://www.ed.ac.uk/roslin/about/dolly/facts/life-of-dolly
+The Roslin Institute. (2021). The Life of Dolly. University of Edinburgh. Available at: https://www.ed.ac.uk/roslin/about/dolly/facts/life-of-dolly
 
 *
-Gostimskaya, I.
-(2022).
-CRISPR–Cas9: A History of Its Discovery and Ethical Considerations of Its Use in Genome Editing.
-National Library of Medicine.
-Available at: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9377665/  
+Gostimskaya, I. (2022). CRISPR–Cas9: A History of Its Discovery and Ethical Considerations of Its Use in Genome Editing. National Library of Medicine. Available at: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9377665/  
 
 *
-Chu, J.
-(2020).
-Engineers put tens of thousands of artificial brain synapses on a single chip.
-MIT News.
-Available at: https://news.mit.edu/2020/thousands-artificial-brain-synapses-single-chip-0608
+Chu, J. (2020). Engineers put tens of thousands of artificial brain synapses on a single chip. MIT News. Available at: https://news.mit.edu/2020/thousands-artificial-brain-synapses-single-chip-0608
 
 * 
-Y Mobolity Team.
-(2023).
-The Role of Partnerships & Collaboration in Autonomous Driving.
-Y Mobility.
-Available at: https://www.y-mobility.co.uk/the-role-of-partnerships-collaboration-in-autonomous-driving/
+Y Mobolity Team. (2023). The Role of Partnerships & Collaboration in Autonomous Driving. Y Mobility. Available at: https://www.y-mobility.co.uk/the-role-of-partnerships-collaboration-in-autonomous-driving/
 
 *
-Amonett, N.
-(2022).
-The Transistor – an Invention Ahead of its Time.
-Standard Electric Supply Co.
-Available at: https://www.standardelectricsupply.com/blog/brief-history-transistors
+Amonett, N. (2022). The Transistor – an Invention Ahead of its Time. Standard Electric Supply Co. Available at: https://www.standardelectricsupply.com/blog/brief-history-transistors
 
 *
-de la Plaza, I. M.
-(2018).
-William Shockley and the Invention of the Transistor.
-OpenMind.
-Available at: https://www.bbvaopenmind.com/en/science/leading-figures/william-shockley-and-the-invention-of-the-transistor/
+de la Plaza, I. M. (2018). William Shockley and the Invention of the Transistor. OpenMind. Available at: https://www.bbvaopenmind.com/en/science/leading-figures/william-shockley-and-the-invention-of-the-transistor/
 
 * 
-Collins, P. G.
-(2002).
-Claude E. Shannon: Founder of Information Theory
-Scientific American.
-Available at: https://www.scientificamerican.com/article/claude-e-shannon-founder/
+Collins, P. G. (2002). Claude E. Shannon: Founder of Information Theory. Scientific American. Available at: https://www.scientificamerican.com/article/claude-e-shannon-founder/
 
 *
-Reshma, A.
-(2022).
-The Greatest Achievements of Claude Shannon that Aided in Transforming the Future!.
-Byju's Future School.
-Available at: https://www.byjusfutureschool.com/blog/the-greatest-achievements-of-claude-shannon-that-aided-in-transforming-the-future/
-
+Reshma, A. (2022). The Greatest Achievements of Claude Shannon that Aided in Transforming the Future!. Byju's Future School. Available at: https://www.byjusfutureschool.com/blog/the-greatest-achievements-of-claude-shannon-that-aided-in-transforming-the-future/

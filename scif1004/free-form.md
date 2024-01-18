@@ -98,10 +98,11 @@ It's important to recognise that a lack of widespread recognition does not dimin
 You should not be deterred by any societal expectations of fame. 
 The true act of science lies in the passion for discovery and the impact on the scientific community. 
 
-...
-Ultimately, appreciating the human, iterative, and collaborative aspects of scientific discovery allows for a more inspiring and realistic portrayal of the scientific journey.
-
-even if it may not always translate into widespread public acclaim.
+In conclusion, the portrayal of scientists in film is an exaggeration of the real work they do.
+The idealised image perpetuated by films of speedy discoveries, isolated geniuses and reverred individuals is unlikely to be experienced in a career in science.
+However, any aspiring minds should not be deterred by this.
+The scientific community is one that embodies perserverance, infallibility and collaboration in the pursuit of knowledge. 
+As long as you are resilient, open minded and humble, you will be able to navigate any challenges science throws at you.
 
 ## References
 * Scott, R. (Director). (1982). Blade Runner. Warner Bros. Pictures. Film.

@@ -72,9 +72,18 @@ For aspiring scientists, it's essential to understand that a successul career do
 Embracing collaboration, learning from mentors and being open to interdisciplinary teamwork are keys to success.
 
 
-
 It's unlikely for society to elevate a scientist to celebrity status for their work. 
 The complex and specialised knowledge involved isn't immediately relatable to the average person.
+In the film Blade Runner (1982), Eldon Tyrell is viewed as a celebrity due to his work in genetic engineering, creating advanced humanoid robots known as Replicants.
+Tyrell's opulent office and towering headquarters above the dystopian metropolis serve to demonstrate the immense societal significance of his scientific acheievements.
+The influence of his work extends beyond the laboratory, causing a paradigm shift in the way society interacts with technology.
+His title of the "god father of bioengineering" is further evidence of how he is revered.
+In the real world, it's most likely that the extent of a scientists acclaim will be limited to within their respective fields.
+Considering one of the inventors of the transistor, William Shockley, this can be seen.
+The transistor revolutionised the field of electronics, having far reaching implications for telecommunications and computing (Amonett, N., 2022).
+Despite being a pivotal figure in its development, Shockley did not achieve the level of household name (de la Plaza, I. M., 2018).
+
+
 ...
 * scientist is viewed as a rock star after their innovation
 blade runner (eldon tyrell; advanced biotech); 
@@ -162,3 +171,17 @@ Y Mobolity Team.
 The Role of Partnerships & Collaboration in Autonomous Driving.
 Y Mobility.
 Available at: https://www.y-mobility.co.uk/the-role-of-partnerships-collaboration-in-autonomous-driving/
+
+*
+Amonett, N.
+(2022).
+The Transistor – an Invention Ahead of its Time.
+Standard Electric Supply Co.
+Available at: https://www.standardelectricsupply.com/blog/brief-history-transistors
+
+*
+de la Plaza, I. M.
+(2018).
+William Shockley and the Invention of the Transistor.
+OpenMind.
+Available at: https://www.bbvaopenmind.com/en/science/leading-figures/william-shockley-and-the-invention-of-the-transistor/

@@ -83,30 +83,25 @@ Considering one of the inventors of the transistor, William Shockley, this can b
 The transistor revolutionised the field of electronics, having far reaching implications for telecommunications and computing (Amonett, N., 2022).
 Despite being a pivotal figure in its development, Shockley did not achieve the level of household name (de la Plaza, I. M., 2018).
 
-
-...
-* scientist is viewed as a rock star after their innovation
-blade runner (eldon tyrell; advanced biotech); 
-e.g. transistor
-unsuspecting life: https://www.bbvaopenmind.com/en/science/leading-figures/william-shockley-and-the-invention-of-the-transistor/
-
-i, robot (alfred lanning; VIKI);
-claude shannon, father of information theory (not as well known as george boole)
-VIKI (virtual interactive kinetic intelligence) is AI that controls uplink to NS5's
-5 robots to every 1 human
-
-susan calvin to del spooner 'Alfred Lanning was everything here'
-'robots are realisation of a dream. dr lannings dream'
-As put by woman, NS5's are Dr Lanning's dream to be embraced by whole world
-
-positronic operating core, 'lanning's first creation' in centre of building which controls building, i.e. everyone sees it
-
-It's crucial to recognize that a lack of widespread recognition does not diminish the value of one's contributions to science, 
-and individuals should not be deterred by societal expectations of fame. 
-The true fulfillment lies in the passion for discovery and the impact on the scientific community, even if it may not always translate into widespread public acclaim.
+In the film I, Robot (2004), Dr Alfred Lanning acheives widespread recognition for his innovations in robotics and AI.
+He pioneers the creation of the nestor class (NS) humanoid robots and a central command AI system known as VIKI.
+The building of Lanning's company, U.S Robotics is symbolic of his own global status.
+Dwarfing nearby buildings, it's shown to be the centrepoint of the city to underscore the high regard society has for Lanning's acheivements.
+Calvin remarks to Spooner that "Robots are realisation of a dream. Dr Lannings dream".
+As there are more NS robots than people, this signifies the extent to which Lanning has brought about a profound societal shift.
+In the real world, it's most likely that a scientist's recognition will remain confined to their areas of expertise.
+This is illustrated by Claude Shannon, often referred to as the father of information theory.
+Shannon's work had tremendous impact on computer science and AI. 
+He laid the groundwork for modern digital communication, paving the way for the development of the digital computer (Collins, P. G., 2002).
+Yet, despite his ground breaking innovations, he did not acheive widespread recognition beyond academic circles during his lifetime. (Reshma, A., 2022).
+It's important to recognise that a lack of widespread recognition does not diminish the value of a person's contribution to science.
+You should not be deterred by any societal expectations of fame. 
+The true act of science lies in the passion for discovery and the impact on the scientific community. 
 
 ...
 Ultimately, appreciating the human, iterative, and collaborative aspects of scientific discovery allows for a more inspiring and realistic portrayal of the scientific journey.
+
+even if it may not always translate into widespread public acclaim.
 
 ## References
 * Scott, R. (Director). (1982). Blade Runner. Warner Bros. Pictures. Film.
@@ -185,3 +180,18 @@ de la Plaza, I. M.
 William Shockley and the Invention of the Transistor.
 OpenMind.
 Available at: https://www.bbvaopenmind.com/en/science/leading-figures/william-shockley-and-the-invention-of-the-transistor/
+
+* 
+Collins, P. G.
+(2002).
+Claude E. Shannon: Founder of Information Theory
+Scientific American.
+Available at: https://www.scientificamerican.com/article/claude-e-shannon-founder/
+
+*
+Reshma, A.
+(2022).
+The Greatest Achievements of Claude Shannon that Aided in Transforming the Future!.
+Byju's Future School.
+Available at: https://www.byjusfutureschool.com/blog/the-greatest-achievements-of-claude-shannon-that-aided-in-transforming-the-future/
+

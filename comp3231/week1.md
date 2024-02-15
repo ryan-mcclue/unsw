@@ -10,8 +10,17 @@ Process would be blocked as oppose to ready for efficiency reasons.
 Have a process ready queue to select next.
 Also have separate process block queues for distinct events e.g. waiting for file, timer, lock etc.
 
-Append to .profile as this is login shell (could do .bash_profile)
+Append os161 path in .profile as this is login shell (could do .bash_profile)
 vscode c/c++ c_cpp_properties.json for searchability
+-exec in vscode for gdb console
+cs3231/root/.gdbinit:
+set can-use-hw-watchpoints 0
+define connect
+dir ~/cs3231/warmup-src/kern/compile/WARMUP
+target remote unix:.sockets/gdb
+b panic
+end
+
 
 OS UTILITIES
 % cd ~/cs3231/warmup-src
@@ -38,8 +47,7 @@ SIMULATOR
 % sys161 kernel
 (sys161 kernel q)
 
-DEBUGGING
+DEBUGGING (IN ROOT)
 % sys161 -w kernel
 % os161-gdb kernel
 
--exec in vscode for gdb

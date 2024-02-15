@@ -9,3 +9,37 @@ Dispatcher thread like scanning for files and worker thread like summing portion
 Process would be blocked as oppose to ready for efficiency reasons. 
 Have a process ready queue to select next.
 Also have separate process block queues for distinct events e.g. waiting for file, timer, lock etc.
+
+Append to .profile as this is login shell (could do .bash_profile)
+vscode c/c++ c_cpp_properties.json for searchability
+
+OS UTILITIES
+% cd ~/cs3231/warmup-src
+% ./configure
+% bmake WERROR="-Wno-error=uninitialized"
+% bmake install
+% ls ~/cs3231/root
+
+CONFIGURE KERNEL
+% cd ~/cs3231/warmup-src/kern/conf
+% ./config WARMUP
+% cd ../compile/WARMUP
+% bmake depend
+% bmake
+% bmake install
+
+REBUILDING KERNEL
+% cd ~/cs3231/warmup-src/kern/compile/WARMUP
+% bmake && bmake install
+
+SIMULATOR
+% cd ~/cs3231/root
+% wget http://cgi.cse.unsw.edu.au/~cs3231/24T1/assignments/warmup/sys161.conf
+% sys161 kernel
+(sys161 kernel q)
+
+DEBUGGING
+% sys161 -w kernel
+% os161-gdb kernel
+
+-exec in vscode for gdb

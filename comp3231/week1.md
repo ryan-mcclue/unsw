@@ -10,6 +10,36 @@ Process would be blocked as oppose to ready for efficiency reasons.
 Have a process ready queue to select next.
 Also have separate process block queues for distinct events e.g. waiting for file, timer, lock etc.
 
+Race condition can still occur on single-core, e.g. counter increment pre-empted between load and store
+`ldr r1, =var; ldr r2, [r1]; add r2, r2, #1; str r2, [r1]` 
+(on x86 can do in 1 instruction, `add dword ptr var, 1`)
+In fact, still concurrency in a single-threaded application from in-kernel concurrency
+
+Critical region where shared resources operated on.
+Mutual exclusion solutions 
+- taking turns (poor if need at differing rates)
+- disable interrupts (only possible on single-core) 
+- atomic hardware TSL instruction (spinlock/busy-wait, so can get starved if many)
+IMPORTANT: all build from locks
+https://stackoverflow.com/questions/3513045/conditional-variable-vs-semaphore
+- A semaphore more state to overcome busy-waiting.
+  Puts processes into a blocked queue if trying to access an unavailable resource, i.e. waits/sleeps; P
+  (initial count determines how many waits proceed before blocking) 
+  When available, resumes process from queue, i.e. signals/wakeup (can be error-prone to use); V
+
+  allows you to sleep and wakeup
+  a countable sleep/wake primitive
+  wait() -> let us know when counter > 0. will decrement when wait()ed
+  wake() -> increments counter, allowing any waiting threads to operate
+  allows you to tell several threads that some work is ready collectively 
+
+- A monitor is a grouping of variables, functions that can only be accessed within itself.
+  Compiler implements mutual exclusion.
+  Condition variable used to wait inside monitor or signal process to resume
+
+bounded-buffer has a consumer and a producer
+
+
 Append os161 path in .profile as this is login shell (could do .bash_profile)
 vscode c/c++ c_cpp_properties.json for searchability
 -exec in vscode for gdb console
@@ -20,7 +50,6 @@ dir ~/cs3231/warmup-src/kern/compile/WARMUP
 target remote unix:.sockets/gdb
 b panic
 end
-
 
 OS UTILITIES
 % cd ~/cs3231/warmup-src

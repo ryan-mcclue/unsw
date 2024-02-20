@@ -25,12 +25,17 @@ Known (rules known)                                                     | Known
 
 Agent types:
 1. Reactive: Next action based on current percept. No state.
+Braitenberg vehicle (light and obstacle sensor. move to light, away from obstacle), chemotaxis (organisms move to chemical)
+Horizontal decomposition more independent layers. More adaptable to environment changes
+Receive sensor input and act based on that.
+Vertical decomposition more inter-connected hierarchical layers. More goal orientated 
+Receive goal and try and accomplish based on sensor input.
 2. Model: Keep state to look into past. Cannot look into future
 3. Planning: Can look ahead (search; simulate; goals). TODO: Assumes deterministic environment?
 4. Game Playing: Keep state of other player
 5. Learning: Bayesian (update probabilities) 
 
-Constraint Satisfaction Problems, e.g arranging, scheduling etc.
+Constraint Satisfaction Problems, e.g arranging, scheduling (N-queens, Sudoku) etc.
 Consider map colouring, where variables are states, colours are values.
 1. Backtracking Search
 Explores variables with DFS and backtracks when current values don't satisfy.

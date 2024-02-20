@@ -1,4 +1,6 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+TODO: https://handmade.network/p/29/swedish-cubes-for-unity/blog/p/2723-how_media_molecule_does_serialization 
+
 RTEMS OS is monolithic where everything runs in priveleged mode, unlike say FreeRTOS.
 Would open up possibilities to corrupt kernel data structures etc.
 Main task on OS is efficient and secure interleaved execution
@@ -21,7 +23,6 @@ Mutual exclusion solutions
 - disable interrupts (only possible on single-core) 
 - atomic hardware TSL instruction (spinlock/busy-wait, so can get starved if many)
 IMPORTANT: all build from locks
-https://stackoverflow.com/questions/3513045/conditional-variable-vs-semaphore
 - A semaphore more state to overcome busy-waiting.
   Puts processes into a blocked queue if trying to access an unavailable resource, i.e. waits/sleeps; P
   (initial count determines how many waits proceed before blocking) 
@@ -29,15 +30,28 @@ https://stackoverflow.com/questions/3513045/conditional-variable-vs-semaphore
 
   allows you to sleep and wakeup
   a countable sleep/wake primitive
-  wait() -> let us know when counter > 0. will decrement when wait()ed
-  wake() -> increments counter, allowing any waiting threads to operate
+  wait() -> let us know when counter > 0. will decrement when wait()ed (this is equivalent to acquiring resource)
+  wake() -> increments counter, allowing any waiting threads to operate (this is equivalent to releasing resource)
   allows you to tell several threads that some work is ready collectively 
 
 - A monitor is a grouping of variables, functions that can only be accessed within itself.
   Compiler implements mutual exclusion.
   Condition variable used to wait inside monitor or signal process to resume
+  (Seems better to use a condition variable first, then a semaphore if required)
+  (easier to reason about an explicit critical region; and get more flexibility with lock)
 
 bounded-buffer has a consumer and a producer
+
+
+Shared memory communication (usually) requires a form of locking (semaphores, mutexes, monitors, etc) to coordinate the processes/threads.
+Whilst message passing based communication does so by exchanging "messages" between the different processes/threads.
+I was about to say that the message-based models may still require "locks" of some sort, but they are not explicitly handled by the user.
+
+1 requester to 1 source == trivial   -> (straight-forward single-thread code)
+M requesters to 1 source == shared memory -> (for example: multiple threads accessing a hash-table)
+1 requester to N sources == message -> (for example: a thread that receives network packets from multiple sockets and puts information in a hashtable)
+M requesters to N sources == hybrid -> (for example: multiple threads that receive network packets from multiple sockets and put information in a hashtable)
+
 
 
 Append os161 path in .profile as this is login shell (could do .bash_profile)

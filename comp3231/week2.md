@@ -25,4 +25,5 @@ Safe state if a scheduling order exists even if each process requests their maxi
 Unsafe not necessarily a deadlock, just no guarantee
 So an avoidance algorithm would only grant requests that result in safe states 
 
-First-come first-serve policy to help prevent starvation
+First-come first-serve policy to help prevent starvation on lock acquisition. 
+Time slices also to prevent long-running processes dominating.

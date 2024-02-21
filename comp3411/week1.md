@@ -45,8 +45,15 @@ To speed up:
   - Forward checking: store remaining legal values so can terminate when none remain
     + Arc consistency: Each arc is a constraint between variables. 
       Making arc consistent is to update a variables remaining values based of other variable values
-2. Local Search
+2. Local Search (suboptimal over large state space acceptable)
 Assigns variables randomly then change one at a time (efficient when very few or many constraints)
 This iterative process can be thought of hill-climbing, e.g. at any stage could be at local/global optima.
-* Choose variable that violates fewest constraints. 
-* Simulated annealing, i.e. introduce a controlled (if h1 < h0) level of randomness (e^t) to escape local optima
+Choose variable that violates fewest constraints. 
+n-queens:
+objective function: number of queens being attacked
+successor states: move any queen in its column, so 56
+So for each sucessor state calculate objective function and move to what is the best, i.e. greedy
+However, we say current state is better than all successors, don't know if at a local/global optima.
+In this case, use simulated annealing which translates to choosing random successors wildly at start (heating) and less wildly (cool down) then settle.
+Would make change with probabilty `e^(cur_state-prev_state)/temp`
+Genetic algorithm also example of local search

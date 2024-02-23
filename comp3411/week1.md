@@ -40,11 +40,12 @@ Consider map colouring, where variables are states, colours are values.
 1. Backtracking Search
 Explores variables with DFS and backtracks when current values don't satisfy.
 To speed up:
-* Heuristics, e.g. choose variable with fewest legal values, most constraints on variables etc.
+* Heuristics, e.g. choose variable with fewest legal values, most constraints on variables (cryptarithmetic) etc.
 * Constraint Propagation:
   - Forward checking: store remaining legal values so can terminate when none remain
     + Arc consistency: Each arc is a constraint between variables. 
       Making arc consistent is to update a variables remaining values based of other variable values
+      (map colouring small amount of variables, so difference neglible; apply consistency by selecting most constrained, i.e. what has to be chosen)
 2. Local Search (suboptimal over large state space acceptable)
 Assigns variables randomly then change one at a time (efficient when very few or many constraints)
 This iterative process can be thought of hill-climbing, e.g. at any stage could be at local/global optima.

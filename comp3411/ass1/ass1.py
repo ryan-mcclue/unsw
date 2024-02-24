@@ -10,6 +10,9 @@ import platform
 import math
 
 from dataclasses import dataclass
+from typing import List
+from enum import Enum
+
 
 global global_logger
 
@@ -50,30 +53,130 @@ def read_entire_file(name):
     warn(f"Unable to read file {name}.\n{e}")
   return res
 
+class Directions(Enum):
+  NULL = 0
+  UP = 0b1001
+  DOWN = 0b0110
+  LEFT = 0b1100
+  RIGHT = 0b0011
+
 @dataclass
 class Node:
+  # Base Info
   lim: int = 0
-  left: int = 0
-  right: int = 0
-  up: int = 0
-  down: int = 0
+  count: int = 0
+  # Bridge Info
+  orientation: Orientations = Orientations.NULL
+  amount: int = 0
+
+@dataclass
+class State:
+  rows: int
+  cols: int
+  nodes: List[Node]
 
 def parse_hashi_str(hashi_str):
   lines = hashi_str.splitlines()
   cols = len(lines[0])
   rows = len(lines)
 
-  locs = [][]
+  nodes = []
 
-  for line in lines
+  for line in lines:
     for i in range(len(line)):
+      n = Node()
       ch = line[i]
       if ch.isdigit():
+        n.lim = int(ch)
+      nodes.append(n)
 
+  s = State(cols, rows, nodes)
+
+  return s
+
+
+def solve_hashi(hashi_state, x=0, y=0):
+  for d in Directions:
+    if place_bridge(hashi_state, x, y, d):
+      if solve_hashi(hashi_state, x, y + 1):
+        return True
+      else:
+        remove_bridge(hashi_state, x, y, d)
+  return False
+
+def get_node(hashi_state, x, y):
+  if x < 0 || y < 0 || x >= hashi_state.rows || y >= hashi_state.cols:
+    return Node()
+  else:
+    return hashi_state.nodes[y * hashi_state.rows + x]
+
+def get_accessible_nnode(hashi_state, x, y, d):
+  if d == Direction.RIGHT:
+    for i in range(x + 1, hashi_state.rows):
+      n = get_node(hashi_state, i, y)
+      if n.amount > 0 && n.orientation != Orientation.HORIZONTAL:
+        return Node(), 0, 0
+      if n.lim != 0:
+        return n, i, y
+  elif d == Direction.LEFT:
+    for i in range(x - 1, -1):
+      n = get_node(hashi_state, i, y)
+      if n.amount > 0 && n.orientation != Orientation.HORIZONTAL:
+        return Node(), 0, 0
+      if n.lim != 0:
+        return n, i, y
+  elif d == Direction.UP:
+    for i in range(y - 1, -1):
+      n = get_node(hashi_state, x, i)
+      if n.amount > 0 && n.orientation != Orientation.VERTICAL:
+        return Node(), 0, 0
+      if n.lim != 0:
+        return n, x, i
+  else:
+    for i in range(y + 1, hashi_state.cols):
+      n = get_node(hashi_state, x, i)
+      if n.amount > 0 && n.orientation != Orientation.VERTICAL:
+        return Node(), 0, 0
+      if n.lim != 0:
+        return n, x, i
+
+  return Node(), 0, 0
+
+def place_bridge(hashi_state, x, y, d):
+  n = get_node(hashi_state, x, y)
+  nn, x1, y1 = get_accessible_nnode(hashi_state, x, y, d) 
+
+  if n.count < n.lim && nn.count < nn.lim:
+    n.count += 1
+    nn.count += 1
+
+    if d == Direction.RIGHT || d == Direction.LEFT:
+      if d == Direction.RIGHT:
+        start = x + 1
+      else:
+        start = x - 1
+      for i in range(start, x1):
+        n = get_node(hashi_state, i, y)
+        n.amount += 1
+        n.orientation = Orientations.HORIZONTAL
+    elif d == Direction.UP || d == Directions.DOWN:
+      if d == Directions.UP:
+        start = y - 1
+      else:
+        start = y + 1
+      for i in range(start, y1):
+        n = get_node(hashi_state, x, i)
+        n.amount += 1
+        n.orientation = Orientations.VERTICAL
+
+    return True
+
+  return False
 
 def main():
   hashi_str = read_entire_file("hashi.puzzle")
-  parse_hashi_str(hashi_str)
+  hashi_state = parse_hashi_str(hashi_str)
+  solve_hashi(hashi_state)
 
 if __name__ == "__main__":
   # NOTE(Ryan): Disable breakpoints if not running under a debugger

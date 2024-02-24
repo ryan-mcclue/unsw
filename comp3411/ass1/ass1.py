@@ -111,29 +111,27 @@ def get_node(hashi_state, x, y):
     return hashi_state.nodes[y * hashi_state.rows + x]
 
 def get_accessible_nnode(hashi_state, x, y, d):
-  if d == Direction.RIGHT:
-    for i in range(x + 1, hashi_state.rows):
+  if d == Direction.RIGHT || d == Direction.LEFT:
+    if d == Direction.RIGHT:
+      start = x + 1
+      end = hashi_state.cols 
+    else:
+      start = x - 1
+      end = -1
+    for i in range(start, end):
       n = get_node(hashi_state, i, y)
       if n.amount > 0 && n.orientation != Orientation.HORIZONTAL:
         return Node(), 0, 0
       if n.lim != 0:
         return n, i, y
-  elif d == Direction.LEFT:
-    for i in range(x - 1, -1):
-      n = get_node(hashi_state, i, y)
-      if n.amount > 0 && n.orientation != Orientation.HORIZONTAL:
-        return Node(), 0, 0
-      if n.lim != 0:
-        return n, i, y
-  elif d == Direction.UP:
-    for i in range(y - 1, -1):
-      n = get_node(hashi_state, x, i)
-      if n.amount > 0 && n.orientation != Orientation.VERTICAL:
-        return Node(), 0, 0
-      if n.lim != 0:
-        return n, x, i
-  else:
-    for i in range(y + 1, hashi_state.cols):
+  elif d == Direction.UP || d == Directions.DOWN:
+    if d == Directions.UP:
+      start = y - 1
+      end = -1
+    else:
+      start = y + 1
+      end = hashi_state.rows
+    for i in range(start, y1):
       n = get_node(hashi_state, x, i)
       if n.amount > 0 && n.orientation != Orientation.VERTICAL:
         return Node(), 0, 0
@@ -169,7 +167,7 @@ def place_bridge(hashi_state, x, y, d):
         n.amount += 1
         n.orientation = Orientations.VERTICAL
 
-    return True
+     return True
 
   return False
 

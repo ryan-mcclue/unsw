@@ -13,7 +13,6 @@ from dataclasses import dataclass
 from typing import List
 from enum import Enum
 
-
 global global_logger
 
 def fatal_error(msg):
@@ -60,20 +59,27 @@ class Directions(Enum):
   LEFT = 0b1100
   RIGHT = 0b0011
 
+class Orientations(Enum):
+  NULL = 0
+  VERTICAL = 1
+  HORIZONTAL = 2
+
 @dataclass
 class Node:
   # Base Info
-  lim: int = 0
-  count: int = 0
+  base_lim: int = 0
+  base_count: int = 0
   # Bridge Info
-  orientation: Orientations = Orientations.NULL
-  amount: int = 0
+  bridge_orientation: Orientations = Orientations.NULL
+  bridge_amount: int = 0
 
 @dataclass
 class State:
-  rows: int
-  cols: int
+  rows: int = 0
+  cols: int = 0
   nodes: List[Node]
+  required_bridges: int = 0
+  num_bridges: int = 0
 
 def parse_hashi_str(hashi_str):
   lines = hashi_str.splitlines()
@@ -81,28 +87,69 @@ def parse_hashi_str(hashi_str):
   rows = len(lines)
 
   nodes = []
+  required_bridges = 0
 
   for line in lines:
     for i in range(len(line)):
       n = Node()
-      ch = line[i]
-      if ch.isdigit():
-        n.lim = int(ch)
+      bridge_amount = 0
+      try:
+        bridge_amount = int(line[i], 16)
+      except ValueError:
+        pass
+      n.base_lim = bridge_amount 
       nodes.append(n)
 
-  s = State(cols, rows, nodes)
+      required_bridges += bridge_amount
+
+  s = State(rows, cols, nodes, required_bridges)
 
   return s
 
 
-def solve_hashi(hashi_state, x=0, y=0):
-  for d in Directions:
-    if place_bridge(hashi_state, x, y, d):
-      if solve_hashi(hashi_state, x, y + 1):
-        return True
+@dataclass
+class Move:
+  n1: Node = Node()
+  direction: Directions = Directions.NULL 
+
+def is_base(n):
+  return n.base_lim != 0
+
+def get_next_base(hashi_state, i):
+  node_i = i + 1 if i > 0 else i
+  n = hashi_state.nodes[node_i]
+  while !is_base(n):
+    node_i += 1
+    n = hashi_state.nodes[node_i]
+  return n, node_i
+
+def solve_hashi(hashi_state):
+  next_moves = [] 
+  move_history = []
+
+  cur_node, node_i = get_next_base(hashi_state, 0)
+
+  undo_state = False
+  while node_i < len(hash_state.nodes):
+    # Check if solved
+    if hashi_state.num_bridges == hashi_state.required_bridges:
+      break
+    # Check if base needs more bridges
+    if cur_node.base_count < cur_node.base_lim:
+      if undo_state:
+        undo_move(hashi_state, move_history)
       else:
-        remove_bridge(hashi_state, x, y, d)
-  return False
+        move_amount = push_possible_moves(hashi_state, cur_node, next_moves)
+        if move_amount == 0:
+          undo_state = True
+          continue
+      assert len(next_moves) > 0, "No solution"
+      move = next_moves.pop()
+      apply_move(hashi_state, move, move_history)
+      undo_state = False
+    else:
+      cur_node, node_i = get_next_base(hashi_state, node_i)
+
 
 def get_node(hashi_state, x, y):
   if x < 0 || y < 0 || x >= hashi_state.rows || y >= hashi_state.cols:

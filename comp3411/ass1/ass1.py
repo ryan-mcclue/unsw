@@ -9,7 +9,7 @@ import logging
 import platform
 import math
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List
 from enum import Enum
 
@@ -54,10 +54,10 @@ def read_entire_file(name):
 
 class Directions(Enum):
   NULL = 0
-  UP = 1
-  DOWN = 2
-  LEFT = 3
-  RIGHT = 4
+  UP = 0b01
+  DOWN = 0b10
+  LEFT = 0b1100
+  RIGHT = 0b0011
 
 class Orientations(Enum):
   NULL = 0
@@ -69,17 +69,16 @@ class Node:
   # Base Info
   base_lim: int = 0
   base_count: int = 0
-  # TODO(Ryan): Bridge direction limit
-  # base_l_count: int = 0
-  # base_r_count: int = 0
-  # base_u_count: int = 0
-  # base_d_count: int = 0
+  base_dir_count: List[int] = field(default_factory=lambda: [0] * 16)
   # Bridge Info
   bridge_orientation: Orientations = Orientations.NULL
   bridge_amount: int = 0
   # Location Info
   x: int = 0
   y: int = 0
+
+  def __str__(self):
+    return f"({self.x},{self.y}:{self.base_count}/{self.base_lim})"
 
 @dataclass
 class State:
@@ -96,6 +95,9 @@ class Move:
   # Destination
   n1: Node = Node()
   direction: Directions = Directions.NULL 
+
+  def __str__(self):
+    return f"({self.n0}->{self.n1})"
 
 def is_base(n):
   return n.base_lim != 0
@@ -118,10 +120,24 @@ def get_it_and_orientation(hashi_state, n, d):
 
   return it, orientation
 
+def is_move_valid(hashi_state, move):
+  n0 = move.n0
+  n1 = move.n1
+  d = move.direction
+
+  if n0.base_count < n0.base_lim and n0.base_dir_count[d.value] < 3 and \
+     n1.base_count < n1.base_lim and n1.base_dir_count[~d.value] < 3:
+    return True
+  else:
+    return False
+
 def gen_move(hashi_state, n, d):
   it, orientation = get_it_and_orientation(hashi_state, n, d)
 
   move = Move()
+  if n.base_count >= n.base_lim or n.base_dir_count[d.value] >= 3:
+    return move
+
   for i in it:
     n1 = Node()
     if orientation == Orientations.HORIZONTAL:
@@ -129,7 +145,7 @@ def gen_move(hashi_state, n, d):
     else:
       n1 = get_node(hashi_state, n.x, i)
     if is_base(n1):
-      if n1.base_count < n1.base_lim:
+      if n1.base_count < n1.base_lim and n1.base_dir_count[~d.value] < 3:
         move = Move(n, n1, d)
       break
     elif n1.bridge_amount > 0 and n1.bridge_orientation != orientation:
@@ -152,11 +168,13 @@ def push_possible_moves(hashi_state, n, next_moves):
 def apply_move(hashi_state, move, move_history):
   place_bridge(hashi_state, move.n0, move.n1, move.direction, False)
   move_history.append(move)
+  #print_hashi_state(hashi_state)
 
 def undo_move(hashi_state, move_history):
   move = move_history.pop()
-  print(f"undoing ({move.n0.x},{move.n0.y}),({move.n1.x},{move.n1.y}){move.direction}")
+  #print(f"undoing ({move.n0.x},{move.n0.y}),({move.n1.x},{move.n1.y}){move.direction}")
   place_bridge(hashi_state, move.n0, move.n1, move.direction, True)
+  #print_hashi_state(hashi_state)
   return move.n0
 
 def solve_hashi(hashi_state):
@@ -173,11 +191,23 @@ def solve_hashi(hashi_state):
     #print(f"({cur_node.x},{cur_node.y}:{final_node.x},{final_node.y})")
     # Check if need to undo
     if undo_state:
-      # If next move is applied on a different node, undo again
-      if not node_equal(next_moves[-1].n0, cur_node): 
-        cur_node = undo_move(hashi_state, move_history)
-      else:
+      move = Move()
+      # check all moves for this node to see if require another undo
+      while node_equal(next_moves[-1].n0, cur_node):
         move = next_moves.pop()
+        if is_move_valid(hashi_state, move):
+          break
+        else:
+          if len(next_moves) == 0:
+            move_amount = push_possible_moves(hashi_state, cur_node, next_moves)
+            if move_amount == 0:
+             undo_move(hashi_state, move_history)
+             cur_node = move_history[-1].n0
+
+      if not is_move_valid(hashi_state, move):
+        undo_move(hashi_state, move_history)
+        cur_node = move_history[-1].n0
+      else:
         apply_move(hashi_state, move, move_history)
         undo_state = False
       continue
@@ -186,9 +216,8 @@ def solve_hashi(hashi_state):
       move_amount = push_possible_moves(hashi_state, cur_node, next_moves)
       if move_amount == 0:
         undo_state = True
-        # TODO
-        breakpoint()
-        cur_node = undo_move(hashi_state, move_history)
+        undo_move(hashi_state, move_history)
+        cur_node = move_history[-1].n0
         continue
       else:
         move = next_moves.pop()
@@ -236,18 +265,21 @@ def place_bridge(hashi_state, n0, n1, d, remove):
     else:
       assert not is_base(n), f"{n0.base_lim}:{n1.base_lim} adding bridge on {n.x},{n.y}"
       n.bridge_amount += inc
+      assert n.bridge_amount <= 3, "less"
       if n.bridge_amount == 0:
         n.bridge_orientation = Orientations.NULL
       else:
         n.bridge_orientation = orientation
 
   n0.base_count += inc
+  n0.base_dir_count[d.value] += inc
   n1.base_count += inc
+  n1.base_dir_count[~d.value] += inc
   hashi_state.num_bridges += inc
 
 def print_hashi_state(hashi_state):
-  horizontal_bridge_char = [".", "-", "=", "E"]
-  vertical_bridge_char = [".", "|", "\"", "#"]
+  horizontal_bridge_char = [".", "-", "=", "E", "X"]
+  vertical_bridge_char = [".", "|", "\"", "#", "X"]
   s = ""
   for y in range(0, hashi_state.rows):
     for x in range(0, hashi_state.cols):
@@ -262,7 +294,7 @@ def print_hashi_state(hashi_state):
         else:
           s += vertical_bridge_char[n.bridge_amount]
     s += "\n"
-  print(s, end="")
+  print(s, end="\n")
 
 def parse_hashi_str(hashi_str):
   lines = hashi_str.splitlines()

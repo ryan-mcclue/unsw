@@ -114,15 +114,15 @@ def parse_hashi_str(hashi_str):
 @dataclass
 class Move:
   # Node move applied on
-  node_i: int = 0
+  n0_i: int = 0
   # Destination
-  n1: int = 0
+  n1_i: int = 0
   direction: Directions = Directions.NULL 
 
 def is_base(n):
   return n.base_lim != 0
 
-def get_next_base(hashi_state, i):
+def get_next_base_i(hashi_state, i):
   node_i = i + 1 if i > 0 else i
   n = hashi_state.nodes[node_i]
   while !is_base(n):
@@ -130,56 +130,78 @@ def get_next_base(hashi_state, i):
     n = hashi_state.nodes[node_i]
   return node_i
 
-def push_possible_moves(hashi_state, n, next_moves):
-  node_i = n.y * hashi_state.cols + x
-
-  move_right = False
-  start = n.x + 1
-  end = hashi_state.cols 
-  for x in range(start, end):
-    n1 = get_node(hashi_state, x, n.y)
-    if !is_base(n1) && n1.bridge_amount > 0 && n1.bridge_orientation != Orientations.HORIZONTAL:
-      move_right = False
-      break
+def get_it_and_orientation(hashi_state, n, d):
+  it = range(0, 0)
+  orientation = Orientations.NULL
+  if d == Direction.RIGHT || d == Direction.LEFT:
+    orientation = Orientations.HORIZONTAL
+    if d == Direction.RIGHT:
+      it = range(n.x + 1, hashi_state.cols)
     else:
-      if n1.base_count < n1.base_lim:
-        move_right = True
-        break
-  if move_right:
-    move = Move(node_i, n1_i, Directions.RIGHT)
-    next_moves.append(move)
+      it = range(n.x - 1, -1, -1)
+  elif d == Direction.UP || d == Direction.DOWN:
+    orientation = Orientations.VERTICAL
+    if d == Directions.UP:
+      it = range(n.y - 1, -1, -1)
+    else:
+      it = range(n.y + 1, hashi_state.rows)
+
+  return it, orientation
+
+def gen_move(hashi_state, n, d):
+  it, orientation = get_it_and_orientation(hashi_state, n, d)
+
+  move = Move()
+  for i in it:
+    n1 = Node()
+    if orientation == Orientations.HORIZONTAL:
+      n1 = get_node(hashi_state, i, n.y)
+    else:
+      n1 = get_node(hashi_state, n.x, i)
+    if !is_base(n1) && n1.bridge_amount > 0 && n1.bridge_orientation != orientation:
+      break
+    elif n1.base_count < n1.base_lim:
+      move = Move(n0_i, n1_i, d)
+      break
+
+  return move
 
 
+def push_possible_moves(hashi_state, n, next_moves):
+  num_moves = 0
 
-  amt = 0
-  return amt
-      
+  for d in Directions:
+    move = gen_move(hashi_state, n, d)
+    if move.direction != Directions.NULL:
+      next_moves.append(move)
+      num_moves += 1
+  return num_moves
 
-def undo_move(hashi_state, move_history):
-  node_i = 0
-  return node_i
-
+# IMPORTANT(Ryan): All moves are checked for validity prior
 def apply_move(hashi_state, move, move_history):
-  n = hashi_state.nodes[move.node_i] 
-  place_bridge(hashi_state, n, move.direction)
+  place_bridge(hashi_state, move.n0, move.n1, move.direction, False)
   move_history.append(move)
 
+def undo_move(hashi_state, move_history):
+  move = move_history.pop()
+  place_bridge(hashi_state, move.n0, move.n1, move.direction, True)
+  return move.n0
 
 def solve_hashi(hashi_state):
   next_moves = [] 
   move_history = []
 
-  node_i = get_next_base(hashi_state, 0)
+  cur_node = hashi_state.nodes[0]
+
+  solved = False
 
   undo_state = False
-  while node_i < len(hash_state.nodes):
-    cur_node = hashi_state.nodes[node_i]
-
+  while !node_equal(cur_node, hashi_state.nodes[-1]):
     # Check if need to undo
     if undo_state:
       # If next move is applied on a different node, undo again
-      if next_moves[-1].node_i != node_i: 
-        node_i = undo_move(hashi_state, move_history)
+      if !node_equal(next_moves[-1].n0, cur_node): 
+        cur_node = undo_move(hashi_state, move_history)
       else:
         move = next_moves.pop()
         apply_move(hashi_state, move, move_history)
@@ -190,17 +212,21 @@ def solve_hashi(hashi_state):
       move_amount = push_possible_moves(hashi_state, cur_node, next_moves)
       if move_amount == 0:
         undo_state = True
-        node_i = undo_move(hashi_state, move_history)
+        cur_node = undo_move(hashi_state, move_history)
         continue
       else:
         move = next_moves.pop()
         apply_move(hashi_state, move, move_history)
     else:
-      node_i = get_next_base(hashi_state, node_i)
+      cur_node_i = cur_node.y * hashi_state.cols + cur_node.x
+      cur_node = hashi_state.nodes[cur_node_i + 1]
 
     # Check if solved
     if hashi_state.num_bridges == hashi_state.required_bridges:
+      solved = True
       break
+
+  return solved
 
 
 def get_node(hashi_state, x, y):
@@ -209,65 +235,31 @@ def get_node(hashi_state, x, y):
   else:
     return hashi_state.nodes[y * hashi_state.rows + x]
 
-def get_accessible_nnode(hashi_state, x, y, d):
-  if d == Direction.RIGHT || d == Direction.LEFT:
-    if d == Direction.RIGHT:
-      start = x + 1
-      end = hashi_state.cols 
+def node_equal(n0, n1):
+  return n0.x == n1.x && n0.y == n1.y
+
+def place_bridge(hashi_state, n0, n1, d, remove):
+  it, orientation = get_it_and_orientation(hashi_state, n0, d)
+  inc = -1 if remove else 1
+
+  for i in it:
+    n = Node()
+    if orientation == Orientations.HORIZONTAL:
+      n = get_node(hashi_state, i, n.y)
     else:
-      start = x - 1
-      end = -1
-    for i in range(start, end):
-      n = get_node(hashi_state, i, y)
-      if n.amount > 0 && n.orientation != Orientation.HORIZONTAL:
-        return Node(), 0, 0
-      if n.lim != 0:
-        return n, i, y
-  elif d == Direction.UP || d == Directions.DOWN:
-    if d == Directions.UP:
-      start = y - 1
-      end = -1
+      n = get_node(hashi_state, n.x, i)
+    if node_equal(n, n1):
+      break
     else:
-      start = y + 1
-      end = hashi_state.rows
-    for i in range(start, y1):
-      n = get_node(hashi_state, x, i)
-      if n.amount > 0 && n.orientation != Orientation.VERTICAL:
-        return Node(), 0, 0
-      if n.lim != 0:
-        return n, x, i
-
-  return Node(), 0, 0
-
-def place_bridge(hashi_state, n, d):
-  nn, x1, y1 = get_accessible_nnode(hashi_state, x, y, d) 
-
-  if n.count < n.lim && nn.count < nn.lim:
-    n.count += 1
-    nn.count += 1
-
-    if d == Direction.RIGHT || d == Direction.LEFT:
-      if d == Direction.RIGHT:
-        start = x + 1
+      n.bridge_amount += inc
+      if n.bridge_amount == 0:
+        n.bridge_orientation = orientations.NULL
       else:
-        start = x - 1
-      for i in range(start, x1):
-        n = get_node(hashi_state, i, y)
-        n.amount += 1
-        n.orientation = Orientations.HORIZONTAL
-    elif d == Direction.UP || d == Directions.DOWN:
-      if d == Directions.UP:
-        start = y - 1
-      else:
-        start = y + 1
-      for i in range(start, y1):
-        n = get_node(hashi_state, x, i)
-        n.amount += 1
-        n.orientation = Orientations.VERTICAL
+        n.bridge_orientation = orientation
 
-     return True
-
-  return False
+  n0.base_count += inc
+  n1.base_count += inc
+  hashi_state.num_bridges += inc
 
 def main():
   hashi_str = read_entire_file("hashi.puzzle")

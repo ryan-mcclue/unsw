@@ -73,9 +73,6 @@ class Node:
   # Bridge Info
   bridge_orientation: Orientations = Orientations.NULL
   bridge_amount: int = 0
-  # Location Info
-  x: int = 0
-  y: int = 0
 
   def __str__(self):
     return f"({self.x},{self.y}:{self.base_count}/{self.base_lim})"
@@ -87,140 +84,117 @@ class State:
   num_bridges: int
   nodes: List[Node]
 
-
-@dataclass
-class Move:
-  # Node move applied on
-  n0: Node = Node()
-  # Destination
-  n1: Node = Node()
-  direction: Directions = Directions.NULL 
-
   def __str__(self):
     return f"({self.n0}->{self.n1})"
 
 def is_base(n):
   return n.base_lim != 0
 
-def get_it_and_orientation(hashi_state, n, d):
+def get_it_and_orientation(hashi_state, x, y, d):
   it = range(0, 0)
   orientation = Orientations.NULL
   if d == Directions.RIGHT or d == Directions.LEFT:
     orientation = Orientations.HORIZONTAL
     if d == Directions.RIGHT:
-      it = range(n.x + 1, hashi_state.cols)
+      it = range(x + 1, hashi_state.cols)
     else:
-      it = range(n.x - 1, -1, -1)
+      it = range(x - 1, -1, -1)
   elif d == Directions.UP or d == Directions.DOWN:
     orientation = Orientations.VERTICAL
     if d == Directions.UP:
-      it = range(n.y - 1, -1, -1)
+      it = range(y - 1, -1, -1)
     else:
-      it = range(n.y + 1, hashi_state.rows)
+      it = range(y + 1, hashi_state.rows)
 
   return it, orientation
 
-def is_move_valid(hashi_state, move):
-  n0 = move.n0
-  n1 = move.n1
-  d = move.direction
-
-  if n0.base_count < n0.base_lim and n0.base_dir_count[d.value] < 3 and \
-     n1.base_count < n1.base_lim and n1.base_dir_count[~d.value] < 3:
-    return True
-  else:
+def can_place_bridge(hashi_state, x, y, d):
+  n = get_node(hashi_state, x, y)
+  if n.base_count >= n.base_lim or n.base_dir_count[d.value] >= 3:
     return False
 
-def gen_move(hashi_state, n, d):
-  it, orientation = get_it_and_orientation(hashi_state, n, d)
-
-  move = Move()
-  if n.base_count >= n.base_lim or n.base_dir_count[d.value] >= 3:
-    return move
+  it, orientation = get_it_and_orientation(hashi_state, x, y, d)
 
   for i in it:
     n1 = Node()
     if orientation == Orientations.HORIZONTAL:
-      n1 = get_node(hashi_state, i, n.y)
+      n1 = get_node(hashi_state, i, y)
     else:
-      n1 = get_node(hashi_state, n.x, i)
+      n1 = get_node(hashi_state, x, i)
     if is_base(n1):
       if n1.base_count < n1.base_lim and n1.base_dir_count[~d.value] < 3:
-        move = Move(n, n1, d)
-      break
+        return True
+      else:
+        return False
     elif n1.bridge_amount > 0 and n1.bridge_orientation != orientation:
+      return False
+
+  return False
+
+def remove_bridge(hashi_state, x, y, d):
+  place_bridge(hashi_state, x, y, d, True)
+
+def place_bridge(hashi_state, x, y, d, remove=False):
+  it, orientation = get_it_and_orientation(hashi_state, x, y, d)
+  inc = -1 if remove else 1
+
+  n0 = get_node(hashi_state, x, y)
+  n1 = Node()
+  for i in it:
+    if orientation == Orientations.HORIZONTAL:
+      n1 = get_node(hashi_state, i, y)
+    else:
+      n1 = get_node(hashi_state, x, i)
+    if is_base(n1):
       break
+    else:
+      n1.bridge_amount += inc
+      if n1.bridge_amount == 0:
+        n1.bridge_orientation = Orientations.NULL
+      else:
+        n1.bridge_orientation = orientation
 
-  return move
+  n0.base_count += inc
+  n0.base_dir_count[d.value] += inc
+  n1.base_count += inc
+  n1.base_dir_count[~d.value] += inc
+  hashi_state.num_bridges += inc
 
 
-def push_possible_moves(hashi_state, n, next_moves):
-  num_moves = 0
-
-  for d in Directions:
-    move = gen_move(hashi_state, n, d)
-    if move.direction != Directions.NULL:
-      next_moves.append(move)
-      num_moves += 1
-
-  return num_moves
-
-# IMPORTANT(Ryan): All moves are checked for validity prior
-def apply_move(hashi_state, move, move_history):
-  place_bridge(hashi_state, move.n0, move.n1, move.direction, False)
-  move_history.append(move)
-  #print_hashi_state(hashi_state)
-
-def undo_move(hashi_state, move_history):
-  move = move_history.pop()
-  #print(f"undoing ({move.n0.x},{move.n0.y}),({move.n1.x},{move.n1.y}){move.direction}")
-  place_bridge(hashi_state, move.n0, move.n1, move.direction, True)
-  #print_hashi_state(hashi_state)
+# 1. Reduce to solving for smallest element, i.e. a base
+# 2. Iterate over all possible choices for element:
+#    If choice valid, recurse on moving along, else undo
+# 3. If x overflow, update to new location
+#    If y overflow, know have reached goal state
 
 def solve_hashi(hashi_state):
-  next_moves = [] 
-  move_history = []
+  return solve_from_cell(hashi_state, 0, 0)
 
-  cur_node = hashi_state.nodes[0]
+def solve_from_cell(hashi_state, x, y):
+  # goal state is when solved last item
+  if x == hashi_state.cols:
+    x = 0
+    y += 1
+    if y == hashi_state.rows:
+      return True
 
-  solved = False
-  final_node = hashi_state.nodes[-1]
+  n = get_node(hashi_state, x, y)
+  if not is_base(n):
+    return solve_from_cell(hashi_state, x + 1, y)
+  elif n.base_count == n.base_lim:
+    return solve_from_cell(hashi_state, x + 1, y)
 
-  undo_state = False
-  while True: 
-    #print(f"({cur_node.x},{cur_node.y}:{final_node.x},{final_node.y})")
-    # Check if base needs more bridges
-    if cur_node.base_count < cur_node.base_lim:
-      move_amount = push_possible_moves(hashi_state, cur_node, next_moves)
-      if move_amount != 0:
-        move = next_moves.pop()
-        apply_move(hashi_state, move, move_history)
-      # need to undo
+  # this for loop is for exploration
+  for d in Directions:
+    if can_place_bridge(hashi_state, x, y, d):
+      place_bridge(hashi_state, x, y, d)
+      if solve_from_cell(hashi_state, x, y):
+        return True
       else:
-        undo_move(hashi_state, move_history)
-        cur_node = move_history[-1].n1
-        next_move = next_moves.pop()
+        # remove decision if coming up
+        remove_bridge(hashi_state, x, y, d)
 
-        while next_move.n1 != cur_node:
-          undo_move(hashi_state, move_history)
-          cur_node = move_history[-1].n1
-
-        apply_move(hashi_state, move, move_history)
-    else:
-      if node_equal(cur_node, final_node):
-        if is_base(cur_node):
-          if cur_node.base_count == cur_node.base_lim:
-            solved = True
-            break
-          else:
-            continue
-        else:
-          break
-      else:
-        cur_node_i = cur_node.y * hashi_state.cols + cur_node.x
-        cur_node = hashi_state.nodes[cur_node_i + 1]
-
-  return solved
+  return False
 
 
 def get_node(hashi_state, x, y):
@@ -229,43 +203,9 @@ def get_node(hashi_state, x, y):
   else:
     return hashi_state.nodes[y * hashi_state.cols + x]
 
-def node_equal(n0, n1):
-  return n0.x == n1.x and n0.y == n1.y
-
-def place_bridge(hashi_state, n0, n1, d, remove):
-  it, orientation = get_it_and_orientation(hashi_state, n0, d)
-  inc = -1 if remove else 1
-
-  #if remove:
-  #  print(f"removing {n0.base_lim}:{n1.base_lim}:{d}")
-  #else:
-  #  print(f"adding {n0.base_lim}:{n1.base_lim}:{d}")
-
-  for i in it:
-    n = Node()
-    if orientation == Orientations.HORIZONTAL:
-      n = get_node(hashi_state, i, n0.y)
-    else:
-      n = get_node(hashi_state, n0.x, i)
-    if node_equal(n, n1):
-      break
-    else:
-      n.bridge_amount += inc
-      #assert n.bridge_amount <= 3, "less"
-      if n.bridge_amount == 0:
-        n.bridge_orientation = Orientations.NULL
-      else:
-        n.bridge_orientation = orientation
-
-  n0.base_count += inc
-  n0.base_dir_count[d.value] += inc
-  n1.base_count += inc
-  n1.base_dir_count[~d.value] += inc
-  hashi_state.num_bridges += inc
-
 def print_hashi_state(hashi_state):
-  horizontal_bridge_char = [".", "-", "=", "E", "X"]
-  vertical_bridge_char = [".", "|", "\"", "#", "X"]
+  horizontal_bridge_char = [".", "-", "=", "E"]
+  vertical_bridge_char = [".", "|", "\"", "#"]
   s = ""
   for y in range(0, hashi_state.rows):
     for x in range(0, hashi_state.cols):
@@ -299,8 +239,6 @@ def parse_hashi_str(hashi_str):
       except ValueError:
         pass
       n.base_lim = bridge_amount 
-      n.x = i
-      n.y = y
       nodes.append(n)
 
   s = State(rows, cols, 0, nodes)
@@ -308,10 +246,11 @@ def parse_hashi_str(hashi_str):
   return s
 
 def main():
+  # TODO: read from stdin
   hashi_str = read_entire_file("hashi.puzzle")
   hashi_state = parse_hashi_str(hashi_str)
-  solve_hashi(hashi_state)
-  print_hashi_state(hashi_state)
+  if solve_hashi(hashi_state):
+    print_hashi_state(hashi_state)
 
 
 if __name__ == "__main__":

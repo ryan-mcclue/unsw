@@ -204,8 +204,8 @@ def get_node(hashi_state, x, y):
     return hashi_state.nodes[y * hashi_state.cols + x]
 
 def print_hashi_state(hashi_state):
-  horizontal_bridge_char = [".", "-", "=", "E"]
-  vertical_bridge_char = [".", "|", "\"", "#"]
+  horizontal_bridge_char = [" ", "-", "=", "E"]
+  vertical_bridge_char = [" ", "|", "\"", "#"]
   s = ""
   for y in range(0, hashi_state.rows):
     for x in range(0, hashi_state.cols):
@@ -220,9 +220,10 @@ def print_hashi_state(hashi_state):
         else:
           s += vertical_bridge_char[n.bridge_amount]
     s += "\n"
-  print(s, end="\n")
+  print(s, end="")
 
-def parse_hashi_str(hashi_str):
+def parse_hashi_from_file():
+  hashi_str = read_entire_file("hashi.puzzle")
   lines = hashi_str.splitlines()
   cols = len(lines[0])
   rows = len(lines)
@@ -230,7 +231,7 @@ def parse_hashi_str(hashi_str):
   nodes = []
   required_bridges = 0
 
-  for (y, line) in enumerate(lines):
+  for line in lines:
     for i in range(len(line)):
       n = Node()
       bridge_amount = 0
@@ -245,10 +246,29 @@ def parse_hashi_str(hashi_str):
 
   return s
 
+def parse_hashi_from_stdin():
+  nodes = []
+  cols = 0
+  rows = 0
+  for line in sys.stdin:
+    cols = len(line) - 1
+    for i in range(len(line)):
+      n = Node()
+      bridge_amount = 0
+      try:
+        bridge_amount = int(line[i], 16)
+      except ValueError:
+        pass
+      n.base_lim = bridge_amount 
+      nodes.append(n)
+    rows += 1
+
+  return State(rows, cols, 0, nodes)
+
 def main():
-  # TODO: read from stdin
-  hashi_str = read_entire_file("hashi.puzzle")
-  hashi_state = parse_hashi_str(hashi_str)
+  #hashi_state = parse_hashi_from_stdin()
+  hashi_state = parse_hashi_from_file()
+
   if solve_hashi(hashi_state):
     print_hashi_state(hashi_state)
 
@@ -268,7 +288,4 @@ if __name__ == "__main__":
   global_logger_handler.setFormatter(global_logger_formatter)
   global_logger.addHandler(global_logger_handler)
 
-  trace(f"python: {platform.python_version()}")
-
   main()
-

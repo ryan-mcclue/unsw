@@ -162,6 +162,7 @@ def push_possible_moves(hashi_state, n, next_moves):
     if move.direction != Directions.NULL:
       next_moves.append(move)
       num_moves += 1
+
   return num_moves
 
 # IMPORTANT(Ryan): All moves are checked for validity prior
@@ -175,7 +176,6 @@ def undo_move(hashi_state, move_history):
   #print(f"undoing ({move.n0.x},{move.n0.y}),({move.n1.x},{move.n1.y}){move.direction}")
   place_bridge(hashi_state, move.n0, move.n1, move.direction, True)
   #print_hashi_state(hashi_state)
-  return move.n0
 
 def solve_hashi(hashi_state):
   next_moves = [] 
@@ -189,44 +189,31 @@ def solve_hashi(hashi_state):
   undo_state = False
   while True: 
     #print(f"({cur_node.x},{cur_node.y}:{final_node.x},{final_node.y})")
-    # Check if need to undo
-    if undo_state:
-      move = Move()
-      # check all moves for this node to see if require another undo
-      while node_equal(next_moves[-1].n0, cur_node):
-        move = next_moves.pop()
-        if is_move_valid(hashi_state, move):
-          break
-        else:
-          if len(next_moves) == 0:
-            move_amount = push_possible_moves(hashi_state, cur_node, next_moves)
-            if move_amount == 0:
-             undo_move(hashi_state, move_history)
-             cur_node = move_history[-1].n0
-
-      if not is_move_valid(hashi_state, move):
-        undo_move(hashi_state, move_history)
-        cur_node = move_history[-1].n0
-      else:
-        apply_move(hashi_state, move, move_history)
-        undo_state = False
-      continue
     # Check if base needs more bridges
-    elif cur_node.base_count < cur_node.base_lim:
+    if cur_node.base_count < cur_node.base_lim:
       move_amount = push_possible_moves(hashi_state, cur_node, next_moves)
-      if move_amount == 0:
-        undo_state = True
-        undo_move(hashi_state, move_history)
-        cur_node = move_history[-1].n0
-        continue
-      else:
+      if move_amount != 0:
         move = next_moves.pop()
+        apply_move(hashi_state, move, move_history)
+      # need to undo
+      else:
+        undo_move(hashi_state, move_history)
+        cur_node = move_history[-1].n1
+        next_move = next_moves.pop()
+
+        while next_move.n1 != cur_node:
+          undo_move(hashi_state, move_history)
+          cur_node = move_history[-1].n1
+
         apply_move(hashi_state, move, move_history)
     else:
       if node_equal(cur_node, final_node):
-        if is_base(cur_node) and cur_node.base_count == cur_node.base_lim:
-          solved = True
-          break
+        if is_base(cur_node):
+          if cur_node.base_count == cur_node.base_lim:
+            solved = True
+            break
+          else:
+            continue
         else:
           break
       else:
@@ -263,9 +250,8 @@ def place_bridge(hashi_state, n0, n1, d, remove):
     if node_equal(n, n1):
       break
     else:
-      assert not is_base(n), f"{n0.base_lim}:{n1.base_lim} adding bridge on {n.x},{n.y}"
       n.bridge_amount += inc
-      assert n.bridge_amount <= 3, "less"
+      #assert n.bridge_amount <= 3, "less"
       if n.bridge_amount == 0:
         n.bridge_orientation = Orientations.NULL
       else:

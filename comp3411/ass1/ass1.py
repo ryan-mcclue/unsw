@@ -1,6 +1,13 @@
 #!/usr/bin/python3
 # SPDX-License-Identifier: zlib-acknowledgement
 
+# Briefly describe how your program works, including any algorithms and data
+# structures employed, and explain any design decisions you made along the
+# way.
+
+# naive recursive backtracking dfs. know goal down
+# Node
+
 import pathlib
 import os
 import sys
@@ -229,7 +236,6 @@ def parse_hashi_from_file():
   rows = len(lines)
 
   nodes = []
-  required_bridges = 0
 
   for line in lines:
     for i in range(len(line)):
@@ -242,9 +248,7 @@ def parse_hashi_from_file():
       n.base_lim = bridge_amount 
       nodes.append(n)
 
-  s = State(rows, cols, 0, nodes)
-
-  return s
+  return State(rows, cols, 0, nodes)
 
 def parse_hashi_from_stdin():
   nodes = []
@@ -252,7 +256,7 @@ def parse_hashi_from_stdin():
   rows = 0
   for line in sys.stdin:
     cols = len(line) - 1
-    for i in range(len(line)):
+    for i in range(len(line) - 1):
       n = Node()
       bridge_amount = 0
       try:
@@ -266,8 +270,8 @@ def parse_hashi_from_stdin():
   return State(rows, cols, 0, nodes)
 
 def main():
-  #hashi_state = parse_hashi_from_stdin()
-  hashi_state = parse_hashi_from_file()
+  hashi_state = parse_hashi_from_stdin()
+  #hashi_state = parse_hashi_from_file()
 
   if solve_hashi(hashi_state):
     print_hashi_state(hashi_state)

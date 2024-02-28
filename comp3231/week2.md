@@ -6,7 +6,7 @@ Prevention:
 1. Ostrich Algorithm (bury head in sand and ignore)
 2. Allocate locks in a hierarchical order.
    So, if A requires 1 it must acquire it before 2. 
-   Conversely must release 2 before releasing 1.
+   However, release order not important
 3. Detection and Recovery
 Create a directed RAG (resource-allocation-graph) with locks and process nodes; look for cycles.
 Arrow direction indicates 'wants', i.e. process wants resource

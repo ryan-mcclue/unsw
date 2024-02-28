@@ -4,7 +4,7 @@ TODO: https://handmade.network/p/29/swedish-cubes-for-unity/blog/p/2723-how_medi
 RTEMS OS is monolithic where everything runs in priveleged mode, unlike say FreeRTOS.
 Would open up possibilities to corrupt kernel data structures etc.
 Main task on OS is efficient and secure interleaved execution
-Process is memory and resource owner.
+Process is memory (so has stack, data and text sections) and resource owner.
 Per process has globals, open files, address space, pid, working directory etc.
 Per thread has GPRs, SP, PC
 Dispatcher thread like scanning for files and worker thread like summing portion of numbers.

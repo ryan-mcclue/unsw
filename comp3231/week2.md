@@ -1,5 +1,6 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 Livelock special form of starvation, in which each thread constantly swapping but making no progress 
+IMPORTANT: only possible if some active waiting/resource resolution strategy i.e. if can't obtain release resources and try again etc.
 
 Deadlock occurs when one thread with lock attempts to access other lock and other thread is doing the same. Yields cycle
 Prevention:

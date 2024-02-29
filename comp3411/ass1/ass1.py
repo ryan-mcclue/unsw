@@ -1,10 +1,6 @@
 #!/usr/bin/python3
 # SPDX-License-Identifier: zlib-acknowledgement
 
-# Briefly describe how your program works, including any algorithms and data
-# structures employed, and explain any design decisions you made along the
-# way.
-
 ############################################################
 # DESCRIPTION
 ############################################################
@@ -20,19 +16,22 @@
 #   Node class:
 #     Encodes a location on the map.
 #     Can either be an island or a possible bridge location.
-#     By combining information, can have one node type to simplify map representation
-#     Storage for an island node:
+#     They can be told apart as a bridge will have 0 for number of required bridges.
+#     By combining information, can have one node type to simplify map representation.
+#     Fields for an island node:
 #       - Number of connected bridges
 #       - Number of the currently connected bridges
 #       - Number of bridges connected in a particular direction
-#     Storage for a bridge node:
+#     Fields for a bridge node:
 #       - Orientation of bridge
-#       - How many bridges
+#       - How many bridges currently containing
 #   State class:
 #     Encodes map. Stores number of rows, columns and a node array of row*columns size.
 # 
-# Algorithms:
-#   hashi_solve() employs a backtracking algorithm. 
+# Program:
+#   The map is read line by line from stdin. 
+#   Each character of line is converted to a node thate goes into state object.
+#   hashi_solve() takes this state and employs a backtracking algorithm.
 #   It is a recursive DFS implementation.
 #   Reasons DFS was chosen:
 #     - Simpler than an informed search
@@ -40,54 +39,19 @@
 #     - There is no optimal solution, so sub-optimal limitations not a concern.
 #       Get added bonus of linear space complexity over BFS.
 #   Each island is iterated over until each has required number of connected bridges.
-#   For each island, all possible directions for adding a bridge are explored.
-#   If can place a bridge in this direction, recurse on it, i.e. explore this option.
+#   For each island, all possible directions for adding a bridge are potentially explored.
+#   For an island, if can place a bridge in a particular direction, recurse on it, i.e. explore this option.
 #   If exploring this option does not yield solution, remove bridge.
-#   If reach one past the dimensions of the map, know have solved, so return.     
+#   Base cases:
+#     - Recieve coordinates one past the dimensions of the map, know have solved, return true.
+#     - No bridges in any direction can be added to the island, return false.
+#   The state object is finally printed, representing a solution.
 
-import pathlib
-import os
 import sys
-import subprocess
-import logging
-import platform
-import math
-import copy
 
 from dataclasses import dataclass, field
 from typing import List
 from enum import Enum
-
-def debugger():
-  return sys.gettrace() is not None
-
-global global_logger
-
-def fatal_error(msg):
-  global_logger.critical(msg)
-  breakpoint()
-  sys.exit()
-
-def warn(msg):
-  global_logger.warning(msg)
-  # NOTE(Ryan): Disable by passing -O to interpreter
-  if __debug__:
-    breakpoint()
-    sys.exit()
-
-def trace(msg):
-  if __debug__:
-    global_logger.debug(msg)
-
-def read_entire_file(name):
-  res = ""
-  try:
-    f = open(name, 'r')
-    res = f.read()
-    f.close()
-  except Exception as e:
-    warn(f"Unable to read file {name}.\n{e}")
-  return res
 
 class Directions(Enum):
   NULL = 0
@@ -111,17 +75,11 @@ class Node:
   bridge_orientation: Orientations = Orientations.NULL
   bridge_amount: int = 0
 
-  def __str__(self):
-    return f"({self.x},{self.y}:{self.island_count}/{self.island_lim})"
-
 @dataclass
 class State:
   rows: int 
   cols: int
   nodes: List[Node]
-
-  def __str__(self):
-    return f"({self.n0}->{self.n1})"
 
 def is_island(n):
   return n.island_lim != 0
@@ -198,76 +156,27 @@ def place_bridge(hashi_state, x, y, d, remove=False):
 def solve_hashi(hashi_state):
   return solve_from_cell(hashi_state, 0, 0)
 
-deepest_state = None
-furthest_x = -1
-furthest_y = -1
-furthest = -1
-
-def solve_with_bp(hashi_state, x, y):
-  if x == hashi_state.cols:
-    x = 0
-    y += 1
-    
-    if y == hashi_state.rows:
-      return True
-
-  global furthest_x
-  global furthest_y
-  if x == furthest_x and y == furthest_y:
-    breakpoint()
-
-  n = get_node(hashi_state, x, y)
-  if not is_island(n) or n.island_count == n.island_lim:
-    return solve_with_bp(hashi_state, x + 1, y)
-
-  for d in Directions:
-    if can_place_bridge(hashi_state, x, y, d):
-      place_bridge(hashi_state, x, y, d)
-      if solve_with_bp(hashi_state, x, y):
-        return True
-      else:
-        remove_bridge(hashi_state, x, y, d)
-
-  return False
-
-
 def solve_from_cell(hashi_state, x, y):
-  # goal state is when solved last item
   if x == hashi_state.cols:
     x = 0
     y += 1
     
     if y == hashi_state.rows:
       return True
-
-  # NOTE(Ryan): For debugging
-  global deepest_state
-  global furthest_x
-  global furthest_y
-  global furthest
-  coord = y * hashi_state.cols + x
-  if coord > furthest:
-    furthest = coord
-    furthest_x = x
-    furthest_y = y
-    deepest_state = copy.deepcopy(hashi_state)
 
   n = get_node(hashi_state, x, y)
   if not is_island(n) or n.island_count == n.island_lim:
     return solve_from_cell(hashi_state, x + 1, y)
 
-  # this for loop is for exploration
   for d in Directions:
     if can_place_bridge(hashi_state, x, y, d):
       place_bridge(hashi_state, x, y, d)
       if solve_from_cell(hashi_state, x, y):
         return True
       else:
-        # remove decision if coming up
         remove_bridge(hashi_state, x, y, d)
 
   return False
-
 
 def get_node(hashi_state, x, y):
   if x < 0 or y < 0 or x >= hashi_state.cols or y >= hashi_state.rows:
@@ -294,27 +203,6 @@ def print_hashi_state(hashi_state):
     s += "\n"
   print(s, end="")
 
-def parse_hashi_from_file():
-  hashi_str = read_entire_file("hashi.puzzle")
-  lines = hashi_str.splitlines()
-  cols = len(lines[0])
-  rows = len(lines)
-
-  nodes = []
-
-  for line in lines:
-    for i in range(len(line)):
-      n = Node()
-      bridge_amount = 0
-      try:
-        bridge_amount = int(line[i], 16)
-      except ValueError:
-        pass
-      n.island_lim = bridge_amount 
-      nodes.append(n)
-
-  return State(rows, cols, nodes)
-
 def parse_hashi_from_stdin():
   nodes = []
   cols = 0
@@ -335,35 +223,10 @@ def parse_hashi_from_stdin():
   return State(rows, cols, nodes)
 
 def main():
-  hashi_state = None
-  hashi_state_copy = None
-  if debugger():
-    hashi_state = parse_hashi_from_file()
-    hashi_state_copy = copy.deepcopy(hashi_state)
-  else:
-    hashi_state = parse_hashi_from_stdin()
+  hashi_state = parse_hashi_from_stdin()
 
-  solved = solve_hashi(hashi_state)
-  if solved:
+  if solve_hashi(hashi_state):
     print_hashi_state(hashi_state)
-  else:
-    solve_with_bp(hashi_state_copy, 0, 0)
-    print_hashi_state(deepest_state)
-
 
 if __name__ == "__main__":
-  # NOTE(Ryan): Disable breakpoints if not running under a debugger
-  if not debugger():
-    os.environ["PYTHONBREAKPOINT"] = "0"
-  directory_of_running_script = pathlib.Path(__file__).parent.resolve()
-  os.chdir(directory_of_running_script)
-
-  global_logger = logging.getLogger(__name__)
-  global_logger.setLevel(logging.DEBUG)
-  global_logger_handler = logging.StreamHandler()
-  global_logger_handler.setLevel(logging.DEBUG)
-  global_logger_formatter = logging.Formatter('%(asctime)s - %(name)s%(levelname)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S%p')
-  global_logger_handler.setFormatter(global_logger_formatter)
-  global_logger.addHandler(global_logger_handler)
-
   main()

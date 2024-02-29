@@ -5,8 +5,45 @@
 # structures employed, and explain any design decisions you made along the
 # way.
 
-# naive recursive backtracking dfs. know goal down
-# Node
+############################################################
+# DESCRIPTION
+############################################################
+
+# Data Structures:
+#   Orientations enum:
+#     Provides a readable encoding of a bridge's orientation on the map.
+#     NULL indicates no bridge is present.
+#   Directions enum:
+#     Encodes a connected bridge's direction from the perspective of an island.
+#     Opposite directions are encoded as the bitwise and of each other.
+#     This allows a bridge's direction to be inverted from the perspective of the destination island.
+#   Node class:
+#     Encodes a location on the map.
+#     Can either be an island or a possible bridge location.
+#     By combining information, can have one node type to simplify map representation
+#     Storage for an island node:
+#       - Number of connected bridges
+#       - Number of the currently connected bridges
+#       - Number of bridges connected in a particular direction
+#     Storage for a bridge node:
+#       - Orientation of bridge
+#       - How many bridges
+#   State class:
+#     Encodes map. Stores number of rows, columns and a node array of row*columns size.
+# 
+# Algorithms:
+#   hashi_solve() employs a backtracking algorithm. 
+#   It is a recursive DFS implementation.
+#   Reasons DFS was chosen:
+#     - Simpler than an informed search
+#     - Knew no cycles, so would not get stuck
+#     - There is no optimal solution, so sub-optimal limitations not a concern.
+#       Get added bonus of linear space complexity over BFS.
+#   Each island is iterated over until each has required number of connected bridges.
+#   For each island, all possible directions for adding a bridge are explored.
+#   If can place a bridge in this direction, recurse on it, i.e. explore this option.
+#   If exploring this option does not yield solution, remove bridge.
+#   If reach one past the dimensions of the map, know have solved, so return.     
 
 import pathlib
 import os
@@ -20,6 +57,9 @@ import copy
 from dataclasses import dataclass, field
 from typing import List
 from enum import Enum
+
+def debugger():
+  return sys.gettrace() is not None
 
 global global_logger
 
@@ -38,17 +78,6 @@ def warn(msg):
 def trace(msg):
   if __debug__:
     global_logger.debug(msg)
-
-
-def clamp(val, limit):
-  clamped_val = val
-
-  if val < 0:
-    clamped_val = 0
-  elif val >= limit:
-    clamped_val = limit - 1
-  
-  return clamped_val
 
 def read_entire_file(name):
   res = ""
@@ -74,16 +103,16 @@ class Orientations(Enum):
 
 @dataclass
 class Node:
-  # Base Info
-  base_lim: int = 0
-  base_count: int = 0
-  base_dir_count: List[int] = field(default_factory=lambda: [0] * 16)
+  # Island Info
+  island_lim: int = 0
+  island_count: int = 0
+  island_dir_count: List[int] = field(default_factory=lambda: [0] * 16)
   # Bridge Info
   bridge_orientation: Orientations = Orientations.NULL
   bridge_amount: int = 0
 
   def __str__(self):
-    return f"({self.x},{self.y}:{self.base_count}/{self.base_lim})"
+    return f"({self.x},{self.y}:{self.island_count}/{self.island_lim})"
 
 @dataclass
 class State:
@@ -94,8 +123,8 @@ class State:
   def __str__(self):
     return f"({self.n0}->{self.n1})"
 
-def is_base(n):
-  return n.base_lim != 0
+def is_island(n):
+  return n.island_lim != 0
 
 def get_it_and_orientation(hashi_state, x, y, d):
   it = range(0, 0)
@@ -117,7 +146,7 @@ def get_it_and_orientation(hashi_state, x, y, d):
 
 def can_place_bridge(hashi_state, x, y, d):
   n = get_node(hashi_state, x, y)
-  if n.base_count >= n.base_lim or n.base_dir_count[d.value] >= 3:
+  if n.island_count >= n.island_lim or n.island_dir_count[d.value] >= 3:
     return False
 
   it, orientation = get_it_and_orientation(hashi_state, x, y, d)
@@ -128,8 +157,8 @@ def can_place_bridge(hashi_state, x, y, d):
       n1 = get_node(hashi_state, i, y)
     else:
       n1 = get_node(hashi_state, x, i)
-    if is_base(n1):
-      if n1.base_count < n1.base_lim and n1.base_dir_count[~d.value] < 3:
+    if is_island(n1):
+      if n1.island_count < n1.island_lim and n1.island_dir_count[~d.value] < 3:
         return True
       else:
         return False
@@ -152,7 +181,7 @@ def place_bridge(hashi_state, x, y, d, remove=False):
       n1 = get_node(hashi_state, i, y)
     else:
       n1 = get_node(hashi_state, x, i)
-    if is_base(n1):
+    if is_island(n1):
       break
     else:
       n1.bridge_amount += inc
@@ -161,17 +190,10 @@ def place_bridge(hashi_state, x, y, d, remove=False):
       else:
         n1.bridge_orientation = orientation
 
-  n0.base_count += inc
-  n0.base_dir_count[d.value] += inc
-  n1.base_count += inc
-  n1.base_dir_count[~d.value] += inc
-
-
-# 1. Reduce to solving for smallest element, i.e. a base
-# 2. Iterate over all possible choices for element:
-#    If choice valid, recurse on moving along, else undo
-# 3. If x overflow, update to new location
-#    If y overflow, know have reached goal state
+  n0.island_count += inc
+  n0.island_dir_count[d.value] += inc
+  n1.island_count += inc
+  n1.island_dir_count[~d.value] += inc
 
 def solve_hashi(hashi_state):
   return solve_from_cell(hashi_state, 0, 0)
@@ -182,7 +204,6 @@ furthest_y = -1
 furthest = -1
 
 def solve_with_bp(hashi_state, x, y):
-  # goal state is when solved last item
   if x == hashi_state.cols:
     x = 0
     y += 1
@@ -192,23 +213,19 @@ def solve_with_bp(hashi_state, x, y):
 
   global furthest_x
   global furthest_y
-  #if x == furthest_x and y == furthest_y:
-    #breakpoint()
+  if x == furthest_x and y == furthest_y:
+    breakpoint()
 
   n = get_node(hashi_state, x, y)
-  if not is_base(n) or n.base_count == n.base_lim:
+  if not is_island(n) or n.island_count == n.island_lim:
     return solve_with_bp(hashi_state, x + 1, y)
 
-  # this for loop is for exploration
   for d in Directions:
-    if x == 4 and y == 0 and d == Directions.RIGHT:
-      breakpoint()
     if can_place_bridge(hashi_state, x, y, d):
       place_bridge(hashi_state, x, y, d)
       if solve_with_bp(hashi_state, x, y):
         return True
       else:
-        # remove decision if coming up
         remove_bridge(hashi_state, x, y, d)
 
   return False
@@ -223,6 +240,7 @@ def solve_from_cell(hashi_state, x, y):
     if y == hashi_state.rows:
       return True
 
+  # NOTE(Ryan): For debugging
   global deepest_state
   global furthest_x
   global furthest_y
@@ -235,7 +253,7 @@ def solve_from_cell(hashi_state, x, y):
     deepest_state = copy.deepcopy(hashi_state)
 
   n = get_node(hashi_state, x, y)
-  if not is_base(n) or n.base_count == n.base_lim:
+  if not is_island(n) or n.island_count == n.island_lim:
     return solve_from_cell(hashi_state, x + 1, y)
 
   # this for loop is for exploration
@@ -266,8 +284,8 @@ def print_hashi_state(hashi_state):
       i = y * hashi_state.cols + x
       n = hashi_state.nodes[i] 
 
-      if is_base(n):
-        s += f"{hex(n.base_lim)[2:]}"
+      if is_island(n):
+        s += f"{hex(n.island_lim)[2:]}"
       else:
         if n.bridge_orientation == Orientations.HORIZONTAL:
           s += horizontal_bridge_char[n.bridge_amount]
@@ -292,7 +310,7 @@ def parse_hashi_from_file():
         bridge_amount = int(line[i], 16)
       except ValueError:
         pass
-      n.base_lim = bridge_amount 
+      n.island_lim = bridge_amount 
       nodes.append(n)
 
   return State(rows, cols, nodes)
@@ -310,7 +328,7 @@ def parse_hashi_from_stdin():
         bridge_amount = int(line[i], 16)
       except ValueError:
         pass
-      n.base_lim = bridge_amount 
+      n.island_lim = bridge_amount 
       nodes.append(n)
     rows += 1
 
@@ -319,25 +337,23 @@ def parse_hashi_from_stdin():
 def main():
   hashi_state = None
   hashi_state_copy = None
-  if sys.gettrace() is None:
-    hashi_state = parse_hashi_from_stdin()
-  else:
+  if debugger():
     hashi_state = parse_hashi_from_file()
     hashi_state_copy = copy.deepcopy(hashi_state)
+  else:
+    hashi_state = parse_hashi_from_stdin()
 
   solved = solve_hashi(hashi_state)
   if solved:
-    print(f"SOLVED")
     print_hashi_state(hashi_state)
   else:
     solve_with_bp(hashi_state_copy, 0, 0)
-    print(f"NOT SOLVED REACHED: ({furthest_x}, {furthest_y})")
     print_hashi_state(deepest_state)
 
 
 if __name__ == "__main__":
   # NOTE(Ryan): Disable breakpoints if not running under a debugger
-  if sys.gettrace() is None:
+  if not debugger():
     os.environ["PYTHONBREAKPOINT"] = "0"
   directory_of_running_script = pathlib.Path(__file__).parent.resolve()
   os.chdir(directory_of_running_script)

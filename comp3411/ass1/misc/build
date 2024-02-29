@@ -5,12 +5,12 @@ file_name="$1"
 # python3 "$file_name" 
 
 # verify
-rows=5
-cols=9
-# ./bridgen $rows $cols > hashi.puzzle
+rows=7
+cols=5
+./bridgen $rows $cols > hashi.puzzle
 python3 "$file_name" < hashi.puzzle > hashi.puzzle.solution
 
-debug=1
+debug=0
 if [[ $debug -eq 1 ]]; then
   cat hashi.puzzle.solution
 else

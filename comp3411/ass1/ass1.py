@@ -15,6 +15,7 @@ import subprocess
 import logging
 import platform
 import math
+import copy
 
 from dataclasses import dataclass, field
 from typing import List
@@ -88,7 +89,6 @@ class Node:
 class State:
   rows: int 
   cols: int
-  num_bridges: int
   nodes: List[Node]
 
   def __str__(self):
@@ -165,7 +165,6 @@ def place_bridge(hashi_state, x, y, d, remove=False):
   n0.base_dir_count[d.value] += inc
   n1.base_count += inc
   n1.base_dir_count[~d.value] += inc
-  hashi_state.num_bridges += inc
 
 
 # 1. Reduce to solving for smallest element, i.e. a base
@@ -177,18 +176,66 @@ def place_bridge(hashi_state, x, y, d, remove=False):
 def solve_hashi(hashi_state):
   return solve_from_cell(hashi_state, 0, 0)
 
+deepest_state = None
+furthest_x = -1
+furthest_y = -1
+furthest = -1
+
+def solve_with_bp(hashi_state, x, y):
+  # goal state is when solved last item
+  if x == hashi_state.cols:
+    x = 0
+    y += 1
+    
+    if y == hashi_state.rows:
+      return True
+
+  global furthest_x
+  global furthest_y
+  #if x == furthest_x and y == furthest_y:
+    #breakpoint()
+
+  n = get_node(hashi_state, x, y)
+  if not is_base(n) or n.base_count == n.base_lim:
+    return solve_with_bp(hashi_state, x + 1, y)
+
+  # this for loop is for exploration
+  for d in Directions:
+    if x == 4 and y == 0 and d == Directions.RIGHT:
+      breakpoint()
+    if can_place_bridge(hashi_state, x, y, d):
+      place_bridge(hashi_state, x, y, d)
+      if solve_with_bp(hashi_state, x, y):
+        return True
+      else:
+        # remove decision if coming up
+        remove_bridge(hashi_state, x, y, d)
+
+  return False
+
+
 def solve_from_cell(hashi_state, x, y):
   # goal state is when solved last item
   if x == hashi_state.cols:
     x = 0
     y += 1
+    
     if y == hashi_state.rows:
       return True
 
+  global deepest_state
+  global furthest_x
+  global furthest_y
+  global furthest
+  coord = y * hashi_state.cols + x
+  if coord > furthest:
+    furthest = coord
+    furthest_x = x
+    furthest_y = y
+    deepest_state = copy.deepcopy(hashi_state)
+
   n = get_node(hashi_state, x, y)
-  if not is_base(n):
-    return solve_from_cell(hashi_state, x + 1, y)
-  elif n.base_count == n.base_lim:
+  if not is_base(n) or n.base_count == n.base_lim:
     return solve_from_cell(hashi_state, x + 1, y)
 
   # this for loop is for exploration
@@ -205,7 +252,7 @@ def solve_from_cell(hashi_state, x, y):
 
 
 def get_node(hashi_state, x, y):
-  if x < 0 or y < 0 or x >= hashi_state.rows or y >= hashi_state.cols:
+  if x < 0 or y < 0 or x >= hashi_state.cols or y >= hashi_state.rows:
     return Node()
   else:
     return hashi_state.nodes[y * hashi_state.cols + x]
@@ -248,7 +295,7 @@ def parse_hashi_from_file():
       n.base_lim = bridge_amount 
       nodes.append(n)
 
-  return State(rows, cols, 0, nodes)
+  return State(rows, cols, nodes)
 
 def parse_hashi_from_stdin():
   nodes = []
@@ -267,14 +314,25 @@ def parse_hashi_from_stdin():
       nodes.append(n)
     rows += 1
 
-  return State(rows, cols, 0, nodes)
+  return State(rows, cols, nodes)
 
 def main():
-  hashi_state = parse_hashi_from_stdin()
-  #hashi_state = parse_hashi_from_file()
+  hashi_state = None
+  hashi_state_copy = None
+  if sys.gettrace() is None:
+    hashi_state = parse_hashi_from_stdin()
+  else:
+    hashi_state = parse_hashi_from_file()
+    hashi_state_copy = copy.deepcopy(hashi_state)
 
-  if solve_hashi(hashi_state):
+  solved = solve_hashi(hashi_state)
+  if solved:
+    print(f"SOLVED")
     print_hashi_state(hashi_state)
+  else:
+    solve_with_bp(hashi_state_copy, 0, 0)
+    print(f"NOT SOLVED REACHED: ({furthest_x}, {furthest_y})")
+    print_hashi_state(deepest_state)
 
 
 if __name__ == "__main__":

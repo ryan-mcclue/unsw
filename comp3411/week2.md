@@ -33,8 +33,11 @@ IMPORTANT: Standard BFS/DFS don't handle cycles and weights
 IMPORTANT: BFS/DFS time complexities differ when used as search
 * BFS: complete (finite-space), exponential space, optimal (if no weight)
   - Uniform-Cost-Search (BFS but expands based on weight; minimises g(n))
-* DFS: not-complete (stuck on cycles), linear space, suboptimal
+    (costs of nodes accumulate based on parent cost)
+* DFS: not-complete (stuck on cycles), linear space, suboptimal (considering pre-order traversal)
   - Depth Limited (DFS but with max. d)
+  (cycle detection if node contains reference to parent)
+  (in tutorial, if some sorting principle on selecting next node, like alphabetical, then would deviate from strict pre-order)
 * Iterative Deepening (a repeated depth limited search to combine benefits of BFS and DFS)
 * Bidirectional Search (forward from initial, backward from goal
 
@@ -42,10 +45,11 @@ IMPORTANT: In reality, BFS is Djikstra without weights and Djikstra is A-star wi
 IMPORTANT: Djikstra implementation of UCS with no goal state, i.e. will find for all paths 
 
 Informed Search:
-Have domain knowledge, so can use heuristics
+Have domain knowledge, so can use heuristics 
+(total manhattan distance for a state would be distance all nodes from destination)
 * Greedy: same as DFS, except heuristic can yield faster times
 IMPORTANT: Differs to UCS in that minimises h(n) (n to goal)
-* A-star: optimal if heuristic is admissable (combines greedy and UCS)
+* A-star: optimal if heuristic is admissable (combines greedy and UCS; so BFS expansion)
 * ID-A-Star: Iterate over f(n) = g(n) + h(n)
 
 MOTION PLANNING:

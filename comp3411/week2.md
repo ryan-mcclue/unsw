@@ -47,9 +47,8 @@ IMPORTANT: Djikstra implementation of UCS with no goal state, i.e. will find for
 Informed Search:
 Have domain knowledge, so can use heuristics 
 (total manhattan distance for a state would be distance all nodes from destination)
-* Greedy: same as DFS, except heuristic can yield faster times
-IMPORTANT: Differs to UCS in that minimises h(n) (n to goal)
-* A-star: optimal if heuristic is admissable (combines greedy and UCS; so BFS expansion)
+* Greedy: Like DFS except with hueristic. Differs to UCS as minimises based on heuristic h(n), i.e. to goal not next node g(n)
+* A-star: optimal if heuristic is admissable (combines greedy and UCS)
 * ID-A-Star: Iterate over f(n) = g(n) + h(n)
 
 MOTION PLANNING:

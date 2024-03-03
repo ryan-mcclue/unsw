@@ -1,4 +1,7 @@
 // SPDX-License-Identifier: zlib-acknowledgement
+// TODO: look at MAX_CLIENT (number of threads) and MAX_CONCURRENT_THREAD
+// TODO: wake up all threads waiting for blocknum
+// TODO: compile and check with no flags, e.g. warnings as errors
 init()
 {
   state.lock = lock_create();

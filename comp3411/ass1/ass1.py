@@ -153,9 +153,34 @@ def place_bridge(hashi_state, x, y, d, remove=False):
   n1.island_count += inc
   n1.island_dir_count[~d.value] += inc
 
+@dataclass
+class NeighbourNode:
+  n: Node = Node()
+  d: Directions = Directions.NULL
+
+def get_neighbour_nodes(hashi_state, x, y):
+  nns = []
+
+  for d in Directions:
+    it, orientation = get_it_and_orientation(hashi_state, x, y, d)
+    for i in it:
+      if orientation == Orientations.HORIZONTAL:
+        n = get_node(hashi_state, i, y)
+      else:
+        n = get_node(hashi_state, x, i)
+      if is_island(n):
+        break
+      else:
+        nn = NeighbourNode(n, d)
+        nns.append(nn)
+        break
+
+  return nns
+
 def solve_hashi(hashi_state):
   return solve_from_cell(hashi_state, 0, 0)
 
+# TODO(Ryan): 40x40 in under 2 minutes
 def solve_from_cell(hashi_state, x, y):
   if x == hashi_state.cols:
     x = 0
@@ -167,6 +192,18 @@ def solve_from_cell(hashi_state, x, y):
   n = get_node(hashi_state, x, y)
   if not is_island(n) or n.island_count == n.island_lim:
     return solve_from_cell(hashi_state, x + 1, y)
+
+  # go to smaller island degree first as most restrictive
+  #neighbour_nodes = get_neighbour_nodes(hashi_state, x, y)
+  #neighbour_nodes.sort(key=lambda nn: nn.n.island_lim) 
+
+  #for nn in neighbour_nodes:
+  #  if can_place_bridge(hashi_state, x, y, nn.d):
+  #    place_bridge(hashi_state, x, y, nn.d)
+  #    if solve_from_cell(hashi_state, x, y):
+  #      return True
+  #    else:
+  #      remove_bridge(hashi_state, x, y, nn.d)
 
   for d in Directions:
     if can_place_bridge(hashi_state, x, y, d):

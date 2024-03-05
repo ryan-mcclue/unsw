@@ -46,6 +46,7 @@ To speed up:
     + Arc consistency: Each arc is a constraint between variables. 
       Making arc consistent is to update a variables remaining values based of other variable values
       (map colouring small amount of variables, so difference neglible; apply consistency by selecting most constrained, i.e. what has to be chosen)
+      (for most tasks slows down overall computation)
 2. Local Search (suboptimal over large state space acceptable)
 Assigns variables randomly then change one at a time (efficient when very few or many constraints)
 This iterative process can be thought of hill-climbing, e.g. at any stage could be at local/global optima.

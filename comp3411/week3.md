@@ -13,6 +13,7 @@ In tree, a node is state, connection is move.
 For each turn:
   * Generating all possible moves and resulting states from current state. 
   * For each final state, do a static evaluation, e.g. chess material count, position of king etc. 
+    IMPORTANT: so full tree must be expanded; pruning occurs on way up
   * Backtrack score for each state. We will pick the maximum score of children, opponent will pick the minimum
     So, each level alternates between our state and opponent's state.
 Alpha-beta pruning:
@@ -20,10 +21,10 @@ Alpha is best move for us so far, and beta is for opponent
 If beta <= alpha, prune off (IMPORTANT: alpha/beta values are from parent)
 Allows for searching much deeper 
 
-TODO: Negamax only has one evaluation for both, by negating other opponent's score?
-Pruning can also negate a move early on in its exploration 
-
-
+Negamax has only one utility function, as oppose to two.
+For each level choose the maximum value and negate it in the parent.
+(so, each level still alternates between players)
+Equates to both players looking for maximum.
 
 So, could exploit program by 'opening up game for more moves', i.e. increase branch factor
 

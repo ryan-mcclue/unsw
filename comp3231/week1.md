@@ -94,3 +94,7 @@ DEBUGGING (IN ROOT)
 % sys161 -w kernel
 % os161-gdb kernel
 
+DISABLE HANGMAN
+In kern/conf/ASST1 at the bottom comment out options hangman (with a #)
+then in the same directory run ./config ASST1
+go back to kern/compile/ASST1 and bmake depend then bmake && bmake install

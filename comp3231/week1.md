@@ -22,6 +22,7 @@ Mutual exclusion solutions
 - taking turns (poor if need at differing rates)
 - disable interrupts (only possible on single-core) 
 - atomic hardware TSL instruction (spinlock/busy-wait, so can get starved if many)
+NOTE: a premptive lock allows to call acquire() multiple times from same owner
 IMPORTANT: all build from locks
 - A semaphore more state to overcome busy-waiting.
   Puts processes into a blocked queue if trying to access an unavailable resource, i.e. waits/sleeps; P

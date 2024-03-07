@@ -13,26 +13,22 @@ Exception type could be interrupt, TLB, address/bus error etc., syscall etc.
 Designated entry-point/vector addresses per exception type.
 The PC will change to these, along with changing bits in status register (specifically priveleged and interrupts disabled)
 The return address of exception in coprocessor 0 EPC register
-For MIPS R3000, most exceptions go to 'other' handler.
+For MIPS R3000, most exceptions fall under 'other' handler.
 So, say a timer interrupt or a syscall will go to this generic handler:
   1. Set to kernel sp (if coming from userland)
-  2. Save source of interrupt registers onto stack 
-  save registers onto kernel stack (this is trapframe. how big? contents arch dependent?)
-
+  2. Save trapframe on kernel stack.
+     Trapframe is all gpr, status, sp 
   3. Inspect type in Cause register and call specific handler
-  4. If timer interrupt, handler will call scheduler
-  5. Schedular asks kernel to switch processes (really would be thread?)
-  6. Kernel saves current sp into specific TCB.
-     Loads new SP of target from TCB (which would have trapframe layout) and its context 
-
-  xxx. restore registers
-  xx. switch back to user stack
-
-  IMPORTANT: would jump back to new PC if say a hardware interrupt as oppose to a syscall
-  x. Will jump to EPC register to return, however will restore user mode in branch-delay slot
-     So, `lw r27, epc; nop; jr r27; rfe`
-
-
+     TIMER: 
+     - call scheduler
+     - scheduler asks kernel to switch to thread
+       (TCB associated with a PCB. Only schedule threads, so if part of another process, then PCB also involved)
+     - kernel saves current sp and pc into specific TCB.
+       loads new sp from destination TCB, unloads trapframe and sets new pc
+     SYSCALL:
+     - restore trapframe
+     - Will jump to EPC register to return, however will restore user mode in branch-delay slot
+       So, `lw r27, epc; nop; jr r27; rfe`
 
 GCC MIPS calling convention (IMPORTANT: 'a' registers really r4-7):
 `v0/1` return value, `a0/3` for arguments, `s0/s7` conflicts
@@ -42,17 +38,6 @@ os161 uses the similar convention for its syscall ABI
 syscall number in `v0`, return in `v0` if `a3` indicates no errno
 
 Syscalls have ABI and perform escalation with special cpu instructions
-
-
-In addition to PCBs, kernel manages TCBs (which have a PCB associated with them)
-A trapframe contains registers associated with user space thread
-If scheduler determines new thread, then retrieve from TCB
-Kernel only schedules threads, so if thread part of another process, then PCB also involved
-
-A process has an in-kernel stack. 
-On a context switch (of which a syscall will cause), will change stack pointer to this.
-So, it can be said that kernel memory is shared between processes.
-TODO: save user registers in kernel stack, but also TCB?
 
 User level threads only really better if have large numbers.
 This is because they don't incur context switch operations with TCB/PCBs

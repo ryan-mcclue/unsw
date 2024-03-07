@@ -49,6 +49,11 @@
 
 import sys
 
+import time
+import os
+import signal
+import threading
+
 from dataclasses import dataclass, field
 from typing import List
 from enum import Enum
@@ -178,10 +183,16 @@ def get_neighbour_nodes(hashi_state, x, y):
   return nns
 
 def solve_hashi(hashi_state):
-  return solve_from_cell(hashi_state, 0, 0)
+  return solve_from_cell(hashi_state, 0, 0, 0)
+
+max_depth = -1
 
 # TODO(Ryan): 40x40 in under 2 minutes
-def solve_from_cell(hashi_state, x, y):
+def solve_from_cell(hashi_state, x, y, depth):
+  global max_depth
+  if depth > max_depth:
+    max_depth = depth
+
   if x == hashi_state.cols:
     x = 0
     y += 1
@@ -191,7 +202,7 @@ def solve_from_cell(hashi_state, x, y):
 
   n = get_node(hashi_state, x, y)
   if not is_island(n) or n.island_count == n.island_lim:
-    return solve_from_cell(hashi_state, x + 1, y)
+    return solve_from_cell(hashi_state, x + 1, y, depth + 1)
 
   # go to smaller island degree first as most restrictive
   #neighbour_nodes = get_neighbour_nodes(hashi_state, x, y)
@@ -208,7 +219,7 @@ def solve_from_cell(hashi_state, x, y):
   for d in Directions:
     if can_place_bridge(hashi_state, x, y, d):
       place_bridge(hashi_state, x, y, d)
-      if solve_from_cell(hashi_state, x, y):
+      if solve_from_cell(hashi_state, x, y, depth + 1):
         return True
       else:
         remove_bridge(hashi_state, x, y, d)
@@ -259,11 +270,22 @@ def parse_hashi_from_stdin():
 
   return State(rows, cols, nodes)
 
+def print_max_depth():
+  global max_depth
+  time.sleep(10)
+  print(f"EXPIRED: max depth {max_depth}")
+  sys.exit(1)
+
 def main():
   hashi_state = parse_hashi_from_stdin()
 
+  watchdog_thread = threading.Thread(target=print_max_depth)
+  watchdog_thread.start()
+
   if solve_hashi(hashi_state):
-    print_hashi_state(hashi_state)
+    #print_hashi_state(hashi_state)
+    print(f"max depth: {max_depth}")
+    os.kill(os.getpid(), signal.SIGINT)
 
 if __name__ == "__main__":
   main()

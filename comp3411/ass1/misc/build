@@ -11,14 +11,15 @@ start=$(date +%s.%N)
 rows=10
 cols=10
 ./bridgen $rows $cols > hashi.puzzle
-python3 "$file_name" < hashi.puzzle > hashi.puzzle.solution
+#python3 "$file_name" < hashi.puzzle > hashi.puzzle.solution
+python3 "$file_name" < hashi.puzzle
 
-debug=0
-if [[ $debug -eq 1 ]]; then
-  cat hashi.puzzle.solution
-else
-  ./bridgecheck hashi.puzzle < hashi.puzzle.solution
-fi
+# debug=0
+# if [[ $debug -eq 1 ]]; then
+#   cat hashi.puzzle.solution
+# else
+#   ./bridgecheck hashi.puzzle < hashi.puzzle.solution
+# fi
 
 end=$(date +%s.%N)
 total_time=$( echo "scale=4; ($end - $start)" | bc -l )

@@ -22,9 +22,19 @@ dendrite (input) reaches threshold --> axon (output) --> synapse (on/off) --> de
 node:
 input edges -> non-linear activation/transfer function (takes weighted sum of edges; g(s)) -> output
 
+perceptron has inputs multiplied by learned weights which lead to output
 perceptron can only compute linearly separable functions, i.e. points separated by line, i.e. binary classifier
 rosenblatt learning/training algorithm starts with random weights and increases if g(s) = 0 but should've been 1 and decreases vice versa
-
 AND/OR/NOR are linearly separable
 XOR is not. But, can re-write as (x AND y) NOR (x NOR y)
-So, multi-layer perceptrons can implement any logical function
+So, multi-layer perceptrons can implement any logical function.
+They consist of input, hidden and output layers.
+This becomes a neural network (feed forward?)
+
+Error/loss function is square difference of actual and desired output (so in relation to weight space)
+Having continuous activation function like sigmoid generates smoother error curves
+(effectively doing a local search on weight space, so a smoother curve helps this)
+Gradient descent used to optimise minimising loss. Backpropagate error at output to input nodes
+The partial derivatives of cost function and weights show how much cost would change if weight changed
+Gradient descent rule updates weights, i.e. multiplying learning rate by derivatives
+

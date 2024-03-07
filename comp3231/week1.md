@@ -18,12 +18,12 @@ Race condition can still occur on single-core, e.g. counter increment pre-empted
 In fact, still concurrency in a single-threaded application from in-kernel concurrency
 
 Critical region where shared resources operated on.
-Mutual exclusion solutions 
+Mutual exclusion solutions
 - taking turns (poor if need at differing rates)
 - disable interrupts (only possible on single-core) 
 - atomic hardware TSL instruction (spinlock/busy-wait, so can get starved if many)
 NOTE: a premptive lock allows to call acquire() multiple times from same owner
-IMPORTANT: all build from locks
+IMPORTANT: all build from locks and are OS implementation specific (e.g. os161 uses wait channels for cvs)
 - A semaphore more state to overcome busy-waiting.
   Puts processes into a blocked queue if trying to access an unavailable resource, i.e. waits/sleeps; P
   (initial count determines how many waits proceed before blocking) 
@@ -40,6 +40,11 @@ IMPORTANT: all build from locks
   Condition variable used to wait inside monitor or signal process to resume
   (Seems better to use a condition variable first, then a semaphore if required)
   (easier to reason about an explicit critical region; and get more flexibility with lock)
+
+cvs typically implemented with mesa semantics so:
+ - are not woken up immediately in any order
+ - spurious wakeups possible (so always wait in a loop on a variable check) 
+(no spurious wakeups for semaphores)
 
 bounded-buffer has a consumer and a producer
 

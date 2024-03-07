@@ -23,7 +23,7 @@ So, say a timer interrupt or a syscall will go to this generic handler:
      - call scheduler
      - scheduler asks kernel to switch to thread
        (TCB associated with a PCB. Only schedule threads, so if part of another process, then PCB also involved)
-     - kernel saves current sp and pc into specific TCB.
+     - kernel saves current sp and pc (from epc) into specific TCB.
        loads new sp from destination TCB, unloads trapframe and sets new pc
      SYSCALL:
      - restore trapframe

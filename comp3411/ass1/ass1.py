@@ -54,16 +54,19 @@ import os
 import signal
 import threading
 
+import copy
+from collections import deque
+
 from dataclasses import dataclass, field
 from typing import List
 from enum import Enum
 
 class Directions(Enum):
   NULL = 0
-  UP = 0b01
+  RIGHT = 0b0011
   DOWN = 0b10
   LEFT = 0b1100
-  RIGHT = 0b0011
+  UP = 0b01
 
 class Orientations(Enum):
   NULL = 0
@@ -182,7 +185,25 @@ def get_neighbour_nodes(hashi_state, x, y):
 
   return nns
 
+def add_essentials():
+  x_it = range(hashi_state.cols)
+  y_it = range(hashi_state.rows)
+  for x in x_it:
+    for y in y_it:
+      n = get_node(hashi_state, x, y)
+      nn = get_neighbour_nodes(hashi_state, x, y)
+
+      if n.
+  # neighbour_nodes.sort(key=lambda nn: nn.n.island_lim) 
+
+  # c's with 4 neighbours
+  # 9s with 3 neighbours
+  # 6s with 2 neighbours
+  # anything with 1 neighbour
+  pass
+
 def solve_hashi(hashi_state):
+  ## perhaps go through and add values we know must exist
   return solve_from_cell(hashi_state, 0, 0, 0)
 
 max_depth = -1
@@ -205,16 +226,16 @@ def solve_from_cell(hashi_state, x, y, depth):
     return solve_from_cell(hashi_state, x + 1, y, depth + 1)
 
   # go to smaller island degree first as most restrictive
-  #neighbour_nodes = get_neighbour_nodes(hashi_state, x, y)
-  #neighbour_nodes.sort(key=lambda nn: nn.n.island_lim) 
+  # neighbour_nodes = get_neighbour_nodes(hashi_state, x, y)
+  # neighbour_nodes.sort(key=lambda nn: nn.n.island_lim) 
 
-  #for nn in neighbour_nodes:
-  #  if can_place_bridge(hashi_state, x, y, nn.d):
-  #    place_bridge(hashi_state, x, y, nn.d)
-  #    if solve_from_cell(hashi_state, x, y):
-  #      return True
-  #    else:
-  #      remove_bridge(hashi_state, x, y, nn.d)
+  # for nn in neighbour_nodes:
+  #   if can_place_bridge(hashi_state, x, y, nn.d):
+  #     place_bridge(hashi_state, x, y, nn.d)
+  #     if solve_from_cell(hashi_state, x, y, depth + 1):
+  #       return True
+  #     else:
+  #       remove_bridge(hashi_state, x, y, nn.d)
 
   for d in Directions:
     if can_place_bridge(hashi_state, x, y, d):
@@ -250,6 +271,7 @@ def print_hashi_state(hashi_state):
           s += vertical_bridge_char[n.bridge_amount]
     s += "\n"
   print(s, end="")
+  # online tests may be sensitive to newline at end
 
 def parse_hashi_from_stdin():
   nodes = []
@@ -271,10 +293,14 @@ def parse_hashi_from_stdin():
   return State(rows, cols, nodes)
 
 def print_max_depth():
+  # not depth a concern, rather going down unecessary branches
   global max_depth
-  time.sleep(10)
-  print(f"EXPIRED: max depth {max_depth}")
-  sys.exit(1)
+  time.sleep(60)
+  print(f"EXPIRED: max depth {max_depth}", flush=True)
+  exit_all_threads()
+
+def exit_all_threads():
+  os._exit(1)
 
 def main():
   hashi_state = parse_hashi_from_stdin()
@@ -284,8 +310,8 @@ def main():
 
   if solve_hashi(hashi_state):
     #print_hashi_state(hashi_state)
-    print(f"max depth: {max_depth}")
-    os.kill(os.getpid(), signal.SIGINT)
+    print(f"max depth: {max_depth}", flush=True)
+    exit_all_threads()
 
 if __name__ == "__main__":
   main()

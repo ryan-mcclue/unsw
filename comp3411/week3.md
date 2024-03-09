@@ -10,16 +10,17 @@ Game solving involves a strategy and approximation
 Minimax:
 From perspective of one player.
 In tree, a node is state, connection is move.
-For each turn:
-  * Generating all possible moves and resulting states from current state. 
-  * For each final state, do a static evaluation, e.g. chess material count, position of king etc. 
-    IMPORTANT: so full tree must be expanded; pruning occurs on way up
-  * Backtrack score for each state. We will pick the maximum score of children, opponent will pick the minimum
-    So, each level alternates between our state and opponent's state.
-Alpha-beta pruning:
-Alpha is best move for us so far, and beta is for opponent
-If beta <= alpha, prune off (IMPORTANT: alpha/beta values are from parent)
-Allows for searching much deeper 
+For each turn generate a tree of all possible moves and resulting states from current state:
+  - each node wants to alternate finding the max() and then min() of its children
+  - if at leaf node, do a static evaluation, e.g. chess material count, position of king etc. 
+  Alpha-beta pruning:
+    * alpha is best move for us so far, and beta is for opponent
+      starting alpha = -∞
+      starting beta = +∞
+    * if max(), alpha = max(alpha, node); 
+      if min(), beta = min(beta, node); 
+      for any level, if beta <= alpha prune
+      (IMPORTANT: follow a recursive DFS, so pass starting alpha/beta from parent)
 
 Negamax has only one utility function, as oppose to two.
 For each level choose the maximum value and negate it in the parent.
@@ -31,7 +32,13 @@ So, could exploit program by 'opening up game for more moves', i.e. increase bra
 Stochastic games:
 A 'Monte Carlo' player would make move based on simulating random move spaces.
 This means tree is built up stochastically
-Expectimax adaptation that handles chance nodes. Exact values DO matter, while in minimax they don't
+Expectimax:
+  * chance nodes don't recieve alpha/beta values from children 
+    similarly, chance nodes don't pass probability up to parent
+    starting probability takes into account value range, e.g. [-10, 10], so: 0.1*10 + 0.5*10 + 0.4*10 = 10 
+  * TODO: same pruning rules or? 
+    for parent maximum, prune if alpha > P
+    for parent minimum, prune if P < B
 
 Monotonic transformation, i.e. f(x2) > f(x1)
 Ordinal means definining position in series

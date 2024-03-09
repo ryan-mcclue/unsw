@@ -177,32 +177,66 @@ def get_neighbour_nodes(hashi_state, x, y):
       else:
         n = get_node(hashi_state, x, i)
       if is_island(n):
-        break
-      else:
         nn = NeighbourNode(n, d)
         nns.append(nn)
         break
 
   return nns
 
-def add_essentials():
+def place_definite_bridges(hashi_state):
   x_it = range(hashi_state.cols)
   y_it = range(hashi_state.rows)
-  for x in x_it:
-    for y in y_it:
+  for y in y_it:
+    for x in x_it:
       n = get_node(hashi_state, x, y)
+      if not is_island(n):
+        continue
+
       nn = get_neighbour_nodes(hashi_state, x, y)
 
-      if n.
-  # neighbour_nodes.sort(key=lambda nn: nn.n.island_lim) 
+      if len(nn) == 1:
+        # NOTE(Ryan): Ensure not doubling up if other 1 to 1
+        if can_place_bridge(hashi_state, x, y, nn[0].d):
+          for i in range(n.island_lim):
+            place_bridge(hashi_state, x, y, nn[0].d)
+        continue
 
-  # c's with 4 neighbours
-  # 9s with 3 neighbours
-  # 6s with 2 neighbours
-  # anything with 1 neighbour
-  pass
+      max_neighbours = (n.island_lim == 12) or \
+                       ((n.island_lim == 9) and len(nn) == 3) or \
+                       ((n.island_lim == 6) and len(nn) == 2)
+      if max_neighbours:
+        for neighbour in nn:
+          if can_place_bridge(hashi_state, x, y, neighbour.d):
+            place_bridge(hashi_state, x, y, neighbour.d)
+          if can_place_bridge(hashi_state, x, y, neighbour.d):
+            place_bridge(hashi_state, x, y, neighbour.d)
+          if can_place_bridge(hashi_state, x, y, neighbour.d):
+            place_bridge(hashi_state, x, y, neighbour.d)
+        continue
+
+      max_bridges_possible = 0
+      for neighbour in nn:
+        if nn.n.island_lim <= 3:
+          max_bridges_possible += nn.n.island_lim
+        else:
+          max_bridges_possible += 3
+      if max_bridges_possible == n.island_lim:
+        for neighbour in nn:
+          if can_place_bridge(hashi_state, x, y, neighbour.d):
+            place_bridge(hashi_state, x, y, neighbour.d)
+
+
+
+  # now, see if (lim - bridges) = sum of neighbours 
 
 def solve_hashi(hashi_state):
+  print_hashi_state(hashi_state)
+  print("")
+  place_definite_bridges(hashi_state)
+  print_hashi_state(hashi_state)
+  print("")
+  #print_hashi_state(hashi_state)
+  #return True
   ## perhaps go through and add values we know must exist
   return solve_from_cell(hashi_state, 0, 0, 0)
 
@@ -270,7 +304,7 @@ def print_hashi_state(hashi_state):
         else:
           s += vertical_bridge_char[n.bridge_amount]
     s += "\n"
-  print(s, end="")
+  print(s, end="", flush=True)
   # online tests may be sensitive to newline at end
 
 def parse_hashi_from_stdin():
@@ -305,8 +339,8 @@ def exit_all_threads():
 def main():
   hashi_state = parse_hashi_from_stdin()
 
-  watchdog_thread = threading.Thread(target=print_max_depth)
-  watchdog_thread.start()
+  # watchdog_thread = threading.Thread(target=print_max_depth)
+  # watchdog_thread.start()
 
   if solve_hashi(hashi_state):
     #print_hashi_state(hashi_state)

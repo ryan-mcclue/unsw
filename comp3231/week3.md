@@ -8,6 +8,15 @@ This is due to pipelining optimisation, they will always execute next instructio
 
 Function calling/returing with return adress register `jal 1f` --> `jr r31`
 
+GCC MIPS calling convention (IMPORTANT: 'a' registers really r4-7):
+`v0/1` return value, `a0/3` for arguments, `s0/s7` conflicts
+`sp` (bottom of stack), `fp` frame pointer (top of stack frame)
+os161 uses the similar convention for its syscall ABI
+(gcc linux, where syscalls use a different register for argument 4 and return)
+syscall number in `v0`, return in `v0` if `a3` indicates no errno
+
+Syscalls have ABI and perform escalation with special cpu instructions
+
 For MIPS R3000 have exception management registers in coprocessor 0 that can only be controlled in kernel mode 
 Exception type could be interrupt, TLB, address/bus error etc., syscall etc.
 Designated entry-point/vector addresses per exception type.
@@ -23,21 +32,12 @@ So, say a timer interrupt or a syscall will go to this generic handler:
      - call scheduler
      - scheduler asks kernel to switch to thread
        (TCB associated with a PCB. Only schedule threads, so if part of another process, then PCB also involved)
-     - kernel saves current sp and pc (from epc) into specific TCB.
+     - kernel saves current sp and pc into specific TCB (so can be said processes share kernel stack memory)
        loads new sp from destination TCB, unloads trapframe and sets new pc
      SYSCALL:
      - restore trapframe
      - Will jump to EPC register to return, however will restore user mode in branch-delay slot
        So, `lw r27, epc; nop; jr r27; rfe`
-
-GCC MIPS calling convention (IMPORTANT: 'a' registers really r4-7):
-`v0/1` return value, `a0/3` for arguments, `s0/s7` conflicts
-`sp` (bottom of stack), `fp` frame pointer (top of stack frame)
-os161 uses the similar convention for its syscall ABI
-(gcc linux, where syscalls use a different register for argument 4 and return)
-syscall number in `v0`, return in `v0` if `a3` indicates no errno
-
-Syscalls have ABI and perform escalation with special cpu instructions
 
 User level threads only really better if have large numbers.
 This is because they don't incur context switch operations with TCB/PCBs

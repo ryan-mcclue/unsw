@@ -167,6 +167,7 @@ def place_bridge(hashi_state, x, y, d, remove=False, amount=1):
       break
     else:
       n1.bridge_amount += inc
+      assert n1.bridge_amount <= 3, "ok"
       if n1.bridge_amount == 0:
         n1.bridge_orientation = Orientations.NULL
       else:
@@ -179,11 +180,11 @@ def place_bridge(hashi_state, x, y, d, remove=False, amount=1):
 
 @dataclass
 class NeighbourNode:
-  n: Node = Node()
-  d: Directions = Directions.NULL
+  n: Node
+  d: Directions
 
-# possible meaning is accessible and have slots remaining
-def get_possible_neighbour_nodes(hashi_state, x, y):
+# effective meaning is accessible and have slots remaining
+def get_effective_neighbour_nodes(hashi_state, x, y):
   nns = []
 
   for d in Directions:
@@ -228,7 +229,9 @@ def find_combinations(target_sum, num_elements):
 
 def gen_moves(hashi_state, x, y):
   n = get_node(hashi_state, x, y)
-  nn = get_possible_neighbour_nodes(hashi_state, x, y)
+  nn = get_effective_neighbour_nodes(hashi_state, x, y)
+  if len(nn) == 0:
+    return []
   target = (n.island_lim - n.island_count)
   moves = []
   for c in find_combinations(target, len(nn)):
@@ -267,6 +270,41 @@ def undo_move(hashi_state, move):
     amount = move.bridge_amounts[i]
     place_bridge(hashi_state, move.x, move.y, nn.d, True, amount)
 
+def apply_definite_moves(hashi_state):
+  moves = []
+
+  for y in range(hashi_state.rows):
+    for x in range(hashi_state.cols):
+      n = get_node(hashi_state, x, y)
+      if not is_island(n) or n.island_count == n.island_lim:
+        continue
+
+      nn = get_effective_neighbour_nodes(hashi_state, x, y)
+
+      targets = []
+      for neighbour in nn:
+        nnode = neighbour.n
+        target = 3 - nnode.island_dir_count[~neighbour.d.value]
+        targets.append(target)
+
+      # Remaining bridges must go this neighbour
+      if len(nn) == 1:
+        nnode = nn[0].n
+        target = n.island_lim - n.island_count
+        actual = 3 - nnode.island_dir_count[~nn[0].d.value]
+        if target == actual:
+          move = Move(x, y, [target], nn)
+          apply_move(hashi_state, move)
+          moves.append(move)
+      # Remaining bridges must max neighbours
+      elif (n.island_lim - n.island_count) == sum(targets):
+        move = Move(x, y, targets, nn)
+        apply_move(hashi_state, move)
+        moves.append(move)
+
+  return moves
+
+
 def place_definite_bridges(hashi_state):
   x_it = range(hashi_state.cols)
   y_it = range(hashi_state.rows)
@@ -277,15 +315,14 @@ def place_definite_bridges(hashi_state):
       if not is_island(n) or n.island_count == n.island_lim:
         continue
 
-      nn = get_possible_neighbour_nodes(hashi_state, x, y)
+      nn = get_effective_neighbour_nodes(hashi_state, x, y)
 
       if len(nn) == 1:
         # NOTE(Ryan): Ensure not doubling up if other 1 to 1
         # print(f"single at {x},{y}", flush=True)
         placed_bridges = True
-        for i in range(n.island_lim):
-           if can_place_bridge(hashi_state, x, y, nn[0].d):
-             place_bridge(hashi_state, x, y, nn[0].d)
+        for i in range(n.island_lim - n.island_count):
+          place_bridge(hashi_state, x, y, nn[0].d)
         continue
 
       max_bridges_possible = 0
@@ -308,6 +345,54 @@ def solve_hashi(hashi_state):
   while val:
     val = place_definite_bridges(hashi_state)
   return solve_from_cell(hashi_state, 0, 0, 0)
+
+def solve_hashi(hashi_state):
+  return solve_from_cell_u(hashi_state, 0, 0)
+
+def solve_from_cell_u(hashi_state, x, y):
+  if x == hashi_state.cols:
+    x = 0
+    y += 1
+    
+    if y == hashi_state.rows:
+      return True
+
+  n = get_node(hashi_state, x, y)
+  if not is_island(n) or n.island_count == n.island_lim:
+    return solve_from_cell_u(hashi_state, x + 1, y)
+
+  definite_move_list = []
+  definite_moves = apply_definite_moves(hashi_state)
+  definite_move_list.extend(definite_moves)
+  while len(definite_moves) > 0:
+    definite_moves = apply_definite_moves(hashi_state)
+    definite_move_list.extend(definite_moves)
+
+  possible_moves = gen_moves(hashi_state, x, y)
+  if len(possible_moves) == 0:
+    solved = True
+    for i in range(hashi_state.rows * hashi_state.cols):
+      n = hashi_state.nodes[i]
+      if is_island(n) and n.island_count != n.island_lim:
+        solved = False
+        break
+
+    if solved:
+      return True 
+  else:
+    for move in possible_moves:
+      if move_valid(hashi_state, move):
+        apply_move(hashi_state, move)
+        if solve_from_cell_u(hashi_state, x + 1, y):
+          return True
+        else:
+          undo_move(hashi_state, move)
+
+  # must undo definite moves here
+  for move in definite_move_list:
+    undo_move(hashi_state, move)
+
+  return False
 
 max_depth = -1
 

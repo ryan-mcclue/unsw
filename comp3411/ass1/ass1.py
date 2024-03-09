@@ -267,7 +267,6 @@ def undo_move(hashi_state, move):
     amount = move.bridge_amounts[i]
     place_bridge(hashi_state, move.x, move.y, nn.d, True, amount)
 
-
 def place_definite_bridges(hashi_state):
   x_it = range(hashi_state.cols)
   y_it = range(hashi_state.rows)
@@ -308,9 +307,6 @@ def solve_hashi(hashi_state):
   val = place_definite_bridges(hashi_state)
   while val:
     val = place_definite_bridges(hashi_state)
-  #print_hashi_state(hashi_state)
-  #print("")
-  ## perhaps go through and add values we know must exist
   return solve_from_cell(hashi_state, 0, 0, 0)
 
 max_depth = -1
@@ -332,7 +328,6 @@ def solve_from_cell(hashi_state, x, y, depth):
   if not is_island(n) or n.island_count == n.island_lim:
     return solve_from_cell(hashi_state, x + 1, y, depth + 1)
 
-
   possible_moves = gen_moves(hashi_state, x, y)
   for move in possible_moves:
     if move_valid(hashi_state, move):
@@ -340,7 +335,7 @@ def solve_from_cell(hashi_state, x, y, depth):
       if solve_from_cell(hashi_state, x + 1, y, depth + 1):
         return True
       else:
-       undo_move(hashi_state, move)
+        undo_move(hashi_state, move)
 
   return False
 

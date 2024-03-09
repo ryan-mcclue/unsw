@@ -234,6 +234,17 @@ def gen_moves(hashi_state, x, y):
   for c in find_combinations(target, len(nn)):
     m = Move(x, y, c, nn)
     moves.append(m)
+
+  # order by nnode with smallest lim getting larger number
+  min_nnode_lim = 10000
+  min_nnode_i = 0
+  for (i, nnode) in enumerate(nn):
+    if nnode.n.island_lim < min_nnode_lim:
+      min_nnode_lim = nnode.n.island_lim
+      min_nnode_i = i 
+
+  moves.sort(key=lambda move: move.bridge_amounts[min_nnode_i], reverse=True)
+
   return moves
 
 def move_valid(hashi_state, move):
@@ -321,17 +332,6 @@ def solve_from_cell(hashi_state, x, y, depth):
   if not is_island(n) or n.island_count == n.island_lim:
     return solve_from_cell(hashi_state, x + 1, y, depth + 1)
 
-  # go to smaller island degree first as most restrictive
-  # neighbour_nodes = get_neighbour_nodes(hashi_state, x, y)
-  # neighbour_nodes.sort(key=lambda nn: nn.n.island_lim) 
-
-  # for nn in neighbour_nodes:
-  #   if can_place_bridge(hashi_state, x, y, nn.d):
-  #     place_bridge(hashi_state, x, y, nn.d)
-  #     if solve_from_cell(hashi_state, x, y, depth + 1):
-  #       return True
-  #     else:
-  #       remove_bridge(hashi_state, x, y, nn.d)
 
   possible_moves = gen_moves(hashi_state, x, y)
   for move in possible_moves:
@@ -341,14 +341,6 @@ def solve_from_cell(hashi_state, x, y, depth):
         return True
       else:
        undo_move(hashi_state, move)
-
-  #for d in Directions:
-  #  if can_place_bridge(hashi_state, x, y, d):
-  #    place_bridge(hashi_state, x, y, d)
-  #    if solve_from_cell(hashi_state, x, y, depth + 1):
-  #      return True
-  #    else:
-  #      remove_bridge(hashi_state, x, y, d)
 
   return False
 

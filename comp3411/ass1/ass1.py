@@ -54,12 +54,28 @@ import os
 import signal
 import threading
 
+import pathlib
+import subprocess
+import logging
+import platform
+import math
+
 import copy
 from collections import deque
 
 from dataclasses import dataclass, field
 from typing import List
 from enum import Enum
+
+def read_entire_file(name):
+  res = ""
+  try:
+    f = open(name, 'r')
+    res = f.read()
+    f.close()
+  except Exception as e:
+    warn(f"Unable to read file {name}.\n{e}")
+  return res
 
 class Directions(Enum):
   NULL = 0
@@ -110,9 +126,9 @@ def get_it_and_orientation(hashi_state, x, y, d):
 
   return it, orientation
 
-def can_place_bridge(hashi_state, x, y, d):
+def can_place_bridge(hashi_state, x, y, d, amount=1):
   n = get_node(hashi_state, x, y)
-  if n.island_count >= n.island_lim or n.island_dir_count[d.value] >= 3:
+  if (n.island_lim - n.island_count <= amount) or (n.island_dir_count[d.value] + amount) > 3:
     return False
 
   it, orientation = get_it_and_orientation(hashi_state, x, y, d)
@@ -124,7 +140,7 @@ def can_place_bridge(hashi_state, x, y, d):
     else:
       n1 = get_node(hashi_state, x, i)
     if is_island(n1):
-      if n1.island_count < n1.island_lim and n1.island_dir_count[~d.value] < 3:
+      if (n1.island_lim - n1.island_count <= amount) and (n1.island_dir_count[~d.value] + amount) <= 3:
         return True
       else:
         return False
@@ -136,7 +152,7 @@ def can_place_bridge(hashi_state, x, y, d):
 def remove_bridge(hashi_state, x, y, d):
   place_bridge(hashi_state, x, y, d, True)
 
-def place_bridge(hashi_state, x, y, d, remove=False):
+def place_bridge(hashi_state, x, y, d, remove=False, amount=1):
   it, orientation = get_it_and_orientation(hashi_state, x, y, d)
   inc = -1 if remove else 1
 
@@ -151,6 +167,7 @@ def place_bridge(hashi_state, x, y, d, remove=False):
       break
     else:
       n1.bridge_amount += inc
+      assert n1.bridge_amount <= 3, "ok"
       if n1.bridge_amount == 0:
         n1.bridge_orientation = Orientations.NULL
       else:
@@ -166,7 +183,8 @@ class NeighbourNode:
   n: Node = Node()
   d: Directions = Directions.NULL
 
-def get_neighbour_nodes(hashi_state, x, y):
+# possible meaning is accessible and have slots remaining
+def get_possible_neighbour_nodes(hashi_state, x, y):
   nns = []
 
   for d in Directions:
@@ -176,35 +194,98 @@ def get_neighbour_nodes(hashi_state, x, y):
         n = get_node(hashi_state, i, y)
       else:
         n = get_node(hashi_state, x, i)
-      if is_island(n):
+      if is_island(n) and n.island_count != n.island_lim:
         nn = NeighbourNode(n, d)
         nns.append(nn)
+        break
+      # blocked
+      elif n.bridge_amount > 0 and n.bridge_orientation != orientation:
         break
 
   return nns
 
+
+@dataclass
+class Move:
+  x:
+  y:
+  bridge_amounts: 
+  nnodes:
+
+def move_valid(move):
+  for i in range(len(move.amounts)):
+    nn = move.nnodes[i]
+    amount = move.combination[i]
+    if not can_place_bridge(move.x, move.y, nn.d, amount):
+      return False
+  return True
+
+def apply_move(move):
+  for i in range(len(move.amounts)):
+    nn = move.nnodes[i]
+    amount = move.combination[i]
+    place_bridge(move.x, move.y, nn.d, amount):
+
+def undo_move(move):
+  for i in range(len(move.amounts)):
+    nn = move.nnodes[i]
+    amount = move.combination[i]
+    place_bridge(move.x, move.y, nn.d, True, amount):
+
+def gen_moves(hashi_state, x, y):
+  n = get_node()
+  nn = get_possible_neighbour_nodes(hashi_state, x, y)
+  target = (n.island_lim - n.island_count)
+  moves = []
+  for c in find_combin(target, len(nn)):
+    m = Move(x, y, c, nn)
+    moves.append(m)
+  return moves
+    
+def find_combinations(target_sum, num_elements):
+    def generate_combinations(current_combination, remaining_elements):
+        if len(current_combination) == num_elements:
+            if sum(current_combination) == target_sum:
+                combinations.append(tuple(current_combination))
+            return
+
+        for num in range(4):
+            if num <= remaining_elements:
+                generate_combinations(current_combination + [num], remaining_elements - num)
+
+    combinations = []
+    generate_combinations([], target_sum)
+    return combinations
+print(find_combinations(1, 3))
+
+
 def place_definite_bridges(hashi_state):
   x_it = range(hashi_state.cols)
   y_it = range(hashi_state.rows)
+  placed_bridges = False
   for y in y_it:
     for x in x_it:
       n = get_node(hashi_state, x, y)
-      if not is_island(n):
+      if not is_island(n) or n.island_count == n.island_lim:
         continue
 
-      nn = get_neighbour_nodes(hashi_state, x, y)
+      nn = get_possible_neighbour_nodes(hashi_state, x, y)
 
       if len(nn) == 1:
         # NOTE(Ryan): Ensure not doubling up if other 1 to 1
-        if can_place_bridge(hashi_state, x, y, nn[0].d):
-          for i in range(n.island_lim):
-            place_bridge(hashi_state, x, y, nn[0].d)
+        print(f"single at {x},{y}", flush=True)
+        placed_bridges = True
+        for i in range(n.island_lim):
+           if can_place_bridge(hashi_state, x, y, nn[0].d):
+             place_bridge(hashi_state, x, y, nn[0].d)
         continue
 
       max_neighbours = (n.island_lim == 12) or \
-                       ((n.island_lim == 9) and len(nn) == 3) or \
-                       ((n.island_lim == 6) and len(nn) == 2)
+                       (((n.island_lim - n.island_count) == 9) and len(nn) == 3) or \
+                       (((n.island_lim - n.island_count) == 6) and len(nn) == 2)
       if max_neighbours:
+        placed_bridges = True
+        print(f"max at {x},{y}", flush=True)
         for neighbour in nn:
           if can_place_bridge(hashi_state, x, y, neighbour.d):
             place_bridge(hashi_state, x, y, neighbour.d)
@@ -216,27 +297,27 @@ def place_definite_bridges(hashi_state):
 
       max_bridges_possible = 0
       for neighbour in nn:
-        if nn.n.island_lim <= 3:
-          max_bridges_possible += nn.n.island_lim
-        else:
-          max_bridges_possible += 3
-      if max_bridges_possible == n.island_lim:
+        nnode = neighbour.n
+        possible = (nnode.island_lim - nnode.island_count)
+        if possible > 3:
+          possible = 3
+        max_bridges_possible += possible 
+      if (n.island_lim - n.island_count) == max_bridges_possible:
+        placed_bridges = True
+        print(f"nn at {x},{y}", flush=True)
         for neighbour in nn:
-          if can_place_bridge(hashi_state, x, y, neighbour.d):
-            place_bridge(hashi_state, x, y, neighbour.d)
+          for i in range(neighbour.n.island_lim):
+            if can_place_bridge(hashi_state, x, y, neighbour.d):
+              place_bridge(hashi_state, x, y, neighbour.d)
 
-
-
-  # now, see if (lim - bridges) = sum of neighbours 
+  return placed_bridges
 
 def solve_hashi(hashi_state):
+  val = place_definite_bridges(hashi_state)
+  while val:
+    val = place_definite_bridges(hashi_state)
   print_hashi_state(hashi_state)
   print("")
-  place_definite_bridges(hashi_state)
-  print_hashi_state(hashi_state)
-  print("")
-  #print_hashi_state(hashi_state)
-  #return True
   ## perhaps go through and add values we know must exist
   return solve_from_cell(hashi_state, 0, 0, 0)
 
@@ -271,6 +352,37 @@ def solve_from_cell(hashi_state, x, y, depth):
   #     else:
   #       remove_bridge(hashi_state, x, y, nn.d)
 
+  # TODO: 
+  #  2 neighbours:
+  #    - 1: (0, 1)*
+  #    - 2: (2, 0)*, (1, 1)
+  #    - 3: (3, 0)*, (2, 1)*
+  #    - 4: (3, 1)*, (2, 2)*
+  #    - 5: (3, 2)*
+  #    - 6: (3, 3)
+  #   3 neighbours:
+  #     - 1: (0, 0, 1)*
+  #     - 2: (0, 0, 2)*, (1, 1, 0)*
+  #     - 3: (0, 0, 3)*, (1, 2, 0)*, (1, 1, 1)
+  #     - 4: (1, 0, 3)*, (1, 2, 1)*, 
+  #     - 5: (0, 0, 1)
+  #     - 6: (0, 0, 1)
+  #     - 7: (0, 0, 1)
+  #     - 8: (0, 0, 1)
+  #     - 9: (0, 0, 1)
+  #   4 neighbours:
+  #     -  
+
+  '''
+    moves = gen_moves(hashi_state, x, y)
+    for m in moves:
+      if valid_move(move):
+        apply_move(move)
+        if solve_from_cell(hashi_state, x + 1, y):
+          return True
+        else:
+         undo_move(move)
+  '''
   for d in Directions:
     if can_place_bridge(hashi_state, x, y, d):
       place_bridge(hashi_state, x, y, d)
@@ -326,6 +438,28 @@ def parse_hashi_from_stdin():
 
   return State(rows, cols, nodes)
 
+def parse_hashi_from_file():
+  hashi_str = read_entire_file("hashi.puzzle")
+  lines = hashi_str.splitlines()
+  cols = len(lines[0])
+  rows = len(lines)
+
+  nodes = []
+
+  for line in lines:
+    for i in range(len(line)):
+      n = Node()
+      bridge_amount = 0
+      try:
+        bridge_amount = int(line[i], 16)
+      except ValueError:
+        pass
+      n.island_lim = bridge_amount 
+      nodes.append(n)
+
+  return State(rows, cols, nodes)
+
+
 def print_max_depth():
   # not depth a concern, rather going down unecessary branches
   global max_depth
@@ -337,15 +471,24 @@ def exit_all_threads():
   os._exit(1)
 
 def main():
-  hashi_state = parse_hashi_from_stdin()
+  hashi_state = None
+  if sys.gettrace() is None:
+    hashi_state = parse_hashi_from_stdin()
+  else:
+    hashi_state = parse_hashi_from_file()
 
   # watchdog_thread = threading.Thread(target=print_max_depth)
   # watchdog_thread.start()
 
   if solve_hashi(hashi_state):
-    #print_hashi_state(hashi_state)
-    print(f"max depth: {max_depth}", flush=True)
+    print_hashi_state(hashi_state)
+    #print(f"max depth: {max_depth}", flush=True)
     exit_all_threads()
 
 if __name__ == "__main__":
+  # NOTE(Ryan): Disable breakpoints if not running under a debugger
+  if sys.gettrace() is None:
+    os.environ["PYTHONBREAKPOINT"] = "0"
+  directory_of_running_script = pathlib.Path(__file__).parent.resolve()
+  os.chdir(directory_of_running_script)
   main()

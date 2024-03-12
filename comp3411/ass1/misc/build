@@ -8,7 +8,7 @@ start=$(date +%s.%N)
 
 # verify
 rows=20
-cols=20
+cols=15
 ./bridgen $rows $cols > hashi.puzzle
 python3 "$file_name" < hashi.puzzle > hashi.puzzle.solution
 echo "${rows}x${cols}"

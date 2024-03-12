@@ -1,47 +1,60 @@
 #!/usr/bin/python3
 # SPDX-License-Identifier: zlib-acknowledgement
 
-############################################################
-# DESCRIPTION
-############################################################
-
-# Data Structures:
-#   Orientations enum:
-#     Provides a readable encoding of a bridge's orientation on the map.
-#     NULL indicates no bridge is present.
-#   Directions enum:
-#     Encodes a connected bridge's direction from the perspective of an island.
-#     Opposite directions are encoded as the bitwise and of each other.
-#     This allows a bridge's direction to be inverted from the perspective of the destination island.
-#   Node class:
-#     Encodes a location on the map.
-#     Can either be an island or a possible bridge location.
-#     They can be told apart as a bridge will have 0 for number of required bridges.
-#     By combining information, can have one node type to simplify map representation.
-#     Fields for an island node:
-#       - Number of connected bridges
-#       - Number of the currently connected bridges
-#       - Number of bridges connected in a particular direction
-#     Fields for a bridge node:
-#       - Orientation of bridge
-#       - How many bridges currently containing
-#   State class:
-#     Encodes map. Stores number of rows, columns and a node array of row*columns size.
+#################################################################
+## QUESTION ANSWER ##############################################
+#################################################################
+## DATA STRUCTURES:
+# * Orientations enum:
+#   Provides a readable encoding of a bridge's orientation on the map.
+#   NULL indicates no bridge is present.
+# * Directions enum:
+#   Encodes a connected bridge's direction from the perspective of an island.
+#   Opposite directions are encoded as the bitwise and of each other.
+#   This allows a bridge's direction to be inverted from the perspective of the destination island.
+# * Node class:
+#   Encodes a location on the map.
+#   Can either be an island or a possible bridge location.
+#   They can be told apart as a bridge will have 0 for number of required bridges.
+#   By combining information, can have one node type to simplify map representation.
+#   Fields for an island node:
+#     - Number of connected bridges
+#     - Number of the currently connected bridges
+#     - Number of bridges connected in a particular direction
+#   Fields for a bridge node:
+#     - Orientation of bridge
+#     - How many bridges currently containing
+# * NeighbourNode class:
+#   From the perspective of a source node, encodes a destination node that could be connected to it.
+#   The direction field indicates the direction the destination node is facing from the source node.
+# * State class:
+#   Encodes map. Stores number of rows, columns and a node array of `row*columns` size.
+# * Move class:
+#   Encodes a move to be made on the state, with x and y representing the source node that the move will be made on.
+#   The move contains an array of bridge amounts, representing the number of bridges to connect to the corresponding neighbour node array.
 # 
-# Program:
+# ## PROGRAM:
 #   The map is read line by line from stdin. 
-#   Each character of line is converted to a node thate goes into state object.
-#   hashi_solve() takes this state and employs a backtracking algorithm.
+#   Each character of the line is converted to a node that goes into the state object.
+#   Firstly, all definite moves are explored. A definite move is:
+#   1. The node is only connected to a single neighbour, in which case all its bridges must connect with it.
+#   2. Summing all possible bridge connections to neighbour nodes equals nodes bridge target. 
+#      In this case, each neighbour should have the maximum number of bridge connections.
+#   Once all definite moves are explored, a backtracking algorithm is employed.
 #   It is a recursive DFS implementation.
 #   Reasons DFS was chosen:
-#     - Simpler than an informed search
 #     - Knew no cycles, so would not get stuck
 #     - There is no optimal solution, so sub-optimal limitations not a concern.
 #       Get added bonus of linear space complexity over BFS.
-#   Each island is iterated over until each has required number of connected bridges.
-#   For each island, all possible directions for adding a bridge are potentially explored.
-#   For an island, if can place a bridge in a particular direction, recurse on it, i.e. explore this option.
-#   If exploring this option does not yield solution, remove bridge.
+#   For each island:
+#   1. All effective neighbour nodes are found.
+#      An effective neighbour is one that is not blocked by a bridge and could take more bridge connections.
+#   2. From the effective neighbours nodes, generate all possible moves. 
+#      A move is what combination of bridges to neighbour nodes could satisfy the target bridge amount.
+#   3. Order the moves based on the move that has the neighbour node with smallest target getting the most connections.
+#      This is because a smaller target node will be more restrictive and hopefully minimise depth of recursion.
+#   4. If the move is valid, apply it and recurse on it, i.e. explore this option.
+#      If exploring this option does not yield solution, undo the move.
 #   Base cases:
 #     - Recieve coordinates one past the dimensions of the map, know have solved, return true.
 #     - No bridges in any direction can be added to the island, return false.
@@ -49,33 +62,9 @@
 
 import sys
 
-import time
-import os
-import signal
-import threading
-
-import pathlib
-import subprocess
-import logging
-import platform
-import math
-
-import copy
-from collections import deque
-
 from dataclasses import dataclass, field
 from typing import List
 from enum import Enum
-
-def read_entire_file(name):
-  res = ""
-  try:
-    f = open(name, 'r')
-    res = f.read()
-    f.close()
-  except Exception as e:
-    warn(f"Unable to read file {name}.\n{e}")
-  return res
 
 class Directions(Enum):
   NULL = 0
@@ -100,10 +89,23 @@ class Node:
   bridge_amount: int = 0
 
 @dataclass
+class NeighbourNode:
+  n: Node
+  d: Directions
+
+@dataclass
+class Move:
+  x: int
+  y: int
+  bridge_amounts: List[int]
+  nnodes: List[NeighbourNode]
+
+@dataclass
 class State:
   rows: int 
   cols: int
   nodes: List[Node]
+
 
 def is_island(n):
   return n.island_lim != 0
@@ -178,12 +180,7 @@ def place_bridge(hashi_state, x, y, d, remove=False, amount=1):
   n1.island_count += inc
   n1.island_dir_count[~d.value] += inc
 
-@dataclass
-class NeighbourNode:
-  n: Node
-  d: Directions
 
-# effective meaning is accessible and have slots remaining
 def get_effective_neighbour_nodes(hashi_state, x, y):
   nns = []
 
@@ -198,19 +195,11 @@ def get_effective_neighbour_nodes(hashi_state, x, y):
         nn = NeighbourNode(n, d)
         nns.append(nn)
         break
-      # blocked
       elif n.bridge_amount > 0 and n.bridge_orientation != orientation:
         break
 
   return nns
 
-
-@dataclass
-class Move:
-  x: int
-  y: int
-  bridge_amounts: List[int]
-  nnodes: List[NeighbourNode]
 
 def find_combinations(target_sum, num_elements):
   def generate_combinations(current_combination, remaining_elements):
@@ -238,7 +227,6 @@ def gen_moves(hashi_state, x, y):
     m = Move(x, y, c, nn)
     moves.append(m)
 
-  # order by nnode with smallest lim getting larger number
   min_nnode_lim = 10000
   min_nnode_i = 0
   for (i, nnode) in enumerate(nn):
@@ -270,41 +258,6 @@ def undo_move(hashi_state, move):
     amount = move.bridge_amounts[i]
     place_bridge(hashi_state, move.x, move.y, nn.d, True, amount)
 
-def apply_definite_moves(hashi_state):
-  moves = []
-
-  for y in range(hashi_state.rows):
-    for x in range(hashi_state.cols):
-      n = get_node(hashi_state, x, y)
-      if not is_island(n) or n.island_count == n.island_lim:
-        continue
-
-      nn = get_effective_neighbour_nodes(hashi_state, x, y)
-
-      targets = []
-      for neighbour in nn:
-        nnode = neighbour.n
-        target = 3 - nnode.island_dir_count[~neighbour.d.value]
-        targets.append(target)
-
-      # Remaining bridges must go this neighbour
-      if len(nn) == 1:
-        nnode = nn[0].n
-        target = n.island_lim - n.island_count
-        actual = 3 - nnode.island_dir_count[~nn[0].d.value]
-        if target == actual:
-          move = Move(x, y, [target], nn)
-          apply_move(hashi_state, move)
-          moves.append(move)
-      # Remaining bridges must max neighbours
-      elif (n.island_lim - n.island_count) == sum(targets):
-        move = Move(x, y, targets, nn)
-        apply_move(hashi_state, move)
-        moves.append(move)
-
-  return moves
-
-
 def place_definite_bridges(hashi_state):
   x_it = range(hashi_state.cols)
   y_it = range(hashi_state.rows)
@@ -318,8 +271,6 @@ def place_definite_bridges(hashi_state):
       nn = get_effective_neighbour_nodes(hashi_state, x, y)
 
       if len(nn) == 1:
-        # NOTE(Ryan): Ensure not doubling up if other 1 to 1
-        # print(f"single at {x},{y}", flush=True)
         placed_bridges = True
         for i in range(n.island_lim - n.island_count):
           place_bridge(hashi_state, x, y, nn[0].d)
@@ -332,7 +283,6 @@ def place_definite_bridges(hashi_state):
         max_bridges_possible += possible 
       if (n.island_lim - n.island_count) == max_bridges_possible:
         placed_bridges = True
-        #print(f"nn at {x},{y}", flush=True)
         for neighbour in nn:
           for i in range(neighbour.n.island_lim):
             if can_place_bridge(hashi_state, x, y, neighbour.d):
@@ -341,15 +291,12 @@ def place_definite_bridges(hashi_state):
   return placed_bridges
 
 def solve_hashi(hashi_state):
-  val = place_definite_bridges(hashi_state)
-  while val:
-    val = place_definite_bridges(hashi_state)
-  return solve_from_cell(hashi_state, 0, 0, 0)
+  placed_bridge = place_definite_bridges(hashi_state)
+  while placed_bridge:
+    placed_bridge = place_definite_bridges(hashi_state)
+  return solve_from_cell(hashi_state, 0, 0)
 
-def solve_hashi(hashi_state):
-  return solve_from_cell_u(hashi_state, 0, 0)
-
-def solve_from_cell_u(hashi_state, x, y):
+def solve_from_cell(hashi_state, x, y):
   if x == hashi_state.cols:
     x = 0
     y += 1
@@ -359,65 +306,13 @@ def solve_from_cell_u(hashi_state, x, y):
 
   n = get_node(hashi_state, x, y)
   if not is_island(n) or n.island_count == n.island_lim:
-    return solve_from_cell_u(hashi_state, x + 1, y)
-
-  definite_move_list = []
-  definite_moves = apply_definite_moves(hashi_state)
-  definite_move_list.extend(definite_moves)
-  while len(definite_moves) > 0:
-    definite_moves = apply_definite_moves(hashi_state)
-    definite_move_list.extend(definite_moves)
-
-  possible_moves = gen_moves(hashi_state, x, y)
-  if len(possible_moves) == 0:
-    solved = True
-    for i in range(hashi_state.rows * hashi_state.cols):
-      n = hashi_state.nodes[i]
-      if is_island(n) and n.island_count != n.island_lim:
-        solved = False
-        break
-
-    if solved:
-      return True 
-  else:
-    for move in possible_moves:
-      if move_valid(hashi_state, move):
-        apply_move(hashi_state, move)
-        if solve_from_cell_u(hashi_state, x + 1, y):
-          return True
-        else:
-          undo_move(hashi_state, move)
-
-  # must undo definite moves here
-  for move in definite_move_list:
-    undo_move(hashi_state, move)
-
-  return False
-
-max_depth = -1
-
-# TODO(Ryan): 40x40 in under 2 minutes
-def solve_from_cell(hashi_state, x, y, depth):
-  global max_depth
-  if depth > max_depth:
-    max_depth = depth
-
-  if x == hashi_state.cols:
-    x = 0
-    y += 1
-    
-    if y == hashi_state.rows:
-      return True
-
-  n = get_node(hashi_state, x, y)
-  if not is_island(n) or n.island_count == n.island_lim:
-    return solve_from_cell(hashi_state, x + 1, y, depth + 1)
+    return solve_from_cell(hashi_state, x + 1, y)
 
   possible_moves = gen_moves(hashi_state, x, y)
   for move in possible_moves:
     if move_valid(hashi_state, move):
       apply_move(hashi_state, move)
-      if solve_from_cell(hashi_state, x + 1, y, depth + 1):
+      if solve_from_cell(hashi_state, x + 1, y):
         return True
       else:
         undo_move(hashi_state, move)
@@ -448,7 +343,6 @@ def print_hashi_state(hashi_state):
           s += vertical_bridge_char[n.bridge_amount]
     s += "\n"
   print(s, end="", flush=True)
-  # online tests may be sensitive to newline at end
 
 def parse_hashi_from_stdin():
   nodes = []
@@ -469,57 +363,10 @@ def parse_hashi_from_stdin():
 
   return State(rows, cols, nodes)
 
-def parse_hashi_from_file():
-  hashi_str = read_entire_file("hashi.puzzle")
-  lines = hashi_str.splitlines()
-  cols = len(lines[0])
-  rows = len(lines)
-
-  nodes = []
-
-  for line in lines:
-    for i in range(len(line)):
-      n = Node()
-      bridge_amount = 0
-      try:
-        bridge_amount = int(line[i], 16)
-      except ValueError:
-        pass
-      n.island_lim = bridge_amount 
-      nodes.append(n)
-
-  return State(rows, cols, nodes)
-
-
-def print_max_depth():
-  # not depth a concern, rather going down unecessary branches
-  global max_depth
-  time.sleep(60)
-  print(f"EXPIRED: max depth {max_depth}", flush=True)
-  exit_all_threads()
-
-def exit_all_threads():
-  os._exit(1)
-
 def main():
-  hashi_state = None
-  if sys.gettrace() is None:
-    hashi_state = parse_hashi_from_stdin()
-  else:
-    hashi_state = parse_hashi_from_file()
-
-  # watchdog_thread = threading.Thread(target=print_max_depth)
-  # watchdog_thread.start()
-
+  hashi_state = parse_hashi_from_stdin()
   if solve_hashi(hashi_state):
     print_hashi_state(hashi_state)
-    #print(f"max depth: {max_depth}", flush=True)
-    exit_all_threads()
 
 if __name__ == "__main__":
-  # NOTE(Ryan): Disable breakpoints if not running under a debugger
-  if sys.gettrace() is None:
-    os.environ["PYTHONBREAKPOINT"] = "0"
-  directory_of_running_script = pathlib.Path(__file__).parent.resolve()
-  os.chdir(directory_of_running_script)
   main()

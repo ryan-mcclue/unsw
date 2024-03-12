@@ -1,0 +1,17 @@
+#!/bin/bash
+
+starts=( "2634-5178-AB0C-9DEF" "1034-728B-5D6A-E9FC" "2634-5178-AB0C-9DEF" )
+search=( "bfs" "dfs" "greedy" "astar" )
+
+for ((i=0; i<3; i++)); do
+  printf "===========\n"
+  printf "START $i\n"
+  printf "===========\n"
+  for ((j=0; j<3; j++)); do
+    python3   
+    python3 search.py --start "${starts[i]}" --s "${search[j]}"
+  done
+  printf "===========\n"
+  printf "END $i\n"
+  printf "===========\n"
+done

@@ -5,6 +5,29 @@ user<->filesystem:
 * access-control, attributes
 * hierarchical:flat
 
+Generally have fixed block sizes:
+* Large: fewer IO; good for sequential access
+* Small: less unrelated data; good for random access
+
+Block allocation strategies: (all have internal fragmentation)
+(So, when create a file, will allocate as many blocks as needed and update as go)
+* Contiguous
+  - Access: Fast sequential, fast random
+  - External Fragmentation (only really applicable for read-only)
+* Linked
+  - Access: Fast sequential, slow random
+* Indexed (file points to data structure which has pointers to all blocks)
+  - Access: Fast sequential, fast random
+  (ext fs uses inodes, FAT has file allocation table, index block, file control block etc.)
+  (there is memory overhead of maintaining )
+  (updating/deleting are only 1 write)
+
+Storing free blocks:
+* Linked list: fast search, not contiguous
+* Bitmap: slow search, high memory, contiguous
+
+A sparse file has logical size different to physical, i.e. stores 0s in metadata rather than storing 
+
 regular files, directories and device files (block, character)
 
 a directory is mapping of file names
@@ -21,11 +44,3 @@ SPI IC disk controller -> SPI driver -> filesystem (caching, write scheduling) -
 
 a particular filesystem type may optimise itself for a particular medium, 
 e.g. flash/cdrom/magnetic etc.
-dynamic file blocks have internal but no external fragmentation
-
-dynamic linked list bad for random access, e.g. coding in a file
-so, keep a separate table for open files in memory (inodes) 
-that provide a contiguous mapping to block numbers (large memory requirements for duplication)
-
-sequential access->larger block size (fewer IO operations)
-random access->smaller block size (less unrelated data)

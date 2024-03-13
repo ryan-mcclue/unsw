@@ -3,12 +3,30 @@ supervised learning works with labelled data (training set):
 - decision tree:
   ockham's razor means we want a smaller tree, i.e. fewer attributes
   parsimony is unwillingness to use resources
-  low entropy means an attribute classifies into smaller number of groups; binary being best
-  so, a low entropy attribute would give us little information
+  information entropy is how much variance data has
+  information gain is how much entropy removed
   huffman encoding assigns higher frequency symbols short symbols and vice versa
   entropy can be thought of the average number of bits used per symbol for a huffman encoding scheme
-  Laplace error used to give some value to a 0 probability
-  If Laplace error of child exceeds parent, then prune child
+
+H(s); entropy of set with 2 classes, e.g. hired/not-hired  = -(a/Nlog(a/N) + b/Nlog(b/N))
+a:instances of class a
+b:instances of class b
+N:instances in set
+
+So, height attribute has tall and short (each of which fall into set classes)
+H(S, height) = (a/N)H(S, 'short') + (b/N)H(S, 'tall')
+InfoGain(height) = H(S) - H(S, height)
+Now, iteratively select each attribute with highest information gain as root node for decision tree
+
+Laplace error used to give some value to a 0 probability
+If the combined Laplace error of child nodes exceeds Laplace error of parent, then prune children
+Laplace error = 1 - (n + 1)/(N + k)
+N = total number
+n = majority class
+k = number of classes
+Typically tree node will be [10, 5]; 10 instances in majority class a, 5 instances in class b
+
+
 - neural network etc.
 - can have pre/post-processing and over fitting issues
 unsupervised unlabelled:
@@ -31,10 +49,13 @@ So, multi-layer perceptrons can implement any logical function.
 They consist of input, hidden and output layers.
 This becomes a neural network (feed forward?)
 
-Error/loss function is square difference of actual and desired output (so in relation to weight space)
+Error/loss function is square difference of actual and desired output (Sum Squared Error; so in relation to weight space)
+However, for classification tasks use Cross Entropy loss.
+Loss functions chosen based on maximising liklihood, i.e. log(P(D|h)) (where D is output and h is hypothesis)
+Sometimes have penalty/weight decay on loss function to prevent weights getting large. 
+
 Having continuous activation function like sigmoid generates smoother error curves
 (effectively doing a local search on weight space, so a smoother curve helps this)
 Gradient descent used to optimise minimising loss. Backpropagate error at output to input nodes
 The partial derivatives of cost function and weights show how much cost would change if weight changed
 Gradient descent rule updates weights, i.e. multiplying learning rate by derivatives
-

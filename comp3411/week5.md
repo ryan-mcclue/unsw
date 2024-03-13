@@ -15,6 +15,7 @@ P(A∣B) = `P(A ∧ B)/P(B)` (conditional probability: probability of A given B 
 Bayes rule rewrites this. Can do P(Cause|Effect) = `P(Effect|Cause)P(Cause)/P(Effect)`
 For a medical diagnosis, have 2 random variables: cancer, test works
 priors: P(positive|cancer) = 0.98, and P(negative|¬cancer) = 0.97
+posterior: P(cancer|positive) estimate after data observed
 
 joint probability distribution is a table providing probabilities of all combinations of random variables (sum to 1)
 P(A,B) is joint probability of events occuring simultaneously

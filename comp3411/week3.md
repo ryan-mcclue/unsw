@@ -20,7 +20,10 @@ For each turn generate a tree of all possible moves and resulting states from cu
     * if max(), alpha = max(alpha, node); 
       if min(), beta = min(beta, node); 
       for any level, if beta <= alpha prune
-      (IMPORTANT: follow a recursive DFS, so pass starting alpha/beta from parent)
+(IMPORTANT: only pass down!)
+(IMPORTANT: remember to re-evaluate alpha-beta going up!, i.e. child evaluates, then parent evaluates passing down to other child)
+(IMPORTANT: alpha-beta values will be selected if better than current children. 
+so, a result other than child nodes can be selected)
 
 Negamax has only one utility function, as oppose to two.
 For each level choose the maximum value and negate it in the parent.
@@ -33,12 +36,9 @@ Stochastic games:
 A 'Monte Carlo' player would make move based on simulating random move spaces.
 This means tree is built up stochastically
 Expectimax:
-  * chance nodes don't recieve alpha/beta values from children 
-    similarly, chance nodes don't pass probability up to parent
-    starting probability takes into account value range, e.g. [-10, 10], so: 0.1*10 + 0.5*10 + 0.4*10 = 10 
-  * TODO: same pruning rules or? 
-    for parent maximum, prune if alpha > P
-    for parent minimum, prune if P < B
+  * starting probability takes into account value range, e.g. [-10, 10], so: `0.1*10 + 0.5*10 + 0.4*10 = 10`
+  * for max. if P<=alpha, prune
+    for min. if P<=beta, prune
 
 Monotonic transformation, i.e. f(x2) > f(x1)
 Ordinal means definining position in series

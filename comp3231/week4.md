@@ -40,7 +40,8 @@ inode (indexed allocation) will be deleted when its reference counter is 0.
 so, simultaneous read/write/deletion allowed on linux
 on windows, mandatory file locks exist
 
-SPI IC disk controller -> SPI driver -> filesystem (caching, write scheduling) -> VFS (inodes, open files)
+SPI IC disk controller -> SPI driver -> filesystem (caching, write scheduling) -> VFS (vnode) -> FS (write/read/mount, allocation strategies, inodes, etc.)
+VFS abstracts different filesystems, file types (device /dev, network, kernel data structure /proc files etc.), allocation strategies? etc.
 
 a particular filesystem type may optimise itself for a particular medium, 
 e.g. flash/cdrom/magnetic etc.

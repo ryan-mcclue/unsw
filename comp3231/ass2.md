@@ -1,4 +1,8 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+git clone https://z5346008@nw-syd-gitlab.cseunsw.tech/COMP3231/24T1/grp201-asst2.git asst2-src
+
+TODO: check uninitialised git log
+
 We give you two system call implementations: sys_reboot() in main/main.c and sys___time() in syscall/time_syscalls.c. In GDB, if you put a breakpoint on sys_reboot() and run the "reboot" program, you can use "backtrace" (or "where") to see how it got there.
 
 * existing syscall template

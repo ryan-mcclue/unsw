@@ -69,8 +69,10 @@ However, for classification tasks use Cross Entropy loss.
 Loss functions chosen based on maximising liklihood, i.e. log(P(D|h)) (where D is output and h is hypothesis)
 Sometimes have penalty/weight decay on loss function to prevent weights getting large. 
 
-Having continuous activation function like sigmoid generates smoother error curves
+A normal perceptron activation function is a step function, i.e. if above a threshold fire.
+2-layer and above use continuous activation function like sigmoid, to generate smoother error curves
 (effectively doing a local search on weight space, so a smoother curve helps this)
+
 Gradient descent used to optimise minimising loss. Backpropagate error at output to input nodes
 The partial derivatives of cost function and weights show how much cost would change if weight changed
 Gradient descent rule updates weights, i.e. multiplying learning rate by derivatives

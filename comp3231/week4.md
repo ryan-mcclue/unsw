@@ -16,11 +16,12 @@ Block allocation strategies: (all have internal fragmentation)
   - External Fragmentation (only really applicable for read-only)
 * Linked
   - Access: Fast sequential, slow random
-* Indexed (file points to data structure which has pointers to all blocks)
+* Indexed (a data structure which has pointers to all blocks)
   - Access: Fast sequential, fast random
-  (ext fs uses inodes, FAT has file allocation table, index block, file control block etc.)
+  (ext fs uses inodes with pointers for each file, FAT has a single file allocation table for all files, index block, file control block etc.)
   (there is memory overhead of maintaining )
   (updating/deleting are only 1 write)
+TODO: if passing in filename, have to traverse directory than inode?
 
 Storing free blocks:
 * Linked list: fast search, not contiguous
@@ -30,7 +31,7 @@ A sparse file has logical size different to physical, i.e. stores 0s in metadata
 
 regular files, directories and device files (block, character)
 
-a directory is mapping of file names
+a directory is mapping of file names to inode numbers (a hard link has same number, different name)
 unique absolute path names from root directory of file system
 
 file locks exist to prevent simultaneous access to a file
@@ -42,14 +43,6 @@ on windows, mandatory file locks exist
 
 SPI IC disk controller -> SPI driver -> filesystem (caching, write scheduling) -> VFS (vnode) -> FS (write/read/mount, allocation strategies, inodes, etc.)
 VFS abstracts different filesystems, file types (device /dev, network, kernel data structure /proc files etc.), allocation strategies? etc.
-
-EXT3:
-inode (blocks, atime/ctime/mtime, uid/gid, mode, size etc.)
-IMPORTANT: to account for sparse files, size is offset of highest byte written
-IMPORTANT: to keep metadata size static, can store max. number of block numbers:
-  - 4 byte block numbers
-  - 12 direct blocks
-  - single, double, triple indirect, i.e. block number to block containing block numbers
 
 a particular filesystem type may optimise itself for a particular medium, 
 e.g. flash/cdrom/magnetic etc.

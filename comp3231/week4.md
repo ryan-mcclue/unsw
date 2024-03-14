@@ -43,5 +43,13 @@ on windows, mandatory file locks exist
 SPI IC disk controller -> SPI driver -> filesystem (caching, write scheduling) -> VFS (vnode) -> FS (write/read/mount, allocation strategies, inodes, etc.)
 VFS abstracts different filesystems, file types (device /dev, network, kernel data structure /proc files etc.), allocation strategies? etc.
 
+EXT3:
+inode (blocks, atime/ctime/mtime, uid/gid, mode, size etc.)
+IMPORTANT: to account for sparse files, size is offset of highest byte written
+IMPORTANT: to keep metadata size static, can store max. number of block numbers:
+  - 4 byte block numbers
+  - 12 direct blocks
+  - single, double, triple indirect, i.e. block number to block containing block numbers
+
 a particular filesystem type may optimise itself for a particular medium, 
 e.g. flash/cdrom/magnetic etc.

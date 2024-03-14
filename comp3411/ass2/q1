@@ -1,17 +1,31 @@
 #!/bin/bash
+pushd path_search > /dev/null
 
-starts=( "2634-5178-AB0C-9DEF" "1034-728B-5D6A-E9FC" "2634-5178-AB0C-9DEF" )
-search=( "bfs" "dfs" "greedy" "astar" )
+#python3 search.py --start "2634-5178-AB0C-9DEF" --s "bfs"
+# [bfs] Generated: 23415. Expanded: 10978. Length: 12. Cost: 12.
+#python3 search.py --start "2634-5178-AB0C-9DEF" --s "dfs" --id
+# [dfs,id] Generated: 53489. Expanded: 25121. Length: 12. Cost: 12.
+#python3 search.py --start "2634-5178-AB0C-9DEF" --s "greedy"
+# [greedy] Generated: 127276. Expanded: 59182. Length: 12. Cost: 12.
+#python3 search.py --start "2634-5178-AB0C-9DEF" --s "astar"
+# [astar] Generated: 60. Expanded: 30. Length: 12. Cost: 12.
 
-for ((i=0; i<3; i++)); do
-  printf "===========\n"
-  printf "START $i\n"
-  printf "===========\n"
-  for ((j=0; j<3; j++)); do
-    python3   
-    python3 search.py --start "${starts[i]}" --s "${search[j]}"
-  done
-  printf "===========\n"
-  printf "END $i\n"
-  printf "===========\n"
-done
+
+#python3 search.py --start "1034-728B-5D6A-E9FC" --s "bfs"
+# [bfs] Generated: 734381. Expanded: 344890. Length: 17. Cost: 17.
+#python3 search.py --start "1034-728B-5D6A-E9FC" --s "dfs" --id
+# [dfs,id] Generated: 743882. Expanded: 349380. Length: 17. Cost: 17.
+#python3 search.py --start "1034-728B-5D6A-E9FC" --s "greedy"
+# [greedy] Generated: 44. Expanded: 19. Length: 17. Cost: 17.
+#python3 search.py --start "1034-728B-5D6A-E9FC" --s "astar"
+# [astar] Generated: 80. Expanded: 35. Length: 17. Cost: 17
+
+
+#python3 search.py --start "2634-5178-AB0C-9DEF" --s "bfs"
+# [bfs] Generated: 23415. Expanded: 10978. Length: 12. Cost: 12.
+#python3 search.py --start "2634-5178-AB0C-9DEF" --s "dfs" --id
+# [dfs,id] Generated: 53489. Expanded: 25121. Length: 12. Cost: 12.
+#python3 search.py --start "2634-5178-AB0C-9DEF" --s "greedy"
+# [greedy] Generated: 127276. Expanded: 59182. Length: 12. Cost: 12.
+#python3 search.py --start "2634-5178-AB0C-9DEF" --s "astar"
+# [astar] Generated: 60. Expanded: 30. Length: 12. Cost: 12.

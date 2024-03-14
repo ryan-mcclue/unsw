@@ -1,0 +1,1996 @@
+Start:2634-5178-AB0C-9DEF
+Traceback (most recent call last):
+  File "search.py", line 154, in <module>
+    main()
+  File "search.py", line 63, in main
+    num_expand = search(start,args,1000000,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 118, in generate_and_expand
+    num_expand = search(child,args,max_cost,num_expand)
+  File "search.py", line 99, in search
+    return generate_and_expand(node,args,max_cost,num_expand,None)
+  File "search.py", line 114, in generate_and_expand
+    elif not ancestor_of(state,node):
+  File "search.py", line 128, in ancestor_of
+    while not (ancestor is None or ancestor.state.is_equal_to(state)):
+  File "/home/ryan/Documents/unsw/comp3411/ass2/path_search/sliding.py", line 67, in is_equal_to
+    return(np.array_equal(self.a, other.a))
+  File "<__array_function__ internals>", line 200, in array_equal
+  File "/home/ryan/.local/lib/python3.8/site-packages/numpy/core/numeric.py", line 2468, in array_equal
+    return bool(asarray(a1 == a2).all())
+  File "/home/ryan/.local/lib/python3.8/site-packages/numpy/core/_methods.py", line 64, in _all
+    return umr_all(a, axis, dtype, out, keepdims)
+RecursionError: maximum recursion depth exceeded while calling a Python object

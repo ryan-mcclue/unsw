@@ -1,5 +1,6 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 git clone https://z5346008@nw-syd-gitlab.cseunsw.tech/COMP3231/24T1/grp201-asst2.git asst2-src
+#include <kern/errno.h>
 
 TODO: check uninitialised git log
 
@@ -24,3 +25,5 @@ TODO: can two threads call a system call at the same time?
 - keep track of open files and transfer data from kernel to userspace
 
 For this basic assignment, the file descriptors 1 (stdout) and 2 (stderr) must start out attached to the console device ("con:"), 0 (stdin) can be left unattached. You will probably modify runprogram() to achieve this. Your implementation must allow programs to use dup2() to change stdin, stdout, stderr to point elsewhere.
+
+

@@ -9,17 +9,19 @@ supervised learning works with labelled data (training set):
   entropy can be thought of the average number of bits used per symbol for a huffman encoding scheme
 
 H(s); entropy of set with 2 classes, e.g. hired/not-hired  = -(a/Nlog(a/N) + b/Nlog(b/N))
-a:instances of class a
-b:instances of class b
+a:instances of class a (e.g. short in class '+')
+b:instances of class b (e.g. short in class '-')
 N:instances in set
 
 So, height attribute has tall and short (each of which fall into set classes)
 H(S, height) = (a/N)H(S, 'short') + (b/N)H(S, 'tall')
+IMPORTANT: instances here are attribute amounts
 InfoGain(height) = H(S) - H(S, height)
 Now, iteratively select each attribute with highest information gain as root node for decision tree
 
 Laplace error used to give some value to a 0 probability
-If the combined Laplace error of child nodes exceeds Laplace error of parent, then prune children
+If the combined average Laplace error of child nodes exceeds Laplace error of parent, then prune children
+(a/N * child_err + b/N * child_err)
 Laplace error = 1 - (n + 1)/(N + k)
 N = total number
 n = majority class
@@ -40,15 +42,19 @@ node:
 input edges -> non-linear activation/transfer function (takes weighted sum of edges; g(s)) -> output
 
 perceptron has inputs multiplied by learned weights which lead to output
-may have a bias term, i.e. a constant added to output, e.g. for AND perceptron could be number of inputs
+may have a bias term, i.e. a constant added to output, 
+e.g. for AND number of inputs, e.g. (1/2-n) (want it to be slightly greater than 0)
+     for OR (n-1/2)
+     for NOT (just set weight to -1)
 e.g. 2 inputs, 3 weights: `w0 + x0*w1 + x1*w2`
-TODO: how is plane geometry used?
+TODO: how is plane geometry used? (slope of line)
 trial-and-error weight values initially? if classes say -1 and +1, know that >0 and <0
 Now, to learn weights on training data:
 * Compare output class to what was expected.
-  If > then expected, subtract input values multiplied by learning rate from weights    
-  If < then expected, add input values multiplied by learning rate to weights    
-  IMPORTANT: if bias weight, will subtract/add learning rate value
+  IMPORTANT: outputs will be rounded to  classes, e.g. if 2 might be rounded to -1,1
+  w = w + learning_rate*(desired-actual)*input
+  IMPORTANT: if bias weight, will subtract/add learning rate multiplication term
+  (small learning rate will minimise removing correct classifications)
   Repeat until all training samples have correct output
 
 perceptron can only compute linearly separable functions, i.e. points separated by line, i.e. binary classifier

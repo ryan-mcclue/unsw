@@ -2,7 +2,9 @@
 git clone https://z5346008@nw-syd-gitlab.cseunsw.tech/COMP3231/24T1/grp201-asst2.git asst2-src
 #include <kern/errno.h>
 
-TODO: check uninitialised git log
+kernel facing, e.g. assumed syscall exception handler called us
+
+prefix with sys_
 
 We give you two system call implementations: sys_reboot() in main/main.c 
 and sys___time() in syscall/time_syscalls.c. 
@@ -14,8 +16,11 @@ you can use "backtrace" (or "where") to see how it got there.
 * test: sys161 kernel "p /testbin/asst2".
 
 copyout(const void *src, userptr_t userdest, size_t len)
+uio.h
 
-* open, read, write, lseek, close, dup2
+vfs_close() to avoid memory leak?
+
+* open/close (vfs_open/clos), read/write (vop_read/write), lseek, dup2
   - use existing VFS and vnodes and track filesystem state
   - gracefully handle all possibly erroneous inputs
   - error codes as per os161 man pages (leniant to particular error code)

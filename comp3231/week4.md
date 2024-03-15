@@ -17,15 +17,16 @@ Block allocation strategies: (all have internal fragmentation)
 * Linked
   - Access: Fast sequential, slow random
 * Indexed (a data structure which has pointers to all blocks)
+  (considered 1write as the shifting of block numbers occurs in inode that is in ram, not disk)
   - Access: Fast sequential, fast random
   (ext fs uses inodes with pointers for each file, FAT has a single file allocation table for all files, index block, file control block etc.)
   (there is memory overhead of maintaining )
   (updating/deleting are only 1 write)
-TODO: if passing in filename, have to traverse directory than inode?
 
 Storing free blocks:
-* Linked list: fast search, not contiguous
-* Bitmap: slow search, high memory, contiguous
+* Linked list: no extra space, slower as more disk accesses (storage free, as store free blocks in blocks themselves)
+* Bitmap: faster search, contiguous (used by linux as contiguous faster for hardware and caching)
+  (if deleted, actually only mark as free on bitmap, block is not physically cleared)
 
 A sparse file has logical size different to physical, i.e. stores 0s in metadata rather than storing 
 
@@ -42,7 +43,7 @@ so, simultaneous read/write/deletion allowed on linux
 on windows, mandatory file locks exist
 
 SPI IC disk controller -> SPI driver -> filesystem (caching, write scheduling) -> VFS (vnode) -> FS (write/read/mount, allocation strategies, inodes, etc.)
-VFS abstracts different filesystems, file types (device /dev, network, kernel data structure /proc files etc.), allocation strategies? etc.
+VFS abstracts different filesystems, file types (device /dev, network, kernel data structure /proc files etc.), handles concurrency issues 
 
 a particular filesystem type may optimise itself for a particular medium, 
 e.g. flash/cdrom/magnetic etc.

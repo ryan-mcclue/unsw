@@ -44,5 +44,3 @@ FS jounrnalling to aid reliability as operations non-atomic
 e.g. deleting a file could crash at any stage of directory, inode, block etc.) 
 
 SSDs still have seek time, albeit very small (so sequential still faster than random)
-
-https://elgar.cse.unsw.edu.au/~cs3231/23T1/lectures/lect11.pdf

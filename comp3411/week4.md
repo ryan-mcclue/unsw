@@ -47,8 +47,10 @@ e.g. for AND number of inputs, e.g. (1/2-n) (want it to be slightly greater than
      for OR (n-1/2)
      for NOT (just set weight to -1)
 e.g. 2 inputs, 3 weights: `w0 + x0*w1 + x1*w2`
-TODO: how is plane geometry used? (slope of line)
-trial-and-error weight values initially? if classes say -1 and +1, know that >0 and <0
+IMPORTANT: can find initial weight values with plane geometry;
+specifically, find gradient of line from sample points, e.g. (y2-y1)/(x2-x1).
+then take point between points and subsitute into y=mx+b
+
 Now, to learn weights on training data:
 * Compare output class to what was expected.
   IMPORTANT: outputs will be rounded to  classes, e.g. if 2 might be rounded to -1,1

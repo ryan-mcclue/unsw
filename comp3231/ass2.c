@@ -34,9 +34,13 @@ switch (callno)
   } break;
   case SYS_lseek:
   {
-    off_t 64bit
+    uint64_t offset;
+    int whence;
+    join32to64(tf->tf_a2, tf->tf_a3, &offset);
+    copyin((userptr_t)tf->tf_sp + 16, &whence, sizeof(int));
+
     off_t lseek(int fd, off_t pos, int whence);
-    retval = sys_lseek(tf->a0, tf->a2, tf->a3, tf->a4);
+    retval = sys_lseek(tf->a0, offset, whence);
   } break;
   case SYS_dup2:
   {
@@ -54,6 +58,7 @@ switch (callno)
   {
     if (callno == SYS_lseek)
     {
+      split64to32(retval64, &tf->tf_v0, &tf->tf_v1);
 		  tf->tf_v0 = (u32)((u64)retval >> 32);
       tf->tf_v1 = (u32)retval;
     }
@@ -87,8 +92,111 @@ result = vfs_open(progname, O_RDWR, 0, &v);
 int vfs_open(char *path, int openflags, mode_t mode, struct vnode **ret);
 //
 
-// kern/include/file.h, kern/syscall/file.c
+vfs_open()
+vfs_close()
+vfs_remove()
 
+// TODO(Ryan): may need to vop_fsync() to flush? 
+vop_write()
+vop_read()
+vop_stat()
+vop_truncate()
+VOP_TRUNCATE(vn, 0);
+vop_mmap()
+
+struct uio {
+	struct iovec     *uio_iov;	/* Data blocks */
+	unsigned          uio_iovcnt;	/* Number of iovecs */
+	off_t             uio_offset;	/* Desired offset into object */
+	size_t            uio_resid;	/* Remaining amt of data to xfer */
+	enum uio_seg      uio_segflg;	/* What kind of pointer we have */
+	enum uio_rw       uio_rw;	/* Whether op is a read or write */
+	struct addrspace *uio_space;	/* Address space for user pointer */
+};
+
+struct iovec iov;
+struct uio ku;
+
+char numstr[8];
+snprintf(numstr, sizeof(numstr), "%lu", num);
+fstest_write(filesys, numstr, 1, 0)
+fstest_write(const char *fs, const char *namesuffix,
+	     int stridesize, int stridepos)
+
+uio_kinit(&iov, &ku, buf, strlen(SLOGAN), pos, UIO_WRITE);
+err = VOP_WRITE(vn, &ku);
+		err = VOP_WRITE(vn, &ku);
+		if (err) {
+			kprintf("%s: Write error: %s\n", name, strerror(err));
+			vfs_close(vn);
+			vfs_remove(name);
+			return -1;
+		}
+
+		if (ku.uio_resid > 0) {
+			kprintf("%s: Short write: %lu bytes left over\n",
+				name, (unsigned long) ku.uio_resid);
+			vfs_close(vn);
+			vfs_remove(name);
+			return -1;
+		}
+
+		bytes += (ku.uio_offset - pos);
+		shouldbytes += strlen(SLOGAN);
+		pos = ku.uio_offset;
+	}
+
+if (bytes != shouldbytes) {
+	kprintf("%s: %lu bytes written, should have been %lu!\n",
+		name, (unsigned long) bytes,
+		(unsigned long) (NCHUNKS*strlen(SLOGAN)));
+	vfs_remove(name);
+	return -1;
+}
+kprintf("%s: %lu bytes written\n", name, (unsigned long) bytes);
+
+
+uio_kinit(&iov, &myuio, buf, sizeof(buf), 0, UIO_READ);
+result = VOP_READ(vn, &myuio);
+
+
+// will work with file descriptors. need to know mode (e.g. read-only), read/write pointer
+struct File
+{
+  struct vnode *vnode;
+  vnode->vn_ops->vop_write(self, uio)
+
+  offset;
+  mode_flags;
+  open_flags;
+  ref_count;
+};
+
+// kern/include/file.h, kern/syscall/file.c
+int
+open(const char *filename, int flags, mode_t mode)
+{
+  // TODO(Ryan): this might destroy pathname, so duplicate filename?
+  int vfs_open(char *path, int openflags, mode_t mode, struct vnode **ret);
+
+  struct vnode *ret = NULL;
+	strcpy(buf, name);
+
+	flags = O_WRONLY|O_CREAT|O_TRUNC;
+  // mode (rwx) just pass down?
+	result = vfs_open(progname, O_RDONLY, 0, &v);
+	err = vfs_open(buf, flags, 0664, &vn);
+
+  // TODO: why does name need removing?
+  vfs_close(v);
+  vfs_remove(name);
+  //vfs_mkdir(filename, mode);
+
+  global_fds[ret][vnode];
+}
+
+
+//struct vnode *cwd = curproc->p_cwd;
 
   - use existing VFS and vnodes and track filesystem state
   - gracefully handle all possibly erroneous inputs
@@ -97,10 +205,6 @@ userland/include/unistd.h -> kern/include/syscall.h
 put our code in kern/syscall/file.c
 kernel facing, e.g. assumed syscall exception handler called us
 
-get cwd from curpoc() proc struct
-
-will be getting args from struct trapframe? (so consult, syscall procedure)
-copyin((userptr_t)tf->tf_sp + 16, &whence, sizeof(int));
 
 If too many files are open within a particular process, you should return EMFILE. 
 If too many files are open systemwide, you should return ENFILE.

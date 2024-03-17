@@ -172,16 +172,44 @@ struct File
   ref_count;
 };
 
+File *file_table[128];
+File file_table_entry[128];
+u32 next_free_slot = 0;
+
 // kern/include/file.h, kern/syscall/file.c
 int
 open(const char *filename, int flags, mode_t mode)
 {
-  // see what error handling the underlying performs first
-  
-  // TODO(Ryan): this might destroy pathname, so duplicate filename?
-  int vfs_open(char *path, int openflags, mode_t mode, struct vnode **ret);
+  // NOTE: seems we just need to check if parameters are valid as vfs layer handles most errno codes.
+  // TODO: param checking
 
-  struct vnode *ret = NULL;
+  for (int i = 0; i < ARRAY_COUNT(file_table); i += 1)
+  {
+    File *f = file_table[i];
+    if (f == NULL)
+    {
+      f = &file_table_entry[next_free_slot];
+      f-> ...
+
+      if (next_free_slot + 1 == 128) nothing;
+    }
+  }
+  
+  // the same file will have unique file table entry (e.g. own position; so one could overwrite the other)
+  // only dup2 has separate fds point to same entry
+
+  // NOTE(Ryan): this might destroy pathname
+  char buf[MAX_PATH] = {0};
+  strncpy(buf, filename, MAX(strlen(filename), sizeof(buf)));
+
+  struct vnode *node = NULL;
+  int res = vfs_open(buf, flags, mode, &node);
+
+  if (!res)
+  {
+    // find free descriptor
+  }
+
 	strcpy(buf, name);
 
 	flags = O_WRONLY|O_CREAT|O_TRUNC;
@@ -193,8 +221,6 @@ open(const char *filename, int flags, mode_t mode)
   vfs_close(v);
   vfs_remove(name);
   //vfs_mkdir(filename, mode);
-
-  global_fds[ret][file];
 }
 
 

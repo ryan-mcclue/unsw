@@ -73,24 +73,6 @@ open/close (vfs_open/close), read/write (vop_read/write), lseek, dup2
 }
 //
 
-// boot()
-u32 open_fds[OPEN_MAX];
-
-// 
-
-// Your implementation must allow programs to use dup2() to change stdin, stdout, stderr to point elsewhere.
-// on startup->fd1 and fd2 "con:" device (i.e. identical source), however can be closed
-// (modify runprogram() to acheive this)
-// runprogram()
-char con_device[5] = "con:";
-r1 = vfs_open(conname,f1,m1,&v1);
-strcpy(con_device, "con:"); 
-r2 = vfs_open(conname,f2,m2,&v2); 
-
-struct vnode *v;
-result = vfs_open(progname, O_RDWR, 0, &v);
-int vfs_open(char *path, int openflags, mode_t mode, struct vnode **ret);
-//
 
 vfs_open()
 vfs_close()
@@ -159,70 +141,144 @@ kprintf("%s: %lu bytes written\n", name, (unsigned long) bytes);
 uio_kinit(&iov, &myuio, buf, sizeof(buf), 0, UIO_READ);
 result = VOP_READ(vn, &myuio);
 
+#define ARRAY_COUNT(a) (sizeof(a)/sizeof(a[0]))
+#define IS_POW2_ALIGNED(x, p) (((x) & ((p) - 1)) == 0)
+#define IS_POW2(x) IS_POW2_ALIGNED(x, x) 
+
+#define __SLL_STACK_PUSH(first, node, next) \
+(\
+  ((node)->next = (first)), \
+  ((first) = (node)) \
+)
+#define SLL_STACK_PUSH(first, node) \
+  __SLL_STACK_PUSH(first, node, next)
+
+#define __SLL_STACK_POP(first, next) \
+(\
+  ((first) != NULL) ? \
+    (\
+     ((first) = (first)->next) \
+    )\
+  : \
+  (\
+    (NULL) \
+  )\
+)
+#define SLL_STACK_POP(first) \
+  __SLL_STACK_POP(first, next)
+
 
 // will work with file descriptors. need to know mode (e.g. read-only), read/write pointer
+typedef struct File File;
 struct File
 {
   struct vnode *vnode;
-  vnode->vn_ops->vop_write(self, uio)
-
   offset;
   mode_flags;
   open_flags;
   ref_count;
+  pool_id;
 };
 
-File *file_table[128];
-File file_table_entry[128];
-u32 next_free_slot = 0;
+typedef struct FileID FileID;
+struct FileID
+{
+  FileID *next;
+  int id;
+};
+
+typedef struct FileTable
+struct FileTable
+{
+  File *files[MAX_PATH];
+  File files_pool[MAX_PATH];
+
+  FileID file_id_pool[MAX_PATH];
+  FileID *first_free_file_id;
+};
+
+FileTable global_file_table;
+
+// boot()
+for (int i = 0; i < ARRAY_COUNT(global_file_table.file_id_pool); i += 1)
+{
+  FileID *f_id = &global_file_table.file_id_pool[i];
+  f_id->id = i;
+  // NOTE(Ryan): This won't add smallest first
+  SLL_STACK_PUSH(global_file_table.first_free_file_id, f_id);
+}
+
+// Your implementation must allow programs to use dup2() to change stdin, stdout, stderr to point elsewhere.
+// on startup->fd1 and fd2 "con:" device (i.e. identical source), however can be closed
+// (modify runprogram() to acheive this)
+// runprogram()
+char con_device[5] = "con:";
+r1 = vfs_open(conname,f1,m1,&v1);
+strcpy(con_device, "con:"); 
+r2 = vfs_open(conname,f2,m2,&v2); 
+
+int std_out = sys_open("con:");
+sys_dup2(std_out, something);
+
+struct vnode *v;
+result = vfs_open(progname, O_RDWR, 0, &v);
+int vfs_open(char *path, int openflags, mode_t mode, struct vnode **ret);
+//
 
 // kern/include/file.h, kern/syscall/file.c
 int
-open(const char *filename, int flags, mode_t mode)
+sys_open(const char *filename, int flags, mode_t mode)
 {
   // NOTE: seems we just need to check if parameters are valid as vfs layer handles most errno codes.
-  // TODO: param checking
-
-  for (int i = 0; i < ARRAY_COUNT(file_table); i += 1)
-  {
-    File *f = file_table[i];
-    if (f == NULL)
-    {
-      f = &file_table_entry[next_free_slot];
-      f-> ...
-
-      if (next_free_slot + 1 == 128) nothing;
-    }
-  }
+  if (filename == NULL) return EFAULT;
+  if ((flags & (O_RDONLY | O_WRONLY | O_RDWR)) == 0 || \\
+       !IS_POW2(flags) || (flags > O_APPEND)) return EINVAL;
+  if (global_state.first_free_file_id == NULL) return EMFILE;
   
   // the same file will have unique file table entry (e.g. own position; so one could overwrite the other)
   // only dup2 has separate fds point to same entry
 
-  // NOTE(Ryan): this might destroy pathname
+  // NOTE(Ryan): Preserve filename
   char buf[MAX_PATH] = {0};
-  strncpy(buf, filename, MAX(strlen(filename), sizeof(buf)));
+  strncpy(buf, filename, sizeof(buf));
 
   struct vnode *node = NULL;
   int res = vfs_open(buf, flags, mode, &node);
+  if (res) return res;
 
-  if (!res)
+  FileID *file_id = global_file_table.first_free_file_id;
+  SLL_STACK_POP(global_file_table.first_free_file_id);
+  int f_id = file_id->id;
+  File *file = &global_file_table.files_pool[f_id];
+  file->node = node;
+  file->ref_counter = 1;
+  file->pool_id = f_id;
+  if (flags & O_APPEND)
   {
-    // find free descriptor
+    struct stat stat_buf = {0};
+    VOP_STAT(node, &stat_buf);
+    file->cursor = stat_buf.st_size;
   }
-
-	strcpy(buf, name);
-
-	flags = O_WRONLY|O_CREAT|O_TRUNC;
-  // mode (rwx) just pass down?
-	result = vfs_open(progname, O_RDONLY, 0, &v);
-	err = vfs_open(buf, flags, 0664, &vn);
-
-  // TODO: why does name need removing?
-  vfs_close(v);
-  vfs_remove(name);
-  //vfs_mkdir(filename, mode);
+  global_file_table.files[f_id] = file;
+  
+  return res;
 }
 
+int 
+sys_close(int fd)
+{
+  File *file = global_file_table.files[fd];
+  if (--file->ref_counter == 0) 
+  {
+    vfs_close(file->node);
+    file->node = NULL;
+    file->offset = 0
+  }
+
+  FileID *file_id = &global_file_table.file_id_pool[file->pool_id];
+  file->pool_id = -1;
+  SLL_STACK_PUSH(global_file_table.first_free_file_id, file_id);
+}
 
 //struct vnode *cwd = curproc->p_cwd;
 

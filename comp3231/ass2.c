@@ -176,6 +176,8 @@ struct File
 int
 open(const char *filename, int flags, mode_t mode)
 {
+  // see what error handling the underlying performs first
+  
   // TODO(Ryan): this might destroy pathname, so duplicate filename?
   int vfs_open(char *path, int openflags, mode_t mode, struct vnode **ret);
 
@@ -192,7 +194,7 @@ open(const char *filename, int flags, mode_t mode)
   vfs_remove(name);
   //vfs_mkdir(filename, mode);
 
-  global_fds[ret][vnode];
+  global_fds[ret][file];
 }
 
 

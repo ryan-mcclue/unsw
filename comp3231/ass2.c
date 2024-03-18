@@ -215,17 +215,18 @@ sys_open(const char *filename, int flags, mode_t mode)
   int res = vfs_open(consumed_filename, flags, mode, &node);
   if (res) return res;
 
-  FileDescriptor *fd = global_file_table.first_free_fd;
-  SLL_STACK_POP(global_file_table.first_free_fd);
+  FileDescriptor *file_descriptor = global_file_table.first_free_file_descriptor;
+  SLL_STACK_POP(global_file_table.first_free_file_descriptor);
 
-  FileID *f_id = global_file_table.first_free_file_id;
-  SLL_STACK_POP(global_file_table.first_free_file_id);
+  FileMemoryID *file_memory_id = global_file_table.first_free_file_memory_id;
+  SLL_STACK_POP(global_file_table.first_free_file_memory_id);
 
-  File *file = global_file_table.files[fd->fd];
-  file = global_file_table.files_pool[f_id->id];
+  File *file = global_file_table.files[file_descriptor->fd];
+  file = global_file_table.files_memory[file_memory_id->id];
   file->node = node;
+  file->open_flags = flags;
   file->ref_counter = 1;
-  file->id = f_id->id;
+  file->memory_id = file_memory_id->id;
   if (flags & O_APPEND)
   {
     struct stat stat_buf = {0};
@@ -246,33 +247,33 @@ sys_close(int fd)
   {
     vfs_close(file->node);
 
-    FileID *f_id = &global_file_table.file_id_pool[file->id];
-    SLL_STACK_PUSH(global_file_table.first_free_file_id, f_id);
+    FileMemoryID *file_memory_id = &global_file_table.file_memory_id_memory[file->memory_id];
+    SLL_STACK_PUSH(global_file_table.first_free_file_memory_id, file_memory_id);
 
     file->node = NULL;
     file->cursor = 0;
     file->open_flags = 0;
-    file->id = 0;
+    file->memory_id = -1;
     file = NULL;
   }
 
-  FileDescriptor *fd = &global_file_table.fd_pool[fd];
-  SLL_STACK_PUSH(global_file_table.first_free_fd, fd);
+  FileDescriptor *file_descriptor = &global_file_table.file_descriptor_memory[fd];
+  SLL_STACK_PUSH(global_file_table.first_free_file_descriptor, file_descriptor);
 }
 
 ssize_t 
-sys_read(int fd, void *buf, size_t buflen)
+sys_read(int fd, userptr_t buf, size_t buflen)
 {
   if (!fd_is_open(fd)) return EBADF;
 
   File *file = global_file_table.files[fd];
   if (file->open_flags & O_RDONLY == 0) return EBADF;
 
-  struct iovec iov;
-  struct uio ku;
+  struct iovec iov = {0};
+  struct uio ku = {0};
   uio_uinit(&iov, &ku, buf, buflen, file->cursor, UIO_READ);
-  int result = VOP_READ(file->node, &ku);
-  if (result) error;
+  int res = VOP_READ(file->node, &ku);
+  if (res) return res;
 
   // TODO: should ku.uio_resid != 0 give EIO?
   // read = (buflen - ku.uio_resid)
@@ -284,18 +285,18 @@ sys_read(int fd, void *buf, size_t buflen)
 }
 
 ssize_t
-sys_write(int fd, const void *buf, size_t nbytes)
+sys_write(int fd, userptr buf, size_t nbytes)
 {
   if (!fd_is_open(fd)) return EBADF;
 
   File *file = global_file_table.files[fd];
   if (file->open_flags & O_WRONLY == 0) return EBADF;
 
-  struct iovec iov;
-  struct uio ku;
+  struct iovec iov = {0};
+  struct uio ku = {0};
   uio_uinit(&iov, &ku, buf, nbytes, file->cursor, UIO_WRITE);
-  int result = VOP_WRITE(file->node, &ku);
-  if (result) error;
+  int res = VOP_WRITE(file->node, &ku);
+  if (res) return res;
 
   // TODO: should ku.uio_resid != 0 give EIO?
 
@@ -345,18 +346,19 @@ sys_lseek(int fd, off_t pos, int whence)
 int 
 sys_dup2(int oldfd, int newfd)
 {
-  if (!fd_is_open(newfd) && global_file_table.first_free_fd == NULL)
+  if (!fd_is_open(newfd) && global_file_table.first_free_file_descriptor == NULL)
   {
     return EMFILE;
   }
 
   bool valid_newfd = fd_is_open(newfd);
-  for (FileDescriptor *fd = global_file_table.first_free_fd;
+  for (FileDescriptor *fd = global_file_table.first_free_file_descriptor;
       fd != NULL;
       fd = fd->next)
   {
     if (fd->fd == newfd) 
     {
+      // TODO: remove this entry from free list (DLL queue required)
       valid_newfd = true;
       break;
     }
@@ -364,12 +366,14 @@ sys_dup2(int oldfd, int newfd)
 
   if (!valid_newfd || !fd_is_open(old)) return EBADF;
 
-  if (fd_is_open(newfd)) sys_close(newfd);
+  if (fd_is_open(newfd)) 
+  {
+    sys_close(newfd);
+    // NOTE(Ryan): Remove newfd from free list, as are going to use
+    SLL_STACK_POP(global_file_table.first_free_file_descriptor);
+  }
 
   File *file = global_file_table.files[oldfd];
-
-  // will get old back
-  SLL_STACK_POP(global_file_table.first_free_file_id);
   global_file_table.files[newfd] = file;
 
   file->ref_counter += 1;
@@ -383,7 +387,6 @@ If too many files are open within a particular process, you should return EMFILE
 If too many files are open systemwide, you should return ENFILE.
 The per-process file descriptor table should be OPEN_MAX (128) in size. 
 
-maintain a reference count; so also have a bitmap?
 //
 
 

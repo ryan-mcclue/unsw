@@ -86,61 +86,6 @@ vop_truncate()
 VOP_TRUNCATE(vn, 0);
 vop_mmap()
 
-struct uio {
-	struct iovec     *uio_iov;	/* Data blocks */
-	unsigned          uio_iovcnt;	/* Number of iovecs */
-	off_t             uio_offset;	/* Desired offset into object */
-	size_t            uio_resid;	/* Remaining amt of data to xfer */
-	enum uio_seg      uio_segflg;	/* What kind of pointer we have */
-	enum uio_rw       uio_rw;	/* Whether op is a read or write */
-	struct addrspace *uio_space;	/* Address space for user pointer */
-};
-
-struct iovec iov;
-struct uio ku;
-
-char numstr[8];
-snprintf(numstr, sizeof(numstr), "%lu", num);
-fstest_write(filesys, numstr, 1, 0)
-fstest_write(const char *fs, const char *namesuffix,
-	     int stridesize, int stridepos)
-
-uio_kinit(&iov, &ku, buf, strlen(SLOGAN), pos, UIO_WRITE);
-err = VOP_WRITE(vn, &ku);
-		err = VOP_WRITE(vn, &ku);
-		if (err) {
-			kprintf("%s: Write error: %s\n", name, strerror(err));
-			vfs_close(vn);
-			vfs_remove(name);
-			return -1;
-		}
-
-		if (ku.uio_resid > 0) {
-			kprintf("%s: Short write: %lu bytes left over\n",
-				name, (unsigned long) ku.uio_resid);
-			vfs_close(vn);
-			vfs_remove(name);
-			return -1;
-		}
-
-		bytes += (ku.uio_offset - pos);
-		shouldbytes += strlen(SLOGAN);
-		pos = ku.uio_offset;
-	}
-
-if (bytes != shouldbytes) {
-	kprintf("%s: %lu bytes written, should have been %lu!\n",
-		name, (unsigned long) bytes,
-		(unsigned long) (NCHUNKS*strlen(SLOGAN)));
-	vfs_remove(name);
-	return -1;
-}
-kprintf("%s: %lu bytes written\n", name, (unsigned long) bytes);
-
-
-uio_kinit(&iov, &myuio, buf, sizeof(buf), 0, UIO_READ);
-result = VOP_READ(vn, &myuio);
-
 #define ARRAY_COUNT(a) (sizeof(a)/sizeof(a[0]))
 #define IS_POW2_ALIGNED(x, p) (((x) & ((p) - 1)) == 0)
 #define IS_POW2(x) IS_POW2_ALIGNED(x, x) 
@@ -173,11 +118,10 @@ typedef struct File File;
 struct File
 {
   struct vnode *vnode;
-  offset;
-  mode_flags;
-  open_flags;
-  ref_count;
-  pool_id;
+  off_t cursor;
+  int open_flags;
+  int ref_count;
+  int memory_id;
 };
 
 typedef struct FileID FileID;
@@ -187,31 +131,57 @@ struct FileID
   int id;
 };
 
+typedef struct FileDescriptor FileDescriptor;
+struct FileDescriptor
+{
+  FileDescriptor *next;
+  int fd;
+};
+
 typedef struct FileTable
 struct FileTable
 {
   File *files[MAX_PATH];
-  File files_pool[MAX_PATH];
+  File files_memory[MAX_PATH];
 
-  FileID file_id_pool[MAX_PATH];
-  FileID *first_free_file_id;
+  FileMemoryID file_memory_id_memory[MAX_PATH];
+  FileMemoryID *first_free_file_memory_id;
+
+  FileDescriptor file_descriptor_memory[MAX_PATH];
+  FileDescriptor *first_free_file_descriptor;
 };
 
 FileTable global_file_table;
 
 // boot()
-for (int i = 0; i < ARRAY_COUNT(global_file_table.file_id_pool); i += 1)
+for (int i = ARRAY_COUNT(global_file_table.file_descriptor_memory) - 1; 
+     i >= 0; 
+     i -= 1)
 {
-  FileID *f_id = &global_file_table.file_id_pool[i];
+  // NOTE(Ryan): Reserved for stdout and stderr on startup
+  if (i == 1 || i == 2) continue;
+
+  FileDescriptor *fd = &global_file_table.file_descriptor_memory[i];
+  fd->fd = i;
+  SLL_STACK_PUSH(global_file_table.first_free_file_descriptor, fd);
+
+  FileMemoryID *file_memory_id = &global_file_table.file_memory_id_memory[i];
   f_id->id = i;
-  // NOTE(Ryan): This won't add smallest first
   SLL_STACK_PUSH(global_file_table.first_free_file_id, f_id);
+}
+
+bool
+fd_is_open(int fd)
+{
+  return (fd >= 0 && fd < ARRAY_COUNT(global_file_table.files) && \
+          global_file_table.files[fd] != NULL);
 }
 
 // Your implementation must allow programs to use dup2() to change stdin, stdout, stderr to point elsewhere.
 // on startup->fd1 and fd2 "con:" device (i.e. identical source), however can be closed
 // (modify runprogram() to acheive this)
 // runprogram()
+// attach 1 and 2 fds specifically
 char con_device[5] = "con:";
 r1 = vfs_open(conname,f1,m1,&v1);
 strcpy(con_device, "con:"); 
@@ -229,37 +199,35 @@ int vfs_open(char *path, int openflags, mode_t mode, struct vnode **ret);
 int
 sys_open(const char *filename, int flags, mode_t mode)
 {
-  // NOTE: seems we just need to check if parameters are valid as vfs layer handles most errno codes.
   if (filename == NULL) return EFAULT;
   if ((flags & (O_RDONLY | O_WRONLY | O_RDWR)) == 0 || \\
        !IS_POW2(flags) || (flags > O_APPEND)) return EINVAL;
-  if (global_state.first_free_file_id == NULL) return EMFILE;
+  if (global_state.first_free_fd == NULL) return EMFILE;
   
-  // the same file will have unique file table entry (e.g. own position; so one could overwrite the other)
-  // only dup2 has separate fds point to same entry
-
-  // NOTE(Ryan): Preserve filename
-  char buf[MAX_PATH] = {0};
-  strncpy(buf, filename, sizeof(buf));
+  char consumed_filename[MAX_PATH] = {0};
+  strncpy(consumed_filename, filename, sizeof(consumed_filename));
 
   struct vnode *node = NULL;
-  int res = vfs_open(buf, flags, mode, &node);
+  int res = vfs_open(consumed_filename, flags, mode, &node);
   if (res) return res;
 
-  FileID *file_id = global_file_table.first_free_file_id;
+  FileDescriptor *fd = global_file_table.first_free_fd;
+  SLL_STACK_POP(global_file_table.first_free_fd);
+
+  FileID *f_id = global_file_table.first_free_file_id;
   SLL_STACK_POP(global_file_table.first_free_file_id);
-  int f_id = file_id->id;
-  File *file = &global_file_table.files_pool[f_id];
+
+  File *file = global_file_table.files[fd->fd];
+  file = global_file_table.files_pool[f_id->id];
   file->node = node;
   file->ref_counter = 1;
-  file->pool_id = f_id;
+  file->id = f_id->id;
   if (flags & O_APPEND)
   {
     struct stat stat_buf = {0};
     VOP_STAT(node, &stat_buf);
     file->cursor = stat_buf.st_size;
   }
-  global_file_table.files[f_id] = file;
   
   return res;
 }
@@ -267,28 +235,145 @@ sys_open(const char *filename, int flags, mode_t mode)
 int 
 sys_close(int fd)
 {
+  if (!fd_is_open(fd)) return EBADF;
+
   File *file = global_file_table.files[fd];
   if (--file->ref_counter == 0) 
   {
     vfs_close(file->node);
+
+    FileID *f_id = &global_file_table.file_id_pool[file->id];
+    SLL_STACK_PUSH(global_file_table.first_free_file_id, f_id);
+
     file->node = NULL;
-    file->offset = 0
+    file->cursor = 0;
+    file->open_flags = 0;
+    file->id = 0;
+    file = NULL;
   }
 
-  FileID *file_id = &global_file_table.file_id_pool[file->pool_id];
-  file->pool_id = -1;
-  SLL_STACK_PUSH(global_file_table.first_free_file_id, file_id);
+  FileDescriptor *fd = &global_file_table.fd_pool[fd];
+  SLL_STACK_PUSH(global_file_table.first_free_fd, fd);
+}
+
+ssize_t 
+sys_read(int fd, void *buf, size_t buflen)
+{
+  if (!fd_is_open(fd)) return EBADF;
+
+  File *file = global_file_table.files[fd];
+  if (file->open_flags & O_RDONLY == 0) return EBADF;
+
+  struct iovec iov;
+  struct uio ku;
+  uio_uinit(&iov, &ku, buf, buflen, file->cursor, UIO_READ);
+  int result = VOP_READ(file->node, &ku);
+  if (result) error;
+
+  // TODO: should ku.uio_resid != 0 give EIO?
+  // read = (buflen - ku.uio_resid)
+
+	ssize_t bytes = (ku.uio_offset - file->cursor);
+	file->cursor = ku.uio_offset;
+
+  return bytes;
+}
+
+ssize_t
+sys_write(int fd, const void *buf, size_t nbytes)
+{
+  if (!fd_is_open(fd)) return EBADF;
+
+  File *file = global_file_table.files[fd];
+  if (file->open_flags & O_WRONLY == 0) return EBADF;
+
+  struct iovec iov;
+  struct uio ku;
+  uio_uinit(&iov, &ku, buf, nbytes, file->cursor, UIO_WRITE);
+  int result = VOP_WRITE(file->node, &ku);
+  if (result) error;
+
+  // TODO: should ku.uio_resid != 0 give EIO?
+
+	ssize_t bytes = (ku.uio_offset - file->cursor);
+	file->cursor = ku.uio_offset;
+
+  return bytes;
+}
+
+off_t 
+sys_lseek(int fd, off_t pos, int whence)
+{
+  if (!fd_is_open(fd)) return EBADF;
+  File *file = global_file_table.files[fd];
+
+  if (!VOP_ISSEEKABLE(file->node)) return ESPIPE;
+
+  off_t seek_pos = 0;
+  switch (whence)
+  {
+    case SEEK_SET:
+    {
+      seek_pos = pos;
+    } break;
+    case SEEK_CUR:
+    {
+      seek_pos = file->cursor + pos;
+    } break;
+    case SEEK_END:
+    {
+      struct stat stat_buf = {0};
+      VOP_STAT(file->node, &stat_buf);
+      seek_pos = stat_buf.st_size + pos;
+    } break;
+    default:
+    {
+      return EINVAL;
+    };
+  }
+
+  if (seek_pos < 0) return EINVAL;
+
+  file->cursor = seek_pos;
+  return file->cursor;
+}
+
+int 
+sys_dup2(int oldfd, int newfd)
+{
+  if (!fd_is_open(newfd) && global_file_table.first_free_fd == NULL)
+  {
+    return EMFILE;
+  }
+
+  bool valid_newfd = fd_is_open(newfd);
+  for (FileDescriptor *fd = global_file_table.first_free_fd;
+      fd != NULL;
+      fd = fd->next)
+  {
+    if (fd->fd == newfd) 
+    {
+      valid_newfd = true;
+      break;
+    }
+  }
+
+  if (!valid_newfd || !fd_is_open(old)) return EBADF;
+
+  if (fd_is_open(newfd)) sys_close(newfd);
+
+  File *file = global_file_table.files[oldfd];
+
+  // will get old back
+  SLL_STACK_POP(global_file_table.first_free_file_id);
+  global_file_table.files[newfd] = file;
+
+  file->ref_counter += 1;
+
+  return newfd;
 }
 
 //struct vnode *cwd = curproc->p_cwd;
-
-  - use existing VFS and vnodes and track filesystem state
-  - gracefully handle all possibly erroneous inputs
-  - error codes as per os161 man pages (leniant to particular error code)
-userland/include/unistd.h -> kern/include/syscall.h
-put our code in kern/syscall/file.c
-kernel facing, e.g. assumed syscall exception handler called us
-
 
 If too many files are open within a particular process, you should return EMFILE. 
 If too many files are open systemwide, you should return ENFILE.

@@ -69,26 +69,61 @@ switch (callno)
 		tf->tf_a3 = 0;      // signal no error
   }
 
-open/close (vfs_open/close), read/write (vop_read/write), lseek, dup2
 }
-//
-
-
-vfs_open()
-vfs_close()
-vfs_remove()
-
 // TODO(Ryan): may need to vop_fsync() to flush? 
-vop_write()
-vop_read()
-vop_stat()
-vop_truncate()
-VOP_TRUNCATE(vn, 0);
-vop_mmap()
 
 #define ARRAY_COUNT(a) (sizeof(a)/sizeof(a[0]))
 #define IS_POW2_ALIGNED(x, p) (((x) & ((p) - 1)) == 0)
 #define IS_POW2(x) IS_POW2_ALIGNED(x, x) 
+
+#define __DLL_PUSH_FRONT(first, last, node, next, prev) \
+(\
+  ((first) == NULL) ? \
+  (\
+    ((first) = (last) = (node)), \
+    ((node)->next = (node)->prev = NULL) \
+  )\
+  : \
+  (\
+    ((node)->prev = NULL), \
+    ((node)->next = (first)), \
+    ((first)->prev = (node)), \
+    ((first) = (node)) \
+  )\
+)
+#define DLL_PUSH_FRONT(first, last, node) \
+  __DLL_PUSH_FRONT(first, last, node, next, prev)
+
+#define __DLL_REMOVE(first, last, node, next, prev) \
+(\
+  ((node) == (first)) ? \
+  (\
+    ((first) == (last)) ? \
+    (\
+      ((first) = (last) = NULL) \
+    )\
+    : \
+    (\
+      ((first) = (first)->next), \
+      ((first)->prev = NULL) \
+    )\
+  )\
+  : \
+  (\
+    ((node) == (last)) ? \
+    (\
+      ((last) = (last)->prev), \
+      ((last)->next = NULL) \
+    )\
+    : \
+    (\
+      ((node)->next->prev = (node)->prev), \
+      ((node)->prev->next = (node)->next) \
+    )\
+  )\
+)
+#define DLL_REMOVE(first, last, node) \
+  __DLL_REMOVE(first, last, node, next, prev) 
 
 #define __SLL_STACK_PUSH(first, node, next) \
 (\
@@ -121,20 +156,20 @@ struct File
   off_t cursor;
   int open_flags;
   int ref_count;
-  int memory_id;
+  int fmi;
 };
 
-typedef struct FileID FileID;
-struct FileID
+typedef struct FileMemoryID FileMemoryID;
+struct FileMemoryID
 {
-  FileID *next;
-  int id;
+  FileMemoryID *next;
+  int fmi;
 };
 
 typedef struct FileDescriptor FileDescriptor;
 struct FileDescriptor
 {
-  FileDescriptor *next;
+  FileDescriptor *next, *prev;
   int fd;
 };
 
@@ -144,30 +179,38 @@ struct FileTable
   File *files[MAX_PATH];
   File files_memory[MAX_PATH];
 
-  FileMemoryID file_memory_id_memory[MAX_PATH];
-  FileMemoryID *first_free_file_memory_id;
+  FileMemoryID fmi_memory[MAX_PATH];
+  FileMemoryID *first_free_fmi;
 
-  FileDescriptor file_descriptor_memory[MAX_PATH];
-  FileDescriptor *first_free_file_descriptor;
+  FileDescriptor fd_memory[MAX_PATH];
+  FileDescriptor *first_free_fd, *last_free_fd;
 };
 
 FileTable global_file_table;
 
+#define PUSH_FD(fd) \
+  DLL_PUSH_FRONT(global_file_table.first_free_fd, global_file_table.last_free_fd, fd)
+#define REMOVE_FD(fd) \
+  DLL_REMOVE(global_file_table.first_free_fd, global_file_table.last_free_fd, fd)
+#define PUSH_FMI(fmi) \
+  SLL_STACK_PUSH(global_file_table.first_free_fmi, fmi);
+#define POP_FMI() \
+  SLL_STACK_POP(global_file_table.first_free_fmi);
+
+
 // boot()
-for (int i = ARRAY_COUNT(global_file_table.file_descriptor_memory) - 1; 
-     i >= 0; 
-     i -= 1)
+for (int i = ARRAY_COUNT(global_file_table.fd_memory) - 1; i >= 0; i -= 1)
 {
   // NOTE(Ryan): Reserved for stdout and stderr on startup
   if (i == 1 || i == 2) continue;
 
-  FileDescriptor *fd = &global_file_table.file_descriptor_memory[i];
+  FileDescriptor *fd = &global_file_table.fd_memory[i];
   fd->fd = i;
-  SLL_STACK_PUSH(global_file_table.first_free_file_descriptor, fd);
+  PUSH_FD(fd);
 
-  FileMemoryID *file_memory_id = &global_file_table.file_memory_id_memory[i];
-  file_memory_id->id = i;
-  SLL_STACK_PUSH(global_file_table.first_free_file_memory_id, file_memory_id);
+  FileMemoryID *fmi = &global_file_table.fmi_memory[i];
+  fmi->id = i;
+  PUSH_FMI(fmi)
 }
 
 bool
@@ -188,11 +231,11 @@ attach_stdout_and_stderr(void)
     int res = vfs_open(con_device, O_RDWR, 0, &node);
     if (res) return res;
     File *file = global_file_table.files[i];
-    file = global_file_table.files_pool[i];
+    file = global_file_table.files_memory[i];
     file->node = node;
     file->open_flags = O_RDWR;
     file->ref_count = 1;
-    file->memory_id = i;
+    file->fmi = i;
   }
 
   return 0;
@@ -206,7 +249,7 @@ sys_open(const char *filename, int flags, mode_t mode)
   if (filename == NULL) return EFAULT;
   if ((flags & (O_RDONLY | O_WRONLY | O_RDWR)) == 0 || \\
        !IS_POW2(flags) || (flags > O_APPEND)) return EINVAL;
-  if (global_state.first_free_fd == NULL) return EMFILE;
+  if (global_file_table.first_free_fd == NULL) return EMFILE;
   
   char consumed_filename[MAX_PATH] = {0};
   strncpy(consumed_filename, filename, sizeof(consumed_filename));
@@ -215,18 +258,18 @@ sys_open(const char *filename, int flags, mode_t mode)
   int res = vfs_open(consumed_filename, flags, mode, &node);
   if (res) return res;
 
-  FileDescriptor *file_descriptor = global_file_table.first_free_file_descriptor;
-  SLL_STACK_POP(global_file_table.first_free_file_descriptor);
+  FileDescriptor *fd = global_file_table.first_free_fd;
+  REMOVE_FD(fd)
 
-  FileMemoryID *file_memory_id = global_file_table.first_free_file_memory_id;
-  SLL_STACK_POP(global_file_table.first_free_file_memory_id);
+  FileMemoryID *fmi = global_file_table.first_free_fmi;
+  POP_FMI()
 
-  File *file = global_file_table.files[file_descriptor->fd];
-  file = global_file_table.files_memory[file_memory_id->id];
+  File *file = global_file_table.files[fd->fd];
+  file = global_file_table.files_memory[fmi->fmi];
   file->node = node;
   file->open_flags = flags;
   file->ref_counter = 1;
-  file->memory_id = file_memory_id->id;
+  file->fmi = fmi->fmi;
   if (flags & O_APPEND)
   {
     struct stat stat_buf = {0};
@@ -247,18 +290,18 @@ sys_close(int fd)
   {
     vfs_close(file->node);
 
-    FileMemoryID *file_memory_id = &global_file_table.file_memory_id_memory[file->memory_id];
-    SLL_STACK_PUSH(global_file_table.first_free_file_memory_id, file_memory_id);
+    FileMemoryID *fmi = &global_file_table.fmi_memory[file->fmi];
+    FMI_PUSH(fmi);
 
     file->node = NULL;
     file->cursor = 0;
     file->open_flags = 0;
-    file->memory_id = -1;
+    file->fmi = -1;
     file = NULL;
   }
 
-  FileDescriptor *file_descriptor = &global_file_table.file_descriptor_memory[fd];
-  SLL_STACK_PUSH(global_file_table.first_free_file_descriptor, file_descriptor);
+  FileDescriptor *fd = &global_file_table.fd_memory[fd];
+  PUSH_FD(fd)
 }
 
 ssize_t 
@@ -346,31 +389,30 @@ sys_lseek(int fd, off_t pos, int whence)
 int 
 sys_dup2(int oldfd, int newfd)
 {
-  if (!fd_is_open(newfd) && global_file_table.first_free_file_descriptor == NULL)
+  if (!fd_is_open(newfd) && global_file_table.first_free_fd == NULL)
   {
-    return EMFILE;
+    return EMFILE; // or ENFILE?
   }
 
-  bool valid_newfd = fd_is_open(newfd);
-  for (FileDescriptor *fd = global_file_table.first_free_file_descriptor;
-      fd != NULL;
-      fd = fd->next)
+  FileDescriptor *matching_newfd = NULL;
+  for (FileDescriptor *fd = global_file_table.first_free_fd; fd != NULL; fd = fd->next)
   {
     if (fd->fd == newfd) 
     {
-      // TODO: remove this entry from free list (DLL queue required)
-      valid_newfd = true;
+      matching_newfd = fd;
+      REMOVE_FD(fd);
       break;
     }
   }
 
-  if (!valid_newfd || !fd_is_open(old)) return EBADF;
+  if ((!fd_is_open(newfd) && matching_newfd == NULL) || !fd_is_open(old)) return EBADF;
 
   if (fd_is_open(newfd)) 
   {
     sys_close(newfd);
-    // NOTE(Ryan): Remove newfd from free list, as are going to use
-    SLL_STACK_POP(global_file_table.first_free_file_descriptor);
+    // NOTE(Ryan): Remove newfd from free list, as still in use
+    FileDescriptor *fd = global_file_table.first_free_fd;
+    REMOVE_FD(fd);
   }
 
   File *file = global_file_table.files[oldfd];
@@ -388,26 +430,6 @@ If too many files are open systemwide, you should return ENFILE.
 The per-process file descriptor table should be OPEN_MAX (128) in size. 
 
 //
-
-
-We give you two system call implementations: sys_reboot() in main/main.c 
-and sys___time() in syscall/time_syscalls.c. 
-In GDB, if you put a breakpoint on sys_reboot() and run the "reboot" program,
-you can use "backtrace" (or "where") to see how it got there.
-
-* existing syscall template
-* existing user space binary makefile template
-
-copyout(const void *src, userptr_t userdest, size_t len)
-uio.h
-
-vfs_close() to avoid memory leak?
-
-
 IMPORTANT: basic assignment has only one process at a time (advanced implements fork())
-IMPORTANT: so, no synchronisation across data structures?
-TODO: can two threads call a system call at the same time?
 - per process file descriptor data structure?
 - across processes, e.g. open file table (only if advanced)
-- keep track of open files and transfer data from kernel to userspace
-

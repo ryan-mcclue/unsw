@@ -166,8 +166,8 @@ for (int i = ARRAY_COUNT(global_file_table.file_descriptor_memory) - 1;
   SLL_STACK_PUSH(global_file_table.first_free_file_descriptor, fd);
 
   FileMemoryID *file_memory_id = &global_file_table.file_memory_id_memory[i];
-  f_id->id = i;
-  SLL_STACK_PUSH(global_file_table.first_free_file_id, f_id);
+  file_memory_id->id = i;
+  SLL_STACK_PUSH(global_file_table.first_free_file_memory_id, file_memory_id);
 }
 
 bool
@@ -177,22 +177,26 @@ fd_is_open(int fd)
           global_file_table.files[fd] != NULL);
 }
 
-// Your implementation must allow programs to use dup2() to change stdin, stdout, stderr to point elsewhere.
-// on startup->fd1 and fd2 "con:" device (i.e. identical source), however can be closed
-// (modify runprogram() to acheive this)
 // runprogram()
-// attach 1 and 2 fds specifically
-char con_device[5] = "con:";
-r1 = vfs_open(conname,f1,m1,&v1);
-strcpy(con_device, "con:"); 
-r2 = vfs_open(conname,f2,m2,&v2); 
+int
+attach_stdout_and_stderr(void)
+{
+  for (int i = 1; i < 3; i += 1)
+  {
+    char con_device[5] = "con:";
+    struct vnode *node = NULL;
+    int res = vfs_open(con_device, O_RDWR, 0, &node);
+    if (res) return res;
+    File *file = global_file_table.files[i];
+    file = global_file_table.files_pool[i];
+    file->node = node;
+    file->open_flags = O_RDWR;
+    file->ref_count = 1;
+    file->memory_id = i;
+  }
 
-int std_out = sys_open("con:");
-sys_dup2(std_out, something);
-
-struct vnode *v;
-result = vfs_open(progname, O_RDWR, 0, &v);
-int vfs_open(char *path, int openflags, mode_t mode, struct vnode **ret);
+  return 0;
+}
 //
 
 // kern/include/file.h, kern/syscall/file.c

@@ -1,10 +1,12 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+https://github.com/douglasselias/super-asteroids-destroyer
+
 1a.
-| Start State | BFS                        | IDS                         | Greedy                    | A\*                     |
-|-------------|----------------------------|-----------------------------|---------------------------|-------------------------|
-| *start1*    |Expanded: 10978, Length: 12 |Expanded: 25121, Length: 12  |Expanded: 59182, Length: 12|Expanded: 30, Length: 12 |
-| *start2*    |Expanded: 344890, Length: 17|Expanded: 349380, Length: 17 |Expanded: 19, Length: 17   |Expanded: 35, Length: 17 |
-| *start3*    |Expanded: 641252, Length: 18|Expanded: 1209934, Length: 18|Expanded: 59196, Length: 22|Expanded: 133, Length: 18|
+| Start State | BFS      | IDS       | Greedy  | A\*   |
+|-------------|----------|-----------|---------|-------|
+| *start1*    |12, 10978 |12, 25121  |12, 59182|12, 30 |
+| *start2*    |17, 344890|17, 349380 |17, 19   |17, 35 |
+| *start3*    |18, 641252|18, 1209934|22, 59196|18, 133|
 
 #python3 search.py --start "2634-5178-AB0C-9DEF" --s "bfs"
 # [bfs] Generated: 23415. Expanded: 10978. Length: 12. Cost: 12.
@@ -52,25 +54,73 @@ So, it makes decisions in isolation, i.e. no thinking ahead.
 As a result, it can potentially expand more nodes than an uninformed search as seen in start state 1.
 Or, it could possibly expand less nodes as seen in start state 2.
 A\* is an informed search.
-It uses a heuristic that estimates the combined cost of reaching the next node and goal.
+It uses a function that combines the cost of reaching the next node and a heuristic estimating cost to goal.
 If this heuristic is admissable, i.e. doesn't overestimate cost, it's optimal.
 In most cases, A\* will expand the fewest nodes, as its guided by the most information.
 
+2a.
+Expanding:
+```
+f(n) = 2g(n) - w·g(n) + w·h(n)
+     = g(n) + (1 - w)·g(n) + w·h(n)
+```
+Let:
+```
+h'(n) = (1 - w)·g(n) + w·h(n)
+f(n) = g(n) + h'(n)
+```
+For `w=0`, must be true because `h(n) >= 0` as its admissable:
+```
+(1 - w)·g(n) + w·h(n) <= h(n)
 
+g(n) <= h(n)
+
+```
+For `w=1`, self evident:
+```
+(1 - w)·g(n) + w·h(n) <= h(n)
+h(n) <= h(n)
+```
+Therefore, as `h'(n) <= h(n)`, for `0 < w < 1`, `h'(n)` admissable and therefore optimal.
+
+2b.
+|             |*start4* | *start5* | *start6*   |
+|-------------|---------|----------|------------|
+| IDA\* Search|45,545120|50,4178819|56,169367641|
+| HPS, w=1.1  |47,523052|54,857155 |58,13770561 |
+| HPS, w=1.2  |47,29761 |56,64522  |60,265672   |
+| HPS, w=1.3  |55,968   |62,5781   |68,9066     |
+| HPS, w=1.4  |65,9876  |70,561430 |80,37869    |
+
+# python3 search.py --start "A974-3256-FD8B-EC01" --s "heuristic" --w 1.1 --id
+# [w= 1.1,id] Generated: 1069431. Expanded: 523052. Length: 47. Cost: 47.
+# python3 search.py --start "A974-3256-FD8B-EC01" --s "heuristic" --w 1.2 --id
+# [w= 1.2,id] Generated: 61675. Expanded: 29761. Length: 47. Cost: 47.
+# python3 search.py --start "A974-3256-FD8B-EC01" --s "heuristic" --w 1.3 --id
+# [w= 1.3,id] Generated: 2002. Expanded: 968. Length: 55. Cost: 55.
+# python3 search.py --start "A974-3256-FD8B-EC01" --s "heuristic" --w 1.4 --id
+# [w= 1.4,id] Generated: 20791. Expanded: 9876. Length: 65. Cost: 65.
+
+# python3 search.py --start "153E-A02C-9FBD-8476" --s "heuristic" --w 1.1 --id
+# [w= 1.1,id] Generated: 1727687. Expanded: 857155. Length: 54. Cost: 54.
+# python3 search.py --start "153E-A02C-9FBD-8476" --s "heuristic" --w 1.2 --id
+# [w= 1.2,id] Generated: 130866. Expanded: 64522. Length: 56. Cost: 56.
+# python3 search.py --start "153E-A02C-9FBD-8476" --s "heuristic" --w 1.3 --id
+# [w= 1.3,id] Generated: 11871. Expanded: 5781. Length: 62. Cost: 62.
+# python3 search.py --start "153E-A02C-9FBD-8476" --s "heuristic" --w 1.4 --id
+# [w= 1.4,id] Generated: 1176653. Expanded: 561430. Length: 70. Cost: 70.
+
+# python3 search.py --start "418E-7AD0-9C52-3FB6" --s "heuristic" --w 1.1 --id
+# python3 search.py --start "418E-7AD0-9C52-3FB6" --s "heuristic" --w 1.2 --id
+# [w= 1.2,id] Generated: 537049. Expanded: 265672. Length: 60. Cost: 60.
+# python3 search.py --start "418E-7AD0-9C52-3FB6" --s "heuristic" --w 1.3 --id
+# [w= 1.3,id] Generated: 18791. Expanded: 9066. Length: 68. Cost: 68.
+# python3 search.py --start "418E-7AD0-9C52-3FB6" --s "heuristic" --w 1.4 --id
+# [w= 1.4,id] Generated: 80627. Expanded: 37869. Length: 80. Cost: 80. 
 
 
 3a.
-M(1) = [+,-] 
-
-s,k
-1,1
-(2, 3, 4)
-2,1
-(5, 7, 9)
-2,2
-(6, 8, 9)
-
-
+M(1) = [+,-]
 M(2) = [+,o,-] 
 M(3) = [+,o,o,-]
 M(4) = [+,+,-,-] 
@@ -79,5 +129,15 @@ M(6) = [+,+,o,-,-] (s^2+s+k)?
 M(7) = [+,+,o,-,o,-] 
 M(8) = [+,+,o,o,-,-] (s^2+k)? s=k=2
 M(9) = [+,+,+,-,-,-] (s=2)
-
+M(10) = [+,+,+,-,-,o,-]
+M(11) = [+,+,+,-,o,-,-]
+M(12) = [+,+,+,o,-,-,-]
+M(13) = [+,+,+,o,-,-,o,-]
+M(14) = [+,+,+,o,-,o,-,-]
+M(15) = [+,+,+,o,o,-,-,-]
 M(16) = [+,+,+,+,-,-,-,-] (s+1)^2
+M(17) = [+,+,+,+,-,-,-,o,-]
+M(18) = [+,+,+,+,-,-,o,-,-]
+M(19) = [+,+,+,+,-,o,-,-,-]
+M(20) = [+,+,+,+,o,-,-,-,-]
+M(21) = [+,+,+,+,o,-,-,o,-]

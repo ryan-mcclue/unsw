@@ -117,6 +117,21 @@ Therefore, as `h'(n) <= h(n)`, for `0 < w < 1`, `h'(n)` admissable and therefore
 # [w= 1.3,id] Generated: 18791. Expanded: 9066. Length: 68. Cost: 68.
 # python3 search.py --start "418E-7AD0-9C52-3FB6" --s "heuristic" --w 1.4 --id
 # [w= 1.4,id] Generated: 80627. Expanded: 37869. Length: 80. Cost: 80. 
+2c.
+The greater value of `w`, the greater impact `g(n)` has on the function.
+This means larger values of `w` make the function more greedy.
+IDA\* will return optimal path length, i.e. the smallest.
+A greedy search is not optimal.
+This can be seen in all the path lengths being larger than IDA\*.
+By making a function more greedy, we are reducing the size of the decision space.
+In other words, we are considering the impact a decision has on future decisions less and less.
+For this particular problem, `g(n)` can be seen to be a poor cost metric.
+This is evidenced by greater values of `w` yielding greater path lengths.
+As decisions are dictated more by `g(n)`, the amount of nodes expanded will change.
+In the table, the number of expanded nodes decreases till `w=1.4`.
+For this particular problem, this indicates that a certain level of greediness, i.e. localised decision making, will reduce number of expanded nodes.
+If become too greedy however, `g(n)` will cause number of expanded nodes to increase.
+In general, greedy is more memory friendly, but less optimal.
 
 
 3a.

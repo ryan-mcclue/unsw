@@ -174,6 +174,32 @@ However, this includes the number of steps to reach velocity `k`, when we are ac
 So, subtract `k` many moves.
 So, `M(n, k) = M(n', 0) - k = ceiling(2sqrt(n + k/2(k+1))) - k`
 
+d.
+If we consider the distance travelled to reach velocity `k`, `k/2(k + 1)` and `n < k/2(k - 1)`, the agent will go further than the goal.
+So, will have to turn around and have negative velocity.
+Therefore, first calculate distance to reach velocity `k` and then reach `-1` velocity. 
+This becomes: 
+```
+M((k/2)(k + 1) + (k/2)(k - 1), 0)
+= ceiling(2sqrt((k/2)(k + 1) + (k/2)(k - 1)))
+= ceiling(2sqrt((k^2 + k + k^2 - k)/2))
+= ceiling(2sqrt(k^2))
+= ceiling(2k)
+= 2k
+```
+
+Next have to travel back to goal:
+```
+M(k/2(k - 1) - n, 0)
+= ceiling(2sqrt((k/2)(k - 1) - n))
+
+```
+Finally, have to subtract `k` as starting at `k`.
+The final formula is:
+```
+2k + ceiling(2sqrt((k/2)(k - 1) - n)) - k
+= ceiling(2sqrt((k/2)(k - 1) - n)) + k
+```
 
 3a.
 M(1, 0) = [+,-] = 2 (s=1)
@@ -243,3 +269,7 @@ Where s s = aa and n n = cc².
 ![Large Pruned Tree](pruned-tree-final.jpg)
 4d.
 Time complexity is
+In the following analyses: 
+b is the maximum branching factor in the search tree 
+d is the depth of the least cost solution 
+m is the maximum depth of the state space (may be infinity) 

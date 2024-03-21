@@ -1,6 +1,4 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-https://github.com/douglasselias/super-asteroids-destroyer
-
 1a.
 | Start State | BFS      | IDS       | Greedy  | A\*   |
 |-------------|----------|-----------|---------|-------|
@@ -162,3 +160,10 @@ M(21) = [+,+,+,+,o,-,-,o,-] = 9 (s=4)
 
 
 4a.
+![Minimax-Tree](minimax-tree.png)
+4b.
+![Pruned Tree](pruned-tree-process.jpg)
+4c.
+![Large Pruned Tree](pruned-tree-final.jpg)
+4d.
+Time complexity is

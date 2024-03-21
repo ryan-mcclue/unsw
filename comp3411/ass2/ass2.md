@@ -140,7 +140,39 @@ For this range, `M = 2s + 2`.
 So, using the given identity, we have `ceiling(2sqrt(n))`.
 
 b. 
+Assuming the result from previous question: M(n,0) = ceiling(2sqrt(n)), show that if k ≥ 0 and n ≥ 1/2k(k−1)
+then
+M(n, k) = ceiling(2sqrt(n + 1/2k(k+1))) - k
+Hint: Consider the path of the agent as part of a larger path.
 
+A solution is:
+As proven above, M(nn, 0) = ceiling(2sqrt(n)) when n >= 0.
+Now, for the case when k ≥ 0, the vehicle has already been travelling before we start the
+M(n, k) calculation. Our goal is to derive a formula for the M(n, k) when k ≥ 0 and n >
+k(k-1), which calculates the least number of moves necessary for the vehicle to stop at
+point nn.
+First, if we assume that this is approximately the second half of M(n, 0), or the deceleration
+time, then the formula becomes the total distance travelled, less the time it took to accelerate
+to velocity k. The total distance travelled is given by M(a, 0), where aa is n n + total distance
+travelled. The accumulated distance, based on velocity is:
+1 + 2 + 3 + ··· + k =1/2k(k + 1)
+hence:
+a = n + 1/2k(k + 1).
+The time it took to accelerate to velocity k is simply k. Hence, M(n, k) is given by:
+M(n, k) = M(a, 0) — k
+M(n, k) = ceiling(2sqrt(n + 1/2k(k+1))) - k
+
+Explain this solution simply
+
+The distance travelled to reach velocity `k` is given by arithmetic series:
+```
+k((1 + k)/2)
+= k/2(k + 1)
+```
+So, if we add this to `n`, i.e. `n' = n + k/2(k+1)` we can use original formula `M(n', 0)`
+However, this includes the number of steps to reach velocity `k`, when we are actually already starting at `k`.
+So, subtract `k` many moves.
+So, `M(n, k) = M(n', 0) - k = ceiling(2sqrt(n + k/2(k+1))) - k`
 
 
 3a.

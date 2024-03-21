@@ -127,27 +127,77 @@ In general, greedy is more memory friendly, but less optimal.
 
 
 3a.
-M(1) = [+,-] = 2 (s=1)
-M(2) = [+,o,-] = 3 (s=1)
-M(3) = [+,o,o,-] = 4 (s=1)
-M(4) = [+,+,-,-] = 4 (s=2)
-M(5) = [+,+,-,o,-] = 5 (s=2)
-M(6) = [+,+,o,-,-] = 5 (s=2)
-M(7) = [+,+,o,-,o,-] = 6 (s=2)
-M(8) = [+,+,o,o,-,-] = 6 (s=2)
-M(9) = [+,+,+,-,-,-] = 6 (s=3)
-M(10) = [+,+,+,-,-,o,-] = 7 (s=3)
-M(11) = [+,+,+,-,o,-,-] = 7 (s=3)
-M(12) = [+,+,+,o,-,-,-] = 7 (s=3)
-M(13) = [+,+,+,o,-,-,o,-] = 8 (s=3)
-M(14) = [+,+,+,o,-,o,-,-] = 8 (s=3)
-M(15) = [+,+,+,o,o,-,-,-] = 8 (s=3)
-M(16) = [+,+,+,+,-,-,-,-] = 8 (s=4)
-M(17) = [+,+,+,+,-,-,-,o,-] = 9 (s=4)
-M(18) = [+,+,+,+,-,-,o,-,-] = 9 (s=4)
-M(19) = [+,+,+,+,-,o,-,-,-] = 9 (s=4)
-M(20) = [+,+,+,+,o,-,-,-,-] = 9 (s=4)
-M(21) = [+,+,+,+,o,-,-,o,-] = 9 (s=4)
+Let `s` be number of `+` in a move sequence minus 1.
+When `n` is perfect square of `s`, i.e `n = (s + 1)^2`, `M = 2s + 2`.
+Between successive `n` terms that are perfect squares, the value of `M` increases by 2.
+So, between `s^2 <= n <= (s + 1)^2` there will be 2 ranges to account for each single `M` increment.
+The range length is: `s^2 - (s + 1)^2 = 2s + 1`.
+The first range is: `s^2 < n <= s^2 + s`. 
+This equates to `s^2 + k, 1 <= k <= s`.
+For this range, `M = 2s + 1`.
+The second range is: `s^2 + s < n <= (s+1)^2`. This equates to `s^2 + s + k, 1 <= k <= s`.
+For this range, `M = 2s + 2`.
+So, using the given identity, we have `ceiling(2sqrt(n))`.
+
+b. 
+
+
+
+3a.
+M(1, 0) = [+,-] = 2 (s=1)
+M(2, 0) = [+,o,-] = 3 (s=1)
+M(3, 0) = [+,o,o,-] = 4 (s=1)
+M(4, 0) = [+,+,-,-] = 4 (s=2)
+M(5, 0) = [+,+,-,o,-] = 5 (s=2)
+M(6, 0) = [+,+,o,-,-] = 5 (s=2)
+M(7, 0) = [+,+,o,-,o,-] = 6 (s=2)
+M(8, 0) = [+,+,o,o,-,-] = 6 (s=2)
+M(9, 0) = [+,+,+,-,-,-] = 6 (s=3)
+M(10, 0) = [+,+,+,-,-,o,-] = 7 (s=3)
+M(11, 0) = [+,+,+,-,o,-,-] = 7 (s=3)
+M(12, 0) = [+,+,+,o,-,-,-] = 7 (s=3)
+M(13, 0) = [+,+,+,o,-,-,o,-] = 8 (s=3)
+M(14, 0) = [+,+,+,o,-,o,-,-] = 8 (s=3)
+M(15, 0) = [+,+,+,o,o,-,-,-] = 8 (s=3)
+M(16, 0) = [+,+,+,+,-,-,-,-] = 8 (s=4)
+M(17, 0) = [+,+,+,+,-,-,-,o,-] = 9 (s=4)
+M(18, 0) = [+,+,+,+,-,-,o,-,-] = 9 (s=4)
+M(19, 0) = [+,+,+,+,-,o,-,-,-] = 9 (s=4)
+M(20, 0) = [+,+,+,+,o,-,-,-,-] = 9 (s=4)
+M(21, 0) = [+,+,+,+,o,-,-,o,-] = 9 (s=4)
+
+Assume n >= 0. By extrapolating patterns from these sequences explain why the general formula for M(n, 0) is: M(n, 0) = ceiling(2sqrt(n))
+Use: 
+ceiling(2sqrt(n)) = 2s+1, if n = s^2+k (1<=k<=s)
+                  = 2s+2, if n = s^2+s+k (1<=k<=s)
+                  = 2s+2, if n = (s+1)^2
+
+This is a scaffold answer:
+Let s = the maximum velocity reached minus 1. The value of s is incremented every time the
+value of n is a perfect square (one more + added to the velocity), as seen in part a).
+The difference between ss² and (ss + 1)² is 2ss + 1, so there are Ss possible values in the range
+of ss² < nn ≤ ss(ss + 1), and ss + 1 possible values in the range of ss(ss + 1) < nn ≤ ss². We can
+consider these two ranges as halves, each with the previously specified size. Now, as seen in
+part a), the value of MM increases by 2 between each perfect square. The first increase occurs
+in the range of ss² < nn ≤ ss(s s + 1), and the second increase occurs in the range of ss(s s + 1) <
+nn ≤ss².
+As mentioned earlier, the value of ss increases by 1 at every n that is a perfect square, yet, MM
+increases by 2 for these values of n, so there are two possible values of MM for every value of
+SS, and they fall into the aforementioned ranges. Now, a basic mathematical concept is that if
+aa+1= = bb, then aa² <bb². Now for a cc in a a< c c <bb, a a<cc< bb, and 2a a < 2c c <
+2b b = [2cc] or [2cc] +1.2b b [2cc] + 1 when a a < cc < aa + 0.5, hence:
+=
+aa² <cc² <aa(a a + 1) (< (a a + 0.5)²)
+And in the second case where 2b b
+=
+[2cc], then a a + 0.5 < cc ≤ bb, hence:
+aa(a a + 1) < cc² ≤ bb = (a a + 1)²
+Therefore, using the above, it is true that:
+2ss + 1,
+if ss² <nn≤ss(ss + 1)
+/2√nn/s +2, if ss(ss + 1) < nn ≤ (ss + 1)²
+Where s s = aa and n n = cc².
+
 
 3b.
 `s = s + 1` and `M = M + 2` every time n is perfect square.

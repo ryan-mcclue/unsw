@@ -41,45 +41,39 @@ Therefore, the length found will always be the smallest possible.
 It's an uninformed search, which causes it to expand more nodes than necessary.
 This can be seen comparing its number of expanded nodes with that of A\*.
 It has exponential space complexity.
+
 IDS is optimal and uninformed like BFS. 
 However, as it's a repeated DFS search, it will always expand more nodes than BFS.
 This can be seen in comparing the expanded node count between IDS and BFS.
 It has more efficient linear space complexity compared to BFS.
+
 Greedy is suboptimal, meaning the length found may not always be the smallest possible.
 This can be seen in start state 3.
 It's an informed search, with a heuristic estimating the cost to the goal. 
-So, it makes decisions in isolation, i.e. no thinking ahead.
+So, it makes decisions in isolation, i.e. no thinking about past decisions.
 As a result, it can potentially expand more nodes than an uninformed search as seen in start state 1.
 Or, it could possibly expand less nodes as seen in start state 2.
+
 A\* is an informed search.
 It uses a function that combines the cost of reaching the next node and a heuristic estimating cost to goal.
 If this heuristic is admissable, i.e. doesn't overestimate cost, it's optimal.
 In most cases, A\* will expand the fewest nodes, as its guided by the most information.
 
 2a.
-Expanding:
+For `w=0`:
 ```
-f(n) = 2g(n) - w·g(n) + w·h(n)
-     = g(n) + (1 - w)·g(n) + w·h(n)
+f(n) = (2 - 0)·g(n) + 0·h(n) 
+     = 2·g(n)
 ```
-Let:
+Scaling `g(n)` by a constant factor has no effect on ordering of paths.
+Therefore optimal.
+For `w=1`:
 ```
-h'(n) = (1 - w)·g(n) + w·h(n)
-f(n) = g(n) + h'(n)
+f(n) = (2 - 1)·g(n) + 1·h(n) 
+     = g(n) + h(n)
 ```
-For `w=0`, must be true because `h(n) >= 0` as its admissable:
-```
-(1 - w)·g(n) + w·h(n) <= h(n)
-
-g(n) <= h(n)
-
-```
-For `w=1`, self evident:
-```
-(1 - w)·g(n) + w·h(n) <= h(n)
-h(n) <= h(n)
-```
-Therefore, as `h'(n) <= h(n)`, for `0 < w < 1`, `h'(n)` admissable and therefore optimal.
+As `h(n)` is admissable, know that this is optimal.
+Therefore, optimal for `0 <= w <= 1`
 
 2b.
 |             |*start4* | *start5* | *start6*   |
@@ -116,19 +110,19 @@ Therefore, as `h'(n) <= h(n)`, for `0 < w < 1`, `h'(n)` admissable and therefore
 # python3 search.py --start "418E-7AD0-9C52-3FB6" --s "heuristic" --w 1.4 --id
 # [w= 1.4,id] Generated: 80627. Expanded: 37869. Length: 80. Cost: 80. 
 2c.
-The greater value of `w`, the greater impact `g(n)` has on the function.
-This means larger values of `w` make the function more greedy.
-IDA\* will return optimal path length, i.e. the smallest.
-A greedy search is not optimal.
-This can be seen in all the path lengths being larger than IDA\*.
-By making a function more greedy, we are reducing the size of the decision space.
-In other words, we are considering the impact a decision has on future decisions less and less.
-For this particular problem, `g(n)` can be seen to be a poor cost metric.
-This is evidenced by greater values of `w` yielding greater path lengths.
-As decisions are dictated more by `g(n)`, the amount of nodes expanded will change.
-In the table, the number of expanded nodes decreases till `w=1.4`.
-For this particular problem, this indicates that a certain level of greediness, i.e. localised decision making, will reduce number of expanded nodes.
-If become too greedy however, `g(n)` will cause number of expanded nodes to increase.
+For optimality, `h(n)` must not overestimate, i.e. be admissable.
+`w=1` equates to IDA\* search, which uses admissable heuristic.
+Therefore, it is optimal and returns the smallest path length.
+As values of `w` increase, the greater extent `h(n)` overestimates.
+Therefore, as `w` increases, optimality is reduced.
+This can be seen for successive values of `w` returning larger path lengths.
+
+Larger values of `w` make the function more greedy.
+By making a function more greedy, we are most likely reducing the size of the decision space.
+This equates to expanding less nodes.
+For this particular problem, a certain level of greediness will reduce number of expanded nodes.
+This is seen for searches up to `w=1.3`.
+For `w=1.4`, number of expanded nodes begins to increase.
 In general, greedy is more memory friendly, but less optimal.
 
 

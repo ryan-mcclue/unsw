@@ -2,6 +2,7 @@
 // git clone https://z5346008@nw-syd-gitlab.cseunsw.tech/COMP3231/24T1/grp201-asst2.git asst2-src
 // #include <kern/errno.h>
 // userland/testbin/asst2/asst2.c
+// for testing with ass2.c cd ~/cs3231/asst2-src && bmake && bmake install 
 
 // syscall()
 switch (callno)
@@ -12,8 +13,8 @@ switch (callno)
   // input: copyin()
   case SYS_open:
   {
-    int open(const char *filename, int flags);
-    int open(const char *filename, int flags, mode_t mode);
+    // int open(const char *filename, int flags);
+    // int open(const char *filename, int flags, mode_t mode);
     retval = sys_open((userptr)tf->a0, tf->a1, tf->a2);
   } break;
   case SYS_close:
@@ -244,7 +245,7 @@ attach_stdout_and_stderr(void)
 
 // kern/include/file.h, kern/syscall/file.c
 int
-sys_open(const char *filename, int flags, mode_t mode)
+sys_open(const char *filename, int flags, mode_t mode, uint64_t *retval)
 {
   if (filename == NULL) return EFAULT;
   if ((flags & (O_RDONLY | O_WRONLY | O_RDWR)) == 0 || \\
@@ -256,7 +257,7 @@ sys_open(const char *filename, int flags, mode_t mode)
 
   struct vnode *node = NULL;
   int res = vfs_open(consumed_filename, flags, mode, &node);
-  if (res) return res;
+  if (res) return -res;
 
   FileDescriptor *fd = global_file_table.first_free_fd;
   REMOVE_FD(fd)
@@ -276,8 +277,9 @@ sys_open(const char *filename, int flags, mode_t mode)
     VOP_STAT(node, &stat_buf);
     file->cursor = stat_buf.st_size;
   }
-  
-  return res;
+
+  *retval = fd->fd;
+  return 0;
 }
 
 int 
@@ -302,10 +304,12 @@ sys_close(int fd)
 
   FileDescriptor *fd = &global_file_table.fd_memory[fd];
   PUSH_FD(fd)
+
+  return 0;
 }
 
 ssize_t 
-sys_read(int fd, userptr_t buf, size_t buflen)
+sys_read(int fd, userptr_t buf, size_t buflen, uint64_t *retval)
 {
   if (!fd_is_open(fd)) return EBADF;
 
@@ -321,14 +325,15 @@ sys_read(int fd, userptr_t buf, size_t buflen)
   // TODO: should ku.uio_resid != 0 give EIO?
   // read = (buflen - ku.uio_resid)
 
-	ssize_t bytes = (ku.uio_offset - file->cursor);
+	ssize_t bytes_read = (ku.uio_offset - file->cursor);
 	file->cursor = ku.uio_offset;
 
-  return bytes;
+  *retval = bytes_read;
+  return 0;
 }
 
 ssize_t
-sys_write(int fd, userptr buf, size_t nbytes)
+sys_write(int fd, userptr buf, size_t nbytes, uint64_t *retval)
 {
   if (!fd_is_open(fd)) return EBADF;
 
@@ -343,14 +348,15 @@ sys_write(int fd, userptr buf, size_t nbytes)
 
   // TODO: should ku.uio_resid != 0 give EIO?
 
-	ssize_t bytes = (ku.uio_offset - file->cursor);
+	ssize_t bytes_written = (ku.uio_offset - file->cursor);
 	file->cursor = ku.uio_offset;
 
-  return bytes;
+  *retval = bytes_written;
+  return 0;
 }
 
 off_t 
-sys_lseek(int fd, off_t pos, int whence)
+sys_lseek(int fd, off_t pos, int whence, uint64_t *retval)
 {
   if (!fd_is_open(fd)) return EBADF;
   File *file = global_file_table.files[fd];
@@ -383,11 +389,13 @@ sys_lseek(int fd, off_t pos, int whence)
   if (seek_pos < 0) return EINVAL;
 
   file->cursor = seek_pos;
-  return file->cursor;
+
+  *retval = file->cursor;
+  return 0; 
 }
 
 int 
-sys_dup2(int oldfd, int newfd)
+sys_dup2(int oldfd, int newfd, uint64_t *retval)
 {
   if (!fd_is_open(newfd) && global_file_table.first_free_fd == NULL)
   {
@@ -419,8 +427,9 @@ sys_dup2(int oldfd, int newfd)
   global_file_table.files[newfd] = file;
 
   file->ref_counter += 1;
-
-  return newfd;
+  
+  *retval = newfd;
+  return 0;
 }
 
 //struct vnode *cwd = curproc->p_cwd;

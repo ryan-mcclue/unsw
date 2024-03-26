@@ -1,13 +1,9 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-fs -> vnode -> vnode_ops:
- - vop_creat etc. operate on vnodes
-work with filenames with vfs_mkdir()  
 will work with file descriptors. need to know mode (e.g. read-only), read/write pointer
 
 for multiple processes, stdout might not be 1
-per process open file descriptor array
 dup means file descriptors share file pointers
-so global open file table, in which per process file descriptors point to this table
+global open file table, in which per process file descriptors point to this table
 
 TODO: fs normally allows overriding of open files
 TODO: how does fs buffering affect reliability of fs? 

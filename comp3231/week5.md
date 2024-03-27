@@ -1,8 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 will work with file descriptors. need to know mode (e.g. read-only), read/write pointer
 
-directory is just another inode, 
-stores name, rec length, file names
+directory is just another inode; stores name, rec length, file names and inodes
 
 for multiple processes, stdout might not be 1
 dup means file descriptors share file pointers
@@ -46,11 +45,11 @@ e.g. deleting a file could crash at any stage:
   2. marking inode as free
   3. mark disk blocks as free
   IMPORTANT: files still persist, only actually deleted when overwritten with something else 
-FS journalling aims to introduce a degree of atomicity. 
-First write to change to journal, then perform actual operation and remove journal entries. (write each steps to journal)
+  IMPORTANT: The steps should be related to what disk blocks are involved, not metadata.
 
-On startup, can then look at journal to see if operation completed.
-on startup look at journal entry; journal says directory removed; check if it is; if not do; continue and then remove journal entry
-(so journal only keeps track of uncommited changes)
+FS journalling layer aims to introduce a degree of atomicity. It keeps track of uncommited changes.
+So, for deleting a file, first write deletion steps to journal block. 
+Then perform actual deletion steps and remove corresponding journal entries.
+On startup, will look at journal to see if any uncompleted steps and finish them if possible
 
 SSDs still have seek time, albeit very small (so sequential still faster than random)

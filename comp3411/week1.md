@@ -13,6 +13,8 @@ PEAS:
  - Actuators (->actions): Left/right/forward/back/shoot
  - Sensors (<-percepts): Breeze/stench 
 
+(pit causes breezes in adjacent squares)
+
 Environment/task type influences agent design:
 **CHESS**                                                               | **ROBOCUP**
 Simulated (computer program)                                            | Situated (interacts directly with world) and Embodied (physical body)

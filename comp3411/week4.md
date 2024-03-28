@@ -63,7 +63,8 @@ perceptron can only compute linearly separable functions, i.e. points separated 
 rosenblatt learning/training algorithm starts with random weights and increases if g(s) = 0 but should've been 1 and decreases vice versa
 AND/OR/NOR are linearly separable
 XOR is not. But, can re-write as (x AND y) NOR (x NOR y)
-∧ (AND; conjunction), ∨ (OR; disjunction), ¬ (NOT; negation)
+∧ (AND; conjunction), ∨ (OR; disjunction), ¬ (NOT; negation), ⇒ (only false if 'true⇒ false'; implication), ⇔ (identical; biconditional)
+IMPORTANT: implication not casual relationship; needs to be checked
 Conjunctive Normal Form (CNF) is conjunction of disjunction terms
 Any logical function can be put in CNF, i.e. convert anything to and/or/not
 Say, have CNF: (A ∨ B) ∧ (¬ B ∨ C ∨ ¬ D) ∧ (D ∨ ¬ E)

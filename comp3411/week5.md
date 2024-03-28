@@ -22,9 +22,11 @@ Joint probability: `P(pit11,pit12,...,breeze01,breeze02,breeze03)`
 Conditional: `P(breeze|pits)P(pits)`
 P(pit|known,observed) = proportional to all unknown (however don't care about all unknown)
 
-rior know pits in `16C3 = 16!/(3!*13!) = 560`
+Prior know pits in `16C3 = 16!/(3!*13!) = 560`
 
 posterior: P(cancer|positive) estimate after data observed
+
+product rule: P(AandB) = P(A|B)P(B)
 
 joint probability distribution is a table providing probabilities of all combinations of random variables (sum to 1)
 P(A,B) is joint probability of events occuring simultaneously
@@ -54,7 +56,7 @@ Different to supervised and unsupervised in that training examples presented one
     States are mapped to action probabilities, e.g. π(a|s) 
     Will have predefined actions, e.g. move forward, recharge, etc.
     π\* is optimal policy
-  - Reward Function:
+  - Reward Function (aim):
     How a state is perceived as a numerical reward
     Want to maximise total reward, not immediate reward.
     So, convey what you want acheived, i.e. focus on end-goal so +1 for winning chess as oppose to subgoal of taking a piece
@@ -72,3 +74,5 @@ Greedy action exploits current knowledge, non-greedy explores something differen
 Episodic means finite, non-episodic means tasks are performed continuously
 
 ideally state should adhere to markov property, i.e. only dependent on current state (however not always possible, e.g. temperature of wheels)
+
+Q-value is immediate reward for action plus discounted value following optimal policy after that action

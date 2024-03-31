@@ -64,3 +64,25 @@ so, query is answered by a plan that consists of a series of actions, e.g. plan 
 
 Actions are described by what will be true/false in the state resulting from previous state and action
 ∀s AtGold(s) ⇒ Holding(Gold, Result(Grab, s))
+
+Planning is finding a sequence of actions to solve goal. 
+A path corresponds to a plan.
+Environment changes due to performance of actions.
+Most planners use a STRIPS-like representation
+Will have:
+  * States
+    - Can be described with features, e.g. Ryan wants tea, tea is waiting
+    casual rules (how change), frame rules (how stay the same)
+  * Actions, e.g. pick up tea:
+    - Precondition specify when can be carried out
+      (tea-room, ¬robot-has-tea)
+    - Effect is resulting state change
+      (robot-has-tea)
+  * Goals
+Action schema: action/precondition/adds/deletes
+
+is prolog like:
+func(): precond, effect?
+
+Have regression planning which is a backward search form end goal.
+Forward planning among best with heuristics to reduce search.

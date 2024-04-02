@@ -25,7 +25,6 @@ Compiler generates relocatable code, loader binds addresses at run time, hw tran
   * virtual memory divided into pages
     address has page number and offset 
   * OS maintains page table mapping
-    MMU takes virtual address and communicates to ram with physical address
+    MMU takes virtual address and communicates to ram with physical address (so, page to frame conversion)
     Has TLB to cache conversions
   (only minimal internal fragmentation in last page)
-TODO: virtual address to physical

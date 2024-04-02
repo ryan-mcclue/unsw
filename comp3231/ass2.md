@@ -1,14 +1,14 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 FILE.H/PROC.H
 A File represents a file for a process and its child processes.
-If doing advanced assignment, a lock would be added to account 
-for child processes sharing the same file as their parent process. 
 A FileMemoryID is a list of indexes into file memory.
 A FileDescriptor is a list of indexes into file pointers.
 A FileTable contains system wide file memory. 
-This is a instantiated as a global variable and so is shared between processes.
 A FileDescriptorTable contains process specific file pointers. 
-This is added to the proc struct and so is per-process.
+An issue to address is multiple processes opening the same file.
+To handle this, FileTable is instantiated as a global variable and is shared between processes.
+FileDescriptor table is added to the proc struct and so is per-process. 
+This gives multiple processes unique file cursors to the same file memory.
 
 MAIN.C/RUNPROGRAM.C/PROC.C:
 The file memory id's are initialised after boot(), 

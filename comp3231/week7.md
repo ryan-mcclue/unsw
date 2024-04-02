@@ -9,14 +9,23 @@ Simple fixed size partitions with processes put into a queue waiting for a parti
 Although internal fragmentation, can be used on an mcu.
 
 Dynamic partition results in external fragmentation that are holes.
-First fit scans free list for first entry that fits.
+First-fit scans free list for first entry that fits.
+(also have next-fit(next to allocation), best-fit(closest), worst-fit)
+
+(flexibility incur performance)
+1. (compile-time) Compiler generates relocatable code (addresses are offsets to base address)
+PIE is default to allow for ASLR security so harder to identify memory layout.
+In theory, PIE only necessary for shared libraries to be loaded at any location.
+non-PIE would allow compiler to do addresses (readelf -a)
+2. (load-time) loader binds addresses at run time (ld-linux.so)
+3. (run-time) hw translates to physical addresses.
 
 If want to compact external fragmentation require relocation of running programs, typically requiring hw support
-Compiler generates relocatable code, loader binds addresses at run time, hw translates to physical addresses.
 1.
   * bound/limit register is max. logical address 
   * base/relocation register is offset to add to logical to get physical
   (these are changed on a context switch and relocation/compaction time)
+  provides a degree of memory isolation and relocation.
   not suitable for inactive processes, code sharing
 2. 
   to handle processes larger than ram, have virtual memory.

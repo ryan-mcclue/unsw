@@ -24,6 +24,8 @@ class Score(Enum):
   MAX_SCORE = 100000
   MIN_SCORE = -MAX_SCORE
 
+  CENTRE = 10
+
 @dataclass
 class Move:
   board_num: int = 0
@@ -69,7 +71,7 @@ def have_won(are_max):
 
   mark = Mark.PLAYER if are_max else Mark.OPPONENT
 
-  active_board_coord = grid_coord(global_next_board_num, 0)
+  active_board_coord = grid_coord(global_next_board_num, 1)
   active_board = global_grid[active_board_coord:active_board_coord+9]
 
   # 0 1 2
@@ -85,6 +87,39 @@ def have_won(are_max):
   right_diag = (active_board[6] == mark and active_board[4] == mark and active_board[2] == mark)
 
   return (left_col or middle_col or right_col or top_row or middle_row or bottom_row or left_diag or right_diag)
+
+def get_score(cell):
+  score = 0
+
+  return score
+
+def static_evaluation(grid, cur_board_num):
+  score = 0
+
+  active_board_coord = grid_coord(cur_board_num, 1)
+  active_board = grid[active_board_coord:active_board_coord+9]
+  # 0 1 2
+  # 3 4 5
+  # 6 7 8
+
+  # centre control
+  score += get_score(Cell.CORNER)
+  centre_cell = active_board[4]
+  if centre_cell == Mark.PLAYER:
+    score += Score.CENTRE 
+  elif centre_cell == Mark.OPPONENT:
+    score -= Score.CENTRE
+
+  # corner control
+  for i in [0, 2, 6, 8]:
+    corner_cell = active_board[i]
+    if corner_cell == M
+
+  # two in a row[
+  # two in a column
+  # 
+
+  return score
 
 def minimax(grid, depth, are_max, cur_board_num):
   possible_moves = get_possible_moves(grid, cur_board_num)
@@ -104,7 +139,9 @@ def minimax(grid, depth, are_max, cur_board_num):
       cur_board_num = do_move(grid, move, are_max)
       move_res = minimax(grid, depth-1, not are_max, cur_board_num)
       if move_res.score > max_move.score:
-        max_move = move_res
+        max_move.score = move_res.score
+        max_move.cell_num = move.cell_num
+        max_move.board_num = move.board_num
       cur_board_num = undo_move(grid, move)
     return max_move
   else:
@@ -113,7 +150,9 @@ def minimax(grid, depth, are_max, cur_board_num):
       cur_board_num = do_move(grid, move, are_max)
       move_res = minimax(grid, depth-1, not are_max, cur_board_num)
       if move_res.score < min_move.score:
-        min_move = move_res
+        min_move.score = move_res.score
+        min_move.cell_num = move.cell_num
+        min_move.board_num = move.board_num
       cur_board_num = undo_move(grid, move)
     return min_move
 
@@ -229,8 +268,8 @@ def main():
         s.close()
         return
       elif response > 0:
-        print(f"Move: {response}", flush=True)
         s.sendall((str(response) + "\n").encode())
+        print(f"Move: {response}", flush=True)
 
 
 if __name__ == "__main__":

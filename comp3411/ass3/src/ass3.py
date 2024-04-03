@@ -36,6 +36,7 @@ global_grid = [Mark.EMPTY] * global_num_cells * global_num_boards
 global_next_board_num = 0
 
 def grid_coord(board_num, cell_num):
+  global global_num_cells
   return (board_num - 1) * global_num_cells + (cell_num - 1)
 
 def place_mark(board_num, cell_num, mark):
@@ -48,26 +49,28 @@ def place_mark(board_num, cell_num, mark):
   
   global_next_board_num = cell_num
 
-def make_move():
+# def make_move():
+#   global global_grid
+#   global global_next_board_num
+# 
+#   n = random.randint(1, 9)
+#   coord = grid_coord(global_next_board_num, n)
+#   while global_grid[coord] != Mark.EMPTY.value:
+#     n = random.randint(1, 9)
+#     coord = grid_coord(global_next_board_num, n)
+# 
+#   place_mark(global_next_board_num, n, Mark.PLAYER)
+# 
+#   return n
+
+def have_won(are_max):
   global global_grid
   global global_next_board_num
 
-  n = random.randint(1, 9)
-  coord = grid_coord(global_next_board_num, n)
-  while global_grid[coord] != Mark.EMPTY.value:
-    n = random.randint(1, 9)
-    coord = grid_coord(global_next_board_num, n)
-
-  place_mark(global_next_board_num, n, Mark.PLAYER)
-
-  return n
-
-def has_mark_won(mark):
-  global global_grid
-  global global_next_board_num
+  mark = Mark.PLAYER if are_max else Mark.OPPONENT
 
   active_board_coord = grid_coord(global_next_board_num, 0)
-  active_board = global_grid[active_board_coord]
+  active_board = global_grid[active_board_coord:active_board_coord+9]
 
   # 0 1 2
   # 3 4 5
@@ -86,38 +89,42 @@ def has_mark_won(mark):
 def minimax(grid, depth, are_max, cur_board_num):
   possible_moves = get_possible_moves(grid, cur_board_num)
   if (len(possible_moves) == 0):
-    return Move(cur_board_num, -1, Score.DRAW)
+    return Move(cur_board_num, -1, Score.DRAW.value)
   elif have_won(True):
-    return Move(cur_board_num, -1, Score.WON)
+    return Move(cur_board_num, -1, Score.WON.value)
   elif have_won(False):
-    return EVAL.LOSS
+    return Move(cur_board_num, -1, Score.LOSS.value)
   elif depth == 0:
     # TODO: need better static evaluation
-    return Move(cur_board_num, -1, Score.STATIC * (100 - depth))
+    return Move(cur_board_num, -1, Score.STATIC.value * (100 - depth))
 
   if are_max:
-    max_move = Move(cur_board_num, -1, SCORE.MIN_SCORE)
+    max_move = Move(cur_board_num, -1, Score.MIN_SCORE.value)
     for move in possible_moves:
-      do_move(grid, move)
-      move_res = minimax(grid, depth-1, !are_max, cur_board_num)
+      cur_board_num = do_move(grid, move, are_max)
+      move_res = minimax(grid, depth-1, not are_max, cur_board_num)
       if move_res.score > max_move.score:
         max_move = move_res
-      undo_move(grid, move)
+      cur_board_num = undo_move(grid, move)
     return max_move
   else:
-    min_move = Move(cur_board_num, -1, SCORE.MAX_SCORE)
+    min_move = Move(cur_board_num, -1, Score.MAX_SCORE.value)
     for move in possible_moves:
-      do_move(grid, move)
-      move_res = minimax(grid, depth-1, !are_max, cur_board_num)
+      cur_board_num = do_move(grid, move, are_max)
+      move_res = minimax(grid, depth-1, not are_max, cur_board_num)
       if move_res.score < min_move.score:
         min_move = move_res
-      undo_move(grid, move)
+      cur_board_num = undo_move(grid, move)
     return min_move
 
 def get_possible_moves(grid, cur_board_num):
   moves = []
 
-
+  for i in range(1, 10):
+    coord = grid_coord(cur_board_num, i)
+    if grid[coord] == Mark.EMPTY:
+      move = Move(cur_board_num, i, 0)
+      moves.append(move)
 
   return moves
 
@@ -126,20 +133,25 @@ def do_move(grid, move, are_max):
   coord = grid_coord(move.board_num, move.cell_num) 
   grid[coord] = mark 
 
+  return move.cell_num
+
 def undo_move(grid, move):
   coord = grid_coord(move.board_num, move.cell_num) 
   grid[coord] = Mark.EMPTY 
 
+  return move.cell_num
 
 def make_move():
   global global_grid
+  global global_next_board_num 
+
   grid_copy = global_grid.copy()
 
-  best_move = minimax(grid_copy, 50, True)
+  best_move = minimax(grid_copy, 5, True, global_next_board_num)
 
-  place_mark(global_next_board_num, best_move.cell, Mark.PLAYER)
+  place_mark(global_next_board_num, best_move.cell_num, Mark.PLAYER)
 
-  return best_move.cell
+  return best_move.cell_num
 
 
 def parse_cmd(cmd):
@@ -200,7 +212,11 @@ def parse_cmd(cmd):
 
 def main():
   s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-  port = int(sys.argv[2]) # Usage: ./agent.py -p (port)
+  port = 0
+  if sys.gettrace():
+    port = 12345
+  else:
+    port = int(sys.argv[2]) # Usage: ./agent.py -p (port)
 
   s.connect(('localhost', port))
   while True:
@@ -213,6 +229,7 @@ def main():
         s.close()
         return
       elif response > 0:
+        print(f"Move: {response}", flush=True)
         s.sendall((str(response) + "\n").encode())
 
 

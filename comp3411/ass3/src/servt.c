@@ -71,6 +71,13 @@ void server_init( int port )
   servAddr.sin_family = AF_INET;
   servAddr.sin_addr.s_addr = htonl(INADDR_ANY);
   servAddr.sin_port = htons(port);
+  
+  int opt_val = 1;
+  if (setsockopt(server, SOL_SOCKET, SO_REUSEADDR, (void *)&opt_val, sizeof(opt_val)) == -1)
+  {
+    perror("cannot set reusable socket");
+    exit(1);
+  }
 
   // bind server port
   if(bind(server, (struct sockaddr *)&servAddr, sizeof(servAddr))<0) {

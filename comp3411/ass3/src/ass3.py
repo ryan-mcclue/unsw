@@ -3,6 +3,7 @@
 
 import sys
 import socket
+import random
 
 from dataclasses import dataclass, field
 from typing import List
@@ -10,120 +11,97 @@ from enum import Enum
 
 import sys
 
-num_cells = 9 # width
-num_boards = 9 # height
-grid = [0] * num_cells * num_boards
+global_num_cells = 9 # width
+global_num_boards = 9 # height
+global_grid = [0] * global_num_cells * global_num_boards
+global_next_board_num = 0
 
-def place_mark(grid, mark, board_num, cell_num):
-  is_valid = (board_num >= 1 and board_num < num_boards and cell_num >= 1 and cell_num < num_cells)
-  assert is_valid, f"placing mark at invalid location {board_num},{cell_num}"
+class Mark(Enum):
+  EMPTY = 0
+  PLAYER = 1
+  OPPONENT = 2
 
-  # Subtracting to account for indexing starting at 1
-  coord = (board_num - 1) * num_cells + (cell_num - 1)
-  pass
+def grid_coord(board_num, cell_num):
+  return (board_num - 1) * global_num_cells + (cell_num - 1)
 
-def print_grid(grid):
-  pass
+def place_mark(board_num, cell_num, mark):
+  global global_next_board_num
+  global global_grid
 
-# a board cell can hold:
-#   0 - Empty
-#   1 - We played here
-#   2 - Opponent played here
+  coord = grid_coord(board_num, cell_num)
 
-# the boards are of size 10 because index 0 isn't used
-boards = np.zeros((10, 10), dtype="int8")
-s = [".","X","O"]
-curr = 0 # this is the current board to play in
+  global_grid[coord] = mark
+  
+  global_next_board_num = cell_num
 
-# print a row
-def print_board_row(bd, a, b, c, i, j, k):
-    print(" "+s[bd[a][i]]+" "+s[bd[a][j]]+" "+s[bd[a][k]]+" | " \
-             +s[bd[b][i]]+" "+s[bd[b][j]]+" "+s[bd[b][k]]+" | " \
-             +s[bd[c][i]]+" "+s[bd[c][j]]+" "+s[bd[c][k]])
+def make_move():
+  global global_grid
+  global global_next_board_num
 
-# Print the entire board
-def print_board(board):
-    print_board_row(board, 1,2,3,1,2,3)
-    print_board_row(board, 1,2,3,4,5,6)
-    print_board_row(board, 1,2,3,7,8,9)
-    print(" ------+-------+------")
-    print_board_row(board, 4,5,6,1,2,3)
-    print_board_row(board, 4,5,6,4,5,6)
-    print_board_row(board, 4,5,6,7,8,9)
-    print(" ------+-------+------")
-    print_board_row(board, 7,8,9,1,2,3)
-    print_board_row(board, 7,8,9,4,5,6)
-    print_board_row(board, 7,8,9,7,8,9)
-    print()
+  n = random.randint(1, 9)
+  coord = grid_coord(global_next_board_num, n)
+  while global_grid[coord] != Mark.EMPTY.value:
+    n = random.randint(1, 9)
+    coord = grid_coord(global_next_board_num, n)
 
-# choose a move to play
-def play():
-    # print_board(boards)
+  place_mark(global_next_board_num, n, Mark.PLAYER)
 
-    # just play a random move for now
-    n = np.random.randint(1,9)
-    while boards[curr][n] != 0:
-        n = np.random.randint(1,9)
+  return n
 
-    # print("playing", n)
-    place(curr, n, 1)
-    return n
+def parse_cmd(cmd):
+  if "(" in cmd:
+    command, args = cmd.split("(")
+    args = args.split(")")[0]
+    args = args.split(",")
+  else:
+    command, args = cmd, []
 
-# place a move in the global boards
-def place( board, num, player ):
-    global curr
-    curr = num
-    boards[board][num] = player
+  print(f"{command}, {args}")
 
-def parse(string):
-    if "(" in string:
-        command, args = string.split("(")
-        args = args.split(")")[0]
-        args = args.split(",")
-    else:
-        command, args = string, []
-
-    # init tells us that a new game is about to begin.
-    # start(x) or start(o) tell us whether we will be playing first (x)
-    # or second (o); we might be able to ignore start if we internally
-    # use 'X' for *our* moves and 'O' for *opponent* moves.
-
-    # second_move(K,L) means that the (randomly generated)
-    # first move was into square L of sub-board K,
-    # and we are expected to return the second move.
-    if command == "second_move":
-        # place the first move (randomly generated for opponent)
-        place(int(args[0]), int(args[1]), 2)
-        return play()  # choose and return the second move
-
-    # third_move(K,L,M) means that the first and second move were
-    # in square L of sub-board K, and square M of sub-board L,
-    # and we are expected to return the third move.
-    elif command == "third_move":
-        # place the first move (randomly generated for us)
-        place(int(args[0]), int(args[1]), 1)
-        # place the second move (chosen by opponent)
-        place(curr, int(args[2]), 2)
-        return play() # choose and return the third move
-
-    # nex_move(M) means that the previous move was into
-    # square M of the designated sub-board,
-    # and we are expected to return the next move.
-    elif command == "next_move":
-        # place the previous move (chosen by opponent)
-        place(curr, int(args[0]), 2)
-        return play() # choose and return our next move
-
-    elif command == "win":
-        print("Yay!! We win!! :)")
-        return -1
-
-    elif command == "loss":
-        print("We lost :(")
-        return -1
-
+  if command == "init":
     return 0
+  elif command == "second_move":
+    # going second, i.e. 'o'
+    opponent_board_num = int(args[0])
+    opponent_cell_num = int(args[1])
 
+    # place server generated random move for opponent
+    place_mark(opponent_board_num, opponent_cell_num, Mark.OPPONENT)
+
+    return make_move()
+  elif command == "third_move":
+    # going first, i.e. 'x'
+    our_random_board_num = int(args[0])
+    our_random_cell_num = int(args[1])
+    opponent_board_num = our_random_cell_num
+    opponent_cell_num = int(args[2])
+
+    # place our server generated random move
+    place_mark(our_random_board_num, our_random_cell_num, Mark.PLAYER)
+    # place opponents move
+    place_mark(opponent_board_num, opponent_cell_num, Mark.OPPONENT)
+
+    return make_move()
+  elif command == "next_move":
+    opponent_board_num = global_next_board_num
+    opponent_cell_num = int(args[0])
+
+    # place opponent move
+    place_mark(opponent_board_num, opponent_cell_num, Mark.OPPONENT)
+
+    return make_move()
+  elif command == "win":
+    print("Yay!! We win!! :)")
+    return -1
+  elif command == "loss":
+    print("We lost :(")
+    return -1
+  elif command == "draw":
+    print("Draw")
+    # TODO: how to handle this?
+    return -1
+
+  return 0
 
 def main():
   s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -134,8 +112,8 @@ def main():
     text = s.recv(1024).decode()
     if not text:
       continue
-    for line in text.split("\n"):
-      response = parse(line)
+    for cmd in text.split("\n"):
+      response = parse_cmd(cmd)
       if response == -1:
         s.close()
         return

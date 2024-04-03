@@ -12,13 +12,27 @@ from enum import Enum
 import sys
 
 class Mark(Enum):
-  PLAYER = 0
-  OPPONENT = 1
-  EMPTY = 2
+  EMPTY = 0
+  PLAYER = 1
+  OPPONENT = 2
+
+class Score(Enum):
+  WIN = 1000
+  LOSS = -1000
+  DRAW = 0
+  STATIC = 500
+  MAX_SCORE = 100000
+  MIN_SCORE = -MAX_SCORE
+
+@dataclass
+class Move:
+  board_num: int = 0
+  cell_num: int = 0
+  score: int = 0
 
 global_num_cells = 9 # width
 global_num_boards = 9 # height
-global_grid = [Mark.EMPTY.value] * global_num_cells * global_num_boards
+global_grid = [Mark.EMPTY] * global_num_cells * global_num_boards
 global_next_board_num = 0
 
 def grid_coord(board_num, cell_num):
@@ -69,27 +83,63 @@ def has_mark_won(mark):
 
   return (left_col or middle_col or right_col or top_row or middle_row or bottom_row or left_diag or right_diag)
 
-def minimax(position, depth, maximising_mark):
-  if depth == 0 or has_mark_won(maximising_mark.value ^ 1):
-    return -1000 + m?; # static evaluation
+def minimax(grid, depth, are_max, cur_board_num):
+  possible_moves = get_possible_moves(grid, cur_board_num)
+  if (len(possible_moves) == 0):
+    return Move(cur_board_num, -1, Score.DRAW)
+  elif have_won(True):
+    return Move(cur_board_num, -1, Score.WON)
+  elif have_won(False):
+    return EVAL.LOSS
+  elif depth == 0:
+    # TODO: need better static evaluation
+    return Move(cur_board_num, -1, Score.STATIC * (100 - depth))
 
-  if maximising_mark == Mark.PLAYER:
-    max_val = -100000
-    for move in possible_moves at position:
-      val = minimax(position, depth-1, maximising_mark.value ^ 1)
-      max_val = max(max_val, val)
-    return max_val
+  if are_max:
+    max_move = Move(cur_board_num, -1, SCORE.MIN_SCORE)
+    for move in possible_moves:
+      do_move(grid, move)
+      move_res = minimax(grid, depth-1, !are_max, cur_board_num)
+      if move_res.score > max_move.score:
+        max_move = move_res
+      undo_move(grid, move)
+    return max_move
   else:
-    min_val = 100000
-    # TODO: if no legal moves, draw and return 0;
-    for move in possible_moves at position:
-      make_move(move)
-      val = minimax(position, depth-1, maximising_mark.value ^ 1)
-      min_val = min(min_val, val)
-      undo_move(move)
-    return min_val
+    min_move = Move(cur_board_num, -1, SCORE.MAX_SCORE)
+    for move in possible_moves:
+      do_move(grid, move)
+      move_res = minimax(grid, depth-1, !are_max, cur_board_num)
+      if move_res.score < min_move.score:
+        min_move = move_res
+      undo_move(grid, move)
+    return min_move
 
-minimax(board, 50, Mark.PLAYER.value)
+def get_possible_moves(grid, cur_board_num):
+  moves = []
+
+
+
+  return moves
+
+def do_move(grid, move, are_max):
+  mark = Mark.PLAYER if are_max else Mark.OPPONENT
+  coord = grid_coord(move.board_num, move.cell_num) 
+  grid[coord] = mark 
+
+def undo_move(grid, move):
+  coord = grid_coord(move.board_num, move.cell_num) 
+  grid[coord] = Mark.EMPTY 
+
+
+def make_move():
+  global global_grid
+  grid_copy = global_grid.copy()
+
+  best_move = minimax(grid_copy, 50, True)
+
+  place_mark(global_next_board_num, best_move.cell, Mark.PLAYER)
+
+  return best_move.cell
 
 
 def parse_cmd(cmd):

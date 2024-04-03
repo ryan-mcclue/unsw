@@ -11,15 +11,15 @@ from enum import Enum
 
 import sys
 
+class Mark(Enum):
+  PLAYER = 0
+  OPPONENT = 1
+  EMPTY = 2
+
 global_num_cells = 9 # width
 global_num_boards = 9 # height
-global_grid = [0] * global_num_cells * global_num_boards
+global_grid = [Mark.EMPTY.value] * global_num_cells * global_num_boards
 global_next_board_num = 0
-
-class Mark(Enum):
-  EMPTY = 0
-  PLAYER = 1
-  OPPONENT = 2
 
 def grid_coord(board_num, cell_num):
   return (board_num - 1) * global_num_cells + (cell_num - 1)
@@ -47,6 +47,50 @@ def make_move():
   place_mark(global_next_board_num, n, Mark.PLAYER)
 
   return n
+
+def has_mark_won(mark):
+  global global_grid
+  global global_next_board_num
+
+  active_board_coord = grid_coord(global_next_board_num, 0)
+  active_board = global_grid[active_board_coord]
+
+  # 0 1 2
+  # 3 4 5
+  # 6 7 8
+  left_col = (active_board[0] == mark and active_board[3] == mark and active_board[6] == mark)
+  middle_col = (active_board[1] == mark and active_board[4] == mark and active_board[7] == mark)
+  right_col = (active_board[2] == mark and active_board[5] == mark and active_board[8] == mark)
+  top_row = (active_board[0] == mark and active_board[1] == mark and active_board[2] == mark)
+  middle_row = (active_board[3] == mark and active_board[4] == mark and active_board[5] == mark)
+  bottom_row = (active_board[6] == mark and active_board[7] == mark and active_board[8] == mark)
+  left_diag = (active_board[0] == mark and active_board[4] == mark and active_board[8] == mark)
+  right_diag = (active_board[6] == mark and active_board[4] == mark and active_board[2] == mark)
+
+  return (left_col or middle_col or right_col or top_row or middle_row or bottom_row or left_diag or right_diag)
+
+def minimax(position, depth, maximising_mark):
+  if depth == 0 or has_mark_won(maximising_mark.value ^ 1):
+    return -1000 + m?; # static evaluation
+
+  if maximising_mark == Mark.PLAYER:
+    max_val = -100000
+    for move in possible_moves at position:
+      val = minimax(position, depth-1, maximising_mark.value ^ 1)
+      max_val = max(max_val, val)
+    return max_val
+  else:
+    min_val = 100000
+    # TODO: if no legal moves, draw and return 0;
+    for move in possible_moves at position:
+      make_move(move)
+      val = minimax(position, depth-1, maximising_mark.value ^ 1)
+      min_val = min(min_val, val)
+      undo_move(move)
+    return min_val
+
+minimax(board, 50, Mark.PLAYER.value)
+
 
 def parse_cmd(cmd):
   if "(" in cmd:
@@ -99,6 +143,7 @@ def parse_cmd(cmd):
   elif command == "draw":
     print("Draw")
     # TODO: how to handle this?
+    # TODO: necessary to handle other commands not explicitly listed in agent.py?
     return -1
 
   return 0

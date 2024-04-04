@@ -92,6 +92,7 @@ def get_score(mark, score):
   else:
     return -score
 
+# TODO: should all scores for next_board should be increased?
 def board_score(board, are_max, is_next):
   score = 0
   
@@ -332,7 +333,7 @@ def get_possible_moves(grid, cur_board_num):
   numbers = list(range(1, 10))
   random.shuffle(numbers)
 
-  for i in numbers:
+  for i in range(9):
     coord = grid_coord(cur_board_num, i)
     if grid[coord] == Mark.EMPTY:
       move = Move(cur_board_num, i, 0)

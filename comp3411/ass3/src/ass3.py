@@ -17,14 +17,15 @@ class Mark(Enum):
   OPPONENT = 2
 
 class Score(Enum):
-  WIN = 1000
-  LOSS = -1000
+  END = 100000
   DRAW = 0
-  STATIC = 500
-  MAX_SCORE = 100000
-  MIN_SCORE = -MAX_SCORE
+  CENTRE = 5
+  CORNER = 2
+  POSSIBLE_END = 100
+  BOARD_COUNT = 1
 
-  CENTRE = 10
+  MAX_SCORE = 10000000
+  MIN_SCORE = -MAX_SCORE
 
 @dataclass
 class Move:
@@ -65,14 +66,11 @@ def place_mark(board_num, cell_num, mark):
 # 
 #   return n
 
-def have_won(are_max):
-  global global_grid
-  global global_next_board_num
-
+def have_won(grid, cur_board_num, are_max):
   mark = Mark.PLAYER if are_max else Mark.OPPONENT
 
-  active_board_coord = grid_coord(global_next_board_num, 1)
-  active_board = global_grid[active_board_coord:active_board_coord+9]
+  active_board_coord = grid_coord(cur_board_num, 1)
+  active_board = grid[active_board_coord:active_board_coord+9]
 
   # 0 1 2
   # 3 4 5
@@ -88,72 +86,177 @@ def have_won(are_max):
 
   return (left_col or middle_col or right_col or top_row or middle_row or bottom_row or left_diag or right_diag)
 
-def get_score(cell):
+def board_score(board, are_max, is_next):
   score = 0
-
-  return score
-
-def static_evaluation(grid, cur_board_num):
-  score = 0
-
-  active_board_coord = grid_coord(cur_board_num, 1)
-  active_board = grid[active_board_coord:active_board_coord+9]
-  # 0 1 2
-  # 3 4 5
-  # 6 7 8
+  
+  score_mul = 1 if are_max else -1
+  mark = Mark.PLAYER if are_max else Mark.OPPONENT
 
   # centre control
-  score += get_score(Cell.CORNER)
-  centre_cell = active_board[4]
-  if centre_cell == Mark.PLAYER:
-    score += Score.CENTRE 
-  elif centre_cell == Mark.OPPONENT:
-    score -= Score.CENTRE
+  if board[4] == mark:
+    score += (score_mul * Score.CENTRE.value)
 
   # corner control
   for i in [0, 2, 6, 8]:
-    corner_cell = active_board[i]
-    if corner_cell == M
+    if board[i] == mark:
+      score += (score_mul * Score.CORNER.value)
 
-  # two in a row[
-  # two in a column
-  # 
+  # if looking at next move, then these give ending moves
+  possible_end_score = Score.END.value if is_next else Score.POSSIBLE_END.value
+
+  # 0 1 2
+  # 3 4 5
+  # 6 7 8
+  # possible row
+  i=0
+  j=1
+  k=2
+  if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[i] == board[k] and board[i] == mark and board[j] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[j] == board[k] and board[j] == mark and board[i] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  i+=3
+  j+=3
+  k+=3
+  if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[i] == board[k] and board[i] == mark and board[j] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[j] == board[k] and board[j] == mark and board[i] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  i+=3
+  j+=3
+  k+=3
+  if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[i] == board[k] and board[i] == mark and board[j] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[j] == board[k] and board[j] == mark and board[i] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+
+
+  # 0 1 2
+  # 3 4 5
+  # 6 7 8
+  # possible col
+  i=0
+  j=3
+  k=6
+  if board[i] == board[6] and board[i] == mark and board[j] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[i] == board[j] and board[i] == mark and board[6] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[j] == board[6] and board[j] == mark and board[i] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  i+=1
+  j+=1
+  k+=1
+  if board[i] == board[k] and board[i] == mark and board[j] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[j] == board[k] and board[j] == mark and board[i] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  i+=1
+  j+=1
+  k+=1
+  if board[i] == board[k] and board[i] == mark and board[j] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[j] == board[k] and board[j] == mark and board[i] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+
+  # 0 1 2
+  # 3 4 5
+  # 6 7 8
+  # possible diag
+  if board[0] == board[8] and board[0] == mark and board[4] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[4] == board[8] and board[4] == mark and board[0] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[0] == board[4] and board[0] == mark and board[8] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[6] == board[4] and board[6] == mark and board[2] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[4] == board[2] and board[4] == mark and board[6] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+  if board[6] == board[2] and board[6] == mark and board[4] == Mark.EMPTY:
+    score += (score_mul * possible_end_score)
+
+  # board count
+  player_count = 0
+  opponent_count = 0
+  for i in range(9):
+    mark = board[i]
+    if mark == Mark.PLAYER:
+      player_count += 1
+    elif mark == Mark.OPPONENT:
+      opponent_count += 1
+  score -= (opponent_count * Score.BOARD_COUNT.value)
+  score += (player_count * Score.BOARD_COUNT.value)
 
   return score
 
-def minimax(grid, depth, are_max, cur_board_num):
+
+def static_evaluation(grid, move, are_max):
+  evaluation = 0
+
+  cur_board_num = move.board_num
+  cur_board_coord = grid_coord(cur_board_num, 1)
+  cur_board = grid[cur_board_coord:cur_board_coord+9]
+  evaluation += board_score(cur_board, are_max, False)
+
+  next_board_num = move.cell_num
+  next_board_coord = grid_coord(next_board_num, 1)
+  next_board = grid[next_board_coord:next_board_coord+9]
+  evaluation += board_score(next_board, are_max, True)
+
+  return evaluation
+
+# TODO: consider global board?
+
+def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
   possible_moves = get_possible_moves(grid, cur_board_num)
-  if (len(possible_moves) == 0):
+  if have_won(grid, cur_board_num, True):
+    return Move(cur_board_num, -1, Score.END.value)
+  elif have_won(grid, cur_board_num, False):
+    return Move(cur_board_num, -1, -Score.END.value)
+  elif (len(possible_moves) == 0):
     return Move(cur_board_num, -1, Score.DRAW.value)
-  elif have_won(True):
-    return Move(cur_board_num, -1, Score.WON.value)
-  elif have_won(False):
-    return Move(cur_board_num, -1, Score.LOSS.value)
   elif depth == 0:
-    # TODO: need better static evaluation
-    return Move(cur_board_num, -1, Score.STATIC.value * (100 - depth))
+    score = static_evaluation(grid, prev_move, are_max)
+    return Move(cur_board_num, -1, score)
 
   if are_max:
     max_move = Move(cur_board_num, -1, Score.MIN_SCORE.value)
     for move in possible_moves:
-      cur_board_num = do_move(grid, move, are_max)
-      move_res = minimax(grid, depth-1, not are_max, cur_board_num)
+      do_move(grid, move, are_max)
+      move_res = minimax(grid, depth-1, False, move.cell_num, a, b, move)
       if move_res.score > max_move.score:
         max_move.score = move_res.score
         max_move.cell_num = move.cell_num
         max_move.board_num = move.board_num
-      cur_board_num = undo_move(grid, move)
+      a = max(max_move.score, a)
+      undo_move(grid, move)
+      if b <= a:
+        break
     return max_move
   else:
     min_move = Move(cur_board_num, -1, Score.MAX_SCORE.value)
     for move in possible_moves:
-      cur_board_num = do_move(grid, move, are_max)
-      move_res = minimax(grid, depth-1, not are_max, cur_board_num)
+      do_move(grid, move, are_max)
+      move_res = minimax(grid, depth-1, True, move.cell_num, a, b, move)
       if move_res.score < min_move.score:
         min_move.score = move_res.score
         min_move.cell_num = move.cell_num
         min_move.board_num = move.board_num
-      cur_board_num = undo_move(grid, move)
+      b = min(min_move.score, b)
+      undo_move(grid, move)
+      if b <= a:
+        break
     return min_move
 
 def get_possible_moves(grid, cur_board_num):
@@ -172,13 +275,9 @@ def do_move(grid, move, are_max):
   coord = grid_coord(move.board_num, move.cell_num) 
   grid[coord] = mark 
 
-  return move.cell_num
-
 def undo_move(grid, move):
   coord = grid_coord(move.board_num, move.cell_num) 
   grid[coord] = Mark.EMPTY 
-
-  return move.cell_num
 
 def make_move():
   global global_grid
@@ -186,8 +285,9 @@ def make_move():
 
   grid_copy = global_grid.copy()
 
-  best_move = minimax(grid_copy, 5, True, global_next_board_num)
+  best_move = minimax(grid_copy, 5, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)
 
+  print(f"score={best_move.score}, board={best_move.board_num}, cell={best_move.cell_num}")
   place_mark(global_next_board_num, best_move.cell_num, Mark.PLAYER)
 
   return best_move.cell_num

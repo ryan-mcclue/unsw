@@ -86,23 +86,25 @@ def have_won(grid, cur_board_num, are_max):
 
   return (left_col or middle_col or right_col or top_row or middle_row or bottom_row or left_diag or right_diag)
 
+def get_score(mark, score):
+  if mark == Mark.PLAYER:
+    return score
+  else:
+    return -score
+
 def board_score(board, are_max, is_next):
   score = 0
   
-  score_mul = 1 if are_max else -1
-  mark = Mark.PLAYER if are_max else Mark.OPPONENT
-
+  next_mark = Mark.OPPONENT if are_max else Mark.PLAYER
+  
   # centre control
-  if board[4] == mark:
-    score += (score_mul * Score.CENTRE.value)
+  if board[4] != Mark.EMPTY:
+    score += get_score(board[4], Score.CENTRE.value)
 
   # corner control
   for i in [0, 2, 6, 8]:
-    if board[i] == mark:
-      score += (score_mul * Score.CORNER.value)
-
-  # if looking at next move, then these give ending moves
-  possible_end_score = Score.END.value if is_next else Score.POSSIBLE_END.value
+    if board[i] != Mark.EMPTY:
+      score += get_score(board[i], Score.CORNER.value)
 
   # 0 1 2
   # 3 4 5
@@ -111,30 +113,57 @@ def board_score(board, are_max, is_next):
   i=0
   j=1
   k=2
-  if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[i] == board[k] and board[i] == mark and board[j] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[j] == board[k] and board[j] == mark and board[i] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
+  if board[i] == board[j] and board[i] != Mark.EMPTY and board[k] == Mark.EMPTY:
+    if board[i] == next_mark and is_next:
+      score += get_score(board[i], Score.END.value)
+    else:
+      score += get_score(board[i], Score.POSSIBLE_END.value)
+  if board[i] == board[k] and board[i] != Mark.EMPTY and board[j] == Mark.EMPTY:
+    if board[i] == next_mark and is_next:
+      score += get_score(board[i], Score.END.value)
+    else:
+      score += get_score(board[i], Score.POSSIBLE_END.value)
+  if board[j] == board[k] and board[j] != Mark.EMPTY and board[i] == Mark.EMPTY:
+    if board[j] == next_mark and is_next:
+      score += get_score(board[j], Score.END.value)
+    else:
+      score += get_score(board[j], Score.POSSIBLE_END.value)
   i+=3
   j+=3
   k+=3
-  if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[i] == board[k] and board[i] == mark and board[j] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[j] == board[k] and board[j] == mark and board[i] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
+  if board[i] == board[j] and board[i] != Mark.EMPTY and board[k] == Mark.EMPTY:
+    if board[i] == next_mark and is_next:
+      score += get_score(board[i], Score.END.value)
+    else:
+      score += get_score(board[i], Score.POSSIBLE_END.value)
+  if board[i] == board[k] and board[i] != Mark.EMPTY and board[j] == Mark.EMPTY:
+    if board[i] == next_mark and is_next:
+      score += get_score(board[i], Score.END.value)
+    else:
+      score += get_score(board[i], Score.POSSIBLE_END.value)
+  if board[j] == board[k] and board[j] != Mark.EMPTY and board[i] == Mark.EMPTY:
+    if board[j] == next_mark and is_next:
+      score += get_score(board[j], Score.END.value)
+    else:
+      score += get_score(board[j], Score.POSSIBLE_END.value)
   i+=3
   j+=3
   k+=3
-  if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[i] == board[k] and board[i] == mark and board[j] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[j] == board[k] and board[j] == mark and board[i] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
+  if board[i] == board[j] and board[i] != Mark.EMPTY and board[k] == Mark.EMPTY:
+    if board[i] == next_mark and is_next:
+      score += get_score(board[i], Score.END.value)
+    else:
+      score += get_score(board[i], Score.POSSIBLE_END.value)
+  if board[i] == board[k] and board[i] != Mark.EMPTY and board[j] == Mark.EMPTY:
+    if board[i] == next_mark and is_next:
+      score += get_score(board[i], Score.END.value)
+    else:
+      score += get_score(board[i], Score.POSSIBLE_END.value)
+  if board[j] == board[k] and board[j] != Mark.EMPTY and board[i] == Mark.EMPTY:
+    if board[j] == next_mark and is_next:
+      score += get_score(board[j], Score.END.value)
+    else:
+      score += get_score(board[j], Score.POSSIBLE_END.value)
 
 
   # 0 1 2
@@ -144,47 +173,92 @@ def board_score(board, are_max, is_next):
   i=0
   j=3
   k=6
-  if board[i] == board[6] and board[i] == mark and board[j] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[i] == board[j] and board[i] == mark and board[6] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[j] == board[6] and board[j] == mark and board[i] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
+  if board[i] == board[k] and board[i] != Mark.EMPTY and board[j] == Mark.EMPTY:
+    if board[i] == next_mark and is_next:
+      score += get_score(board[i], Score.END.value)
+    else:
+      score += get_score(board[i], Score.POSSIBLE_END.value)
+  if board[i] == board[j] and board[i] != Mark.EMPTY and board[k] == Mark.EMPTY:
+    if board[i] == next_mark and is_next:
+      score += get_score(board[i], Score.END.value)
+    else:
+      score += get_score(board[i], Score.POSSIBLE_END.value)
+  if board[j] == board[k] and board[j] != Mark.EMPTY and board[i] == Mark.EMPTY:
+    if board[j] == next_mark and is_next:
+      score += get_score(board[i], Score.END.value)
+    else:
+      score += get_score(board[i], Score.POSSIBLE_END.value)
   i+=1
   j+=1
   k+=1
-  if board[i] == board[k] and board[i] == mark and board[j] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[j] == board[k] and board[j] == mark and board[i] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
+  if board[i] == board[k] and board[i] != Mark.EMPTY and board[j] == Mark.EMPTY:
+    if board[i] == next_mark and is_next:
+      score += get_score(board[i], Score.END.value)
+    else:
+      score += get_score(board[i], Score.POSSIBLE_END.value)
+  if board[i] == board[j] and board[i] != Mark.EMPTY and board[k] == Mark.EMPTY:
+    if board[i] == next_mark and is_next:
+      score += get_score(board[i], Score.END.value)
+    else:
+      score += get_score(board[i], Score.POSSIBLE_END.value)
+  if board[j] == board[k] and board[j] != Mark.EMPTY and board[i] == Mark.EMPTY:
+    if board[j] == next_mark and is_next:
+      score += get_score(board[i], Score.END.value)
+    else:
+      score += get_score(board[i], Score.POSSIBLE_END.value)
   i+=1
   j+=1
   k+=1
-  if board[i] == board[k] and board[i] == mark and board[j] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[j] == board[k] and board[j] == mark and board[i] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
+  if board[i] == board[k] and board[i] != Mark.EMPTY and board[j] == Mark.EMPTY:
+    if board[i] == next_mark and is_next:
+      score += get_score(board[i], Score.END.value)
+    else:
+      score += get_score(board[i], Score.POSSIBLE_END.value)
+  if board[i] == board[j] and board[i] != Mark.EMPTY and board[k] == Mark.EMPTY:
+    if board[i] == next_mark and is_next:
+      score += get_score(board[i], Score.END.value)
+    else:
+      score += get_score(board[i], Score.POSSIBLE_END.value)
+  if board[j] == board[k] and board[j] != Mark.EMPTY and board[i] == Mark.EMPTY:
+    if board[j] == next_mark and is_next:
+      score += get_score(board[i], Score.END.value)
+    else:
+      score += get_score(board[i], Score.POSSIBLE_END.value)
 
   # 0 1 2
   # 3 4 5
   # 6 7 8
   # possible diag
-  if board[0] == board[8] and board[0] == mark and board[4] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[4] == board[8] and board[4] == mark and board[0] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[0] == board[4] and board[0] == mark and board[8] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[6] == board[4] and board[6] == mark and board[2] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[4] == board[2] and board[4] == mark and board[6] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
-  if board[6] == board[2] and board[6] == mark and board[4] == Mark.EMPTY:
-    score += (score_mul * possible_end_score)
+  if board[0] == board[8] and board[0] != Mark.EMPTY and board[4] == Mark.EMPTY:
+    if board[0] == next_mark and is_next:
+      score += get_score(board[0], Score.END.value)
+    else:
+      score += get_score(board[0], Score.POSSIBLE_END.value)
+  if board[4] == board[8] and board[4] != Mark.EMPTY and board[0] == Mark.EMPTY:
+    if board[4] == next_mark and is_next:
+      score += get_score(board[4], Score.END.value)
+    else:
+      score += get_score(board[4], Score.POSSIBLE_END.value)
+  if board[0] == board[4] and board[0] != Mark.EMPTY and board[8] == Mark.EMPTY:
+    if board[0] == next_mark and is_next:
+      score += get_score(board[0], Score.END.value)
+    else:
+      score += get_score(board[0], Score.POSSIBLE_END.value)
+  if board[6] == board[4] and board[6] != Mark.EMPTY and board[2] == Mark.EMPTY:
+    if board[6] == next_mark and is_next:
+      score += get_score(board[6], Score.END.value)
+    else:
+      score += get_score(board[6], Score.POSSIBLE_END.value)
+  if board[4] == board[2] and board[4] != Mark.EMPTY and board[6] == Mark.EMPTY:
+    if board[4] == next_mark and is_next:
+      score += get_score(board[4], Score.END.value)
+    else:
+      score += get_score(board[4], Score.POSSIBLE_END.value)
+  if board[6] == board[2] and board[6] != Mark.EMPTY and board[4] == Mark.EMPTY:
+    if board[6] == next_mark and is_next:
+      score += get_score(board[6], Score.END.value)
+    else:
+      score += get_score(board[6], Score.POSSIBLE_END.value)
 
   # board count
   player_count = 0
@@ -201,22 +275,15 @@ def board_score(board, are_max, is_next):
   return score
 
 
-def static_evaluation(grid, move, are_max):
+def static_evaluation(grid, are_max, cur_board_num):
   evaluation = 0
-
-  cur_board_num = move.board_num
-  cur_board_coord = grid_coord(cur_board_num, 1)
-  cur_board = grid[cur_board_coord:cur_board_coord+9]
-  evaluation += board_score(cur_board, are_max, False)
-
-  next_board_num = move.cell_num
-  next_board_coord = grid_coord(next_board_num, 1)
-  next_board = grid[next_board_coord:next_board_coord+9]
-  evaluation += board_score(next_board, are_max, True)
+  for i in range(1, 10):
+    is_next = (i == cur_board_num)
+    board_coord = grid_coord(i, 1)
+    board = grid[board_coord:board_coord+9]
+    evaluation += board_score(board, are_max, is_next)
 
   return evaluation
-
-# TODO: consider global board?
 
 def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
   possible_moves = get_possible_moves(grid, cur_board_num)
@@ -224,10 +291,10 @@ def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
     return Move(cur_board_num, -1, Score.END.value)
   elif have_won(grid, cur_board_num, False):
     return Move(cur_board_num, -1, -Score.END.value)
-  elif (len(possible_moves) == 0):
+  elif len(possible_moves) == 0:
     return Move(cur_board_num, -1, Score.DRAW.value)
   elif depth == 0:
-    score = static_evaluation(grid, prev_move, are_max)
+    score = static_evaluation(grid, are_max, prev_move.cell_num)
     return Move(cur_board_num, -1, score)
 
   if are_max:
@@ -261,8 +328,11 @@ def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
 
 def get_possible_moves(grid, cur_board_num):
   moves = []
+  
+  numbers = list(range(1, 10))
+  random.shuffle(numbers)
 
-  for i in range(1, 10):
+  for i in numbers:
     coord = grid_coord(cur_board_num, i)
     if grid[coord] == Mark.EMPTY:
       move = Move(cur_board_num, i, 0)
@@ -285,7 +355,7 @@ def make_move():
 
   grid_copy = global_grid.copy()
 
-  best_move = minimax(grid_copy, 5, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)
+  best_move = minimax(grid_copy, 6, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)
 
   print(f"score={best_move.score}, board={best_move.board_num}, cell={best_move.cell_num}")
   place_mark(global_next_board_num, best_move.cell_num, Mark.PLAYER)

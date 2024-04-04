@@ -41,6 +41,9 @@ The hash of page number gets entry into HAT (hash anchor table) which gives inde
 The PTE have next fields. The index of the match with same PID is used as frame number.
 To allow for code sharing, an extension Hashed Page Table stores frame number in table entry (allowing the same frame to have different PTEs)
 
+IPT and HPT are better for sparse virtual addresses as paging would create internal fragmentation.
+However, collision lookup may be costly
+
 The TLB (associative cache of PTEs) uses associative/content-addressable-memory (CAM) hardware.
 TLB entries indexed by page number.
 If TLB miss:

@@ -9,6 +9,12 @@ From high addresses to low:  (some address spaces may not be cachable/translated
   - text 
   - heap (grows upwards)
 
+MIPS divides memory in separate address spaces (unlike x86 which uses a flat memory model and several segment registers):
+  - kseg2 (kernel mode code; contains page tables for kuseg)
+  - kseg1 (512MB; for I/O; no MMU)
+  - kseg0 (512MB; no MMU)
+  - kuseg (2GB)
+
 Shared code must appear at same address in all processes
 
 PTE (page table entry) has frame number but also other bits like present/absent, modified, caching (e.g. bypass cache in case of device registers) etc.
@@ -46,7 +52,40 @@ However, collision lookup may be costly
 
 The TLB (associative cache of PTEs) uses associative/content-addressable-memory (CAM) hardware.
 TLB entries indexed by page number.
-If TLB miss:
+If TLB miss, need to refill:
   - hardware performs page table lookup and reloads TLB (x86, ARM)
-  - or, hardware generates exception and OS reloads (MIPS)
-TLB entries are process specific. Entries are tagged with address space id (ASID) (or would have to be flushed on each context switch)
+  - or, exception generated and software reloads (MIPS)
+TLB entries are process specific. 
+TLB entries are tagged with address space id (ASID) (or would have to be flushed on each context switch)
+  - EntryHi (page number)
+   (VPN | ASID)
+  - EntryLo (frame number)
+   (PFN | control bits)
+c0_Index register indexes a TLB entry.
+c0_EntryHi/Lo registers to read/write indexed entry.
+Use various TLB specific instructions.
+
+R3000 has special exception handler for kuseg TLB misses. Other TLB misses handled by general exception handler.
+Only uses `k0` and `k1` registers, than `tlbwr`
+(Amdahls law means should optimise common case; or make more parallel so can be used more etc.)
+c0_BadVaddr gives faulting address
+c0_EntryHi_VPN page number of faulting address
+So, on a TLB miss, only have to translate EntryLo from page table.
+
+On a page fault, may have to reload page from disk (so, have on-demand paging).
+If 'victim' page has no dirty bit (hasn't been written to since it was swapped in), than can cleanly replace?
+
+The number of pages required by a process in a time window is its working set.
+Want to keep this resident entire time.
+
+Thrashing is when many processes running (typically on a multicore) constantly triggering page faults and stalling as memory overused.
+Handle by suspending a few processes.
+
+VM performace dictated by:
+  - page table format
+  - page size (ideally would want large for code, small for thread stacks etc.)
+  - fetch policy, e.g. on page faults or pre-fetch
+  - replacement policy, e.g FIFO, LRU (impossible to implement efficiently, so approximate), 
+    Clock (each frame has a used bit; when scanning reset this bit for all entries searched past; replace first page with reset bit not set)
+  - resident set size (each process is allowed a variable number of frames)
+  - cleaning policy

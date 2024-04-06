@@ -1,4 +1,6 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+IMPORTANT: use ass2 sys.conf and .gitignore
+
 R3000 Reference Manual and Hardware Guide on the course website.
 
 TLB miss if not matching found with a valid bit (or global bit and no matching ASID) 

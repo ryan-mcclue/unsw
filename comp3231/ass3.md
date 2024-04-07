@@ -6,21 +6,57 @@
 http://jhshi.me/2012/04/24/os161-user-address-space/index.html
 as_create()
 {
-  
+  address ranges 
+  10,10,12
+}
+struct addrspace
+{
+  heap_start;
+  heap_end;
+  stack_start;
+  stack_end;
+  Page pages;
 }
 
+struct Page
+{
+  state (dirty, i.e. it doesn't have copy in swap?; fixed, i.e. don't swap this out)
+};
+
+http://jhshi.me/2012/04/27/os161-tlb-miss-and-page-fault/index.html
 vm_fault(int faulttype, vaddr_t faultaddress)
 {
+  switch (faulttype)
+  {
+VM_FAULT_READ (attempt read; no tlb entry)
+VM_FAULT_WRITE (attempt write; no tlb entry)
+VM_FAULT_READONLY (tlb entry has dirty bit 0)
+  }
+
   // check if address is valid, e.g. not NULL, not in kernel memory, i.e in useg   
   if (!address_valid_range(faultaddress)) proc_getas()
+   (code, data, heap, stack)
     return EFAULT;??
     kill_process?
 
-  2.   
+  if (!address_backed(faultaddress))
+  (search page table looking for PTE_P bit)
+  {
+    back_address(faultaddress);
+    // zero page
+  }
+
+  fill_tlb(faultaddress);
+  // int s = splhigh();
+  // tlb_random()
+  // splx(s);
+
+	/* make sure it's page-aligned */
+	// KASSERT((paddr & PAGE_FRAME) == paddr);
+
+  // IMPORTANT: we can just flush TLB on a context switch
 }
 
-int s = splhigh();
-splx(s);
 
 allocate our structures (this address range should be marked as fixed?)
 IMPORTANT: don't have to consider paging?
@@ -30,10 +66,6 @@ init will mark address ranges, e.g. stack in useg
 
 as_activate() flushes TLB, and fills with current process?
 
-struct Page
-{
-  state (dirty, i.e. it doesn't have copy in swap?; fixed, i.e. don't swap this out)
-};
 
 as_prepare_load()
 ```

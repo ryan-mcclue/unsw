@@ -2,6 +2,22 @@
 # https://wiki.cse.unsw.edu.au/give/Classrun 
 3231 classrun -sturec
 
+kern/arch/mips/include/tlb.h
+
+
+
+entryhi
+base-virtualaddress-for-page...
+entrylo
+base-physicaladdress-for-frame...
+
+TODO: if out of memory when allocating new page, just die?
+struct trapframe *tf = curthread->t_context;
+tf->tf_cause = EX_ADEL; // Set cause register to indicate Address Error
+mips_trap(tf); // Trigger exception
+
+kmalloc() on kernel heap so bypasses TLB?
+
 ```
 http://jhshi.me/2012/04/24/os161-user-address-space/index.html
 as_create()

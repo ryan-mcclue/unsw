@@ -1,4 +1,43 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+# https://wiki.cse.unsw.edu.au/give/Classrun 
+3231 classrun -sturec
+
+```
+http://jhshi.me/2012/04/24/os161-user-address-space/index.html
+as_create()
+{
+  
+}
+
+vm_fault(int faulttype, vaddr_t faultaddress)
+{
+  // check if address is valid, e.g. not NULL, not in kernel memory, i.e in useg   
+  if (!address_valid_range(faultaddress)) proc_getas()
+    return EFAULT;??
+    kill_process?
+
+  2.   
+}
+
+int s = splhigh();
+splx(s);
+
+allocate our structures (this address range should be marked as fixed?)
+IMPORTANT: don't have to consider paging?
+paddr_t mem_size = ram_getsize();
+
+init will mark address ranges, e.g. stack in useg
+
+as_activate() flushes TLB, and fills with current process?
+
+struct Page
+{
+  state (dirty, i.e. it doesn't have copy in swap?; fixed, i.e. don't swap this out)
+};
+
+as_prepare_load()
+```
+
 IMPORTANT: use ass2 sys.conf and .gitignore
 
 R3000 Reference Manual and Hardware Guide on the course website.
@@ -12,9 +51,13 @@ Running program /bin/true failed: Function not implemented
 
 struct addrspace
 kern/vm/addrspace.c
+kern/vm/vm.c
 
 as_create() should initialise your page table, as_destroy() should clean it up.
+
 allocate pages in vm_fault()
+IMPORTANT: vm_fault() should insert, lookup, and update page table entries in your page table structure.
+Note: Your implementation of TLB refill in vm_fault() should use tlb_random().
 Implement the functions in kern/vm/addrspace.c that are required for basic functionality (e.g. as_create(), as_prepare_load(), etc.)
 
 Note: Interrupts should be disabled when writing to the TLB, see dumbvm for an example. Otherwise, unexpected concurrency issues can occur.
@@ -31,11 +74,16 @@ lazy allocate page table entries
 2-level hierarchical.
 11-9bits
 
-Note: Applications expect pages to contain zeros when first used. This implies that newly allocated frames that are used to back pages should be zero-filled prior to mapping
-To test this assignment, you should run a process that requires more virtual memory than the TLB can map at any one time. You should also ensure that touching memory not in a valid region will raise an exception. The huge and faulter tests in testbin may be useful. See the Wiki for more options.
+Note: Applications expect pages to contain zeros when first used. 
+This implies that newly allocated frames that are used to back pages should be zero-filled prior to mapping
+
+To test this assignment, you should run a process that requires more virtual memory than the TLB can map at any one time. 
+You should also ensure that touching memory not in a valid region will raise an exception. 
+The huge and faulter tests in testbin may be useful. See the Wiki for more options.
+
 Apart from GDB, you may also find the trace161 command useful. trace161 will run the simulator with tracing, for example
 % trace161 -t t -f outfile kernel
-IMPORTANT: don't use kprintf in TLB!
+IMPORTANT: don't use kprintf in TLB as context switches!
 will record all TLB accesses in outfile.
 
 (dirty/valid bit)
@@ -48,6 +96,3 @@ r-- = -V
 --x = -V
 --- = --
 
-(kern/arch/mips/vm/dumbvm.c) for some reference
-
-Note: Your implementation of TLB refill in vm_fault() should use tlb_random().

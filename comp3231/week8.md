@@ -18,7 +18,10 @@ MIPS divides memory in separate address spaces (unlike x86 which uses a flat mem
     kernel + free ram (so, where kmalloc() goes, i.e. allocator already exists here)
     phys = virt - 0x80000000
   - kuseg (2GB)
-    use load_elf() to determine all regions required?
+    load_elf() will call our functions? to determine all regions required?
+    do sanity check on region size
+    looking at program headers (objdump -p), vaddr, filesz, memsz and flags 
+    (IMPORTANT: if filesz different to memsz, zero pad)
     0x0 - 0x7f virtual
     determine physical with our allocator
 

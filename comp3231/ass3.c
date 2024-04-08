@@ -59,6 +59,35 @@ void as_activate(void)
   }
 }
 
+void as_deactive(void)
+{
+  // nothing? maybe just do same as as_activate()?
+}
+
+void as_destroy(struct addrspace *as)
+{
+  // TODO: cleanup linked lists
+
+	kfree(as);
+}
+
+int as_copy(struct addrspace *old, struct addrspace **ret)
+{
+	struct addrspace *newas = as_create();
+	if (newas==NULL)  return ENOMEM;
+
+as_copy() will create same number of frames and copy data over into it.
+	/*
+	 * Write this.
+	 */
+
+	(void)old;
+
+	*ret = newas;
+
+	return 0;
+}
+
 #define L1_BITS 11
 #define L1_SHIFT (sizeof(vaddr_t) - L1_BITS)
 #define L1_MASK (((1 << L1_BITS) - 1) << L1_SHIFT
@@ -70,7 +99,6 @@ void as_activate(void)
 int as_define_region(struct addrspace *as, vaddr_t vaddr, size_t memsize,
 		                 int readable, int writeable, int executable)
 {
-  // TODO: just setting up region permissions?
   size_t aligned_memsize = ALIGN_POW2_UP(memsize, PAGE_SIZE)
 
   AddrRegion *region = kmalloc(sizeof(AddrRegion));
@@ -82,47 +110,6 @@ int as_define_region(struct addrspace *as, vaddr_t vaddr, size_t memsize,
   PUSH(as, region);
   
   as->heap_start;
-  
-  size_t num_pages = aligned_memsize / PAGE_SIZE;
-
-  uint32_t l1_vpn = vaddr & L1_MASK;
-
-  L1Node *l1_entry = NULL;
-  for (L1Node *l1_node = as->first; l1_node != NULL; l1_node = l1_node->next)
-  {
-    if (l1_node->vpn == l1_vpn)
-    {
-      l1_entry = l1_node;
-      break;
-    }
-  }
-  if (l1_entry == NULL)
-  {
-    l1_entry = kmalloc(sizeof(L1Node));
-    l1_entry->vpn = l1_vpn;
-    PUSH(as->first, l1_entry);
-  }
-
-  uint32_t l2_vpn = vaddr & L2_MASK;
-  L2Node *l2_entry = NULL;
-  for (L2Node *l2_node = l1_entry->first; l2_node != NULL; l2_node = l2_node->next)
-  {
-    if (l2_node->vpn == l2_vpn)
-    {
-      l2_entry = l2_node;
-      break;
-    }
-  }
-  if (l2_entry == NULL)
-  {
-    if (global_first_free_paddr + PAGE_SIZE > global_last_paddr)
-      exception
-    l2_entry = kmalloc(sizeof(L2Node));
-    l2_entry->vpn = l2_vpn;
-    l2_entry->frame = global_first_free_paddr;
-    global_first_free_paddr += PAGE_SIZE;
-    PUSH(l1_entryfirst, l2_entry);
-  }
   
 	return ENOSYS; /* Unimplemented */
 }
@@ -172,6 +159,7 @@ int as_define_stack(struct addrspace *as, vaddr_t *stackptr)
 }
 
 
+
 loadexec() -> as_create(),as_activate() 
   -> load_elf() -> as_define_region(),as_prepare_load(),as_complete_load()
 -> as_define_stack()
@@ -183,57 +171,90 @@ base-virtualaddress-for-page...
 entrylo
 base-physicaladdress-for-frame...
 
-TODO: if out of memory when allocating new page, just die?
-struct trapframe *tf = curthread->t_context;
-tf->tf_cause = EX_ADEL; // Set cause register to indicate Address Error
-mips_trap(tf); // Trigger exception
-
-kmalloc() on kernel heap so bypasses TLB?
-
-as_copy() will create same number of frames and copy data over into it.
-
 IMPORTANT: Dirty flag in TLB effectively means writable
-
-http://jhshi.me/2012/04/27/os161-tlb-miss-and-page-fault/index.html
+// http://jhshi.me/2012/04/27/os161-tlb-miss-and-page-fault/index.html
+int
 vm_fault(int faulttype, vaddr_t faultaddress)
 {
-  switch (faulttype)
+  struct addrspace *as = proc_getas();
+  bool valid_region = false;
+  for (AddrRegion *r = as->regions; r != NULL; r = r->next)
   {
-VM_FAULT_READ (attempt read; no tlb entry)
-VM_FAULT_WRITE (attempt write; no tlb entry)
-VM_FAULT_READONLY (tlb entry has dirty bit 0)
+    if (range_u32_contains(r->range, faultaddress))
+    {
+      if ((faultcode == VM_FAULT_READ && r->cur_permissions & READ_PERMISSION) ||
+          (faultcode == VM_FAULT_WRITE && r->cur_permissions & WRITE_PERMISSION))
+      {
+        valid_region = true;
+      }
+      break;
+    }
+  }
+  // VM_FAULT_READ (attempt read; no tlb entry)
+  // VM_FAULT_WRITE (attempt write; no tlb entry)
+  // attempt write on read only; tlb entry has dirty bit 0
+  if (!valid_region || faulttype == VM_FAULT_READONLY)
+  {
+    struct trapframe *tf = curthread->t_context;
+    kill_curthread(tf->tf_epc, EX_ADEL, faultaddress);
   }
 
-  // check if address is valid, e.g. not NULL, not in kernel memory, i.e in useg   
-  if (!address_valid_range(faultaddress)) proc_getas()
-   (code, data, heap, stack)
-    return EFAULT;??
-    kill_process?
-
-  if (!address_backed(faultaddress))
-  (search page table looking for PTE_P bit)
-  (break address into l1,l2 page table entries)
+  uint32_t l1_vpn = faultaddress & L1_MASK;
+  L1Node *l1_entry = NULL;
+  for (L1Node *l1_node = as->first; l1_node != NULL; l1_node = l1_node->next)
   {
-    back_address(faultaddress);
-    // zero page
+    if (l1_node->vpn == l1_vpn)
+    {
+      l1_entry = l1_node;
+      break;
+    }
+  }
+  if (l1_entry == NULL)
+  {
+    l1_entry = kmalloc(sizeof(L1Node));
+    l1_entry->vpn = l1_vpn;
+    PUSH(as->first, l1_entry);
   }
 
-  fill_tlb(faultaddress);
-  // int s = splhigh();
-  // tlb_random()
-  // splx(s);
+  uint32_t l2_vpn = vaddr & L2_MASK;
+  L2Node *l2_entry = NULL;
+  for (L2Node *l2_node = l1_entry->first; l2_node != NULL; l2_node = l2_node->next)
+  {
+    if (l2_node->vpn == l2_vpn)
+    {
+      l2_entry = l2_node;
+      break;
+    }
+  }
+  if (l2_entry == NULL)
+  {
+    if (global_first_free_paddr + PAGE_SIZE > global_last_paddr)
+    {
+      struct trapframe *tf = curthread->t_context;
+      kill_curthread(tf->tf_epc, EX_IBE, faultaddress);
+    }
+    l2_entry = kmalloc(sizeof(L2Node));
+    l2_entry->vpn = l2_vpn;
+    l2_entry->frame = global_first_free_paddr;
 
-	/* make sure it's page-aligned */
-	// KASSERT((paddr & PAGE_FRAME) == paddr);
+    // zero frame
+    memset(global_first_free_paddr, 0, PAGE_SIZE);
 
-  // IMPORTANT: we can just flush TLB on a context switch
+    global_first_free_paddr += PAGE_SIZE;
+    PUSH(l1_entryfirst, l2_entry);
+  }
+
+  DISABLE_INTERRUPTS()
+  {
+    tlb_random();
+  }
+
+  return EFAULT;
 }
 
 
 allocate our structures (this address range should be marked as fixed?)
 IMPORTANT: don't have to consider paging?
-
-init will mark address ranges, e.g. stack in useg
 
 R3000 Reference Manual and Hardware Guide on the course website.
 

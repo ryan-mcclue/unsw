@@ -30,7 +30,9 @@ void vm_bootstrap(void)
 struct addrspace
 {
   L1Node *first;
+  RangeU32 *regions;
 };
+
 
 struct addrspace *
 as_create(void)
@@ -68,8 +70,19 @@ void as_activate(void)
 int as_define_region(struct addrspace *as, vaddr_t vaddr, size_t memsize,
 		                 int readable, int writeable, int executable)
 {
-// TODO: just setting up region permissions?
+  // TODO: just setting up region permissions?
   size_t aligned_memsize = ALIGN_POW2_UP(memsize, PAGE_SIZE)
+
+  AddrRegion *region = kmalloc(sizeof(AddrRegion));
+  if (region == NULL) fatal;
+  region->range.min = vaddr;
+  region->range.max = aligned_memsize;
+  region->orig_permissions = readable | writeable | executable; 
+  region->cur_permissions = region->orig_permissions;
+  PUSH(as, region);
+  
+  as->heap_start;
+  
   size_t num_pages = aligned_memsize / PAGE_SIZE;
 
   uint32_t l1_vpn = vaddr & L1_MASK;
@@ -111,13 +124,51 @@ int as_define_region(struct addrspace *as, vaddr_t vaddr, size_t memsize,
     PUSH(l1_entryfirst, l2_entry);
   }
   
-
-  vaddr_t base = vaddr;
-  vaddr_t base_opl = base + aligned_memsize;
-
-  map_pages(as);
-
 	return ENOSYS; /* Unimplemented */
+}
+
+int as_prepare_load(struct addrspace *as)
+{
+  for (AddrRegion *addr_region = as->regions;)
+  {
+    if (addr_region->cur_permissions & READONLY)
+      addr_region->cur_permissions &= ~READONLY;
+  }
+	return 0;
+}
+
+int as_complete_load(struct addrspace *as)
+{
+  for (AddrRegion *addr_region = as->regions;)
+    addr_region->cur_permissions = addr_region->orig_permissions;
+
+	return 0;
+}
+
+int as_define_stack(struct addrspace *as, vaddr_t *stackptr)
+{
+  size_t stack_size = PAGE_SIZE * 16;
+
+  // heap is after last region
+  AddrRegion *heap_region = kmalloc(sizeof(AddrRegion));
+  if (region == NULL) fatal;
+  region->range.min = as->cur_heap_start;
+  region->range.max = USERSTACK - stack_size;
+  region->orig_permissions = readable | writeable | executable; 
+  region->cur_permissions = region->orig_permissions;
+  PUSH(as, region);
+
+  AddrRegion *region = kmalloc(sizeof(AddrRegion));
+  if (region == NULL) fatal;
+  region->range.min = heap_region->range.max;
+  region->range.max = USERSTACK;
+  region->orig_permissions = readable | writeable; 
+  region->cur_permissions = region->orig_permissions;
+  PUSH(as, region);
+
+	*stackptr = USERSTACK;
+
+	return 0;
 }
 
 
@@ -142,35 +193,6 @@ kmalloc() on kernel heap so bypasses TLB?
 as_copy() will create same number of frames and copy data over into it.
 
 IMPORTANT: Dirty flag in TLB effectively means writable
-
-```
-http://jhshi.me/2012/04/24/os161-user-address-space/index.html
-as_create()
-{
-  address ranges 
-  10,10,12
-}
-kernel allocator allocates from 0x00000000 - 0x1fffffff physical  
-struct addrspace (region and accessibility, e.g. kernel or usermode?)
-{
-  heap_start;
-  heap_end;
-  stack_start = top;
-  stack_end = top - stack_size;
-  Page pages;
-}
-
-specify regions, i.e. address ranges
- as_define_stack()
-• as_define_region()
-– usually implemented as a linked list
-of region specifications
-• as_prepare_load()
-– make READONLY regions
-READWRITE for loading
-purposes
-• as_complete_load()
-– enforce READONLY again
 
 http://jhshi.me/2012/04/27/os161-tlb-miss-and-page-fault/index.html
 vm_fault(int faulttype, vaddr_t faultaddress)

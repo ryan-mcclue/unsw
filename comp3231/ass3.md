@@ -18,6 +18,10 @@ mips_trap(tf); // Trigger exception
 
 kmalloc() on kernel heap so bypasses TLB?
 
+as_copy() will create same number of frames and copy data over into it.
+
+IMPORTANT: Dirty flag in TLB effectively means writable
+
 ```
 http://jhshi.me/2012/04/24/os161-user-address-space/index.html
 as_create()
@@ -25,14 +29,32 @@ as_create()
   address ranges 
   10,10,12
 }
-struct addrspace
+kernel allocator allocates from 0x00000000 - 0x1fffffff physical  
+struct addrspace (region and accessibility, e.g. kernel or usermode?)
 {
   heap_start;
   heap_end;
-  stack_start;
-  stack_end;
+  stack_start = top;
+  stack_end = top - stack_size;
   Page pages;
 }
+
+specify regions, i.e. address ranges
+ as_define_stack()
+• as_define_region()
+– usually implemented as a linked list
+of region specifications
+• as_prepare_load()
+– make READONLY regions
+READWRITE for loading
+purposes
+• as_complete_load()
+– enforce READONLY again
+
+load_elf()
+ // Call as_define_region() for each program header
+ as_define_region(as, phdr.p_vaddr, phdr.p_memsz,
+                  phdr.p_flags & PF_X, phdr.p_offset);
 
 struct Page
 {
@@ -57,6 +79,7 @@ VM_FAULT_READONLY (tlb entry has dirty bit 0)
 
   if (!address_backed(faultaddress))
   (search page table looking for PTE_P bit)
+  (break address into l1,l2 page table entries)
   {
     back_address(faultaddress);
     // zero page
@@ -143,4 +166,5 @@ r-- = -V
 -w- = DV
 --x = -V
 --- = --
+
 

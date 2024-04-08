@@ -13,7 +13,14 @@ MIPS divides memory in separate address spaces (unlike x86 which uses a flat mem
   - kseg2 (kernel mode code; contains page tables for kuseg)
   - kseg1 (512MB; for I/O; no MMU)
   - kseg0 (512MB; no MMU)
+    0x80000000 - 0x9fffffff virtual
+    0x00000000 - 0x1fffffff physical  
+    kernel + free ram (so, where kmalloc() goes, i.e. allocator already exists here)
+    phys = virt - 0x80000000
   - kuseg (2GB)
+    use load_elf() to determine all regions required?
+    0x0 - 0x7f virtual
+    determine physical with our allocator
 
 Shared code must appear at same address in all processes
 

@@ -76,7 +76,7 @@ int as_copy(struct addrspace *old, struct addrspace **ret)
 	struct addrspace *newas = as_create();
 	if (newas==NULL)  return ENOMEM;
 
-as_copy() will create same number of frames and copy data over into it.
+// as_copy() will create same number of frames and copy data over into it.
 	/*
 	 * Write this.
 	 */
@@ -166,13 +166,9 @@ loadexec() -> as_create(),as_activate()
 
 kern/arch/mips/include/tlb.h
 
-entryhi
-base-virtualaddress-for-page...
-entrylo
-base-physicaladdress-for-frame...
-
-IMPORTANT: Dirty flag in TLB effectively means writable
 // http://jhshi.me/2012/04/27/os161-tlb-miss-and-page-fault/index.html
+#define TLB_NUM_BITS 20
+#define TLB_NUM_MASK (((1 << TLB_NUM_BITS) - 1) << (sizeof(uint32_t) - TLB_NUM_BITS))
 int
 vm_fault(int faulttype, vaddr_t faultaddress)
 {
@@ -246,11 +242,21 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 
   DISABLE_INTERRUPTS()
   {
-    tlb_random();
+    // we can ignore ASID
+    uint32_t hi = faultaddress & TLB_NUM_MASK;
+
+    uint32_t lo = l2_entry->frame & TLB_NUM_MASK;
+    if (active_region->cur_permissions & WRITE_PERMISSION)
+      lo |= (1 << DIRTY_BIT);
+    // always valid
+    lo |= (1 << VALID_BIT);
+
+    tlb_random(hi, lo);
   }
 
   return EFAULT;
 }
+
 
 
 allocate our structures (this address range should be marked as fixed?)

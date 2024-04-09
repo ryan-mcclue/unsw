@@ -1,0 +1,5 @@
+#!/bin/bash
+
+depth="$1"
+
+docker run --network host --rm lookt -d "$depth" -p 12345

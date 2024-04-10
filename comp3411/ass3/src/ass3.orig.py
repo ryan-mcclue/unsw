@@ -131,24 +131,6 @@ def could_win(grid, board, mark):
    
   return False
 
-def board_won(board, mark):
-  left_col = (board[0] == mark and board[3] == mark and board[6] == mark)
-  middle_col = (board[1] == mark and board[4] == mark and board[7] == mark)
-  right_col = (board[2] == mark and board[5] == mark and board[8] == mark)
-  top_row = (board[0] == mark and board[1] == mark and board[2] == mark)
-  middle_row = (board[3] == mark and board[4] == mark and board[5] == mark)
-  bottom_row = (board[6] == mark and board[7] == mark and board[8] == mark)
-  left_diag = (board[0] == mark and board[4] == mark and board[8] == mark)
-  right_diag = (board[6] == mark and board[4] == mark and board[2] == mark)
-
-  return (left_col or middle_col or right_col or top_row or middle_row or bottom_row or left_diag or right_diag)
-
-def board_tie(board):
-  for i in range(9):
-    if board[i] == Mark.EMPTY:
-      return False
-  return True
-
 def have_won(grid, cur_board_num, are_max):
   mark = Mark.PLAYER if are_max else Mark.OPPONENT
 
@@ -269,9 +251,9 @@ def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
     score = static_evaluation(grid, are_max, prev_move)
     return Move(cur_board_num, -1, score)
 
-  # for all possible cell numbers
-  for i in range(9):
-    if board[i] == Mark.EMPTY:
+  if are_max:
+    max_move = Move(cur_board_num, -1, Score.MIN_SCORE.value)
+    for move in possible_moves:
       do_move(grid, move, are_max)
       if have_won(grid, move.board_num, True):
         print("WE WON!")
@@ -348,93 +330,11 @@ def undo_move(grid, move):
   coord = grid_coord(move.board_num, move.cell_num) 
   grid[coord] = Mark.EMPTY 
 
-# IMPORTANT: so, only computing moves on a single board (otherwise can't search deep enough?)
-def minimax_get_best_cell(are_max, board, depth, a, b):
-  if board_won(board, Mark.PLAYER):
-    # reward winning early for player
-    return 10 - depth
-  elif board_won(board, Mark.OPPONENT):
-    # reward winning early for opponent
-    return depth - 10
-  elif board_tie(board):
-    return 0
-
-  active_mark = Mark.PLAYER if are_max else Mark.OPPONENT
-  scores = []
-  # TODO(Ryan): A legal move is one that is empty in this board and empty in next board
-  for i in range(9):
-    if board[i] == Mark.EMPTY:
-      board_copy = copy.deepcopy(board)
-      board_copy[i] = active_mark
-      score = minimax_get_best_cell(not are_max, board_copy, depth+1, a, b) 
-
-      if are_max:
-        a = max(a, score)
-      else:
-        b = min(b, score)
-
-      if b <= a:
-        break
-
-      if depth == 0:
-        scores.append([i, score])
-      else:
-        scores.append(score)
-
-  if len(scores) == 0:
-    return 0
-
-  if depth == 0:
-    if are_max:
-      return max(scores, key=lambda x: x[1])[0]
-    else:
-      return min(scores, key=lambda x: x[1])[0]
-  else:
-    if are_max:
-      return max(scores)
-    else:
-      return min(scores)
-
-def get_board(board_num):
-  global global_grid
-
-  board_coord = grid_coord(board_num, 1)
-  board = global_grid[board_coord:board_coord+9]
-  return board
-
-def compute_move():
-  global global_next_board_num 
-
-  active_board = get_board(global_next_board_num)
-
-  move_count = 0
-  #best_cell = 0
-  for i in range(9):
-    if active_board[i] == Mark.EMPTY:
-      move_count += 1
-  #elif move_count == 8:
-  #  if active_board[1] == Mark.EMPTY:
-  #    best_cell = 1
-  #  else:
-  #    best_cell = random.randint(0, 2)
-  # else:
-  #   best_cell = minimax_get_best_cell(True, copy.deepcopy(active_board), 0, -sys.maxsize - 1, sys.maxsize)
-  if move_count == 9:
-    best_cell = random.randint(0, 2)
-  else:
-    best_cell = minimax_get_best_cell(True, copy.deepcopy(active_board), 0, -sys.maxsize - 1, sys.maxsize)
-
-  place_mark(global_next_board_num, best_cell, Mark.PLAYER)
-
-  return best_cell
-
-
 def make_move():
   global global_grid
   global global_next_board_num 
 
   global global_moves_to_choose
-
 
   grid_copy = copy.deepcopy(global_grid)
 
@@ -475,7 +375,7 @@ def parse_cmd(cmd):
     # place server generated random move for opponent
     place_mark(opponent_board_num, opponent_cell_num, Mark.OPPONENT)
 
-    return compute_move()
+    return make_move()
   elif command == "third_move":
     # going first, i.e. 'x'
     our_random_board_num = int(args[0])
@@ -488,7 +388,7 @@ def parse_cmd(cmd):
     # place opponents move
     place_mark(opponent_board_num, opponent_cell_num, Mark.OPPONENT)
 
-    return compute_move()
+    return make_move()
   elif command == "next_move":
     opponent_board_num = global_next_board_num
     opponent_cell_num = int(args[0])
@@ -496,7 +396,7 @@ def parse_cmd(cmd):
     # place opponent move
     place_mark(opponent_board_num, opponent_cell_num, Mark.OPPONENT)
 
-    return compute_move()
+    return make_move()
   elif command == "win":
     print("Yay!! We win!! :)")
     print_board()

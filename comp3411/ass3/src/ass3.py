@@ -348,7 +348,6 @@ def undo_move(grid, move):
   coord = grid_coord(move.board_num, move.cell_num) 
   grid[coord] = Mark.EMPTY 
 
-# IMPORTANT: so, only computing moves on a single board (otherwise can't search deep enough?)
 def minimax_get_best_cell(are_max, board, depth, a, b):
   if board_won(board, Mark.PLAYER):
     # reward winning early for player
@@ -362,8 +361,7 @@ def minimax_get_best_cell(are_max, board, depth, a, b):
   active_mark = Mark.PLAYER if are_max else Mark.OPPONENT
   scores = []
   # TODO(Ryan): A legal move is one that is empty in this board and empty in next board
-  for i in range(9):
-    if board[i] == Mark.EMPTY:
+  for i in possible_cells(board):
       board_copy = copy.deepcopy(board)
       board_copy[i] = active_mark
       score = minimax_get_best_cell(not are_max, board_copy, depth+1, a, b) 

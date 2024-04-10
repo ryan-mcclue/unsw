@@ -4,6 +4,7 @@
 import sys
 import socket
 import random
+import copy
 
 from dataclasses import dataclass, field
 from typing import List
@@ -335,7 +336,7 @@ def make_move():
 
   global global_moves_to_choose
 
-  grid_copy = global_grid.copy()
+  grid_copy = copy.deepcopy(global_grid)
 
   best_move = minimax(grid_copy, 4, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)
 

@@ -190,6 +190,35 @@ def get_consecutive_score_next(board, indices, next_mark):
       score += get_score(board[i], Score.END.value)
   return score
 
+def other_can_win(board, are_max):
+  mark = Mark.OPPONENT if are_max else Mark.PLAYER
+
+  row_indices = [[0,1,2],[0,2,1],[1,2,0],
+                 [3,4,5],[3,5,4],[4,5,3],
+                 [6,7,8],[6,8,7],[7,8,6]]
+  for indexes in row_indices:
+    i, j, k = indexes
+    if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
+      return True
+
+  col_indices = [[0,3,6],[3,6,0],[0,6,3],
+                 [1,4,7],[4,7,1],[1,7,4],
+                 [2,5,8],[5,8,2],[2,8,5]]
+  for indexes in col_indices:
+    i, j, k = indexes
+    if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
+      return True
+
+  diag_indices = [[0,4,8],[4,8,0],[0,8,4],
+                  [6,4,2],[6,2,4],[4,2,6]]
+  for indexes in diag_indices:
+    i, j, k = indexes
+    if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
+      return True
+
+  return False
+
+
 def board_score(board, are_max, is_next):
   score = 0
   
@@ -230,24 +259,21 @@ def board_score(board, are_max, is_next):
 
 def static_evaluation(grid, are_max, prev_move):
   evaluation = 0
-  for i in range(1, 10):
-    board_coord = grid_coord(i, 1)
-    board = grid[board_coord:board_coord+9]
-    evaluation += board_score(board, are_max, i == prev_move.cell_num)
+  #for i in range(1, 10):
+  #  board_coord = grid_coord(i, 1)
+  #  board = grid[board_coord:board_coord+9]
+  #  evaluation += board_score(board, are_max, i == prev_move.cell_num)
+  #return evaluation
+
+  cur_board_coord = grid_coord(prev_move.board_num, 1)
+  cur_board = grid[cur_board_coord:cur_board_coord+9]
+  evaluation += board_score(cur_board, are_max, False)
+
+  next_board_coord = grid_coord(prev_move.cell_num, 1)
+  next_board = grid[next_board_coord:next_board_coord+9]
+  evaluation += board_score(next_board, are_max, True)
+
   return evaluation
-
-  # cur_board_coord = grid_coord(prev_move.board_num, 1)
-  # cur_board = grid[cur_board_coord:cur_board_coord+9]
-  # evaluation += (board_score(cur_board, are_max, False) * 10)
-
-  #next_board_coord = grid_coord(prev_move.cell_num, 1)
-  #next_board = grid[next_board_coord:next_board_coord+9]
-  #evaluation += board_score(next_board, are_max, True)
-
-  return evaluation
-
-def evaluate():
-  board_score(cur_board) 
 
 MAX_DEPTH = 6
 
@@ -256,22 +282,18 @@ def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
     return static_evaluation(grid, are_max, prev_move)
 
   scores = []
-  for move in get_possible_moves(grid, cur_board_num):
-    do_move(grid, move, are_max)   
-    if have_won(grid, cur_board_num, True):
-      undo_move(grid, move)
-      if depth == 0:
-        return move
-      else:
-        return Score.END.value - depth
-    elif have_won(grid, cur_board_num, False):
-      undo_move(grid, move)
-      if depth == 0:
-        return move
-      else:
-        return depth - Score.END.value
 
-    score = minimax(grid, depth+1, not are_max, move.cell_num, a, b, move)
+  possible_moves = get_possible_moves(grid, cur_board_num, are_max)
+
+  for move in possible_moves:
+    do_move(grid, move, are_max) 
+
+    if have_won(grid, cur_board_num, True):
+      score = Score.END.value - depth
+    elif have_won(grid, cur_board_num, False):
+      score = depth - Score.END.value
+    else:
+      score = minimax(grid, depth+1, not are_max, move.cell_num, a, b, move)
 
     undo_move(grid, move)
 
@@ -311,16 +333,31 @@ def have_tie(grid, board_num):
       return False
   return True
 
-def get_possible_moves(grid, board_num):
+def get_possible_moves(grid, board_num, are_max):
   moves = []
+
+  losable_moves = []
+
+  coord = grid_coord(board_num, 1)
+  board = grid[coord:coord+9]
   
   for i in range(1, 10):
-    coord = grid_coord(board_num, i)
-    if grid[coord] == Mark.EMPTY and not have_tie(grid, i):
-      move = Move(board_num, i, 0)
-      moves.append(move)
+    if board[i-1] == Mark.EMPTY and not have_tie(grid, i):
+      next_coord = grid_coord(i, 1)
+      next_board = grid[next_coord:next_coord+9]
+      # if we win
+      if other_can_win(board, not are_max):
+        return [Move(board_num, i, 0)]
+      elif other_can_win(next_board, are_max):
+        losable_moves.append(Move(board_num, i, 0))
+      else:
+        move = Move(board_num, i, 0)
+        moves.append(move)
 
-  return moves
+  if len(moves) == 0:
+    return losable_moves
+  else:
+    return moves
 
 def do_move(grid, move, are_max):
   mark = Mark.PLAYER if are_max else Mark.OPPONENT

@@ -18,13 +18,11 @@ class Mark(Enum):
   OPPONENT = 2
 
 class Score(Enum):
-  END = 100000
+  END = 15
   # TODO(Ryan): Maybe make draw negative?
-  DRAW = 0
-  CENTRE = 5
-  CORNER = 2
-  POSSIBLE_END = 100
-  BOARD_COUNT = 1
+  DRAW = -100
+  LONE = 1
+  POSSIBLE_END = 2
 
   MAX_SCORE = 10000000
   MIN_SCORE = -MAX_SCORE
@@ -152,15 +150,7 @@ def have_won(grid, cur_board_num, are_max):
 
   return (left_col or middle_col or right_col or top_row or middle_row or bottom_row or left_diag or right_diag)
 
-def get_score(mark, score):
-  if mark == Mark.PLAYER:
-    return score
-  elif mark == Mark.OPPONENT:
-    return -score
-  else:
-    return 0
-
-def score_one_remaining(board, are_max, is_next):
+def score_one_mark_remaining(board, are_max, is_next):
   score = 0
   
   next_mark = Mark.OPPONENT if are_max else Mark.PLAYER
@@ -187,11 +177,40 @@ def score_one_remaining(board, are_max, is_next):
             score += Score.END.value 
           else:
             score += Score.POSSIBLE_END.value 
-        else:
+            break
+        elif board[i] == Mark.OPPONENT:
           if is_next and next_mark == Mark.OPPONENT:
             score -= Score.END.value 
           else:
             score -= Score.POSSIBLE_END.value 
+            break
+
+  return score
+
+def score_lone_mark(board):
+  score = 0
+
+  # 0 1 2
+  # 3 4 5
+  # 6 7 8
+  # IMPORTANT: format is [m,e,e]
+  row_indices = [[0,1,2],[1,0,2],[2,0,1],
+                 [3,4,5],[4,3,5],[5,3,4],
+                 [6,7,8],[7,6,8],[8,6,7]]
+  col_indices = [[0,3,6],[3,0,6],[6,0,3],
+                 [1,4,7],[4,1,7],[7,1,4],
+                 [2,5,8],[5,2,8],[8,2,5]]
+  diag_indices = [[0,4,8],[4,8,0],[8,0,4],
+                  [6,4,2],[4,6,2],[2,4,6]]
+
+  for direction_indices in [row_indices, col_indices, diag_indices]:
+    for indices in direction_indices:
+      i, j, k = indices
+      if board[j] == Mark.EMPTY and board[k] == Mark.EMPTY:
+        if board[i] == Mark.PLAYER:
+          score += Score.LONE.value
+        elif board[i] == Mark.OPPONENT:
+          score -= Score.LONE.value
 
   return score
 
@@ -199,7 +218,7 @@ def board_score(board, are_max, is_next):
   score = 0
   
   score += score_one_mark_remaining(board, are_max, is_next)
-  score += score_lone_mark(board, are_max, is_next)
+  score += score_lone_mark(board)
 
   return score
 
@@ -219,10 +238,11 @@ def static_evaluation(grid, are_max, prev_move):
   next_board_coord = grid_coord(prev_move.cell_num, 1)
   next_board = grid[next_board_coord:next_board_coord+9]
   evaluation += board_score(next_board, are_max, True)
+    
 
   return evaluation
 
-MAX_DEPTH = 6
+MAX_DEPTH = 7
 
 def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
   if depth == MAX_DEPTH:
@@ -287,12 +307,16 @@ def get_possible_moves(grid, board_num, are_max):
   coord = grid_coord(board_num, 1)
   board = grid[coord:coord+9]
 
-  for i in range(1, 10):
+  numbers = list(range(1, 10))
+  random.shuffle(numbers)
+
+  for i in numbers:
     if board[i-1] == Mark.EMPTY and not have_tie(grid, i):
       move = Move(board_num, i, 0)
       moves.append(move)
   return moves
 
+  # moves = []
   # losable_moves = []
 
   # coord = grid_coord(board_num, 1)
@@ -329,11 +353,7 @@ def make_move():
   global global_grid
   global global_next_board_num 
 
-  global global_moves_to_choose
-
-  grid_copy = copy.deepcopy(global_grid)
-
-  best_move = minimax(grid_copy, 0, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)
+  best_move = minimax(global_grid, 0, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)
 
   place_mark(global_next_board_num, best_move.cell_num, Mark.PLAYER)
 
@@ -427,59 +447,59 @@ if __name__ == "__main__":
   main()
 
 # TODO: undo() not making empty?
-class Board:
-  char board[9],
-  x_indexes, (so, what moves have been made)
-  o_indexes
-
-class State:
-  Board boards[9]
-  diff = 7
-  tie_boards, x_chosen_board, o_chosen_board
-
-
-def study():
-  pc_grid = 0
-  pc_cell = 0
-  play(pc_grid, pc_cell, turn=1)
-  
-  checkerboard: (checking if board closed)
-  for (b in boards)
-    if b.score == 0: tie_boards[board] = 1
-    if b.score == 1: x_win_boards[board] = 1
-    if b.score == -1: o_win_boards[board] = 1
-    else tie/x/o_boards[board] = -1
-
-  check_if_won()
-
-  for (cell in empty_cells_in_board)
-    v = minmax(board, cell, depth=6, a, b, turn)
-    undo_move()
-
-def eval():
-  for i, b in enumerate(boards):
-    if x_won(b):
-      scores[i] = 15
-    if o_won(b)
-      scores[i] = -15
-    if tie(b):
-      scores[i] = -99999
-    else:
-      scores[i] = calc_small(); 
-
-  return sum_of_all_non_tie_scores
-
-def calc_small():
-  avg = 0
-  for c in board:
-    if c is x: scores[i] = 1
-    if c is o: scores[i] = -1
-    else scores[i] = 0
-
-    for all x.x avg += 2
-    if b[0] == x:
-      if b[1] == x or b[2] == x: avg += 2
-
-    for all .x. avg += 1
-
-    repeat for o, i.e. negative scores
+#class Board:
+#  char board[9],
+#  x_indexes, (so, what moves have been made)
+#  o_indexes
+#
+#class State:
+#  Board boards[9]
+#  diff = 7
+#  tie_boards, x_chosen_board, o_chosen_board
+#
+#
+#def study():
+#  pc_grid = 0
+#  pc_cell = 0
+#  play(pc_grid, pc_cell, turn=1)
+#  
+#  checkerboard: (checking if board closed)
+#  for (b in boards)
+#    if b.score == 0: tie_boards[board] = 1
+#    if b.score == 1: x_win_boards[board] = 1
+#    if b.score == -1: o_win_boards[board] = 1
+#    else tie/x/o_boards[board] = -1
+#
+#  check_if_won()
+#
+#  for (cell in empty_cells_in_board)
+#    v = minmax(board, cell, depth=6, a, b, turn)
+#    undo_move()
+#
+#def eval():
+#  for i, b in enumerate(boards):
+#    if x_won(b):
+#      scores[i] = 15
+#    if o_won(b)
+#      scores[i] = -15
+#    if tie(b):
+#      scores[i] = -99999
+#    else:
+#      scores[i] = calc_small(); 
+#
+#  return sum_of_all_non_tie_scores
+#
+#def calc_small():
+#  avg = 0
+#  for c in board:
+#    if c is x: scores[i] = 1
+#    if c is o: scores[i] = -1
+#    else scores[i] = 0
+#
+#    for all x.x avg += 2
+#    if b[0] == x:
+#      if b[1] == x or b[2] == x: avg += 2
+#
+#    for all .x. avg += 1
+#
+#    repeat for o, i.e. negative scores

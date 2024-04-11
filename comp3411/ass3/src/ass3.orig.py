@@ -19,6 +19,7 @@ class Mark(Enum):
 
 class Score(Enum):
   END = 100000
+  # TODO(Ryan): Maybe make draw negative?
   DRAW = 0
   CENTRE = 5
   CORNER = 2
@@ -159,71 +160,11 @@ def get_score(mark, score):
   else:
     return 0
 
-def get_consecutive_score(board, indices):
-  score = 0
-  for indexes in indices:
-    i, j, k = indexes
-    p_count = 0
-    o_count = 0
-    if board[i] == Mark.PLAYER:
-      p_count += 1
-    if board[j] == Mark.PLAYER:
-      p_count += 1
-    if board[k] == Mark.PLAYER:
-      p_count += 1
-    if board[i] == Mark.OPPONENT:
-      o_count += 1
-    if board[j] == Mark.OPPONENT:
-      o_count += 1
-    if board[k] == Mark.OPPONENT:
-      o_count += 1
-    
-    score += (p_count * Score.BOARD_COUNT.value)
-    score -= (o_count * Score.BOARD_COUNT.value)
-  return score
-
-def get_consecutive_score_next(board, indices, next_mark):
-  score = 0
-  for indexes in indices:
-    i, j, k = indexes
-    if board[i] == board[j] and board[i] == next_mark and board[k] == Mark.EMPTY:
-      score += get_score(board[i], Score.END.value)
-  return score
-
-def other_can_win(board, are_max):
-  mark = Mark.OPPONENT if are_max else Mark.PLAYER
-
-  row_indices = [[0,1,2],[0,2,1],[1,2,0],
-                 [3,4,5],[3,5,4],[4,5,3],
-                 [6,7,8],[6,8,7],[7,8,6]]
-  for indexes in row_indices:
-    i, j, k = indexes
-    if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
-      return True
-
-  col_indices = [[0,3,6],[3,6,0],[0,6,3],
-                 [1,4,7],[4,7,1],[1,7,4],
-                 [2,5,8],[5,8,2],[2,8,5]]
-  for indexes in col_indices:
-    i, j, k = indexes
-    if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
-      return True
-
-  diag_indices = [[0,4,8],[4,8,0],[0,8,4],
-                  [6,4,2],[6,2,4],[4,2,6]]
-  for indexes in diag_indices:
-    i, j, k = indexes
-    if board[i] == board[j] and board[i] == mark and board[k] == Mark.EMPTY:
-      return True
-
-  return False
-
-
-def board_score(board, are_max, is_next):
+def score_one_remaining(board, are_max, is_next):
   score = 0
   
   next_mark = Mark.OPPONENT if are_max else Mark.PLAYER
-  
+
   # 0 1 2
   # 3 4 5
   # 6 7 8
@@ -231,28 +172,34 @@ def board_score(board, are_max, is_next):
   row_indices = [[0,1,2],[0,2,1],[1,2,0],
                  [3,4,5],[3,5,4],[4,5,3],
                  [6,7,8],[6,8,7],[7,8,6]]
-  score += get_consecutive_score(board, row_indices)
-  if is_next:
-    score += get_consecutive_score_next(board, row_indices, next_mark) 
-
-  # 0 1 2
-  # 3 4 5
-  # 6 7 8
   col_indices = [[0,3,6],[3,6,0],[0,6,3],
                  [1,4,7],[4,7,1],[1,7,4],
                  [2,5,8],[5,8,2],[2,8,5]]
-  score += get_consecutive_score(board, col_indices)
-  if is_next:
-    score += get_consecutive_score_next(board, col_indices, next_mark) 
-
-  # 0 1 2
-  # 3 4 5
-  # 6 7 8
   diag_indices = [[0,4,8],[4,8,0],[0,8,4],
                   [6,4,2],[6,2,4],[4,2,6]]
-  score += get_consecutive_score(board, diag_indices)
-  if is_next:
-    score += get_consecutive_score_next(board, diag_indices, next_mark) 
+
+  for direction_indices in [row_indices, col_indices, diag_indices]:
+    for indices in direction_indices:
+      i, j, k = indices
+      if board[i] == board[j] and board[k] == Mark.EMPTY:
+        if board[i] == Mark.PLAYER:
+          if is_next and next_mark == Mark.PLAYER:
+            score += Score.END.value 
+          else:
+            score += Score.POSSIBLE_END.value 
+        else:
+          if is_next and next_mark == Mark.OPPONENT:
+            score -= Score.END.value 
+          else:
+            score -= Score.POSSIBLE_END.value 
+
+  return score
+
+def board_score(board, are_max, is_next):
+  score = 0
+  
+  score += score_one_mark_remaining(board, are_max, is_next)
+  score += score_lone_mark(board, are_max, is_next)
 
   return score
 
@@ -280,6 +227,8 @@ MAX_DEPTH = 6
 def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
   if depth == MAX_DEPTH:
     return static_evaluation(grid, are_max, prev_move)
+
+  # TODO: perhaps check if won here; just have to check all boards?
 
   scores = []
 
@@ -335,29 +284,37 @@ def have_tie(grid, board_num):
 
 def get_possible_moves(grid, board_num, are_max):
   moves = []
-
-  losable_moves = []
-
   coord = grid_coord(board_num, 1)
   board = grid[coord:coord+9]
-  
+
   for i in range(1, 10):
     if board[i-1] == Mark.EMPTY and not have_tie(grid, i):
-      next_coord = grid_coord(i, 1)
-      next_board = grid[next_coord:next_coord+9]
-      # if we win
-      if other_can_win(board, not are_max):
-        return [Move(board_num, i, 0)]
-      elif other_can_win(next_board, are_max):
-        losable_moves.append(Move(board_num, i, 0))
-      else:
-        move = Move(board_num, i, 0)
-        moves.append(move)
+      move = Move(board_num, i, 0)
+      moves.append(move)
+  return moves
 
-  if len(moves) == 0:
-    return losable_moves
-  else:
-    return moves
+  # losable_moves = []
+
+  # coord = grid_coord(board_num, 1)
+  # board = grid[coord:coord+9]
+  # 
+  # for i in range(1, 10):
+  #   if board[i-1] == Mark.EMPTY and not have_tie(grid, i):
+  #     next_coord = grid_coord(i, 1)
+  #     next_board = grid[next_coord:next_coord+9]
+  #     # if we win
+  #     if other_can_win(board, not are_max):
+  #       return [Move(board_num, i, 0)]
+  #     elif other_can_win(next_board, are_max):
+  #       losable_moves.append(Move(board_num, i, 0))
+  #     else:
+  #       move = Move(board_num, i, 0)
+  #       moves.append(move)
+
+  # if len(moves) == 0:
+  #   return losable_moves
+  # else:
+  #   return moves
 
 def do_move(grid, move, are_max):
   mark = Mark.PLAYER if are_max else Mark.OPPONENT
@@ -468,3 +425,61 @@ def main():
 
 if __name__ == "__main__":
   main()
+
+# TODO: undo() not making empty?
+class Board:
+  char board[9],
+  x_indexes, (so, what moves have been made)
+  o_indexes
+
+class State:
+  Board boards[9]
+  diff = 7
+  tie_boards, x_chosen_board, o_chosen_board
+
+
+def study():
+  pc_grid = 0
+  pc_cell = 0
+  play(pc_grid, pc_cell, turn=1)
+  
+  checkerboard: (checking if board closed)
+  for (b in boards)
+    if b.score == 0: tie_boards[board] = 1
+    if b.score == 1: x_win_boards[board] = 1
+    if b.score == -1: o_win_boards[board] = 1
+    else tie/x/o_boards[board] = -1
+
+  check_if_won()
+
+  for (cell in empty_cells_in_board)
+    v = minmax(board, cell, depth=6, a, b, turn)
+    undo_move()
+
+def eval():
+  for i, b in enumerate(boards):
+    if x_won(b):
+      scores[i] = 15
+    if o_won(b)
+      scores[i] = -15
+    if tie(b):
+      scores[i] = -99999
+    else:
+      scores[i] = calc_small(); 
+
+  return sum_of_all_non_tie_scores
+
+def calc_small():
+  avg = 0
+  for c in board:
+    if c is x: scores[i] = 1
+    if c is o: scores[i] = -1
+    else scores[i] = 0
+
+    for all x.x avg += 2
+    if b[0] == x:
+      if b[1] == x or b[2] == x: avg += 2
+
+    for all .x. avg += 1
+
+    repeat for o, i.e. negative scores

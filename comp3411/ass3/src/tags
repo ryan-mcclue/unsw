@@ -1,0 +1,250 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+AVG	./study.cpp	/^		int AVG = 0;$/;"	l	function:Ultimate::Calculater	typeref:typename:int	file:
+All	./study.cpp	/^	vector<int> All(int index) {$/;"	f	class:Ultimate	typeref:typename:vector<int>	file:	access:public	signature:(int index)
+AvailableBoard	./study.cpp	/^	bool AvailableBoard(int ind) {$/;"	f	class:Ultimate	typeref:typename:bool	file:	access:public	signature:(int ind)
+B	./study.cpp	/^	Board B[9];$/;"	m	class:Ultimate	typeref:typename:Board[9]	file:	access:private
+BigWin	./study.cpp	/^	int BigWin() {$/;"	f	class:Ultimate	typeref:typename:int	file:	access:public	signature:()
+Board	./study.cpp	/^	Board() {$/;"	f	class:Board	file:	access:public	signature:()
+Board	./study.cpp	/^class Board {$/;"	c	file:
+Calculater	./study.cpp	/^	int Calculater() {$/;"	f	class:Ultimate	typeref:typename:int	file:	access:public	signature:()
+CalculaterSmall	./study.cpp	/^	int CalculaterSmall() { $/;"	f	class:Board	typeref:typename:int	file:	access:public	signature:()
+CheckXO	./study.cpp	/^	int CheckXO(int inx) {$/;"	f	class:Board	typeref:typename:int	file:	access:public	signature:(int inx)
+CheckerBoard	./study.cpp	/^	void CheckerBoard() {$/;"	f	class:Ultimate	typeref:typename:void	file:	access:public	signature:()
+CheckerIndex	./study.cpp	/^	bool CheckerIndex(int Board, int Index) {$/;"	f	class:Ultimate	typeref:typename:bool	file:	access:public	signature:(int Board,int Index)
+DRAW	./common.h	/^#define DRAW /;"	d
+EMPTY	./common.h	/^#define EMPTY /;"	d
+Empty	./study.cpp	/^	vector<int> Empty() {$/;"	f	class:Board	typeref:typename:vector<int>	file:	access:public	signature:()
+FALSE	./common.h	/^#define FALSE /;"	d
+FULL_BOARD	./common.h	/^#define FULL_BOARD /;"	d
+ILLEGAL_MOVE	./common.h	/^#define ILLEGAL_MOVE /;"	d
+Index	./study.cpp	/^		int Table, Index = 0;$/;"	l	function:Ultimate::Start	typeref:typename:int	file:
+LOSS	./common.h	/^#define LOSS /;"	d
+MAX_MOVE	./agent.c	/^#define MAX_MOVE /;"	d	file:
+MAX_MOVE	./randt.c	/^#define MAX_MOVE /;"	d	file:
+MAX_MOVE	./servt.c	/^#define  MAX_MOVE /;"	d	file:
+Max	./study.cpp	/^		int Max = -INT_MAX;$/;"	l	function:Ultimate::Minmax	typeref:typename:int	file:
+Min	./study.cpp	/^		int Min = INT_MAX;$/;"	l	function:Ultimate::Minmax	typeref:typename:int	file:
+Minmax	./study.cpp	/^	int Minmax(int table, int Index, int Depth, int alpha, int beta, bool Turn) {$/;"	f	class:Ultimate	typeref:typename:int	file:	access:public	signature:(int table,int Index,int Depth,int alpha,int beta,bool Turn)
+Play	./study.cpp	/^	void Play(int Board, int Index, bool T) {$/;"	f	class:Ultimate	typeref:typename:void	file:	access:public	signature:(int Board,int Index,bool T)
+Print	./study.cpp	/^	void Print() {$/;"	f	class:Ultimate	typeref:typename:void	file:	access:public	signature:()
+PrintDown	./study.cpp	/^	void PrintDown() {$/;"	f	class:Board	typeref:typename:void	file:	access:public	signature:()
+PrintMid	./study.cpp	/^	void PrintMid() {$/;"	f	class:Board	typeref:typename:void	file:	access:public	signature:()
+PrintUp	./study.cpp	/^	void PrintUp() {$/;"	f	class:Board	typeref:typename:void	file:	access:public	signature:()
+S	./study.cpp	/^		bool S = B[Board - 1].check(Index);$/;"	l	function:Ultimate::CheckerIndex	typeref:typename:bool	file:
+STILL_PLAYING	./common.h	/^#define STILL_PLAYING /;"	d
+Score	./study.cpp	/^			int Score = BigWin();$/;"	l	function:Ultimate::Minmax	typeref:typename:int	file:
+Scores	./study.cpp	/^		int Scores[9];$/;"	l	function:Board::CalculaterSmall	typeref:typename:int[9]	file:
+Scores	./study.cpp	/^		int Scores[9];$/;"	l	function:Ultimate::Calculater	typeref:typename:int[9]	file:
+Start	./study.cpp	/^	void Start() {$/;"	f	class:Ultimate	typeref:typename:void	file:	access:public	signature:()
+TIMEOUT	./common.h	/^#define TIMEOUT /;"	d
+TRIPLE	./common.h	/^#define TRIPLE /;"	d
+TRUE	./common.h	/^#define TRUE /;"	d
+Table	./study.cpp	/^		int Table, Index = 0;$/;"	l	function:Ultimate::Start	typeref:typename:int	file:
+Taken	./study.cpp	/^		bool Taken = false;$/;"	l	function:Ultimate::Start	typeref:typename:bool	file:
+Tie	./study.cpp	/^	map<int,int> Wx, Wo, Tie;$/;"	m	class:Ultimate	typeref:typename:map<int,int>	file:	access:private
+Ultimate	./study.cpp	/^	Ultimate() {$/;"	f	class:Ultimate	file:	access:public	signature:()
+Ultimate	./study.cpp	/^class Ultimate {$/;"	c	file:
+Undo	./study.cpp	/^	void Undo(int Board, int Index, int Turn){$/;"	f	class:Ultimate	typeref:typename:void	file:	access:public	signature:(int Board,int Index,int Turn)
+WIN	./common.h	/^#define WIN /;"	d
+Wo	./study.cpp	/^	map<int,int> Wx, Wo, Tie;$/;"	m	class:Ultimate	typeref:typename:map<int,int>	file:	access:private
+Wx	./study.cpp	/^	map<int,int> Wx, Wo, Tie;$/;"	m	class:Ultimate	typeref:typename:map<int,int>	file:	access:private
+a	./study.cpp	/^		for (int a = 0; a < 9; a++) {$/;"	l	function:Ultimate::Calculater	typeref:typename:int	file:
+agent_cleanup	./agent.c	/^void agent_cleanup()$/;"	f	typeref:typename:void	signature:()
+agent_cleanup	./agent.h	/^void agent_cleanup();$/;"	p	typeref:typename:void	signature:()
+agent_cleanup	./randt.c	/^void agent_cleanup()$/;"	f	typeref:typename:void	signature:()
+agent_fd	./servt.c	/^int   agent_fd[2];$/;"	v	typeref:typename:int[2]
+agent_gameover	./agent.c	/^void agent_gameover($/;"	f	typeref:typename:void	signature:(int result,int cause)
+agent_gameover	./agent.h	/^void agent_gameover( int result, int cause );$/;"	p	typeref:typename:void	signature:(int result,int cause)
+agent_gameover	./randt.c	/^void agent_gameover($/;"	f	typeref:typename:void	signature:(int result,int cause)
+agent_in	./servt.c	/^FILE *agent_in[2];$/;"	v	typeref:typename:FILE * [2]
+agent_init	./agent.c	/^void agent_init()$/;"	f	typeref:typename:void	signature:()
+agent_init	./agent.h	/^void agent_init();$/;"	p	typeref:typename:void	signature:()
+agent_init	./randt.c	/^void agent_init()$/;"	f	typeref:typename:void	signature:()
+agent_last_move	./agent.c	/^void agent_last_move( int prev_move )$/;"	f	typeref:typename:void	signature:(int prev_move)
+agent_last_move	./agent.h	/^void agent_last_move( int prev_move );$/;"	p	typeref:typename:void	signature:(int prev_move)
+agent_last_move	./randt.c	/^void agent_last_move( int prev_move )$/;"	f	typeref:typename:void	signature:(int prev_move)
+agent_next_move	./agent.c	/^int agent_next_move( int prev_move )$/;"	f	typeref:typename:int	signature:(int prev_move)
+agent_next_move	./agent.h	/^int  agent_next_move( int prev_move );$/;"	p	typeref:typename:int	signature:(int prev_move)
+agent_next_move	./randt.c	/^int agent_next_move( int prev_move )$/;"	f	typeref:typename:int	signature:(int prev_move)
+agent_out	./servt.c	/^FILE *agent_out[2];$/;"	v	typeref:typename:FILE * [2]
+agent_parse_args	./agent.c	/^void agent_parse_args( int argc, char *argv[] )$/;"	f	typeref:typename:void	signature:(int argc,char * argv[])
+agent_parse_args	./agent.h	/^void agent_parse_args( int argc, char *argv[] );$/;"	p	typeref:typename:void	signature:(int argc,char * argv[])
+agent_parse_args	./randt.c	/^void agent_parse_args( int argc, char *argv[] )$/;"	f	typeref:typename:void	signature:(int argc,char * argv[])
+agent_second_move	./agent.c	/^int agent_second_move( int board_num, int prev_move )$/;"	f	typeref:typename:int	signature:(int board_num,int prev_move)
+agent_second_move	./agent.h	/^int  agent_second_move(int board_num, int prev_move );$/;"	p	typeref:typename:int	signature:(int board_num,int prev_move)
+agent_second_move	./randt.c	/^int agent_second_move( int board_num, int prev_move )$/;"	f	typeref:typename:int	signature:(int board_num,int prev_move)
+agent_start	./agent.c	/^void agent_start( int this_player )$/;"	f	typeref:typename:void	signature:(int this_player)
+agent_start	./agent.h	/^void agent_start( int this_player );$/;"	p	typeref:typename:void	signature:(int this_player)
+agent_start	./randt.c	/^void agent_start( int this_player )$/;"	f	typeref:typename:void	signature:(int this_player)
+agent_third_move	./agent.c	/^int agent_third_move($/;"	f	typeref:typename:int	signature:(int board_num,int first_move,int prev_move)
+agent_third_move	./agent.h	/^int  agent_third_move(int board_num,int first_move,int prev_move);$/;"	p	typeref:typename:int	signature:(int board_num,int first_move,int prev_move)
+agent_third_move	./randt.c	/^int agent_third_move($/;"	f	typeref:typename:int	signature:(int board_num,int first_move,int prev_move)
+avg	./study.cpp	/^		int avg = 0;$/;"	l	function:Board::CalculaterSmall	typeref:typename:int	file:
+b	./game.c	/^  int b,c;$/;"	l	function:reset_board	typeref:typename:int	file:
+best	./study.cpp	/^			int best = 999999, ind = -1;$/;"	l	function:Ultimate::Start	typeref:typename:int	file:
+board	./agent.c	/^int board[10][10];$/;"	v	typeref:typename:int[10][10]
+board	./randt.c	/^int board[10][10];$/;"	v	typeref:typename:int[10][10]
+board	./servt.c	/^  int board[10][10];$/;"	l	function:play_games	typeref:typename:int[10][10]	file:
+board	./study.cpp	/^	char board[9];$/;"	m	class:Board	typeref:typename:char[9]	file:	access:private
+board_num	./client.c	/^  int board_num,first_move,prev_move;$/;"	l	function:main	typeref:typename:int	file:
+c	./game.c	/^  int b,c;$/;"	l	function:reset_board	typeref:typename:int	file:
+c	./game.c	/^  int c=1;$/;"	l	function:full_board	typeref:typename:int	file:
+c	./servt.c	/^  int c=0,i;$/;"	l	function:human_step	typeref:typename:int	file:
+cause	./client.c	/^  int cause =TRIPLE;\/\/ TRIPLE, TIMEOUT, ILLEGAL_MOVE or FULL_BOARD$/;"	l	function:main	typeref:typename:int	file:
+cause	./client.c	/^  int cause=TRIPLE;$/;"	l	function:get_cause	typeref:typename:int	file:
+ch	./client.c	/^  char ch;$/;"	l	function:main	typeref:typename:char	file:
+ch	./study.cpp	/^		for (auto ch : o) {$/;"	l	function:Board::CheckXO	typeref:typename:auto	file:
+ch	./study.cpp	/^		for (auto ch : x) {$/;"	l	function:Board::CheckXO	typeref:typename:auto	file:
+check	./study.cpp	/^	bool check(int index) {$/;"	f	class:Board	typeref:typename:bool	file:	access:public	signature:(int index)
+cleanup	./servt.c	/^void cleanup()$/;"	f	typeref:typename:void	signature:()
+client	./servt.c	/^  int i, slen, client, server;$/;"	l	function:server_init	typeref:typename:int	file:
+client_buf	./client.c	/^char client_buf[256];$/;"	v	typeref:typename:char[256]
+client_cleanup	./client.c	/^void client_cleanup()$/;"	f	typeref:typename:void	signature:()
+client_next_move	./client.c	/^void client_next_move( int prev_move )$/;"	f	typeref:typename:void	signature:(int prev_move)
+client_second_move	./client.c	/^void client_second_move( int board_num, int prev_move )$/;"	f	typeref:typename:void	signature:(int board_num,int prev_move)
+client_third_move	./client.c	/^void client_third_move($/;"	f	typeref:typename:void	signature:(int board_num,int first_move,int prev_move)
+diff	./study.cpp	/^	    int diff;$/;"	m	class:Ultimate	typeref:typename:int	file:	access:private
+em	./study.cpp	/^					vector<int> em = All(i);$/;"	l	function:Ultimate::Minmax	typeref:typename:vector<int>	file:
+em	./study.cpp	/^					vector<int> em = All(i);$/;"	l	function:Ultimate::Start	typeref:typename:vector<int>	file:
+emp	./study.cpp	/^			vector<int> emp;$/;"	l	function:Ultimate::Minmax	typeref:typename:vector<int>	file:
+emp	./study.cpp	/^			vector<int> emp;$/;"	l	function:Ultimate::Start	typeref:typename:vector<int>	file:
+emp	./study.cpp	/^		vector<int> emp(0);$/;"	l	function:Ultimate::All	typeref:typename:vector<int>	file:
+fds	./servt.c	/^  fd_set fds;$/;"	l	function:server_step	typeref:typename:fd_set	file:
+first_move	./client.c	/^  int board_num,first_move,prev_move;$/;"	l	function:main	typeref:typename:int	file:
+first_player	./servt.c	/^  int player, first_player;$/;"	l	function:play_games	typeref:typename:int	file:
+flag	./study.cpp	/^		bool flag[9] = { true,true,true,true,true,true,true,true,true };$/;"	l	function:Board::CalculaterSmall	typeref:typename:bool[9]	file:
+full_board	./game.c	/^int full_board( int bb[] )$/;"	f	typeref:typename:int	signature:(int bb[])
+full_board	./game.h	/^int   full_board( int bb[] );$/;"	p	typeref:typename:int	signature:(int bb[])
+game	./servt.c	/^  int game;$/;"	l	function:play_games	typeref:typename:int	file:
+game_status	./servt.c	/^  int game_status;$/;"	l	function:play_games	typeref:typename:int	file:
+game_status	./servt.c	/^  int game_status;$/;"	l	function:server_step	typeref:typename:int	file:
+gamewon	./game.c	/^int gamewon( int p, int bb[10] )$/;"	f	typeref:typename:int	signature:(int p,int bb[10])
+get_cause	./client.c	/^int get_cause( char *buf )$/;"	f	typeref:typename:int	signature:(char * buf)
+h	./client.c	/^  struct hostent *h;$/;"	l	function:tcpopen	typeref:struct:hostent *	file:
+host	./agent.h	/^extern char *host;$/;"	x	typeref:typename:char *
+host	./client.c	/^char *host;$/;"	v	typeref:typename:char *
+human_step	./servt.c	/^int human_step($/;"	f	typeref:typename:int	signature:(int player,int m,int move[],int board[10][10])
+i	./agent.c	/^  int i=1;$/;"	l	function:agent_parse_args	typeref:typename:int	file:
+i	./randt.c	/^  int i=1;$/;"	l	function:agent_parse_args	typeref:typename:int	file:
+i	./servt.c	/^  int c=0,i;$/;"	l	function:human_step	typeref:typename:int	file:
+i	./servt.c	/^  int i, slen, client, server;$/;"	l	function:server_init	typeref:typename:int	file:
+i	./servt.c	/^  int i;$/;"	l	function:cleanup	typeref:typename:int	file:
+i	./servt.c	/^  int i;$/;"	l	function:server_step	typeref:typename:int	file:
+i	./servt.c	/^  int i;$/;"	l	function:write_all	typeref:typename:int	file:
+i	./servt.c	/^  int i=1;$/;"	l	function:main	typeref:typename:int	file:
+i	./study.cpp	/^				for (int i = 1; i <= 9; i++)$/;"	l	function:Ultimate::Minmax	typeref:typename:int	file:
+i	./study.cpp	/^				for (int i = 1; i <= 9; i++)$/;"	l	function:Ultimate::Start	typeref:typename:int	file:
+i	./study.cpp	/^		for (int i = 0; i < 3; i++)$/;"	l	function:Board::PrintUp	typeref:typename:int	file:
+i	./study.cpp	/^		for (int i = 0; i < 9; i += 3) {$/;"	l	function:Ultimate::Print	typeref:typename:int	file:
+i	./study.cpp	/^		for (int i = 0; i < 9; i++)$/;"	l	function:Board::Board	typeref:typename:int	file:
+i	./study.cpp	/^		for (int i = 0; i < 9; i++)$/;"	l	function:Ultimate::Calculater	typeref:typename:int	file:
+i	./study.cpp	/^		for (int i = 0; i < o.size(); i++)$/;"	l	function:Board::check	typeref:typename:int	file:
+i	./study.cpp	/^		for (int i = 0; i < x.size(); i++)$/;"	l	function:Board::check	typeref:typename:int	file:
+i	./study.cpp	/^		for (int i = 1; i <= 9; i++) {$/;"	l	function:Ultimate::Ultimate	typeref:typename:int	file:
+i	./study.cpp	/^		for (int i = 1; i <= 9; i++)$/;"	l	function:Board::CalculaterSmall	typeref:typename:int	file:
+i	./study.cpp	/^		for (int i = 1; i <= 9; i++)$/;"	l	function:Board::Empty	typeref:typename:int	file:
+i	./study.cpp	/^		for (int i = 3; i < 6; i++)$/;"	l	function:Board::PrintMid	typeref:typename:int	file:
+i	./study.cpp	/^		for (int i = 6; i < 9; i++)$/;"	l	function:Board::PrintDown	typeref:typename:int	file:
+i	./study.cpp	/^      for(int i=0;i<9;i++){$/;"	l	function:Ultimate::BigWin	typeref:typename:int	file:
+ind	./study.cpp	/^			int best = 999999, ind = -1;$/;"	l	function:Ultimate::Start	typeref:typename:int	file:
+is_human	./servt.c	/^int   is_human[2]={FALSE,FALSE};$/;"	v	typeref:typename:int[2]
+j	./study.cpp	/^			for (int j = 0; j < 3; j++) {\/\/1 2 3    1 2 3     1 2 3$/;"	l	function:Ultimate::Print	typeref:typename:int	file:
+j	./study.cpp	/^			for (int j = 0; j < 3; j++) {\/\/4 5 6    4 5 6    4 5 6$/;"	l	function:Ultimate::Print	typeref:typename:int	file:
+line	./servt.c	/^  char line[256];$/;"	l	function:human_step	typeref:typename:char[256]	file:
+local	./client.c	/^char *local="localhost";$/;"	v	typeref:typename:char *
+m	./agent.c	/^int m;$/;"	v	typeref:typename:int
+m	./randt.c	/^int m;$/;"	v	typeref:typename:int
+m	./servt.c	/^  int m;$/;"	l	function:play_games	typeref:typename:int	file:
+m	./study.cpp	/^		vector<int> m;$/;"	l	function:Board::Empty	typeref:typename:vector<int>	file:
+main	./client.c	/^int main(int argc, char** argv)$/;"	f	typeref:typename:int	signature:(int argc,char ** argv)
+main	./servt.c	/^int main(int argc, char *argv[])$/;"	f	typeref:typename:int	signature:(int argc,char * argv[])
+main	./study.cpp	/^int main() {$/;"	f	typeref:typename:int	signature:()
+make_move	./game.c	/^int make_move($/;"	f	typeref:typename:int	signature:(int player,int m,int move[],int board[10][10])
+make_move	./game.h	/^int make_move(int player,int m,int move[],int board[10][10]);$/;"	p	typeref:typename:int	signature:(int player,int m,int move[],int board[10][10])
+move	./agent.c	/^int move[MAX_MOVE+1];$/;"	v	typeref:typename:int[]
+move	./randt.c	/^int move[MAX_MOVE+1];$/;"	v	typeref:typename:int[]
+move	./servt.c	/^  int move[MAX_MOVE+1]={0};$/;"	l	function:main	typeref:typename:int[]	file:
+move_msec	./servt.c	/^  int move_msec;$/;"	l	function:server_step	typeref:typename:int	file:
+move_scanned	./servt.c	/^  int move_scanned;$/;"	l	function:server_step	typeref:typename:int	file:
+msec_left	./servt.c	/^int  msec_left[2];$/;"	v	typeref:typename:int[2]
+num_games	./servt.c	/^  int num_games=1;$/;"	l	function:main	typeref:typename:int	file:
+o	./study.cpp	/^	vector<int> x, o;$/;"	m	class:Board	typeref:typename:vector<int>	file:	access:private
+opt_val	./servt.c	/^  int opt_val = 1;$/;"	l	function:server_init	typeref:typename:int	file:
+pipe_fd	./client.c	/^int pipe_fd;$/;"	v	typeref:typename:int
+pipe_in_stream	./client.c	/^FILE* pipe_in_stream;$/;"	v	typeref:typename:FILE *
+pipe_out_stream	./client.c	/^FILE* pipe_out_stream;$/;"	v	typeref:typename:FILE *
+pipe_read	./client.c	/^void pipe_read(char *buf)$/;"	f	typeref:typename:void	signature:(char * buf)
+play	./study.cpp	/^	void play(int index, bool turn) {$/;"	f	class:Board	typeref:typename:void	file:	access:public	signature:(int index,bool turn)
+play_games	./servt.c	/^void play_games( int num_games, int move[] )$/;"	f	typeref:typename:void	signature:(int num_games,int move[])
+player	./agent.c	/^int player;$/;"	v	typeref:typename:int
+player	./client.c	/^  int player=0;$/;"	l	function:main	typeref:typename:int	file:
+player	./randt.c	/^int player;$/;"	v	typeref:typename:int
+player	./servt.c	/^  int player, first_player;$/;"	l	function:play_games	typeref:typename:int	file:
+port	./agent.h	/^extern int   port;$/;"	x	typeref:typename:int
+port	./client.c	/^int   port=31415;$/;"	v	typeref:typename:int
+port	./servt.c	/^  int port=31415;$/;"	l	function:main	typeref:typename:int	file:
+prev_move	./client.c	/^  int board_num,first_move,prev_move;$/;"	l	function:main	typeref:typename:int	file:
+print_board	./game.c	/^void print_board($/;"	f	typeref:typename:void	signature:(FILE * fp,int board[10][10],int board_num,int prev_move)
+print_board	./game.h	/^void print_board( FILE *fp,int board[10][10],$/;"	p	typeref:typename:void	signature:(FILE * fp,int board[10][10],int board_num,int prev_move)
+print_board_row	./game.c	/^void print_board_row($/;"	f	typeref:typename:void	signature:(FILE * fp,int bd[10][10],int a,int b,int c,int i,int j,int k)
+q	./study.cpp	/^		for (int q = 0; q < 9; q++) {$/;"	l	function:Ultimate::CheckerBoard	typeref:typename:int	file:
+rc	./client.c	/^  int sd, rc;$/;"	l	function:tcpopen	typeref:typename:int	file:
+reset_board	./game.c	/^void reset_board( int board[10][10] )$/;"	f	typeref:typename:void	signature:(int board[10][10])
+reset_board	./game.h	/^void reset_board( int board[10][10] );$/;"	p	typeref:typename:void	signature:(int board[10][10])
+result	./client.c	/^  int result=DRAW;  \/\/ WIN, LOSS or DRAW$/;"	l	function:main	typeref:typename:int	file:
+s	./study.cpp	/^	Ultimate s;$/;"	l	function:main	typeref:typename:Ultimate	file:
+sb	./common.h	/^extern char sb[5];$/;"	x	typeref:typename:char[5]
+sb	./game.c	/^char sb[5] =  "XO.xo";$/;"	v	typeref:typename:char[5]
+score	./study.cpp	/^	int score() {$/;"	f	class:Board	typeref:typename:int	file:	access:public	signature:()
+sd	./client.c	/^  int sd, rc;$/;"	l	function:tcpopen	typeref:typename:int	file:
+sd	./client.c	/^  int sd;$/;"	l	function:main	typeref:typename:int	file:
+seconds_initially	./servt.c	/^int seconds_initially = 30;$/;"	v	typeref:typename:int
+seconds_per_move	./servt.c	/^int seconds_per_move  =  2;$/;"	v	typeref:typename:int
+servAddr	./client.c	/^  struct sockaddr_in servAddr; \/\/ localAddr$/;"	l	function:tcpopen	typeref:struct:sockaddr_in	file:
+servAddr	./servt.c	/^  struct sockaddr_in servAddr;$/;"	l	function:server_init	typeref:struct:sockaddr_in	file:
+server	./servt.c	/^  int i, slen, client, server;$/;"	l	function:server_init	typeref:typename:int	file:
+server_init	./servt.c	/^void server_init( int port )$/;"	f	typeref:typename:void	signature:(int port)
+server_step	./servt.c	/^int server_step($/;"	f	typeref:typename:int	signature:(int player,int m,int move[],int board[10][10])
+sg	./common.h	/^extern int  sg[2];$/;"	x	typeref:typename:int[2]
+sg	./game.c	/^int  sg[2] = {1,-1};$/;"	v	typeref:typename:int[2]
+slen	./servt.c	/^  int i, slen, client, server;$/;"	l	function:server_init	typeref:typename:int	file:
+tcp_no_delay	./client.c	/^  int tcp_no_delay = 1;$/;"	l	function:tcpopen	typeref:typename:int	file:
+tcp_no_delay	./servt.c	/^      int tcp_no_delay = 1;$/;"	l	function:server_init	typeref:typename:int	file:
+tcpopen	./client.c	/^int tcpopen()$/;"	f	typeref:typename:int	signature:()
+this_move	./agent.c	/^  int this_move;$/;"	l	function:agent_next_move	typeref:typename:int	file:
+this_move	./agent.c	/^  int this_move;$/;"	l	function:agent_second_move	typeref:typename:int	file:
+this_move	./agent.c	/^  int this_move;$/;"	l	function:agent_third_move	typeref:typename:int	file:
+this_move	./client.c	/^  int this_move;$/;"	l	function:client_next_move	typeref:typename:int	file:
+this_move	./client.c	/^  int this_move;$/;"	l	function:client_second_move	typeref:typename:int	file:
+this_move	./client.c	/^  int this_move;$/;"	l	function:client_third_move	typeref:typename:int	file:
+this_move	./randt.c	/^  int this_move;$/;"	l	function:agent_next_move	typeref:typename:int	file:
+this_move	./randt.c	/^  int this_move;$/;"	l	function:agent_second_move	typeref:typename:int	file:
+this_move	./randt.c	/^  int this_move;$/;"	l	function:agent_third_move	typeref:typename:int	file:
+tod_fin	./servt.c	/^  struct timeval tod_start, tod_fin;$/;"	l	function:server_step	typeref:struct:timeval	file:
+tod_start	./servt.c	/^  struct timeval tod_start, tod_fin;$/;"	l	function:server_step	typeref:struct:timeval	file:
+tp	./agent.c	/^  struct timeval tp;$/;"	l	function:agent_init	typeref:struct:timeval	file:
+tp	./randt.c	/^  struct timeval tp;$/;"	l	function:agent_init	typeref:struct:timeval	file:
+tp	./servt.c	/^  struct timeval tp;$/;"	l	function:main	typeref:struct:timeval	file:
+turn	./study.cpp	/^	bool turn;$/;"	m	class:Ultimate	typeref:typename:bool	file:	access:private
+tv	./servt.c	/^  struct timeval tv;$/;"	l	function:server_step	typeref:struct:timeval	file:
+undo	./study.cpp	/^	void undo(int index, bool turn) {$/;"	f	class:Board	typeref:typename:void	file:	access:public	signature:(int index,bool turn)
+usage	./agent.c	/^void usage( char argv0[] )$/;"	f	typeref:typename:void	signature:(char argv0[])
+usage	./randt.c	/^void usage( char argv0[] )$/;"	f	typeref:typename:void	signature:(char argv0[])
+usage	./servt.c	/^void usage( char argv0[] )$/;"	f	typeref:typename:void	signature:(char argv0[])
+v	./study.cpp	/^						int v = Minmax(i - 1, x, 6, -99999999, 99999999, turn);$/;"	l	function:Ultimate::Start	typeref:typename:int	file:
+v	./study.cpp	/^						int v = Minmax(i - 1, x, Depth - 1, alpha, beta, !Turn);$/;"	l	function:Ultimate::Minmax	typeref:typename:int	file:
+v	./study.cpp	/^					int v = Minmax(Index - 1, x, 6, -99999999, 99999999, turn);$/;"	l	function:Ultimate::Start	typeref:typename:int	file:
+v	./study.cpp	/^					int v = Minmax(Index - 1, x, Depth - 1, alpha, beta, !Turn);$/;"	l	function:Ultimate::Minmax	typeref:typename:int	file:
+write_agent	./servt.c	/^void write_agent(int i, char *str)$/;"	f	typeref:typename:void	signature:(int i,char * str)
+write_all	./servt.c	/^void write_all(char *str)$/;"	f	typeref:typename:void	signature:(char * str)
+x	./study.cpp	/^					for (auto x : em) {$/;"	l	function:Ultimate::Minmax	typeref:typename:auto	file:
+x	./study.cpp	/^					for (auto x : em) {$/;"	l	function:Ultimate::Start	typeref:typename:auto	file:
+x	./study.cpp	/^				for (auto x : emp) {$/;"	l	function:Ultimate::Minmax	typeref:typename:auto	file:
+x	./study.cpp	/^				for (auto x : emp) {$/;"	l	function:Ultimate::Start	typeref:typename:auto	file:
+x	./study.cpp	/^	vector<int> x, o;$/;"	m	class:Board	typeref:typename:vector<int>	file:	access:private

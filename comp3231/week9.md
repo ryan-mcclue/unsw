@@ -22,3 +22,24 @@ IMPORTANT: a spinlock will not rely on a context switch like a block
 So, might be useful for small critical sections (in effect, if shorter than context switching software operations and hardware, e.g. cache, TLB etc.)
 On a uniprocessor, spinlocking generally not advisable.
 For SMP, either could be viable.
+
+Scheduling can affect performance and correctness of a system with deadlines
+Generally favour I/O-bound processes as they relinquish control to a CPU-bound process, but not the other way round.
+
+Pre-emptive on timer interrupt.
+Scheduling when multiple ready processes or a thread can no longer run.
+Scheduling algorithm dependent on system:
+  - Batch (optimise for overall system utilisation)
+  - Interactive (percieved performance)
+    * 'short' jobs have short response time, 'long' jobs have long response time
+      - Round robin:
+        Each process has a timeslice and priority
+        Priority can be internal (I/O or CPU bound) and external (user importance)
+        Priorities need to be adapted/recalculated based on ageing/execution history to avoid starvation (e.g. penalise CPU-bound)
+  - Realtime (must meet deadline)
+
+Linux uses 2-level scheduler.
+Top level is assigning process to a core (Multiple Queue SMP Scheduling).
+Lower level is per core CPU scheduler, so can do affinity scheduling (re-run process timeslice on same previous core). 
+If nothing ready, work steal from another CPU.
+`priority = cpu_usage + niceness + base` (base is hardwired scheduler specific)

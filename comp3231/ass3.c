@@ -2,18 +2,72 @@
 // https://wiki.cse.unsw.edu.au/give/Classrun 
 //3231 classrun -sturec
 
+#define PASTE_(a, b) a##b
+#define PASTE(a, b) PASTE_(a, b)
+#define UNIQUE_NAME(name) PASTE(name, __LINE__)
+
+#define DISABLE_INTERRUPTS() \
+  for (struct {int spl; int i;} UNIQUE_NAME(l) = {splhigh(), 0}; \
+       UNIQUE_NAME(l).i == 0; \
+       splx(UNIQUE_NAME(l).spl), UNIQUE_NAME(l).i++)
+
+#define ALIGN_POW2_UP(x, p)       (-(-(x) & -(p)))
+
+#define __SLL_STACK_PUSH(first, node, next) \
+(\
+  ((node)->next = (first)), \
+  ((first) = (node)) \
+)
+#define SLL_STACK_PUSH(first, node) \
+  __SLL_STACK_PUSH(first, node, next)
+
+
+typedef struct RangeU32 RangeU32;
+struct RangeU32
+{
+  uint32_t min, max;
+};
+
+INTERNAL bool 
+range_u32_contains(RangeU32 r, uint32_t v)
+{ 
+  return r.min <= v && v < r.max; 
+}
+
+
 struct L1Node
 {
   L1Node *next;
   vaddr_t vpn;
-  L2Node *first;
+  L2Node *l2_nodes;
 };
 
 struct L2Node
 {
   L2Node *next;
   vaddr_t vpn;
+  paddr_t frame;
 }
+
+typedef enum
+{
+  MEM_PERM_R = 1 << 0,
+  MEM_PERM_W = 1 << 1,
+  MEM_PERM_X = 1 << 2
+} MEM_PERM;
+
+struct AddrRegion
+{
+  RangeU32 range;
+  MEMORY_PERM cur_permissions;
+  MEMORY_PERM prev_permissions;
+}
+
+struct addrspace
+{
+  L1Node *l1_nodes;
+  AddrRegion *addr_regions;
+};
 
 paddr_t global_last_paddr;
 paddr_t global_first_free_paddr;
@@ -27,11 +81,6 @@ void vm_bootstrap(void)
   KASSERT((global_last_paddr & PAGE_FRAME) == global_last_paddr);
 }
 
-struct addrspace
-{
-  L1Node *first;
-  RangeU32 *regions;
-};
 
 
 struct addrspace *
@@ -39,6 +88,9 @@ as_create(void)
 {
 	struct addrspace *as = kmalloc(sizeof(struct addrspace));
 	if (as == NULL) return NULL;
+
+  as->l1_nodes = NULL;
+  as->addr_regions = NULL;
 
 	return as;
 }
@@ -61,13 +113,13 @@ void as_activate(void)
 
 void as_deactive(void)
 {
-  // nothing? maybe just do same as as_activate()?
+  // TODO: same as as_activate() ok?
+  as_activate();
 }
 
 void as_destroy(struct addrspace *as)
 {
   // TODO: cleanup linked lists
-
 	kfree(as);
 }
 
@@ -107,7 +159,7 @@ int as_define_region(struct addrspace *as, vaddr_t vaddr, size_t memsize,
   region->range.max = aligned_memsize;
   region->orig_permissions = readable | writeable | executable; 
   region->cur_permissions = region->orig_permissions;
-  PUSH(as, region);
+  SLL_STACK_PUSH(as->regions, region);
   
   as->heap_start;
   
@@ -178,8 +230,8 @@ vm_fault(int faulttype, vaddr_t faultaddress)
   {
     if (range_u32_contains(r->range, faultaddress))
     {
-      if ((faultcode == VM_FAULT_READ && r->cur_permissions & READ_PERMISSION) ||
-          (faultcode == VM_FAULT_WRITE && r->cur_permissions & WRITE_PERMISSION))
+      if ((faultcode == VM_FAULT_READ && r->cur_permissions & MEM_PERM_R) ||
+          (faultcode == VM_FAULT_WRITE && r->cur_permissions & MEM_PERM_W))
       {
         valid_region = true;
       }
@@ -188,16 +240,17 @@ vm_fault(int faulttype, vaddr_t faultaddress)
   }
   // VM_FAULT_READ (attempt read; no tlb entry)
   // VM_FAULT_WRITE (attempt write; no tlb entry)
-  // attempt write on read only; tlb entry has dirty bit 0
+  // VM_FAULT_READONLY (attempt write on read only; tlb entry has dirty bit 0)
   if (!valid_region || faulttype == VM_FAULT_READONLY)
   {
+    // TODO(Ryan): How to handle this?
     struct trapframe *tf = curthread->t_context;
     kill_curthread(tf->tf_epc, EX_ADEL, faultaddress);
   }
 
   uint32_t l1_vpn = faultaddress & L1_MASK;
   L1Node *l1_entry = NULL;
-  for (L1Node *l1_node = as->first; l1_node != NULL; l1_node = l1_node->next)
+  for (L1Node *l1_node = as->l1_nodes; l1_node != NULL; l1_node = l1_node->next)
   {
     if (l1_node->vpn == l1_vpn)
     {
@@ -208,13 +261,14 @@ vm_fault(int faulttype, vaddr_t faultaddress)
   if (l1_entry == NULL)
   {
     l1_entry = kmalloc(sizeof(L1Node));
+    l1_entry->next = NULL;
     l1_entry->vpn = l1_vpn;
-    PUSH(as->first, l1_entry);
+    SLL_STACK_PUSH(as->l1_nodes, l1_entry);
   }
 
   uint32_t l2_vpn = vaddr & L2_MASK;
   L2Node *l2_entry = NULL;
-  for (L2Node *l2_node = l1_entry->first; l2_node != NULL; l2_node = l2_node->next)
+  for (L2Node *l2_node = l1_entry->l2_nodes; l2_node != NULL; l2_node = l2_node->next)
   {
     if (l2_node->vpn == l2_vpn)
     {
@@ -237,7 +291,7 @@ vm_fault(int faulttype, vaddr_t faultaddress)
     memset(global_first_free_paddr, 0, PAGE_SIZE);
 
     global_first_free_paddr += PAGE_SIZE;
-    PUSH(l1_entryfirst, l2_entry);
+    SLL_STACK_PUSH(l1_entry->l2_nodes, l2_entry);
   }
 
   DISABLE_INTERRUPTS()

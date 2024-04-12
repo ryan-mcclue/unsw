@@ -2,6 +2,27 @@
 // https://wiki.cse.unsw.edu.au/give/Classrun 
 //3231 classrun -sturec
 
+// TODO(Ryan): 
+// vaddr_t frame_vaddr = alloc_kpage(); (wrapper for alloc_ppage())
+// paddr_t frame_paddr = KVADDR_TO_PADDR(frame_vaddr);
+// memfill(frame_paddr, 0);
+// uint32_t frame_num = frame_paddr & frame_num_mask; (top 20 bits)
+// we map the vpn to frame_num in page table
+// we store the frame num in entrylo?
+// so, actually in kernel memory but irrelevent?
+
+// (alloc_kpages() ensures not in kseg0?)
+// (but kmalloc() calls it?)
+// or, allocating page table nodes at startup? (2048 and 512 entries)
+
+// frame 0 reserved for NULL?
+
+// ENOMEM for kmalloc() fail
+
+// TODO: ok to preallocate l1 page table entries
+
+// TODO: first 20bits of virtual address become last 20bits of page number
+
 #define PASTE_(a, b) a##b
 #define PASTE(a, b) PASTE_(a, b)
 #define UNIQUE_NAME(name) PASTE(name, __LINE__)

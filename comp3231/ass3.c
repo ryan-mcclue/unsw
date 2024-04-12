@@ -88,6 +88,7 @@ struct addrspace
 {
   L1Node *l1_nodes;
   AddrRegion *addr_regions;
+  vaddr_t recent_region_end;
 };
 
 paddr_t global_last_paddr;
@@ -101,8 +102,6 @@ void vm_bootstrap(void)
   KASSERT((global_first_paddr & PAGE_FRAME) == global_first_paddr);
   KASSERT((global_last_paddr & PAGE_FRAME) == global_last_paddr);
 }
-
-
 
 struct addrspace *
 as_create(void)
@@ -140,7 +139,23 @@ void as_deactive(void)
 
 void as_destroy(struct addrspace *as)
 {
-  // TODO: cleanup linked lists
+  L1Node *l1_node = as->l1_nodes;
+  while (l1_node != NULL)
+  {
+    L2Node *l2_node = l1_node->l2_nodes;
+    while (l2_node != NULL)
+    {
+      free_kpages(l2->frame_vaddr); 
+      L2Node *tmp = l2_node;
+      l2_node = l2_node->next;
+      kfree(tmp);
+    }
+
+    L1Node *tmp = l1_node;
+    l1_node = l1_node->next;
+    kfree(tmp);
+  }
+
 	kfree(as);
 }
 
@@ -148,13 +163,29 @@ int as_copy(struct addrspace *old, struct addrspace **ret)
 {
 	struct addrspace *newas = as_create();
 	if (newas==NULL)  return ENOMEM;
+  
+  for (L1Node *l1_node = as->l1_nodes; l1_node != NULL; l1_node = l1_node->next)
+  {
+    L1Node *l1 = kmalloc(sizeof(L1Node));
+    if (l1 == NULL) return ENOMEM;
+    l1->next = NULL;
+    l1->vpn = l1_node->vpn;
 
-// as_copy() will create same number of frames and copy data over into it.
-	/*
-	 * Write this.
-	 */
+    for (L2Node *l2_node = l1_node->l2_nodes; l2_node != NULL; l2_node = l2_node->next)
+    {
+      L2Node *l2 = kmalloc(sizeof(L2Node));
+      if (l2 == NULL) return ENOMEM;
+      l2->next = NULL;
+      l2->vpn = l2_node->vpn;
 
-	(void)old;
+      l2->frame_num = new_frame_num;
+      memset(new_memory);
+
+      SLL_STACK_PUSH(l1->l2_nodes, l2);
+    }
+
+    SLL_STACK_PUSH(newas->l1_nodes, l1);
+  }
 
 	*ret = newas;
 
@@ -182,9 +213,9 @@ int as_define_region(struct addrspace *as, vaddr_t vaddr, size_t memsize,
   region->cur_permissions = region->orig_permissions;
   SLL_STACK_PUSH(as->regions, region);
   
-  as->heap_start;
-  
-	return ENOSYS; /* Unimplemented */
+  as->recent_region_end = region->range.max;
+
+  return 0;
 }
 
 int as_prepare_load(struct addrspace *as)
@@ -211,20 +242,20 @@ int as_define_stack(struct addrspace *as, vaddr_t *stackptr)
 
   // heap is after last region
   AddrRegion *heap_region = kmalloc(sizeof(AddrRegion));
-  if (region == NULL) fatal;
-  region->range.min = as->cur_heap_start;
-  region->range.max = USERSTACK - stack_size;
-  region->orig_permissions = readable | writeable | executable; 
-  region->cur_permissions = region->orig_permissions;
-  PUSH(as, region);
+  if (heap_region == NULL) return ENOMEM;
+  heap_region->range.min = as->cur_heap_start;
+  heap_region->range.max = USERSTACK - stack_size;
+  heap_region->orig_permissions = MEM_PERM_R | MEM_PERM_W | MEM_PERM_X; 
+  heap_region->cur_permissions = heap_region->orig_permissions;
+  SLL_STACK_PUSH(as->addr_regions, heap_region);
 
-  AddrRegion *region = kmalloc(sizeof(AddrRegion));
-  if (region == NULL) fatal;
-  region->range.min = heap_region->range.max;
-  region->range.max = USERSTACK;
-  region->orig_permissions = readable | writeable; 
-  region->cur_permissions = region->orig_permissions;
-  PUSH(as, region);
+  AddrRegion *stack_region = kmalloc(sizeof(AddrRegion));
+  if (stack_region == NULL) return ENOMEM;
+  stack_region->range.min = heap_region->range.max;
+  stack_region->range.max = USERSTACK;
+  stack_region->orig_permissions = MEM_PERM_R | MEM_PERM_W; 
+  stack_region->cur_permissions = stack_region->orig_permissions;
+  SLL_STACK_PUSH(as->addr_regions, stack_region);
 
 	*stackptr = USERSTACK;
 
@@ -282,6 +313,7 @@ vm_fault(int faulttype, vaddr_t faultaddress)
   if (l1_entry == NULL)
   {
     l1_entry = kmalloc(sizeof(L1Node));
+    if (l1_entry == NULL) return ENOMEM;
     l1_entry->next = NULL;
     l1_entry->vpn = l1_vpn;
     SLL_STACK_PUSH(as->l1_nodes, l1_entry);
@@ -305,8 +337,13 @@ vm_fault(int faulttype, vaddr_t faultaddress)
       kill_curthread(tf->tf_epc, EX_IBE, faultaddress);
     }
     l2_entry = kmalloc(sizeof(L2Node));
+    if (l2_entry == NULL) return ENOMEM;
     l2_entry->vpn = l2_vpn;
-    l2_entry->frame = global_first_free_paddr;
+    // paddr_t v_page = alloc_kpage();
+    // if (v_page == 0) return ENOMEM;
+    // vaddr_t p_page = KVADDR_TO_PADDR(v_page);
+    // uint32_t frame_num = p_page & TLB_NUM_MASK;
+    // l2_entry->frame_num = frame_num;
 
     // zero frame
     memset(global_first_free_paddr, 0, PAGE_SIZE);
@@ -331,7 +368,6 @@ vm_fault(int faulttype, vaddr_t faultaddress)
 
   return EFAULT;
 }
-
 
 
 allocate our structures (this address range should be marked as fixed?)

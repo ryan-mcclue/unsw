@@ -242,7 +242,7 @@ def static_evaluation(grid, are_max, prev_move):
 
   return evaluation
 
-MAX_DEPTH = 7
+MAX_DEPTH = 6
 
 def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
   if depth == MAX_DEPTH:

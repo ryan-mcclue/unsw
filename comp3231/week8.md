@@ -10,9 +10,9 @@ From high addresses to low:  (some address spaces may not be cachable/translated
   - heap (grows upwards)
 
 MIPS divides memory in separate address spaces (unlike x86 which uses a flat memory model and several segment registers):
-  - kseg2 (kernel mode code; contains page tables for kuseg)
-  - kseg1 (512MB; for I/O; no MMU)
-  - kseg0 (512MB; no MMU)
+  - kseg2 (kernel memory with TLB)
+  - kseg1 (512MB; no MMU; no hardware cache, e.g. a write through cache)
+  - kseg0 (512MB; no MMU; page modes)
     0x80000000 - 0x9fffffff virtual
     0x00000000 - 0x1fffffff physical  
     kernel + free ram (so, where kmalloc() goes, i.e. allocator already exists here)

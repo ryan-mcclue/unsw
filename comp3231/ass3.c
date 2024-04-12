@@ -295,9 +295,7 @@ vm_fault(int faulttype, vaddr_t faultaddress)
   // VM_FAULT_READONLY (attempt write on read only; tlb entry has dirty bit 0)
   if (!valid_region || faulttype == VM_FAULT_READONLY)
   {
-    // TODO(Ryan): How to handle this?
-    struct trapframe *tf = curthread->t_context;
-    kill_curthread(tf->tf_epc, EX_ADEL, faultaddress);
+    return EFAULT;
   }
 
   uint32_t l1_vpn = faultaddress & L1_MASK;
@@ -366,7 +364,7 @@ vm_fault(int faulttype, vaddr_t faultaddress)
     tlb_random(hi, lo);
   }
 
-  return EFAULT;
+  return 0;
 }
 
 

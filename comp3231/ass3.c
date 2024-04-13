@@ -106,6 +106,7 @@ void vm_bootstrap(void)
 struct addrspace *
 as_create(void)
 {
+  // TODO(Ryan): Handle kmalloc() failures throughout
 	struct addrspace *as = kmalloc(sizeof(struct addrspace));
 	if (as == NULL) return NULL;
 

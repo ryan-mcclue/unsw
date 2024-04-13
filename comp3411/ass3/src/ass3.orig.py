@@ -10,8 +10,6 @@ from dataclasses import dataclass, field
 from typing import List
 from enum import Enum
 
-import sys
-
 class Mark(Enum):
   EMPTY = 0
   PLAYER = 1
@@ -246,7 +244,10 @@ MAX_DEPTH = 6
 
 def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
   if depth == MAX_DEPTH:
-    return static_evaluation(grid, are_max, prev_move)
+    score = static_evaluation(grid, are_max, prev_move)
+    print(f"SCORE({prev_move.board_num}->{prev_move.cell_num}): {score}")
+    print_board()
+    return score
 
   # TODO: perhaps check if won here; just have to check all boards?
 
@@ -445,61 +446,3 @@ def main():
 
 if __name__ == "__main__":
   main()
-
-# TODO: undo() not making empty?
-#class Board:
-#  char board[9],
-#  x_indexes, (so, what moves have been made)
-#  o_indexes
-#
-#class State:
-#  Board boards[9]
-#  diff = 7
-#  tie_boards, x_chosen_board, o_chosen_board
-#
-#
-#def study():
-#  pc_grid = 0
-#  pc_cell = 0
-#  play(pc_grid, pc_cell, turn=1)
-#  
-#  checkerboard: (checking if board closed)
-#  for (b in boards)
-#    if b.score == 0: tie_boards[board] = 1
-#    if b.score == 1: x_win_boards[board] = 1
-#    if b.score == -1: o_win_boards[board] = 1
-#    else tie/x/o_boards[board] = -1
-#
-#  check_if_won()
-#
-#  for (cell in empty_cells_in_board)
-#    v = minmax(board, cell, depth=6, a, b, turn)
-#    undo_move()
-#
-#def eval():
-#  for i, b in enumerate(boards):
-#    if x_won(b):
-#      scores[i] = 15
-#    if o_won(b)
-#      scores[i] = -15
-#    if tie(b):
-#      scores[i] = -99999
-#    else:
-#      scores[i] = calc_small(); 
-#
-#  return sum_of_all_non_tie_scores
-#
-#def calc_small():
-#  avg = 0
-#  for c in board:
-#    if c is x: scores[i] = 1
-#    if c is o: scores[i] = -1
-#    else scores[i] = 0
-#
-#    for all x.x avg += 2
-#    if b[0] == x:
-#      if b[1] == x or b[2] == x: avg += 2
-#
-#    for all .x. avg += 1
-#
-#    repeat for o, i.e. negative scores

@@ -16,11 +16,12 @@ class Mark(Enum):
   OPPONENT = 2
 
 class Score(Enum):
-  END = 15
-  # TODO(Ryan): Maybe make draw negative?
-  DRAW = -100
-  LONE = 1
-  POSSIBLE_END = 2
+  END = 100
+  TWO_MARKS = 4
+  DRAW = -5
+  CORNER = 1
+  CENTRE = 2
+  BLOCK = 6
 
   MAX_SCORE = 10000000
   MIN_SCORE = -MAX_SCORE
@@ -148,7 +149,7 @@ def have_won(grid, cur_board_num, are_max):
 
   return (left_col or middle_col or right_col or top_row or middle_row or bottom_row or left_diag or right_diag)
 
-def score_one_mark_remaining(board, are_max, is_next):
+def score_two_marks(board, are_max, is_next):
   score = 0
   
   next_mark = Mark.OPPONENT if are_max else Mark.PLAYER
@@ -174,49 +175,69 @@ def score_one_mark_remaining(board, are_max, is_next):
           if is_next and next_mark == Mark.PLAYER:
             score += Score.END.value 
           else:
-            score += Score.POSSIBLE_END.value 
+            score += Score.TWO_MARKS.value 
             break
         elif board[i] == Mark.OPPONENT:
           if is_next and next_mark == Mark.OPPONENT:
             score -= Score.END.value 
           else:
-            score -= Score.POSSIBLE_END.value 
+            score -= Score.TWO_MARKS.value 
             break
 
   return score
 
-def score_lone_mark(board):
+def get_score(mark, score):
+  if mark == Mark.PLAYER:
+    return score
+  elif mark == Mark.OPPONENT:
+    return -score
+  else:
+    return 0
+
+def score_positional(board):
   score = 0
+
+  for i in [0, 2, 6, 8]:
+    score += get_score(board[i], Score.CORNER.value)
+
+  score += get_score(board[4], Score.CENTRE.value)
+
+  return score
+
+def score_block(board, are_max):
+  score = 0
+
+  m1 = Mark.PLAYER if are_max else Mark.OPPONENT
+  m2 = Mark.OPPONENT if are_max else Mark.PLAYER
 
   # 0 1 2
   # 3 4 5
   # 6 7 8
-  # IMPORTANT: format is [m,e,e]
-  row_indices = [[0,1,2],[1,0,2],[2,0,1],
-                 [3,4,5],[4,3,5],[5,3,4],
-                 [6,7,8],[7,6,8],[8,6,7]]
-  col_indices = [[0,3,6],[3,0,6],[6,0,3],
-                 [1,4,7],[4,1,7],[7,1,4],
-                 [2,5,8],[5,2,8],[8,2,5]]
-  diag_indices = [[0,4,8],[4,8,0],[8,0,4],
-                  [6,4,2],[4,6,2],[2,4,6]]
-
+  # IMPORTANT: format is [m2,m2,m1]
+  row_indices = [[0,1,2],[0,2,1],[1,2,0],
+                 [3,4,5],[3,5,4],[4,5,3],
+                 [6,7,8],[6,8,7],[7,8,6]]
+  col_indices = [[0,3,6],[3,6,0],[0,6,3],
+                 [1,4,7],[4,7,1],[1,7,4],
+                 [2,5,8],[5,8,2],[2,8,5]]
+  diag_indices = [[0,4,8],[4,8,0],[0,8,4],
+                  [6,4,2],[6,2,4],[4,2,6]]
   for direction_indices in [row_indices, col_indices, diag_indices]:
     for indices in direction_indices:
       i, j, k = indices
-      if board[j] == Mark.EMPTY and board[k] == Mark.EMPTY:
-        if board[i] == Mark.PLAYER:
-          score += Score.LONE.value
-        elif board[i] == Mark.OPPONENT:
-          score -= Score.LONE.value
+      if board[i] == board[j]:
+        if board[i] == m2 and board[k] == m1:
+          score += get_score(board[k], Score.BLOCK.value)
 
   return score
 
+
 def board_score(board, are_max, is_next):
   score = 0
-  
-  score += score_one_mark_remaining(board, are_max, is_next)
-  score += score_lone_mark(board)
+
+  score += score_positional(board)
+  score += score_block(board, are_max)
+  score += score_two_marks(board, are_max, is_next)
 
   return score
 
@@ -245,11 +266,9 @@ MAX_DEPTH = 6
 def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
   if depth == MAX_DEPTH:
     score = static_evaluation(grid, are_max, prev_move)
-    print(f"SCORE({prev_move.board_num}->{prev_move.cell_num}): {score}")
-    print_board()
+    #print(f"SCORE({prev_move.board_num}->{prev_move.cell_num}): {score}")
+    #print_board()
     return score
-
-  # TODO: perhaps check if won here; just have to check all boards?
 
   scores = []
 

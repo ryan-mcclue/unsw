@@ -32,8 +32,6 @@
        UNIQUE_NAME(l).i == 0; \
        splx(UNIQUE_NAME(l).spl), UNIQUE_NAME(l).i++)
 
-#define ALIGN_POW2_UP(x, p)       (-(-(x) & -(p)))
-
 #define __SLL_STACK_PUSH(first, node, next) \
 (\
   ((node)->next = (first)), \
@@ -49,26 +47,27 @@ struct RangeU32
   uint32_t min, max;
 };
 
-INTERNAL bool 
+bool 
 range_u32_contains(RangeU32 r, uint32_t v)
 { 
   return r.min <= v && v < r.max; 
 }
 
-
-struct L1Node
+typedef struct L1Page L1Page;
+struct L1Page
 {
-  L1Node *next;
+  L1Page *next;
   vaddr_t vpn;
-  L2Node *l2_nodes;
+  L2Page *l2_pages;
 };
 
-struct L2Node
+typedef struct L2Page L2Page;
+struct L2Page
 {
-  L2Node *next;
+  L2Page *next;
   vaddr_t vpn;
   paddr_t frame;
-}
+};
 
 typedef enum
 {
@@ -77,40 +76,32 @@ typedef enum
   MEM_PERM_X = 1 << 2
 } MEM_PERM;
 
+typedef struct AddrRegion AddrRegion
 struct AddrRegion
 {
   RangeU32 range;
   MEMORY_PERM cur_permissions;
   MEMORY_PERM prev_permissions;
-}
+};
 
 struct addrspace
 {
-  L1Node *l1_nodes;
+  L1Page *l1_pages;
   AddrRegion *addr_regions;
   vaddr_t recent_region_end;
 };
 
-paddr_t global_last_paddr;
-paddr_t global_first_free_paddr;
 void vm_bootstrap(void)
 {
-  // NOTE(Ryan): kuseg after kseg0 in physical memory
-  global_first_free_paddr = MIPS_KSEG1 - MIPS_KSEG0;
-  global_last_paddr = ram_getsize();
-
-  KASSERT((global_first_paddr & PAGE_FRAME) == global_first_paddr);
-  KASSERT((global_last_paddr & PAGE_FRAME) == global_last_paddr);
 }
 
 struct addrspace *
 as_create(void)
 {
-  // TODO(Ryan): Handle kmalloc() failures throughout
 	struct addrspace *as = kmalloc(sizeof(struct addrspace));
 	if (as == NULL) return NULL;
 
-  as->l1_nodes = NULL;
+  as->l1_pages = NULL;
   as->addr_regions = NULL;
 
 	return as;
@@ -134,26 +125,25 @@ void as_activate(void)
 
 void as_deactive(void)
 {
-  // TODO: same as as_activate() ok?
   as_activate();
 }
 
 void as_destroy(struct addrspace *as)
 {
-  L1Node *l1_node = as->l1_nodes;
-  while (l1_node != NULL)
+  L1Page *l1_page = as->l1_pages;
+  while (l1_page != NULL)
   {
-    L2Node *l2_node = l1_node->l2_nodes;
-    while (l2_node != NULL)
+    L2Page *l2_page = l1_page->l2_pages;
+    while (l2_page != NULL)
     {
       free_kpages(l2->frame_vaddr); 
-      L2Node *tmp = l2_node;
-      l2_node = l2_node->next;
+      L2Page *tmp = l2_page;
+      l2_page = l2_page->next;
       kfree(tmp);
     }
 
-    L1Node *tmp = l1_node;
-    l1_node = l1_node->next;
+    L1Page *tmp = l1_page;
+    l1_page = l1_page->next;
     kfree(tmp);
   }
 
@@ -165,27 +155,27 @@ int as_copy(struct addrspace *old, struct addrspace **ret)
 	struct addrspace *newas = as_create();
 	if (newas==NULL)  return ENOMEM;
   
-  for (L1Node *l1_node = as->l1_nodes; l1_node != NULL; l1_node = l1_node->next)
+  for (L1Page *l1_page = as->l1_pages; l1_page != NULL; l1_page = l1_page->next)
   {
-    L1Node *l1 = kmalloc(sizeof(L1Node));
+    L1Page *l1 = kmalloc(sizeof(L1Page));
     if (l1 == NULL) return ENOMEM;
     l1->next = NULL;
-    l1->vpn = l1_node->vpn;
+    l1->vpn = l1_page->vpn;
 
-    for (L2Node *l2_node = l1_node->l2_nodes; l2_node != NULL; l2_node = l2_node->next)
+    for (L2Page *l2_page = l1_page->l2_pages; l2_page != NULL; l2_page = l2_page->next)
     {
-      L2Node *l2 = kmalloc(sizeof(L2Node));
+      L2Page *l2 = kmalloc(sizeof(L2Page));
       if (l2 == NULL) return ENOMEM;
       l2->next = NULL;
-      l2->vpn = l2_node->vpn;
+      l2->vpn = l2_page->vpn;
 
       l2->frame_num = new_frame_num;
       memset(new_memory);
 
-      SLL_STACK_PUSH(l1->l2_nodes, l2);
+      SLL_STACK_PUSH(l1->l2_pages, l2);
     }
 
-    SLL_STACK_PUSH(newas->l1_nodes, l1);
+    SLL_STACK_PUSH(newas->l1_pages, l1);
   }
 
 	*ret = newas;
@@ -204,12 +194,10 @@ int as_copy(struct addrspace *old, struct addrspace **ret)
 int as_define_region(struct addrspace *as, vaddr_t vaddr, size_t memsize,
 		                 int readable, int writeable, int executable)
 {
-  size_t aligned_memsize = ALIGN_POW2_UP(memsize, PAGE_SIZE)
-
   AddrRegion *region = kmalloc(sizeof(AddrRegion));
   if (region == NULL) fatal;
   region->range.min = vaddr;
-  region->range.max = aligned_memsize;
+  region->range.max = memsize;
   region->orig_permissions = readable | writeable | executable; 
   region->cur_permissions = region->orig_permissions;
   SLL_STACK_PUSH(as->regions, region);
@@ -300,31 +288,31 @@ vm_fault(int faulttype, vaddr_t faultaddress)
   }
 
   uint32_t l1_vpn = faultaddress & L1_MASK;
-  L1Node *l1_entry = NULL;
-  for (L1Node *l1_node = as->l1_nodes; l1_node != NULL; l1_node = l1_node->next)
+  L1Page *l1_entry = NULL;
+  for (L1Page *l1_page = as->l1_pages; l1_page != NULL; l1_page = l1_page->next)
   {
-    if (l1_node->vpn == l1_vpn)
+    if (l1_page->vpn == l1_vpn)
     {
-      l1_entry = l1_node;
+      l1_entry = l1_page;
       break;
     }
   }
   if (l1_entry == NULL)
   {
-    l1_entry = kmalloc(sizeof(L1Node));
+    l1_entry = kmalloc(sizeof(L1Page));
     if (l1_entry == NULL) return ENOMEM;
     l1_entry->next = NULL;
     l1_entry->vpn = l1_vpn;
-    SLL_STACK_PUSH(as->l1_nodes, l1_entry);
+    SLL_STACK_PUSH(as->l1_pages, l1_entry);
   }
 
   uint32_t l2_vpn = vaddr & L2_MASK;
-  L2Node *l2_entry = NULL;
-  for (L2Node *l2_node = l1_entry->l2_nodes; l2_node != NULL; l2_node = l2_node->next)
+  L2Page *l2_entry = NULL;
+  for (L2Page *l2_page = l1_entry->l2_pages; l2_page != NULL; l2_page = l2_page->next)
   {
-    if (l2_node->vpn == l2_vpn)
+    if (l2_page->vpn == l2_vpn)
     {
-      l2_entry = l2_node;
+      l2_entry = l2_page;
       break;
     }
   }
@@ -335,7 +323,7 @@ vm_fault(int faulttype, vaddr_t faultaddress)
       struct trapframe *tf = curthread->t_context;
       kill_curthread(tf->tf_epc, EX_IBE, faultaddress);
     }
-    l2_entry = kmalloc(sizeof(L2Node));
+    l2_entry = kmalloc(sizeof(L2Page));
     if (l2_entry == NULL) return ENOMEM;
     l2_entry->vpn = l2_vpn;
     // paddr_t v_page = alloc_kpage();
@@ -348,7 +336,7 @@ vm_fault(int faulttype, vaddr_t faultaddress)
     memset(global_first_free_paddr, 0, PAGE_SIZE);
 
     global_first_free_paddr += PAGE_SIZE;
-    SLL_STACK_PUSH(l1_entry->l2_nodes, l2_entry);
+    SLL_STACK_PUSH(l1_entry->l2_pages, l2_entry);
   }
 
   DISABLE_INTERRUPTS()

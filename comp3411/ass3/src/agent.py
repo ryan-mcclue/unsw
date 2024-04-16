@@ -61,11 +61,15 @@ class Mark(Enum):
   OPPONENT = 2
 
 class Score(Enum):
-  END = 100
+  END = 1000
+  REPEAT = 100
+  BOARD_WINS = 50
+  FORCE = 100
   BLOCK = 6
   TWO_MARKS = 4
   CENTRE = 2
   CORNER = 1
+  EMPTY = 5
   DRAW = 0
 
   MAX_SCORE = 10000000
@@ -291,27 +295,104 @@ def board_score(board, are_max, is_next):
 
   return score
 
+def can_win(board, are_max):
+  m = Mark.PLAYER if are_max else Mark.OPPONENT
+
+  row_indices = [[0,1,2],[0,2,1],[1,2,0],
+                 [3,4,5],[3,5,4],[4,5,3],
+                 [6,7,8],[6,8,7],[7,8,6]]
+  col_indices = [[0,3,6],[3,6,0],[0,6,3],
+                 [1,4,7],[4,7,1],[1,7,4],
+                 [2,5,8],[5,8,2],[2,8,5]]
+  diag_indices = [[0,4,8],[4,8,0],[0,8,4],
+                  [6,4,2],[6,2,4],[4,2,6]]
+  for direction_indices in [row_indices, col_indices, diag_indices]:
+    for indices in direction_indices:
+      i, j, k = indices
+      if board[i] == board[j] and board[k] == Mark.EMPTY:
+        if board[i] == m:
+          return True, k
+
+  return False, -1
 
 def static_evaluation(grid, are_max, prev_move):
   evaluation = 0
-  #for i in range(1, 10):
-  #  board_coord = grid_coord(i, 1)
-  #  board = grid[board_coord:board_coord+9]
-  #  evaluation += board_score(board, are_max, i == prev_move.cell_num)
-  #return evaluation
+
+  next_board_coord = grid_coord(prev_move.cell_num, 1)
+  next_board = grid[next_board_coord:next_board_coord+9]
+  if can_win(next_board, not are_max)[0]:
+    if are_max:
+      return -Score.END.value
+    else:
+      return Score.END.value
+
+  # count how many times we have repeated cells
+  m = Mark.PLAYER if are_max else Mark.OPPONENT
+  for i in range(1, 10):
+    cell_count = 0
+
+    for j in range(1, 10):
+      board_coord = grid_coord(j, i)
+      if grid[board_coord] == m:
+        cell_count += 1
+
+    if cell_count >= 2:
+      if are_max:
+        return -Score.END.value
+      else:
+        return Score.END.value
+
+  # constrain opponent
+  # e_count = 0
+  # for i in range(9):
+  #   if next_board[i] == Mark.EMPTY:
+  #     e_count += 1
+
+  # if are_max:
+  #   evaluation += (e_count * Score.EMPTY.value)
+  # else:
+  #   evaluation -= (e_count * Score.EMPTY.value)
+
+  p_boards = 0
+  o_boards = 0
+  winnable_boards = []
+  for i in range(1, 10):
+
+    board_coord = grid_coord(i, 1)
+    board = grid[board_coord:board_coord+9]
+
+    if can_win(board, True)[0]:
+      p_boards += 1
+      if are_max:
+        winnable_boards.append(i)
+    elif can_win(board, False)[0]:
+      o_boards += 1
+      if not are_max:
+        winnable_boards.append(i)
+
+  if p_boards > o_boards:
+    return Score.END.value
+  #evaluation += Score.BOARD_WINS.value
+  elif o_boards > p_boards:
+    return -Score.END.value
+    #evaluation -= Score.BOARD_WINS.value
+
+  # if we have a board that we can win at, try and force opponent to pick it
+  # if this move makes next board have cell vacant that we want opponent to pick, score high
+  for i in winnable_boards:
+    if next_board[i - 1] == Mark.EMPTY:
+      if are_max:
+        evaluation += Score.FORCE.value
+      else:
+        evaluation -= Score.FORCE.value
 
   cur_board_coord = grid_coord(prev_move.board_num, 1)
   cur_board = grid[cur_board_coord:cur_board_coord+9]
   evaluation += board_score(cur_board, are_max, False)
 
-  next_board_coord = grid_coord(prev_move.cell_num, 1)
-  next_board = grid[next_board_coord:next_board_coord+9]
-  evaluation += board_score(next_board, are_max, True)
-    
-
   return evaluation
 
-MAX_DEPTH = 6
+MAX_DEPTH = 8
 
 def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
   if depth == MAX_DEPTH:
@@ -327,11 +408,38 @@ def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
   for move in possible_moves:
     do_move(grid, move, are_max) 
 
-    if have_won(grid, cur_board_num, True):
+    m = Mark.PLAYER if are_max else Mark.OPPONENT
+    m_count = 0
+    for i in range(1, 10):
+      board_coord = grid_coord(i, move.cell_num)
+      if grid[board_coord] == m:
+        m_count += 1
+    if m_count >= 3:
+      if m == Mark.PLAYER:
+        score = -Score.END.value
+      else:
+        score = Score.END.value
+    # if next board has 2 more opponent than ours, bad
+    elif have_won(grid, cur_board_num, True):
       score = Score.END.value - depth
     elif have_won(grid, cur_board_num, False):
       score = depth - Score.END.value
     else:
+      #o_count = 0
+      #p_count = 0
+      #board_coord = grid_coord(cur_board_num, 1)
+      #board = grid[board_coord:board_coord+9]
+      #for i in range(9):
+      #  if board[i] == Mark.PLAYER:
+      #    p_count += 1
+      #  elif board[i] == Mark.OPPONENT:
+      #    o_count += 1
+
+      #if p_count - o_count >= 3:
+      #  score = Score.END.value - depth
+      #elif o_count - p_count >= 3:
+      #  score = depth - Score.END.value
+      #else:
       score = minimax(grid, depth+1, not are_max, move.cell_num, a, b, move)
 
     undo_move(grid, move)
@@ -345,6 +453,7 @@ def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
       break
 
     if depth == 0:
+      move.score = score
       scores.append([move, score])
     else:
       scores.append(score)
@@ -380,9 +489,14 @@ def get_possible_moves(grid, board_num, are_max):
   numbers = list(range(1, 10))
   random.shuffle(numbers)
 
+  # 0 1 2
+  # 3 4 5
+  # 6 7 8
+  numbers = [4,0,2,6,8,1,5,7,3]
+
   for i in numbers:
-    if board[i-1] == Mark.EMPTY and not have_tie(grid, i):
-      move = Move(board_num, i, 0)
+    if board[i] == Mark.EMPTY and not have_tie(grid, i+1):
+      move = Move(board_num, i+1, 0)
       moves.append(move)
   return moves
 
@@ -419,13 +533,69 @@ def undo_move(grid, move):
   coord = grid_coord(move.board_num, move.cell_num) 
   grid[coord] = Mark.EMPTY 
 
+def get_counts(board):
+  p_count = 0
+  o_count = 0
+  for i in range(9):
+    if board[i] == Mark.PLAYER:
+      p_count += 1
+    elif board[i] == Mark.OPPONENT:
+      o_count += 1
+
+  return [p_count, o_count, 9 - p_count - o_count]
+
+
 def make_move():
   global global_grid
   global global_next_board_num 
 
-  best_move = minimax(global_grid, 0, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)
+  board_coord = grid_coord(global_next_board_num, 1)
+  board = global_grid[board_coord:board_coord+9]
+
+  best_move = None
+
+  p, o, e = get_counts(board)
+  if o < 2:
+    # force opponent back into same grid if possible
+    if board[global_next_board_num - 1] == Mark.EMPTY:
+      best_move = Move(global_next_board_num, global_next_board_num, 0)
+    else:
+      # pick square where opponent can't win
+      for i in range(1, 10):
+        if board[i-1] == Mark.EMPTY:
+          c = grid_coord(i, 1)
+          b = global_grid[c:c+9]
+          if not can_win(b, False)[0]:
+            best_move = Move(global_next_board_num, i, 0)
+            break
+  else:
+    if o == 2:
+      w, i = can_win(board, False)
+      c = grid_coord(i+1, 1)
+      b = global_grid[c:c+9]
+      w_next, i_next = can_win(b, False)
+      if w and not w_next:
+        # block square
+        best_move = Move(global_next_board_num, i+1, 0)
+      else:
+        # choose next board we're not losing in
+        for i in range(1, 10):
+          if board[i-1] == Mark.EMPTY:
+            c = grid_coord(i, 1)
+            b = global_grid[c:c+9]
+            if not can_win(b, False)[0]:
+              best_move = Move(global_next_board_num, i, 0)
+              break
+        #best_move = minimax(global_grid, 0, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)
+        #print("MINIMAX")
+    else:
+      best_move = minimax(global_grid, 0, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)
+      print("MINIMAX")
+  #print(f"BEST: {best_move.score}")
 
   place_mark(global_next_board_num, best_move.cell_num, Mark.PLAYER)
+
+  print_board()
 
   return best_move.cell_num
 

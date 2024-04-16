@@ -392,6 +392,14 @@ def static_evaluation(grid, are_max, prev_move):
 
   return evaluation
 
+def cell_counts(grid, i):
+  cell_count = 0
+  for j in range(1, 10):
+    board_coord = grid_coord(j, i)
+    if grid[board_coord] == Mark.PLAYER:
+      cell_count += 1
+  return cell_count
+
 MAX_DEPTH = 8
 
 def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
@@ -555,30 +563,39 @@ def make_move():
   best_move = None
 
   p, o, e = get_counts(board)
-  if o < 2:
+  
+  w, i = can_win(board, True)
+  if w:
+    best_move = Move(global_next_board_num, i+1, 0)
+  elif o < 2:
     # force opponent back into same grid if possible
     if board[global_next_board_num - 1] == Mark.EMPTY:
       best_move = Move(global_next_board_num, global_next_board_num, 0)
     else:
-      # pick square where opponent can't win
-      for i in range(1, 10):
-        if board[i-1] == Mark.EMPTY:
-          c = grid_coord(i, 1)
-          b = global_grid[c:c+9]
-          if not can_win(b, False)[0]:
-            best_move = Move(global_next_board_num, i, 0)
-            break
-  else:
-    if o == 2:
-      w, i = can_win(board, False)
-      c = grid_coord(i+1, 1)
+      # see if can pick centre
+      c = grid_coord(5, 1)
       b = global_grid[c:c+9]
-      w_next, i_next = can_win(b, False)
-      if w and not w_next:
-        # block square
-        best_move = Move(global_next_board_num, i+1, 0)
-      else:
-        # choose next board we're not losing in
+      if board[4] == Mark.EMPTY and not can_win(b, False)[0]:
+        best_move = Move(global_next_board_num, 5, 0)
+      
+      if best_move is None:
+        for i in range(1, 10):
+          if board[i-1] == Mark.EMPTY:
+            c = grid_coord(i, 1)
+            b = global_grid[c:c+9]
+            p, o, e = get_counts(b)
+            if p > o and not can_win(b, False)[0]:
+              best_move = Move(global_next_board_num, i, 0)
+              break
+      ## first see if can pick boards we haven't picked before 
+      #for i in range(1, 10):
+      #  if board[i-1] == Mark.EMPTY:
+      #    cell_count = cell_counts(global_grid, i)
+      #    if cell_count == 0:
+      #      best_move = Move(global_next_board_num, i, 0)
+      #      break
+      # otherwise choose next board we're not losing in
+      if best_move is None:
         for i in range(1, 10):
           if board[i-1] == Mark.EMPTY:
             c = grid_coord(i, 1)
@@ -586,16 +603,84 @@ def make_move():
             if not can_win(b, False)[0]:
               best_move = Move(global_next_board_num, i, 0)
               break
-        #best_move = minimax(global_grid, 0, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)
-        #print("MINIMAX")
+  else:
+    w, i = can_win(board, False)
+    if w:
+      c = grid_coord(i+1, 1)
+      b = global_grid[c:c+9]
+      w_next, i_next = can_win(b, False)
+      if not w_next:
+        # block square
+        best_move = Move(global_next_board_num, i+1, 0)
+        print(f"Blocked {global_next_board_num},{i+1}")
+      else:
+        print(f"Can't block {global_next_board_num},{i+1}")
+        c = grid_coord(5, 1)
+        b = global_grid[c:c+9]
+        if board[4] == Mark.EMPTY and not can_win(b, False)[0]:
+          best_move = Move(global_next_board_num, 5, 0)
+
+        # first see if can pick boards where we have more marks than opponent
+        if best_move is None:
+          for i in range(1, 10):
+            if board[i-1] == Mark.EMPTY:
+              c = grid_coord(i, 1)
+              b = global_grid[c:c+9]
+              p, o, e = get_counts(b)
+              if p > o and not can_win(b, False)[0]:
+                best_move = Move(global_next_board_num, i, 0)
+                break
+        # first see if can pick boards we haven't picked before 
+        #for i in range(1, 10):
+        #  if board[i-1] == Mark.EMPTY:
+        #    cell_count = cell_counts(global_grid, i)
+        #    if cell_count == 0:
+        #      best_move = Move(global_next_board_num, i, 0)
+        #      break
+        # otherwise choose next board we're not losing in
+        if best_move is None:
+          for i in range(1, 10):
+            if board[i-1] == Mark.EMPTY:
+              c = grid_coord(i, 1)
+              b = global_grid[c:c+9]
+              if not can_win(b, False)[0]:
+                best_move = Move(global_next_board_num, i, 0)
+                break
     else:
-      best_move = minimax(global_grid, 0, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)
-      print("MINIMAX")
+      c = grid_coord(5, 1)
+      b = global_grid[c:c+9]
+      if board[4] == Mark.EMPTY and not can_win(b, False)[0]:
+        best_move = Move(global_next_board_num, 5, 0)
+      # first see if can pick boards where we have more marks than opponent
+      if best_move is not None:
+        for i in range(1, 10):
+          if board[i-1] == Mark.EMPTY:
+            c = grid_coord(i, 1)
+            b = global_grid[c:c+9]
+            p, o, e = get_counts(b)
+            if p > o and not can_win(b, False)[0]:
+              best_move = Move(global_next_board_num, i, 0)
+              break
+      # otherwise choose next board we're not losing in
+      if best_move is None:
+        for i in range(1, 10):
+          if board[i-1] == Mark.EMPTY:
+            c = grid_coord(i, 1)
+            b = global_grid[c:c+9]
+            if not can_win(b, False)[0]:
+              best_move = Move(global_next_board_num, i, 0)
+              break
+      #best_move = minimax(global_grid, 0, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)
+      #print("MINIMAX")
+  if best_move is None:
+    print("MINIMAX")
+    best_move = minimax(global_grid, 0, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)
   #print(f"BEST: {best_move.score}")
 
   place_mark(global_next_board_num, best_move.cell_num, Mark.PLAYER)
 
   print_board()
+  print(f"Moved: {best_move.board_num}, {best_move.cell_num}")
 
   return best_move.cell_num
 
@@ -678,7 +763,6 @@ def main():
         return
       elif response > 0:
         s.sendall((str(response) + "\n").encode())
-        print(f"Move: {response}", flush=True)
 
 
 if __name__ == "__main__":

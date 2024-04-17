@@ -65,12 +65,15 @@ class Score(Enum):
   REPEAT = 100
   BOARD_WINS = 50
   FORCE = 100
-  BLOCK = 6
   TWO_MARKS = 4
   CENTRE = 2
   CORNER = 1
   EMPTY = 5
   DRAW = 0
+
+  BLOCK = 6
+  CAN_WINS = 25
+
 
   MAX_SCORE = 10000000
   MIN_SCORE = -MAX_SCORE
@@ -425,22 +428,47 @@ def cell_counts(i):
       cell_count += 1
   return cell_count
 
-MAX_DEPTH = 12
+MAX_DEPTH = 6
 
 def new_static(prev_move, are_max):
-  can_wins = 0
+  score = 0
 
-  can_wins = 0
-  for i in range(1, 10):
-    c = grid_coord(i, 1)
-    b = global_grid[c:c+9]
-    wins = count_can_wins(b, are_max)
-    if i == prev_move.board_num:
-      can_wins += (4 * wins)
-  if not are_max:
-    can_wins = -can_wins
+  #p_total_wins = 0
+  #o_total_wins = 0
+  #for i in range(1, 10):
+  #  c = grid_coord(i, 1)
+  #  b = global_grid[c:c+9]
+  #  p_wins = Score.CAN_WINS.value * count_can_wins(b, True)
+  #  o_wins = Score.CAN_WINS.value * count_can_wins(b, False)
+  #  if i == prev_move.board_num:
+  #    if are_max:
+  #      p_total_wins += (4 * p_wins)
+  #    else:
+  #      o_total_wins += (4 * o_wins)
+  #  else:
+  #    p_total_wins += p_wins
+  #    o_total_wins += o_wins
+#
+#  score += p_total_wins
+#  score -= o_total_wins
 
-  return can_wins
+  c = grid_coord(prev_move.board_num, 1)
+  b = global_grid[c:c+9]
+  score += Score.CAN_WINS.value * count_can_wins(b, True)
+  score -= Score.CAN_WINS.value * count_can_wins(b, False)
+
+  c = grid_coord(prev_move.board_num, 1)
+  b = global_grid[c:c+9]
+  m = Mark.PLAYER if are_max else Mark.OPPONENT
+  if b[5] == m:
+    if are_max:
+      score += Score.CENTRE.value
+    else:
+      centre -= Score.CENTRE.value
+
+  score += score_block(b, are_max)
+
+  return score
 
 def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
   if depth == MAX_DEPTH:

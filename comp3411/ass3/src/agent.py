@@ -428,7 +428,7 @@ def cell_counts(i):
       cell_count += 1
   return cell_count
 
-MAX_DEPTH = 6
+MAX_DEPTH = 8
 
 def new_static(prev_move, are_max):
   score = 0
@@ -464,7 +464,7 @@ def new_static(prev_move, are_max):
     if are_max:
       score += Score.CENTRE.value
     else:
-      centre -= Score.CENTRE.value
+      score -= Score.CENTRE.value
 
   score += score_block(b, are_max)
 
@@ -628,12 +628,28 @@ def make_move():
   #  best_move = Move(global_next_board_num, 5, 0)
 
   # Pick one haven't chosen yet
+  #if best_move is None:
+  #  for i in range(9):
+  #    cell_count = cell_counts(i+1)
+  #    if board[i] == Mark.EMPTY and cell_count == 0:
+  #      best_move = Move(global_next_board_num, i+1, 0)
+  #      break
+
+  # Pick a can win if possible
+
   if best_move is None:
     for i in range(9):
-      cell_count = cell_counts(i+1)
-      if board[i] == Mark.EMPTY and cell_count == 0:
-        best_move = Move(global_next_board_num, i+1, 0)
-        break
+      if global_grid[board_coord + i] == Mark.EMPTY:
+        global_grid[board_coord + i] = Mark.PLAYER
+        new_board = global_grid[board_coord:board_coord+9]
+
+        c = grid_coord(i+1, 1)
+        b = global_grid[c:c+9]
+        if count_can_wins(new_board, True) > 0 and not can_win(b, False)[0]:
+          best_move = Move(global_next_board_num, i+1, 0)
+        
+        global_grid[board_coord + i] = Mark.EMPTY
+
 
   # if p == 1, o == 1
   # lookup table 

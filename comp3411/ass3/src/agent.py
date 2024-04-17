@@ -48,10 +48,9 @@
 
 import sys
 import socket
-import random
 import copy
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import List
 from enum import Enum
 
@@ -62,18 +61,13 @@ class Mark(Enum):
 
 class Score(Enum):
   END = 1000
-  REPEAT = 100
-  BOARD_WINS = 50
-  FORCE = 100
-  TWO_MARKS = 4
-  CENTRE = 2
-  CORNER = 1
-  EMPTY = 5
-  DRAW = 0
-
   BLOCK = 6
   CAN_WINS = 25
+  BOARD_WINS = 50
+  CENTRE = 2
+  DRAW = 0
 
+  WINNABLE_EMPTY = 25
 
   MAX_SCORE = 10000000
   MIN_SCORE = -MAX_SCORE
@@ -88,42 +82,6 @@ global_num_cells = 9 # width
 global_num_boards = 9 # height
 global_grid = [Mark.EMPTY] * global_num_cells * global_num_boards
 global_next_board_num = 0
-global_prev_board_num = 0
-
-#  . . . | . . . | . . .
-#  . . . | . . . | . . .
-#  . . O | . . . | . . .
-#  ------+-------+------
-#  . . . | . . . | . . .
-#  . . . | . . . | . . .
-#  . . . | . . . | X . .
-#  ------+-------+------
-#  . . . | X . . | . . .
-#  . . . | . . . | . X .
-#  . . O | . . . | . O X
-def pc(i):
-  global global_grid
-  if global_grid[i] == Mark.EMPTY:
-    return '.'
-  elif global_grid[i] == Mark.PLAYER:
-    return 'O'
-  else:
-    return 'X'
-
-def print_board():
-  global global_grid
-
-  print(f" {pc(0)} {pc(1)} {pc(2)} | {pc(9)} {pc(10)} {pc(11)} | {pc(18)} {pc(19)} {pc(20)}")
-  print(f" {pc(3)} {pc(4)} {pc(5)} | {pc(12)} {pc(13)} {pc(14)} | {pc(21)} {pc(22)} {pc(23)}")
-  print(f" {pc(6)} {pc(7)} {pc(8)} | {pc(15)} {pc(16)} {pc(17)} | {pc(24)} {pc(25)} {pc(26)}")
-  print(f" ------+-------+------")
-  print(f" {pc(27)} {pc(28)} {pc(29)} | {pc(36)} {pc(37)} {pc(38)} | {pc(45)} {pc(46)} {pc(47)}")
-  print(f" {pc(30)} {pc(31)} {pc(32)} | {pc(39)} {pc(40)} {pc(41)} | {pc(48)} {pc(49)} {pc(50)}")
-  print(f" {pc(33)} {pc(34)} {pc(35)} | {pc(42)} {pc(43)} {pc(44)} | {pc(51)} {pc(52)} {pc(53)}")
-  print(f" ------+-------+------")
-  print(f" {pc(54)} {pc(55)} {pc(56)} | {pc(63)} {pc(64)} {pc(65)} | {pc(72)} {pc(73)} {pc(74)}")
-  print(f" {pc(57)} {pc(58)} {pc(59)} | {pc(66)} {pc(67)} {pc(68)} | {pc(75)} {pc(76)} {pc(77)}")
-  print(f" {pc(60)} {pc(61)} {pc(62)} | {pc(69)} {pc(70)} {pc(71)} | {pc(78)} {pc(79)} {pc(80)}")
 
 def grid_coord(board_num, cell_num):
   global global_num_cells
@@ -131,58 +89,13 @@ def grid_coord(board_num, cell_num):
 
 def place_mark(board_num, cell_num, mark):
   global global_next_board_num
-  global global_prev_board_num
   global global_grid
 
   coord = grid_coord(board_num, cell_num)
 
   global_grid[coord] = mark
   
-  global_prev_board_num = board_num
   global_next_board_num = cell_num
-
-# def make_move():
-#   global global_grid
-#   global global_next_board_num
-# 
-#   n = random.randint(1, 9)
-#   coord = grid_coord(global_next_board_num, n)
-#   while global_grid[coord] != Mark.EMPTY.value:
-#     n = random.randint(1, 9)
-#     coord = grid_coord(global_next_board_num, n)
-# 
-#   place_mark(global_next_board_num, n, Mark.PLAYER)
-# 
-#   return n
-
-def could_win(grid, board, mark):
-  row_indices = [[0,1,2],[0,2,1],[1,2,0],
-                 [3,4,5],[3,5,4],[4,5,3],
-                 [6,7,8],[6,8,7],[7,8,6]]
-  for indexes in row_indices:
-    i, j, k = indexes
-    if board[i] == board[j] and board[i] != Mark.EMPTY and board[k] == Mark.EMPTY:
-      if board[i] == mark:
-        return True
-
-  col_indices = [[0,3,6],[3,6,0],[0,6,3],
-                 [1,4,7],[4,7,1],[1,7,4],
-                 [2,5,8],[5,8,2],[2,8,5]]
-  for indexes in col_indices:
-    i, j, k = indexes
-    if board[i] == board[j] and board[i] != Mark.EMPTY and board[k] == Mark.EMPTY:
-      if board[i] == mark:
-        return True
-
-  diag_indices = [[0,4,8],[4,8,0],[0,8,4],
-                  [6,4,2],[6,2,4],[4,2,6]]
-  for indexes in diag_indices:
-    i, j, k = indexes
-    if board[i] == board[j] and board[i] != Mark.EMPTY and board[k] == Mark.EMPTY:
-      if board[i] == mark:
-        return True
-   
-  return False
 
 def have_won(grid, cur_board_num, are_max):
   mark = Mark.PLAYER if are_max else Mark.OPPONENT
@@ -203,61 +116,6 @@ def have_won(grid, cur_board_num, are_max):
   right_diag = (active_board[6] == mark and active_board[4] == mark and active_board[2] == mark)
 
   return (left_col or middle_col or right_col or top_row or middle_row or bottom_row or left_diag or right_diag)
-
-def score_two_marks(board, are_max, is_next):
-  score = 0
-  
-  next_mark = Mark.OPPONENT if are_max else Mark.PLAYER
-
-  # 0 1 2
-  # 3 4 5
-  # 6 7 8
-  # IMPORTANT: format is [m,m,e]
-  row_indices = [[0,1,2],[0,2,1],[1,2,0],
-                 [3,4,5],[3,5,4],[4,5,3],
-                 [6,7,8],[6,8,7],[7,8,6]]
-  col_indices = [[0,3,6],[3,6,0],[0,6,3],
-                 [1,4,7],[4,7,1],[1,7,4],
-                 [2,5,8],[5,8,2],[2,8,5]]
-  diag_indices = [[0,4,8],[4,8,0],[0,8,4],
-                  [6,4,2],[6,2,4],[4,2,6]]
-
-  for direction_indices in [row_indices, col_indices, diag_indices]:
-    for indices in direction_indices:
-      i, j, k = indices
-      if board[i] == board[j] and board[k] == Mark.EMPTY:
-        if board[i] == Mark.PLAYER:
-          if is_next and next_mark == Mark.PLAYER:
-            score += Score.END.value 
-          else:
-            score += Score.TWO_MARKS.value 
-            break
-        elif board[i] == Mark.OPPONENT:
-          if is_next and next_mark == Mark.OPPONENT:
-            score -= Score.END.value 
-          else:
-            score -= Score.TWO_MARKS.value 
-            break
-
-  return score
-
-def get_score(mark, score):
-  if mark == Mark.PLAYER:
-    return score
-  elif mark == Mark.OPPONENT:
-    return -score
-  else:
-    return 0
-
-def score_positional(board):
-  score = 0
-
-  for i in [0, 2, 6, 8]:
-    score += get_score(board[i], Score.CORNER.value)
-
-  score += get_score(board[4], Score.CENTRE.value)
-
-  return score
 
 def score_block(board, are_max):
   score = 0
@@ -281,8 +139,12 @@ def score_block(board, are_max):
     for indices in direction_indices:
       i, j, k = indices
       if board[i] == board[j]:
-        if board[i] == m2 and board[k] == m1:
-          score += get_score(board[k], Score.BLOCK.value)
+        # Blocking opponent
+        if board[i] == Mark.OPPONENT and board[k] == Mark.PLAYER:
+          score += Score.BLOCK.value 
+        # Blocking player
+        elif board[i] == Mark.PLAYER and board[k] == Mark.OPPONENT:
+          score -= Score.BLOCK.value 
 
   return score
 
@@ -310,18 +172,6 @@ def count_can_wins(board, are_max):
   return can_wins
 
 
-def board_score(board, are_max, is_next):
-  score += score_positional(board)
-
-  if is_next:
-    score += score_block(board, not are_max)
-  else:
-    score += score_block(board, are_max)
-
-  score += score_two_marks(board, are_max, is_next)
-
-  return score
-
 def can_win(board, are_max):
   m = Mark.PLAYER if are_max else Mark.OPPONENT
 
@@ -342,140 +192,109 @@ def can_win(board, are_max):
 
   return False, -1
 
-def static_evaluation(grid, are_max, prev_move):
-  evaluation = 0
+MAX_DEPTH = 6
 
-  next_board_coord = grid_coord(prev_move.cell_num, 1)
-  next_board = grid[next_board_coord:next_board_coord+9]
-  if can_win(next_board, not are_max)[0]:
-    if are_max:
-      return -Score.END.value
+def get_counts(b):
+  p = 0
+  o = 0
+  e = 0
+  for i in range(9):
+    if b[i] == Mark.PLAYER:
+      p += 1
+    elif b[i] == Mark.OPPONENT:
+      o += 1
     else:
-      return Score.END.value
+      e += 1
 
-  # count how many times we have repeated cells
-  m = Mark.PLAYER if are_max else Mark.OPPONENT
-  for i in range(1, 10):
-    cell_count = 0
+  return [p, o, e]
 
-    for j in range(1, 10):
-      board_coord = grid_coord(j, i)
-      if grid[board_coord] == m:
-        cell_count += 1
+def get_empty_cells(b):
+  e = []
 
-    if cell_count >= 2:
-      if are_max:
-        return -Score.END.value
-      else:
-        return Score.END.value
+  for i in range(1,10):
+    if b[i-1] == Mark.EMPTY:
+      e.append(i)
 
-  # constrain opponent
-  # e_count = 0
-  # for i in range(9):
-  #   if next_board[i] == Mark.EMPTY:
-  #     e_count += 1
+  return e
 
-  # if are_max:
-  #   evaluation += (e_count * Score.EMPTY.value)
-  # else:
-  #   evaluation -= (e_count * Score.EMPTY.value)
-
-  p_boards = 0
-  o_boards = 0
+def winnable_boards(grid, are_max):
   winnable_boards = []
   for i in range(1, 10):
+    c = grid_coord(i, 1)
+    b = grid[c:c+9]
+    if can_win(b, are_max)[0]:
+      winnable_boards.append(i)
 
-    board_coord = grid_coord(i, 1)
-    board = grid[board_coord:board_coord+9]
+  return winnable_boards
 
-    if can_win(board, True)[0]:
-      p_boards += 1
-      if are_max:
-        winnable_boards.append(i)
-    elif can_win(board, False)[0]:
-      o_boards += 1
-      if not are_max:
-        winnable_boards.append(i)
+def static_evaluation(grid, prev_move, are_max):
+  # First evaluate whole board and see how many are favourable
+  p_wins = 0
+  o_wins = 0
+  o_greater_than_p = 0
+  p_greater_than_o = 0
+  for i in range(1, 10):
+    c = grid_coord(i, 1)
+    b = grid[c:c+9]
+    p_can_wins = count_can_wins(b, True)
+    o_can_wins = count_can_wins(b, False)
+    p, o, e = get_counts(b)
+    
+    if p > o:
+      p_greater_than_o += 1
+    if o > p:
+      o_greater_than_p += 1
 
-  if p_boards > o_boards:
-    return Score.END.value
-  #evaluation += Score.BOARD_WINS.value
-  elif o_boards > p_boards:
+    if p > 0 and o == 0:
+      p_wins += 1
+    elif o > 0 and p == 0:
+      o_wins += 1
+    elif p_can_wins > 0 and p >= o: 
+      p_wins += 1
+    elif o_can_wins > 0 and o >= p:
+      o_wins += 1
+
+  if o_greater_than_p - p_greater_than_o > 1:
     return -Score.END.value
-    #evaluation -= Score.BOARD_WINS.value
-
-  # if we have a board that we can win at, try and force opponent to pick it
-  # if this move makes next board have cell vacant that we want opponent to pick, score high
-  for i in winnable_boards:
-    if next_board[i - 1] == Mark.EMPTY:
-      if are_max:
-        evaluation += Score.FORCE.value
-      else:
-        evaluation -= Score.FORCE.value
-
-  cur_board_coord = grid_coord(prev_move.board_num, 1)
-  cur_board = grid[cur_board_coord:cur_board_coord+9]
-  evaluation += board_score(cur_board, are_max, False)
-
-  return evaluation
-
-def cell_counts(i):
-  global global_grid
-  cell_count = 0
-  for j in range(1, 10):
-    board_coord = grid_coord(j, i)
-    if global_grid[board_coord] == Mark.PLAYER:
-      cell_count += 1
-  return cell_count
-
-MAX_DEPTH = 8
-
-def new_static(prev_move, are_max):
+  elif p_greater_than_o - o_greater_than_p > 1:
+    return Score.END.value
+  
+  # Evaluate this board score to differentiate between favourable  
   score = 0
-
-  #p_total_wins = 0
-  #o_total_wins = 0
-  #for i in range(1, 10):
-  #  c = grid_coord(i, 1)
-  #  b = global_grid[c:c+9]
-  #  p_wins = Score.CAN_WINS.value * count_can_wins(b, True)
-  #  o_wins = Score.CAN_WINS.value * count_can_wins(b, False)
-  #  if i == prev_move.board_num:
-  #    if are_max:
-  #      p_total_wins += (4 * p_wins)
-  #    else:
-  #      o_total_wins += (4 * o_wins)
-  #  else:
-  #    p_total_wins += p_wins
-  #    o_total_wins += o_wins
-#
-#  score += p_total_wins
-#  score -= o_total_wins
-
   c = grid_coord(prev_move.board_num, 1)
-  b = global_grid[c:c+9]
-  score += Score.CAN_WINS.value * count_can_wins(b, True)
-  score -= Score.CAN_WINS.value * count_can_wins(b, False)
+  b = grid[c:c+9]
 
-  c = grid_coord(prev_move.board_num, 1)
-  b = global_grid[c:c+9]
-  m = Mark.PLAYER if are_max else Mark.OPPONENT
-  if b[5] == m:
-    if are_max:
-      score += Score.CENTRE.value
-    else:
-      score -= Score.CENTRE.value
+  #e = get_empty_cells(b) 
+  #pb_wins = winnable_boards(grid, True)
+  #ob_wins = winnable_boards(grid, False)
+  #p_empty = any(c in pb_wins for c in e)
+  #o_empty = any(c in ob_wins for c in e)
+  #if are_max and not p_empty:
+  #  return -Score.END.value
+  #elif not are_max and not o_empty:
+  #  return Score.END.value
 
+  if count_can_wins(b, True):
+    score += Score.CAN_WINS.value
+  elif count_can_wins(b, False):
+    score -= Score.CAN_WINS.value
+
+  #if are_max and b[5] == Mark.PLAYER:
+  #  score += Score.CENTRE.value
+  #if not are_max and b[5] == Mark.OPPONENT:
+  #  score -= Score.CENTRE.value
   score += score_block(b, are_max)
 
-  return score
+  if o_wins > p_wins:
+    return -Score.END.value
+  elif p_wins > o_wins:
+    return Score.END.value
+  else:
+    return score
 
 def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
   if depth == MAX_DEPTH:
-    return new_static(prev_move, are_max)
-    #score = static_evaluation(grid, are_max, prev_move)
-    #print(f"SCORE({prev_move.board_num}->{prev_move.cell_num}): {score}")
-    #print_board()
+    return static_evaluation(grid, prev_move, are_max)
 
   scores = []
 
@@ -542,9 +361,6 @@ def get_possible_moves(grid, board_num, are_max):
   coord = grid_coord(board_num, 1)
   board = grid[coord:coord+9]
 
-  numbers = list(range(1, 10))
-  random.shuffle(numbers)
-
   # 0 1 2
   # 3 4 5
   # 6 7 8
@@ -556,30 +372,6 @@ def get_possible_moves(grid, board_num, are_max):
       moves.append(move)
   return moves
 
-  # moves = []
-  # losable_moves = []
-
-  # coord = grid_coord(board_num, 1)
-  # board = grid[coord:coord+9]
-  # 
-  # for i in range(1, 10):
-  #   if board[i-1] == Mark.EMPTY and not have_tie(grid, i):
-  #     next_coord = grid_coord(i, 1)
-  #     next_board = grid[next_coord:next_coord+9]
-  #     # if we win
-  #     if other_can_win(board, not are_max):
-  #       return [Move(board_num, i, 0)]
-  #     elif other_can_win(next_board, are_max):
-  #       losable_moves.append(Move(board_num, i, 0))
-  #     else:
-  #       move = Move(board_num, i, 0)
-  #       moves.append(move)
-
-  # if len(moves) == 0:
-  #   return losable_moves
-  # else:
-  #   return moves
-
 def do_move(grid, move, are_max):
   mark = Mark.PLAYER if are_max else Mark.OPPONENT
   coord = grid_coord(move.board_num, move.cell_num) 
@@ -589,25 +381,10 @@ def undo_move(grid, move):
   coord = grid_coord(move.board_num, move.cell_num) 
   grid[coord] = Mark.EMPTY 
 
-def get_counts(board):
-  p_count = 0
-  o_count = 0
-  for i in range(9):
-    if board[i] == Mark.PLAYER:
-      p_count += 1
-    elif board[i] == Mark.OPPONENT:
-      o_count += 1
-
-  return [p_count, o_count, 9 - p_count - o_count]
-
-
-global_not_chosen_boards = [1,2,3,4,5,6,7,8,9]
-
 def make_move():
   global global_grid
   global global_next_board_num 
   global global_prev_board_num 
-  global global_not_chosen_boards
 
   board_coord = grid_coord(global_next_board_num, 1)
   board = global_grid[board_coord:board_coord+9]
@@ -619,116 +396,28 @@ def make_move():
   if w:
     best_move = Move(global_next_board_num, i+1, 0)
 
-  # Place on centre on empty board if first time
-  #p, o, e = get_counts(board)
-  #centre_board_coord = grid_coord(5, 1)
-  #centre_board = global_grid[centre_board_coord:centre_board_coord+9]
-  #cell_count = cell_counts(5)
-  #if e == 9 and board[5] == Mark.EMPTY and cell_count == 0:
-  #  best_move = Move(global_next_board_num, 5, 0)
-
-  # Pick one haven't chosen yet
+  # Pick a can win if possible
   #if best_move is None:
   #  for i in range(9):
-  #    cell_count = cell_counts(i+1)
-  #    if board[i] == Mark.EMPTY and cell_count == 0:
-  #      best_move = Move(global_next_board_num, i+1, 0)
-  #      break
+  #    if global_grid[board_coord + i] == Mark.EMPTY:
+  #      global_grid[board_coord + i] = Mark.PLAYER
+  #      new_board = global_grid[board_coord:board_coord+9]
 
-  # Pick a can win if possible
+  #      c = grid_coord(i+1, 1)
+  #      b = global_grid[c:c+9]
+  #      if count_can_wins(new_board, True) > 0 and not can_win(b, False)[0]:
+  #        best_move = Move(global_next_board_num, i+1, 0)
+  #      
+  #      global_grid[board_coord + i] = Mark.EMPTY
+
 
   if best_move is None:
-    for i in range(9):
-      if global_grid[board_coord + i] == Mark.EMPTY:
-        global_grid[board_coord + i] = Mark.PLAYER
-        new_board = global_grid[board_coord:board_coord+9]
-
-        c = grid_coord(i+1, 1)
-        b = global_grid[c:c+9]
-        if count_can_wins(new_board, True) > 0 and not can_win(b, False)[0]:
-          best_move = Move(global_next_board_num, i+1, 0)
-        
-        global_grid[board_coord + i] = Mark.EMPTY
-
-
-  # if p == 1, o == 1
-  # lookup table 
-  #for b in boards:
-  #  if cur_board == b:
-  #    move = .
-
-  # Block opponent if possible
-  #if best_move is None:
-  #  w, i = can_win(board, False)
-  #  if w:
-  #    c = grid_coord(i+1, 1)
-  #    b = global_grid[c:c+9]
-  #    w_next, i_next = can_win(b, False)
-  #    if not w_next:
-  #      print(f"BLOCKED: {global_next_board_num},{i+1}")
-  #      best_move = Move(global_next_board_num, i+1, 0)
-  #    else:
-  #      print(f"CAN'T BLOCK: {global_next_board_num},{i+1}")
-
-
-  # if x centre, go in corner
-  # if x on middle, go opposite
-  # if x on corner
-
-  # Put opponent on empty board
-  #if best_move is None:
-  #  for i in range(1, 10):
-  #    if board[i-1] == Mark.EMPTY:
-  #      c = grid_coord(i, 1)
-  #      b = global_grid[c:c+9]
-  #      p, o, e = get_counts(b)
-  #      if e == 9: 
-  #        best_move = Move(global_next_board_num, i, 0)
-  #        break
-
-  # Force opponent back into same grid if possible
-  #if best_move is None:
-  #  prev_board_coord = grid_coord(global_prev_board_num, 1)
-  #  prev_board = global_grid[prev_board_coord:prev_board_coord+9]
-  #  if board[global_prev_board_num - 1] == Mark.EMPTY and not can_win(prev_board, False)[0]:
-  #    best_move = Move(global_next_board_num, global_prev_board_num, 0)
-
-
-
-  # See if can pick centre or corners
-  #if best_move is None:
-  #  for i in [4, 3, 6, 8, 0]:
-  #    c = grid_coord(i+1, 1)
-  #    b = global_grid[c:c+9]
-  #    if board[i] == Mark.EMPTY and not can_win(b, False)[0]:
-  #      best_move = Move(global_next_board_num, i+1, 0)
-  #      break
-
-  ## Resort to doing any move that doesn't lose 
-  #if best_move is None:
-  #  for i in range(1, 10):
-  #    if board[i-1] == Mark.EMPTY:
-  #      c = grid_coord(i, 1)
-  #      b = global_grid[c:c+9]
-  #      if not can_win(b, False)[0]:
-  #        best_move = Move(global_next_board_num, i, 0)
-  #        break
-  # best_move = minimax(global_grid, 0, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)
-    #print("MINIMAX")
-  if best_move is None:
-    print("MINIMAX")
     best_move = minimax(global_grid, 0, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)
-  #print(f"BEST: {best_move.score}")
 
   place_mark(global_next_board_num, best_move.cell_num, Mark.PLAYER)
 
-  print_board()
-  print(f"Moved: {best_move.board_num}, {best_move.cell_num}")
-
   return best_move.cell_num
 
-
-global_moves_to_choose = []
 
 def parse_cmd(cmd):
   if "(" in cmd:
@@ -737,8 +426,6 @@ def parse_cmd(cmd):
     args = args.split(",")
   else:
     command, args = cmd, []
-
-  print(f"{command}, {args}")
 
   if command == "init":
     return 0
@@ -774,11 +461,9 @@ def parse_cmd(cmd):
     return make_move()
   elif command == "win":
     print("Yay!! We win!! :)")
-    print_board()
     return -1
   elif command == "loss":
     print("We lost :(")
-    print_board()
     return -1
   elif command == "draw":
     print("Draw")

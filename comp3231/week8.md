@@ -99,3 +99,9 @@ VM performace dictated by:
     Clock (each frame has a used bit; when scanning reset this bit for all entries searched past; replace first page with reset bit not set)
   - resident set size (each process is allowed a variable number of frames)
   - cleaning policy
+
+Larger page sizes would decrease page faults, increase swapping I/O throughput
+In-demand paging used as allows more flexibility for end user (they don't have to predict upfront like for pre-paging)
+
+Thrashing is where all processes have high working set memory requiring many page faults/swaps.
+Could alleviate by swapping process out.

@@ -14,11 +14,11 @@ For a 'big-lock' kernel, mutexes will be associated for largely independent code
 For better performance, require hardware support.
 A TSL instruction blocks other CPUs from accessing memory bus. 
 It's atomic, yet is an effective spinlock.
-To reduce bus contention, read before acquiring lock.
+To reduce bus contention, read before acquiring lock (as when reading from bus require exclusive access)
 All cores can read lock without accessing bus. 
 `while (*lock == BUSY || test_and_set(lock))`
 
-IMPORTANT: a spinlock will not rely on a context switch like a block
+IMPORTANT: a spinlock will not rely on a context switch like a block (however if lock holder is preempted; long time waits)
 So, might be useful for small critical sections (in effect, if shorter than context switching software operations and hardware, e.g. cache, TLB etc.)
 On a uniprocessor, spinlocking generally not advisable.
 For SMP, either could be viable.
@@ -39,7 +39,9 @@ Scheduling algorithm dependent on system:
   - Realtime (must meet deadline)
 
 Linux uses 2-level scheduler.
-Top level is assigning process to a core (Multiple Queue SMP Scheduling).
+Top level (global scheduler; easier load balancing but lock contention) is assigning process to a core (Multiple Queue SMP Scheduling).
 Lower level is per core CPU scheduler, so can do affinity scheduling (re-run process timeslice on same previous core). 
 If nothing ready, work steal from another CPU.
 `priority = cpu_usage + niceness + base` (base is hardwired scheduler specific)
+An I/O bound task generally uses less CPU, so wil have a higher priority.
+The CPU usage of a waiting process is dynamically reduced, so a CPU bound task will not starve.

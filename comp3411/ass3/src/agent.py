@@ -67,6 +67,9 @@ class Score(Enum):
   CENTRE = 2
   DRAW = 0
 
+  FAVOURABLE = 100
+  NEUTRAL = 50
+
   WINNABLE_EMPTY = 25
 
   MAX_SCORE = 10000000
@@ -227,70 +230,102 @@ def winnable_boards(grid, are_max):
 
   return winnable_boards
 
+def count_cells(grid, cell, are_max):
+  m = Mark.PLAYER if are_max else Mark.OPPONENT
+  cell_count = 0
+  for i in range(1, 10):
+    c = grid_coord(i, 1)
+    b = grid[c:c+9]
+    if b[cell - 1] == m:
+      cell_count += 1
+  return cell_count
+
 def static_evaluation(grid, prev_move, are_max):
   # First evaluate whole board and see how many are favourable
-  p_wins = 0
-  o_wins = 0
-  o_greater_than_p = 0
-  p_greater_than_o = 0
+  p_total_wins = 0
+  p_times_more = 0
+  o_total_wins = 0
+  o_times_more = 0
+  
   for i in range(1, 10):
     c = grid_coord(i, 1)
     b = grid[c:c+9]
     p_can_wins = count_can_wins(b, True)
     o_can_wins = count_can_wins(b, False)
     p, o, e = get_counts(b)
-    
+
     if p > o:
-      p_greater_than_o += 1
-    if o > p:
-      o_greater_than_p += 1
+      p_times_more += 1
+    elif o > p:
+      o_times_more += 1
 
     if p > 0 and o == 0:
-      p_wins += 1
+      p_total_wins += 1
     elif o > 0 and p == 0:
-      o_wins += 1
-    elif p_can_wins > 0 and p >= o: 
-      p_wins += 1
-    elif o_can_wins > 0 and o >= p:
-      o_wins += 1
+      o_total_wins += 1
+    elif p_can_wins > 0 and o_can_wins > 0:
+      if p < o: 
+        p_total_wins += 1
+      elif o < p:
+        o_total_wins += 1
+    elif p_can_wins > 0:
+      p_total_wins += 1
+    elif o_can_wins > 0:
+      o_total_wins += 1
 
-  if o_greater_than_p - p_greater_than_o > 1:
-    return -Score.END.value
-  elif p_greater_than_o - o_greater_than_p > 1:
-    return Score.END.value
-  
-  # Evaluate this board score to differentiate between favourable  
-  score = 0
-  c = grid_coord(prev_move.board_num, 1)
-  b = grid[c:c+9]
-
-  #e = get_empty_cells(b) 
-  #pb_wins = winnable_boards(grid, True)
-  #ob_wins = winnable_boards(grid, False)
-  #p_empty = any(c in pb_wins for c in e)
-  #o_empty = any(c in ob_wins for c in e)
-  #if are_max and not p_empty:
-  #  return -Score.END.value
-  #elif not are_max and not o_empty:
-  #  return Score.END.value
-
-  if count_can_wins(b, True):
-    score += Score.CAN_WINS.value
-  elif count_can_wins(b, False):
-    score -= Score.CAN_WINS.value
-
-  #if are_max and b[5] == Mark.PLAYER:
-  #  score += Score.CENTRE.value
-  #if not are_max and b[5] == Mark.OPPONENT:
-  #  score -= Score.CENTRE.value
-  score += score_block(b, are_max)
-
-  if o_wins > p_wins:
-    return -Score.END.value
-  elif p_wins > o_wins:
-    return Score.END.value
+  if o_times_more - p_times_more > 1:
+    return Score.FAVOURABLE.value
+  elif p_times_more - o_times_more > 1:
+    return -Score.FAVOURABLE.value
+  if o_total_wins > p_total_wins:
+    return -Score.FAVOURABLE.value
+  elif p_total_wins > o_total_wins:
+    return Score.FAVOURABLE.value
   else:
-    return score
+    # Evaluate this board score to differentiate between favourable  
+    c = grid_coord(prev_move.board_num, 1)
+    b = grid[c:c+9]
+    p_wins = count_can_wins(b, True)
+    o_wins = count_can_wins(b, False)
+    p, o, e = get_counts(b)
+    if p_wins > o_wins:
+      return Score.FAVOURABLE.value
+    elif o_wins > p_wins:
+      return -Score.FAVOURABLE.value
+    elif p < o:
+      return Score.FAVOURABLE.value
+    elif o < p:
+      return -Score.FAVOURABLE.value
+    else:
+      # same can wins, same letters
+      cell_count = count_cells(grid, prev_move.cell_num, are_max)
+      if cell_count >= 2:
+        if are_max:
+          return -Score.FAVOURABLE.value
+        else:
+          return Score.FAVOURABLE.value
+      else:
+        if are_max:
+          return Score.NEUTRAL.value
+        else:
+          return -Score.NEUTRAL.value
+
+
+    ##e = get_empty_cells(b) 
+    #  p_winnable_boards = winnable_boards(grid, True)
+    #  p_winnable_cells_empty = any(c in p_winnable_boards for c in e)
+    #  if p_empty:
+    #    score += Score.CAN_WINS.value
+    #elif count_can_wins(b, False):
+    #  score -= Score.CAN_WINS.value
+
+    ##if are_max and b[5] == Mark.PLAYER:
+    ##  score += Score.CENTRE.value
+    ##if not are_max and b[5] == Mark.OPPONENT:
+    ##  score -= Score.CENTRE.value
+    #score += score_block(b, are_max)
+
+    #return score
 
 def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
   if depth == MAX_DEPTH:
@@ -394,6 +429,7 @@ def make_move():
   w, i = can_win(board, True)
   # If can win, win
   if w:
+    print("CAN WIN!")
     best_move = Move(global_next_board_num, i+1, 0)
 
   # Pick a can win if possible

@@ -61,17 +61,13 @@ class Mark(Enum):
 
 class Score(Enum):
   END = 1000
-  BLOCK = 6
-  CAN_WINS = 25
-  BOARD_WINS = 50
-  CENTRE = 2
+  TIMES = 300
+  TOTAL_WINS = 50
+  SINGLE_BOARD_WIN = 40
+  SECOND_BOARD_WIN = 30
+  MARK_COUNT_WIN = 20
+  NEUTRAL = 10
   DRAW = 0
-
-  FAVOURABLE = 100
-  NEUTRAL = 50
-
-  WINNABLE_EMPTY = 25
-
   MAX_SCORE = 10000000
   MIN_SCORE = -MAX_SCORE
 
@@ -119,38 +115,6 @@ def have_won(grid, cur_board_num, are_max):
   right_diag = (active_board[6] == mark and active_board[4] == mark and active_board[2] == mark)
 
   return (left_col or middle_col or right_col or top_row or middle_row or bottom_row or left_diag or right_diag)
-
-def score_block(board, are_max):
-  score = 0
-
-  m1 = Mark.PLAYER if are_max else Mark.OPPONENT
-  m2 = Mark.OPPONENT if are_max else Mark.PLAYER
-
-  # 0 1 2
-  # 3 4 5
-  # 6 7 8
-  # IMPORTANT: format is [m2,m2,m1]
-  row_indices = [[0,1,2],[0,2,1],[1,2,0],
-                 [3,4,5],[3,5,4],[4,5,3],
-                 [6,7,8],[6,8,7],[7,8,6]]
-  col_indices = [[0,3,6],[3,6,0],[0,6,3],
-                 [1,4,7],[4,7,1],[1,7,4],
-                 [2,5,8],[5,8,2],[2,8,5]]
-  diag_indices = [[0,4,8],[4,8,0],[0,8,4],
-                  [6,4,2],[6,2,4],[4,2,6]]
-  for direction_indices in [row_indices, col_indices, diag_indices]:
-    for indices in direction_indices:
-      i, j, k = indices
-      if board[i] == board[j]:
-        # Blocking opponent
-        if board[i] == Mark.OPPONENT and board[k] == Mark.PLAYER:
-          score += Score.BLOCK.value 
-        # Blocking player
-        elif board[i] == Mark.PLAYER and board[k] == Mark.OPPONENT:
-          score -= Score.BLOCK.value 
-
-  return score
-
 
 def count_can_wins(board, are_max):
   can_wins = 0
@@ -211,35 +175,6 @@ def get_counts(b):
 
   return [p, o, e]
 
-def get_empty_cells(b):
-  e = []
-
-  for i in range(1,10):
-    if b[i-1] == Mark.EMPTY:
-      e.append(i)
-
-  return e
-
-def winnable_boards(grid, are_max):
-  winnable_boards = []
-  for i in range(1, 10):
-    c = grid_coord(i, 1)
-    b = grid[c:c+9]
-    if can_win(b, are_max)[0]:
-      winnable_boards.append(i)
-
-  return winnable_boards
-
-def count_cells(grid, cell, are_max):
-  m = Mark.PLAYER if are_max else Mark.OPPONENT
-  cell_count = 0
-  for i in range(1, 10):
-    c = grid_coord(i, 1)
-    b = grid[c:c+9]
-    if b[cell - 1] == m:
-      cell_count += 1
-  return cell_count
-
 def static_evaluation(grid, prev_move, are_max):
   # First evaluate whole board and see how many are favourable
   p_total_wins = 0
@@ -260,15 +195,27 @@ def static_evaluation(grid, prev_move, are_max):
       o_times_more += 1
 
     if o == 0:
-      if p == 1 or (p == 2 and p_can_wins == 1):
+      if p == 3:
+        return -Score.END.value
+      elif p == 1: 
         p_total_wins += 1
+      elif p == 2:
+        if p_can_wins == 1:
+          p_total_wins += 1
+        else:
+          return -Score.END.value
       else:
         o_total_wins += 1
     elif p == 0:
-      if o == 1 or (o == 2 and o_can_wins == 1):
+      if o == 3:
+        return Score.END.value
+      elif o == 1: 
         o_total_wins += 1
-      else:
-        p_total_wins += 1
+      elif o == 2:
+        if o_can_wins == 1:
+          o_total_wins += 1
+        else:
+          return Score.END.value
     elif p_can_wins > 0 and o_can_wins > 0:
       if p < o: 
         p_total_wins += 1
@@ -284,14 +231,16 @@ def static_evaluation(grid, prev_move, are_max):
       o_total_wins += 1
 
   if o_times_more - p_times_more > 1:
-    return Score.FAVOURABLE.value
+    return Score.TIMES.value
   elif p_times_more - o_times_more > 1:
-    return -Score.FAVOURABLE.value
+    return -Score.TIMES.value
 
   if o_total_wins > p_total_wins:
-    return -Score.FAVOURABLE.value
+    mult = (o_total_wins - p_total_wins)
+    return -(mult * Score.TOTAL_WINS.value)
   elif p_total_wins > o_total_wins:
-    return Score.FAVOURABLE.value
+    mult = (p_total_wins - o_total_wins)
+    return (mult * Score.TOTAL_WINS.value)
   else:
     # Evaluate this board score to differentiate between favourable  
     c = grid_coord(prev_move.board_num, 1)
@@ -301,40 +250,33 @@ def static_evaluation(grid, prev_move, are_max):
     p, o, e = get_counts(b)
     if o == 0:
       if p == 1 or (p == 2 and p_wins == 1):
-        return Score.FAVOURABLE.value
+        return Score.SINGLE_BOARD_WIN.value
       else:
-        return -Score.FAVOURABLE.value
+        return -Score.SINGLE_BOARD_WIN.value
     elif p == 0:
       if o == 1 or (o == 2 and o_wins == 1):
-        return -Score.FAVOURABLE.value
+        return -Score.SINGLE_BOARD_WIN.value
       else:
-        return Score.FAVOURABLE.value
+        return Score.SINGLE_BOARD_WIN.value
     elif p_wins > 0 and o_wins > 0:
       if p < o:
-        return Score.FAVOURABLE.value
+        return Score.SECOND_BOARD_WIN.value
       elif o < p:
-        return -Score.FAVOURABLE.value
+        return -Score.SECOND_BOARD_WIN.value
       else:
         # both can win, same letter count
-        #cell_count = count_cells(grid, prev_move.cell_num, are_max)
-        #if cell_count >= 2:
-        #  if are_max:
-        #    return -Score.FAVOURABLE.value
-        #  else:
-        #    return Score.FAVOURABLE.value
-        #else:
         if are_max:
           return Score.NEUTRAL.value
         else:
           return -Score.NEUTRAL.value
     elif p_wins > 0:
-      return Score.FAVOURABLE.value
+      return Score.SINGLE_BOARD_WIN.value
     elif o_wins > 0:
-      return -Score.FAVOURABLE.value
+      return -Score.SINGLE_BOARD_WIN.value
     elif p < o:
-      return Score.FAVOURABLE.value
+      return Score.MARK_COUNT_WIN.value
     elif o < p:
-      return -Score.FAVOURABLE.value
+      return -Score.MARK_COUNT_WIN.value
     else:
       if are_max:
         return Score.NEUTRAL.value
@@ -353,17 +295,17 @@ def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
     score = 0
     do_move(grid, move, are_max) 
     if have_won(grid, cur_board_num, True):
-      score = Score.END.value
+      score = Score.END.value - depth
     elif have_won(grid, cur_board_num, False):
-      score = -Score.END.value
+      score = depth - Score.END.value
     else:
       next_board_coord = grid_coord(move.cell_num, 1)
       next_board = grid[next_board_coord:next_board_coord+9]
       if can_win(next_board, not are_max)[0]:
         if are_max:
-          score = -Score.END.value
+          score = depth -Score.END.value
         else:
-          score = Score.END.value
+          score = Score.END.value - depth
       else:
         score = minimax(grid, depth+1, not are_max, move.cell_num, a, b, move)
 
@@ -397,14 +339,6 @@ def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
       return max(scores)
     else:
       return min(scores)
-
-
-def have_tie(grid, board_num):
-  coord = grid_coord(board_num, 1)
-  for i in range(9):
-    if grid[coord + i] == Mark.EMPTY:
-      return False
-  return True
 
 def get_possible_moves(grid, board_num, are_max):
   moves = []
@@ -445,21 +379,6 @@ def make_move():
   # If can win, win
   if w:
     best_move = Move(global_next_board_num, i+1, 0)
-
-  # Pick a can win if possible
-  #if best_move is None:
-  #  for i in range(9):
-  #    if global_grid[board_coord + i] == Mark.EMPTY:
-  #      global_grid[board_coord + i] = Mark.PLAYER
-  #      new_board = global_grid[board_coord:board_coord+9]
-
-  #      c = grid_coord(i+1, 1)
-  #      b = global_grid[c:c+9]
-  #      if count_can_wins(new_board, True) > 0 and not can_win(b, False)[0]:
-  #        best_move = Move(global_next_board_num, i+1, 0)
-  #      
-  #      global_grid[board_coord + i] = Mark.EMPTY
-
 
   if best_move is None:
     best_move = minimax(global_grid, 0, True, global_next_board_num, Score.MIN_SCORE.value, Score.MAX_SCORE.value, None)

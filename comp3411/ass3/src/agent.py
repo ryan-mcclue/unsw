@@ -8,16 +8,14 @@
 # * Mark enum:
 #   Provides a readable encoding of a possible value for a tic-tac-toe board cell
 # * Score enum:
-#   Encodes a value to assign to a particular metric that's used in computing a static evaluation score:
+#   Encodes a value to assign to a particular metric that's used in computing a static evaluation score.
+#   In descending order of value:
 #     - END indicates victory and is assigned the highest value to encourage agent to win.
-#     - BLOCK is if a mark impedes the direction of opposing marks.
-#       It's assigned the next highest value to encourage agent to block opponent winning the game.
-#     - TWO_MARKS is for two marks, whereby if a third mark were made in that direction, the game would end.
-#     - CENTRE is assigned for marks that are in the centre of the board.
-#       The centre is most powerful cell to play on as it connects many directions. 
-#       So, it's given a higher score than corner cells.
-#     - CORNER is assigned for marks that are in corners of board
-#     - DRAW is if game is drawn, i.e. no possible moves
+#     - TOTAL_WINS is if player is winning more overall boards than the opponent.
+#     - SINGLE_BOARD_WIN is if player and opponent share same number of overall board wins but player wins current board.
+#     - SECOND_BOARD_WIN is if both player and opponent winning current board, but player does so with less moves.
+#     - MARK_COUNT_WIN is assigned if neither player or opponent winning current board, but player has less marks in board
+#     - NEUTRAL is if the current board is not advantageous to either player
 # * Move class:
 #   Encodes a move on the entire ultimate tic-tac-toe board.
 # * global_grid:
@@ -29,26 +27,33 @@
 #   Alpha-beta pruning is employed to allow for deeper searches.
 #   The minimax algorithm will stop at MAX_DEPTH variable value to ensure search depth is computationally feasible.
 #   For each iteration of minimax, all possible moves for the active board are generated.
-#   A possible move is one where that cell is empty on the current board and that the resulting next board is not full.
-#   For each move, first check if it has won for the player or opponent and return the END score value.
+#   A possible move is one where that cell is empty on the current board.
+#   For each move, first check if it has won for the player or opponent and return the END score value relative to depth.
+#   This ensures winning at earlier depths are prioritised.
+#   Next check if the resulting next board gives the opponent the ability to win.
+#   This effectively increase search depth by 1. Assign this an END score if true.
 #   Otherwise recurse on minimax for this move.
 #   Only at depth 0, i.e. the first iteration of minimax is the move appended to the score.
 #   This is because we only want to initial move to be played, not any of the sub-moves whose state are used to calculate the score.
 #   If maximising, then take maximum of all scores for this tree depth, otherwise minimum.
 #   If at MAX_DEPTH a static evaluation is performed on the board state.
-#   The score for the current board is evaluated as per the Score enum fields.
-#   However, the score for the next board that the move would result in is also calculated.
-#   In this case, if there are two marks and a corresponding empty slot, then this means that the current move would allow the opponent to win on their next turn.
-#   So, the evaluation function registers this as a END score instead of a TWO_MARKS score.
-#   The static evaluation function is symmetric, meaning its run equally for both players. 
-#   This ensures each move takes into account other player.
-#   These scores are combined for a more robust evaluation.
 #   Based on the optimal move returned by minimax, a mark is placed on the board.
 #   When a mark is placed, the global_active_board_num variable is updated to the cell number chosen.
+# ## EVALUATION:
+#   For the player to win, the opponent has to put the player in a board where they're 1 mark away from winning.
+#   Therefore, it's advantageous for the player to create boards that they're 1 mark away from winning.
+#   This is defined in the program as a 'can win'.
+#   Firstly, the number of 'can wins' for each board are calculated.
+#   If the player and opponent have the same number of 'can wins' for a board, go to one who used less marks.
+#   The best case is if the player is winning more overall boards than the opponent. 
+#   Assign a multiple of the boards won to the score to prioritise positions where more boards are won.
+#   If the player and opponent are winning the same number of boards, look at the current board to distinguish.
+#   Based on the desirability of the current board, assign a score according to the Score enum fields.
+#   The static evaluation function is symmetric, meaning its run equally for both players. 
+#   This ensures each move takes into account other player.
 
 import sys
 import socket
-import copy
 
 from dataclasses import dataclass
 from typing import List
@@ -61,7 +66,6 @@ class Mark(Enum):
 
 class Score(Enum):
   END = 1000
-  TIMES = 300
   TOTAL_WINS = 50
   SINGLE_BOARD_WIN = 40
   SECOND_BOARD_WIN = 30
@@ -176,11 +180,9 @@ def get_counts(b):
   return [p, o, e]
 
 def static_evaluation(grid, prev_move, are_max):
-  # First evaluate whole board and see how many are favourable
+  # First evaluate entire ultimate tic-tac-toe board and see how many the player is winning
   p_total_wins = 0
-  p_times_more = 0
   o_total_wins = 0
-  o_times_more = 0
   
   for i in range(1, 10):
     c = grid_coord(i, 1)
@@ -189,12 +191,8 @@ def static_evaluation(grid, prev_move, are_max):
     o_can_wins = count_can_wins(b, False)
     p, o, e = get_counts(b)
 
-    if p > o:
-      p_times_more += 1
-    elif o > p:
-      o_times_more += 1
-
     if o == 0:
+      # We should've won. This means not placing correctly
       if p == 3:
         return -Score.END.value
       elif p == 1: 
@@ -202,6 +200,7 @@ def static_evaluation(grid, prev_move, are_max):
       elif p == 2:
         if p_can_wins == 1:
           p_total_wins += 1
+        # We should have at least 1 can win. This means not placing correctly
         else:
           return -Score.END.value
       else:
@@ -217,6 +216,8 @@ def static_evaluation(grid, prev_move, are_max):
         else:
           return Score.END.value
     elif p_can_wins > 0 and o_can_wins > 0:
+      # If player did it with less marks, better.
+      # Any more marks are wasted on this board.
       if p < o: 
         p_total_wins += 1
       elif o < p:
@@ -230,19 +231,16 @@ def static_evaluation(grid, prev_move, are_max):
     elif p > o:
       o_total_wins += 1
 
-  if o_times_more - p_times_more > 1:
-    return Score.TIMES.value
-  elif p_times_more - o_times_more > 1:
-    return -Score.TIMES.value
-
   if o_total_wins > p_total_wins:
+    # More total wins the better
     mult = (o_total_wins - p_total_wins)
     return -(mult * Score.TOTAL_WINS.value)
   elif p_total_wins > o_total_wins:
     mult = (p_total_wins - o_total_wins)
     return (mult * Score.TOTAL_WINS.value)
   else:
-    # Evaluate this board score to differentiate between favourable  
+    # Same number of total wins.
+    # So, evaluate the current board to differentiate.
     c = grid_coord(prev_move.board_num, 1)
     b = grid[c:c+9]
     p_wins = count_can_wins(b, True)
@@ -264,7 +262,7 @@ def static_evaluation(grid, prev_move, are_max):
       elif o < p:
         return -Score.SECOND_BOARD_WIN.value
       else:
-        # both can win, same letter count
+        # Both can win, same letter count
         if are_max:
           return Score.NEUTRAL.value
         else:
@@ -325,7 +323,7 @@ def minimax(grid, depth, are_max, cur_board_num, a, b, prev_move):
     else:
       scores.append(score)
 
-  # if a draw
+  # If a draw
   if len(scores) == 0:
     return Score.DRAW.value
 
@@ -348,6 +346,7 @@ def get_possible_moves(grid, board_num, are_max):
   # 0 1 2
   # 3 4 5
   # 6 7 8
+  # Try to place better moves first to aid pruning, i.e. centre then edges
   numbers = [4,0,2,6,8,1,5,7,3]
 
   for i in numbers:
@@ -368,7 +367,6 @@ def undo_move(grid, move):
 def make_move():
   global global_grid
   global global_next_board_num 
-  global global_prev_board_num 
 
   board_coord = grid_coord(global_next_board_num, 1)
   board = global_grid[board_coord:board_coord+9]
@@ -376,7 +374,7 @@ def make_move():
   best_move = None
 
   w, i = can_win(board, True)
-  # If can win, win
+  # If can win, win to reduce search time of minimax
   if w:
     best_move = Move(global_next_board_num, i+1, 0)
 
@@ -399,24 +397,24 @@ def parse_cmd(cmd):
   if command == "init":
     return 0
   elif command == "second_move":
-    # going second, i.e. 'o'
+    # Going second, i.e. 'o'
     opponent_board_num = int(args[0])
     opponent_cell_num = int(args[1])
 
-    # place server generated random move for opponent
+    # Place server generated random move for opponent
     place_mark(opponent_board_num, opponent_cell_num, Mark.OPPONENT)
 
     return make_move()
   elif command == "third_move":
-    # going first, i.e. 'x'
+    # Going first, i.e. 'x'
     our_random_board_num = int(args[0])
     our_random_cell_num = int(args[1])
     opponent_board_num = our_random_cell_num
     opponent_cell_num = int(args[2])
 
-    # place our server generated random move
+    # Place our server generated random move
     place_mark(our_random_board_num, our_random_cell_num, Mark.PLAYER)
-    # place opponents move
+    # Place opponents move
     place_mark(opponent_board_num, opponent_cell_num, Mark.OPPONENT)
 
     return make_move()
@@ -424,7 +422,7 @@ def parse_cmd(cmd):
     opponent_board_num = global_next_board_num
     opponent_cell_num = int(args[0])
 
-    # place opponent move
+    # Place opponent move
     place_mark(opponent_board_num, opponent_cell_num, Mark.OPPONENT)
 
     return make_move()
@@ -442,11 +440,7 @@ def parse_cmd(cmd):
 
 def main():
   s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-  port = 0
-  if sys.gettrace():
-    port = 12345
-  else:
-    port = int(sys.argv[2]) # Usage: ./agent.py -p (port)
+  port = int(sys.argv[2]) # Usage: ./agent.py -p (port)
 
   s.connect(('localhost', port))
   while True:

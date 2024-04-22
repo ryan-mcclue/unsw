@@ -1,5 +1,5 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-0th page typically not used for NULL pointers.
+0th page typically not used as reserved for NULL pointers.
 From high addresses to low:  (some address spaces may not be cachable/translated, e.g. ROM, devices; be only kernel accessible)
   - kernel (reserved, protected, shared region)
   - shared libraries
@@ -50,6 +50,7 @@ For 64bit addresses, top 16bits are unused. Have 4-level 4-9bit page numbers.
 % page_size -> &(page_size - 1)
 
 CPU register set on context switches, so MMU knows what process specific page table to use.
+For RP3000 would be EntryHi register
 
 IPT (inverted page table) only requires 1 shared table.
 A virtual address has page number and offset.
@@ -68,9 +69,9 @@ If TLB miss, need to refill:
 TLB entries are process specific. 
 TLB entries are tagged with address space id (ASID) (or would have to be flushed on each context switch)
   - EntryHi (page number)
-   (VPN | ASID)
+   (VPN(20bits) | ASID(6bits))
   - EntryLo (frame number)
-   (PFN | control bits)
+   (PFN(20bits) | no-cache | dirty | valid | global)
 c0_Index register indexes a TLB entry.
 c0_EntryHi/Lo registers to read/write indexed entry.
 Use various TLB specific instructions.

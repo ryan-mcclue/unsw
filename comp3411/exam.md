@@ -49,4 +49,31 @@ k = num classes
 (a/N * child_err + b/N * child_err)
 
 * Perceptron
+1. Initial Weight Finding (x2 might be considered y)
+  1.1: Using points on axes, i.e. with 0
+       m = (y2-y1)/(x2-x1) 
+  1.2: A point on this line is midway between point on y_axis and 3rd point
+       b = y - mx
+  1.3: TODO: weights based on what is positive 
+2. Learn Weights
+  For bias, just +- learning-rate
+  Otherwise, +- `learning-rate*input`
+3. CNF
+∧ bias (1/2 - n) (n is number of terms)
+∨ bias (k - 1/2) (k is number of negated terms)
 
+* Model Satisfaction
+A ⇒  B only false when A=T and B=F
+Write out truth tables. 
+Models are for variables that when true, give results as true
+
+* Knowledge Resolution
+⇒  written in English as if-then
+
+TODO: logic ...
+
+* Q-learning
+transition δ(S1, a1) = S2
+reward r(S1, a1) = +1
+discount γ = 0.6
+policy π(S1) = a1

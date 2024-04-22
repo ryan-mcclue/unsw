@@ -69,11 +69,29 @@ Models are for variables that when true, give results as true
 
 * Knowledge Resolution
 ⇒  written in English as if-then
+1. Convert propositional to CNF knowledge base:
+  - A ⇒ B = ¬A∨ B
+   ¬A ⇒ (B ∧ C) = (A ∨ B) ∧ (A ∨ C)
+   ¬A ∨ B ⇒ C = (A ∨ C) ∧ (¬B ∨ C)  
+  - ¬(A∨ B) = ¬A∧ ¬B
+2. Resolutions:
+KB⊨ query (saying that query is true in our knowledge base)
+By contradiction, show that KB∧ ¬query is not true
+Resolve pairs with complimentary literals, i.e. remove negated pairs from clauses and or them
+Repeat this for all pairs and repeat again. If get to a point where we resolve to nothing, then a contradiction 
 
-TODO: logic ...
+* First Order Logic
+∀c Clown(c) → ∃b Big(b) (for every clown, there exists one object b that is big)
+¬∀s (Swan(s) → White(s)) (it's not true that all swans are white)
+
 
 * Q-learning
 transition δ(S1, a1) = S2
 reward r(S1, a1) = +1
 discount γ = 0.6
-policy π(S1) = a1
+1. Optimal Policy π(S1) = a1 (determined by exploration)
+2. Optimal Value Function V(S1) = π(S1) + γV(S2) (solve by substituting)
+                          V(S2) = π(S2) + γV(S1)
+3. Q value Q(S1, a1) = r(S1, a1) + γV(succeeding)
+   If optimal policy, then just Q() = V()
+4. 

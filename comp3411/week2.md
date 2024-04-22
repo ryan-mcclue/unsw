@@ -19,7 +19,10 @@ so search expands takes state from priority queue, expands and adds new states t
 construct tree as you take off queue
 BFS adds to back, DFS adds to front
 Best First Search uses evaluation-function or a hueristic to order queue
-Example heuristic straight-line distance, manhattan distance (can find one that relates to a relaxed rules version, i.e. assume tiles can move anywhere)
+Example heuristic straight-line distance, 
+manhattan distance (can find one that relates to a relaxed rules version, i.e. assume tiles can move anywhere)
+(|x1 - x2| + |y1 - y2|)
+
 Larger admissable heuristic, i.e. never over estimates, dominates as best
 
 Cost of search strategy:
@@ -47,7 +50,8 @@ IMPORTANT: Djikstra implementation of UCS with no goal state, i.e. will find for
 Informed Search:
 Have domain knowledge, so can use heuristics 
 (total manhattan distance for a state would be distance all nodes from destination)
-* Greedy: Like DFS except with hueristic. Differs to UCS as minimises based on heuristic h(n), i.e. to goal not next node g(n)
+* Greedy: Like DFS except with hueristic. 
+  Differs to UCS as minimises based on heuristic h(n), i.e. to goal NOT next node g(n)
 * A-star: optimal if heuristic is admissable (combines greedy and UCS)
 * ID-A-Star: Iterate over f(n) = g(n) + h(n)
 

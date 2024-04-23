@@ -16,7 +16,8 @@ For resources with multiple types, at a point in time have:
 * Allocation matrix (resources process has currently)
 * Request matrix (resources process requests)
 * Resources available
-Want to see if there is an order of process execution that can satisfy requests (so, run 1 process and return its resources)
+Want to see if there is an order of process execution that can satisfy requests
+(so, run 1 process and return its resources)
 
 To recover, can forcibly pre-empt/take resource from a process or can kill a process
 4. Deadlock Avoidance

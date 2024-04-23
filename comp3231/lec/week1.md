@@ -3,7 +3,8 @@ TODO: https://handmade.network/p/29/swedish-cubes-for-unity/blog/p/2723-how_medi
 
 RTEMS OS is monolithic where everything runs in priveleged mode, unlike say FreeRTOS.
 Would open up possibilities to corrupt kernel data structures etc.
-Main task on OS is efficient and secure interleaved execution
+Main task of OS is concurrent access of resources (scheduler, synchronisation primitives) 
+and hardware abstraction (virtual memory, vfs)
 Process is memory (so has stack, data and text sections) and resource owner.
 Per process has globals, open files, address space, pid, working directory etc.
 Per thread has GPRs, SP, PC
@@ -31,8 +32,10 @@ IMPORTANT: all build from locks and are OS implementation specific (e.g. os161 u
 
   allows you to sleep and wakeup
   a countable sleep/wake primitive
-  wait() -> let us know when counter > 0. will decrement when wait()ed (this is equivalent to acquiring resource)
-  wake() -> increments counter, allowing any waiting threads to operate (this is equivalent to releasing resource)
+  wait() -> P() -> let us know when counter > 0. will decrement when wait()ed 
+  (this is equivalent to acquiring resource)
+  wake() -> V() -> increments counter, allowing any waiting threads to operate 
+  (this is equivalent to releasing resource)
   allows you to tell several threads that some work is ready collectively 
 
 - A monitor is a grouping of variables, functions that can only be accessed within itself.

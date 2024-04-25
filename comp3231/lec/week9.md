@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 In a UMA (Uniform Memory Access) architecture, all cores share the same memory access time.
-In contrast a NUMA, different cores may have different latencie for certain memory regions.
+In contrast a NUMA, different cores may have different latencies for certain memory regions.
 For UMA, a shared memory bus architecture typically used.
 Hardware handles cache consistency, e.g. 1 core writing to an address will invalidate other core's address etc. 
 (example implementation may be coherent write-back cache; write-back meaning write to cache first than memory)

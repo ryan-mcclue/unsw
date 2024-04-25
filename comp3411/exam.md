@@ -29,6 +29,7 @@ P(A|B ∧ C) = P(A ∧ (B ∧ C))/P(B ∧ C)
    b = instances in class 2
    N = num instances
 1. Entropy for Parent, e.g. overall '+'/'-'
+   IMPORTANT: log2
    -(a/Nlog(a/N) + b/Nlog(b/N))
 2. Entropy for attribute value 1, e.g. short
    Entropy for attribute value 2, e.g. tall

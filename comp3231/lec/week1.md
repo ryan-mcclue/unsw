@@ -1,6 +1,10 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 TODO: https://handmade.network/p/29/swedish-cubes-for-unity/blog/p/2723-how_media_molecule_does_serialization 
 
+ready<->running
+blocked->ready
+running->blocked
+
 RTEMS OS is monolithic where everything runs in priveleged mode, unlike say FreeRTOS.
 Would open up possibilities to corrupt kernel data structures etc.
 Main task of OS is concurrent access of resources (scheduler, synchronisation primitives) 
@@ -60,7 +64,6 @@ I was about to say that the message-based models may still require "locks" of so
 M requesters to 1 source == shared memory -> (for example: multiple threads accessing a hash-table)
 1 requester to N sources == message -> (for example: a thread that receives network packets from multiple sockets and puts information in a hashtable)
 M requesters to N sources == hybrid -> (for example: multiple threads that receive network packets from multiple sockets and put information in a hashtable)
-
 
 
 Append os161 path in .profile as this is login shell (could do .bash_profile)

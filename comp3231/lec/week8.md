@@ -25,6 +25,8 @@ MIPS divides memory in separate address spaces (unlike x86 which uses a flat mem
     0x0 - 0x7f virtual
     determine physical with our allocator
 
+Larger page sizes bring in more memory so fewer page faults and TLB misses, however greater internal fragmentation
+
 Shared code must appear at same address in all processes
 
 PTE (page table entry) has frame number but also other bits like present/absent, modified, caching (e.g. bypass cache in case of device registers) etc.
@@ -42,6 +44,7 @@ IMPORTANT: OS must follow CPU architecture MMU format.
 As page table can get large (1 for every process), need compact and fast representation.
 page table has 4 byte entries
 1-level virtual address has 20bit page number (index into page table), and 12bit offset (added to frame number)
+(the 12bit offset means page sizes are 2^12, i.e. 4K)
 However, this gives `2^20 * 4`.
 2-level has 2-10bit page numbers, so smaller `2^10 * 4 + 2^10 * 4`.
 For 64bit addresses, top 16bits are unused. Have 4-level 4-9bit page numbers.
@@ -88,7 +91,7 @@ c0_BadVaddr gives faulting address
 c0_EntryHi_VPN page number of faulting address
 So, on a TLB miss, only have to translate EntryLo from page table.
 
-On a page fault, may have to reload page from disk (so, have on-demand paging).
+Have on-demand paging. So, on a page fault, will have to create page or reload page from disk.
 If 'victim' page has no dirty bit (hasn't been written to since it was swapped in), than can cleanly replace?
 
 The number of pages required by a process in a time window is its working set.
@@ -107,7 +110,7 @@ VM performace dictated by:
   - cleaning policy
 
 Larger page sizes would decrease page faults, increase swapping I/O throughput
-In-demand paging used as allows more flexibility for end user (they don't have to predict upfront like for pre-paging)
+On-demand paging used as allows more flexibility for end user (they don't have to predict upfront like for pre-paging)
 
 Thrashing is where all processes have high working set memory requiring many page faults/swaps.
 Could alleviate by swapping process out.

@@ -29,6 +29,8 @@ Shared code must appear at same address in all processes
 
 PTE (page table entry) has frame number but also other bits like present/absent, modified, caching (e.g. bypass cache in case of device registers) etc.
 
+IMPORTANT: reading from a 2-level page table takes 2 memory accesses
+
 Page fault can be illegal address or page not resident (present bit not set)
 
 Kernel stores page tables (and the frame table) in main memory. 
@@ -57,6 +59,9 @@ A virtual address has page number and offset.
 The hash of page number gets entry into HAT (hash anchor table) which gives index into page table.
 The PTE have next fields. The index of the match with same PID is used as frame number.
 To allow for code sharing, an extension Hashed Page Table stores frame number in table entry (allowing the same frame to have different PTEs)
+
+IMPORTANT: IPT frame number is index in table
+HPT stores frame number (allowing different PIDs use same frame)
 
 IPT and HPT are better for sparse virtual addresses as paging would create internal fragmentation.
 However, collision lookup may be costly

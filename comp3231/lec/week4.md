@@ -19,7 +19,9 @@ Block allocation strategies: (all have internal fragmentation)
 * Indexed (a data structure which has pointers to all blocks)
   (considered 1write as the shifting of block numbers occurs in inode that is in ram, not disk)
   - Access: Fast sequential, fast random
-  (ext fs uses inodes with pointers for each file, FAT has a single file allocation table for all files, index block, file control block etc.)
+  (ext fs uses inodes with pointers for each file;
+  (FAT has a single file allocation table for all files, index block, file control block etc.)
+  IMPORTANT: FAT is indexed, i.e. in RAM, however stores with linked list allocation
   (there is memory overhead of maintaining )
   (updating/deleting are only 1 write)
 

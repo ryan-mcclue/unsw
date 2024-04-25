@@ -31,7 +31,7 @@ Shared code must appear at same address in all processes
 
 PTE (page table entry) has frame number but also other bits like present/absent, modified, caching (e.g. bypass cache in case of device registers) etc.
 
-IMPORTANT: reading from a 2-level page table takes 2 memory accesses
+IMPORTANT: TLB miss is 3 accesses 
 
 Page fault can be illegal address or page not resident (present bit not set)
 

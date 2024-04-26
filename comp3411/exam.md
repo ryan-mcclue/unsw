@@ -1,7 +1,9 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 TOPICS:
 → 1b. Environment Types
+Simulated/Static/Discrete/Observable/Deterministic/Sequential
 → 1c. Agent Types
+Reactive/World/Planning/Learning
 → 1d. Constraint Satisfaction
 TODO: cryptarithmetic
 → 2a. Reactive Agents
@@ -94,5 +96,3 @@ discount γ = 0.6
 2. Optimal Value Function V(S1) = π(S1) + γV(S2) (solve by substituting)
                           V(S2) = π(S2) + γV(S1)
 3. Q value Q(S1, a1) = r(S1, a1) + γV(succeeding)
-   If optimal policy, then just Q() = V()
-4. 

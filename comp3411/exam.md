@@ -129,7 +129,8 @@ i.e. not all swans are white
 transition δ(S1, a1) = S2
 reward r(S1, a1) = +1
 discount γ = 0.6
+If γ=0, maximising immediate reward, if γ=1, maximising average reward 
 1. Optimal Policy π(S1) = a1 (determined by exploration)
-2. Optimal Value Function V(S1, a1) = r(S1, a1) + γV(S2) 
-                          V(S2) = π(S2) + γV(S1)
+2. Optimal Value Function V(S1) = r(a1) + γV(S2) (i.e. reward following optimal action)
+                          V(S2) = r(a2) + γV(S1)
 3. Q value Q(S1, a1) = r(S1, a1) + γV(succeeding)

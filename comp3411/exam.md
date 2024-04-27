@@ -28,6 +28,10 @@ Braitenberg vehicle (light and obstacle sensor. move to light, away from obstacl
   e.g low-level physical movement and high-level decision making
   More goal orientated 
 → 2b. Path Search
+- UCS will expand in increasing order of g() (where g() is the shortest length)
+- Greedy next shortest h()
+- A-star a node is visited once expanded all of its neighbours and updated relevent node scores.
+  Pick next smallest h() + g() (so g() updated as we go)
 → 2c. Heuristic Path Search
 Manhatten (|x1 - x2| + |y1 - y2|)
 Admissable never over-estimates
@@ -130,7 +134,12 @@ transition δ(S1, a1) = S2
 reward r(S1, a1) = +1
 discount γ = 0.6
 If γ=0, maximising immediate reward, if γ=1, maximising average reward 
-1. Optimal Policy π(S1) = a1 (determined by exploration)
-2. Optimal Value Function V(S1) = r(a1) + γV(S2) (i.e. reward following optimal action)
-                          V(S2) = r(a2) + γV(S1)
-3. Q value Q(S1, a1) = r(S1, a1) + γV(succeeding)
+1. Optimal Policy π(S1) = a1 
+   Determine by exploration (when summing s1->s2 the s2 reward will be discounted)
+2. Optimal Value Function
+   IMPORTANT: reward is that of optimal action and state is succeeding from that action
+   V(S1) = r(a2) + γV(S2) (factor out)
+   or
+   V(S1) = r(a1) + γV(S1) (have infinite geometric series a/(1-r) -> r(a1)/(1 - γ))
+3. Q value 
+   Q(S1, a1) = r(S1, a1) + γV(succeeding)

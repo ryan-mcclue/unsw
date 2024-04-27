@@ -2,21 +2,55 @@
 TOPICS:
 → 1b. Environment Types
 Simulated/Static/Discrete/Observable/Deterministic/Sequential
+PEAS
+ - Performance: +1000 if gold, -1000 eaten
+ - Environment: 4x4 grid, player/pit/wumpus locations
+ - Actuators (->actions): Left/right/forward/back/shoot
+ - Sensors (<-percepts): Breeze/stench 
+ (pit causes breeze and wumpus stench in adjacent squares)
 → 1c. Agent Types
-Reactive/World/Planning/Learning
+Reactive(no state)/World(state)/Planning(search)/Learning
+dirt-cleaner/thermostat-regulator/self-driving/music-recommender
 → 1d. Constraint Satisfaction
-TODO: cryptarithmetic
+- Backtrack with heuristic fewest legal values and arc consistency to propagate constraints
+- Local search for many or few constraints. 
+  Greedy on objective function of successor states
+  `e^(cur_state-prev_state)/temp`
+Cryptarithmetic:
+  - Number limits
+  - Carry: 4a + 1 = b or 3c + 10 + 1 = a
+  - Exhaustive search
 → 2a. Reactive Agents
+Braitenberg vehicle (light and obstacle sensor. move to light, away from obstacle)
+- Horizontal decomposition splits functionality into independent layers that act in parallel
+  More modularity, scalability.
+- Vertical decomposition splits functionality into abstraction layers
+  e.g low-level physical movement and high-level decision making
+  More goal orientated 
 → 2b. Path Search
-TODO: algorithm expansion
 → 2c. Heuristic Path Search
+Manhatten (|x1 - x2| + |y1 - y2|)
+Admissable never over-estimates
 → 3a. Game Playing
+Monte Carlo search tree better if no logical static evaluation as learns it. 
+TODO: expectimax walkthrough
 → 4a. Learning and Decision Trees
+information entropy is how much variance data has
+information gain is how much entropy removed
+Laplace error used to give some value to a 0 probability
 → 4b. Perceptrons
+Despite 1-layer linearly separable binary classifier; writing in CNF, 2-layer perceptron any logical function
 → 4c. Neural Networks
+Unsupervised learning has no feedback, i.e. no labelled data
 → 5a. Probability & Uncertainty
+Result of complexity, partial observability, noisy sensors.
 → 5c. Reinforcement Learning
+Actions in environment to maximise reward 
+Ideal Markov state, i.e. next state only based on previous state, not history of reaching previous state
+However not always possible, e.g. temperature of wheels
 → 7a. Logical Agents
+Valid in all, satisfiable in some, unsatisfiable in none.
+Propositional logic can't express about objects and their relations
 → 7b. First Order Logic
 
 
@@ -25,6 +59,8 @@ FORMULAS:
 P(A∣B) = P(A ∧ B)/P(B)
 P(A|B,C) = P(A|B ∧ C)
 P(A|B ∧ C) = P(A ∧ (B ∧ C))/P(B ∧ C)
+Independent if have no affect on the other, e.g. P(A|B) = P(A)   
+Conditionally independent: P(A|B,C) = P(A|B)
 
 * Information Gain For Attribute:
    a = instances in class 1
@@ -84,15 +120,16 @@ Resolve pairs with complimentary literals, i.e. remove negated pairs from clause
 Repeat this for all pairs and repeat again. If get to a point where we resolve to nothing, then a contradiction 
 
 * First Order Logic
-∀c Clown(c) → ∃b Big(b) (for every clown, there exists one object b that is big)
-¬∀s (Swan(s) → White(s)) (it's not true that all swans are white)
-
+∀c Clown(c) → ∃b Big(b) (for every c that is a clown, there exists an object b that is big)
+¬∀s (Swan(s) → White(s)) 
+(it's not true that: 'for all s that is a swan, s is also white')
+i.e. not all swans are white
 
 * Q-learning
 transition δ(S1, a1) = S2
 reward r(S1, a1) = +1
 discount γ = 0.6
 1. Optimal Policy π(S1) = a1 (determined by exploration)
-2. Optimal Value Function V(S1) = π(S1) + γV(S2) (solve by substituting)
+2. Optimal Value Function V(S1, a1) = r(S1, a1) + γV(S2) 
                           V(S2) = π(S2) + γV(S1)
 3. Q value Q(S1, a1) = r(S1, a1) + γV(succeeding)

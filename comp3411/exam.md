@@ -59,12 +59,17 @@ Propositional logic can't express about objects and their relations
 
 
 FORMULAS:
-* Bayesian
+* Conditional Probability
 P(A∣B) = P(A ∧ B)/P(B)
 P(A|B,C) = P(A|B ∧ C)
 P(A|B ∧ C) = P(A ∧ (B ∧ C))/P(B ∧ C)
 Independent if have no affect on the other, e.g. P(A|B) = P(A)   
 Conditionally independent: P(A|B,C) = P(A|B)
+* Bayes
+P(A|B) = (P(B|A)P(A))/P(B)
+* Prior
+known = P(s1) + P(s2) ... (sum of probabilities of possible combinations)
+P(a|known) = P(a) / known (where 'a' is a particular combination) 
 
 * Information Gain For Attribute:
    a = instances in class 1
@@ -127,7 +132,8 @@ Repeat this for all pairs and repeat again. If get to a point where we resolve t
 ∀c Clown(c) → ∃b Big(b) (for every c that is a clown, there exists an object b that is big)
 ¬∀s (Swan(s) → White(s)) 
 (it's not true that: 'for all s that is a swan, s is also white')
-i.e. not all swans are white
+IMPORTANT i.e. not all swans are white (have this as answer)
+TODO: more paramaters from tutorial questions
 
 * Q-learning
 transition δ(S1, a1) = S2

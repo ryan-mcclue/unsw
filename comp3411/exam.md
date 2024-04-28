@@ -8,6 +8,7 @@ PEAS
  - Actuators (->actions): Left/right/forward/back/shoot
  - Sensors (<-percepts): Breeze/stench 
  (pit causes breeze and wumpus stench in adjacent squares)
+Performance measure overall efficiency; utility function ranks decisions 
 → 1c. Agent Types
 Reactive(no state)/World(state)/Planning(search)/Learning
 dirt-cleaner/thermostat-regulator/self-driving/music-recommender
@@ -28,13 +29,16 @@ Braitenberg vehicle (light and obstacle sensor. move to light, away from obstacl
   e.g low-level physical movement and high-level decision making
   More goal orientated 
 → 2b. Path Search
+Combinatorial problems often involve exhaustive searches
+Search operators could be up/down/left/right
 - UCS will expand in increasing order of g() (where g() is the shortest length)
 - Greedy next shortest h()
 - A-star a node is visited once expanded all of its neighbours and updated relevent node scores.
   Pick next smallest h() + g() (so g() updated as we go)
 → 2c. Heuristic Path Search
 Manhatten (|x1 - x2| + |y1 - y2|)
-Admissable never over-estimates
+Admissable never over-estimates 
+(suitable for a maze as lower-bound not taking into account walls)
 → 3a. Game Playing
 prune if b <= a
 Monte Carlo search tree better if no logical static evaluation as learns it. 
@@ -42,6 +46,7 @@ TODO: expectimax walkthrough
 → 4a. Learning and Decision Trees
 information entropy is how much variance data has
 information gain is how much entropy removed
+Construct decision tree on attribute with highest information gain
 Laplace error used to give some value to a 0 probability
 → 4b. Perceptrons
 Despite 1-layer linearly separable binary classifier; writing in CNF, 2-layer perceptron any logical function
@@ -141,6 +146,9 @@ IMPORTANT i.e. not all swans are white (have this as answer)
 ∃ b Barber(b) ∧ ∀ m (Man(m) ∧ InTown(m) ∧ ¬Shave(m,m) ⇒ Shave(b,m))
 ∀p ( Politician(p) ⇒ ((∃ x∀t Fool(p,x,t)) ∧ (∃ t∀x Fool(p,x,t)) ∧ (¬∀x∀t Fool(p,x,t))))
 (some of the time and all of the time)
+
+∃ x Study(x, Greek, 2021) ∧ ∀y (Study(y, Greek, 2021) ⇒ y = x )
+(only one)
 
 * Q-learning
 transition δ(S1, a1) = S2

@@ -36,6 +36,7 @@ Braitenberg vehicle (light and obstacle sensor. move to light, away from obstacl
 Manhatten (|x1 - x2| + |y1 - y2|)
 Admissable never over-estimates
 → 3a. Game Playing
+prune if b <= a
 Monte Carlo search tree better if no logical static evaluation as learns it. 
 TODO: expectimax walkthrough
 → 4a. Learning and Decision Trees
@@ -98,11 +99,14 @@ k = num classes
 
 * Perceptron
 1. Initial Weight Finding (x2 might be considered y)
-  1.1: Using points on axes, i.e. with 0
+  1.1: Using points of same class find gradient
        m = (y2-y1)/(x2-x1) 
-  1.2: A point on this line is midway between point on y_axis and 3rd point
+       y = mx + b
+  1.2: A point on separating line could be midway between point in other class
        b = y - mx
-  1.3: TODO: weights based on what is positive 
+  1.3: Bring all to one side
+       y - mx - b >= 0
+       If holds for subsitution keep sign, otherwise swap symbols
 2. Learn Weights
   For bias, just +- learning-rate
   Otherwise, +- `learning-rate*input`
@@ -124,16 +128,19 @@ Models are for variables that when true, give results as true
   - ¬(A∨ B) = ¬A∧ ¬B
 2. Resolutions:
 KB⊨ query (saying that query is true in our knowledge base)
-By contradiction, show that KB∧ ¬query is not true
-Resolve pairs with complimentary literals, i.e. remove negated pairs from clauses and or them
-Repeat this for all pairs and repeat again. If get to a point where we resolve to nothing, then a contradiction 
+By contradiction, show that KB∧ ¬query is not true (i.e. add ¬query to the knowledge base)
+Resolve pairs with complimentary literals, i.e. remove negated pairs from clauses and and them
+Repeat this for all pairs (in a tree like structure, e.g. can resolve a resolved clause with an original clause)
+If get to a point where we resolve to nothing, then a contradiction 
 
 * First Order Logic
 ∀c Clown(c) → ∃b Big(b) (for every c that is a clown, there exists an object b that is big)
 ¬∀s (Swan(s) → White(s)) 
 (it's not true that: 'for all s that is a swan, s is also white')
 IMPORTANT i.e. not all swans are white (have this as answer)
-TODO: more paramaters from tutorial questions
+∃ b Barber(b) ∧ ∀ m (Man(m) ∧ InTown(m) ∧ ¬Shave(m,m) ⇒ Shave(b,m))
+∀p ( Politician(p) ⇒ ((∃ x∀t Fool(p,x,t)) ∧ (∃ t∀x Fool(p,x,t)) ∧ (¬∀x∀t Fool(p,x,t))))
+(some of the time and all of the time)
 
 * Q-learning
 transition δ(S1, a1) = S2

@@ -22,7 +22,7 @@ Cryptarithmetic:
   - Carry: 4a + 1 = b or 3c + 10 + 1 = a
   - Exhaustive search
 → 2a. Reactive Agents
-Braitenberg vehicle (light and obstacle sensor. move to light, away from obstacle)
+Braitenberg vehicle (light and obstacle sensor. move to light (hate-fast/love-slow), away from obstacle (fear-fast/curious-slow))
 - Horizontal decomposition splits functionality into independent layers that act in parallel
   More modularity, scalability.
 - Vertical decomposition splits functionality into abstraction layers
@@ -42,7 +42,7 @@ Admissable never over-estimates
 → 3a. Game Playing
 prune if b <= a
 Monte Carlo search tree better if no logical static evaluation as learns it. 
-TODO: expectimax walkthrough
+Chance node valude is `0.5*node1 + 0.5*node2`
 → 4a. Learning and Decision Trees
 information entropy is how much variance data has
 information gain is how much entropy removed

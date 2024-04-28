@@ -164,3 +164,8 @@ If γ=0, maximising immediate reward, if γ=1, maximising average reward
    V(S1) = r(a1) + γV(S1) (have infinite geometric series a/(1-r) -> r(a1)/(1 - γ))
 3. Q value 
    Q(S1, a1) = r(S1, a1) + γV(succeeding)
+4. Q Learning 
+   Q(S1, a1) = r(S1, a1) + γmaxQ(δ(S1, a1), b)
+   (adding max. Q value succeeding state)
+   Draw table of Q, states and actions initially 0  
+   Fill in table and repeat; will converge to true Q values

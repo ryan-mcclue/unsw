@@ -11,6 +11,8 @@ has-a is a composition, i.e. contains another class
 (method forwarding would call methods of this class)
 
 is-a inherits
+class,package,global visibility
+(opening of vscode in specific directory)
 
 start out with all in one class (treating like C global scope), 
 then refactor with extending class or interface

@@ -3,15 +3,21 @@ java SE -> open/oracleJDK (javac) -> JRE (vm; runs .class bytecode)
 
 OO:
 data hiding (private, getters/setters), init/deinit
-class,package,global visibility
+global,class,package-and-subclasses
 
-has-a is a composition, i.e. contains another class (method forwarding would call methods of this class)
+has-a is a composition, i.e. contains another class 
+(method forwarding would call methods of this class)
 
-start out with all in one class (treating like C global scope), then refactor with extending class or interface
+is-a inherits
+
+start out with all in one class (treating like C global scope), 
+then refactor with extending class or interface
+
+same name, different types overloads (override is all same)
 
 Object superclass
-abstract must override to instantiate (can also override superclass functions)
-interface has all implicitly abstract
+abstract must override to instantiate (override for polymorphism)
+interface has all implicitly abstract (allows for diamond-inheritance)
 - Behavioural (callbacks)
 - Structural (generics)
 - Creational (singleton)

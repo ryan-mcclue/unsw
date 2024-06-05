@@ -3,7 +3,7 @@ java SE -> open/oracleJDK (javac) -> JRE (vm; runs .class bytecode)
 
 OO:
 data hiding (private, getters/setters), init/deinit
-global,class,package-and-subclasses
+same-class,same-package-and-subclasses,all
 
 has-a is a composition, i.e. contains another class 
 (method forwarding would call methods of this class)

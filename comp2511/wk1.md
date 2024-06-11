@@ -17,7 +17,7 @@ same name, different types overloads (override is all same)
 
 Object superclass
 abstract must override to instantiate (override for polymorphism)
-interface has all implicitly abstract (allows for diamond-inheritance)
+interface has all implicitly abstract; has no state (allows for diamond-inheritance)
 - Behavioural (callbacks)
 - Structural (generics)
 - Creational (singleton)

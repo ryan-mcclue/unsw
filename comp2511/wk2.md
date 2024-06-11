@@ -12,7 +12,7 @@ UML:
     + Class diagram
       * Directed Association (inherits)
       * Aggregation (has-a; open diamond)
-      * Composition (has-a; contained class exist only here)
+      * Composition (has-a; contained class exist only here; dark diamond)
       Want classes for pointers
     + Object diagram
 

@@ -1,0 +1,33 @@
+@startuml
+skinparam classAttributeIconSize 0
+/'
+abstract        abstract
+abstract class  "abstract class"
+annotation      annotation
+circle          circle
+()              circle_short_form
+class           class
+class           class_stereo  <<stereotype>>
+diamond         diamond
+<>              diamond_short_form
+entity          entity
+enum            enum
+exception       exception
+interface       interface
+metaclass       metaclass
+protocol        protocol
+stereotype      stereotype
+struct          struct
+'/
+
+interface MyInterface
+class Ryan {
+  String name
+  int age
+  void Method1()
+  int Method2()
+}
+
+Ryan <|-- MyInterface
+
+@enduml

@@ -8,11 +8,15 @@ Nouns entities, verbs behaviours
 UML:
   - Structural
 
+What is difference between association and inheritance?
+
   - Behavioural
     + Class diagram
+      * Association (just uses, e.g. use a math library)
       * Directed Association (inherits)
       * Aggregation (has-a; open diamond)
       * Composition (has-a; contained class exist only here; dark diamond)
+      * 'realisation/implementation' arrow for interfaces
       Want classes for pointers
     + Object diagram
 

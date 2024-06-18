@@ -20,14 +20,67 @@ stereotype      stereotype
 struct          struct
 '/
 
-interface MyInterface
-class Ryan {
-  String name
-  int age
-  void Method1()
-  int Method2()
+interface TimeTravelling {
+  void timeTravel(LocalDateTime time)
 }
-
-Ryan <|-- MyInterface
+interface Flying {
+  void fly(int x, int y, int z)
+}
+class Engine {
+  -int speed
+  -int maxSpeed
+  {abstract}+void setMaxSpeed(int speed)
+  +int getMaxSpeed()
+}
+class ThermalEngine extends Engine {
+  -int DEFAULT_MAX_SPEED = 114
+  +ThermalEngine(int maxSpeed)
+}
+class ElectricalEngine extends Engine {
+  -int DEFAULT_MAX_SPEED = 180
+}
+class NuclearEngine extends Engine {
+  -int DEFAULT_MAX_SPEED = 223
+  -int nuclearEnergyValue
+  +NuclearEngine(int maxSpeed)
+  +void propel()
+}
+class SolarEngine extends Engine {
+  -int DEFAULT_MAX_SPEED = 90
+}
+class Producer {
+  -String brandName
+}
+class Owner {
+  -String name
+  -String address
+}
+class Car {
+  -int x
+  -int y
+  -List<Engine> engine
+  -Owner owner
+  -Producer producer
+  +void drive(int x, int y)
+}
+Car "1..*" *-- "1" Producer
+Car "1..*" *-- "1" Owner
+Car "0..*" o-- "1..*" Engine
+class TimeTravellingCar extends Car implements TimeTravelling {
+  -LocalDateTime time
+}
+class TimeTravellingFlyingCar extends Car implements TimeTravelling, Flying {
+  -LocalDateTime time
+  -int z
+}
+class FlyingCar extends Car implements Flying {
+  -int z
+}
+class Plane implements Flying {
+  -int x
+  -int y
+  -int z
+  -List<String> passengerNames
+}
 
 @enduml

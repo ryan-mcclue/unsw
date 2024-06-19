@@ -13,11 +13,6 @@ low cohesion:
 methods aren't relatable,
 e.g. methods to operate on contained classes 
 
-type-switch replacement:
-1. inheritance
-2. if type can change during lifetime use composition?
-favor composition over inheritance?
-
 Functional Programming: (chaining methods)
 lambda can treat code as data and implement a single method interface
 
@@ -34,5 +29,36 @@ filter() is intermediate, i.e. returns new stream
 forEach() is terminal, i.e does not return new stream
 `l.stream().filter(e -> e.length() > 10).mapToInt(e::getAge).average()`
 
+type-switch replacement with polymorphism.
 
+1. common to all: inheritance
+2. common to some: composition (can just override if only a small number of classes)
+  - strategy pattern:
+  * delegation allows dynamic/change at runtime behaviour
+  * can group together functions for code-reuse
+  take variable operations and turn into 'behaviour'/'strategy' interfaces, e.g:
+  ```
+  class Satellite:
+    LightDisplayInterface light_display_behaviour;
+    SoundDisplayInterface sound_display_behaviour;
+    
+    CubeSatellite extends Satellite() {
+      light_display_behaviour = new StrobeLights(); 
+      sound_display_behaviour = new AcousticSounds(); 
+    }
 
+    void performLightDisplay() {
+      light_display_behaviour.light_up();
+    }
+  ```
+
+- state machine pattern:
+  ```
+  class Machine:
+    StateInterface waitingState;
+    StateInterface winnerState;
+
+    void insertCoin() {
+      state.insertCoin();
+    }
+  ```

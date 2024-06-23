@@ -1,0 +1,204 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class BlackoutController {
+    -Map<String, Satellite> satellites
+    -Map<String, Device> devices
+    +void createDevice(String id, String type, Angle p)
+    +void removeDevice(String id)
+    +void createSatellite(String id, String type, double h, Angle p)
+    +void removeSatellite(String id)
+    +List<String> listDeviceIds()
+    +List<String> listSatelliteIds()
+    +void addFileToDevice(String id, String name, String content)
+    +EntityInfoResponse getInfo(String id)
+    -Entity getEntityFromId(String id)
+    -List<Entity> generateEntityList()
+    +void simulate()
+    +void simulate(int min) {
+    +List<String> communicableEntitiesInRange(String id)
+    +void sendFile(String fileName, String fromId, String toId) throws FileTransferException
+}
+
+class Entity {
+  -String id
+  -Angle position
+  -double height
+  -int range
+  -String typeString
+  -Set<String> compatibleEntities
+  -int maxSendBandwidth
+  -int maxReceiveBandwidth
+  -int maxFiles
+  -int maxBytes
+  -Map<String, File> storedFiles
+  -Map<String, TransferFile> sendingFiles
+  -Map<String, TransferFile> receivingFiles
+
+  +Entity(String id, Angle p, double h, String type)
+  +boolean isInImmediateRange(Entity e)
+  +String getTypeString()
+  +void setCompatibleEntities(List<String> entities)
+  +Set<String> getCompatibleEntities()
+  +boolean isEntityCompatible(Entity e)
+  +void addStoredFile(String name, String content)
+  +File getStoredFile(String name)
+  +void removeStoredFile(String name)
+  +Map<String, File> getStoredFiles()
+  +void addSendingFile(String name, String content, Entity e)
+  +void addSendingFile(TransferFile tf)
+  +TransferFile getSendingFile(String name)
+  +void removeSendingFile(String name)
+  +Map<String, TransferFile> getSendingFiles()
+  +void addReceivingFile(String name, String content, Entity e)
+  +void addReceivingFile(TransferFile tf)
+  +Map<String, TransferFile> getReceivingFiles()
+  +void updateReceivingFile(String name, int bytes)
+  +int getNumFiles()
+  +boolean reachedFileLimit()
+  +boolean canStoreBytes(int bytes)
+  +boolean availableSendBandwidth() 
+  +Set<String> getCommunicableEntities(List<Entity> entities)
+  -void getEntitiesInRange(Entity rootE, Entity curE, Set<String> seen, List<Entity> entities)
+  -List<Entity> getEntitiesInImmediateRange(Entity rootE, Entity curE, Set<String> seen, List<Entity> entities)
+  +void sendFile(String fileName, Entity dstE) throws FileTransferException
+  +Map<String, File> getAllFiles()
+  +EntityInfoResponse genEntityInfoResponse()
+  +void removeOutOfRangeSendingFiles(List<Entity> entities)
+  +void updateSendingFiles(List<Entity> entities)
+  +String getId()
+  +double getHeight()
+  +Angle getPosition()
+  +void setPosition(Angle p)
+  +int getRange()
+  +boolean equals(Object o)
+  +void setId(String id)
+  +void setHeight(double h)
+  +void setRange(int range)
+  +void setTypeString(String type)
+  +int getMaxSendBandwidth()
+  +void setMaxSendBandwidth(int b)
+  +int getMaxReceiveBandwidth()
+  +void setMaxReceiveBandwidth(int b)
+  +int getMaxFiles()
+  +void setMaxFiles(int maxFiles)
+  +int getMaxBytes()
+  +void setMaxBytes(int maxBytes)
+}
+class Device extends Entity {
+  +Device(String id, Angle p, double h, int range, String type)
+}
+class LaptopDevice extends Device {
+  -String TYPE_STRING
+  -int RANGE
+  +LaptopDevice(String id, Angle p)
+}
+class HandheldDevice extends Device {
+  -String TYPE_STRING
+  -int RANGE
+  +HandheldDevice(String id, Angle p)
+}
+class DesktopDevice extends Device {
+  -String TYPE_STRING
+  -int RANGE
+  +DesktopDevice(String id, Angle p)
+}
+
+class Satellite extends Entity {
+  +int POSITIVE_DIRECTION
+  +int NEGATIVE_DIRECTION
+  -int direction
+  -int linearVelocity
+  +Satellite(String id, double h, Angle p, int range, String type, int vel, int dir, int maxSendBandwidth, int maxReceiveBandwidth, int maxFiles, int maxBytes)
+  +{abstract}void updatePosition()
+  +void changeDirection()
+  +Angle getAngularVelocity()
+  +Angle getNewPositionWrapped()
+  +int getLinearVelocity()
+  +int getDirection()
+  +void setDirection(int dir)
+}
+class RelaySatellite extends Satellite {
+  -String TYPE_STRING
+  -int RANGE
+  -int VELOCITY
+  -int STARTING_DIRECTION
+  -int MAX_SENDING_BANDWIDTH
+  -int MAX_RECEIVING_BANDWIDTH
+  -int MAX_BYTES
+  -int MAX_FILES
+  +RelaySatellite(String id, double h, Angle p)
+  +void updatePosition()
+}
+class TeleportingSatellite extends Satellite {
+  -String TYPE_STRING
+  -int RANGE
+  -int VELOCITY
+  -int STARTING_DIRECTION
+  -int MAX_SENDING_BANDWIDTH
+  -int MAX_RECEIVING_BANDWIDTH
+  -int MAX_BYTES
+  -int MAX_FILES
+  +TeleportingSatellite(String id, double h, Angle p)
+  +void updatePosition()
+}
+class StandardSatellite extends Satellite {
+  -String TYPE_STRING
+  -int RANGE
+  -int VELOCITY
+  -int STARTING_DIRECTION
+  -int MAX_SENDING_BANDWIDTH
+  -int MAX_RECEIVING_BANDWIDTH
+  -int MAX_BYTES
+  -int MAX_FILES
+  +StandardSatellite(String id, double h, Angle p)
+  +void updatePosition()
+}
+class ElephantSatellite extends Satellite {
+  -String TYPE_STRING
+  -int RANGE
+  -int VELOCITY
+  -int STARTING_DIRECTION
+  -int MAX_SENDING_BANDWIDTH
+  -int MAX_RECEIVING_BANDWIDTH
+  -int MAX_BYTES
+  -int MAX_FILES
+  -Map<String, TransferFile> transientFiles
+  +ElephantSatellite(String id, double h, Angle p)
+  +void updatePosition()
+  +Map<String, TransferFile> getTransientFiles()
+  +void removeTransientFile(String name)
+  +void addTransientFile(TransferFile tf)
+  +boolean canStoreBytes(int bytes)
+  -Set<String> transientKnapsack(int cap)
+  +Map<String, File> getAllFiles()
+  +void removeReceivingFile(String name)
+  +void removeOutOfRangeSendingFiles(List<Entity> entities)
+}
+class File {
+  -String filename
+  -String content
+  -int curSize
+  -int finalSize
+  +File(String name, String content)
+  +String getContent()
+  +String getEntireContent()
+  +int getFinalSize()
+  +int getCurSize()
+  +void setCurSize(int curSize)
+  +String getFilename()
+}
+class TransferFile extends File {
+  -Entity transferEntity
+  +TransferFile(String name, String content, Entity e)
+  +TransferFile(TransferFile tf, Entity e)
+  +void incCurSize(int bytes)
+  +Entity getTransferEntity()
+}
+
+BlackoutController "1..*" *-- "1" Device
+BlackoutController "1..*" *-- "1" Satellite
+Entity "1..*" *-- "1" File
+Entity "1..*" *-- "1" TransferFile
+
+@enduml

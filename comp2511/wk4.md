@@ -4,10 +4,10 @@ delegation forwards an operation to another object on behalf of first object
 
 essentially make methods on containing objects
 
-tight coupling:
+tight coupling (law of demeter/least knowledge):
 where rely a lot on containing class internals, 
 e.g. calling a lot of contained class methods
-grouping them together can help
+grouping them together can help, i.e. encapsulate
 
 low cohesion:
 methods aren't relatable,
@@ -20,6 +20,7 @@ an existing method is an instance of a functional interface
 Predicate<String> p = String::isEmpty (get reference to isEmpty function, whose type will be a functional interface)
 Function<String, Integer> p = String::length
 Consumer<String> p = (s) -> { System.out.println(s); }
+
 Comparator<Object> 
 
 Pipelines:
@@ -28,6 +29,7 @@ stream() creates from collection
 filter() is intermediate, i.e. returns new stream
 forEach() is terminal, i.e does not return new stream
 `l.stream().filter(e -> e.length() > 10).mapToInt(e::getAge).average()`
+`List<Integer> l = strings.stream().map(Integer::parseInt).collect(Collectors.toList())`
 
 type-switch replacement with polymorphism.
 

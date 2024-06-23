@@ -1,3 +1,4 @@
-rm -f lab3.png
-java -jar misc/plantuml.jar lab3.txt
-xdg-open lab3.png
+name="ass1"
+rm -f "$name".png
+java -jar misc/plantuml.jar "$name".txt
+xdg-open "$name".png

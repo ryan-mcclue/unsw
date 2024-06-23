@@ -28,6 +28,7 @@ To acheive this have 'design principles', e.g. DRY, KISS, SOLID (single-responsi
 2. LSP (passing subclasses as parent classes should work. 
         so, inherited methods must make sense for subclass.
         if not, favour composition over inheritance)
+        (IMPORTANT: violation of LSP even if 'still work', rather has attributes that don't make logical sense)
 
 Covariance allows for returning subclass types when overriding
 Contravariance allows for defining parentclass types (will not override)

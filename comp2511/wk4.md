@@ -35,7 +35,7 @@ type-switch replacement with polymorphism.
 
 1. common to all: inheritance
 2. common to some: composition (can just override if only a small number of classes)
-  - strategy pattern:
+  - Behavioural Strategy Pattern:
   * delegation allows dynamic/change at runtime behaviour
   * can group together functions for code-reuse
   take variable operations and turn into 'behaviour'/'strategy' interfaces, e.g:
@@ -54,7 +54,7 @@ type-switch replacement with polymorphism.
     }
   ```
 
-- state machine pattern:
+- Behavioural State Machine Pattern:
   ```
   class Machine:
     StateInterface waitingState;

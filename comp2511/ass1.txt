@@ -196,9 +196,9 @@ class TransferFile extends File {
   +Entity getTransferEntity()
 }
 
-BlackoutController "1..*" *-- "1" Device
-BlackoutController "1..*" *-- "1" Satellite
-Entity "1..*" *-- "1" File
-Entity "1..*" *-- "1" TransferFile
+BlackoutController "0..1" o-- "0..*" Device
+BlackoutController "0..1" o-- "0..*" Satellite
+Entity "0..1" o-- "0..*" File
+Entity "1" *-- "0..*" TransferFile
 
 @enduml

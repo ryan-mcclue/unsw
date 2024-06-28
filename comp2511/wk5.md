@@ -6,6 +6,16 @@ Observable/subject object maintains list of observers/subscribers and notifies t
 Observable will call observers interface function
 
 ```
+interface Subject {
+  attach(Observer o);
+  detach(Observer o);
+  notify();
+}
+
+class Sensor implements Subject {
+  ArrayList<Observers> o;
+}
+
 interface Observer {
   update(Subject s);
 }
@@ -18,15 +28,6 @@ class Monitor implements Observer {
   }
 }
 
-interface Subject {
-  attach(Observer o);
-  detach(Observer o);
-  notify();
-}
-
-class Sensor implements Subject {
-  ArrayList<Observers> o;
-}
 ```
 
 - Structural Composite Pattern 

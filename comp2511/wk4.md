@@ -36,6 +36,7 @@ type-switch replacement with polymorphism.
 1. common to all: inheritance
 2. common to some: composition (can just override if only a small number of classes)
   - Behavioural Strategy Pattern:
+  (IMPORTANT: also common for removing switch(type) statements)
   * delegation allows dynamic/change at runtime behaviour
   * can group together functions for code-reuse
   take variable operations and turn into 'behaviour'/'strategy' interfaces, e.g:
@@ -55,12 +56,25 @@ type-switch replacement with polymorphism.
   ```
 
 - Behavioural State Machine Pattern:
+Helps maintain open/closed principle (class should be open for extension/closed for modification)
+e.g. have to modify containing class switch statement to extend
   ```
-  class Machine:
-    StateInterface waitingState;
-    StateInterface winnerState;
+  abstract class MachineState {
+    Machine m;
 
-    void insertCoin() {
-      state.insertCoin();
+    void actionOne();
+  }
+
+  class waitingState extends MachineState {
+    void actionOne() {
+      this.m.setState(new runningState(this.m));
+    }
+  }
+
+  class Machine:
+    MachineState curState;
+
+    void actionOne() {
+      state.actionOne(this);
     }
   ```

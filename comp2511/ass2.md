@@ -1,5 +1,56 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T2/specs/assignment-ii-spec/-/blob/main/MVP.md
+https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T2/specs/assignment-ii-spec/-/blob/main/Assignment_Specification.md
+
+modify
+triggerOverlapEvent(), triggerMovingAwayEvent(), destroyEntity()
+
+TouchEntity implements OverlapEvent
+Key overlap
+Bomb overlap
+Potion overlap
+Sword overlap
+Treasure overlap
+Wood overlap
+Arrow, Boulder overlap
+Door overlap
+Player overlap
+Portal overlap
+
+DestroyEntity implements DestroyEvent
+ZombieToastSpawner destroy
+
+TouchDestroyEntity implements OverlapEvent, DestroyEvent
+Enemy overlap, destroy
+Mercenary overlap, destroy
+
+Entity
+Buildable, Exit, Wall 
+
+TouchLeaveEntity implements OverlapEvent, MoveAwayEvent
+Switch overlap, away
+
+---------------------------------------------------------------------------
+
+player.pickUp(Entity e) {
+  if (!(e instanceof CollectableEntity)) return;
+  e.overlapEvent()
+  inventory.add(e);
+}
+
+
+
+dmc.newGame()
+dmc.build()
+dmc.interact()
+
+dmc.tick()
+update seems to register callback actions on priority queues
+cur-tick events in sub
+next-tick events in addingSub
+
+
 entities: static, moving, collectable, buildable
 
 entity battles
@@ -36,7 +87,18 @@ once done, merge request:
  - Make sure all the Continuous Integration checks (regression tests, linting, coverage) remain passing.
 once approved, copy MR link into blog
 
-a) movement code to strategy?
+a) movement code
+only player can use items/potions
+if (effectivePotion != null) {
+  nextPos = effectivePotion.enemyMove(this, player, map)
+} else {
+  nextPos = enemyMove()
+}
+movement code for enemies with potions, also without potions
+-random movement
+-away from player movement
+-spider movement
+
 b) Switch is subject. Bombs observers
 c) LSP violation
 d) tight coupling 

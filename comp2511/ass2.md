@@ -32,14 +32,57 @@ TouchLeaveEntity implements OverlapEvent, MoveAwayEvent
 Switch overlap, away
 
 ---------------------------------------------------------------------------
+class PickupItem implements InventoryItem {
+  void onPickup(Player p) {
+    p.addToInventory(this);
+    map.destroyEntity(this);
+  }
 
-player.pickUp(Entity e) {
-  if (!(e instanceof CollectableEntity)) return;
-  e.overlapEvent()
-  inventory.add(e);
+  @Override onOverlap() {
+    onPickup();
+  }
 }
 
+class Treasure/Bomb extends PickupItem {
+  @Override onPickup() {
+    
+  }
+}
+---------------------------------------------------------------------------
 
+- buildable simple reallocation into parent class attributes
+ 
+- add state applyBuff() etc.
+Player {
+  state (what potion in effect)
+}
+
+----------------------------
+
+logical entities (activatible): 
+bulb (if current) 
+switch door (if current)
+logical bombs (explode on condition...)
+
+IMPORTANT: the addition of new entities results in new entries in json map parser     
+
+IMPORTANT: cardinally adjacent (so left-right-up-down; no diagonal)
+
+IMPORTANT: conductor activation then logical conditions
+
+conductors:
+wire, switches
+OR: only 1 activated adjacent conductor
+AND: all activated adjacent conductor; atleast 2 as well
+XOR: only 1 activated conductor
+CO_AND: 2 or more activated on same tick
+
+current through wire or activated switch (i.e. a single switch requires no wires)
+
+
+- on each tick; chained activation and deactivation
+
+--------------------------------------
 
 dmc.newGame()
 dmc.build()

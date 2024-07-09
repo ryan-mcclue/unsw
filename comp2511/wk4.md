@@ -33,6 +33,8 @@ forEach() is terminal, i.e does not return new stream
 
 type-switch replacement with polymorphism.
 
+IMPORTANT: if dynamic, have composition
+
 1. common to all: inheritance
 2. common to some: composition (can just override if only a small number of classes)
   - Behavioural Strategy Pattern:

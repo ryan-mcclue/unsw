@@ -32,30 +32,114 @@ TouchLeaveEntity implements OverlapEvent, MoveAwayEvent
 Switch overlap, away
 
 ---------------------------------------------------------------------------
-class PickupItem implements InventoryItem {
-  void onPickup(Player p) {
-    p.addToInventory(this);
-    map.destroyEntity(this);
+abstract class CollectableEntity extends Entity {
+  void pickedUp(Player p) {
+    if (pickUpCheck(p)) {
+      p.addToInventory(this);
+      map.destroyEntity(this);
+      postPickup(p);
+    }
   }
+  boolean pickUpCheck(Player p) { return true; }
+  void postPickup(Player p) {}
+}
 
-  @Override onOverlap() {
-    onPickup();
+class Potion/Arrow/Key/Sword/Wood extends CollectableEntity {}
+
+class Bomb extends CollectableEntity {
+  @Override
+  boolean pickUpCheck(Player p) {
+    return (state == State.SPAWNED);
+  }
+  @Override
+  void postPickup(Player p) {
+    subs.stream().forEach(s -> s.unsubscribe(this));
+    this.state = State.INVENTORY;
   }
 }
 
-class Treasure/Bomb extends PickupItem {
-  @Override onPickup() {
-    
+class Treasure extends CollectableEntity {
+  @Override
+  void postPickup(Player p) {
+    p.incTreasureCount();
   }
 }
+
+
 ---------------------------------------------------------------------------
 
 - buildable simple reallocation into parent class attributes
+
+public interface BattleItem {
+    public BattleStatistics applyBuff(BattleStatistics origin);
+    public void use(Game game);
+    public int getDurability();
+}
+
+abstract class BattleEntity extends Entity implements BattleItem {
+  curBattleStatistics;
+  void setBattleStatistic();
+
+  BattleEntity(Position p) {
+    super(p);
+  }
+
+  void use() {
+      durability--;
+      if (durability <= 0) {
+          game.getPlayer().remove(this);
+      } 
+  } 
+
+  applyBuff(origin) {
+    return BattleStatistics.applyBuff(origin, curBattleStatisics);
+  }
+}
+
+public abstract class Potion extends BattleEntity {
+  @Override
+  void use() { return; }
+} 
+public class InvisiblePotion {
+  InvisibilityPotion() {
+    setBattleStatistic(new BattleStatistics(0, 0, 0, 1, 1, false, false));
+  }
+}
+
+public class InvinciblePotion {
+  new BattleStatistics(0, 0, 0, 1, 1, true, true));
+}
+
+public abstract class Buildable extends BattleEntity {} 
+Bow {
+  new BattleStatistics(0, 0, 0, 2, 1)); 
+}
+Sheild {
+  new BattleStatistics(0, 0, defence, 1, 1));
+}
+public class Sword extends BattleEntity {
+  new BattleStatistics(0, attack, 0, 1, 1));
+} 
+
+Bow
+health=0, attack=0, defence=0, attackmag=2, damagered=1
+
+Shield
+health=0, attack=0, defence=defence, attackmag=1, damagered=1
  
 - add state applyBuff() etc.
 Player {
   state (what potion in effect)
 }
+
+-   public void translate(Direction direction) {
+      Position newPosition = Position.translateBy(this.position, direction);
+      setPosition(newPosition);
+    }
+    public void translate(Position offset) {
+      Position newPosition = Position.translateBy(this.position, offset);
+      setPosition(p)
+    }
 
 ----------------------------
 

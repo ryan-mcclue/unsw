@@ -22,6 +22,5 @@
   "zombie_attack": 1,
   "zombie_health": 5,
   "zombie_spawn_interval": 0,
-
   "enemy_goal": 1
 }

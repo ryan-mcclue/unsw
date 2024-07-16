@@ -1,0 +1,25 @@
+{
+  "entities": [
+    {
+      "type": "player",
+      "x": 1,
+      "y": 1
+    },
+    {
+      "x": 3,
+      "y": 1,
+      "type": "sword"
+    },
+    {
+      "type": "spider",
+      "x": 2,
+      "y": 2
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "type": "zombie_toast_spawner"
+    }
+  ],
+  "goal-condition": {"goal": "enemies"}
+}

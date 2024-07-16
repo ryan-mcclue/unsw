@@ -109,7 +109,10 @@ Player {
 
 int treasureGoal = config.optInt("treasure_goal", 1);
 
-
+if (entity instanceof Player) {
+    Player player = (Player) entity;
+    map.getGame().battle(player, this);
+}
 -------------------------------------------------------------------
 
 logical entities (activatible): 
@@ -135,6 +138,48 @@ current through wire or activated switch (i.e. a single switch requires no wires
 
 - on each tick; chained activation and deactivation
 
+{
+  "type": "light_bulb_off/switch_door/bomb",
+  "x": 1,
+  "y": 1,
+  "logic": "and/or/xor/co_and"
+}
+
+class LogicalCondition {
+  void or() {
+
+  }
+}
+
+class Lightbulb extends Entity implements LogicalEntity {
+  boolean on = false;
+}
+
+class SwitchDoor extends Entity implements LogicalEntity {
+  boolean opened = false; 
+}
+
+class Switch implements Conductor {
+
+}
+
+class Wire extends Entity implements Conductor {
+  @Override
+  boolean canMoveOnto() {
+    moveableEntity;
+  }
+}
+
+class BombDecorator implements LogicalEntity {
+  Bomb b;
+
+}
+
+
+
+
+
+
 --------------------------------------
 tests/task2
 
@@ -147,7 +192,14 @@ Task Requirements:
 
 Design: 
   - What fields/methods you will need to add/change in a class
+    * Enemy onDestroy() to count enemies destroyed
+    * ZombieToastSpawner interact() to be destroyed on interaction
+    * GoalFactory createGoal() to create "enemies" goal
+    * Game getNumEnemiesDestroyed() and incNumEnemiesDestroyed()
+    +
   - What new classes/packages you will need to create
+    * EnemyGoal class 
+    + 
 
 Design Review: 
   - Have your partner review the design, and go back and iterate on the design if needed.

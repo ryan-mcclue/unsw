@@ -52,3 +52,16 @@ class Garage implements Iterable<Car> {
   }
 }
 ```
+
+Testing:
+  - Input space
+    * Input groups, e.g. all same, decreasing etc.
+    * Boundary testing
+    * Randomness
+  (a parameterised test runs same test with different input)
+
+  - Property based testing (for large inputs), e.g. test calling reverse() twice gives same as original
+
+Dealing with unknowns:
+  - developing: small iterative functional changes; understand requirements to deliver actionable
+  - existing: can incur technical debt that must be paid later using a slower language etc.

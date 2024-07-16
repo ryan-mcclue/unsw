@@ -138,6 +138,8 @@ current through wire or activated switch (i.e. a single switch requires no wires
 --------------------------------------
 tests/task2
 
+NOTE: test plan just specify what is considered a unit test, and what is a system test
+
 Task Requirements:
   - Technical
   - Product

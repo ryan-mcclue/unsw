@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+// re-merge task1c-entityinheritance removed task1a
+
 https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T2/specs/assignment-ii-spec/-/blob/main/MVP.md
 https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T2/specs/assignment-ii-spec/-/blob/main/Assignment_Specification.md
 
@@ -70,49 +72,11 @@ class Treasure extends CollectableEntity {
 
 - buildable simple reallocation into parent class attributes
 
-public interface BattleItem {
-    public BattleStatistics applyBuff(BattleStatistics origin);
-    public void use(Game game);
-    public int getDurability();
-}
-
-abstract class BattleEntity extends Entity implements BattleItem {
-  curBattleStatistics;
-  void setBattleStatistic();
-
-  BattleEntity(Position p) {
-    super(p);
-  }
-
-  void use() {
-      durability--;
-      if (durability <= 0) {
-          game.getPlayer().remove(this);
-      } 
-  } 
-
-  applyBuff(origin) {
-    return BattleStatistics.applyBuff(origin, curBattleStatisics);
-  }
-}
-
-public abstract class Potion extends BattleEntity {
-  @Override
-  void use() { return; }
-} 
-public class InvisiblePotion {
-  InvisibilityPotion() {
-    setBattleStatistic(new BattleStatistics(0, 0, 0, 1, 1, false, false));
-  }
-}
-
-public class InvinciblePotion {
-  new BattleStatistics(0, 0, 0, 1, 1, true, true));
-}
-
-public abstract class Buildable extends BattleEntity {} 
 Bow {
-  new BattleStatistics(0, 0, 0, 2, 1)); 
+
+  Bow() {
+    this.battleItemActions = new BattleItemActions(new BattleStatistics(0, 0, 0, 2, 1));
+  } 
 }
 Sheild {
   new BattleStatistics(0, 0, defence, 1, 1));
@@ -141,7 +105,12 @@ Player {
       setPosition(p)
     }
 
-----------------------------
+-------------------------------------------------------------------
+
+int treasureGoal = config.optInt("treasure_goal", 1);
+
+
+-------------------------------------------------------------------
 
 logical entities (activatible): 
 bulb (if current) 
@@ -155,7 +124,7 @@ IMPORTANT: cardinally adjacent (so left-right-up-down; no diagonal)
 IMPORTANT: conductor activation then logical conditions
 
 conductors:
-wire, switches
+wire, switches (only a conductor if switched on)
 OR: only 1 activated adjacent conductor
 AND: all activated adjacent conductor; atleast 2 as well
 XOR: only 1 activated conductor
@@ -167,6 +136,54 @@ current through wire or activated switch (i.e. a single switch requires no wires
 - on each tick; chained activation and deactivation
 
 --------------------------------------
+tests/task2
+
+Task Requirements:
+  - Technical
+  - Product
+  - Assumptions
+
+Design: 
+  - What fields/methods you will need to add/change in a class
+  - What new classes/packages you will need to create
+
+Design Review: 
+  - Have your partner review the design, and go back and iterate on the design if needed.
+
+Create a Test List: 
+  - Once the design is approved, write a test list (a list of all the tests you will write) for the task. 
+
+Test List Review: 
+  - Have someone else in your team review the test list to make sure the test cases all make sense and cover the input space.
+
+Create the Skeleton: 
+  - Stub out anything you need to with class/method prototypes.
+
+Write the tests: 
+  - which should be failing assertions currently since the functionality hasn't been implemented.
+
+Development:
+  - Implement the functionality so that your tests pass.
+  - Run a usability test (check your functionality works on the frontend).
+
+MR:
+  - In most cases, MR should just be able to link to your design/test list blog.
+  - Code Review from your partner, iterate where needed then they should approve the MR.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------
 
 dmc.newGame()
 dmc.build()
@@ -226,7 +243,13 @@ movement code for enemies with potions, also without potions
 -away from player movement
 -spider movement
 
-b) Switch is subject. Bombs observers
+b)
+Gamemap.game
+GameMap initRegisterSpawners() (double spawn zombie toast for all existing; spawn spider) 
+and initRegisterMovables() (all existing enemy movements) on Game class
+register to callback for each. so, on each tick, call the observable function
+on particular entity removal, unsubscribe()
+
 c) LSP violation
 d) tight coupling 
 e) violation of open/closed 

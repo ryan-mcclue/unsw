@@ -23,29 +23,30 @@ class Concrete extends Template {
 
 - Structural Decorator Pattern
 Attach functionality to object rather than class at runtime
-Dynamically attach pre and post calls
+Dynamically attach pre and post calls, i.e. extend functionality, e.g. reduce/increase exisiting amount etc.
 ```
-abstract class Component {
+abstract class Base {
   public abstract void operation();
 }
 
-class ComponentObject extends Component {
+class BaseObject extends Base {
   void operation() {}
 }
 
 // Forwards component calls
-class Decorator extends Component {
-  Component c;
+class Decorator extends Base {
+  Base b;
   void operation() { 
     prework(); 
-    c.operation(); 
+    b.operation(); 
     postwork(); 
   } 
 }
 
+// IMPORTANT: an undecorate function would just return the previous contained object
 main() {
-  Component c = new ComponentObject();
-  c = new Decorator(c);
+  Base b = new BaseObject();
+  b = new Decorator(b);
 }
 ```
 

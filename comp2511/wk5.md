@@ -48,6 +48,22 @@ class Composite implements Component {
 }
 ```
 
+```
+interface Expression {
+  double evaluate()
+}
+
+(leaf)
+class Number implements Expression {
+  double value;
+}
+(components)
+class Add/Sub/Div/Mul implements Expression {
+  Expression e1; 
+  Expression e2;
+}
+```
+
 - Creational Factory Method Pattern
 (Abstract Factory has many factories)
 Create object without specifying exact class
@@ -60,10 +76,12 @@ class WebButton implements Button {
 
 }
 
-class DialogFactory {
+(useful for objects with lots of composition contructors)
+abstract class DialogFactory {
   factoryCreateButton();
   factoryCreateScrollbar();
 }
+(one for each object creation extracting over)
 class WebDialogFactory extends DialogFactory {
   @Override
   factoryCreateButton();

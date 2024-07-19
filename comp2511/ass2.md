@@ -141,10 +141,12 @@ current through wire or activated switch (i.e. a single switch requires no wires
   "logic": "and/or/xor/co_and"
 }
 
-interface LogicalCondition
+interface LogicalCondition {
+  boolean condition(Gamemap m, Position p);
+}
 
-class LogicalCondition {
-  boolean or(Gamemap map, Position pos) {
+class OrLogicalCondition implements LogicalCondition {
+  public boolean condition(Gamemap map, Position pos) {
     List<Position> positions = pos.getCardinallyAdjacentPositions();
     for (Position p: positions) {
       for (Entity e: map.getEntities(p)) {
@@ -158,8 +160,10 @@ class LogicalCondition {
     } 
     return false;
   }
+}
 
-  boolean and(Gamemap map, Position pos) {
+class AndLogicalCondition implements LogicalCondition {
+  boolean condition(Gamemap map, Position pos) {
     List<Position> positions = pos.getCardinallyAdjacentPositions();
     int conductorCount = 0;
     for (Position p: positions) {
@@ -176,7 +180,8 @@ class LogicalCondition {
     return conductorCount >= 2;
   }
 
-  boolean xor(Gamemap map, Position pos) {
+class XorLogicalCondition implements LogicalCondition {
+  boolean condition(Gamemap map, Position pos) {
     List<Position> positions = pos.getCardinallyAdjacentPositions();
     int activeConductorCount = 0;
     for (Position p: positions) {
@@ -192,7 +197,8 @@ class LogicalCondition {
     return activeConductorCount == 1;
   }
 
-  boolean coand(Gamemap map, Position pos) {
+class CoAndLogicalCondition implements LogicalCondition {
+  boolean condition(Gamemap map, Position pos) {
     List<Position> positions = pos.getCardinallyAdjacentPositions();
     int activeConductorCount = 0;
     int tickActivated = -1;
@@ -215,22 +221,34 @@ class LogicalCondition {
     }
     return activeConductorCount >= 2;
   }
-
 }
+
 
 interface LogicalEntity {
   boolean isLogicallyOn();
 }
 
 class LightBulbOn extends Entity implements LogicalEntity {
-  LogicalCondition cond;
+  private LogicalCondition lc;
 
-  public boolean isLogicallyOn() {
-    return true;
+  public LightBulbOn(Position p, LogicalCondition c) {
+
   }
 
-  public LightBulbOn(LogicalCondition c) {
+  public boolean isLogicallyOn() {
+    return lc.condition();
+  }
+}
 
+class LightBulbOff extends Entity implements LogicalEntity {
+  private LogicalCondition lc;
+
+  public LightBulbOff(Position p, LogicalCondition c) {
+
+  }
+
+  public boolean isLogicallyOn() {
+    return lc.condition();
   }
 }
 
@@ -238,19 +256,24 @@ class LightBulbOn extends Entity implements LogicalEntity {
 class SwitchDoor extends Entity implements LogicalEntity {
   boolean opened = false; 
 
+  private LogicalCondition lc;
+  public boolean isLogicallyOn() {
+    return lc.condition();
+  }
+
   public boolean canMoveOnto(GameMap map, Entity entity) {
     if (open || entity instanceof Spider) {
         return true;
     }
     return (entity instanceof Player && isLogicallyOn());
   }
-  // seems no door open texture change?
 }
 
 interface Conductor {
-  boolean isOn();
+  boolean isConducting();
   int getActivationTick();
-  void update();
+  void activate();
+  void deactivate();
 }
 
 class Switch implements Conductor {
@@ -315,7 +338,7 @@ Game.tick() {
       } else if (e instanceof LightBulbOff) {
   
       } else if (e instanceof LogicBomb) {
-        if (b.isLogicallyOn()) {
+        if (b.getState() != INVENTORY && b.isLogicallyOn()) {
           b.explode();
         }
       }
@@ -330,16 +353,95 @@ class Wire extends Entity implements Conductor {
     // is boulder considered movable?
     return (entity instanceof Enemy || entity instanceof Player);
   }
-
-
 }
 
-class BombExplosion {
-  
+public abstract class ExplodableEntity extends CollectableEntity {
+    public enum State {
+        SPAWNED, INVENTORY, PLACED
+    }
+
+    public static final int DEFAULT_RADIUS = 1;
+    private State state;
+    private int radius;
+
+    public Bomb(Position position, int radius) {
+        super(position);
+        state = State.SPAWNED;
+        this.radius = radius;
+    }
+
+    @Override
+    public boolean collectCheck(Player p) {
+        return (state == State.SPAWNED);
+    }
+
+    abstract void onPutDown(GameMap map, Position p);
+
+    public void explode(GameMap map) {
+        int x = getPosition().getX();
+        int y = getPosition().getY();
+        for (int i = x - radius; i <= x + radius; i++) {
+            for (int j = y - radius; j <= y + radius; j++) {
+                List<Entity> entities = map.getEntities(new Position(i, j));
+                entities = entities.stream().filter(e -> !(e instanceof Player)).collect(Collectors.toList());
+                for (Entity e : entities)
+                    map.destroyEntity(e);
+            }
+        }
+    }
+
+    public State getState() {
+        return state;
+    }
 }
 
-class LogicalBomb implements LogicalEntity {
-  BombExplosion be;
+class Bomb extends ExplodableEntity {
+    //private List<Switch> subs = new ArrayList<>();
+
+    //public void subscribe(Switch s) {
+    //    this.subs.add(s);
+    //}
+
+    //public void notify(GameMap map) {
+    //    explode(map);
+    //}
+
+    @Override
+    public void postCollect(Player p) {
+        subs.stream().forEach(s -> s.unsubscribe(this));
+        this.state = State.INVENTORY;
+    }
+
+    public void onPutDown(GameMap map, Position p) {
+        translate(Position.calculatePositionBetween(getPosition(), p));
+        map.addEntity(this);
+        this.state = State.PLACED;
+        List<Position> adjPosList = getPosition().getCardinallyAdjacentPositions();
+        adjPosList.stream().forEach(node -> {
+            List<Entity> entities = map.getEntities(node).stream().filter(e -> (e instanceof Switch))
+                    .collect(Collectors.toList());
+            entities.stream().map(Switch.class::cast).forEach(s -> s.subscribe(this, map));
+            entities.stream().map(Switch.class::cast).forEach(s -> this.subscribe(s));
+        });
+    }
+}
+
+class LogicalBomb extends ExplodableEntity implements LogicalEntity {
+    @Override
+    public void postCollect(Player p) {
+        this.state = State.INVENTORY;
+    }
+
+    public void onPutDown(GameMap map, Position p) {
+        translate(Position.calculatePositionBetween(getPosition(), p));
+        map.addEntity(this);
+        this.state = State.PLACED;
+    }
+
+    private LogicalCondition lc;
+    public boolean isLogicallyOn() {
+      return lc.condition();
+    }
 }
 
 

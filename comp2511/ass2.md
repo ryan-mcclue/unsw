@@ -131,7 +131,6 @@ wire, switches (only a conductor if switched on)
 
 current through wire or activated switch (i.e. a single switch requires no wires)
 
-IMPORTANT: conductor logic first, then logical entities
 
 - on each tick; chained activation and deactivation
 
@@ -141,6 +140,8 @@ IMPORTANT: conductor logic first, then logical entities
   "y": 1,
   "logic": "and/or/xor/co_and"
 }
+
+interface LogicalCondition
 
 class LogicalCondition {
   boolean or(Gamemap map, Position pos) {
@@ -221,18 +222,18 @@ interface LogicalEntity {
   boolean isLogicallyOn();
 }
 
-class Lightbulb extends Entity implements LogicalEntity {
+class LightBulbOn extends Entity implements LogicalEntity {
   LogicalCondition cond;
-  boolean on = false;
 
   public boolean isLogicallyOn() {
+    return true;
   }
 
-  public LightBulb(LogicalCondition c) {
+  public LightBulbOn(LogicalCondition c) {
 
   }
-  
 }
+
 
 class SwitchDoor extends Entity implements LogicalEntity {
   boolean opened = false; 
@@ -243,7 +244,7 @@ class SwitchDoor extends Entity implements LogicalEntity {
     }
     return (entity instanceof Player && isLogicallyOn());
   }
-  // TODO: seems no door open texture change?
+  // seems no door open texture change?
 }
 
 interface Conductor {
@@ -275,10 +276,6 @@ class Switch implements Conductor {
         if (e instanceof Conductor) {
           Conductor c = (Conductor)e;
           c.activate(seen);
-        } 
-        if (e instanceof LightBulb) {
-           // have to replace entity here if it can be activated
-           // or, can do tileset from customisations.md?
         }
       }
     }
@@ -299,10 +296,32 @@ class Switch implements Conductor {
     }
   }
 
-  void deactivateNeighbours() {
+  void deactivateNeighbours(Switch sourceSwitch) {
 
   }
   
+}
+
+IMPORTANT: conductor logic first, then logical entities
+Game.tick() {
+  void updateLightBulbs() {
+    for (Entity e: map.getEntities()) {
+      if (e instanceof LightBulbOn) {
+        LightBulbOn l = (LightBulbOn)e;
+        if (!l.isLogicallyOn()) {
+          map.destroyEntity(l);
+          map.addEntity(new LightBulbOff());
+        }
+      } else if (e instanceof LightBulbOff) {
+  
+      } else if (e instanceof LogicBomb) {
+        if (b.isLogicallyOn()) {
+          b.explode();
+        }
+      }
+    }
+  }
+
 }
 
 class Wire extends Entity implements Conductor {
@@ -312,11 +331,17 @@ class Wire extends Entity implements Conductor {
     return (entity instanceof Enemy || entity instanceof Player);
   }
 
+
+}
+
+class BombExplosion {
+  
 }
 
 class LogicalBomb implements LogicalEntity {
-  Bomb b;
+  BombExplosion be;
 }
+
 
 GraphNodeFactory.constructEntity() {
   case "light_bulb_off":

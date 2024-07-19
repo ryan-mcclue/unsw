@@ -23,6 +23,9 @@ Consumer<String> p = (s) -> { System.out.println(s); }
 
 Comparator<Object> 
 
+ArrayList<E> a = new ArrayList<>(this.elements);
+Collections.reverse(a);
+
 Pipelines:
 stream() creates from collection
 `roster.stream().filter(p -> p.getHeight() > 190).forEach(p -> p.printName());`

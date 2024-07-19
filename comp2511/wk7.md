@@ -51,13 +51,30 @@ main() {
 ```
 
 Generic Programming:
-Type is parameter
+Type is parameter. Does type checks at compile time
 ```
 interface Pair<K super Integer, V> {}
 
 // operators like '>' only work on primitive types; so use compareTo()
 class OrderedPair<K, V> implements Pair<K, V> {
   static <T extends Comparable<T>> boolean compare() 
+}
+
+IMPORTANT: <T> adds a type scope. So, <T>'s are different here
+class Name<T> {
+
+  public void <T> func(T t) {
+
+  }
+}
+
+void func(ArrayList<? extends Integer> a) {
+  Iterator<? extends Integer> it = a.iterator(); 
+  (? saves having to paramaterise many possible type argument types)
+  (Also, ? over just Integer, means specific type, rather than any subclass of Integer)
+  while (!iterator.hasNext()) {
+    sum += iterator.next();
+  }
 }
 ```
 
@@ -72,7 +89,7 @@ class Object1ToObject2Adapter implements Object2 {
 ```
 class Singleton {
   Singleton instance;
-  Singleton getInstance() {
+  Singleton synchronized getInstance() {
     if (instance == null) return new Singleton();
     else return instance;
   }

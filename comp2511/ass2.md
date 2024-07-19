@@ -128,13 +128,10 @@ IMPORTANT: conductor activation then logical conditions
 
 conductors:
 wire, switches (only a conductor if switched on)
-OR: only 1 activated adjacent conductor
-AND: all activated adjacent conductor; atleast 2 as well
-XOR: only 1 activated conductor
-CO_AND: 2 or more activated on same tick
 
 current through wire or activated switch (i.e. a single switch requires no wires)
 
+IMPORTANT: conductor logic first, then logical entities
 
 - on each tick; chained activation and deactivation
 
@@ -146,39 +143,181 @@ current through wire or activated switch (i.e. a single switch requires no wires
 }
 
 class LogicalCondition {
-  void or() {
-
+  boolean or(Gamemap map, Position pos) {
+    List<Position> positions = pos.getCardinallyAdjacentPositions();
+    for (Position p: positions) {
+      for (Entity e: map.getEntities(p)) {
+        if (e instanceof Conductor) {
+          Conductor c = (Conductor)e;
+          if (c.isConducting()) {
+            return true;
+          }
+        }
+      }
+    } 
+    return false;
   }
+
+  boolean and(Gamemap map, Position pos) {
+    List<Position> positions = pos.getCardinallyAdjacentPositions();
+    int conductorCount = 0;
+    for (Position p: positions) {
+      for (Entity e: map.getEntities(p)) {
+        if (e instanceof Conductor) {
+          conductorCount += 1;
+          Conductor c = (Conductor)e;
+          if (!c.isConducting()) {
+            return false;
+          }
+        }
+      }
+    } 
+    return conductorCount >= 2;
+  }
+
+  boolean xor(Gamemap map, Position pos) {
+    List<Position> positions = pos.getCardinallyAdjacentPositions();
+    int activeConductorCount = 0;
+    for (Position p: positions) {
+      for (Entity e: map.getEntities(p)) {
+        if (e instanceof Conductor) {
+          Conductor c = (Conductor)e;
+          if (c.isConducting()) {
+            activeConductorCount += 1;
+          }
+        }
+      }
+    }
+    return activeConductorCount == 1;
+  }
+
+  boolean coand(Gamemap map, Position pos) {
+    List<Position> positions = pos.getCardinallyAdjacentPositions();
+    int activeConductorCount = 0;
+    int tickActivated = -1;
+    for (Position p: positions) {
+      for (Entity e: map.getEntities(p)) {
+        if (e instanceof Conductor) {
+          Conductor c = (Conductor)e;
+          if (c.isConducting()) {
+            if (tickActivated == -1) {
+              tickActivated = c.getActivationTick();
+              activeConductorCount += 1;
+            } else {
+              if (c.getActivationTick() == tickActivated) {
+                activeConductorCount += 1;
+              }
+            }
+          }
+        }
+      }
+    }
+    return activeConductorCount >= 2;
+  }
+
+}
+
+interface LogicalEntity {
+  boolean isLogicallyOn();
 }
 
 class Lightbulb extends Entity implements LogicalEntity {
+  LogicalCondition cond;
   boolean on = false;
+
+  public boolean isLogicallyOn() {
+  }
+
+  public LightBulb(LogicalCondition c) {
+
+  }
+  
 }
 
 class SwitchDoor extends Entity implements LogicalEntity {
   boolean opened = false; 
+
+  public boolean canMoveOnto(GameMap map, Entity entity) {
+    if (open || entity instanceof Spider) {
+        return true;
+    }
+    return (entity instanceof Player && isLogicallyOn());
+  }
+}
+
+interface Conductor {
+  boolean isOn();
+  int getActivationTick();
+  void update();
 }
 
 class Switch implements Conductor {
+  @Override
+  boolean onOverlap() {
+    this.on = true;
+// tick the adjacent conductor is initially powered (not refreshed) from a deactivated state.
+    if (this.tick == -1) {
+      this.tick = game.getTick();
+    }
+  }
 
+  @Override
+  public void onMovedAway(GameMap map, Entity entity) {
+      if (entity instanceof Boulder) {
+          activated = false;
+      }
+  }
+  
 }
 
 class Wire extends Entity implements Conductor {
   @Override
-  boolean canMoveOnto() {
-    moveableEntity;
+  public boolean canMoveOnto(GameMap map, Entity entity) {
+    // is boulder considered movable?
+    return (entity instanceof Enemy || entity instanceof Player);
+  }
+
+  public update() {
+    List<Position> positions = pos.getCardinallyAdjacentPositions();
+    for (Position p: positions) {
+      for (Entity e: map.getEntities(p)) {
+        if (e instanceof Conductor) {
+          Conductor c = (Conductor)e;
+          if (c.isConducting()) {
+            this.on = true;
+            return;
+          }
+        }
+      }
+    }
   }
 }
 
-class BombDecorator implements LogicalEntity {
+class LogicalBomb implements LogicalEntity {
   Bomb b;
-
 }
 
+GraphNodeFactory.constructEntity() {
+  case "light_bulb_off":
+  case "wire":
+  case "switch_door":
 
+  EntityFactory.constructEntity() {
+    case "light_bulb_off":
+      String logic = jsonEntity.getString("logic");
+      return buildLightBulbOff(pos, logic);
+  }
+}
 
+default.json:
+  "light_bulb_off": "images/tileset/entities/lightbulboff.png",
+  "light_bulb_on": "images/tileset/entities/lightbulb.png",
+  "wire": "images/tileset/entities/wire.png",
+  "switch_door": "images/tileset/entities/door.png",
 
+edit: NameConverter.java?
 
+TODO: look into Customisations.md for task3 actions
 
 --------------------------------------
 tests/task2

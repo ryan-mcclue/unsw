@@ -57,7 +57,7 @@ Testing:
   - Input space
     * Input groups, e.g. all same, decreasing etc.
     * Boundary testing
-    * Randomness
+    * Randomness (testing randomness with known seed; compare outputs of two objects to see same)
   (a parameterised test runs same test with different input)
 
   - Property based testing (for large inputs), e.g. test calling reverse() twice gives same as original

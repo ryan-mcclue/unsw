@@ -243,6 +243,7 @@ class SwitchDoor extends Entity implements LogicalEntity {
     }
     return (entity instanceof Player && isLogicallyOn());
   }
+  // TODO: seems no door open texture change?
 }
 
 interface Conductor {
@@ -254,18 +255,52 @@ interface Conductor {
 class Switch implements Conductor {
   @Override
   boolean onOverlap() {
-    this.on = true;
-// tick the adjacent conductor is initially powered (not refreshed) from a deactivated state.
+    activate()
+  }
+
+  void activate() {
     if (this.tick == -1) {
       this.tick = game.getTick();
+    }
+    this.on = true;
+    activateNeighbours();
+  }
+
+  void activateNeighbours(List<Conductors> seen) {
+    if (seen.contains(this)) return;
+
+    List<Position> positions = pos.getCardinallyAdjacentPositions();
+    for (Position p: positions) {
+      for (Entity e: map.getEntities(p)) {
+        if (e instanceof Conductor) {
+          Conductor c = (Conductor)e;
+          c.activate(seen);
+        } 
+        if (e instanceof LightBulb) {
+           // have to replace entity here if it can be activated
+           // or, can do tileset from customisations.md?
+        }
+      }
     }
   }
 
   @Override
   public void onMovedAway(GameMap map, Entity entity) {
-      if (entity instanceof Boulder) {
-          activated = false;
-      }
+    this.tick = -1;
+    deactivate()
+  }
+
+  void deactivate(Switch sourceSwitch) {
+    this.sourceSwitches.remove(sourceSwitch));
+    if (this.sourceSwitches.size() == 0) {
+       this.tick = -1;
+       this.on = false;
+       deactivateNeighbours(sourceSwitch);
+    }
+  }
+
+  void deactivateNeighbours() {
+
   }
   
 }
@@ -277,20 +312,6 @@ class Wire extends Entity implements Conductor {
     return (entity instanceof Enemy || entity instanceof Player);
   }
 
-  public update() {
-    List<Position> positions = pos.getCardinallyAdjacentPositions();
-    for (Position p: positions) {
-      for (Entity e: map.getEntities(p)) {
-        if (e instanceof Conductor) {
-          Conductor c = (Conductor)e;
-          if (c.isConducting()) {
-            this.on = true;
-            return;
-          }
-        }
-      }
-    }
-  }
 }
 
 class LogicalBomb implements LogicalEntity {

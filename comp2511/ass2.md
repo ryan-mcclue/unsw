@@ -5,6 +5,20 @@
 https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T2/specs/assignment-ii-spec/-/blob/main/MVP.md
 https://nw-syd-gitlab.cseunsw.tech/COMP2511/24T2/specs/assignment-ii-spec/-/blob/main/Assignment_Specification.md
 
+git clone https://z5346008@nw-syd-gitlab.cseunsw.tech/COMP2511/24T2/teams/W14A_ASPARAGUS/assignment-ii.git
+
+TODO: mention steps to find them
+- spawner not destroyed
+- zombie on portal
+- any bribe radius
+        // fail to bribe
+        assertThrows(InvalidActionException.class, () -> dmc.interact(mercId));
+
+        Position playerDiff = Position.calculatePositionBetween(player.getPosition(), this.getPosition());
+        boolean isInRadius = (playerDiff.getX() <= bribeRadius && playerDiff.getY() <= bribeRadius);
+        return isInRadius && player.countEntityOfType(Treasure.class) >= bribeAmount;
+- multiple key pickup
+
 modify
 triggerOverlapEvent(), triggerMovingAwayEvent(), destroyEntity()
 
@@ -131,15 +145,6 @@ wire, switches (only a conductor if switched on)
 
 current through wire or activated switch (i.e. a single switch requires no wires)
 
-
-- on each tick; chained activation and deactivation
-
-{
-  "type": "light_bulb_off/switch_door/bomb",
-  "x": 1,
-  "y": 1,
-  "logic": "and/or/xor/co_and"
-}
 
 interface LogicalCondition {
   boolean condition(Gamemap m, Position p);
@@ -287,18 +292,13 @@ class Switch implements Conductor {
       this.tick = game.getTick();
     }
     this.on = true;
-    activateNeighbours();
-  }
-
-  void activateNeighbours(List<Conductors> seen) {
-    if (seen.contains(this)) return;
 
     List<Position> positions = pos.getCardinallyAdjacentPositions();
     for (Position p: positions) {
       for (Entity e: map.getEntities(p)) {
-        if (e instanceof Conductor) {
-          Conductor c = (Conductor)e;
-          c.activate(seen);
+        if (e instanceof Wire) {
+          Wire w = (Wire)w;
+          w.activate(map, this, new HashSet<>());
         }
       }
     }
@@ -311,40 +311,19 @@ class Switch implements Conductor {
   }
 
   void deactivate(Switch sourceSwitch) {
-    this.sourceSwitches.remove(sourceSwitch));
-    if (this.sourceSwitches.size() == 0) {
-       this.tick = -1;
-       this.on = false;
-       deactivateNeighbours(sourceSwitch);
-    }
-  }
+    this.tick = -1;
+    this.on = false;
 
-  void deactivateNeighbours(Switch sourceSwitch) {
-
-  }
-  
-}
-
-IMPORTANT: conductor logic first, then logical entities
-Game.tick() {
-  void updateLightBulbs() {
-    for (Entity e: map.getEntities()) {
-      if (e instanceof LightBulbOn) {
-        LightBulbOn l = (LightBulbOn)e;
-        if (!l.isLogicallyOn()) {
-          map.destroyEntity(l);
-          map.addEntity(new LightBulbOff());
-        }
-      } else if (e instanceof LightBulbOff) {
-  
-      } else if (e instanceof LogicBomb) {
-        if (b.getState() != INVENTORY && b.isLogicallyOn()) {
-          b.explode();
+    List<Position> positions = pos.getCardinallyAdjacentPositions();
+    for (Position p: positions) {
+      for (Entity e: map.getEntities(p)) {
+        if (e instanceof Wire) {
+          Wire w = (Wire)w;
+          w.deactivate(map, this, new HashSet<>());
         }
       }
     }
-  }
-
+  
 }
 
 class Wire extends Entity implements Conductor {
@@ -444,6 +423,34 @@ class LogicalBomb extends ExplodableEntity implements LogicalEntity {
     }
 }
 
+- on each tick; chained activation and deactivation
+{
+  "type": "light_bulb_off/switch_door/bomb",
+  "x": 1,
+  "y": 1,
+  "logic": "and/or/xor/co_and"
+}
+IMPORTANT: conductor logic first, then logical entities
+Game.tick() {
+  void updateLightBulbs() {
+    for (Entity e: map.getEntities()) {
+      if (e instanceof LightBulbOn) {
+        LightBulbOn l = (LightBulbOn)e;
+        if (!l.isLogicallyOn()) {
+          map.destroyEntity(l);
+          map.addEntity(new LightBulbOff());
+        }
+      } else if (e instanceof LightBulbOff) {
+  
+      } else if (e instanceof LogicBomb) {
+        if (b.getState() != INVENTORY && b.isLogicallyOn()) {
+          b.explode();
+        }
+      }
+    }
+  }
+
+}
 
 GraphNodeFactory.constructEntity() {
   case "light_bulb_off":
@@ -463,8 +470,8 @@ default.json:
   "wire": "images/tileset/entities/wire.png",
   "switch_door": "images/tileset/entities/door.png",
 
-edit: NameConverter.java?
 
+edit: NameConverter.java?
 TODO: look into Customisations.md for task3 actions
 
 --------------------------------------

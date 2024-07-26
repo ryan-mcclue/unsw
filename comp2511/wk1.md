@@ -1,6 +1,8 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 java SE -> open/oracleJDK (javac) -> JRE (vm; runs .class bytecode)
 
+method forwarding fix for LOD violation, i.e. just create a method inside
+
 OO:
 data hiding (private, getters/setters), init/deinit
 same-class,same-package-and-subclasses,all

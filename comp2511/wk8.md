@@ -53,6 +53,41 @@ class Garage implements Iterable<Car> {
 }
 ```
 
+Builder Pattern:
+- Breaking long parameter list, e.g. `Car c = new Car(a, b, c, d, ...)`
+  Create functions that create object in stages
+```
+interface CarBuilder {
+  reset();
+  setSeats();
+  setEngine();
+  setGPS();
+  getResult();
+}
+class SportsCarBuilder implements CarBuilder {
+  SportsCar c;
+  reset() { c = new SportsCar(); }
+  getResult() { return c; }
+}
+
+CarBuilder cb = new SportsCarBuilder();
+cb.setSeats(2);
+cb.setGPS(new FancyGPS());
+SportsCar = cb.getResult();
+
+// A director may then collate these recipes
+class CarDirector {
+  Builder b;
+  makeSportsCar(builder) {
+    builder.reset();
+    builder.setEngine();
+  }
+}
+CarDirector d = new CarDirector();
+d.makeSportsCar(builder);
+SportsCar = builder.getResult();
+```
+
 Testing:
   - Input space
     * Input groups, e.g. all same, decreasing etc.

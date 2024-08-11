@@ -17,7 +17,8 @@ Functional Programming: (chaining methods)
 lambda can treat code as data and implement a single method interface
 
 an existing method is an instance of a functional interface
-Predicate<String> p = String::isEmpty (get reference to isEmpty function, whose type will be a functional interface)
+Predicate<String> p = String::isEmpty 
+(get reference to isEmpty function, whose type will be a functional interface)
 Function<String, Integer> p = String::length
 Consumer<String> p = (s) -> { System.out.println(s); }
 
@@ -67,11 +68,11 @@ e.g. have to modify containing class switch statement to extend
   abstract class MachineState {
     Machine m;
 
-    void actionOne();
+    void change();
   }
 
   class waitingState extends MachineState {
-    void actionOne() {
+    void change() {
       this.m.setState(new runningState(this.m));
     }
   }
@@ -79,7 +80,7 @@ e.g. have to modify containing class switch statement to extend
   class Machine:
     MachineState curState;
 
-    void actionOne() {
-      state.actionOne(this);
+    void change() {
+      state.change(this);
     }
   ```

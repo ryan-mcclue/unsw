@@ -1,5 +1,8 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+IMPORTANT: preconditions can be weakened for subclasses, i.e. parent input should work for subclass input
+postconditions can be strengthened
+
 delegation forwards an operation to another object on behalf of first object
 
 essentially make methods on containing objects

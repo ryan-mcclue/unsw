@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 - Visitor Behavioural Pattern
-External class helper functions
+External class helper functions (need to iterate through different classes)
 ```
 // define for all classes operating on
 interface ElementVisitor {

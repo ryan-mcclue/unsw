@@ -53,7 +53,9 @@ main() {
 Generic Programming:
 Type is parameter. Does type checks at compile time
 ```
-interface Pair<K super Integer, V> {}
+interface Pair<K super Integer, V> {} 
+IMPORTANT: so, base types are Object and Integer.
+now, anything that could be cast to these can be passed in, i.e. subclasses of them
 
 // operators like '>' only work on primitive types; so use compareTo()
 class OrderedPair<K, V> implements Pair<K, V> {
@@ -67,6 +69,12 @@ class Name<T> {
 
   }
 }
+
+IMPORTANT: with <? extends Integer> cannot add or remove anything to it
+Only use is as a function parameter
+
+IMPORTANT: with <? super Integer> all types are Object and Integer.
+so, any passed in value must castable to both Object and Integer
 
 void func(ArrayList<? extends Integer> a) {
   Iterator<? extends Integer> it = a.iterator(); 

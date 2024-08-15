@@ -21,10 +21,14 @@ What is difference between association and inheritance?
     + Object diagram
 
 Design-by-contract over defensive programming (for unexpected errors)
+(cannot throw exceptions if not inherited)
 pre-condition (0 < mark < 100) -> post-condition (return mark / 50) -> invariant (mark stays in range)
 Only error check for things matching pre-conditions
 Unit tests implement DbC. Comments/documentation specify them.
 Assumes static design.
 Inherited contracts can widen not lessen
 
-TODO: throws runtime exception if pre-condition failed?
+```
+equals(Object o) { p = (Parent)o; if (p == null) false; }
+```
+

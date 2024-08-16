@@ -87,10 +87,11 @@ void func(ArrayList<? extends Integer> a) {
 ```
 
 - Structural Adapter Pattern
-Interface conversion
+When have two fixed incompatible endpoints and insert intermediary conversion class
 ```
-class Object1ToObject2Adapter implements Object2 {
-  Object1 o;
+class JSONToXMLAdapter implements Output {
+  JSONOutput o;
+  JSONToXMLAdapter(JSONOutput o);
 }
 ```
 

@@ -30,24 +30,5 @@ To acheive this have 'design principles', e.g. DRY, KISS, SOLID (single-responsi
         if not, favour composition over inheritance)
         (IMPORTANT: violation of LSP even if 'still work', rather has attributes that don't make logical sense)
 
-
-DESIGN PRINCIPLES (code smells within):
-
-lack of polymorphism, poor abstraction/inheritance misuse
-
-Single-responsibility (low-cohesion)
-  - feature envy (using lots of other class functions)
-  - god class
-  - bloaters (duplication, deep nesting etc.)
-Open-closed (high-coupling)
-  - divergent change (single change; many changes within)
-  - shotgun surgery (single change; many changes elsewhere)
-Liskov
-  - refused bequest (does not use inherited methods)
-Interface-seg
-Dependency inversion
-  - inappropriate intimacy (knows too much about other class)
-
-
 Covariance allows for returning subclass types when overriding
 Contravariance allows for defining parentclass types (will not override)

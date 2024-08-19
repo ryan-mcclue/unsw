@@ -97,7 +97,7 @@ class JSONToXMLAdapter implements Output {
 
 ```
 class Singleton {
-  Singleton instance;
+  static Singleton instance;
   Singleton synchronized getInstance() {
     if (instance == null) return new Singleton();
     else return instance;

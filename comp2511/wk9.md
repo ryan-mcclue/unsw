@@ -5,7 +5,7 @@ Have to consider idempotency (same thing multiple times), latency, error propaga
 Adapter/facade patterns to allow multiple interfaces to same service?
 
 Behavioural Command Pattern
-- batch and queue requests?
+- batch and queue requests? (like strategy except all combined in list)
 ```
 interface Command {
   void execute();

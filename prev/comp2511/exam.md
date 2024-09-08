@@ -24,7 +24,8 @@ Interface-seg
 Dependency inversion
   - inappropriate intimacy (knows too much about other class)
 
-checked exception generally something that occurs externally and is likely to be handled gracefully, e.g. malformedURL, not nullPointer
+checked exception generally something that occurs externally 
+and is likely to be handled gracefully, e.g. malformedURL, not nullPointer
 
 testing randomness with fixed seed helps verify authenticity of PRNG in use
 

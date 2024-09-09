@@ -1,17 +1,22 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
-echo360 online lecture
-slides only for flora; no slides for sebastian
+argument is a list of premises followed by conclusion (framework of reasoning)
+  IMPORTANT: view them all was whole
+  - valid: is if all premises assumed true than conclusion cannot be false.
+  - sound: valid and premises are actually true
 
 normative ethics is concerned with how/guidelines people should act.
-deductive reasoning based on premises is truth preserving.
-valid deductive argument is if all premises true than outcome cannot be false
+  - consequentialism, i.e. only concerned with outcome, not the inherent moral value of an action 
+    - utilitarianism
+      - act
+      - rule
 
-a valid reason is subsumable by logical reasoning
+reasons must be epistemic, i.e able to grasp in head
+
+rules are amenable to empirical feedback
 
 utilitarianism system of ethics that focuses on choosing option that leads to greatest overall happiness.
 a unit of happiness is utility.
-is consequentialist, i.e. only concerned with outcome, not the inherent moral value of an action 
 (NOTE: consequentialist not necessarily utilitarian)
 the idea of a forbidden/taboo act is conceived as a creation of culture (disabled human less use then a cow, however can kill a dog to eat)
 so outcome is tangible, while whether something is forbidden is a grey area.

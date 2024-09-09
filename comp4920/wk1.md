@@ -3,6 +3,12 @@
 echo360 online lecture
 slides only for flora; no slides for sebastian
 
+normative ethics is concerned with how/guidelines people should act.
+deductive reasoning based on premises is truth preserving.
+valid deductive argument is if all premises true than outcome cannot be false
+
+a valid reason is subsumable by logical reasoning
+
 utilitarianism system of ethics that focuses on choosing option that leads to greatest overall happiness.
 a unit of happiness is utility.
 is consequentialist, i.e. only concerned with outcome, not the inherent moral value of an action 

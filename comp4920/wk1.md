@@ -34,7 +34,7 @@ moral questions become technical questions
 opposing to consequentialism, deontology is whether action is right or wrong
 
 criticisms:
-  * immoral results
+  * immoral results (no special obligations to family)
   * self-defeatist
    (can bring about self-defeating, i.e trying to bring out happiness leads to unhappiness):
   - PUNISHING: criminal and victim equal

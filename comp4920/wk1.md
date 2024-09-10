@@ -1,5 +1,8 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+a priori: faculty of reason alone
+a posteriri: empirical evidence
+
 argument is a list of premises followed by conclusion (framework of reasoning)
   IMPORTANT: view them all was whole
   - valid: is if all premises assumed true than conclusion cannot be false.
@@ -25,7 +28,7 @@ gives a moral question a clear set of rules (no metaphysical abstractions) to ma
 (criticisms: infinite possible choices and indirect assumptions of non-empirical utility)
 not clear that happiness is the only thing morally important
 
-focused on naturalism, i.e. all beings equal
+focused on naturalism (ignore social sciences), i.e. all beings equal
 moral questions become technical questions
 
 opposing to consequentialism, deontology is whether action is right or wrong

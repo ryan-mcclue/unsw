@@ -1,6 +1,8 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 proposal sunday wk3.
 
+IMPORTANT: thursday 4pm workshop recording
+
 regular meetings with mentor; demos then retrospective
 
 project questionnaire -> submit to client and clarify requirements

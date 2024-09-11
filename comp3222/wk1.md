@@ -28,3 +28,15 @@ AND all truth table terms that yield 1 to form minterm
 OR minterms to form sum-of-products
 minterms number is binary count of uncomplemented terms, e.g. x1!x2x3 = m5 
 can also OR truth table terms that yield 0 to form maxterm, e.g. x1!x2x3 = M2
+
+```
+ENTITY example IS
+  PORT (x1, x2, x3 : IN BIT;
+        f : OUT BIT);
+END example;
+
+ARCHITECTURE func OF example IS
+BEGIN
+  f <= (NOT x1 AND NOT x2 AND x3) OR (NOT x1 AND x2 AND NOT x3);
+END func;
+```

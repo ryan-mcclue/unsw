@@ -12,7 +12,11 @@ By considering leadership challenges relating to data obtainment, technology mis
 it can be seen that rule utilitarianism is more desirable.
 It results in professional guidelines that are consistent, scalable and simple for a governing computer science body to implement.
 
-The retrieval of private user data is ...
+Under rule utilitarianism, guidelines relating to the retrieval of user data can be made
+consistent, maximising trust in society.
+Looking at the github copilot that
+Consider the situation of github copilot, that harvest users code to train model.
+
 obtainment of data to train (github copilot)
 act: as benefits more people to use techonology with less skill, do it 
 rule: don't force creators to have their data be used for training; be explicit about it

@@ -3,6 +3,20 @@
 a priori: faculty of reason alone
 a posteriri: empirical evidence
 
+NOTE: all these systems set limits on what is morally permissable
+
+rationalism: a priori; universal (if cannot be applied universally, not valid)
+empircisim: observation; subject to change
+
+deontological is rationalist
+kantianism is deontological
+kantianism therefore doesn't care about the consequences
+categorical imperative (fundamental principle of morality) is concept of kantian that involves:
+  - universal law
+  - respect human dignity/freedom (cannot use humans as means to end)
+
+kant believes human beings rationality gives us dignity/freedom, unlike animals that act on impulse
+
 argument is a list of premises followed by conclusion (framework of reasoning)
   IMPORTANT: view them all was whole
   - valid: is if all premises assumed true than conclusion cannot be false.
@@ -49,4 +63,5 @@ Introduce rule-utilitarianism to counteract some (still has shortcomings to act-
 what rule should everyone follow as oppose to act.
 e.g. follow rule that only guilty people should be punished
 could still have things like benevolent slavery
+
 

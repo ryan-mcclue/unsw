@@ -1,67 +1,51 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
-a priori: faculty of reason alone
-a posteriri: empirical evidence
-
-NOTE: all these systems set limits on what is morally permissable
-
-rationalism: a priori; universal (if cannot be applied universally, not valid)
-empircisim: observation; subject to change
-
-deontological is rationalist
-kantianism is deontological
-kantianism therefore doesn't care about the consequences
-categorical imperative (fundamental principle of morality) is concept of kantian that involves:
-  - universal law
-  - respect human dignity/freedom (cannot use humans as means to end)
-
-kant believes human beings rationality gives us dignity/freedom, unlike animals that act on impulse
-
-argument is a list of premises followed by conclusion (framework of reasoning)
-  IMPORTANT: view them all was whole
+* a priori: faculty of reason alone
+* a posteriri: empirical evidence
+* rationalism: a priori; universal (if cannot be applied universally, not valid)
+* empiricisim: observation; subject to change
+* naturalism: ignore social sciences
+* argument: list of premises followed by conclusion (framework of reasoning)
   - valid: is if all premises assumed true than conclusion cannot be false.
   - sound: valid and premises are actually true
+* consequentialism: concerned with consequences
+* deontological: concerned if specific action is morally right or wrong (rationalist)
+* normative ethics: establishes guidelines for how people should act, i.e. what is morally permissable
 
-normative ethics is concerned with how/guidelines people should act.
-  - consequentialism, i.e. only concerned with outcome, not the inherent moral value of an action 
-    - utilitarianism
-      - act
-      - rule
-
-reasons must be epistemic, i.e able to grasp in head
-
-rules are amenable to empirical feedback
-
-utilitarianism system of ethics that focuses on choosing option that leads to greatest overall happiness.
-a unit of happiness is utility.
-(NOTE: consequentialist not necessarily utilitarian)
-the idea of a forbidden/taboo act is conceived as a creation of culture (disabled human less use then a cow, however can kill a dog to eat)
-so outcome is tangible, while whether something is forbidden is a grey area.
-so, an act is considered right or wrong based soley on outcome.
-gives a moral question a clear set of rules (no metaphysical abstractions) to make a quantifiable answer
-(criticisms: infinite possible choices and indirect assumptions of non-empirical utility)
-not clear that happiness is the only thing morally important
-
-focused on naturalism (ignore social sciences), i.e. all beings equal
-moral questions become technical questions
-
-opposing to consequentialism, deontology is whether action is right or wrong
-
-criticisms:
-  * immoral results (no special obligations to family)
-  * self-defeatist
-   (can bring about self-defeating, i.e trying to bring out happiness leads to unhappiness):
-  - PUNISHING: criminal and victim equal
-               might punish innocent as guilty dead to bring deterrence
-  - severely disabled 
-  - stranger and family
-  - your own happiness and others
-  - TRUST: might renig a promise if get better utility doing otherwise
-  * cumbersome method (unrealistic view of human thinking; our thoughts are conditioned by social structures)
-
-Introduce rule-utilitarianism to counteract some (still has shortcomings to act-utilitarianism; so decide based empirical data)
-what rule should everyone follow as oppose to act.
+## UTILITARIANISM:
+Choose option that leads to greatest overall happiness.
+No such thing as a forbidden/taboo act.
+An act is considered right or wrong based soley on consequence.
+Positives:
+  - Clear answers to moral questions
+Negatives:
+  - Immoral results (no special obligations to family)
+  - Self-defeatist (trying to bring out happiness leads to unhappiness, e.g. lying brings about mistrust):
+  - Cumbersome method (unrealistic view of human thinking to compute complex consequences of actions; our thoughts are conditioned by social structures)
+RULE-UTILITARIANISM:
+Follow rules instead of acts.
 e.g. follow rule that only guilty people should be punished
 could still have things like benevolent slavery
 
+## KANTIANISM:
+TODO: confused about universal law and autonomy? am I to let a person drown?
 
+Human beings rationality gives us dignity/freedom, unlike animals that act on impulse.
+Categorical imperative (fundamental principle of morality):
+  - Universal law (rationalist morals, i.e. rational acts are one that can universalised)
+  - Respect human dignity/freedom (have to let people make up their own mind)
+    actions that are fundamentally wrong: decieve/manipulate/force
+    a lie would be violating rational agent's autonomy to make up their own mind
+
+  TODO: claims it's irrational to be immoral?
+Positives:
+  - Respect and trust paramount
+Negatives:
+  - Unable to prevent atrocities; only able to act thereafter (issue with deontology in general)
+    (however can do so if concieve that the agent is no longer rational)
+  - Universal law doesn't give any guidance on how to act in conflicting situations
+  - Not comprehensive in that doesn't take into account human emotions
+
+hypothetical imperative: only applies under some context
+categorical imperative: applies under all contexts
+kant has moral requirements are categorical imperatives

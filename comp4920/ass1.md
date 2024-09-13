@@ -11,6 +11,16 @@ indeed, the critics of
 Hume’s view will claim that it is too simple for some of the acknowledged facts about
 human beings, and that it is based in a reductive view of how human beings act
 
+pg. 104:
+This might lead on to a criticism of virtue ethics: that it
+cannot be a comprehensive moral theory because it cannot provide us with
+proper answers to the many moral questions in which rights play an important
+role
+
+pg. 107:
+ On McDowell’s view, “flourishing”
+is not itself a substantive idea
+
 - answered the question(s) with reasons
 - articulated objections to reasons and responses to these
 - specifically cite course material to support points being made

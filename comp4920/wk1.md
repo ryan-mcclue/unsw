@@ -61,5 +61,20 @@ A virtue is something that's needed to live how humans ought to (achieve a 'high
 Rationality is what sets us apart from other animals.
 So being rational is how we ought to live as best humans.
 
+Doctrine of mean is to have the right emotional responses to the right things.
+Rationality involves emotions, in that learn what emotions to apply to situations.
+Each sphere of life has corresponding emotions.
+Doctrine of mean: virtue lies on middle point of excess and deficiency, i.e. too much or too little
+cannot specify what the good life is except by referring to the virtues
+Virtues enable better engagement in social practices
+
+nutshell: No direct answer how to live, but guidelines as how ought to live guided by virtues.
+
 Negatives:
   - What defines how humans ought to live?
+  - What defines mean of a virtue?
+    (Unity of virtue, i.e. cannot know one virtue unless know them all)
+    (experience of life is required to know how virtues constrain one another)
+  - Absence of importance to rights
+  - Gives complex and context-dependent answers
+  - Egotistical over impartiality (developing oneself)

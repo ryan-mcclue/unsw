@@ -25,6 +25,3 @@ i.e. requirements for user story to be complete
 
 jira agile project management tool, e.g. scrum, kanban
 although agile has team leader, tasks are allocated by a team as a whole (informal hierarcy more effective for communication)
-
-
-

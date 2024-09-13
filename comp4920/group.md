@@ -3,6 +3,16 @@
 cost of training excludes others from doing so
 access to training data excludes others
 
+HEALTHCARE:
+- AI-powered diagnostic imaging
+Natural Language Processing for electronic health records
+- AI-assisted robotic surgery
+Predictive analytics for patient outcomes
+- AI-driven drug discovery
+- Virtual nursing assistants
+AI for personalized treatment plans
+
+
 AI technology:
 1.
 - Describe the technology, 

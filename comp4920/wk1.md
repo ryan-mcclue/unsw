@@ -36,16 +36,30 @@ Categorical imperative (fundamental principle of morality):
   - Respect human dignity/freedom (have to let people make up their own mind)
     actions that are fundamentally wrong: decieve/manipulate/force
     a lie would be violating rational agent's autonomy to make up their own mind
-
-  TODO: claims it's irrational to be immoral?
+  - It's irrational to be immoral
 Positives:
   - Respect and trust paramount
 Negatives:
   - Unable to prevent atrocities; only able to act thereafter (issue with deontology in general)
     (however can do so if concieve that the agent is no longer rational)
-  - Universal law doesn't give any guidance on how to act in conflicting situations
+  - Universal law doesn't give any guidance on how to actually act, e.g. should I pursue money/fame etc. only what is permissable
   - Not comprehensive in that doesn't take into account human emotions
 
 hypothetical imperative: only applies under some context
 categorical imperative: applies under all contexts
 kant has moral requirements are categorical imperatives
+
+nutshell: right if conforms to a priori moral principle that is universally applied and that respects persons autonomy
+
+## ARISTOTLEIAN VIRTUE ETHICS
+Easier to say what it's against than what it's for.
+Utilitarianism and kantianism impartial to special relations/emotions; become slaves of duty; ignore diversity of morality 
+Virtues are traits someone does reliably and cares about.
+Virtue ethics states moral if done out of your virtues, i.e. what you have motivation for and that would show the best character.
+A virtue is something that's needed to live how humans ought to (achieve a 'higher' life, i.e. flourish)
+
+Rationality is what sets us apart from other animals.
+So being rational is how we ought to live as best humans.
+
+Negatives:
+  - What defines how humans ought to live?

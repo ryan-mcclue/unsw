@@ -8,6 +8,7 @@ ciple called Bias for Action, which is culture-speak for
 encouraging people to actively experiment and realize that
 the cost of not taking action is often greater than the cost of
 making and learning from mistakes.
+(as with code)
 
 leadership talent crisis
 
@@ -19,7 +20,7 @@ it's state of mind focusing on collective needs
 2. skills relating to learning of leadership as oppose to leadership skills
    i.e. take responsibility for own leadership development throughout life; a constant undertaking
    leadership is a social construct;
-   require mindfullness to take advantage of this
+   require mindfulness to take advantage of this
 
 your identity is comprised of possible selves, e.g. intellectual, leader
 discover leader identity through self-claiming and other people referring to you

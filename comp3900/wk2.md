@@ -49,3 +49,4 @@ Historical:
 Burndown chart tracks amount of estimated effort remaining in sprint
 Velocity chart tracks how much work done per sprint
 
+confluence board for knowledge base

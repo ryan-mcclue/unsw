@@ -2,7 +2,6 @@
 TODO: When adding a design source file, why specify no input/outputs for module?
 
 TODO: how come board seems to forget previous program on reboot?
-
 TODO: ex3. not sure if correct.
       tips on reading simulation output
 
@@ -36,4 +35,10 @@ seg(6) <= c(1) AND c(0);
 
 -- v (anode specific to display, cathode per segment)
 https://github.com/TreverWagenhals/private/blob/master/School/FPGA%20Logic%20Design/Basys3%20Generic/basys3_seven_seg_wrapper.vhd
+MX0: mux_2bit_3to1 PORT MAP (sw(15 DOWNTO 14), sw(5 DOWNTO 4), sw(3 DOWNTO 2), sw(1 DOWNTO 0), c(1 DOWNTO 0));
+MX1: mux_2bit_3to1 PORT MAP (sw(15 DOWNTO 14), sw(3 DOWNTO 2), sw(1 DOWNTO 0), sw(5 DOWNTO 4), c(3 DOWNTO 2));
+MX2: mux_2bit_3to1 PORT MAP (sw(15 DOWNTO 14), sw(1 DOWNTO 0), sw(5 DOWNTO 4), sw(3 DOWNTO 2), c(5 DOWNTO 4));
+
+CHAR_SELECT: mux_2bit_3to1 PORT MAP (clk_divider(17 DOWNTO 16), c(5 DOWNTO 4), c(3 DOWNTO 2), c(1 DOWNTO 0), c(7 DOWNTO 6));
+DD: char_7seg PORT MAP (c(7 DOWNTO 6), seg(0 TO 6));    
 ```

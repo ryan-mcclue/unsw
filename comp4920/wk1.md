@@ -10,6 +10,7 @@
   - sound: valid and premises are actually true
 * consequentialism: concerned with consequences
 * deontological: concerned if specific action is morally right or wrong (rationalist)
+                 things are intrinsically right/wrong
 * normative ethics: establishes guidelines for how people should act, i.e. what is morally permissable
 
 ## UTILITARIANISM:
@@ -28,15 +29,19 @@ e.g. follow rule that only guilty people should be punished
 could still have things like benevolent slavery
 
 ## KANTIANISM:
-TODO: confused about universal law and autonomy? am I to let a person drown?
+IMPORTANT: type of rule-based ethics (deontological), different to rule-utilitarianism
 
-Human beings rationality gives us dignity/freedom, unlike animals that act on impulse.
+IMPORTANT: Human beings rationality gives us dignity/freedom, i.e. act on reason
+Unlike animals/children/insane that act on impulse.
+
 Categorical imperative (fundamental principle of morality):
   - Universal law (rationalist morals, i.e. rational acts are one that can universalised)
+    must be applicable at all times for everyone
   - Respect human dignity/freedom (have to let people make up their own mind)
     actions that are fundamentally wrong: decieve/manipulate/force
     a lie would be violating rational agent's autonomy to make up their own mind
-  - It's irrational to be immoral
+  - To be irrational is to be immoral, i.e. not act within reason
+    So, must be moral all the time
 Positives:
   - Respect and trust paramount
 Negatives:
@@ -49,14 +54,21 @@ hypothetical imperative: only applies under some context
 categorical imperative: applies under all contexts
 kant has moral requirements are categorical imperatives
 
-nutshell: right if conforms to a priori moral principle that is universally applied and that respects persons autonomy
+nutshell: right if conforms to a priori moral principle that is universally applied 
+and that respects rational persons autonomy
 
 ## ARISTOTLEIAN VIRTUE ETHICS
-Easier to say what it's against than what it's for.
-Utilitarianism and kantianism impartial to special relations/emotions; become slaves of duty; ignore diversity of morality 
+Utilitarianism and kantianism impartial to special relations/emotions; 
+become slaves of duty; ignore diversity of morality 
+
+Engage with life to become a virtuous person; emotion is involved; cannot specify in advance
+Without experience, gather inspiration from others
+
 Virtues are traits someone does reliably and cares about.
-Virtue ethics states moral if done out of your virtues, i.e. what you have motivation for and that would show the best character.
+Virtue ethics states moral if done out of your best virtues, i.e. what you have motivation for and that would show the best character.
 A virtue is something that's needed to live how humans ought to (achieve a 'higher' life, i.e. flourish)
+
+If do so, believed life will be happier
 
 Rationality is what sets us apart from other animals.
 So being rational is how we ought to live as best humans.
@@ -69,6 +81,7 @@ cannot specify what the good life is except by referring to the virtues
 Virtues enable better engagement in social practices
 
 nutshell: No direct answer how to live, but guidelines as how ought to live guided by virtues.
+cultivate virtues through life experience
 
 Negatives:
   - What defines how humans ought to live?

@@ -27,8 +27,8 @@ discover leader identity through self-claiming and other people referring to you
 
 based on mentality, same experience can yeild different learnings per individual
 Set goals so develop self-awareness of developmental needs
-Approach: have a learning mindset orientation, i.e. focus on learning rather than avoiding failure etc.
-Actions: 
+1. Approach: have a learning mindset orientation, i.e. focus on learning rather than avoiding failure etc.
+2. Actions: 
          * active experimentation
            test effectiveness of proposed solutions
          * feedback seeking
@@ -37,7 +37,7 @@ Actions:
            not to become too positively complacent or angry
            - understand motivation
            - discuss emotions with others
-Reflection: Must reflect on experience to have experienced it; understand the what and why
+3. Reflection: Must reflect on experience to have experienced it; understand the what and why
             (did this at military after keystone events; considered what-ifs)
 
 Military employed leadership rotation programs

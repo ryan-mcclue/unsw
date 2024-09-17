@@ -31,6 +31,8 @@ is not itself a substantive idea
 - specifically cite course material to support points being made
 - cite external literature also?
 
+TODO: Regulation: web hosters hosting malicious sites
+
 Daily life continues to involve more technologies.
 As a result, there are far-reaching societal impacts to consider when creating computer science ethical guidelines based on act versus rule utilitarianism.
 By considering leadership challenges relating to data obtainment, technology misuse and user freedom,

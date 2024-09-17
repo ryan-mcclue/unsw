@@ -6,6 +6,9 @@ daily scrum is same as standup?
 is evidence of daily standup just meeting minutes file?
 
 TODO: what is good internal documentation? 
+q&a with client also recorded with meeting minutes
+
+TODO: system architecture diagram important
 
 
 IMPORTANT:

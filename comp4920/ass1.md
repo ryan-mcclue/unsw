@@ -1,6 +1,8 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 TODO: harvard in-text referencing
-so like (G. Dylan, 2022). 
+(Smith, 2020, p. 15).
+(Jones, 2018, pp. 22-23).
+
 if only referencing in-text sources, i.e. from readings, won't this just be the same throughout
 or is referencing something in text of another reference ok?
 

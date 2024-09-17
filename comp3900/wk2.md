@@ -32,7 +32,6 @@ Scrum events are time-boxed and non-negotiable dates:
   1. Sprint Planning:
     Develop sprint goal/backlog, i.e. collection of tasks from product backlog to do
     IMPORTANT: jira for sprint backlog to-do, in-progress, done
-  TODO: required to have daily scrum for assignment marking?
   2. Daily Scrum:
      - What did I do yesterday that helped the development team meet the Sprint Goal?
      - What will I do today to help the development team meet the Sprint Goal?

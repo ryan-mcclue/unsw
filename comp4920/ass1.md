@@ -43,43 +43,57 @@ Under rule utilitarianism, ethical guidelines for data retrieval can be made con
 This promotes societal confidence in the computer science profession, 
 leading to a happier society.
 Decisions made relating to data retrieval practices in technologies greatly impact user's rights.
-Github copilot (ref.) is an AI code completion tool that is trained on public code repositories.
-Considering act utilitarianism, it's conceivable to make it permissable for technologies like this
+Github copilot is an AI code completion tool that is trained on public code repositories (Github, 2023).
+Considering act utilitarianism, it's permissable for technologies like this
 to scrape as much user data as it wants, regardless of user consent.
-A possible justification for this could be that the resulting technology would make programming
-accessible to millions more people. Therefore, the rights of the sole user who created the code
+A justification for this could be that the resulting technology enables many programmers to create impactful software that they otherwise would've lacked the knowledge to do so.
+Therefore, the rights of the user(s) who created the code
 are supplanted by the prospect of enpowering many others. 
 Proponents of this could argue that if consent was required, most likely no one would ever consent
 and the benefits of the technology could not be realised.
-This touches on the self-defeatist principle Mark Howell touches on ().
+This echoes the self-defeatist criticism of act utilitarianism discussed by Bennett (2015, pg. 61).
 Specifically, that in advancing technology accessibility as a means of improved happiness,
-users of technologies lose trust in whether their data is protected, 
-reducing adoption of technology and therefore reducing happiness.
-Under rule utilitarianism, only train on user consent.
-Importantly, this protects data previously existing that doesn't have any 'rights' for them.
-Under this framework, user's have the confidence in how their previous and current data
-will be used, regardless of regime change in the future.
-Like Graham Hins mentions (), this ...
-Whilst this does have the possible drawback of ...
-While this may limit some potential technological innovations in the short term, 
-rule utilitarianism would contend that the long-term benefits to society of having ethical norms that people can rely on outweigh the costs.
-Widespread loss of faith in tech companies' handling of personal data could lead to reduced adoption of beneficial technologies, calls for overly restrictive regulation, and a general atmosphere of suspicion that hinders technological progress and social cooperation. Additionally, having clear ethical guidelines provides a framework for developing technologies in a responsible manner that respects individual rights while still pursuing innovation.
+users of technologies lose trust in whether their data is protected.
+This distrust can reduce technological adoption, decreasing overall happiness.
+Following rule utilitarianism, it can be mandated that AI models should only be trained on data that has user consent.
+Importantly, this protects data that predates any current rights framework.
+Under this system, users can be confident in how their past and present data will be used.
+Critics may argue that this could reduce technological innovation due to limited data for training. 
+However, the long-term benefits of fostering a society that trusts tech companies outweigh these short-term costs.
+As a result, the consistency that rule utilitarianism offers makes it a more effective approach for promoting trust in the computer science profession.
+
+value users freedom (intel sgx),
+ - immoral results
+ technology currently only available to data centres
+ SGX requires that you trust Intel
+ arguments may be made that using any CPU manufacturer you must trust them, regardless if using SGX or not, so point is moot
+
+ example of utilitarianism leading to immoral results Bennett (2015, pg. 60).
+ this also violates ACM ethical guideline principal that 'All people are stakeholders in computing' 
+ which mentions the perogative to "protect each individual's right to autonomy". (ACM, 2018 pg. 4)
+ It would seem prudent to adhere to an existing governing body's conclusions that dedicated much resources and manpower
+ of knowledgeable people to backup validity.
+
+
 
 precautions to prevent reidentification of anonymised data
 this in-fact aligns with ACM ethical guidelines
-
-obtainment of data to train (github copilot)
-act: as benefits more people to use techonology with less skill, do it 
-rule: don't force creators to have their data be used for training; be explicit about it
 
 "show is simply that it is not optimal always to follow the rule"
 
 misuse of technology (generative AI audio deepfakes)
  - cumbersome method (e.g. ok if person can no longer talk etc.)
 
-value users freedom (intel sgx),
- - immoral results
 
+## Reference List
+1. GitHub (2023). GitHub Copilot · Your AI pair programmer. 
+   [online] Available at: https://github.com/features/copilot
+   [Accessed 18 Sep. 2024].
+2. Bennet, C. (2015): "What is this thing called ethics", second edition, Routledge.
+3. ACM, 2018. ACM Code of Ethics and Professional Conduct. New York: Association for Computing Machinery, Inc. DOI: 10.1145/3274591.
+4. Intel. (n.d.). Intel® Software Guard Extensions (Intel® SGX). 
+   [online] Available at: https://www.intel.com/content/www/us/en/products/docs/accelerator-engines/software-guard-extensions.html
+   [Accessed 18 Sep. 2024].
 
 rule:
 consistency (build trust as all computer scientists follow same principles),

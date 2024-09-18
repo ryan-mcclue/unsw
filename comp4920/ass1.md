@@ -65,6 +65,8 @@ While this may limit some potential technological innovations in the short term,
 rule utilitarianism would contend that the long-term benefits to society of having ethical norms that people can rely on outweigh the costs.
 Widespread loss of faith in tech companies' handling of personal data could lead to reduced adoption of beneficial technologies, calls for overly restrictive regulation, and a general atmosphere of suspicion that hinders technological progress and social cooperation. Additionally, having clear ethical guidelines provides a framework for developing technologies in a responsible manner that respects individual rights while still pursuing innovation.
 
+precautions to prevent reidentification of anonymised data
+this in-fact aligns with ACM ethical guidelines
 
 obtainment of data to train (github copilot)
 act: as benefits more people to use techonology with less skill, do it 

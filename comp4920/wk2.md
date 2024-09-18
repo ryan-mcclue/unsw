@@ -41,3 +41,16 @@ Set goals so develop self-awareness of developmental needs
             (did this at military after keystone events; considered what-ifs)
 
 Military employed leadership rotation programs
+
+
+identify facts, stakeholders, and obligations that you might not have considered previously
+
+1. Respect user autonomy (no unsolicited data harvesting; control of user computer), user safety (no cause for harm) and equality (access for all)
+2. Maintain high standards (know best practices for field), follow rules (international/industry specific), 
+   perform risk analysis (potential for misuse), don't spread misinformation, security contingencies (dealing with DoS, binary patching)
+3. Lead work for public good (sensitive to social issues), cogniscient of effects of retiring/modify interfaces
+
+malware to takedown ISP hosting some botnets (attack justified if more good than bad for legitimate users)
+disclosing anonymised data sets can be deanonymised by combining with public deanonymised datasets
+security flaw found but deemed not important enough
+machine learning training sets manipulated to coerce results

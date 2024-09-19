@@ -4,6 +4,37 @@ import sys
 import os
 import pathlib
 
+# handle static video first
+# then revolving
+
+# drag image; 
+# auto-detect location and retrieve from temp/humidity from weather websites
+# user specifies food temp conditions manually
+
+# OTHER USE-CASE: buying unfamilar fruits for someone
+
+# multi-label classification problem?
+# 2 predictions/outputs: rotten/fresh OR best-before
+
+# model: inceptionv3, VCG-16?
+# ImageDataGenerator() augmentation
+
+# run on google collab with notebook to get access to hardware?
+
+# the colour and shape database means we need to train on
+# fruits whose colour and shape determine freshness
+# e.g. banana color: green, black, yellow; shape: shrivelled etc.
+
+# classify type 
+# yolo extract regions of interest
+# each image clasify
+
+# weight avg on overall image classification based on type, 
+# e.g. banana put more emphasis on rotten as affects neighbours
+
+
+
+
 # https://pyresearch.org/product/fruit-quality-detection-system-using-artificial-intelligence/
 
 # TODO: use jupyter notebook with conda?

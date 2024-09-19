@@ -1,9 +1,5 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-TODO: When adding a design source file, why specify no input/outputs for module?
-
-TODO: how come board seems to forget previous program on reboot?
-TODO: ex3. not sure if correct.
-      tips on reading simulation output
+program jumper can set to flash
 
 cascade 2-1 multiplexor to get multi-bit multiplexor.
 `(NOT sw(0) AND X(0)) OR (sw(0) AND Y(0));` (0 maps to X)

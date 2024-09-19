@@ -19,12 +19,13 @@ IMPORTANT: if truth table not completely specified, can put either 0 or 1 as con
 IMPORTANT: when drawing circuit diagrams, start vertical with negated counterpart 
 find minimal form
 
-TODO: FPGA internal LUT structure
 FPGA composed of logic blocks (whose configuration are written in SRAM)
   - LUT functionality based on configured truth-table.
     so n-input LUT as 2^n entries in truth-table
   - flip-flop memory/state 
   - multiplexor routing
+  (sythesis schematic is what types of LUT used)
+  (implementation schematic is what actual LUTs were used; cell-properties truth table)
 
 Factor expression to reduce fan-in and reducing literal circuit build cost
 However, larger fan-in quicker as less propagation delay
@@ -38,5 +39,4 @@ to NAND:
   - bubble at OR input 
   - IMPORTANT: balance bubbles even on input and output
   - single inversion becomes 2-input NAND
-TODO: convert back to AND-OR to get function
 

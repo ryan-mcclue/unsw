@@ -1,5 +1,30 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+both chemical engineers in food science
+rishi food processing firm (how would use technology)
+
+plantuml for diagram?
+
+Group images:
+  - if giving an average value, then output boxes below fine
+  - however seems like more useful to user if bounding boxes on each individual fruit
+    on that bounding box provide best-before and freshness
+
+1. Are we attributing rotten/best-before for each individual fruit in the image?
+2. Are we outputting freshness and best-before or only one?
+I'm confused when it says average it out.
+For example, say 1 banana is rotten out of 5 bananas.
+Do you output fresh, as most are not rotten?
+What is the best-before in this case?
+
+Model training:
+  Model 1 (CNN fresh classifier)
+    fresh, not fresh photos?
+    would this also output type of fruit?
+    how would temperature and humidity info come into this?
+  Model 2 (random forest regressor best before)
+    same data set except different feature extraction? e.g. color and shape?
+
 TODO: how to incorporate location data to neural network?
 
 Include a list of design justifications for your planned solution.

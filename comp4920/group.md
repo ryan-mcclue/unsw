@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+Indeed automated decision making in health sciences poses many more risks
+
 cost of training excludes others from doing so
 access to training data excludes others
 

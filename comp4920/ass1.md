@@ -35,8 +35,9 @@ TODO: Regulation: web hosters hosting malicious sites
 
 Daily life continues to involve more technologies.
 As a result, there are far-reaching societal impacts to consider when creating computer science ethical guidelines. 
-Act utilitarianism focuses on acts that lead to the most overall good, while rule utilitarianism emphasises following rules that lead to the greatest good.
-By considering leadership challenges relating to data obtainment and user freedom,
+Act utilitarianism focuses on acts that lead to the most overall good, 
+while rule utilitarianism emphasises following rules that lead to the greatest good.
+By considering leadership challenges relating to data obtainment and user security,
 it can be seen that rule utilitarianism is more desirable.
 It allows for the creation of guidelines that are both beneficial to society and simple for a governing body to implement.
 
@@ -52,7 +53,7 @@ Therefore, the rights of the user(s) who created the code
 are supplanted by the prospect of enpowering many others. 
 Proponents of this could argue that if consent was required, most likely no one would ever consent
 and the benefits of the technology could not be realised.
-This echoes the self-defeatist criticism of act utilitarianism discussed by Bennett (2015, pg. 61).
+This echoes the self-defeatist criticism of act utilitarianism discussed by Bennett (2015, p. 61).
 Specifically, that in advancing technology accessibility as a means of improved happiness,
 users of technologies lose trust in whether their data is protected.
 This distrust can reduce technological adoption, decreasing overall happiness.
@@ -63,43 +64,37 @@ Critics may argue that this could reduce technological innovation due to limited
 However, the long-term benefits of fostering a society that trusts tech companies outweigh these short-term costs.
 As a result, the consistency that rule utilitarianism offers makes it a more effective approach for promoting trust in the computer science profession.
 
- this also violates ACM ethical guideline principal that 'All people are stakeholders in computing' 
- which mentions the perogative to "protect each individual's right to autonomy". (ACM, 2018 pg. 4)
- It would seem prudent to adhere to an existing governing body's conclusions that dedicated much resources and manpower
- of knowledgeable people to backup validity.
 
-
-Following rule utilitarianism, ethical guidelines concerning user freedom can 
-data retrieval can be made consistent.
-This promotes societal confidence in the computer science profession, 
-leading to a happier society.
-Decisions made relating to data retrieval practices in technologies greatly impact user's rights.
-
+In the framework of rule utilitarianism, ethical guidelines concerning user security can be structured to protect individual rights at all times.
+This provides society with a confidence of autonomy in the technology they use, enhancing happiness.
+Security technologies introduce significant power dynamics between producers and consumers.
 Intel SGX is a security technology that utilises a hardware private key to allow the CPU to only run signed code (Intel, n.d).
-Under act utilitarianism, it's possible for implementors of this technology to effectively brick an individual's machine.
-This would be done by blacklisting their private key, meaning they could no longer run any new software.
+Under act utilitarianism, implementers of this technology could effectively render a user's machine unusable.
+This would be done by blacklisting their private key, preventing them from running new software. 
 A justification for this could be that rendering a malicious user offline would safeguard many more users who were potential victims.
-Fundamentally, this technology requires that society trusts CPU manufacturers to act justly.
-It can be said that, to many, CPUs are already a black box, so society must already effectively trust them regardless if using SGX.
+As a result, that user's automony over their machine is forfeited for the general good.
+This outcome is in violation of the ACM ethical guideline principal concerning people as stakeholders in computing.
+Specifically, the imperative that all computing should protect each individual's right to autonomy (ACM, 2018 p. 4).
+This illustrates how act utilitarianism can lead to immoral outcomes, as discussed by Bennett (2015, p. 60).
+Having this as a possible outcome relies on society placing an immense amount of trust in technology manufactuers to act justly.
+This required faith would make society unhappy.
+Some may argue that for most technology is seen as a black box, so society already places implicit trust in them, even without such security measures.
+However, this does not detract from the fact that when a user purchases a machine, the physical components become their property.
+To restrict their personal use of it would be immoral.
 
-In fact, this could restrict users downloading new software if developer's deemed not wanting to run them for some reason.
-positive would be malware users.
+Comparatively, under rule utilitarianism, the focus would shift to establishing rules that maximize overall well-being, 
+such as ensuring users retain control over their devices, provided they don't engage in harmful activities. 
+Detractors of this approach argue that it could inadvertently promote the spread of malware and the proliferation of botnets, 
+as malicious users would not face immediate consequences like blacklisting. 
+However, proponents suggest that implementing fair, transparent rules—such as enhanced security protocols and accountability measures—would both protect individual rights and minimize the risk of large-scale harm, thus aligning with the broader goal of societal happiness.
 
-
-However, once a user buys a machine with their own money it becomes their property; is it not considered immoral to restrict their use of it?
-They should still be able to use it, just not in that way.
-This is an example of act utilitarianism leading to immoral results, as described by Bennett (2015, pg. 60).
-This would lead to unhappiness in society.
 Comparatively, under rule utilitarianism, can say limit malicious access as long as they retain control of their devices.
 Detractors of this could argue that without this ability, assuming unrealistic value-neutrality thesis outlined by Pitt ().
+Malicious users could engage in an effective cyber wild-west.
 Detractors of this argue that this promotes malware, botnet proliferation...
 
 However, focusing on enhanced security measures like ...
 this does in fact more closely align with Kranzberg's laws, acknowledging technology has potential for misuse.
-
-Intel SGX is a security technology that uses a hardware private key, allowing the CPU to run only signed code (Intel, n.d.). Under act utilitarianism, implementers of this technology could effectively render an individual's machine unusable by blacklisting their private key, preventing them from running new software. A potential justification is that disabling a malicious user would protect many more potential victims. This technology fundamentally relies on society trusting CPU manufacturers to act justly. Given that CPUs are often seen as a black box, society already places implicit trust in them, even without SGX. However, once a user purchases a machine, it becomes their property, raising the question: is it not immoral to restrict their use of it? This illustrates how act utilitarianism can lead to immoral outcomes, as discussed by Bennett (2015, p. 60).
-This is an example of act utilitarianism leading to immoral results, as described by Bennett (2015, p. 60). Such actions would likely cause widespread unhappiness in society. Comparatively, under rule utilitarianism, the focus would shift to establishing rules that maximize overall well-being, such as ensuring users retain control over their devices, provided they don't engage in harmful activities. Detractors of this approach argue that it could inadvertently promote the spread of malware and the proliferation of botnets, as malicious users would not face immediate consequences like blacklisting. However, proponents suggest that implementing fair, transparent rules—such as enhanced security protocols and accountability measures—would both protect individual rights and minimize the risk of large-scale harm, thus aligning with the broader goal of societal happiness.
-
 
 value users freedom (intel sgx),
  - immoral results

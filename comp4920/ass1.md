@@ -3,9 +3,6 @@ TODO: harvard in-text referencing
 (Smith, 2020, p. 15).
 (Jones, 2018, pp. 22-23).
 
-if only referencing in-text sources, i.e. from readings, won't this just be the same throughout
-or is referencing something in text of another reference ok?
-
 pg. 79:
 Sartre calls “bad faith”: making things
 easier for yourself by pretending that you have no choice, when really there are
@@ -30,8 +27,6 @@ is not itself a substantive idea
 - articulated objections to reasons and responses to these
 - specifically cite course material to support points being made
 - cite external literature also?
-
-TODO: Regulation: web hosters hosting malicious sites
 
 Daily life continues to involve more technologies.
 As a result, there are far-reaching societal impacts to consider when creating computer science ethical guidelines. 
@@ -58,12 +53,14 @@ Specifically, that in advancing technology accessibility as a means of improved 
 users of technologies lose trust in whether their data is protected.
 This distrust can reduce technological adoption, decreasing overall happiness.
 Following rule utilitarianism, it can be mandated that AI models should only be trained on data that has user consent.
-Importantly, this protects data that predates any current rights framework.
+Importantly, this protects data that predates any current rights framework. 
+Such protection is counter to the value-neutral thesis outlined by ().
+It takes into account Kranzberg's First Law, by acknowledging that technology's use in the future cannot be known, so preventative measures are best.
+Specifically, that the uses of technology cannot be foreseen by its creators (Kranzberg, ).
 Under this system, users can be confident in how their past and present data will be used.
 Critics may argue that this could reduce technological innovation due to limited data for training. 
 However, the long-term benefits of fostering a society that trusts tech companies outweigh these short-term costs.
 As a result, the consistency that rule utilitarianism offers makes it a more effective approach for promoting trust in the computer science profession.
-
 
 In the framework of rule utilitarianism, ethical guidelines concerning user security can be structured to protect individual rights at all times.
 This provides society with a confidence of autonomy in the technology they use, enhancing happiness.
@@ -75,51 +72,22 @@ A justification for this could be that rendering a malicious user offline would 
 As a result, that user's automony over their machine is forfeited for the general good.
 This outcome is in violation of the ACM ethical guideline principal concerning people as stakeholders in computing.
 Specifically, the imperative that all computing should protect each individual's right to autonomy (ACM, 2018 p. 4).
-This illustrates how act utilitarianism can lead to immoral outcomes, as discussed by Bennett (2015, p. 60).
 Having this as a possible outcome relies on society placing an immense amount of trust in technology manufactuers to act justly.
-This required faith would make society unhappy.
-Some may argue that for most technology is seen as a black box, so society already places implicit trust in them, even without such security measures.
-However, this does not detract from the fact that when a user purchases a machine, the physical components become their property.
-To restrict their personal use of it would be immoral.
+This required faith could lead to societal dissatisfaction.
+Some may argue that law enforcement already has the power to seize personal property, and that allowing educated tech companies to take over this role could expedite processes and reduce bureaucracy.
+However, the key issue is that technology companies would have unchecked control over user's belongings, effectively placing them above the law. 
+With the rise of smart devices, this control could extend to phones, appliances, cars, and more.
+This illustrates how act utilitarianism can lead to immoral outcomes, as discussed by Bennett (2015, p. 60).
+It's immoral to seize one's property without proper litigation/warrant.
+In contrast, rule utilitarianism would establish guidelines stating that security technologies restricting user freedom 
+should only be implemented through legal channels, such as law enforcement.
+Critics argue that this approach could inadvertently allow the spread of malware and botnets, as malicious users wouldn't face immediate consequences like blacklisting. 
+However, proponents argue that transparent, fair rules—such as enhanced security protocols and accountability measures—would protect individual rights and reduce the risk of large-scale harm, aligning with the goal of societal happiness.
 
-Comparatively, under rule utilitarianism, the focus would shift to establishing rules that maximize overall well-being, 
-such as ensuring users retain control over their devices, provided they don't engage in harmful activities. 
-Detractors of this approach argue that it could inadvertently promote the spread of malware and the proliferation of botnets, 
-as malicious users would not face immediate consequences like blacklisting. 
-However, proponents suggest that implementing fair, transparent rules—such as enhanced security protocols and accountability measures—would both protect individual rights and minimize the risk of large-scale harm, thus aligning with the broader goal of societal happiness.
-
-Comparatively, under rule utilitarianism, can say limit malicious access as long as they retain control of their devices.
-Detractors of this could argue that without this ability, assuming unrealistic value-neutrality thesis outlined by Pitt ().
-Malicious users could engage in an effective cyber wild-west.
-Detractors of this argue that this promotes malware, botnet proliferation...
-
-However, focusing on enhanced security measures like ...
-this does in fact more closely align with Kranzberg's laws, acknowledging technology has potential for misuse.
-
-value users freedom (intel sgx),
- - immoral results
-
-Indeed following Kranzberg's First Law, 
-“Technology is neither good nor bad; nor is it neutral.”
-that mentions 
-Melvin Kranzberg, “Technology and History: “Kranzberg’s Laws”, Technology and Culture 27,
-no. 3 (1986): 544-560.
-
-Value-Neutrality Thesis (VNT): “Technological artifacts do not have, have
-embedded in them, or contain values. (Pitt 2000; Pitt 2014)
-Pitt J. C. 2014. ““Guns Don’t Kill, People Kill”; Values in and/or around Technologies.” In The
-Moral Status of Technical Artifacts, edited by Kroes P., Verbeek P. P., 89–101. Dordrecht, the
-Netherlands: Springer.
-
-
-
-precautions to prevent reidentification of anonymised data
-this in-fact aligns with ACM ethical guidelines
-
-"show is simply that it is not optimal always to follow the rule"
-
-misuse of technology (generative AI audio deepfakes)
- - cumbersome method (e.g. ok if person can no longer talk etc.)
+In conclusion, ethical guidelines for the computer science profession should prioritise societal wellbeing. 
+By examining leadership challenges in data privacy and user security, 
+it is evident that rule utilitarianism better serves this goal compared to act utilitarianism. 
+It does so by promoting consistent and straightforward rules that are easier to implement.
 
 
 ## Reference List
@@ -132,7 +100,11 @@ misuse of technology (generative AI audio deepfakes)
    [online] Available at: https://www.intel.com/content/www/us/en/products/docs/accelerator-engines/software-guard-extensions.html
    [Accessed 18 Sep. 2024].
 
-rule:
-consistency (build trust as all computer scientists follow same principles),
-scalability (technology continues to grow and touch many aspects of life),
-simplicity (governing bodies to enforce)
+Value-Neutrality Thesis (VNT): “Technological artifacts do not have, have
+embedded in them, or contain values. (Pitt 2000; Pitt 2014)
+Pitt J. C. 2014. ““Guns Don’t Kill, People Kill”; Values in and/or around Technologies.” In The
+Moral Status of Technical Artifacts, edited by Kroes P., Verbeek P. P., 89–101. Dordrecht, the
+Netherlands: Springer.
+
+Melvin Kranzberg, “Technology and History: “Kranzberg’s Laws”, Technology and Culture 27,
+no. 3 (1986): 544-560.

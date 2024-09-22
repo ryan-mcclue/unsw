@@ -36,6 +36,7 @@ By considering leadership challenges relating to data obtainment and user securi
 it can be seen that rule utilitarianism is more desirable.
 It allows for the creation of guidelines that are both beneficial to society and simple for a governing body to implement.
 
+TODO: consent and only used for what saying
 Under rule utilitarianism, ethical guidelines for data retrieval can be made consistent.
 This promotes societal confidence in the computer science profession, 
 leading to a happier society.
@@ -62,6 +63,10 @@ Critics may argue that this could reduce technological innovation due to limited
 However, the long-term benefits of fostering a society that trusts tech companies outweigh these short-term costs.
 As a result, the consistency that rule utilitarianism offers makes it a more effective approach for promoting trust in the computer science profession.
 
+Following rule utilitarianism, it can be mandated that data collection for AI models or any other purpose should only occur with explicit user consent and clear specification of how the data will be used. This approach requires that before any data is collected, users must be informed about the intended use and provide their agreement. Importantly, this protects all data, including that which predates current rights frameworks, ensuring comprehensive user privacy and control. Such protection goes beyond a value-neutral approach to technology, acknowledging Kranzberg's First Law that the future uses of technology cannot be fully foreseen by its creators. By requiring both consent and specified use, this system provides users with confidence in how their past, present, and future data will be handled. It allows individuals to make informed decisions about their data and prevents unintended or unauthorized use of personal information.
+Critics may argue that this could reduce technological innovation due to limited data availability for training and potential restrictions on repurposing data for new, unforeseen applications. However, the long-term benefits of fostering a society that trusts tech companies and feels in control of their personal information outweigh these short-term costs. This approach encourages companies to be transparent about their data practices and may lead to more creative and ethical ways of developing technology. As a result, the consistency and transparency that rule utilitarianism offers in this context makes it a more effective approach for promoting trust in the computer science profession and ensuring ethical data practices.
+
+TODO: change to act in accordance with laws if none exist for technology, create
 In the framework of rule utilitarianism, ethical guidelines concerning user security can be structured to protect individual rights at all times.
 This provides society with a confidence of autonomy in the technology they use, enhancing happiness.
 Security technologies introduce significant power dynamics between producers and consumers.
@@ -83,6 +88,10 @@ In contrast, rule utilitarianism would establish guidelines stating that securit
 should only be implemented through legal channels, such as law enforcement.
 Critics argue that this approach could inadvertently allow the spread of malware and botnets, as malicious users wouldn't face immediate consequences like blacklisting. 
 However, proponents argue that transparent, fair rules—such as enhanced security protocols and accountability measures—would protect individual rights and reduce the risk of large-scale harm, aligning with the goal of societal happiness.
+
+
+In contrast, rule utilitarianism would establish guidelines stating that security technologies restricting user freedom should only be implemented through legal channels, such as law enforcement. Moreover, under rule utilitarianism, if no law exists to cover specific actions like remotely disabling a user's device, the ethical imperative would be to create appropriate legislation before releasing such technology. This proactive approach ensures that the legal framework keeps pace with technological advancements, maintaining a balance between innovation and individual rights. By doing so, it prevents the potential misuse of power by technology companies and ensures that any actions taken against users' devices are subject to proper legal scrutiny and oversight. This approach aligns with the broader goal of maximizing societal happiness by providing clear, transparent rules that protect individual autonomy while still allowing for necessary security measures.
+Critics argue that this approach could inadvertently slow down technological progress or allow the spread of malware and botnets, as malicious users wouldn't face immediate consequences like blacklisting without established legal procedures. However, proponents argue that the benefits of having a comprehensive legal framework in place before deploying potentially restrictive technologies far outweigh these concerns. They contend that transparent, fair rules—such as enhanced security protocols, accountability measures, and legal safeguards—would protect individual rights and reduce the risk of large-scale harm, ultimately contributing to greater societal trust and happiness.
 
 In conclusion, ethical guidelines for the computer science profession should prioritise societal wellbeing. 
 By examining leadership challenges in data privacy and user security, 

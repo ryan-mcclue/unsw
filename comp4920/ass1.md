@@ -3,72 +3,66 @@ TODO: harvard in-text referencing
 (Smith, 2020, p. 15).
 (Jones, 2018, pp. 22-23).
 
-pg. 79:
-Sartre calls “bad faith”: making things
-easier for yourself by pretending that you have no choice, when really there are
-always options open to you 
-
-pg. 89:
-indeed, the critics of
-Hume’s view will claim that it is too simple for some of the acknowledged facts about
-human beings, and that it is based in a reductive view of how human beings act
-
-pg. 104:
-This might lead on to a criticism of virtue ethics: that it
-cannot be a comprehensive moral theory because it cannot provide us with
-proper answers to the many moral questions in which rights play an important
-role
-
-pg. 107:
- On McDowell’s view, “flourishing”
-is not itself a substantive idea
-
 - answered the question(s) with reasons
 - articulated objections to reasons and responses to these
 - specifically cite course material to support points being made
 - cite external literature also?
 
 Daily life continues to involve more technologies.
-As a result, there are far-reaching societal impacts to consider when creating computer science ethical guidelines. 
+As a result, there are far-reaching societal impacts to consider 
+when creating computer science ethical guidelines. 
 Act utilitarianism focuses on acts that lead to the most overall good, 
 while rule utilitarianism emphasises following rules that lead to the greatest good.
 By considering leadership challenges relating to data obtainment and user security,
 it can be seen that rule utilitarianism is more desirable.
-It allows for the creation of guidelines that are both beneficial to society and simple for a governing body to implement.
+It allows for the creation of guidelines that 
+are both beneficial to society and simple for a governing body to implement.
 
 TODO: consent and only used for what saying
-TODO: don't make consent essential for application use (detractors might say introduce biases by limiting data as in reading ...) 
+TODO: don't make consent essential for application use 
+(detractors might say introduce biases by limiting data as in reading ...) 
+
 Under rule utilitarianism, ethical guidelines for data retrieval can be made consistent.
 This promotes societal confidence in the computer science profession, 
 leading to a happier society.
-Decisions made relating to data retrieval practices in technologies greatly impact user's rights.
-Github copilot is an AI code completion tool that is trained on public code repositories (Github, 2023).
+Decisions made relating to data retrieval practices in technologies 
+greatly impact user's rights.
+Github copilot is an AI code completion tool that is trained on 
+public code repositories (Github, 2023).
 Considering act utilitarianism, it's permissable for technologies like this
-to scrape as much user data as it wants, regardless of user consent.
-A justification for this could be that the resulting technology enables many programmers to create impactful software that they otherwise would've lacked the knowledge to do so.
+to scrape as much user data as desired and use it for any purpose. 
+These actions can be done regardless of user consent.
+A justification for this could be that the resulting technology enables many 
+programmers to create impactful software that they otherwise would've lacked 
+the knowledge to do so.
 Therefore, the rights of the user(s) who created the code
 are supplanted by the prospect of enpowering many others. 
-Proponents of this could argue that if consent was required, most likely no one would ever consent
-and the benefits of the technology could not be realised.
-This echoes the self-defeatist criticism of act utilitarianism discussed by Bennett (2015, p. 61).
+Proponents of this could argue that if consent was required, 
+most likely no one would ever consent and the benefits of the technology could not be realised.
+This echoes the self-defeatist criticism 
+of act utilitarianism discussed by Bennett (2015, p. 61).
 Specifically, that in advancing technology accessibility as a means of improved happiness,
 users of technologies lose trust in whether their data is protected.
 This distrust can reduce technological adoption, decreasing overall happiness.
-Following rule utilitarianism, it can be mandated that AI models should only be trained on data that has user consent.
-Importantly, this protects data that predates any current rights framework. 
-Such protection is counter to the value-neutral thesis outlined by ().
-It takes into account Kranzberg's First Law, by acknowledging that technology's use in the future cannot be known, so preventative measures are best.
-Specifically, that the uses of technology cannot be foreseen by its creators (Kranzberg, ).
-Under this system, users can be confident in how their past and present data will be used.
-Critics may argue that this could reduce technological innovation due to limited data for training. 
-However, the long-term benefits of fostering a society that trusts tech companies outweigh these short-term costs.
-As a result, the consistency that rule utilitarianism offers makes it a more effective approach for promoting trust in the computer science profession.
-
-Following rule utilitarianism, it can be mandated that data collection for AI models or any other purpose should only occur with explicit user consent and clear specification of how the data will be used. This approach requires that before any data is collected, users must be informed about the intended use and provide their agreement. Importantly, this protects all data, including that which predates current rights frameworks, ensuring comprehensive user privacy and control. Such protection goes beyond a value-neutral approach to technology, acknowledging Kranzberg's First Law that the future uses of technology cannot be fully foreseen by its creators. By requiring both consent and specified use, this system provides users with confidence in how their past, present, and future data will be handled. It allows individuals to make informed decisions about their data and prevents unintended or unauthorized use of personal information.
-Critics may argue that this could reduce technological innovation due to limited data availability for training and potential restrictions on repurposing data for new, unforeseen applications. However, the long-term benefits of fostering a society that trusts tech companies and feels in control of their personal information outweigh these short-term costs. This approach encourages companies to be transparent about their data practices and may lead to more creative and ethical ways of developing technology. As a result, the consistency and transparency that rule utilitarianism offers in this context makes it a more effective approach for promoting trust in the computer science profession and ensuring ethical data practices.
-
-TODO: Friedman "ensure computer technology reflects human values and promotes a better future."
-"She posits that moral values can actually support economic success by promoting a wider user base and building goodwill."
+Following rule utilitarianism, it can be mandated that 
+data collection should only occur with explicit user consent
+and clear specification of how the data will be used.
+Importantly, this protects data that predates any current rights framework.
+Such protection goes beyond a value neutral approach to technology ().
+It acknowledges Kranzberg's First Law that 
+the future uses of technology cannot be fully foreseen by its creators ().
+By requiring both consent and specified use, 
+this system provides users with confidence in how their past, present, 
+and future data will be handled. 
+Critics may argue that this could reduce technological innovation and 
+introduce biases due to limited data for training (bias ref).
+However, the long-term benefits of fostering a society that trusts tech companies 
+outweigh these short-term costs.
+Indeed, preserving trust aligns with Friedman's notion that
+all computer technology should reflect human values to promote a better future (Friedman).
+As a result, the consistency that rule utilitarianism offers in relation to data privacy
+makes it a more effective approach for developing ethical guidelines than
+act utilitarianism.
 
 TODO: change to act in accordance with laws if none exist for technology, create
 In the framework of rule utilitarianism, ethical guidelines concerning user security can be structured to protect individual rights at all times.

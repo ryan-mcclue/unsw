@@ -22,14 +22,13 @@ rishi:
   - for daily consumer; 
     people are unaware 
 
-food mall purchasing food; know how long
 
   14days max. apple-5days
 
 Users:
   - food safety inspector 
   - restaurant manager
-  - normal user
+  - normal user (in a food mall purchasing food; want to know how long)
 ## Problems
 **Scope Creep**
 There exists many permutations of fruit 

@@ -17,4 +17,6 @@ a(2) <= v(2) AND v(1);
 
 s <= v(3) AND (v(2) OR v(1));
 
+TODO: b0: bcd_to_hex PORT MAP (v(3 DOWNTO 0), d0);
+works when don't pass d0?
 

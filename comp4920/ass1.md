@@ -37,6 +37,7 @@ it can be seen that rule utilitarianism is more desirable.
 It allows for the creation of guidelines that are both beneficial to society and simple for a governing body to implement.
 
 TODO: consent and only used for what saying
+TODO: don't make consent essential for application use (detractors might say introduce biases by limiting data as in reading ...) 
 Under rule utilitarianism, ethical guidelines for data retrieval can be made consistent.
 This promotes societal confidence in the computer science profession, 
 leading to a happier society.

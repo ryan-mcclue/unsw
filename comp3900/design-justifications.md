@@ -1,44 +1,52 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+prior to uploading, mention clauses for accuracy, 
+e.g. range +- days available;
+perhaps popup if video does not align with expected conditions;
 
-both chemical engineers in food science
-rishi food processing firm (how would use technology)
+two outputs:
+ 1. range for refridgerated
+ 2. range for room temperature
 
-plantuml for diagram?
+get output for average person can see how long can use food for
 
-Group images:
-  - if giving an average value, then output boxes below fine
-  - however seems like more useful to user if bounding boxes on each individual fruit
-    on that bounding box provide best-before and freshness
-  - how many types of fruit need to detect (just based on what is in datasets? e.g. kaggle?)
+output won't taste better after this many days?
 
-1. Are we attributing rotten/best-before for each individual fruit in the image?
-2. Are we outputting freshness and best-before or only one?
-I'm confused when it says average it out.
-For example, say 1 banana is rotten out of 5 bananas.
-Do you output fresh, as most are not rotten?
-What is the best-before in this case?
+so just shape and colour
 
-Model training:
-  Model 1 (CNN fresh classifier)
-    fresh, not fresh photos?
-    would this also output type of fruit?
-    how would temperature and humidity info come into this?
-  Model 2 (random forest regressor best before)
-    same data set except different feature extraction? e.g. color and shape?
+wong:
+  - food processing (plant-based food)
+  plenty of existing techniques for food classification
+  we want automatic implementation of these
 
-TODO: how to incorporate location data to neural network?
+rishi:
+  - for daily consumer; 
+    people are unaware 
+
+food mall purchasing food; know how long
+
+  14days max. apple-5days
 
 Users:
   - food safety inspector 
   - restaurant manager
   - normal user
 ## Problems
+**Scope Creep**
+There exists many permutations of fruit 
+
+varied fruit types; only look at subset of species; qualify this in app 
+
 **Dataset Collation**
   Problem Summary:
-Obtaining diverse datasets of fruits that represent a wide variety of types, stages of freshness, and environmental conditions (like temperature/humidity etc.)
+Obtaining diverse datasets of fruits that represent a wide variety of types, 
+stages of freshness, and environmental conditions (like temperature/humidity etc.)
+
+use baseline number of fruits to ensure working
+
 IMPORTANT: how to tag data with numerical values, e.g. 3days before etc. 
+
   Solution and Justification: 
-Use public datasets like Kaggle as a base. 
+Use public datasets like Kaggle as a base.
 Where needed, supplement these with custom-collected data that include a broader range of fruits, vegetables, and freshness levels.
 e.g. have to append best-before to fruit names
 
@@ -51,17 +59,26 @@ Public datasets like Kaggle provide a good starting point.
 Preprocessing will involve resizing images, normalizing pixel values, and augmenting data (rotation, flipping, etc.).
 Justification: Preprocessing ensures that the data fed into the model is uniform, reduces overfitting, and increases the model’s robustness to variation in input data.
 
-**Training problem**
-Training complex models like CNNs requires significant computational resources, especially GPUs, which may not be available locally.
+**Training**
+Training complex models like CNNs requires significant computational resources, 
+especially GPUs, which may not be available locally.
 
-Transfer Learning: Use pre-trained models like YOLO or AlexNet and fine-tune only the final layers, which reduces training time and resource requirements.
-Model Optimization: Use lightweight architectures such as MobileNet or SqueezeNet, designed for efficiency on CPUs without sacrificing too much accuracy.
+Training Convolutional Neural Networks (CNNs) 
+can be time-intensive, especially when dealing with large datasets and deep architectures.
+
+Transfer Learning:
+Use pre-trained models like YOLO or AlexNet and fine-tune only the final layers, 
+which reduces training time and resource requirements.
+Model Optimization: Use lightweight architectures such as MobileNet or SqueezeNet, 
+designed for efficiency on CPUs without sacrificing too much accuracy.
 
 Justification: These methods reduce the need for local high-performance computing. Transfer learning and model optimization specifically minimize computational load, 
-**UI problem**
-Ensuring the user interface provides a seamless experience, handling real-time data, location information, and accessibility considerations.
+**UI**
+Ensuring the user interface provides a seamless experience, 
+handling real-time data, location information, and accessibility considerations.
 
-Real-time Processing: Implement progressive loading techniques for displaying partial results as they are generated. Parallel processing will be used to handle different tasks concurrently, such as image analysis and location detection.
+Real-time Processing: Implement progressive loading techniques for displaying partial results as they are generated. 
+Parallel processing will be used to handle different tasks concurrently, such as image analysis and location detection.
 Location Detection: Use GPS for accurate location tagging (with user consent), allow manual input of location, and use IP-based geolocation as a fallback for location-based metadata.
 Accessibility: Ensure the interface is accessible by compiling to WebAssembly (WASM) for native-like performance on the web. For users with poor connectivity or no GPS access, maintain a prestored database of locations for easy lookup.
 Justification: Real-time feedback enhances user experience by providing immediate insights, while progressive loading and parallel processing ensure that users don't experience significant delays. Incorporating multiple location detection methods ensures flexibility, and WebAssembly improves accessibility for broader use.
@@ -79,7 +96,7 @@ Justification: Real-time feedback enhances user experience by providing immediat
    native application affect accessibility (could compile with wasm)
    online requirements for location data (prestored database of location values)
 
-**Video handling problem (complex)**
+**Handling Video Input (complex)**
 Handling video input for freshness analysis presents challenges like temporal segmentation and continuous assessment over time.
 
 Revolving Video & Temporal Segmentation: Implement temporal segmentation techniques to analyze key frames at intervals, extracting relevant features for freshness detection and degradation over time.
@@ -110,7 +127,7 @@ TODO: is this just training on images of groups instead of single?
 Training on Group Images: Collect and label images with groups of fruits, and modify the model to detect and classify individual fruits within a group, similar to object detection tasks.
 Justification: Group fruit classification is essential for real-world applications like supermarkets or farms, where fruits are rarely analyzed individually. This makes the model more practical for use in large-scale environments.
 
-**Freshness problem (complex)**
+**Predicting Freshness (complex)**
 The need to classify fruit freshness, which is a complex task requiring advanced feature extraction and selection of an appropriate CNN architecture.
 
 CNN Model: Use a Convolutional Neural Network (CNN) architecture with layers fine-tuned for multiple fruits and vegetables. Feature extraction can be performed using convolutional layers to capture textural, color, and shape information.
@@ -123,7 +140,7 @@ Justification: CNNs are well-suited for image classification, as shown in previo
 Solution: We will use a Convolutional Neural Network (CNN) architecture, fine-tuned for multiple fruit and vegetable types. CNNs are known for high performance in image classification tasks and are ideal for distinguishing visual characteristics of produce.
 Justification: CNNs have proven effective in existing research (e.g., Bhargava and Bansal, 2020; Amin et al., 2023) with high accuracy in image classification. We will address the limitation of prior works by extending the classification task to a greater variety of fruits and vegetables and using video input.
 
-**Best Before problem (complex)**
+**Predicting Shelf Life (complex)**
 Predicting the shelf-life of fruits and vegetables using factors such as environmental conditions (e.g., temperature, humidity) and visual data.
 
 Random Forest/XGBoost Model: Use Random Forest or XGBoost models to predict shelf-life, incorporating both visual data (e.g., hue) and environmental data (e.g., temperature, humidity) to make predictions.

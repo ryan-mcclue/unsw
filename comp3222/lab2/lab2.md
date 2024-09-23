@@ -10,3 +10,11 @@ H(6) <= (NOT B(3) AND NOT B(2) AND NOT B(1)) OR (B(2) AND B(1) AND B(0));
 
 2.
 circuit A is taking tens digit in case of greater than 0
+
+a(0) <= (v(1) AND v(0)) OR (v(2) AND v(0));
+a(1) <= v(2) AND NOT v(1);
+a(2) <= v(2) AND v(1);
+
+s <= v(3) AND (v(2) OR v(1));
+
+

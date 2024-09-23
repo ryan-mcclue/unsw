@@ -13,6 +13,9 @@
                  things are intrinsically right/wrong
 * normative ethics: establishes guidelines for how people should act, i.e. what is morally permissable
 
+**Bennet, C. (2015): "What is this thing
+called ethics", second edition,
+Routledge.**
 ## UTILITARIANISM:
 Choose option that leads to greatest overall happiness.
 No such thing as a forbidden/taboo act.

@@ -1,17 +1,8 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-pg. 1
-The uncertainty of the current economic crisis is limiting growth and innovation across market sectors
 
-pg. 8
-Amazon.com, newcomers are quickly exposed to a prin-
-ciple called Bias for Action, which is culture-speak for
-encouraging people to actively experiment and realize that
-the cost of not taking action is often greater than the cost of
-making and learning from mistakes.
-(as with code)
-
-leadership talent crisis
-
+**Developing as a leader:
+The power of mindful engagement**
+## Leadership
 mindful engagement approach:
 1. leadership is about influencing people; not just a leader-like job title; 
 it's state of mind focusing on collective needs
@@ -42,9 +33,11 @@ Set goals so develop self-awareness of developmental needs
 
 Military employed leadership rotation programs
 
-
 identify facts, stakeholders, and obligations that you might not have considered previously
 
+**ACM Code of Ethics
+and Professional Conduct**
+## General Computing Ethics
 1. Respect user autonomy (no unsolicited data harvesting; control of user computer), user safety (no cause for harm) and equality (access for all)
 2. Maintain high standards (know best practices for field), follow rules (international/industry specific), 
    perform risk analysis (potential for misuse), don't spread misinformation, security contingencies (dealing with DoS, binary patching)

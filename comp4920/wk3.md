@@ -1,10 +1,24 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+AI ethics has quite rapidly converged on a set of five
+principles (Jobin et al 2019):
+• non-maleficence
+• responsibility or accountability
+• transparency and explainability
+• justice and fairness
+• respect for various human rights, such as privacy and security
+
 **The Challenge of Value Alignment: From Fairer
 Algorithms to AI Safety**
 ## Value Alignment
+Values are personal qualities that motivate actions.
+Principles less subjective rules of conduct.
+
+Must maintain values as business changes to avoid value drift.   
+
 Technology is never value-neutral, often embodying values of creators, e.g. Robert Moses bridges designed to divide white and black neighbours with underpasses etc. 
 (This is exemplified by Langdon Winner's concept of artifacts having politics, referencing examples like Robert Moses's bridges in New York City (Winner 1980))
+(also, technology makes certain outcomes more and less likely to occur)
 
 AI's ability to learn makes their actions less predictable; making value alignment more important.
 Algorithms underpinning AI learning, amplify the biases in training data; yeilding 'algorithmic bias'

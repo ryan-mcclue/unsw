@@ -8,6 +8,8 @@ TODO: harvard in-text referencing
 - specifically cite course material to support points being made
 - cite external literature also?
 
+TODO: email draft as google doc
+
 Daily life continues to involve more technologies.
 As a result, there are far-reaching societal impacts to consider 
 when creating computer science ethical guidelines. 
@@ -17,10 +19,6 @@ By considering leadership challenges relating to data obtainment and user securi
 it can be seen that rule utilitarianism is more desirable.
 It allows for the creation of guidelines that 
 are both beneficial to society and simple for a governing body to implement.
-
-TODO: consent and only used for what saying
-TODO: don't make consent essential for application use 
-(detractors might say introduce biases by limiting data as in reading ...) 
 
 Under rule utilitarianism, ethical guidelines for data retrieval can be made consistent.
 This promotes societal confidence in the computer science profession, 
@@ -48,9 +46,9 @@ Following rule utilitarianism, it can be mandated that
 data collection should only occur with explicit user consent
 and clear specification of how the data will be used.
 Importantly, this protects data that predates any current rights framework.
-Such protection goes beyond a value neutral approach to technology ().
+Such protection goes beyond a value neutral approach to technology (value).
 It acknowledges Kranzberg's First Law that 
-the future uses of technology cannot be fully foreseen by its creators ().
+the future uses of technology, particularly AI, cannot be fully foreseen by its creators (kranz).
 By requiring both consent and specified use, 
 this system provides users with confidence in how their past, present, 
 and future data will be handled. 
@@ -60,9 +58,10 @@ However, the long-term benefits of fostering a society that trusts tech companie
 outweigh these short-term costs.
 Indeed, preserving trust aligns with Friedman's notion that
 all computer technology should reflect human values to promote a better future (Friedman).
-As a result, the consistency that rule utilitarianism offers in relation to data privacy
-makes it a more effective approach for developing ethical guidelines than
-act utilitarianism.
+As a result, the consistency that rule utilitarianism offers compared to
+act utilitarianism in relation to data privacy,
+make it a more effective approach for developing ethical guidelines 
+that promote societal happiness.
 
 In the framework of rule utilitarianism, 
 ethical guidelines concerning user security can be structured to 
@@ -72,6 +71,9 @@ enhancing happiness.
 Security technologies introduce significant power dynamics between producers and consumers.
 Intel SGX is a security technology that utilises a hardware private key 
 to allow the CPU to only run signed code (Intel, n.d).
+
+TODO: use tech-agnostic terminology, i.e. pretend person knows nothing for private key
+
 Under act utilitarianism, implementers of this technology could effectively render 
 a user's machine unusable without any legal backing.
 This would be done by blacklisting their private key, 
@@ -79,18 +81,19 @@ preventing them from running new software.
 A justification for this could be that rendering a 
 malicious user offline would safeguard many more users who were potential victims.
 Indeed, tech creators possess more specialised knowledge than legal bureaucrats.
-So, in a technological landscape where threats can emerge and spread quickly,
-bypassing traditional legal processes enables quicker and more informed decisions.
+In the current technological landscape where threats can emerge and spread quickly,
+bypassing traditional legal processes could enable quicker and more informed decisions to be made.
 As a result, that user's automony over their machine is forfeited for the general good.
 This outcome is in violation of the ACM ethical guideline principal concerning people 
 as stakeholders in computing.
 Specifically, the imperative that all computing should protect each 
 individual's right to autonomy (ACM, 2018 p. 4).
 Having this as a possible outcome relies on society placing an immense amount 
-of trust in technology manufacturers to act justly, leading to widespread dissatisfaction.
+of trust in technology manufacturers to act justly.
+This dependence on tech could lead to widespread dissatisfaction.
 Technology companies would have unchecked control over user's belongings, 
 effectively placing them above the law. 
-With the rise of smart devices, this control could extend to phones, appliances, cars and more.
+With the rise of smart devices, this control could extend to phones, appliances, cars and more. (smart device ref.)
 This illustrates how act utilitarianism can lead to immoral outcomes,
 as discussed by Bennett (2015, p. 60).
 It's immoral to seize one's property without proper litigation/warrant.
@@ -115,7 +118,7 @@ while still allowing for necessary security measures.
 As rule utilitarnism strikes a balance between innovation and 
 individual rights for security technologies, it's clear that's
 more effective than act utilitarianism in constructing ethical guidelines that
-maximising societal happiness.
+maximise societal happiness.
 
 In conclusion, ethical guidelines for the computer science profession 
 should prioritise societal wellbeing. 
@@ -133,6 +136,9 @@ It does so by promoting consistent and straightforward rules that are easier to 
 4. Intel. (n.d.). Intel® Software Guard Extensions (Intel® SGX). 
    [online] Available at: https://www.intel.com/content/www/us/en/products/docs/accelerator-engines/software-guard-extensions.html
    [Accessed 18 Sep. 2024].
+
+lecture material: Name; Lecture Topic or Number, University of NSW, 2024.
+5. Lecture Slides Week 2 - Ethics in Computing, AI Ethics, and Research Integrity, University of NSW, 2024.
 
 Value-Neutrality Thesis (VNT): “Technological artifacts do not have, have
 embedded in them, or contain values. (Pitt 2000; Pitt 2014)

@@ -73,24 +73,9 @@ designed for efficiency on CPUs without sacrificing too much accuracy.
 
 Justification: These methods reduce the need for local high-performance computing. Transfer learning and model optimization specifically minimize computational load, 
 **UI**
-Ensuring the user interface provides a seamless experience, 
-handling real-time data, location information, and accessibility considerations.
+On startup, document a series of conditions that are expected to be met in any uploaded fruit image/video. This qualifies the classification accuracy, so the user is aware to what extent they should trust the output given what they uploaded. Furthermore, if the application detects poor input quality, it will inform the user with a popup.
 
-Real-time Processing: Implement progressive loading techniques for displaying partial results as they are generated. 
-Parallel processing will be used to handle different tasks concurrently, such as image analysis and location detection.
-Location Detection: Use GPS for accurate location tagging (with user consent), allow manual input of location, and use IP-based geolocation as a fallback for location-based metadata.
-Accessibility: Ensure the interface is accessible by compiling to WebAssembly (WASM) for native-like performance on the web. For users with poor connectivity or no GPS access, maintain a prestored database of locations for easy lookup.
-Justification: Real-time feedback enhances user experience by providing immediate insights, while progressive loading and parallel processing ensure that users don't experience significant delays. Incorporating multiple location detection methods ensures flexibility, and WebAssembly improves accessibility for broader use.
-
-      realtime:
-        - Develop progressive loading techniques for partial results display 
-        - Implement parallel processing for different analysis tasks
-      location detection:
-        - Implement GPS-based location detection (with user permission)
-        - Allow manual input of location
-        - Use IP-based geolocation as a fallback
-      acessibility
-      user text input
+The user will have the option to autofill temperature and humidity based on location to handle situations where the user is unaware of this information. Will also have the option to manually enter this information to account for situations where the user’s location is not indicative of environmental conditions, e.g. inside a warehouse.
 
    native application affect accessibility (could compile with wasm)
    online requirements for location data (prestored database of location values)

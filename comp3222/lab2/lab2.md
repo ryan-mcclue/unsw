@@ -1,12 +1,12 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 1.
-H(0) <= (B(2) AND NOT B(1) AND NOT B(0)) OR (NOT B(3) AND NOT B(2) AND NOT B(1) AND B(0));
-H(1) <= (NOT B(3) AND NOT B(1) AND B(0)) OR (B(2) AND B(1) AND NOT B(0));
-H(2) <= (NOT B(2) AND B(1) AND NOT B(0)) OR (NOT B(3) AND NOT B(2) AND NOT B(1) AND B(0));
-H(3) <= (NOT B(2) AND NOT B(1) AND B(0)) OR (B(2) AND NOT B(1) AND NOT B(0)) OR (B(2) AND B(1) AND B(0));
-H(4) <= (B(1) AND B(0)) OR (B(2) AND NOT B(1)) OR (B(3) AND B(0));
-H(5) <= (NOT B(2) AND B(1)) OR (B(1) AND B(0));
-H(6) <= (NOT B(3) AND NOT B(2) AND NOT B(1)) OR (B(2) AND B(1) AND B(0));
+    H(0) <= (B(2) AND NOT B(1) AND NOT B(0)) OR (NOT B(3) AND NOT B(2) AND NOT B(1) AND B(0));
+    H(1) <= (NOT B(3) AND NOT B(1) AND B(0)) OR (B(2) AND B(1) AND NOT B(0));
+    H(2) <= (NOT B(2) AND B(1) AND NOT B(0)) OR (NOT B(3) AND NOT B(2) AND NOT B(1) AND B(0));
+    H(3) <= (NOT B(2) AND NOT B(1) AND B(0)) OR (B(2) AND NOT B(1) AND NOT B(0)) OR (B(2) AND B(1) AND B(0));
+    H(4) <= (B(1) AND B(0)) OR (B(2) AND NOT B(1)) OR (B(3) AND B(0));
+    H(5) <= (NOT B(2) AND B(1)) OR (B(1) AND B(0));
+    H(6) <= (NOT B(3) AND NOT B(2) AND NOT B(1)) OR (B(2) AND B(1) AND B(0));
 
 2.
 TODO: have don't care outputs
@@ -48,3 +48,16 @@ CA(0) <= s(0); E
     ds2: bcd_to_hex PORT MAP (b(3 DOWNTO 0), d2); -- your bcd_to_hex instantiation
     ds1: bcd_to_hex PORT MAP (N, d1); -- your bcd_to_hex instantiation
     ds0: bcd_to_hex PORT MAP (M(3 DOWNTO 0), d0);-- your bcd_to_hex instantiation
+
+5.
+TODO: explore different combinatorial constructs
+   PROCESS (T0)
+   BEGIN
+     IF (T0 > 9) THEN
+       Z0 <= "01010";
+       C1 <= "0001";
+     ELSE
+       Z0 <= "00000";
+       C1 <= "0000";
+     END IF;
+   END PROCESS;

@@ -44,7 +44,6 @@ architecture behaviour of adder4 is
 end behaviour;
 ```
 
-TODO: 1 to 3 for nonnumeric signals?
 TODO: twos-complement subtraction and addition
       can use same circuit with xor select?
 

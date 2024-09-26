@@ -76,10 +76,17 @@ by rewriting a truth table's outputs to include say a variable,
 resulting circuit can be more efficient
 
 muxes can implement a variety of logic functions like xor, majority function
-TODO: 
-elaborate on how muxes can use shannon's expansion theorem to create functions
+
+can simplify truth tables if group values to say x, e.g. where x is all 1 and 0.
+then see how output relates to remaining variable, e.g. y
+
+shannon's expansion theorem can map truth table to mux:
+  1. factor out a variable in normal and uncomplemented
+     the factored out variable becomes a control signal
+  2. continue factoring inside brackets for desired data lines
+     the inner most variables become data lines
+
 (cofactors are subfunctions?)
-shannon's to map truth table to muxes?
 
 
 decoder converts binary code to one-hot encoded output (i.e. unique 1 bit set like bit mask)

@@ -28,14 +28,32 @@ END GENERATE;
 
 
 Latches (simplest form of memory) are built using cross-coupled NOR/NAND gates
-Use feedback to 'trap' value.
+
+The output 'latches' on, i.e. feeds back in
 Latch types:
-  - SR (set, reset)
-  - Gated SR (clock)
-  - Gated D (data input)
+  - SR
+    Implemented by crossing NOR gates (NOR 00 is only 11)
+    R -\- Q
+    S -/- Q'
+    Setting S high will set Q
+    Setting R high will reset Q
+    Having both R and S on at same time is invalid
+    TODO: Which output high initially is random, so want to have an ability to set in known state
+    TODO: Do you just ignore the Q' value?
+  - D (data input)
+    Similar structure to SR, except one D signal that is fed through invertor to top
+    Also has an E enable signal that must be down for it to latch
+    So, will hold E, D, release E, release D
+    D -- Q
+    E -- Q'
+
+  TODO: clocked d latch
+  https://www.youtube.com/watch?v=8bUKw2cGcGg
 
 Flip flops respond to edges rather than level
   - D (store data input on rising or falling)
+  use rising edge of clock as enable pin to D latch
+
   - T (toggles output on each clock)
   - JK (combine SR and T flip flop?)
 

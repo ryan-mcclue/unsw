@@ -44,21 +44,22 @@ architecture behaviour of adder4 is
 end behaviour;
 ```
 
-TODO: twos-complement subtraction and addition
-      can use same circuit with xor select?
+twos-complement used as easier overflow detection, 
+same circuit for subtraction/addition and
+compatibility with signed and unsigned
+in twos complement, if the carry-out of the MSB/sign-bit is different
+to the carry-in of the previous bit then overflow 
 
-carry lookahead adder reduces critical path delay of carries
+carry lookahead adder reduces critical path delay of carries in ripple-carry
 it will first determine if inputs will generate (both 1s) or 
 propagate a carry (either 1 and carry in)
 once all carries determined, full adder components occur in parallel
+
 as CLA complex with more wires, often divide into 8bit chunks and connect with ripple
 this is known as hierachical carry-lookahead addition
-TODO: detecting overflow by looking at MSB?
 
 TODO: look at the timing simulation of LPM adder (using '+' operator) 
 to observe glitching as carries ripple through adder
-
-TODO: want to be able to access internal signals of say '+' operator to see if overflow?
 
 ```
 Sum <= ('0' & X) + (‘0’ & Y) + Cin ;
@@ -67,13 +68,38 @@ Cout <= Sum(16) ;
 Overflow <= Sum(16) XOR X(15) XOR Y(15) XOR Sum(15) ;
 ```
 
-cross-bar switch connects n inputs to k outputs (built with multiplexors)
-muxes can create xor, majority function
+cross-bar switch has capability of connecting any of its inputs to any
+of its outputs.
+in this way, multiplexors can be thought of as lookup tables.
+a 2x2 crossbar switch can be built with two multiplexors.
+by rewriting a truth table's outputs to include say a variable,
+resulting circuit can be more efficient
 
-TODO: shannon's expansion theorem to create functions with muxes
-TODO: decoder circuits
+muxes can implement a variety of logic functions like xor, majority function
+TODO: 
+elaborate on how muxes can use shannon's expansion theorem to create functions
+(cofactors are subfunctions?)
+shannon's to map truth table to muxes?
+
+
+decoder converts binary code to one-hot encoded output (i.e. unique 1 bit set like bit mask)
+so, n inputs, 2^n outputs
+has enable pin so can control having no output
+used in memory address decoding and demultiplexing
+so 2-4, 3-8 decoders etc.
+
+tristate buffer has option of being in high-impedance (imagine no wires are disconnected, i.e. air between them)
+this allows sharing of bus/line
+
+encoder converts one-hot encoded input to binary code
+4-2, 8-3 encoders etc.
+priority encoder allows more than 1 bit to be active.
+in this case, will select binary code for highest priority bit (typically from MSB)
+used in interrupt handlers
+
+TODO: combinational vhdl code for these components
+
+
 
 karnaugh map generator:
 http://www.32x8.com/index.html
-
-

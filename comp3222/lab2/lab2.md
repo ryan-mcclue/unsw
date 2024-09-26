@@ -1,4 +1,8 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+TODO: way to have component in package to prevent having to copy-paste across lab projects
+
+TODO: is the distinction between 1 TO 3 and 3 DOWNTO 1 just syntactical?
+
 1.
     H(0) <= (B(2) AND NOT B(1) AND NOT B(0)) OR (NOT B(3) AND NOT B(2) AND NOT B(1) AND B(0));
     H(1) <= (NOT B(3) AND NOT B(1) AND B(0)) OR (B(2) AND B(1) AND NOT B(0));

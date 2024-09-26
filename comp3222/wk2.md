@@ -11,7 +11,8 @@ number of karnaugh maps related to number of outputs
 indices are graycoded (i.e. can only change 1 bit at a time)
 implicant is anything that is 1
 find prime implicants are largest power of 2 groupings (toroidal)
-mark regions where variable asserted true (or false in case of POS)
+IMPORTANT: must all be largest size
+mark regions where variable asserted true (for POS, take same region just invert and OR)
 then, for each prime implicant, see if variable appears in it to include it  
 
 IMPORTANT: if truth table not completely specified, can put either 0 or 1 as convenient 
@@ -31,6 +32,7 @@ Factor expression to reduce fan-in and reducing literal circuit build cost
 However, larger fan-in quicker as less propagation delay
 
 3-LUT implement by chaining 2-LUTs
+Factoring, e.g. x1(x2 + x3) + x4(x2 + x3)
 
 NAND and NOR implementation preferred as less transistors
 demorgan allows this transformation

@@ -47,19 +47,29 @@ Latch types:
     D -- Q
     E -- Q'
 
-  TODO: clocked d latch
-  https://www.youtube.com/watch?v=8bUKw2cGcGg
-
-Flip flops respond to edges rather than level
+Flip flops respond to clock pulses.
   - D (store data input on rising or falling)
-  use rising edge of clock as enable pin to D latch
-
-  - T (toggles output on each clock)
-  - JK (combine SR and T flip flop?)
+  TODO: most common?
+  use rising edge of clock as enable pin to D latch (so EN replaced with CLK)
+  so, only changing value at specified moments in time
+  will have an edge detector circuit
+    - 1 input and inversion to AND gate (the delay for invertor gives pulse)
+    - simpler capacitor and resistor
+  - SR
+   has CLK, S and R
+  - JK 
+   Like SR, except has additional feedback, so 3 fanin AND gates at start
+   Fixes 'invalid' state of S=R=1, whereby it toggles in this state 
 
 Registers
+  - General Purpose
+    Series of D flip-flops
   - Shift (shift data sequentially on each clock cycle)
+    Series of flip-flops with interconnections
+    TODO: Can control heaps of outputs?
   - Parallel-Access (shift and parallel load capabilities?)
+
+
 
 Counters
   - Ripple (simple; prone to glitching)

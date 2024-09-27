@@ -5,3 +5,6 @@ i.e. what is fastest concievable clock speed?
 
 TODO: the difference between the two RTLs from lab2 is that using '+' FPGA uses built in hardware?
 i.e. bypasses a LUT?
+
+TODO: when use JK flip-flop?
+      are Q' outputs often ignored?

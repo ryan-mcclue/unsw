@@ -8,8 +8,6 @@ TODO: harvard in-text referencing
 - specifically cite course material to support points being made
 - cite external literature also?
 
-TODO: email draft as google doc
-
 Daily life continues to involve more technologies.
 As a result, there are far-reaching societal impacts to consider 
 when creating computer science ethical guidelines. 

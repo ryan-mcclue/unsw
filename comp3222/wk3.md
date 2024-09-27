@@ -96,7 +96,7 @@ used in memory address decoding and demultiplexing
 so 2-4, 3-8 decoders etc.
 
 tristate buffer has option of being in high-impedance (imagine no wires are disconnected, i.e. air between them)
-this allows sharing of bus/line
+this allows sharing of bus/line as can isolate parts of circuit
 
 encoder converts one-hot encoded input to binary code
 4-2, 8-3 encoders etc.

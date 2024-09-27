@@ -46,6 +46,9 @@ Latch types:
     So, will hold E, D, release E, release D
     D -- Q
     E -- Q'
+  IMPORTANT: gated variants mean takes clk as enable, but level detection
+  i.e. the inputs are gated by the clock
+  TODO: is the glitching from level detection really an issue?
 
 Flip flops respond to clock pulses.
   - D (store data input on rising or falling)
@@ -58,21 +61,42 @@ Flip flops respond to clock pulses.
   - SR
    has CLK, S and R
   - JK 
-   Like SR, except has additional feedback, so 3 fanin AND gates at start
-   Fixes 'invalid' state of S=R=1, whereby it toggles in this state 
+   Like SR, except has additional feedback, so 3 fanin AND gates at start.
+   Fixes 'invalid' state of S=R=1, whereby it toggles in this state.
+   This toggling can be used to create a counters:
+     - Ripple
+       Chaining output of 1 flip-flop to clk of other.
+       Prone to glitching due to time for signal to propagate.
+     - Synchronous 
+       All flip-flops use same clk, so all output bits change at once.
+       The interconnections involve AND gates to toggle.
+      TODO: use cases, e.g. clock division?
+   IMPORTANT: racing occurs on toggling where clock pulse is too short and continually toggles back and forth during pulse time
+   TODO: is racing just an artefact of RC edge detection circuit?
+
+   Can overcome racing with master-slave JK flipf-flop.
+   In effect, connecting two SR latches; 1 master, 1 slave (only active when clock low). 
+   So both will never be active.
+   Therefore, master active on clock high, then slave active on low.
+   No need for a RC circuit, as will only change on one complete clock cycle.
+
+
+
+
 
 Registers
   - General Purpose
     Series of D flip-flops
+    So, for 8bit would have QA, QB, QC, etc.
+
   - Shift (shift data sequentially on each clock cycle)
     Series of flip-flops with interconnections
-    TODO: Can control heaps of outputs?
+    TODO: for 8bit, has 1 data in and 8 data outs?
+    TODO: data out for 1 can be wired to data in for other, so 2-8bit shifts to control 16
+
+    clock line as normal
+    'latch' line takes data from storage registers to outputs?
+    so, always shifting into QA storage register.
+
+    TODO: Can control in effective unlimited of outputs?
   - Parallel-Access (shift and parallel load capabilities?)
-
-
-
-Counters
-  - Ripple (simple; prone to glitching)
-  - Synchronous (all output bits change at once)
-
-

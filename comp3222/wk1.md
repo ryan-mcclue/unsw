@@ -2,6 +2,11 @@
 FPGA has logic and programmable on chip
 ASIC only logic 
 
+IMPORTANT: simplifying boolean algebra:
+  - uniting theorem
+  - de morgans theorem
+  - join same variables, e.g. x + x' = 1, xx' = 0
+
 digital logic has inherent parallelism; higher throughput than CPU
 
 2nd hour of 2nd lecture worked problems

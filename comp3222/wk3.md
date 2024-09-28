@@ -81,30 +81,40 @@ can simplify truth tables if group values to say x, e.g. where x is all 1 and 0.
 then see how output relates to remaining variable, e.g. y
 
 shannon's expansion theorem can map truth table to mux:
+the number of variables factored out give number of mux control signals, i.e. 2 gives 4-1 mux
   1. factor out a variable in normal and uncomplemented
-     the factored out variable becomes a control signal
-  2. continue factoring inside brackets for desired data lines
+     the variables in brackets are the cofactors of the variable factored out
+     the factored variable chosen affects resulting circuit complexity
+  2. continue factoring inside brackets for desired control lines
      the inner most variables become data lines
-
-(cofactors are subfunctions?)
-
-
-decoder converts binary code to one-hot encoded output (i.e. unique 1 bit set like bit mask)
-so, n inputs, 2^n outputs
-has enable pin so can control having no output
-used in memory address decoding and demultiplexing
-so 2-4, 3-8 decoders etc.
-
-tristate buffer has option of being in high-impedance (imagine no wires are disconnected, i.e. air between them)
-this allows sharing of bus/line as can isolate parts of circuit
+IMPORTANT: can be continued to just have 1 and 0 as data lines, which can be thought of as a LUT
 
 encoder converts one-hot encoded input to binary code
 4-2, 8-3 encoders etc.
 priority encoder allows more than 1 bit to be active.
 in this case, will select binary code for highest priority bit (typically from MSB)
 used in interrupt handlers
+```
+IMPORTANT: having less bits to evaluate is more efficient as they can be treated as don't cares
+y <= "11" WHEN w(3) = '1' ELSE
+"10" WHEN w(2) = '1' ELSE
+"01" WHEN w(1) = '1' ELSE
+"00" ;
+z <= '0' WHEN w = "0000" ELSE '1'; -- active signal
+```
 
-TODO: combinational vhdl code for these components
+decoder converts binary code to one-hot encoded output (i.e. unique 1 bit set like bit mask)
+so, n inputs, 2^n outputs
+has enable pin so can control having no output
+used in memory address decoding and demultiplexing
+so 2-4, 3-8 decoders etc.
+```
+
+```
+
+tristate buffer has option of being in high-impedance (imagine no wires are disconnected, i.e. air between them)
+this allows sharing of bus/line as can isolate parts of circuit
+
 
 
 

@@ -1,4 +1,8 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+# Behavioural Process
+PROCESS (clk)
+
+# Combinatorial Process
 PROCESS (t0)
   IMPORTANT: multiline ifs have to be in sequential
   i.e. if not mutually exclusive
@@ -6,25 +10,41 @@ PROCESS (t0)
   IMPORTANT: if don't exhaust all possiblities,
   will have 'implied memory' logic error, i.e
   the circuit will retain previous value when not desired
-
   CASE WHEN 
 END PROCESS;
 
-f <= w0 WHEN s="00" ELSE w1;
-
-f <= w0 WHEN s="00" ELSE 
-     w1 WHEN x="00";
-
+## Multiplexor
+IMPORTANT: prefer WITHs and WHENs for performance
 WITH s SELECT
   f <= w0 WHEN "00",
-       w1 WHEN OTHERS;
+       w1 WHEN "01",
+       w2 WHEN "10",
+       w3 WHEN OTHERS;
 
+AeqB <= '1' WHEN A = B ELSE '0' ;
+f <= w0 WHEN s="00" ELSE w1;
+
+PROCESS ( w0, w1, s )
+BEGIN
+  IF s = '0' THEN
+    f <= w0 ;
+  ELSE
+    f <= w1 ;
+  END IF ;
+END PROCESS ;
+
+
+## Cascading
 G1: FOR i IN 0 TO 3 GENERATE
   muxes: mux2to1 PORT MAP (sw(4*i to i), m(0));
   G2: IF i=2 GENERATE
     muxother: mux3to1 PORT MAP (sw(4*i to i), m(0));
   END GENERATE;
 END GENERATE;
+
+
+
+
 
 
 Latches (simplest form of memory) are built using cross-coupled NOR/NAND gates

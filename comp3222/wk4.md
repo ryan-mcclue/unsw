@@ -1,4 +1,17 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+RTL schematic looks at vhdl code (logic gates)
+Synthesis schematic will look at netlist (LUTs)
+
+Testbench is file that encodes a simulation.
+Behavioural simulation for testing inputs.
+Timing simulation to see gate delays.
+IMPORTANT: to maintain internal signal presence in simulation:
+```
+SIGNAL R_g, S_g, Qa, Qb : STD_LOGIC;
+ATTRIBUTE DONT_TOUCH : STRING;
+ATTRIBUTE DONT_TOUCH OF R_g, S_g, Qa, Qb : SIGNAL IS "true";
+```
+
 # Behavioural Process
 PROCESS (clk)
 
@@ -99,10 +112,6 @@ Flip flops respond to clock pulses.
    So both will never be active.
    Therefore, master active on clock high, then slave active on low.
    No need for a RC circuit, as will only change on one complete clock cycle.
-
-
-
-
 
 Registers
   - General Purpose

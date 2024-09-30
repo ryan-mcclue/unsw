@@ -16,3 +16,32 @@ TODO: why is converting a truth table to a mux really that useful?
       For example, does synthesis do Karnaugh map or Shannon's?
 
 TODO: would all encoders be priority encoders as more efficient to just look at one 1 bit
+
+TODO: synthesis schematic has input and output buffers?
+      what are the circuits?
+      if for handling noise, what might they be?
+      buffer just electrical term for input cleaning, i.e. noise handling, amplifying etc?
+
+TODO: comparing gate delays for post-synthesis and post-implementation timing simulations seemed the same
+
+2.
+```
+R <= NOT D;
+S_g <= NOT (D AND Clk);
+R_g <= NOT (R AND Clk);
+Qa <= NOT (S_g AND Qb);
+Qb <= NOT (R_g AND Qa);
+Q <= Qa;
+
+wait for 100 ns;    -- wait for global reset after device powers up
+  D_in <= '0';  -- clk high from 105, 115, etc.
+wait for 17.5 ns; -- (high, 0): 1 -> 1
+  D_in <= '1'; 
+wait for 5 ns; -- (low, 1): 0 -> 1
+  D_in <= '0';
+wait for 5 ns; -- (high, 1): 0 -> 0
+  D_in <= '0';
+wait for 5 ns; -- (low, 0): 1 -> 1
+  D_in <= '1';
+wait;
+```

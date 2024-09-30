@@ -1,5 +1,13 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+TODO: to justify is 'well-made' have CI?
+TODO: just recording and then playing recording in lab?
+web app features +
+model features in jupyter notebook?
+
+TODO: retrospective will use velocity charts?
+beneficial to exaggerate on time?
+
 app = Flask(__name__, static_folder='build', static_url_path='/')
 
 @app.route('/')

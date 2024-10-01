@@ -51,6 +51,10 @@ Should incorporate bias mitigation techniques throughout design process.
 Important that technology reflects human values to promote a better future.
 
 **Bias on the Web**
+'mini-public' selected through stratified random sampling.
+Use social social science methods select.
+Citizen assemblies to inform decisions (enables goal prioritisation).
+
 These biases interact, making mitigation complex. Furthermore, AI is trained on these biases.
 1. Activity Bias
 Small percentage of users create content/reviews etc., giving illusion of 'wisdom of the crowd'
@@ -79,6 +83,8 @@ Data has biases that try to correct.
 Different demographics have same potential, however structural biases distort data.
 
 Understand fairness through features (inputs):
+- constructs (idealised features)
+- observations (actually used features)
 1. Construct Feature Space: not directly measurable free from bias, e.g intelligence
 2. Observed Feature Space: measurable with bias, e.g. test scores
 And decisions (outputs):

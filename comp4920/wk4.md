@@ -9,3 +9,8 @@ So, for decisions that involve these traits, keep humans involved in decision ma
 - Fairness: Normative salience (are beliefs reasonably justified) of imbued decisions
 - Transparency: Communicate reasoning
   * Although statistical reasoning, doesn't capture normative salience
+
+cognitivism: moral statements can be objectively true (truth apt)
+(e.g. divine command theory, moral subjectivism)
+
+non-cognitivism: can't be true or false; saying something is wrong is just an expression of feeling

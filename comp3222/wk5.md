@@ -3,7 +3,7 @@ Sequential circuits (FSMs) have state (while combinational just input and output
 So, will involve flipflops.
 
 Moore machine input affects state transition, not output:
-TODO: moore most common?
+IMPORTANT: moore most common as synchronous circuit
 ```
 case state is
   when S0 =>

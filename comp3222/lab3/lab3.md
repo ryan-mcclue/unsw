@@ -23,6 +23,10 @@ TODO: synthesis schematic has input and output buffers?
       buffer just electrical term for input cleaning, i.e. noise handling, amplifying etc?
 
 TODO: comparing gate delays for post-synthesis and post-implementation timing simulations seemed the same
+(critical path gate delays impose max. frequency of clock)
+
+TODO: asynchronous reset not gated
+isn't synchronous more common?
 
 2.
 ```

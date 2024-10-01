@@ -4,7 +4,7 @@ Synthesis schematic will look at netlist (LUTs)
 
 Testbench is file that encodes a simulation.
 Behavioural simulation for testing inputs.
-Timing simulation to see gate delays.
+Timing simulation to see gate delays. 
 IMPORTANT: to maintain internal signal presence in simulation:
 ```
 SIGNAL R_g, S_g, Qa, Qb : STD_LOGIC;

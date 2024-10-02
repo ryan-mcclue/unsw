@@ -107,11 +107,12 @@ Flip flops respond to clock pulses.
    IMPORTANT: racing occurs on toggling where clock pulse is too short and continually toggles back and forth during pulse time
    TODO: is racing just an artefact of RC edge detection circuit?
 
-   Can overcome racing with master-slave JK flipf-flop.
+   Can overcome racing with master-slave JK flip-flop.
    In effect, connecting two SR latches; 1 master, 1 slave (only active when clock low). 
    So both will never be active.
    Therefore, master active on clock high, then slave active on low.
    No need for a RC circuit, as will only change on one complete clock cycle.
+  - T (merges JK lines to single T)
 
 Registers
   - General Purpose

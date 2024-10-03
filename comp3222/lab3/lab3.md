@@ -40,12 +40,24 @@ Q <= Qa;
 wait for 100 ns;    -- wait for global reset after device powers up
   D_in <= '0';  -- clk high from 105, 115, etc.
 wait for 17.5 ns; -- (high, 0): 1 -> 1
-  D_in <= '1'; 
+  D_in <= '1';
+wait for 10 ns; -- (high, 1): 1 -> 1
+  D_in <= '1';
+wait for 10 ns; -- (high, 1): 0 -> 0
+  D_in <= '0';
+wait for 10 ns; -- (high, 0): 0 -> 0
+  D_in <= '0';
+wait for 5 ns; -- (low, 0): 0 -> 0
+  D_in <= '0';
+wait for 10 ns; -- (low, 0): 1 -> 0
+  D_in <= '1';
+wait for 5 ns; -- (high, 0): 1 -> 1
+  D_in <= '1';
 wait for 5 ns; -- (low, 1): 0 -> 1
-  D_in <= '0';
-wait for 5 ns; -- (high, 1): 0 -> 0
-  D_in <= '0';
-wait for 5 ns; -- (low, 0): 1 -> 1
+  D_in <= '1';
+wait for 10 ns; -- (low, 1): 1 -> 1
   D_in <= '1';
 wait;
+
+
 ```

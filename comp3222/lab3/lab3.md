@@ -29,6 +29,9 @@ and post-implementation timing simulations seemed the same
 TODO: asynchronous reset not gated
 isn't synchronous more common?
 
+TODO: asynchronous reset;
+      hex(1:0) always B
+
 2.
 ```
 R <= NOT D;

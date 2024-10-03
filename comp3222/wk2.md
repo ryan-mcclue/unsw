@@ -20,6 +20,9 @@ IMPORTANT: if truth table not completely specified, can put either 0 or 1 as con
 IMPORTANT: when drawing circuit diagrams, start vertical with negated counterpart 
 find minimal form
 
+IMPORTANT: All FPGA hardware will map to LUTs and flipflops.
+Flipflop clock can only be mapped from a clock capable pin.
+
 FPGA composed of logic blocks (whose configuration are written in SRAM)
   - LUT functionality based on configured truth-table.
     so n-input LUT as 2^n entries in truth-table

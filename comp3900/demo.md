@@ -17,6 +17,7 @@ IMPORTANT: demo to client separately after.
 content non technical; answer:
   - Why are you building product
   - Who are target users
+Practical applications in reducing food waste and enhancing food quality control.
   - Why should users want to use this product
   - Is your system on the right track
 

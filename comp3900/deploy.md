@@ -6,7 +6,6 @@ web app features +
 model features in jupyter notebook?
 
 TODO: retrospective will use velocity charts?
-beneficial to exaggerate on time?
 
 app = Flask(__name__, static_folder='build', static_url_path='/')
 
@@ -22,3 +21,5 @@ heroku create <name-for-your-app>
 # https://<name-for-your-app>.herokuapp.com/
 heroku container:push web --app <name-for-your-app>
 heroku container:release web --app <name-for-your-app>
+
+# merge all branches before continuing

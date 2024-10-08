@@ -43,5 +43,6 @@ One section each for
   - want went well
   - what didn't
   - ways to improve/things to try next sprint
-  e.g. lacking clear acceptance criteria, design docs, regular meetings, lack of discussion with other members etc.
-  assign responsibilities, e.g. Ryan conduct more meetings
+  e.g. lacking clear acceptance criteria, design docs, regular meetings, 
+       lack of discussion with other members etc.
+       assign responsibilities, e.g. Ryan conduct more meetings

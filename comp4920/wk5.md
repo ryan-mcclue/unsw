@@ -1,4 +1,6 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+A counterfactual statement discusses what would have been true if following a hypothetical.
+
 **Reflective Equilibrium** 
 Emphasis on justification and coherence is relevent to far reaching impacts on AI technology
 

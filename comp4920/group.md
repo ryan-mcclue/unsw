@@ -29,8 +29,28 @@ AI for personalized treatment plans
 
 AI technology:
   Description:
-    - Purpose/goals,
+    - PURPOSE:
+     * Overarching Purpose
+     * Goals
+     record electrical signals in the heart (electrocardiogram ECG)
+     accuracy: the analysis of an ecg is an inexact science, with personal interpretations
+     comprehensive: analyse more up to 6 types of arryhtmias
+     adaptability: trends in data and identify potential trigger points 
+     quickness: cardiologist can get data more quickly through app
+     simplicity: no messy gels or sticky wires
+    - Goals
+     reduce heart disease
+     healthcare more accesible
+
     - Scope (context, time, location, use case), 
+     person with previous heart condition or family history etc.
+     24hour usage
+     person at home 
+
+     person experiencing heart palpatations and wants to verify  
+
+
+
     - Needs (motivation, reasons for creation), 
     - Benefits (health/economic/societal)
 

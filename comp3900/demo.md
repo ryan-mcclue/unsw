@@ -22,7 +22,7 @@ Practical applications in reducing food waste and enhancing food quality control
   - Is your system on the right track
 
 First 1-2minutes intro:
-  - What is problem solving
+  - What is problem 
   - What is solution
   - Who are target users
   - What does the system design look like currently

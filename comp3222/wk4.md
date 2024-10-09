@@ -12,6 +12,14 @@ ATTRIBUTE DONT_TOUCH : STRING;
 ATTRIBUTE DONT_TOUCH OF R_g, S_g, Qa, Qb : SIGNAL IS "true";
 ```
 
+IMPORTANT: Q <= Q + 1; (BUFFER type)
+GENERIC ( modulus : INTEGER := 8 ) ;
+out: INTEGER RANGE 0 TO modulus-1
+
+t0: GENERIC MAP (modulus => 10)
+    PORT MAP (e, clk, d);
+
+
 # Behavioural Process
 PROCESS (clk)
 
@@ -55,8 +63,7 @@ G1: FOR i IN 0 TO 3 GENERATE
   END GENERATE;
 END GENERATE;
 
-
-
+WAIT UNTIL Clock'EVENT AND Clock = '1'
 
 
 
@@ -81,11 +88,15 @@ Latch types:
     E -- Q'
   IMPORTANT: gated variants mean takes clk as enable, but level detection
   i.e. the inputs are gated by the clock
-  TODO: is the glitching from level detection really an issue?
 
 Flip flops respond to clock pulses.
+* Propagation delay (time for output to change)
+* Setup time (time for input stability pre clock pulse)
+* Hold time (time for input stability post clock pulse)
+TODO: are these specific to flip flops as chaining common?
+
+
   - D (store data input on rising or falling)
-  TODO: most common?
   use rising edge of clock as enable pin to D latch (so EN replaced with CLK)
   so, only changing value at specified moments in time
   will have an edge detector circuit
@@ -104,6 +115,11 @@ Flip flops respond to clock pulses.
        All flip-flops use same clk, so all output bits change at once.
        The interconnections involve AND gates to toggle.
       TODO: use cases, e.g. clock division?
+
+     - Up Counter
+     - Down Counter
+     - Modulus Counter
+     - Ring Counter (shift register to create rotate instruction)
    IMPORTANT: racing occurs on toggling where clock pulse is too short and continually toggles back and forth during pulse time
    TODO: is racing just an artefact of RC edge detection circuit?
 

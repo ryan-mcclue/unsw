@@ -1,4 +1,10 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+IMPORTANT: Q <= Q + 1; (BUFFER type)
+```
+GENERIC ( modulus : INTEGER := 8 ) ;
+
+
+
 1.
 ```
 enables(0) <= E;

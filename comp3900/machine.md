@@ -1,6 +1,4 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
-TODO: how are labels presented in alicia code?
-
 ## Graphs
 x-axis epochs
 - Loss is how far predictions from true labels.

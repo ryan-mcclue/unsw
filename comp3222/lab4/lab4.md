@@ -26,7 +26,7 @@ Implementation -> Report Utilization
 headroom/WNS is how much time available on critical path delay.
 
 ```
-WNS = 8.429ns
+WNS = 8.429ns (8.743ns)
 uncertainty = 0.035ns
 period = 10ns
 critical_path_length = (period - WNS) + uncertainty
@@ -34,8 +34,8 @@ critical_path_length = (period - WNS) + uncertainty
                      = 1.606ns
 fmax = 1 / critical_path_length
      = 1 / 1.606
-     = 0.623THz
-     = 623GHz
+     = 0.623Ghz
+     = 623MHz
 ```
 8 LUTs
 8 FFs

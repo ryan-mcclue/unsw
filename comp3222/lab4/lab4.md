@@ -3,7 +3,10 @@ IMPORTANT: Q <= Q + 1; (BUFFER type)
 ```
 GENERIC ( modulus : INTEGER := 8 ) ;
 
-
+TODO: active low clears
+TODO: explain registers through d-flip-flop
+TODO: always have enable! 
+      active low distinction!
 
 1.
 ```
@@ -54,3 +57,22 @@ fmax = 1 / critical_path_length
 11 IOs
 
 2.
+```
+WNS = 7.755ns 
+uncertainty = 0.035ns
+period = 10ns
+critical_path_length = (period - WNS) + uncertainty
+                     = (10 - 7.755) + 0.035
+                     = 2.28ns
+fmax = 1 / critical_path_length
+     = 1 / 2.28
+     = 0.455GHz
+     = 455MHz
+
+1 LUT
+16 FFs
+18 IOs
+
+Carry4 is special hardware with hard-wired connection to LUTs 
+instead of compiler making connections to speed up 
+```

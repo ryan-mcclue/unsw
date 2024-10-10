@@ -91,9 +91,14 @@ Latch types:
 
 Flip flops respond to clock pulses.
 * Propagation delay (time for output to change)
-* Setup time (time for input stability pre clock pulse)
-* Hold time (time for input stability post clock pulse)
+IMPORTANT: make sense in relation to chaining
+* Setup time (required time for input stability pre clock pulse)
+* Hold time (required time for input stability post clock pulse)
 TODO: are these specific to flip flops as chaining common?
+* Positive clock skew (later at dst than source flip-flop)
+  - increases hold time for dst
+* Negative clock skew (earlier at dst than source flip-flop) 
+  - increase setup time for src
 
 
   - D (store data input on rising or falling)

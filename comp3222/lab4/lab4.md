@@ -26,6 +26,18 @@ Implementation -> Report Utilization
 headroom/WNS is how much time available on critical path delay.
 
 ```
+	PROCESS (Clk, nClear)
+	BEGIN
+	  IF (nClear = '0') THEN
+	    Q <= '0';
+	  ELSIF (Clk'EVENT AND Clk='1' AND T='1') THEN
+	    Q <= NOT Q;
+	  END IF;
+	END PROCESS;
+```
+
+
+```
 WNS = 8.429ns (8.743ns)
 uncertainty = 0.035ns
 period = 10ns

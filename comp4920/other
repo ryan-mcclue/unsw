@@ -1,10 +1,10 @@
 # KardiaMobile 6L: Advanced Personal ECG Technology
 
-## 1. Purpose
+Description:
+KardiaMobile 6L is a personal ECG (Electrocardiogram) device that leverages AI to create a comprehensive and user-friendly solution for personal heart health monitoring. 
+
 Purpose:
-KardiaMobile 6L leverages AI to create a comprehensive and user-friendly solution for personal heart health monitoring. 
-It aims to facilitate the early detection of heart rhythm abnormalities, thereby reducing the negative impact of heart disease in the community.
-By combining advanced ECG (Electrocardiogram) technology with AI analysis, KardiaMobile 6L bridges the gap between consumer health devices and professional medical equipment.
+Facilitate the early detection of heart rhythm abnormalities, thereby reducing the negative impact of heart disease in the community.
   
 Objectives:
 1. Comphrehensive Monitoring:
@@ -25,49 +25,17 @@ Objectives:
    Facilitate seamless sharing of ECG data with healthcare providers.
 
 Scope:
-  Time:
-    KardiaMobile 6L provides a detailed analysis in a 30second window.
-    This allows for immediate on the spot readings.
-    Previous reports are saved so that trend analysis can be performed with repeated use.
-    Therefore, suitable for routine monitoring and on-demand use during symptomatic heart episodes.
+  Time Frame:
+    Provides a detailed analysis in a 30 second window, allowing for immediate on-the-spot readings.
+    Saves previous reports for cumulative analysis and trend identification, supporting routine monitoring.
   Location:
-Primary use in a relaxed home setting, promoting regular self-monitoring
-Portable design allows for use in various locations:
-
-On-the-go for active individuals
-In office settings for quick check-ups
-In clinical settings as a supplementary tool for healthcare providers
-
-Potential for integration in telemedicine and remote patient monitoring programs
-
-    The primary location in which KardiaMobile 6L is used is in a relaxed home setting. 
-    However, due to it's portability and advanced capabilities, there is also potential use in other locations such as a hospital or health clinic.
-  Use Case:
-Primary Use Case:
-
-Facilitate regular heart monitoring at home for individuals with known heart conditions
-Use AI to make determinations regarding heart health and convey information to the user
-Enable sharing of data with healthcare providers (e.g., cardiologists, GPs) for informed decision-making
-
-Secondary Use Cases:
-
-Preventive monitoring for individuals with a family history of heart disease
-Regular check-ups for health-conscious individuals
-Athletic performance monitoring for sports enthusiasts
-Stress-related heart rhythm monitoring in high-pressure work environments
-
-
-Healthcare Professional Use:
-
-Supplement in-clinic ECG readings with patient's at-home data
-Monitor patients' heart health between appointments
-Assess the effectiveness of treatments or medications on heart rhythms over time
-
-
-
-   The primary use case of KardiaMobile 6L is to facilitate regular heart monitoring at home for individuals with known heart conditions.
-   Using AI, determinations are made regarding heart and conveyed to the user.
-   This information can then shared with a healthcare provider such as a cardiologist or GP to 
-KardiaMobile 6L helps you (and your doctor) collect more heart data and better understand your heart activity.
-
-   However, people with a family history of heart disease or health conscious individuals can also benefit from KardiaMobile 6L.
+    Primary use in a relaxed home setting.
+    Portable design allows for use in other locations such as a hospital or health clinic.
+    Potential for integration in telemedicine and remote patient monitoring programs.
+  Primary Use Case:
+    Facilitate regular heart monitoring at home for individuals with known heart conditions.
+    Enable sharing of data with healthcare providers such as cardiologists or GPs for informed decision-making.
+  Secondary Use Cases:
+    Preventive monitoring for individuals with a family history of heart disease.
+    Stress-related heart rhythm monitoring in high-pressure work environments
+    Regular check-ups for health-conscious individuals.

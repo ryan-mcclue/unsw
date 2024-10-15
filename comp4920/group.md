@@ -1,5 +1,18 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+TODO: self-administiring for reducing infection using 12Lead
+
+desktop word: tab references
+
+issues:
+  - false-positives
+    (ethnic bias)
+  - profitable
+    (subscription data withheld)
+    (app obscelence)
+    (older users no smartphones)
+
+
 Indeed automated decision making in health sciences poses many more risks
 
 cost of training excludes others from doing so

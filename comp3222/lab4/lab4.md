@@ -71,3 +71,6 @@ The critical path of Part 1 is through a single T flip-flop and enable propagati
 The critical path of Part 2 is the propagation of the carries through the Carry4 hardware.
 So, it resembles a ripple structure as oppose to the parallel nature of Part1.
 Therefore, Part 1 has shorter critical path and is faster than Part 2.
+
+3.
+

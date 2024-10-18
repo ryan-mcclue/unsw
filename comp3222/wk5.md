@@ -11,7 +11,13 @@ however wanted clocked output for I/O
   next_state(0) <= cur_state(0) and input
 ```
 
-Moore machine input affects state transition, not output.
+each state is one-hot-encoding.
+one flip flop for each state.
+each 
+
+
+Moore machine outputs associated with state.
+(input affects state transition, not output)
 ```
 case state is
   when S0 =>
@@ -21,7 +27,8 @@ case state is
     output <= '0'
 end case;
 ```
-Mealy (just Moore with extras)
+Mealy machine outputs associated with transitions.
+(just Moore with extras; less states than Moore)
 ```
 architecture mealy_fsm_arch of mealy_fsm is
   type state_type : S0, S1, S2, S3;

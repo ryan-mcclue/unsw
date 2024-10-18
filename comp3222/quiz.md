@@ -8,7 +8,7 @@
 - adder
   overflow = carry out XOR carry in
 - shannon's expansion theorem
-  factor out normal and complemented
+  `a'b'(0, 0, c + a'b(0, 1, c) + ab'(1, 0, c) + ab(1, 1, c)`
 - boolean functions with decoders
   Add x(y + y')z to get into minterms
 

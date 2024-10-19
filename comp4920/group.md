@@ -2,6 +2,12 @@
 
 Value sensitive design method in Week 3 Monday lecture
 
+IMPORTANT:
+technology: AI ECG
+application: use in smarthome
+
+
+
 TODO: self-administiring for reducing infection using 12Lead
 
 desktop word: tab references

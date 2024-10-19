@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+Value sensitive design method in Week 3 Monday lecture
+
 TODO: self-administiring for reducing infection using 12Lead
 
 desktop word: tab references

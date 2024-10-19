@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+Readings Lecture 2 Week 4
+
 causal explanation:
   - explains event by identifying cause that directly brought about event
     * Increasing an applicant's credit score from 650 to 700 causes a 15% increase in the probability of loan approval

@@ -1,4 +1,5 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
+1.
 | state | next_state (w=0 \| w=1) | output |
 |-------|-------------------------|--------|
 | A     | B \| F                  | 0      |
@@ -31,3 +32,137 @@ D(STATE_H) <= (Q(STATE_G) AND w);
 D(STATE_I) <= (Q(STATE_H) AND w) OR (Q(STATE_I) AND w);
 
 z <= Q(STATE_E) OR Q(STATE_I); 
+
+## ORIGINAL
+PROCESS (Clock)
+BEGIN
+  IF Clock'event AND Clock = '1' THEN
+      IF nReset = '0' THEN
+  	  Q(0) <= '1';
+      ELSE
+  	  Q(0) <= '0';
+      END IF;
+  END IF;
+END PROCESS;
+	
+2.
+Compiler automatically determines number of flip-flops and encoding for FSM.
+i.e. will infer FSM usage and encode state type enum most appropriately.
+e.g. for < 32 states, uses one-hot 
+Others include sequential, gray encoding etc. (look at synthesis report)
+
+
+PROCESS (y_Q, w)
+BEGIN
+  CASE y_Q IS
+    WHEN A =>
+      IF w = '0' THEN
+        y_D <= B;
+      ELSE
+        y_D <= F;
+      END IF;
+    WHEN B =>
+      IF w = '0' THEN
+        y_D <= C;
+      ELSE
+        y_D <= F;
+      END IF;
+    WHEN C =>
+      IF w = '0' THEN
+        y_D <= D;
+      ELSE
+        y_D <= F;
+      END IF;
+    WHEN D =>
+      IF w = '0' THEN
+        y_D <= E;
+      ELSE
+        y_D <= F;
+      END IF;
+    WHEN E =>
+      IF w = '0' THEN
+        y_D <= E;
+      ELSE
+        y_D <= F;
+      END IF;
+    WHEN F =>
+      IF w = '0' THEN
+        y_D <= B;
+      ELSE
+        y_D <= G;
+      END IF;
+    WHEN G =>
+      IF w = '0' THEN
+        y_D <= B;
+      ELSE
+        y_D <= H;
+      END IF;
+    WHEN H =>
+      IF w = '0' THEN
+        y_D <= B;
+      ELSE
+        y_D <= I;
+      END IF;
+    WHEN I =>
+      IF w = '0' THEN
+        y_D <= B;
+      ELSE
+        y_D <= I;
+      END IF;
+  END CASE;
+END PROCESS;
+
+PROCESS (Clock)
+BEGIN
+  IF (Clock'EVENT AND Clock = '1') THEN
+    IF (nReset = '0') THEN
+      y_Q <= A;
+    ELSE
+      y_Q <= y_D;
+    END IF;
+  END IF;
+END PROCESS;
+
+z <= '1' WHEN (y_Q = E) OR (y_Q = I) ELSE '0';
+
+## Before
+INFO: [Synth 8-802] inferred FSM for state register 'y_Q_reg' in module 'l5p2'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                       a |                        000000001 |                             0000
+                       f |                        000000010 |                             0101
+                       g |                        000000100 |                             0110
+                       h |                        000001000 |                             0111
+                       i |                        000010000 |                             1000
+                       b |                        000100000 |                             0001
+                       c |                        001000000 |                             0010
+                       d |                        010000000 |                             0011
+                       e |                        100000000 |                             0100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'y_Q_reg' using encoding 'one-hot' in module 'l5p2'
+
+
+## After
+INFO: [Synth 8-802] inferred FSM for state register 'y_Q_reg' in module 'l5p2'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                       a |                             1111 |                             1111
+                       f |                             1010 |                             1010
+                       g |                             1001 |                             1001
+                       h |                             1000 |                             1000
+                       i |                             0111 |                             0111
+                       b |                             1110 |                             1110
+                       c |                             1101 |                             1101
+                       d |                             1100 |                             1100
+                       e |                             1011 |                             1011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'y_Q_reg' using encoding 'User encoding' in module 'l5p2'
+
+Original design used 9 bits with one-hot encoding to represent state variable.
+From A to I, encoding shifted 'hot' bit left, e.g. 0, 1, 2, 4, 8 etc. 
+
+Modified design used 4bits to represent state variable. 
+From A to I, encoding was 4bit twos-complement, e.g -1, -2, -3, -4, etc.
+Accordingly, only bottom 4 leds used to output state.

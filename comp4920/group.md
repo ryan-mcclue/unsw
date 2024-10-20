@@ -1,14 +1,41 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
-https://www.studocu.com/en-au/document/university-of-new-south-wales/management-and-ethics/assessment-ai-adm-case-study/97003600?origin=search-results
+## Value sensitive design
+Consider human values throughout design process
+1. Stakeholder identification 
+2. Stakeholder values:
+   - Conceptual investigation
+     judgement call is this, so it lays out the 'human values' we are considering
 
-Value sensitive design method in Week 3 Monday lecture
+
+   critical analysis of different technologies:
+   - Empirical investigation
+   User Acceptance: A study by Lowres et al. (2019) found high user acceptance of the KardiaMobile device among older adults for AF screening, with 98% finding it easy to use[1].
+   Diagnostic Accuracy: Selder et al. (2019) reported that KardiaMobile showed high accuracy in detecting AF, with a sensitivity of 96.6% and specificity of 94.1%[2].
+   Cost-Effectiveness: A study by Proietti et al. (2016) suggested that using KardiaMobile for AF screening could be cost-effective in certain populations[3].
+   Patient Anxiety: Some studies have noted increased anxiety in some patients due to frequent self-monitoring, highlighting the need for proper education and support[4].
+   - Technical investigation
+   FDA-Cleared Algorithm: The AI algorithm for detecting atrial fibrillation has been cleared by the FDA, indicating a certain level of reliability and safety.
+   Encryption: Data is encrypted during transmission and storage, supporting privacy and security.
+   Cloud Storage: ECG recordings are stored in the cloud, allowing easy access for users and healthcare providers but raising potential security concerns.
+   Integration: The system integrates with electronic health record systems, supporting comprehensive patient care but potentially raising privacy concerns.
+   Algorithm Transparency: More research is needed on how the AI algorithm makes its decisions and how this is communicated to users and healthcare providers.
+   Data Retention Policies: Investigation into how long data is stored and who has access to it over time.
+
+
+
+AI accuracy:
+  direct users, healthcare providers, stakeholders
+
+  critical analysis on ethical impacts on users/stakeholders, e.g references
+    general-user-group1-kardia: the kardia has high accuaracy. this promotes ... for general user.
+    general-user-group1-apple: this is also the case for general users of apple, who say they wanted ... for ... 
+
+
 
 IMPORTANT:
 technology: AI ECG
 application: use in smarthome
-
-
 
 TODO: self-administiring for reducing infection using 12Lead
 

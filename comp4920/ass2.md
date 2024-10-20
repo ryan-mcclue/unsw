@@ -80,12 +80,26 @@ Ethics guidelines derived from observed best practices
 Public reporting of system performance correlations
 
 
+# ACTUAL START
 Automated decision making (ADM) systems powered by artificial intelligence are becoming increasingly prevalent in society.
 As a result, ensuring fairness, accountability and transparency (FAT) in these systems is crucial.
 By considering causal and statistical models of explanation, there are potential pathways for acheiving FAT in ADM systems.
 However, fully acheiving these principles is only possible in principle, not in practice.
 This is because ADM systems attempt to emulate human decision making, which is inherently inexact.
 Therefore, due to the nuanced nature of FAT, human intervention always necessary.
+
+F1
+F2
+A1
+A2
+T1
+T2
+
+Conclusion ....
+# ACTUAL END
+
+
+
 
 ADM systems are attempting to emulate human decision making and humans are fundamentally inexact while with enough computing resources is theoretically possible
 

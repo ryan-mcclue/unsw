@@ -1,9 +1,9 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 Sequential circuits (FSMs) have state (while combinational just input and output).
 So, will involve flipflops.
+TODO: flip-flops store each state?
 
-TODO: glitching gives potential to save more time; 
-however wanted clocked output for I/O
+glitching gives potential to save more time; however wanted clocked output for I/O
 
 ```
   -- determined 8bits for one-hot encoded state 

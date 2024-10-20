@@ -37,7 +37,8 @@ Also make references to these which are referenced in 'assigned-reading.pdf':
 Also draw information from 'additional-reading.pdf' and 'additional-reading1.pdf' I have attached.
 
 Note that the question wants you to discuss achieving FAT (fairness, accountability, transparency) in the context of an automated decision (specifically AI).
-The next part of the question is asking for you to discuss the above focus from a casual explanation perspective and then compare and contrast this lens with least one other account of explanation (i.e. non-causal account of explanation). 
+The next part of the question is asking for you to discuss the above focus from a casual explanation perspective and then compare and contrast this lens with 
+least one other account of explanation (i.e. non-causal account of explanation). 
 It is this casual vs other account of explanation where we want to see some back-and-forth analysis/discussion. 
 
 The essay word length is 2000-2500words.
@@ -55,7 +56,8 @@ Write this essay and offer additional insight as to how to modify plan.
 
 Define FAT in the context of AI-powered ADM systems
 Introduce the concept of causal and correlational explanations
-Thesis statement: Causal explanations provide a more robust framework for achieving FAT in ADM systems compared to correlational explanations, both in technical and social aspects
+Thesis statement: Causal explanations provide a more robust framework for achieving FAT in ADM systems compared to correlational explanations, 
+both in technical and social aspects
 
 Technical Aspects - Causal Explanations
 Algorithmic fairness through causal modeling
@@ -78,21 +80,37 @@ Ethics guidelines derived from observed best practices
 Public reporting of system performance correlations
 
 
-Automated decision-making (ADM) systems powered by artificial intelligence have become increasingly prevalent in various domains, from loan approvals to hiring processes. As these systems impact people's lives, ensuring fairness, accountability, and transparency (FAT) is crucial
-Present your thesis statement about the need for both technical and social causal approaches
+Automated decision making (ADM) systems powered by artificial intelligence are becoming increasingly prevalent in society.
+As a result, ensuring fairness, accountability and transparency (FAT) in these systems is crucial.
+By considering causal and statistical modes of explanation, it can be seen that there are potential pathways to acheiving FAT in ADM systems.
 
-A recidivism prediction system used in criminal justice
+demonstrate that fully achieving FAT in ADM systems may only be realizable in principle, as effective implementation will likely always require some degree of human intervention. 
+However, significant practical challenges remain and is something only realisable in principle as will always require human intervention.
 
-Achieving FAT in ADM systems requires a multifaceted approach. By combining causal and social explanations, we can create more robust, fair, and accountable systems. Causal explanations provide the technical rigor necessary for understanding and improving algorithms, while social explanations ensure that human judgment, ethics, and societal values remain central to the decision-making process. As ADM systems continue to evolve, integrating these complementary approaches will be essential for building trust and ensuring responsible AI deployment.
+(e.g. utilitarian cumbersome method incapable of expressing in code).
 
-Where you take that discussion is up to you, but certainly you can think about both whether it is currently possible, currently not possible, possible in principle or unrealisable in principle.
+Looking at causal and statistical models of explanation, can see that acheiving FAT in ADM system requires a multifaceted approach. 
+
+Want to say causal, statistical models help acheive it, only realisable in principle not in reality.
+
+
+
+Achieving FAT in ADM systems requires a multifaceted approach. 
+By combining causal and social explanations, we can create more robust, fair, and accountable systems. 
+
+Causal explanations provide the technical rigor necessary for understanding and improving algorithms, 
+while social explanations ensure that human judgment, ethics, and societal values remain central to the decision-making process. 
+As ADM systems continue to evolve, integrating these complementary approaches will be essential for building trust and ensuring responsible AI deployment.
+
+Where you take that discussion is up to you, but certainly you can think about both whether it is currently possible, currently not possible, 
+possible in principle or unrealisable in principle.
 
 1. Technical Causal 
    Using algorithms like minimax over black-box neural networks
    F: allows for causal modelling/intervention which can give adjusted predictions?
    A: explainable AI
    T: audit trail can step through source code
-2. Technical - Correlational 
+2. Technical - Statistical 
    F: statistical fairness can mask underlying biases as correlation not imply causation, e.g. poverty to crime
    A: Correlational approaches often employ complex, opaque models like neural networks, making it difficult to understand the reasoning behind individual predictions. While post-hoc explanations for black-box models exist, they often rely on simplified approximations of the model's behavior and lack the transparency of causally interpretable models.
    T: If the underlying data or societal factors contributing to these correlations are biased, even a well-performing model can perpetuate unfair outcomes

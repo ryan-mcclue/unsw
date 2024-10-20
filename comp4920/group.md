@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+https://www.studocu.com/en-au/document/university-of-new-south-wales/management-and-ethics/assessment-ai-adm-case-study/97003600?origin=search-results
+
 Value sensitive design method in Week 3 Monday lecture
 
 IMPORTANT:

@@ -224,5 +224,6 @@ TYPE state_t IS (Init, ReadLen, CharacterPauseTimer, ReadCode, Stage1Timer, Stag
         WHEN Stage0OutputTimer =>
           TStart <= '1';
           z <= '1';
+        WHEN OTHERS => 
       END CASE;
     END PROCESS;

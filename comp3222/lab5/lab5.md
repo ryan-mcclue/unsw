@@ -12,6 +12,8 @@
 | H     | B \| I                  | 0      |
 | I     | B \| I                  | 1      |
 
+TODO: Try to express in words what made you think the logic expression is what you claim it to be!
+
 CONSTANT STATE_A : INTEGER := 0;
 CONSTANT STATE_B : INTEGER := 1;
 CONSTANT STATE_C : INTEGER := 2;
@@ -166,3 +168,61 @@ From A to I, encoding shifted 'hot' bit left, e.g. 0, 1, 2, 4, 8 etc.
 Modified design used 4bits to represent state variable. 
 From A to I, encoding was 4bit twos-complement, e.g -1, -2, -3, -4, etc.
 Accordingly, only bottom 4 leds used to output state.
+
+4.
+
+Bit0..3?
+
+code, len, timer
+PROCESS (state, btnL, timer_end) (maybe also add CL and CR?)
+BEGIN
+  CASE state IS
+    WHEN Init =>
+      IF (btnL = '1') THEN
+        next_state <= ReadLen;
+      END IF;
+    WHEN ReadLen =>
+      IF (len(0) = '1') THEN
+        next_state <= CharacterPauseTimer;
+      ELSE
+        next_state <= Init;
+      END IF;
+    WHEN CharacterPauseTimer =>
+      IF (timer_end = '1') THEN
+        next_state <= ReadCode;
+      END IF;
+    WHEN ReadCode =>
+      IF (code(0) = '1') THEN
+        next_state <= SecondOutput;
+      ELSE
+        next_state <= HalfSecondOutput;
+      END IF;
+    WHEN SecondOutput =>
+      IF (timer_end = '1') THEN
+        next_state <= HalfSecondOutput;
+      END IF;
+    WHEN HalfSecondOutput =>
+      IF (timer_end = '1') THEN
+        next_state <= ReadLen; 
+      END IF;
+  END CASE;
+END PROCESS;
+
+PROCESS (state)
+BEGIN
+  SEnable <= '0'; TStart <= '0'; z <= '0';
+  CASE state IS
+    WHEN Init =>
+      SEnable <= '1'; -- enable parallel load
+    WHEN ReadCode =>
+      SEnable <= '1'; -- enable shifting
+    WHEN CharacterPause =>
+      TStart <= '1';
+    WHEN SecondOutput =>
+      TStart <= '1';
+      z <= '1';
+    WHEN HalfSecondOutput =>
+      TStart <= '1';
+      z <= '1';
+  END CASE;
+END PROCESS;

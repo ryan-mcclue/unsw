@@ -11,10 +11,6 @@ glitching gives potential to save more time; however wanted clocked output for I
   next_state(0) <= cur_state(0) and input
 ```
 
-each state is one-hot-encoding.
-one flip flop for each state.
-each 
-
 
 Moore machine outputs associated with state.
 (input affects state transition, not output)

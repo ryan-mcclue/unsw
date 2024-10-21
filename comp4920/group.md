@@ -22,6 +22,54 @@ Consider human values throughout design process
    Data Retention Policies: Investigation into how long data is stored and who has access to it over time.
 
 
+facilitate home health management.
+use a smart home wold promote continual use, which brings about positives and negatives.
+
+objectives:
+Integrate with other smart home health devices for a holistic health monitoring approach.
+Correlate ECG data with other smart home data (e.g., sleep patterns, activity levels) for more comprehensive health insights.
+Enable easy recording and saving of accurate heart data directly to a central smart home health hub.
+
+time frame:
+Adapt to user's daily routines and automatically initiate readings at optimal times.
+
+location:
+Primary use throughout the smart home environment, with sensors integrated into furniture, bedding, and common areas.
+Portable component allows for use outside the home, syncing data when returning to the smart home network.
+
+primary use case:
+Integrate heart health data with other smart home health metrics for a holistic view of user wellbeing.
+
+secondary use case:
+Emergency detection and response, automatically alerting emergency services or family members in case of severe irregularities.
+Stress-related heart rhythm monitoring correlated with environmental factors (e.g., time of day, room conditions).
+
+fairness (AI accuracy (bias and model limitation), phone requirement, subscription model)
+  AI accuracy:
+    apple smart watch
+A study published in the New England Journal of Medicine found that of the Apple Watch users who received irregular pulse notifications, only 34% were confirmed to have atrial fibrillation on subsequent ECG patch readings [3].
+[3] Perez, M. V., et al. (2019). "Large-Scale Assessment of a Smartwatch to Identify Atrial Fibrillation." New England Journal of Medicine.
+
+
+  phone requirement:
+The Apple Watch ECG feature requires pairing with an iPhone to function fully. As of 2021, iPhone users made up only about 47% of smartphone users in the US [2], potentially excluding a significant portion of the population from accessing this health feature.
+[2] Statista. (2021). "Smartphone usage in the United States - Statistics & Facts."
+    
+  subscription model:
+    apple smart watch models 
+While the ECG feature itself doesn't require a subscription, it's only available on Apple Watch Series 4 and later. The pricing model, with new models released annually, creates a de facto subscription-like system where users need to upgrade devices to access the latest health features [3].
+
+accountability (data sharing, xAI)
+  data sharing:
+In 2019, Apple faced scrutiny when it was revealed that some third-party apps could access and potentially share users' health data, including ECG readings, without clear disclosure [4]. Apple subsequently tightened its policies on health data sharing.
+
+  xAI:
+[5] U.S. Food and Drug Administration. (2018). "FDA Clears First Medical Device Accessory for Apple Watch."
+The Apple Watch's ECG app received FDA clearance, but it's classified as a Class II device, which means it's not intended to replace traditional methods of diagnosis or treatment [5].
+
+The Apple Watch ECG feature provides a classification of the heart rhythm (e.g., sinus rhythm, atrial fibrillation) but doesn't offer detailed explanations of how it reached this conclusion. This "black box" approach has been criticized by some medical professionals for potentially leading to unnecessary anxiety or false reassurance [5].
+
+
 The accuracy of the underlying AI system is crucial to successfully detect heart abnormalities.
 To acheive AI accuracy, KardiaMobile:
   - Incorporates machine learning algorithms trained on large datasets of ECG readings [4].

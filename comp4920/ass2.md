@@ -81,22 +81,39 @@ Public reporting of system performance correlations
 
 
 # ACTUAL START
-Automated decision making (ADM) systems powered by artificial intelligence are becoming increasingly prevalent in society.
-As a result, ensuring fairness, accountability and transparency (FAT) in these systems is crucial.
-By considering causal and statistical models of explanation, there are potential pathways for acheiving FAT in ADM systems.
-However, fully acheiving these principles is only possible in principle, not in practice.
-This is because ADM systems attempt to emulate human decision making, which is inherently inexact.
-Therefore, due to the nuanced nature of FAT, human intervention always necessary.
+This is introduction of essay. Want to have a paragraph each of causal and statistical for FAT.
+Thesis is causal and statisical can get some way there, but as modelling human decision, an actual human is required.
+So, I feel have to not mention human intervention in paragraphs.
+Currently, can only think of explainable AI through non-machine learning AI, e.g. minimax for deep blue chess as a way to acheive FAT without human intervention.
+Please give more examples for the paragraphs using causal and statiscal explanation for each.
+What category would my deep blue example fit into?
+
+Automated decision making (ADM) systems powered by artificial intelligence 
+are becoming increasingly prevalent in society.
+As a result, ensuring fairness, accountability and transparency (FAT) in these systems 
+is crucial.
+An ADM system is attempting to emulate the deeply nuanced and complex process of human decision making.
+By considering causal and statistical models of explanation, 
+there are potential pathways for acheiving FAT in ADM systems.
+However, due to the computational limitation, it's only theoretical that these systems could model the full complexity and context depdent process of human thought.
+So, fully acheiving these principles is only possible in principle, not in practice as human intervention always necessary.
+
+Define FAT and causal and statistical.
 
 F1
+
 F2
+
 A1
+
 A2
+
 T1
 T2
 
 Conclusion ....
 # ACTUAL END
+
 
 
 
@@ -145,12 +162,6 @@ The increasing reliance on automated decision making (ADM) systems, particularly
 Technical Aspects: Causal Explanations for Actionable Insight
 
 Causal explanations, rooted in the counterfactual model of causation (Lewis, 1986), aim to identify the specific factors that directly lead to a particular outcome. This approach goes beyond merely observing statistical associations and seeks to uncover the underlying mechanisms driving decisions. In ADM systems like COMPAS, which predicts recidivism risk, a causal approach would strive to pinpoint the features or factors that causally contribute to an individual's predicted risk score. This focus on causality unlocks several pathways towards achieving FAT:
-
-    Algorithmic fairness through causal modeling: Instead of solely relying on statistical fairness measures, which can mask underlying biases (Barocas, Selbst, & Raghavan, 2020), causal modeling can help identify and mitigate discriminatory factors. By explicitly representing causal relationships between input features (e.g., socioeconomic background) and the output decision (recidivism risk), we can develop algorithms that achieve fairness by ensuring that protected attributes like race do not causally influence the outcome, even if they are correlated with it (Chouldechova, 2017).
-
-    Transparency via interpretable AI techniques: Causal explanations facilitate transparency by employing interpretable AI techniques like decision trees or rule-based systems that explicitly map the relationship between input features and the output decision (Rudin, Wang, & Coker, 2020; Wang et al., 2023). These models, unlike black-box neural networks, allow us to understand the decision-making process, making it easier to identify potential sources of bias and explain the reasoning behind individual predictions.
-
-    Accountability through causal audit trails: Causal explanations enable the creation of detailed audit trails that trace the causal chain of events leading to a specific decision. This allows for retrospective analysis to determine whether the factors driving the decision are ethically justifiable (Brunero, 2013; Kearns & Star, 2008). For example, if a causal audit trail reveals that a high recidivism risk score was primarily driven by a history of minor offenses due to poverty, this raises questions about the fairness of using such a score for sentencing decisions (Dressel & Farid, 2018).
 
 Technical Aspects: The Limitations of Correlational Explanations
 

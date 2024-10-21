@@ -171,58 +171,58 @@ Accordingly, only bottom 4 leds used to output state.
 
 4.
 
-Bit0..3?
+TYPE state_t IS (Init, ReadLen, CharacterPauseTimer, ReadCode, Stage1Timer, Stage0Timer);
 
-code, len, timer
-PROCESS (state, btnL, timer_end) (maybe also add CL and CR?)
-BEGIN
-  CASE state IS
-    WHEN Init =>
-      IF (btnL = '1') THEN
-        next_state <= ReadLen;
-      END IF;
-    WHEN ReadLen =>
-      IF (len(0) = '1') THEN
-        next_state <= CharacterPauseTimer;
-      ELSE
-        next_state <= Init;
-      END IF;
-    WHEN CharacterPauseTimer =>
-      IF (timer_end = '1') THEN
-        next_state <= ReadCode;
-      END IF;
-    WHEN ReadCode =>
-      IF (code(0) = '1') THEN
-        next_state <= SecondOutput;
-      ELSE
-        next_state <= HalfSecondOutput;
-      END IF;
-    WHEN SecondOutput =>
-      IF (timer_end = '1') THEN
-        next_state <= HalfSecondOutput;
-      END IF;
-    WHEN HalfSecondOutput =>
-      IF (timer_end = '1') THEN
-        next_state <= ReadLen; 
-      END IF;
-  END CASE;
-END PROCESS;
+--(maybe also add CL and CR?)
+    PROCESS (y_Q, w, TDone) 
+    BEGIN
+      CASE y_Q IS
+        WHEN Init =>
+          IF (w = '1') THEN
+            y_D <= ReadLen;
+          END IF;
+        WHEN ReadLen =>
+          IF (QL(0) = '1') THEN
+            y_D <= CharacterPauseTimer;
+          ELSE
+            y_D <= Init;
+          END IF;
+        WHEN CharacterPauseTimer =>
+          IF (TDone = '1') THEN
+            y_D <= ReadCode;
+          END IF;
+        WHEN ReadCode =>
+          IF (QC(0) = '1') THEN
+            y_D <= Stage1OutputTimer;
+          ELSE
+            y_D <= Stage0OutputTimer;
+          END IF;
+        WHEN Stage1OutputTimer =>
+          IF (TDone = '1') THEN
+            y_D <= Stage0OutputTimer;
+          END IF;
+        WHEN Stage0OutputTimer =>
+          IF (TDone = '1') THEN
+            y_D <= ReadLen; 
+          END IF;
+      END CASE;
+    END PROCESS;
 
-PROCESS (state)
-BEGIN
-  SEnable <= '0'; TStart <= '0'; z <= '0';
-  CASE state IS
-    WHEN Init =>
-      SEnable <= '1'; -- enable parallel load
-    WHEN ReadCode =>
-      SEnable <= '1'; -- enable shifting
-    WHEN CharacterPause =>
-      TStart <= '1';
-    WHEN SecondOutput =>
-      TStart <= '1';
-      z <= '1';
-    WHEN HalfSecondOutput =>
-      TStart <= '1';
-      z <= '1';
-  END CASE;
-END PROCESS;
+    PROCESS (y_Q)
+    BEGIN
+      SEnable <= '0'; TStart <= '0'; z <= '0';
+      CASE y_Q IS
+        WHEN Init =>
+          SEnable <= '1'; -- enable parallel load
+        WHEN ReadCode =>
+          SEnable <= '1'; -- enable shifting
+        WHEN CharacterPauseTimer =>
+          TStart <= '1';
+        WHEN Stage1OutputTimer =>
+          TStart <= '1';
+          z <= '1';
+        WHEN Stage0OutputTimer =>
+          TStart <= '1';
+          z <= '1';
+      END CASE;
+    END PROCESS;

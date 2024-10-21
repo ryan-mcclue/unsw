@@ -7,7 +7,6 @@ Consider human values throughout design process
    - Conceptual investigation
      judgement call is this, so it lays out the 'human values' we are considering
 
-
    critical analysis of different technologies:
    - Empirical investigation
    User Acceptance: A study by Lowres et al. (2019) found high user acceptance of the KardiaMobile device among older adults for AF screening, with 98% finding it easy to use[1].
@@ -23,11 +22,69 @@ Consider human values throughout design process
    Data Retention Policies: Investigation into how long data is stored and who has access to it over time.
 
 
+The accuracy of the underlying AI system is crucial to successfully detect heart abnormalities.
+To acheive AI accuracy, KardiaMobile:
+  - Incorporates machine learning algorithms trained on large datasets of ECG readings [4].
+  - Continuous refinement of algorithms based on new data and user feedback [5].
+  - Integration of multiple data points (e.g., KardiaMobile's six-lead ECG provides more comprehensive data than single-lead devices) [6].
+Fairness:
+  High accuracy promotes equal access to reliable heart monitoring for general users.
+  However, if the AI performs differently across demographic groups due to training data biases, it could lead to health disparities [7].
+  For insurance companies high accuracy might result in discrimination if used to determine insurance premiums.
+Transparency:
+  The "black box" nature of AI algorithms may make it difficult for general users to understand how diagnoses are made.
+  Similary, may make it challenging for healthcare providers to explain results to patients.
+Responsibility: 
+  General users might over-rely on AI interpretations, potentially delaying seeking professional medical care.
+  Healthcare providers might become overly reliant on AI interpretations.
+  --> apple smart watch 
+  The Apple Watch uses a single-lead ECG and has similarly shown high accuracy in detecting AF, with a 97.5% sensitivity and 99.3% specificity in one study [14]. 
+  However, its accuracy has been questioned for other heart rhythm disorders, highlighting the need for transparency about the device's limitations [15].
+Ethical Risks:
+  The push for more accuracy, requires more data, which might lead to privacy concerns as more detailed health data is collected and analysed.
 
+KardiaMobile uses a subscription model to provide a steady revunue stream and to support ongoing costs of data storage to ensure business is profitable.
+KardiaMobile 6L's subscription model typically includes:
+  A basic free tier with limited ECG readings and AI interpretations.
+  Premium tiers offering unlimited ECG storage, detailed reports, and additional AI-detected conditions 
+Fairness:
+  Creates a two-tiered system where comprehensive health insights are only available to those who can afford the subscription.
+  Patients with premium subscriptions might receive more detailed insights, potentially leading to disparities in care
+Responsibility: 
+  The division between free and paid features may not be clear to all general users.
+  The subscription model might prioritise profitable features over those with the greatest public health impact.
+  Could exacerbate existing health disparities as advanced features may be inaccessible to lower-income populations.
+  --> apple smart watch
+  No subscription model, All health features available so fairness.
+  However, high upfront cost may exclude may users.
+  Initial (more flexible to users with changing fiancial situations) vs Upfront costs (reduce stress of ongoing purchases).
+
+
+
+Issue 1 - Accuracy:
 AI accuracy:
+  - why is AI accuracy needed?
+  - how is AI accuracy attained?
+  - what affects does attaining this AI accuracy have on fairness, transparency, explainability, and/or responsibility issues, ethical and/or discrimination risks with relation to direct users, healthcare providers and stakeholders?
+  - provide examples from apple smart watch
+
+Issue 2 - Profitability:
+Subscription Model:
+  - why is subscription model used?
+  - how is subscription model implemented?
+  - what affects does this subscription model have on fairness, transparency, explainability, and/or responsibility issues, ethical and/or discrimination risks with relation to direct users, healthcare providers and stakeholders?
+  - provide examples from apple smart watch
+
+
+  high accuracy:
+    KardiaMobile 6L has demonstrated high accuracy in detecting atrial fibrillation (AF), 
+    with studies showing sensitivity of 96.6% and specificity of 94.1% [1].
+    High accuracy promotes trust and reliability for general users.
+
+
   direct users, healthcare providers, stakeholders
 
-  critical analysis on ethical impacts on users/stakeholders, e.g references
+  critical analysis on ethical impacts on users/stakeholders (with references)
     general-user-group1-kardia: the kardia has high accuaracy. this promotes ... for general user.
     general-user-group1-apple: this is also the case for general users of apple, who say they wanted ... for ... 
 

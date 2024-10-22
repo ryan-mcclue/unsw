@@ -9,3 +9,10 @@
 - Work towards Demo B
 
 - Go through TODO comments in server.py
+
+apple, banana, cucumber, carrot and potato
+classifier and freshness data available
+
+shelf-life is dependent
+
+cucumber, potatoes, carrots

@@ -97,6 +97,7 @@ theoretically approximate the complexity of human decision making[6].
 As a result, while technical approaches can make significant progress toward FAT principles, 
 achieving them fully in practice requires human involvement.
 
+Fairness
 Define FAT and causal and statistical.
 (TODO: use tutorial slides)
 

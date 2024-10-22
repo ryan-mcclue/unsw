@@ -1,5 +1,27 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+TODO: google kardiamobile mission values
+
+kardiamobile is currently being used in england, with users
+
+Released as heart health monitoring device as part of NDIS through NSW Health.
+- what issues might account based on what has happened in real world?
+- how to handle them?
+
+beneficience: enforce sustainable practices in manufacturing and disposal
+              (made from recyclable materials)
+non-malefience: provide confidence score
+                keep an eye on bias
+autonomy: opt-in/opt-out of user data
+          make users are aware of AI use
+justice: equitable access for non-technical users
+
+transparency umbrella
+
+explain
+interpret
+
+
 ## Value sensitive design
 Consider human values throughout design process
 1. Stakeholder identification 

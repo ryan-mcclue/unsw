@@ -10,7 +10,6 @@ non-causal:
   - based on fact
     * Applicants with higher credit scores are more likely to be approved for loans
 
-
 Here is the essay question:
 How might fairness, accountability, and transparency be achieved collectively by an auto-
 mated decision - that is - by a decision outputted by an AI? In your answer, compare and
@@ -88,6 +87,7 @@ Currently, can only think of explainable AI through non-machine learning AI, e.g
 Please give more examples for the paragraphs using causal and statiscal explanation for each.
 What category would my deep blue example fit into?
 
+TODO: citation in introduction good
 Automated decision making (ADM) systems powered by artificial intelligence 
 are becoming increasingly prevalent in society.
 As a result, ensuring fairness, accountability and transparency (FAT) in these systems 
@@ -95,10 +95,27 @@ is crucial.
 An ADM system is attempting to emulate the deeply nuanced and complex process of human decision making.
 By considering causal and statistical models of explanation, 
 there are potential pathways for acheiving FAT in ADM systems.
-However, due to the computational limitation, it's only theoretical that these systems could model the full complexity and context depdent process of human thought.
+However, the computational limitation of perfectly emulating the inexact human mind,
+it's only theoretical that these systems could model the full complexity and context depdent process of human thought.
 So, fully acheiving these principles is only possible in principle, not in practice as human intervention always necessary.
 
+Automated decision making (ADM) systems powered by artificial intelligence 
+are becoming increasingly prevalent in society (1).
+ADM systems fundamentally attempt to emulate the deeply nuanced human decision-making process (3).
+As a result, ensuring fairness, accountability and transparency (FAT) in these systems 
+is crucial.
+While both causal and statistical models of explanation offer potential pathways 
+for achieving FAT in ADM systems, there are fundamental limitations to their effectiveness. 
+Due to the computational challenge of perfectly modeling the inexact and 
+contextual nature of human cognition [5] means that these systems can only 
+theoretically approximate the full complexity of human decision-making processes [6]. 
+As a result, while technical approaches can make significant progress toward FAT principles, 
+achieving them fully in practice requires human involvement [7].
+As a result, while ADM systems
+
+
 Define FAT and causal and statistical.
+(TODO: use tutorial slides)
 
 F1
 
@@ -108,10 +125,27 @@ A1
 
 A2
 
+TODO: flora lecture slides from week 7 for XAI
 T1
+(transparency is broken into explainability (understood by non-technical) and interpretability (computer science understanding))
+interpetability: saliency maps (heatmaps; no actionable insights to guide decision making), statisical regression, etc.
+
+overcome cognitive biases (AI is looking at patterns that humans can't comphrehend)
+TODO: discuss limitations in current XAI
 T2
 
+Echoes Principlism's aspirations for benefience and justice.
+Fairness
+Incremental ethical specification.
+
+our normative goals sit on sliding scale between what is acheivebale and what is aspirational.
+(have a human can enhance reflective equilibrium)
+
+But must contextualise them for real-world use.
+Benefit of abstraction allows for broad agreement.
+
 Conclusion ....
+In conclusion, ADM systems cannot emulate the nuanced nature of human thought through technical means.
 # ACTUAL END
 
 

@@ -89,30 +89,13 @@ What category would my deep blue example fit into?
 
 TODO: citation in introduction good
 Automated decision making (ADM) systems powered by artificial intelligence 
-are becoming increasingly prevalent in society.
-As a result, ensuring fairness, accountability and transparency (FAT) in these systems 
-is crucial.
-An ADM system is attempting to emulate the deeply nuanced and complex process of human decision making.
-By considering causal and statistical models of explanation, 
-there are potential pathways for acheiving FAT in ADM systems.
-However, the computational limitation of perfectly emulating the inexact human mind,
-it's only theoretical that these systems could model the full complexity and context depdent process of human thought.
-So, fully acheiving these principles is only possible in principle, not in practice as human intervention always necessary.
-
-Automated decision making (ADM) systems powered by artificial intelligence 
 are becoming increasingly prevalent in society (1).
-ADM systems fundamentally attempt to emulate the deeply nuanced human decision-making process (3).
-As a result, ensuring fairness, accountability and transparency (FAT) in these systems 
-is crucial.
-While both causal and statistical models of explanation offer potential pathways 
-for achieving FAT in ADM systems, there are fundamental limitations to their effectiveness. 
-Due to the computational challenge of perfectly modeling the inexact and 
-contextual nature of human cognition [5] means that these systems can only 
-theoretically approximate the full complexity of human decision-making processes [6]. 
+Considering causal and statistical models of explanation, there are
+potential pathways for achieving fairness, accountability and transparency (FAT) in ADM systems
+However, due to the nuanced nature of human cognition, these systems can only 
+theoretically approximate the complexity of human decision making[6]. 
 As a result, while technical approaches can make significant progress toward FAT principles, 
-achieving them fully in practice requires human involvement [7].
-As a result, while ADM systems
-
+achieving them fully in practice requires human involvement.
 
 Define FAT and causal and statistical.
 (TODO: use tutorial slides)
@@ -144,8 +127,10 @@ our normative goals sit on sliding scale between what is acheivebale and what is
 But must contextualise them for real-world use.
 Benefit of abstraction allows for broad agreement.
 
-Conclusion ....
-In conclusion, ADM systems cannot emulate the nuanced nature of human thought through technical means.
+In conclusion, by exploring causal and statistical accounts of explanation,
+ADM systems powered by AI can work towards acheiving FAT.
+However, computational models of human decision making will never be perfect due to the innate complexities
+of human nature. As a result, to fully acheive FAT, human involvement is required.
 # ACTUAL END
 
 

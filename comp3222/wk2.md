@@ -14,6 +14,7 @@ find prime implicants are largest power of 2 groupings (toroidal)
 IMPORTANT: must all be largest size
 mark regions where variable asserted true
 (for POS, look at same region where variables are asserted true, however look at 0 prime implicants, invert and OR)
+
 then, for each prime implicant, see if variable appears in it to include it  
 
 IMPORTANT: if truth table not completely specified, can put either 0 or 1 as convenient 

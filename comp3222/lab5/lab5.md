@@ -170,11 +170,10 @@ From A to I, encoding was 4bit twos-complement, e.g -1, -2, -3, -4, etc.
 Accordingly, only bottom 4 leds used to output state.
 
 4.
+IMPORTANT: cannot have transition and output both have cases affecting same variable (so add new state)
 
-TYPE state_t IS (Init, ReadLen, CharacterPauseTimer, ReadCode, Stage1Timer, Stage0Timer);
-
---(maybe also add CL and CR?)
-    PROCESS (y_Q, w, TDone) 
+   FSM_transitions: 
+    PROCESS (y_Q, w, TDone)
     BEGIN
       CASE y_Q IS
         WHEN Init =>
@@ -183,6 +182,7 @@ TYPE state_t IS (Init, ReadLen, CharacterPauseTimer, ReadCode, Stage1Timer, Stag
           END IF;
         WHEN ReadLen =>
           IF (QL(0) = '1') THEN
+            TStart <= '1';
             y_D <= CharacterPauseTimer;
           ELSE
             y_D <= Init;
@@ -192,6 +192,7 @@ TYPE state_t IS (Init, ReadLen, CharacterPauseTimer, ReadCode, Stage1Timer, Stag
             y_D <= ReadCode;
           END IF;
         WHEN ReadCode =>
+          TStart <= '1';
           IF (QC(0) = '1') THEN
             y_D <= Stage1OutputTimer;
           ELSE
@@ -199,31 +200,45 @@ TYPE state_t IS (Init, ReadLen, CharacterPauseTimer, ReadCode, Stage1Timer, Stag
           END IF;
         WHEN Stage1OutputTimer =>
           IF (TDone = '1') THEN
+            TStart <= '1';
             y_D <= Stage0OutputTimer;
           END IF;
         WHEN Stage0OutputTimer =>
           IF (TDone = '1') THEN
-            y_D <= ReadLen; 
+            y_D <= Shift;
           END IF;
+        WHEN Shift =>
+          y_D <= ReadLen;
       END CASE;
     END PROCESS;
 
+
+		
+    FSM_state: 
+    PROCESS (Clk, nReset)
+    BEGIN
+        IF (nReset = '0') THEN
+            y_Q <= Init;
+        ELSIF (Clk'event AND Clk = '1') THEN
+            y_Q <= Y_D;
+        END IF;
+    END PROCESS;
+
+-- complete the FSM outputs below
+			
+    FSM_outputs:
     PROCESS (y_Q)
     BEGIN
       SEnable <= '0'; TStart <= '0'; z <= '0';
       CASE y_Q IS
         WHEN Init =>
-          SEnable <= '1'; -- enable parallel load
-        WHEN ReadCode =>
-          SEnable <= '1'; -- enable shifting
-        WHEN CharacterPauseTimer =>
-          TStart <= '1';
+          SEnable <= '1';
+        WHEN Shift =>
+          SEnable <= '1';
         WHEN Stage1OutputTimer =>
-          TStart <= '1';
           z <= '1';
         WHEN Stage0OutputTimer =>
-          TStart <= '1';
           z <= '1';
-        WHEN OTHERS => 
+        WHEN OTHERS =>
       END CASE;
     END PROCESS;

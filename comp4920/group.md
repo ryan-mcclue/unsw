@@ -6,8 +6,6 @@ kardiamobile is currently being used in england, with users
 
 Released as heart health monitoring device as part of NDIS through NSW Health.
 Type A conditions often suffer from cardiovascular illness.
-- what issues might account based on what has happened in real world?
-- how to handle them?
 
 beneficience: enforce sustainable practices in manufacturing and disposal
               (made from recyclable materials)
@@ -22,13 +20,49 @@ transparency umbrella
 explain
 interpret
 
-
 ## Value sensitive design
 Consider human values throughout design process
 1. Stakeholder identification 
+
 2. Stakeholder values:
    - Conceptual investigation
      judgement call is this, so it lays out the 'human values' we are considering
+
+summary text slide:
+summary chart slide:
+
+similar technologies:
+- what issues might account based on what has happened in real world?
+- how to handle them?
+
+we are planning on rolling out KardiaMobile AI ECG device as part of NDIS program in NSW, Sydney.
+want to conduct research on how a similar technology has been used.
+consider fairness and responsibility issues of these similar techonologies.
+
+existing NDIS Assitive Technology criteria:
+(want it to satisfy 'reasonable', be 'low risk'
+must be considered 'reasonable and necessary' (https://www.ndis.gov.au/understanding/supports-funded-ndis/reasonable-and-necessary-supports)
+  - should represent value for money
+  - increase their independence
+  - are personalised for you
+have risk categories:
+  - low risk
+    unlikely to cause harm in day-to-day life
+    available for trial and / or can be purchased in retail stores
+    easy to set up and safely use without professional advice.
+
+existing NDIS ATs:
+  - extortionist pricing
+   (https://www.uow.edu.au/media/2024/what-can-the-accc-do-to-stop-ndis-price-gouging-and-reducecosts.php)
+  - high wait times
+   (https://www.abc.net.au/news/2022-04-02/pwd-facing-delays-for-crucial-equipment-under-ndis/100926776)
+
+existing AI ECG (apple smartwatch):
+  - AI accuracy, bias etc.
+existing ECG program in health service (NHS's use of Technomed's AI-assisted ECG analysis):
+  - https://transform.england.nhs.uk/key-tools-and-info/digital-playbooks/cardiology-digital-playbook/remote-ecg-monitoring-and-ai-assisted-analysis-to-improve-reporting-times-and-accuracy/
+  - https://ecg-od.com/about-us/
+
 
    critical analysis of different technologies:
    - Empirical investigation

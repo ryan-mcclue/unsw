@@ -14,8 +14,8 @@ Here is the essay question:
 How might fairness, accountability, and transparency be achieved collectively by an auto-
 mated decision - that is - by a decision outputted by an AI? In your answer, compare and
 contrast a causal account of explanation with at least one other account of explanation.
-Make explicit reference to the 'assigned-reading.pdf' I have attached.
-Also make references to these which are referenced in 'assigned-reading.pdf':
+Make explicit reference to the attached file.
+Also make references to these which are referenced in the attached file.
 - Solon Barocas, Andrew D Selbst, and Manish Raghavan. 2020. The hidden assumptions behind counterfactual explanations and principal reasons. In Proceedings of the 2020 conference on fairness, accountability, and transparency. 80–89. 
 - Helen Beebee. 2016. Hume and the Problem of Causation. Oxford Handbooks. 
 - John Brunero. 2013. Reasons as explanations. Philosophical Studies 165 (2013), 805–824. 
@@ -33,30 +33,37 @@ Also make references to these which are referenced in 'assigned-reading.pdf':
 - Ruixiang Tang, Yu-Neng Chuang, and Xia Hu. 2023. The science of detecting llm-generated texts. arXiv preprint arXiv:2303.07205 (2023). 
 - Bas Van Fraassen. 1988. The pragmatic theory of explanation. Theories of explanation 8 (1988), 135–155. 
 - Caroline Wang, Bin Han, Bhrij Patel, and Cynthia Rudin. 2023. In pursuit of interpretable, fair and accurate machine learning for criminal recidivism prediction. Journal of Quantitative Criminology 39, 2 (2023), 519–581. 
-Also draw information from 'additional-reading.pdf' and 'additional-reading1.pdf' I have attached.
-
-Note that the question wants you to discuss achieving FAT (fairness, accountability, transparency) in the context of an automated decision (specifically AI).
-The next part of the question is asking for you to discuss the above focus from a casual explanation perspective and then compare and contrast this lens with 
-least one other account of explanation (i.e. non-causal account of explanation). 
-It is this casual vs other account of explanation where we want to see some back-and-forth analysis/discussion. 
 
 The essay word length is 2000-2500words.
-My plan is to discuss causal and correlational explanations. 
-Specifically, that causal is more robust framework for achieving FAT in ADM systems compared to correlational explanations.
-I will discuss technical and social aspects.
-I will have 4 paragraphs:
-  1. Technical Aspects - Causal Explanations (e.g. using algorithms like minimax over black-box neural networks)
-  2. Technical Aspects - Correlational Explanations (e.g. model makes decisions on statistical fairness measures)
-  3. Social Aspects - Causal Explanations (e.g. stakeholder engagement) 
-  4. Social Aspects - Correlational Explanations (e.g. diversity initiatives)
-I want to link these to a specific ADM system.
-Write this essay and offer additional insight as to how to modify plan.
+My plan is to discuss causal and statistical models of explanations. 
+It is this casual vs statistical account of explanation where we want to see some back-and-forth analysis/discussion. 
 
+My current introduction is:
+Automated decision making (ADM) systems powered by artificial intelligence 
+are becoming increasingly prevalent in society.
+Considering causal and statistical models of explanation, there are
+potential pathways for achieving fairness, accountability and transparency (FAT) in ADM systems
+However, due to the nuanced nature of human cognition, these systems can only 
+theoretically approximate the complexity of human decision making. 
+As a result, while technical approaches can make significant progress toward FAT principles, 
+achieving them fully in practice requires human involvement.
 
-Define FAT in the context of AI-powered ADM systems
-Introduce the concept of causal and correlational explanations
-Thesis statement: Causal explanations provide a more robust framework for achieving FAT in ADM systems compared to correlational explanations, 
-both in technical and social aspects
+Paragraph 0 (explain FAT, causal and statistical)
+Paragraph 1 (fairness with causal)
+Paragraph 2 (fairness with statistical)
+Paragraph 3 (accountability with causal)
+Paragraph 4 (accountability with statistical)
+Paragraph 5 (transparency with causal)
+Paragraph 6 (transparency with statistical)
+
+Conclusion:
+In conclusion, by exploring causal and statistical accounts of explanation,
+ADM systems powered by AI can work towards acheiving FAT.
+However, computational models of human decision making will never be perfect due to the innate complexities
+of human nature. As a result, to fully acheive FAT, human involvement is required.
+
+Write paragraphs for me.
+
 
 Technical Aspects - Causal Explanations
 Algorithmic fairness through causal modeling
@@ -89,28 +96,39 @@ What category would my deep blue example fit into?
 
 TODO: citation in introduction good
 Automated decision making (ADM) systems powered by artificial intelligence 
-are becoming increasingly prevalent in society (1).
+are becoming increasingly prevalent in society.
 Considering causal and statistical models of explanation, there are
 potential pathways for achieving fairness, accountability and transparency (FAT) in ADM systems
 However, due to the nuanced nature of human cognition, these systems can only 
-theoretically approximate the complexity of human decision making[6]. 
+theoretically approximate the complexity of human decision making. 
 As a result, while technical approaches can make significant progress toward FAT principles, 
 achieving them fully in practice requires human involvement.
 
-Fairness
-Define FAT and causal and statistical.
-(TODO: use tutorial slides)
+A causal model of explanation focuses on direct cause-and-effect relationships.
+This approach naturally aligns with the human decision making process, where an individual's beliefs and desires
+influence their actions.
+
+A statistical model looks at probabilistic relationships between data.
+This offers a different framework for understanding ... by looking at patterns in data like ...
+
+
+(TODO: use tutorial slides for definitions)
 
 F1
+Fairness includes the correctness of a decision and the equitable treatment across different demographics.
 
 F2
 
 A1
 
+
 A2
 
 TODO: flora lecture slides from week 7 for XAI
 T1
+
+
+
 (transparency is broken into explainability (understood by non-technical) and interpretability (computer science understanding))
 interpetability: saliency maps (heatmaps; no actionable insights to guide decision making), statisical regression, etc.
 

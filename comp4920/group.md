@@ -2,6 +2,74 @@
 
 TODO:
   - fairness economic
+  Basic device users recieve access to a limited version of the AI. 
+  Premium subscribers ($99-$200/year) get access to KardiaCare:
+    - Access to 3 more types of arryhtmia determinations
+    - ECG Cloud storage for doctor dashboard
+    - 'Insights' functionality for personalised 
+  Impacts:
+Violates principles of fair distribution of essential healthcare resources
+Perpetuates existing social inequities in healthcare
+May disproportionately affect:
+  Elderly on fixed incomes
+  Low-income communities
+  Chronically ill patients with limited resources
+  Underserved populations
+Retired individuals with higher health needs may struggle with recurring costs
+
+
+    - Creates a system where health outcomes may correlate with wealth rather than medical need
+    - Users who can afford KardiaCare get earlier detection.
+    - Lower-income users may miss important health signals due to limited feature access.
+      Those who might benefit most from advanced monitoring (e.g., elderly, chronic condition patients) 
+      may be least able to afford it
+
+
+  Through the companion mobile app, KardiaApp, two subscription plans are offered:
+    1. KardiaCare for $99/year.
+    2. KardiaCare Plus for $200/year.
+  These plans offer:
+    - Access to 3 more types of arryhtmia determinations
+    - ECG Cloud storage for doctor dashboard
+    - 'Insights' functionality for personalised 
+  This causes fairness issues  
+  Creates a two-tiered system where comprehensive health insights are only available to those who can afford the subscription.
+  Patients with premium subscriptions might receive more detailed insights, potentially leading to disparities in care
+
+
+KardiaMobile uses a subscription model to provide a steady revunue stream and to support ongoing costs of data storage to ensure business is profitable.
+KardiaMobile 6L's subscription model typically includes:
+  A basic free tier with limited ECG readings and AI interpretations.
+  Premium tiers offering unlimited ECG storage, detailed reports, and additional AI-detected conditions 
+Fairness:
+  Creates a two-tiered system where comprehensive health insights are only available to those who can afford the subscription.
+  Patients with premium subscriptions might receive more detailed insights, potentially leading to disparities in care
+
+
+
+
+KardiaMobile 6L can detect AFib, Bradycardia, and Tachycardia, with more determinations available with a KardiaCare membership 
+(such as Sinus Rhythm with PVCs, Sinus Rhythm with Wide QRS, and Sinus Rhythm with SVE).
+(All six detections only available with a KardiaCare membership?)
+https://store.kardia.com/products/kardiamobile6l?srsltid=AfmBOop7zH5NgELZA8O5ni1XZDVQVfkZBWfrs0t9F-bykP4WtobkAxJx
+
+Require KardiaApp.
+Have no membership only 3 types:
+  Atrial Fibrillation, Bradycardia, and Tachycardia
+others:
+  Atrial Fibrillation, Bradycardia, and Tachycardia, PLUS Sinus Rhythm with Wide QRS, Sinus Rhythm with PVCs,  and Sinus Rhythm with SVE.
+also get Insights and V2 algorithm
+storage of ECGs in cloud, allowing cardiologist to view reports on dashboard
+(otherwise would have to email directly cardiologist)
+
+The focus, Albert said, of the improved algorithm, was to reduce the number of unclassified Kardia recordings and help patients deal with irregular heart rhythms or palpitations that are not atrial fibrillation.
+
+KardiaCare $99/year
+KardiaCare Plus $299/year
+
+
+You can ID more types of arrhythmia with the subscription and it does get you 4 free interpretations from a cardiologist
+
   - vsd table
   - part 1 slides
 
@@ -129,13 +197,6 @@ Responsibility:
 Ethical Risks:
   The push for more accuracy, requires more data, which might lead to privacy concerns as more detailed health data is collected and analysed.
 
-KardiaMobile uses a subscription model to provide a steady revunue stream and to support ongoing costs of data storage to ensure business is profitable.
-KardiaMobile 6L's subscription model typically includes:
-  A basic free tier with limited ECG readings and AI interpretations.
-  Premium tiers offering unlimited ECG storage, detailed reports, and additional AI-detected conditions 
-Fairness:
-  Creates a two-tiered system where comprehensive health insights are only available to those who can afford the subscription.
-  Patients with premium subscriptions might receive more detailed insights, potentially leading to disparities in care
 Responsibility: 
   The division between free and paid features may not be clear to all general users.
   The subscription model might prioritise profitable features over those with the greatest public health impact.

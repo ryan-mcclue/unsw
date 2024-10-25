@@ -16,25 +16,22 @@ May disproportionately affect:
   Chronically ill patients with limited resources
   Underserved populations
 Retired individuals with higher health needs may struggle with recurring costs
-
-
     - Creates a system where health outcomes may correlate with wealth rather than medical need
     - Users who can afford KardiaCare get earlier detection.
     - Lower-income users may miss important health signals due to limited feature access.
       Those who might benefit most from advanced monitoring (e.g., elderly, chronic condition patients) 
       may be least able to afford it
 
-
-  Through the companion mobile app, KardiaApp, two subscription plans are offered:
-    1. KardiaCare for $99/year.
-    2. KardiaCare Plus for $200/year.
-  These plans offer:
-    - Access to 3 more types of arryhtmia determinations
-    - ECG Cloud storage for doctor dashboard
-    - 'Insights' functionality for personalised 
-  This causes fairness issues  
-  Creates a two-tiered system where comprehensive health insights are only available to those who can afford the subscription.
-  Patients with premium subscriptions might receive more detailed insights, potentially leading to disparities in care
+NDIS:
+  The NDIS sets maximum prices registered providers can charge.
+  (https://www.ndis.gov.au/providers/pricing-arrangements)
+  There have been cases of providers employing a 'twin pricing' model,
+  where NDIS clients are charged more than a regular customer.
+  (https://www.ndisreview.gov.au/node/170#_fn53)
+  This eats out of client's budget, meaning potential loss of access
+  to other services.
+  A parallel can be drawn to KardiaCare, charging maximum $200 subscription
+  when cheaper plans sufficient.
 
 
 KardiaMobile uses a subscription model to provide a steady revunue stream and to support ongoing costs of data storage to ensure business is profitable.

@@ -1,5 +1,10 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+TODO:
+  - fairness economic
+  - vsd table
+  - part 1 slides
+
 TODO: google kardiamobile mission values
 
 kardiamobile is currently being used in england, with users

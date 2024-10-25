@@ -2,36 +2,37 @@
 
 TODO:
   - fairness economic
-  Basic device users recieve access to a limited version of the AI. 
-  Premium subscribers ($99-$200/year) get access to KardiaCare:
-    - Access to 3 more types of arryhtmia determinations
-    - ECG Cloud storage for doctor dashboard
-    - 'Insights' functionality for personalised 
+  Purchasing just the device ($129), users recieve access to a limited version of the AI. 
+  (AliveCor, Inc. 2024)  (https://store.kardia.com/products/kardiamobile6l)
+  Subscribing to KardiaCare ($99-$200/year), users get access to:
+  (https://store.kardia.com/products/kardiacare)
+    - 3 more types of arrhythmia determinations, where previously would be 'unclassified'.
+    - Permanent ECG cloud storage, where previously would have to send ECG directly to healthcare worker.
+    - 'Insights' functionality, helping to identify individual triggers and symptoms related to personal heart events. 
   Impacts:
-Violates principles of fair distribution of essential healthcare resources
-Perpetuates existing social inequities in healthcare
-May disproportionately affect:
-  Elderly on fixed incomes
-  Low-income communities
-  Chronically ill patients with limited resources
-  Underserved populations
-Retired individuals with higher health needs may struggle with recurring costs
-    - Creates a system where health outcomes may correlate with wealth rather than medical need
-    - Users who can afford KardiaCare get earlier detection.
-    - Lower-income users may miss important health signals due to limited feature access.
-      Those who might benefit most from advanced monitoring (e.g., elderly, chronic condition patients) 
-      may be least able to afford it
+   The communities who might benefit most from advanced monitoring may be least able to afford it:
+     - Retired elderly on fixed incomes.
+     - Low-income indviduals.
+     - Chronically ill patients with limited resources.
+   This creates an imbalance where health outcomes may correlate with wealth rather than medical need.
 
 NDIS:
-  The NDIS sets maximum prices registered providers can charge.
+  The NDIS sets maximum prices registered providers can charge for assitive technologies (NDIS, 2022).
   (https://www.ndis.gov.au/providers/pricing-arrangements)
   There have been cases of providers employing a 'twin pricing' model,
-  where NDIS clients are charged more than a regular customer.
+  where NDIS clients are charged above retail prices (NDIS Review, 2023).
   (https://www.ndisreview.gov.au/node/170#_fn53)
-  This eats out of client's budget, meaning potential loss of access
-  to other services.
-  A parallel can be drawn to KardiaCare, charging maximum $200 subscription
-  when cheaper plans sufficient.
+  This price discrimination depletes their NDIS funding, potentially limiting access to other essential services.
+
+participants are forced to constantly search for more affordable alternatives outside the disability-specific market
+pushes disabled people away from specialized services that should be most equipped to support them
+
+KardiaMobile Parallel:
+  In the case of KardiaMobile, the retail price might be inflated to match NDIS price cap.
+  Furthermore, users may be quoted for most expensive KardiaCare subscription, when
+  a cheaper plan may be sufficient.
+  Want to ensure that 
+
 
 
 KardiaMobile uses a subscription model to provide a steady revunue stream and to support ongoing costs of data storage to ensure business is profitable.

@@ -27,7 +27,8 @@ Principle: Transparency
 Stakeholder: Suresh Akhash (Investor)
 I have mixed feelings regarding company’s transparency practices.  
 On the positive side, I receive detailed quarterly financial reports and am made aware of new high level technical specifications of the device. 
-However, there is limited information pertaining to user retention metrics and regional performance breakdowns, subscription models. I would also like more information regarding the specifics of the AI algorithm to assess the long-term viability of my investment. 
+However, there is limited information pertaining to user retention metrics and regional performance breakdowns, subscription models.
+I would also like more information regarding the specifics of the AI algorithm to assess the long-term viability of my investment. 
 Balancing transparency with proprietary 
 
 DISCUSSION: 

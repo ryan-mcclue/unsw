@@ -5,13 +5,11 @@ http://www.32x8.com/index.html
 https://www.dcode.fr/boolean-expressions-calculator
 
 
-
-
 - logic simplification
   1 + x = 1
   zz' = 0
   z + z' = 1
-  x + x'y = x + y
+  IMPORTANT: x + x'yz = x + yz
   xy + xy' = x
   (x + y)' = x'y'
   gain term: xz = x(y + y')z

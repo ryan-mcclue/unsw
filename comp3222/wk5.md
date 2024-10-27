@@ -5,6 +5,11 @@ TODO: flip-flops store each state?
 
 glitching gives potential to save more time; however wanted clocked output for I/O
 
+
+TODO: state machine flow, e.g. state types, transitions, assignment, outputs
+TODO: state machine minimisation
+
+
 ```
   -- determined 8bits for one-hot encoded state 
   -- at state table, see each next state bit and how it relates to next state to get logic expressions

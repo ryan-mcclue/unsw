@@ -12,7 +12,13 @@
 | H     | B \| I                  | 0      |
 | I     | B \| I                  | 1      |
 
-TODO: Try to express in words what made you think the logic expression is what you claim it to be!
+D represents `next_state` and Q represents `state`.
+So, to determine logic expression for say B, look at all instances where it's the `next_state`.
+B is `next_state` from A, F, G, H and I.
+So, B logic expression will contain A, F, G, H and I.
+By inspection from table simply AND these states with appropriate value of w and the OR them together, e.g
+`(state_a AND not w) or (state_f and not w) ...`.
+Similarly, z output expression determined by ANDing states where it's 1.
 
 CONSTANT STATE_A : INTEGER := 0;
 CONSTANT STATE_B : INTEGER := 1;

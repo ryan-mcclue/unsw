@@ -106,15 +106,41 @@ On the other hand, a statistical model looks at probabilistic relationships with
 This approach assumes that statistical patterns can reveal associations that influence decisions.
 These models offer different lenses to interpret the extent to which an ADM system is acheiving FAT.
 
-In the context of a statistical model, an ADM system is fair 
+In the context of a statistical model of explanation, an ADM system is fair 
 if the proportion of positive to negative decisions are the same for all demographics.
-This statistical correlation can reveal biases in the system to rectify and promote fairness.
+This statistical correlation can reveal biases in the system that need to be rectified to promote fairness. 
+---
+However, a purely statistical approach may not fully capture the underlying reasons for these disparities or provide clear guidance on how to address them.
+
 
 A causal model of explanation considers fairness to be if a decision 
 applies equally across different demographics.
-Causal allows to answer 
+Beyond just identifying a correlation as a statistical model enables, 
+causality provides a means to articulate the reasons for these relationships.
+By understanding the causal mechanisms at play, targeted interventions can be developed to 
+promote fairness.
+---
+Causal models offer a more nuanced and actionable approach to achieving fairness in ADM systems.
 
 
+Utilising a statistical model of explanation, transparency is the ability to understand which input features
+most influenced the decision that was made.
+
+
+Considering a causal model of explanation, an ADM system is transparent if it's possible to trace the logical steps that were
+made in order to reach a decision.
+
+
+A universal view of accountability is if an ADM system can assign responsibility to a decision.
+Specifically, this means the system makes it clear as to what actions can be taken
+to change the decision that was made.
+Combining both causal and statistical methods, probabilistic counterfactuals offer a powerful framework for accountability.
+
+In conclusion, by exploring causal and statistical accounts of explanation,
+ADM systems powered by AI can work towards acheiving FAT.
+However, computational models of human decision making will never be perfect due to the innate complexities
+of human nature. As a result, to fully acheive FAT, human involvement is required.
+# ACTUAL END
 
 What to extract data and turn it into actionable insight to make decisions to improve areas in life.
 
@@ -264,11 +290,6 @@ our normative goals sit on sliding scale between what is acheivebale and what is
 But must contextualise them for real-world use.
 Benefit of abstraction allows for broad agreement.
 
-In conclusion, by exploring causal and statistical accounts of explanation,
-ADM systems powered by AI can work towards acheiving FAT.
-However, computational models of human decision making will never be perfect due to the innate complexities
-of human nature. As a result, to fully acheive FAT, human involvement is required.
-# ACTUAL END
 
 
 

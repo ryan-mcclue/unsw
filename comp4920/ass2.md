@@ -48,13 +48,15 @@ theoretically approximate the complexity of human decision making.
 As a result, while technical approaches can make significant progress toward FAT principles, 
 achieving them fully in practice requires human involvement.
 
+https://github.com/SanDiegoMachineLearning/talks
+https://www.youtube.com/watch?app=desktop&v=DJBAzvZDEgs
+
 Paragraph 0 (explain FAT, causal and statistical)
-Paragraph 1 (fairness with causal)
-Paragraph 2 (fairness with statistical)
-Paragraph 3 (accountability with causal)
-Paragraph 4 (accountability with statistical)
-Paragraph 5 (transparency with causal)
-Paragraph 6 (transparency with statistical)
+Paragraph 1 (fairness with causal, uc berkely admission, counterfactuals)
+Paragraph 2 (fairness with statistical, flight finder, simpsons paradox)
+Paragraph 5 (transparency with causal, deep blue, non-machine learning AI) -> how got decision
+Paragraph 6 (transparency with statistical, NHS, xAI/LIME)
+Paragraph 3 (accountability with causal and statistical, loans, LEWIS, probabilistic counterfactuals) -> (i.e. assign responsibilities, want algorithmic recourse)
 
 Conclusion:
 In conclusion, by exploring causal and statistical accounts of explanation,
@@ -97,7 +99,7 @@ What category would my deep blue example fit into?
 TODO: citation in introduction good
 Automated decision making (ADM) systems powered by artificial intelligence 
 are becoming increasingly prevalent in society.
-Considering causal and statistical models of explanation, there are
+Considering statistical and causal models of explanation, there are
 potential pathways for achieving fairness, accountability and transparency (FAT) in ADM systems
 However, due to the nuanced nature of human cognition, these systems can only 
 theoretically approximate the complexity of human decision making. 
@@ -110,7 +112,6 @@ influence their actions.
 
 A statistical model looks at probabilistic relationships between data.
 This offers a different framework for understanding ... by looking at patterns in data like ...
-
 
 What to extract data and turn it into actionable insight to make decisions to improve areas in life.
 
@@ -130,10 +131,9 @@ causal inference from complex relational data can form foundation for
     A: responsible data management, avoiding false conclusions, 
     T: generating explanation
 
-
 (TODO: use tutorial slides for definitions)
 
-F1
+F1 (statistical, airline selection, simpsons paradox)
 Fairness includes the correctness of a decision and the equitable treatment across different demographics.
 
 Whilst algorithms are in some way objective creatures, and don't possess capability to be racist or sexist.
@@ -141,8 +141,14 @@ The input data to the pipeline is being collected from societies that are pollut
 Therefore, algorithms will pick up these discriminations and result in discriminatory outputs.
 e.g. Amazon AI recruiting tool showing bias against women (due to bias in training data)
 
+Choose best airline; so look at that with least delays. 
+Results differ if only looking at one airport, as oppose to many.
+Also, say one airline disproportionately flies at an airport with many weather events, so it's results are affected by this.
+So, results not because of performance, just has to do with location.
+So, cannot rely on SQL queries etc. as they may lead to false conclusions.
 
-F2
+
+F2 (causal, UC Berkely, counterfactuals) 
 Fairness in a statistical context, is when 'positive' outputs have same porportion for protected and priveleged groups.
 i.e. statistical correlation. 
 This is inconsistent (unable to satisfy all the time) 
@@ -164,6 +170,7 @@ and encodes edge if related, i.e. have causal relationship.
 So, must assume gender is connected to choice of department. 
 However, due to human nature, there are way more factors affecting this.
 
+Fairness is fundamentally causal.
 Causality allows to answer what would be outcome if change some variable, i.e. answer a hypothetical/counterfactual.
 (causal queries are counterfactuals)
 e.g. what would be admission rates if all people were female?
@@ -184,22 +191,11 @@ There is no magic formula to say what variables along this chain are permissible
 These choices are determined by cultural, social and ethical considerations. 
 So, need human to be able to justify these variables as admissable. (ACCOUNTABILITY)
 
-Fairness is fundamentally causal.
-
-
-
-
-
 
 A1
 
 
 A2
-Choose best airline; so look at that with least delays. 
-Results differ if only looking at one airport, as oppose to many.
-Also, say one airline disproportionately flies at an airport with many weather events, so it's results are affected by this.
-So, results not because of performance, just has to do with location.
-So, cannot rely on SQL queries etc. as they may lead to false conclusions.
 
 
 Assumes homogenous data, i.e. can't be both student and teacher

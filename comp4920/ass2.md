@@ -54,9 +54,9 @@ https://www.youtube.com/watch?app=desktop&v=DJBAzvZDEgs
 Paragraph 0 (explain FAT, causal and statistical)
 Paragraph 1 (fairness with causal, uc berkely admission, counterfactuals)
 Paragraph 2 (fairness with statistical, flight finder, simpsons paradox)
-Paragraph 5 (transparency with causal, deep blue, non-machine learning AI) -> how got decision
-Paragraph 6 (transparency with statistical, NHS, xAI/LIME)
-Paragraph 3 (accountability with causal and statistical, loans, LEWIS, probabilistic counterfactuals) -> (i.e. assign responsibilities, want algorithmic recourse)
+Paragraph 3 (transparency with causal, deep blue, non-machine learning AI) -> how got decision
+Paragraph 4 (transparency with statistical, NHS, xAI/LIME)
+Paragraph 5 (accountability with causal and statistical, loans, LEWIS, probabilistic counterfactuals) -> (i.e. assign responsibilities, want algorithmic recourse)
 
 Conclusion:
 In conclusion, by exploring causal and statistical accounts of explanation,
@@ -89,13 +89,6 @@ Public reporting of system performance correlations
 
 
 # ACTUAL START
-This is introduction of essay. Want to have a paragraph each of causal and statistical for FAT.
-Thesis is causal and statisical can get some way there, but as modelling human decision, an actual human is required.
-So, I feel have to not mention human intervention in paragraphs.
-Currently, can only think of explainable AI through non-machine learning AI, e.g. minimax for deep blue chess as a way to acheive FAT without human intervention.
-Please give more examples for the paragraphs using causal and statiscal explanation for each.
-What category would my deep blue example fit into?
-
 TODO: citation in introduction good
 Automated decision making (ADM) systems powered by artificial intelligence 
 are becoming increasingly prevalent in society.
@@ -103,17 +96,28 @@ Considering statistical and causal models of explanation, there are
 potential pathways for achieving fairness, accountability and transparency (FAT) in ADM systems
 However, due to the nuanced nature of human cognition, these systems can only 
 theoretically approximate the complexity of human decision making. 
-As a result, while technical approaches can make significant progress toward FAT principles, 
+As a result, while technical approaches can make progress toward FAT principles, 
 achieving them fully in practice requires human involvement.
 
 A causal model of explanation focuses on direct cause-and-effect relationships.
 This approach naturally aligns with the human decision making process, where an individual's beliefs and desires
-influence their actions.
+influence their actions. 
+On the other hand, a statistical model looks at probabilistic relationships within data.
+This approach assumes that statistical patterns can reveal associations that influence decisions.
+These models offer different lenses to interpret the extent to which an ADM system is acheiving FAT.
 
-A statistical model looks at probabilistic relationships between data.
-This offers a different framework for understanding ... by looking at patterns in data like ...
+In the context of a statistical model, an ADM system is fair 
+if the proportion of positive to negative decisions are the same for all demographics.
+This statistical correlation can reveal biases in the system to rectify and promote fairness.
+
+A causal model of explanation considers fairness to be if a decision 
+applies equally across different demographics.
+Causal allows to answer 
+
+
 
 What to extract data and turn it into actionable insight to make decisions to improve areas in life.
+
 
 TODO: Use this flow as first paragraph
 Data flow pipeline involves 

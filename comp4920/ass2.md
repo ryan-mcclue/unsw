@@ -112,12 +112,64 @@ A statistical model looks at probabilistic relationships between data.
 This offers a different framework for understanding ... by looking at patterns in data like ...
 
 
+What to extract data and turn it into actionable insight to make decisions to improve areas in life.
+
+TODO: Use this flow as first paragraph
+Data flow pipeline involves 
+  1. raw data (algorithmic fairness) 
+  2. preprocessing (responsible data management; clean data?)
+  3. analysis (user asks queries are inherently bias; i.e. asks false queries get false answers?)
+  4. decision (explanations)
+
+Things can go wrong in pipeline, resulting in discriminatory decision.
+Issues with raw data contributing to fairness.
+
+
+causal inference from complex relational data can form foundation for 
+    F: algorithmic fairness, 
+    A: responsible data management, avoiding false conclusions, 
+    T: generating explanation
+
+
 (TODO: use tutorial slides for definitions)
 
 F1
 Fairness includes the correctness of a decision and the equitable treatment across different demographics.
 
+Whilst algorithms are in some way objective creatures, and don't possess capability to be racist or sexist.
+The input data to the pipeline is being collected from societies that are polluted with layers of institutionalised racism, discrimanation etc.
+Therefore, algorithms will pick up these discriminations and result in discriminatory outputs.
+e.g. Amazon AI recruiting tool showing bias against women (due to bias in training data)
+
+
 F2
+Fairness in a statistical context, is when 'positive' outputs have same porportion for protected and priveleged groups.
+i.e. statistical correlation. 
+This is inconsistent (unable to satisfy all the time) 
+and counterintuitive (cannot capture the social idea behind fairness)
+e.g. UC Berkely violated statistical parity of men and women acceptance rates, 
+i.e. there was a correlation to gender and admittance (want them to be independent)
+Big disparity against women.
+however if look other graph of department, shows disparity against men.
+Simpson's paradox.
+Shows impossible to capture the intuition behind fairness using a statistical model.
+Furthermore, even if demographic parity is violated, this does not indicate unfair, just might be nature.
+Only discriminatory, if direct link can be shown.
+
+
+Once found out about correlation, must ask why is there this correlation (statisical cannot).
+Causal can answer why are gender and admittance correlated.
+Causal encodes significant variables, e.g. gender, admittance
+and encodes edge if related.
+So, must assume gender is connected to choice of department. 
+However, due to human nature, there are way more factors affecting this.
+Causality allows to answer what would be outcome if change some variable, i.e. answer a hypothetical/counterfactual.
+e.g. what would be admission rates if all people were female?
+e.g. what would be admission rates if all people were male?
+if these are different, can establish discrimination causally.
+however, we don't have all this data, so causual inference is a missing data problem.
+can only emulate data with randomised experiment, yet still an estimate.
+
 
 A1
 

@@ -160,15 +160,34 @@ Only discriminatory, if direct link can be shown.
 Once found out about correlation, must ask why is there this correlation (statisical cannot).
 Causal can answer why are gender and admittance correlated.
 Causal encodes significant variables, e.g. gender, admittance
-and encodes edge if related.
+and encodes edge if related, i.e. have causal relationship.
 So, must assume gender is connected to choice of department. 
 However, due to human nature, there are way more factors affecting this.
+
 Causality allows to answer what would be outcome if change some variable, i.e. answer a hypothetical/counterfactual.
+(causal queries are counterfactuals)
 e.g. what would be admission rates if all people were female?
 e.g. what would be admission rates if all people were male?
 if these are different, can establish discrimination causally.
 however, we don't have all this data, so causual inference is a missing data problem.
-can only emulate data with randomised experiment, yet still an estimate.
+can only emulate data with randomised experiment, yet still an estimate, so carries assumptions.
+
+
+Berkely admission algorithm.
+Focus on pre-existing/historical bias; many other biases like process for training label selection, selection, measurement bias etc. (link to lecture slides)
+Want to remove these upstream biases with a sort of data cleaning process to remove discrimination signal from it.
+For causal fairness, don't want gender (sensitive attribute) to influence admission.
+Expressed as counterfactual, manipulating gender does not change algorithm outcome.
+However, don't have control over causal relationships, like gender influences hobbies which influences if admitted or not,
+i.e. doesn't take into account proxy variables.
+There is no magic formula to say what variables along this chain are permissible causal influences, e.g. ok if department affects, but not hobbies
+These choices are determined by cultural, social and ethical considerations. 
+So, need human to be able to justify these variables as admissable. (ACCOUNTABILITY)
+
+Fairness is fundamentally causal.
+
+
+
 
 
 A1

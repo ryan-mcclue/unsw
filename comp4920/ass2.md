@@ -190,13 +190,60 @@ Fairness is fundamentally causal.
 
 
 
+
 A1
 
 
 A2
+Choose best airline; so look at that with least delays. 
+Results differ if only looking at one airport, as oppose to many.
+Also, say one airline disproportionately flies at an airport with many weather events, so it's results are affected by this.
+So, results not because of performance, just has to do with location.
+So, cannot rely on SQL queries etc. as they may lead to false conclusions.
+
+
+Assumes homogenous data, i.e. can't be both student and teacher
+
+
 
 TODO: flora lecture slides from week 7 for XAI
 T1
+AI increasingly being used to make consequential decisions.
+Models high accuracy results in high complexity and opacity.
+Often not intuitive, hard to interpret.
+To be adopted, ADM must build trust in stakeholders.
+Decisions need to be justifiable and provide actionable recourse.
+Developers want to perform root cause analysis, users want to do why this outcome, business address discriminatory outputs etc.
+Consider bank loan system that considers credibility of customers to pay off debts.
+Want to provide reason for decision and set of recommended actions so they can change result for future.
+
+Indeed compliance is legislated, european union (gdpr.eu) states that "right to not be subject to decision based solely on automated processing"
+
+Posthoc Model agnostic xAI, make no assumptions about internal of model, just input and output.
+Quantify input of features, e.g. name, age, credit history and rank based on importance.
+SHAP is popular method assess importance of an input feature.
+
+LIME (decision trees etc.) on the other hand approximates non-linear models based off some locality/data-point you want to explain
+using a surrogate function, i.e. a linear model. Then rank features based on outputs.
+
+Counterfactual explanations will somehow perturb input, e.g. name, so that the outcome of perturbed input changes.
+i.e. perform some minimal change to name to see how changes
+
+All these are wrong as only focus on input and output of algorithm.
+
+Humans explain phenomena constrastively, e.g. why this and not that.
+e.g. why got rejected and not accepted.
+
+Probabilistic counterfactual, e.g. for individual with ..., for whom algorithm made decision ..., 
+the decision would have been ... with probability ..., had the attribute been ...
+So, to what extent would changing name, be sufficent in changing outcome of algorithm.
+Also want to know if attribute is necessary.
+
+Only human knows what sufficent causation is.
+
+
+
+
 
 
 

@@ -106,9 +106,21 @@ On the other hand, a statistical model looks at probabilistic relationships with
 This approach assumes that statistical patterns can reveal associations that influence decisions.
 These models offer different lenses to interpret the extent to which an ADM system is acheiving FAT.
 
+(Sequoiah-Grayson, 2022). 
+
 In the context of a statistical model of explanation, an ADM system is fair 
 if the proportion of positive to negative decisions are the same for all demographics.
 This statistical correlation can reveal biases in the system that need to be rectified to promote fairness. 
+Consider an ADM system for determing admission to the University of New South Wales (UNSW). 
+Peforming statistical analysis might reveal that 60% of male applicants are accepted, while
+only 40% of females were accepted. This shows a disparity towards females.
+However, looking at acceptance rates by gender and faculty, it might show that
+females actually have higher average acceptance rate then males.
+This is an example of Simpson's paradox, where ...
+The key insight here is that females were applying more frequently to faculties with lower overall acceptance rates.
+While statistical accounts can reveal ..., it cannot capture the intuition of fairness.
+Indeed, even if demographic parity is violated, this does not indicate unfair, just might be nature.
+Therefore, human judgment is required to properly interpret and address such issues.
 ---
 However, a purely statistical approach may not fully capture the underlying reasons for these disparities or provide clear guidance on how to address them.
 
@@ -119,6 +131,19 @@ Beyond just identifying a correlation as a statistical model enables,
 causality provides a means to articulate the reasons for these relationships.
 By understanding the causal mechanisms at play, targeted interventions can be developed to 
 promote fairness.
+A causal query can be encoded as a counterfactual, i.e. a hypothetical.
+In the context of the UNSW admissions example, 
+counterfactuals would be of the form 
+"what would the admission rate be if all people were male" (and likewise all female).
+If these are different, have shown that manipulating gender affects decision 
+and therefore established discrimination casually.
+However, don't have control over causal relationships, like gender influences hobbies which influences if admitted or not,
+i.e. doesn't take into account proxy variables.
+There is no magic formula to say what variables along this chain are permissible causal influences, e.g. ok if department affects, but not hobbies
+These choices are determined by cultural, social and ethical considerations. 
+So, need human to be able to justify these variables as admissable. 
+however, we don't have all this data, so causual inference is a missing data problem.
+can only emulate data with randomised experiment, yet still an estimate, so carries assumptions.
 ---
 Causal models offer a more nuanced and actionable approach to achieving fairness in ADM systems.
 
@@ -219,7 +244,9 @@ However, don't have control over causal relationships, like gender influences ho
 i.e. doesn't take into account proxy variables.
 There is no magic formula to say what variables along this chain are permissible causal influences, e.g. ok if department affects, but not hobbies
 These choices are determined by cultural, social and ethical considerations. 
-So, need human to be able to justify these variables as admissable. (ACCOUNTABILITY)
+So, need human to be able to justify these variables as admissable. 
+
+(ACCOUNTABILITY)
 
 
 A1

@@ -87,7 +87,7 @@ Diversity initiatives based on representation statistics
 Ethics guidelines derived from observed best practices
 Public reporting of system performance correlations
 
-(Sequoiah-Grayson, 2022). 
+(Sequoiah-Grayson, N/A). 
 
 
 # ACTUAL START
@@ -97,29 +97,8 @@ are becoming increasingly prevalent in society. Considering statistical and caus
 
 A statistical model of explanation focuses on probabilistic relationships within data. This approach assumes that statistical patterns can reveal associations that influence decisions. On the other hand, a causal model of explanation looks at direct cause-and-effect relationships. This approach naturally aligns with the human decision making process, where an individual's beliefs and desires influence their actions. These models offer different lenses to interpret the extent to which an ADM system is achieving FAT.
 
-In the context of a statistical model of explanation, an ADM system is fair
-if the proportion of positive to negative decisions are the same for all demographics.
-This statistical correlation can reveal biases in the system that need to be rectified to promote fairness.
-The University of California, Berkeley admissions study (Bickel et al., 1975) illustrates the limitations of this approach.
-Initial statistical analysis showed that 44% of male applicants were accepted compared to
-only 35% of females, suggesting apparent gender discrimination.
-However, when examining acceptance rates by individual departments, females actually had higher acceptance rates than males.
-This phenomenon, known as Simpson's Paradox (Malinas and Bigelow, 2016), occurs when a statistical trend appears in grouped data but reverses when the data is subdivided.
-The paradox arose because females more frequently applied to departments with lower overall acceptance rates, skewing the aggregate statistics.
-This example highlights several limitations of statistical fairness measures.
-Firstly, there is no clear guidance on how to address identified biases.
-As explored by Dressel and Farid (2018), blindly pursuing statistical fairness can lead to unintended consequences and even exacerbate existing inequalities.
-Secondly, there is no programmatic way to cluster the data that reveals all possible biases.
-Thirdly, violations of demographic parity may not necessarily indicate unfairness given the context of the problem.
-This is explored by Wang et al. (2023), where differing base rates of recidivism leading to statistically unequal outcomes aren't necessarily discriminatory. 
-Therefore, in line with Sequoiah-Grayson's (2022) arguments, while statistical approaches can work towards acheiving fairness in an ADM system, 
-they are not sufficient on their own.
-Human judgment is required to properly interpret the inherent complexities of fairness.
+In the context of a statistical model of explanation, an ADM system is fair if the proportion of positive to negative decisions are the same for all demographics. This statistical correlation can reveal biases in the system that need to be rectified to promote fairness. Consider applying an ADM system to the University of California, Berkeley admissions study (Bickel et al., 1975). Initial statistical analysis showed that 44% of male applicants were accepted compared to only 35% of females, suggesting apparent gender discrimination. However, when examining acceptance rates by individual departments, females actually had higher acceptance rates than males. This phenomenon, known as Simpson's Paradox (Malinas and Bigelow, 2016), occurs when a statistical trend appears in grouped data but reverses when the data is subdivided. The paradox arose because females more frequently applied to departments with lower overall acceptance rates, skewing the aggregate statistics. This example highlights several limitations of statistical fairness measures. Firstly, there is no clear guidance on how to address identified biases. As explored by Dressel and Farid (2018), blindly pursuing statistical fairness can lead to unintended consequences and even exacerbate existing inequalities. Secondly, there is no programmatic way to cluster the data that reveals all possible biases. Thirdly, violations of demographic parity may not necessarily indicate unfairness given the context of the problem. This is explored by Wang et al. (2023), where differing base rates of recidivism leading to statistically unequal outcomes aren't necessarily discriminatory. Therefore, in line with Sequoiah-Grayson's (2022) arguments, while statistical approaches can work towards achieving fairness in an ADM system, they are not sufficient on their own. Human judgement is required to properly interpret the inherent complexities of fairness.
 TODO: have to make explicit reference to Grayson (i.e. direct quotes)
-
-
-https://plato.stanford.edu/entries/paradox-simpson/
-Sprenger, Jan and Naftali Weinberger, "Simpson’s Paradox", The Stanford Encyclopedia of Philosophy (Summer 2021 Edition), Edward N. Zalta (ed.), URL = <https://plato.stanford.edu/archives/sum2021/entries/paradox-simpson/>. 
 
 
 

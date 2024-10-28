@@ -109,20 +109,13 @@ The paradox arose because females more frequently applied to departments with lo
 This example highlights several limitations of statistical fairness measures.
 Firstly, there is no clear guidance on how to address identified biases.
 As explored by Dressel and Farid (2018), blindly pursuing statistical fairness can lead to unintended consequences and even exacerbate existing inequalities.
-Secondly, there is no definitive way to cluster the data that reveals all possible biases.
+Secondly, there is no programmatic way to cluster the data that reveals all possible biases.
 Thirdly, violations of demographic parity may not necessarily indicate unfairness given the context of the problem.
-This is explored by Wang et al. (2023), where statistically unequal outcomes are not necessarily discriminatory. 
-Therefore, while statistical approaches can identify potential biases, they are not sufficient on their own.
-
-TODO: link back to thesis
-Human judgment is essential for properly interpreting and addressing such nuanced fairness issues.
-
-
-This example, explored in depth by Chouldechova (2017) in their work on "Fair prediction with disparate impact", demonstrates the inherent limitations of statistical fairness measures:
-    Lack of Actionable Guidance: Identifying a statistical disparity doesn't prescribe a solution. In the Berkeley case, should departments be forced to adjust their criteria to achieve parity, potentially disadvantaging other groups? As highlighted by Dressel and Farid (2018) in "The accuracy, fairness, and limits of predicting recidivism," blindly pursuing statistical fairness can lead to unintended consequences and even exacerbate existing inequalities.
-    Subgroup Ambiguity: There's no foolproof way to discover all potential subgroups where disparities might exist. Should data be analyzed by department, program, or some other factor? Each choice can yield different results, making it challenging to achieve true fairness across all possible dimensions.
-    Contextual Blindness: Violations of demographic parity don't always signify unfairness. As pointed out by Wang et al. (2023) in their paper "In pursuit of interpretable, fair and accurate machine learning for criminal recidivism prediction," contextual factors, such as differing base rates of recidivism across groups, can lead to statistically unequal outcomes that are not necessarily discriminatory.
-
+This is explored by Wang et al. (2023), where differing base rates of recidivism leading to statistically unequal outcomes aren't necessarily discriminatory. 
+Therefore, in line with Sequoiah-Grayson's (2022) arguments, while statistical approaches can work towards acheiving fairness in an ADM system, 
+they are not sufficient on their own.
+Human judgment is required to properly interpret the inherent complexities of fairness.
+TODO: have to make explicit reference to Grayson (i.e. direct quotes)
 
 
 https://plato.stanford.edu/entries/paradox-simpson/

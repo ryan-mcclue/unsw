@@ -93,40 +93,37 @@ Public reporting of system performance correlations
 # ACTUAL START
 TODO: citation in introduction good
 Automated decision making (ADM) systems powered by artificial intelligence 
-are becoming increasingly prevalent in society.
-Considering statistical and causal models of explanation, there are
-potential pathways for achieving fairness, accountability and transparency (FAT) in ADM systems
-However, due to the nuanced nature of human cognition, these systems can only 
-theoretically approximate the complexity of human decision making. 
-As a result, while technical approaches can make progress toward FAT principles, 
-achieving them fully in practice requires human involvement.
+are becoming increasingly prevalent in society. Considering statistical and causal models of explanation, there are potential pathways for achieving fairness, accountability and transparency (FAT) in ADM systems. However, due to the nuanced nature of human cognition, these systems can only theoretically approximate the complexity of human decision making. As a result, while technical approaches can make progress toward FAT principles, achieving them fully in practice requires human involvement.
 
-A causal model of explanation focuses on direct cause-and-effect relationships.
-This approach naturally aligns with the human decision making process, where an individual's beliefs and desires
-influence their actions. 
-On the other hand, a statistical model looks at probabilistic relationships within data.
-This approach assumes that statistical patterns can reveal associations that influence decisions.
-These models offer different lenses to interpret the extent to which an ADM system is acheiving FAT.
+A statistical model of explanation focuses on probabilistic relationships within data. This approach assumes that statistical patterns can reveal associations that influence decisions. On the other hand, a causal model of explanation looks at direct cause-and-effect relationships. This approach naturally aligns with the human decision making process, where an individual's beliefs and desires influence their actions. These models offer different lenses to interpret the extent to which an ADM system is achieving FAT.
 
-
-In the context of a statistical model of explanation, an ADM system is fair 
+In the context of a statistical model of explanation, an ADM system is fair
 if the proportion of positive to negative decisions are the same for all demographics.
-This statistical correlation can reveal biases in the system that need to be rectified to promote fairness. 
-Consider applying an ADM system to the University of California, Berkeley admissions study (Bickel et al., 1975).
-Peforming statistical analysis, it was found that 44% of male applicants were accepted, while
-only 35% of females were. This indicates that the ADM system would be unfair towards females.
-However, looking at acceptance rates by gender and faculty, it showed that
-females actually have higher average acceptance rates then males.
-This is an example of Simpson's Paradox (Malinas and Bigelow, 2016), where an association disappears when data is subdivided.
-The reason for this result is that females were applying more frequently to faculties with lower overall acceptance rates.
-This underscores the limitations of purely statistical fairness.
+This statistical correlation can reveal biases in the system that need to be rectified to promote fairness.
+The University of California, Berkeley admissions study (Bickel et al., 1975) illustrates the limitations of this approach.
+Initial statistical analysis showed that 44% of male applicants were accepted compared to
+only 35% of females, suggesting apparent gender discrimination.
+However, when examining acceptance rates by individual departments, females actually had higher acceptance rates than males.
+This phenomenon, known as Simpson's Paradox (Malinas and Bigelow, 2016), occurs when a statistical trend appears in grouped data but reverses when the data is subdivided.
+The paradox arose because females more frequently applied to departments with lower overall acceptance rates, skewing the aggregate statistics.
+This example highlights several limitations of statistical fairness measures.
+Firstly, there is no clear guidance on how to address identified biases.
+As explored by Dressel and Farid (2018), blindly pursuing statistical fairness can lead to unintended consequences and even exacerbate existing inequalities.
+Secondly, there is no definitive way to cluster the data that reveals all possible biases.
+Thirdly, violations of demographic parity may not necessarily indicate unfairness given the context of the problem.
+This is explored by Wang et al. (2023), where statistically unequal outcomes are not necessarily discriminatory. 
+Therefore, while statistical approaches can identify potential biases, they are not sufficient on their own.
+
+TODO: link back to thesis
+Human judgment is essential for properly interpreting and addressing such nuanced fairness issues.
 
 
-It can be influenced by underlying societal biases and fail to capture the nuances of individual circumstances.
-Indeed, even if demographic parity is violated, given the nature of problem, this may not necessarily indicate unfairness.
-Therefore, human judgment is required to properly interpret and address such issues.
----
-However, a purely statistical approach may not fully capture the underlying reasons for these disparities or provide clear guidance on how to address them.
+This example, explored in depth by Chouldechova (2017) in their work on "Fair prediction with disparate impact", demonstrates the inherent limitations of statistical fairness measures:
+    Lack of Actionable Guidance: Identifying a statistical disparity doesn't prescribe a solution. In the Berkeley case, should departments be forced to adjust their criteria to achieve parity, potentially disadvantaging other groups? As highlighted by Dressel and Farid (2018) in "The accuracy, fairness, and limits of predicting recidivism," blindly pursuing statistical fairness can lead to unintended consequences and even exacerbate existing inequalities.
+    Subgroup Ambiguity: There's no foolproof way to discover all potential subgroups where disparities might exist. Should data be analyzed by department, program, or some other factor? Each choice can yield different results, making it challenging to achieve true fairness across all possible dimensions.
+    Contextual Blindness: Violations of demographic parity don't always signify unfairness. As pointed out by Wang et al. (2023) in their paper "In pursuit of interpretable, fair and accurate machine learning for criminal recidivism prediction," contextual factors, such as differing base rates of recidivism across groups, can lead to statistically unequal outcomes that are not necessarily discriminatory.
+
+
 
 https://plato.stanford.edu/entries/paradox-simpson/
 Sprenger, Jan and Naftali Weinberger, "Simpson’s Paradox", The Stanford Encyclopedia of Philosophy (Summer 2021 Edition), Edward N. Zalta (ed.), URL = <https://plato.stanford.edu/archives/sum2021/entries/paradox-simpson/>. 

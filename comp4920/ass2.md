@@ -87,6 +87,8 @@ Diversity initiatives based on representation statistics
 Ethics guidelines derived from observed best practices
 Public reporting of system performance correlations
 
+(Sequoiah-Grayson, 2022). 
+
 
 # ACTUAL START
 TODO: citation in introduction good
@@ -106,23 +108,29 @@ On the other hand, a statistical model looks at probabilistic relationships with
 This approach assumes that statistical patterns can reveal associations that influence decisions.
 These models offer different lenses to interpret the extent to which an ADM system is acheiving FAT.
 
-(Sequoiah-Grayson, 2022). 
 
 In the context of a statistical model of explanation, an ADM system is fair 
 if the proportion of positive to negative decisions are the same for all demographics.
 This statistical correlation can reveal biases in the system that need to be rectified to promote fairness. 
-Consider an ADM system for determing admission to the University of New South Wales (UNSW). 
-Peforming statistical analysis might reveal that 60% of male applicants are accepted, while
-only 40% of females were accepted. This shows a disparity towards females.
-However, looking at acceptance rates by gender and faculty, it might show that
-females actually have higher average acceptance rate then males.
-This is an example of Simpson's paradox, where ...
-The key insight here is that females were applying more frequently to faculties with lower overall acceptance rates.
-While statistical accounts can reveal ..., it cannot capture the intuition of fairness.
-Indeed, even if demographic parity is violated, this does not indicate unfair, just might be nature.
+Consider applying an ADM system to the University of California, Berkeley admissions study (Bickel et al., 1975).
+Peforming statistical analysis, it was found that 44% of male applicants were accepted, while
+only 35% of females were. This indicates that the ADM system would be unfair towards females.
+However, looking at acceptance rates by gender and faculty, it showed that
+females actually have higher average acceptance rates then males.
+This is an example of Simpson's Paradox (Malinas and Bigelow, 2016), where an association disappears when data is subdivided.
+The reason for this result is that females were applying more frequently to faculties with lower overall acceptance rates.
+This underscores the limitations of purely statistical fairness.
+
+
+It can be influenced by underlying societal biases and fail to capture the nuances of individual circumstances.
+Indeed, even if demographic parity is violated, given the nature of problem, this may not necessarily indicate unfairness.
 Therefore, human judgment is required to properly interpret and address such issues.
 ---
 However, a purely statistical approach may not fully capture the underlying reasons for these disparities or provide clear guidance on how to address them.
+
+https://plato.stanford.edu/entries/paradox-simpson/
+Sprenger, Jan and Naftali Weinberger, "Simpson’s Paradox", The Stanford Encyclopedia of Philosophy (Summer 2021 Edition), Edward N. Zalta (ed.), URL = <https://plato.stanford.edu/archives/sum2021/entries/paradox-simpson/>. 
+
 
 
 A causal model of explanation considers fairness to be if a decision 
@@ -142,30 +150,63 @@ i.e. doesn't take into account proxy variables.
 There is no magic formula to say what variables along this chain are permissible causal influences, e.g. ok if department affects, but not hobbies
 These choices are determined by cultural, social and ethical considerations. 
 So, need human to be able to justify these variables as admissable. 
-however, we don't have all this data, so causual inference is a missing data problem.
-can only emulate data with randomised experiment, yet still an estimate, so carries assumptions.
 ---
 Causal models offer a more nuanced and actionable approach to achieving fairness in ADM systems.
 
 
 Utilising a statistical model of explanation, transparency is the ability to understand which input features
 most influenced the decision that was made.
+Modern explainable AI techniques like LIME (Local Interpretable Model-agnostic Explanations) achieve this by approximating complex models with simpler, interpretable ones in the local region around a specific decision. 
+Rather than providing a complete decision trace, these methods offer simplified explanations of what features were most important for a particular output. 
+For instance, in an image classification task, LIME might highlight which regions of an image most strongly influenced the model's decision. 
+This approach acknowledges that while the full computational process may be too complex to fully comprehend, we can still gain meaningful insights into what the system considers important for its decisions
+
+Posthoc Model agnostic xAI, make no assumptions about internal of model, just input and output.
+Quantify input of features, e.g. name, age, credit history and rank based on importance.
+SHAP is popular method assess importance of an input feature.
+LIME (decision trees etc.) on the other hand approximates non-linear models based off some locality/data-point you want to explain
+using a surrogate function, i.e. a linear model. Then rank features based on outputs.
+All these are wrong as only focus on input and output of algorithm.
+Humans explain phenomena constrastively, e.g. why this and not that.
+---
 
 
 Considering a causal model of explanation, an ADM system is transparent if it's possible to trace the logical steps that were
 made in order to reach a decision.
-
+Non-machine learning AI systems like IBM's Deep Blue exemplify this approach, 
+where each move is determined by explicit rules and game-tree search algorithms. 
+The system's decisions can be audited by examining the specific rules triggered, positions evaluated, 
+and paths explored in the game tree. 
+This deterministic nature means that given the same input state, the system will always produce identical outputs 
+through the same logical pathway. 
+Such transparency enables complete verification of the system's reasoning process, 
+as each decision point can be mapped to specific programmed rules and evaluation criteria.
+---
 
 A universal view of accountability is if an ADM system can assign responsibility to a decision.
 Specifically, this means the system makes it clear as to what actions can be taken
 to change the decision that was made.
 Combining both causal and statistical methods, probabilistic counterfactuals offer a powerful framework for accountability.
+These models analyze not just what would change if a single factor were different, but also quantify the likelihood of different outcomes under various scenarios. For instance, in a loan approval system, rather than simply stating that income was too low, the system can specify that increasing income by $10,000 would raise approval probability by 40%, while improving credit score by 50 points would raise it by 60%. This probabilistic approach acknowledges the inherent uncertainty in real-world decisions while still providing actionable insights for accountability. By merging causal reasoning about "what-if" scenarios with statistical measures of uncertainty, the system can provide more nuanced and practical guidance for appealing or improving future outcomes.
+This analysis identifies both sufficient and necessary conditions for changing the decision - whether changing an attribute like income would be enough to alter the outcome, and whether it is required for approval.
+However, while algorithms can compute these probabilistic relationships, only human judgment can determine what constitutes truly sufficient causation in complex real-world scenarios.
+The system can suggest that a $10,000 income increase would likely lead to approval, but a human must evaluate if this represents a reasonable and achievable path forward for the applicant.
+Probabilistic counterfactual, e.g. for individual with ..., for whom algorithm made decision ..., 
+the decision would have been ... with probability ..., had the attribute been ...
+So, to what extent would changing name, be sufficent in changing outcome of algorithm.
+Also want to know if attribute is necessary.
+Only human knows what sufficent causation is.
+---
 
 In conclusion, by exploring causal and statistical accounts of explanation,
 ADM systems powered by AI can work towards acheiving FAT.
 However, computational models of human decision making will never be perfect due to the innate complexities
 of human nature. As a result, to fully acheive FAT, human involvement is required.
 # ACTUAL END
+
+
+
+
 
 What to extract data and turn it into actionable insight to make decisions to improve areas in life.
 
@@ -275,7 +316,6 @@ Indeed compliance is legislated, european union (gdpr.eu) states that "right to 
 Posthoc Model agnostic xAI, make no assumptions about internal of model, just input and output.
 Quantify input of features, e.g. name, age, credit history and rank based on importance.
 SHAP is popular method assess importance of an input feature.
-
 LIME (decision trees etc.) on the other hand approximates non-linear models based off some locality/data-point you want to explain
 using a surrogate function, i.e. a linear model. Then rank features based on outputs.
 

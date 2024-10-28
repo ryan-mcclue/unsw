@@ -130,10 +130,16 @@ Causal models offer a more nuanced and actionable approach to achieving fairness
 
 Utilising a statistical model of explanation, transparency is the ability to understand which input features
 most influenced the decision that was made.
+
+
+
 Modern explainable AI techniques like LIME (Local Interpretable Model-agnostic Explanations) achieve this by approximating complex models with simpler, interpretable ones in the local region around a specific decision. 
 Rather than providing a complete decision trace, these methods offer simplified explanations of what features were most important for a particular output. 
 For instance, in an image classification task, LIME might highlight which regions of an image most strongly influenced the model's decision. 
 This approach acknowledges that while the full computational process may be too complex to fully comprehend, we can still gain meaningful insights into what the system considers important for its decisions
+
+Good xAI can inform users and stakeholders 
+Indeed the black-box nature of systems raises idea of inscrutable decision (i.e. can't be scrutinised by humans)
 
 Posthoc Model agnostic xAI, make no assumptions about internal of model, just input and output.
 Quantify input of features, e.g. name, age, credit history and rank based on importance.
@@ -152,7 +158,10 @@ computational models that mimic the human brain.
 Modern systems like ChatGPT contain over 90 million connections
 encoded as binary data rather than human-readable source code,
 making it impossible to comprehend the flow of information or articulate the reasoning behind decisions.
+(xAI lecture slide 7; opacity in models) 
+
 However, non-machine learning AI systems offer greater transparency through explicit causal mechanisms.
+This changes system from black-box to white-box.
 IBM's Deep Blue chess engine exemplifies this approach.
 The system utilized a minimax algorithm encoded in plain text source code,
 allowing each move to be traced step-by-step through its decision tree.
@@ -184,6 +193,25 @@ the decision would have been ... with probability ..., had the attribute been ..
 So, to what extent would changing name, be sufficent in changing outcome of algorithm.
 Also want to know if attribute is necessary.
 Only human knows what sufficent causation is.
+
+To be readily understood by humans, explanation should be contrastive (xAI lecture slide 16)
+xAI methods
+  - model dependent: feature importance plot, saliency map
+    Can be applied at various stages in model, e.g. pre/in/post
+    (surrogate vs linear-regression vs generative models?)
+    feature importance tells us features most important across population,
+    when quite often want features that are most impactful for each instance/user. 
+  - model agnostic: LIME, SHAP
+    LIME works by generating similar decisions to original decision
+    and querying their results in the model.
+    Performing a weighted sample based on each distance to original decision,
+    establish a new simple model to explain the global model.
+    As LIME only samples around the given instance, it will only ascertain
+    a local pattern to explain.
+    This is gives rise to issues similar to statistical fairness issues,
+    in that too myopic of a metric to expose globally influential patterns.
+    As mentioned in (xAI lecture slide 41) this is instability of explanation.
+
 ---
 
 In conclusion, by exploring causal and statistical accounts of explanation,

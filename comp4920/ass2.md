@@ -130,23 +130,49 @@ Causal models offer a more nuanced and actionable approach to achieving fairness
 
 Utilising a statistical model of explanation, transparency is the ability to understand which input features
 most influenced the decision that was made.
+Modern explainable AI (XAI) techniques attempt to make black-box systems more transparent through statistical approximations of their behavior.
+Rather than providing a complete decision trace,
+these methods offer simplified explanations of what features were most important
+for a particular output.
+These approaches can be model-dependent, such as feature importance plots that compute statistical correlations between inputs and outputs, or model-agnostic methods like LIME (Local Interpretable Model-agnostic Explanations) and SHAP.
+Model-dependent methods like feature importance plots and saliency maps can be applied at various stages in the model's pipeline
+and reveal which features are most important across the entire population.
+However, they often fail to capture what features are most impactful for individual instances.
 
+LIME enhances transparency by sampling decisions around a point of interest, weighting them based on their distance to the original input, and fitting a simpler linear regression model to approximate the complex system's local behavior.
+This statistical surrogate model quantifies feature importance through regression coefficients, providing interpretable weights that indicate each feature's contribution to the decision.
+For instance, in image classification, these weights might show that pixels in certain regions contributed 80% to the classification probability.
+However, as LIME only samples around a given instance, it can only explain local patterns,
+making it too myopic to expose globally influential patterns.
+This limitation parallels issues in statistical fairness measures, where local analysis may miss broader systematic effects.
+While these statistical methods improve transparency by revealing feature importance and decision boundaries,
+they achieve only partial transparency by focusing solely on input-output relationships.
+True transparency requires understanding not just what features mattered, but why they mattered in the broader context of the decision.
+Humans achieve transparency through contrastive reasoning - understanding why one option was chosen over alternatives - rather than through statistical correlations.
+Furthermore, transparent decision-making requires consideration of ethical implications and real-world context that statistical methods cannot capture.
+Therefore, while XAI techniques offer valuable tools for making complex systems more transparent,
+human expertise remains essential for achieving meaningful transparency that aligns with human understanding and values.
 
-
-Modern explainable AI techniques like LIME (Local Interpretable Model-agnostic Explanations) achieve this by approximating complex models with simpler, interpretable ones in the local region around a specific decision. 
-Rather than providing a complete decision trace, these methods offer simplified explanations of what features were most important for a particular output. 
-For instance, in an image classification task, LIME might highlight which regions of an image most strongly influenced the model's decision. 
-This approach acknowledges that while the full computational process may be too complex to fully comprehend, we can still gain meaningful insights into what the system considers important for its decisions
-
-Good xAI can inform users and stakeholders 
 Indeed the black-box nature of systems raises idea of inscrutable decision (i.e. can't be scrutinised by humans)
 
-Posthoc Model agnostic xAI, make no assumptions about internal of model, just input and output.
-Quantify input of features, e.g. name, age, credit history and rank based on importance.
-SHAP is popular method assess importance of an input feature.
-LIME (decision trees etc.) on the other hand approximates non-linear models based off some locality/data-point you want to explain
-using a surrogate function, i.e. a linear model. Then rank features based on outputs.
-All these are wrong as only focus on input and output of algorithm.
+To be readily understood by humans, explanation should be contrastive (xAI lecture slide 16)
+xAI methods
+  - model dependent: feature importance plot, saliency map
+    Can be applied at various stages in model, e.g. pre/in/post
+    (surrogate vs linear-regression vs generative models?)
+    feature importance tells us features most important across population,
+    when quite often want features that are most impactful for each instance/user. 
+  - model agnostic: LIME, SHAP
+    LIME works by generating similar decisions to original decision
+    and querying their results in the model.
+    Performing a weighted sample based on each distance to original decision,
+    establish a new simple model to explain the global model.
+    As LIME only samples around the given instance, it will only ascertain
+    a local pattern to explain.
+    This is gives rise to issues similar to statistical fairness issues,
+    in that too myopic of a metric to expose globally influential patterns.
+    As mentioned in (xAI lecture slide 41) this is instability of explanation.
+
 Humans explain phenomena constrastively, e.g. why this and not that.
 ---
 
@@ -159,7 +185,6 @@ Modern systems like ChatGPT contain over 90 million connections
 encoded as binary data rather than human-readable source code,
 making it impossible to comprehend the flow of information or articulate the reasoning behind decisions.
 (xAI lecture slide 7; opacity in models) 
-
 However, non-machine learning AI systems offer greater transparency through explicit causal mechanisms.
 This changes system from black-box to white-box.
 IBM's Deep Blue chess engine exemplifies this approach.
@@ -184,33 +209,23 @@ A universal view of accountability is if an ADM system can assign responsibility
 Specifically, this means the system makes it clear as to what actions can be taken
 to change the decision that was made.
 Combining both causal and statistical methods, probabilistic counterfactuals offer a powerful framework for accountability.
-These models analyze not just what would change if a single factor were different, but also quantify the likelihood of different outcomes under various scenarios. For instance, in a loan approval system, rather than simply stating that income was too low, the system can specify that increasing income by $10,000 would raise approval probability by 40%, while improving credit score by 50 points would raise it by 60%. This probabilistic approach acknowledges the inherent uncertainty in real-world decisions while still providing actionable insights for accountability. By merging causal reasoning about "what-if" scenarios with statistical measures of uncertainty, the system can provide more nuanced and practical guidance for appealing or improving future outcomes.
-This analysis identifies both sufficient and necessary conditions for changing the decision - whether changing an attribute like income would be enough to alter the outcome, and whether it is required for approval.
-However, while algorithms can compute these probabilistic relationships, only human judgment can determine what constitutes truly sufficient causation in complex real-world scenarios.
-The system can suggest that a $10,000 income increase would likely lead to approval, but a human must evaluate if this represents a reasonable and achievable path forward for the applicant.
-Probabilistic counterfactual, e.g. for individual with ..., for whom algorithm made decision ..., 
-the decision would have been ... with probability ..., had the attribute been ...
-So, to what extent would changing name, be sufficent in changing outcome of algorithm.
-Also want to know if attribute is necessary.
-Only human knows what sufficent causation is.
-
-To be readily understood by humans, explanation should be contrastive (xAI lecture slide 16)
-xAI methods
-  - model dependent: feature importance plot, saliency map
-    Can be applied at various stages in model, e.g. pre/in/post
-    (surrogate vs linear-regression vs generative models?)
-    feature importance tells us features most important across population,
-    when quite often want features that are most impactful for each instance/user. 
-  - model agnostic: LIME, SHAP
-    LIME works by generating similar decisions to original decision
-    and querying their results in the model.
-    Performing a weighted sample based on each distance to original decision,
-    establish a new simple model to explain the global model.
-    As LIME only samples around the given instance, it will only ascertain
-    a local pattern to explain.
-    This is gives rise to issues similar to statistical fairness issues,
-    in that too myopic of a metric to expose globally influential patterns.
-    As mentioned in (xAI lecture slide 41) this is instability of explanation.
+These models analyze not just what would change if a single factor were different, but also quantify the likelihood of different outcomes under various scenarios.
+For instance, in a loan approval system, rather than simply stating that income was too low,
+the system can specify that increasing income by $10,000 would raise approval probability by 40%,
+while improving credit score by 50 points would raise it by 60%.
+This probabilistic framework helps identify both sufficient and necessary conditions for changing decisions.
+A sufficient condition might be that increasing income alone would guarantee approval,
+while a necessary condition indicates that approval is impossible without meeting certain criteria.
+The strength of this approach lies in its ability to provide concrete, actionable feedback
+while acknowledging the inherent uncertainty in real-world decisions.
+However, algorithmic analysis alone cannot determine what constitutes meaningful or achievable change.
+While the system might suggest that a $10,000 income increase would likely lead to approval,
+only human judgment can evaluate whether this represents a reasonable path forward.
+Moreover, humans must assess whether suggested changes align with ethical and practical considerations.
+For example, if the system suggests changing one's name would increase approval chances,
+human oversight is crucial to recognize and prevent such discriminatory practices.
+Therefore, while probabilistic counterfactuals provide valuable quantitative insights for accountability,
+human expertise remains essential for interpreting and validating these suggestions within real-world contexts.
 
 ---
 

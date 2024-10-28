@@ -99,26 +99,31 @@ A statistical model of explanation focuses on probabilistic relationships within
 
 In the context of a statistical model of explanation, an ADM system is fair if the proportion of positive to negative decisions are the same for all demographics. This statistical correlation can reveal biases in the system that need to be rectified to promote fairness. Consider applying an ADM system to the University of California, Berkeley admissions study (Bickel et al., 1975). Initial statistical analysis showed that 44% of male applicants were accepted compared to only 35% of females, suggesting apparent gender discrimination. However, when examining acceptance rates by individual departments, females actually had higher acceptance rates than males. This phenomenon, known as Simpson's Paradox (Malinas and Bigelow, 2016), occurs when a statistical trend appears in grouped data but reverses when the data is subdivided. The paradox arose because females more frequently applied to departments with lower overall acceptance rates, skewing the aggregate statistics. This example highlights several limitations of statistical fairness measures. Firstly, there is no clear guidance on how to address identified biases. As explored by Dressel and Farid (2018), blindly pursuing statistical fairness can lead to unintended consequences and even exacerbate existing inequalities. Secondly, there is no programmatic way to cluster the data that reveals all possible biases. Thirdly, violations of demographic parity may not necessarily indicate unfairness given the context of the problem. This is explored by Wang et al. (2023), where differing base rates of recidivism leading to statistically unequal outcomes aren't necessarily discriminatory. Therefore, in line with Sequoiah-Grayson's (2022) arguments, while statistical approaches can work towards achieving fairness in an ADM system, they are not sufficient on their own. Human judgement is required to properly interpret the inherent complexities of fairness.
 TODO: have to make explicit reference to Grayson (i.e. direct quotes)
+TODO: all explicit reference, e.g. as Wang says exploring recidivism ""
 
 
 
-A causal model of explanation considers fairness to be if a decision 
+A causal model of explanation considers fairness to be if a decision
 applies equally across different demographics.
-Beyond just identifying a correlation as a statistical model enables, 
+Beyond just identifying a correlation as a statistical model enables,
 causality provides a means to articulate the reasons for these relationships.
-By understanding the causal mechanisms at play, targeted interventions can be developed to 
+By understanding the causal mechanisms at play, targeted interventions can be developed to
 promote fairness.
-A causal query can be encoded as a counterfactual, i.e. a hypothetical.
-In the context of the UNSW admissions example, 
-counterfactuals would be of the form 
-"what would the admission rate be if all people were male" (and likewise all female).
-If these are different, have shown that manipulating gender affects decision 
-and therefore established discrimination casually.
-However, don't have control over causal relationships, like gender influences hobbies which influences if admitted or not,
-i.e. doesn't take into account proxy variables.
-There is no magic formula to say what variables along this chain are permissible causal influences, e.g. ok if department affects, but not hobbies
-These choices are determined by cultural, social and ethical considerations. 
-So, need human to be able to justify these variables as admissable. 
+In causal models, fairness queries are encoded as counterfactuals - hypothetical scenarios that test causal relationships.
+Consider again the UC Berkeley admissions example.
+A causal analysis would ask counterfactual questions like
+"what would the admission rate be if all applicants were male?" versus "if all were female?"
+Different outcomes for these scenarios would establish that gender causally influences admissions,
+indicating potential discrimination.
+To perform such analysis, the relationships between variables are modeled as a causal graph,
+where nodes represent factors like gender or department choice, and edges indicate causal relationships between them.
+These paths through the graph reveal why dependencies exist and consequently why unfairness may occur.
+However, when establishing causal discrimination, the specific paths through which gender affects admission must be carefully examined.
+Some causal relationships may be considered admissible - for instance, if gender influences department choice which affects admission.
+Others may be deemed inadmissible and indicate unfairness - such as if gender influences hobbies which then affect admission chances.
+Importantly, there is no algorithmic solution for determining which causal paths are acceptable.
+These decisions require cultural, social, and ethical considerations that only human judgment can properly evaluate.
+Therefore, while causal models provide powerful tools for analyzing fairness, human oversight remains essential for determining which causal relationships are ethically admissible.
 ---
 Causal models offer a more nuanced and actionable approach to achieving fairness in ADM systems.
 
@@ -142,14 +147,28 @@ Humans explain phenomena constrastively, e.g. why this and not that.
 
 Considering a causal model of explanation, an ADM system is transparent if it's possible to trace the logical steps that were
 made in order to reach a decision.
-Non-machine learning AI systems like IBM's Deep Blue exemplify this approach, 
-where each move is determined by explicit rules and game-tree search algorithms. 
-The system's decisions can be audited by examining the specific rules triggered, positions evaluated, 
-and paths explored in the game tree. 
-This deterministic nature means that given the same input state, the system will always produce identical outputs 
-through the same logical pathway. 
-Such transparency enables complete verification of the system's reasoning process, 
-as each decision point can be mapped to specific programmed rules and evaluation criteria.
+The traditional AI architecture uses machine learning in the form of neural networks,
+computational models that mimic the human brain.
+Modern systems like ChatGPT contain over 90 million connections
+encoded as binary data rather than human-readable source code,
+making it impossible to comprehend the flow of information or articulate the reasoning behind decisions.
+However, non-machine learning AI systems offer greater transparency through explicit causal mechanisms.
+IBM's Deep Blue chess engine exemplifies this approach.
+The system utilized a minimax algorithm encoded in plain text source code,
+allowing each move to be traced step-by-step through its decision tree.
+This deterministic nature ensures that given the same input state, the system will always produce identical outputs
+through the same logical pathway.
+Such transparency enables verification of the system's reasoning process,
+as each decision point maps to specific programmed rules and evaluation criteria.
+The high degree of transparency was evident when Kasparov
+exploited his understanding of the algorithm by prolonging games to induce confusion.
+However, even with such explicit causal mechanisms, full transparency remains elusive.
+While humans can trace the logical steps, understanding why certain rules or evaluation criteria were chosen
+requires deeper knowledge of chess strategy and computational limitations.
+For instance, Deep Blue's evaluation function assigned specific numerical values to chess pieces and positions,
+but these values required human expertise to determine and validate.
+Therefore, while causal systems offer clearer decision traces than their statistical counterparts,
+human domain knowledge remains essential for truly understanding and validating the reasoning behind the system's design choices.
 ---
 
 A universal view of accountability is if an ADM system can assign responsibility to a decision.

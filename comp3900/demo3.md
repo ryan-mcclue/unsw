@@ -4,6 +4,9 @@ TODO:
  - Plan for the Team work and Collaboration assessment (to be presented in W9)
  - sprint3 mainly of software quality?
 
+TODO(demo address):
+ - give examples of what precision/accuracy mean in context of project  
+
 Software Quality:
   - must be dockerised
   - clean interface

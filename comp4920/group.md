@@ -10,6 +10,23 @@ and Western European countries (England, Germany, France etc.)
 
 
 
+fairness:
+  VSD:
+  - Equitable access to device
+  Real World
+  - Economic barriers to device
+  - Biases in AI results
+transparency:
+  VSD:
+  - Access to AI internals
+  - Awareness of device limitations
+  - Storage of personal data
+  Real World
+  - Explainability of results 
+  - Device obsolence
+
+
+
 
 TODO:
   - fairness economic

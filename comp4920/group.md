@@ -1,5 +1,16 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+purpose
+(https://alivecor.com/mission)
+
+https://www.ndis.gov.au/understanding/what-ndis
+
+primarily used in the USA, but also to Canada 
+and Western European countries (England, Germany, France etc.)
+
+
+
+
 TODO:
   - fairness economic
   Purchasing just the device ($129), users recieve access to a limited version of the AI. 

@@ -1,5 +1,7 @@
 <!-- SPDX-License-Identifier: zlib-acknowledgement -->
 
+TODO: LLaMA 2-70B Meta AI, 10TB training, 70Billion parameters
+
 Readings Lecture 2 Week 4
 
 causal explanation:

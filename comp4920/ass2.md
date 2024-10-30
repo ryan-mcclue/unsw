@@ -105,7 +105,6 @@ TODO: all explicit reference, e.g. as Wang says exploring recidivism ""
 TODO: link sentence: therefore statistical explanation of fairness shows that humans required ...
 
 
-
 A causal model of explanation considers fairness to be if a decision
 applies equally across different demographics.
 Beyond just identifying a correlation as a statistical model enables,

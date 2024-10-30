@@ -4,6 +4,28 @@ TODO: LLaMA 2-70B Meta AI, 10TB training, 70Billion parameters
 
 Readings Lecture 2 Week 4
 
+
+Sequoiah-Grayson (2022)
+(Bickel et al., 1975)
+(Malinas and Bigelow, 2016)
+Dressel and Farid (2018)
+Wang et al. (2023)
+(Lewis, 1986) 
+(Chouldechova, 2017)
+(Week 7 Lecture, pg. 10)
+(Ribeiro, Singh, & Guestrin, 2016)
+Kearns and Star (2008),
+(OpenAI, 2023)
+(Campbell, Hoane, & Hsu, 2002) 
+(Galhotra et al., 2021).
+Barocas et al. (2020)
+Brunero (2013)
+
+
+Lecture Slides Week 7 - Transparency, XAI, Interpretability, University of NSW, 2024.
+
+
+
 causal explanation:
   - explains event by identifying cause that directly brought about event
     * Increasing an applicant's credit score from 650 to 700 causes a 15% increase in the probability of loan approval

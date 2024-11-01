@@ -45,24 +45,29 @@ begin
          Run <= '1';
          -- DIN, IR octal
          -- BusWires hex
-         DIN <= 8#100#;
+         -- 8x100 = 64
+         DIN <= "001000000"; 
        -- IMPORTANT: may have to do before clock edge
        wait for ClockPeriod;
-         DIN <= 8#005#; 
-         Run <= '0';
-       wait for ClockPeriod;
-         Run <= '1'
-         DIN <= 8#010#; 
-       wait for ClockPeriod;
+         -- 8x005 = 5
+         DIN <= "000000101"; 
          Run <= '0';
        wait for ClockPeriod;
          Run <= '1';
-         DIN <= 8#201#; 
+         -- 8x010 = 
+         DIN <= "000001000"; 
+       wait for ClockPeriod;
+         Run <= '0';
+       wait for ClockPeriod;
+         Run <= '1'; 
+         -- 8x201 = 
+         DIN <= "010000001"; 
        wait for ClockPeriod;
          Run <= '0';
        wait for (3 * ClockPeriod);
          Run <= '1';
-         DIN <= 8#300#; 
+         -- 8x300 = 
+         DIN <= "011000000"; 
        wait for ClockPeriod;
          Run <= '0';
        wait;

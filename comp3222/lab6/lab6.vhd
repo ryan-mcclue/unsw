@@ -34,7 +34,7 @@ ARCHITECTURE Mixed OF l6p1sim IS
     SIGNAL Tstep_Q, Tstep_D: State_type;
     
     SIGNAL Hi: STD_LOGIC;
-    SIGNAL R0, R1, R2, R3, R4, R5, R6, R7, IR, GR, AR, DIN: STD_LOGIC_VECTOR(8 DOWNTO 0);
+    SIGNAL R0, R1, R2, R3, R4, R5, R6, R7, IR, GR, AR: STD_LOGIC_VECTOR(8 DOWNTO 0);
     
     SIGNAL GeneralPurposeIns: STD_LOGIC_VECTOR(0 TO 7);
     SIGNAL IRin, ARin, GRin: STD_LOGIC;
@@ -110,36 +110,36 @@ BEGIN
                      -- as only 1 step, define here
                      Done <= '1';
                    WHEN MVI =>
-                     DinOut <= '1'; -- Din should be in at this point
+                     DINOut <= '1'; -- Din should be in at this point
                      GeneralPurposeIns <= Xreg;
                      Done <= '1';
                    WHEN ADD => 
                      GeneralPurposeOuts <= Xreg;
-                     Ain <= '1';
+                     ARin <= '1';
                    WHEN SUB =>
                      GeneralPurposeOuts <= Xreg;
-                     Ain <= '1';
+                     ARin <= '1';
                    WHEN OTHERS =>
                 END CASE;
             WHEN T2 =>
                CASE I IS
                   WHEN ADD =>
                      GeneralPurposeOuts <= Yreg; 
-                     Gin <= '1'; 
+                     GRin <= '1'; 
                   WHEN SUB =>
                      GeneralPurposeOuts <= Yreg; 
-                     Gin <= '1'; 
+                     GRin <= '1'; 
                      AddSub <= '1';
                   WHEN OTHERS =>
                 END CASE;
             WHEN T3 => 
               CASE I IS
                   WHEN ADD =>
-                     Gout <= '1'; 
+                     GRout <= '1'; 
                      GeneralPurposeIns <= Xreg; 
                      Done <= '1';
                   WHEN SUB =>
-                     Gout <= '1'; 
+                     GRout <= '1'; 
                      GeneralPurposeIns <= Xreg; 
                      Done <= '1';
                   WHEN OTHERS =>
@@ -167,15 +167,13 @@ BEGIN
     reg_7: regn PORT MAP (BusWires, GeneralPurposeIns(7), Clock, R7);
     reg_IR: regn PORT MAP (DIN, IRIn, Clock, IR);
     reg_A: regn PORT MAP (BusWires, ARIn, Clock, AR);
-    reg_G: regn PORT MAP (BusWires, GRIn, Clock, GR);
-    
     alu: WITH AddSub SELECT
          Sum <= AR + BusWires WHEN '0',
                 AR - BusWires WHEN OTHERS;
     reg_G: regn PORT MAP (Sum, GRIn, Clock, GR);
 
     -- define the bus
-    Sel <= GeneralPurposeOuts & GROut & DROut;
+    Sel <= GeneralPurposeOuts & GROut & DINOut;
     muxes: WITH Sel SELECT
         BusWires <= R0 WHEN "1000000000",
                     R1 WHEN "0100000000",
@@ -186,9 +184,8 @@ BEGIN
                     R6 WHEN "0000001000",
                     R7 WHEN "0000000100",
                     GR WHEN "0000000010",
-                    DIN WHEN OTHERS;
-    
-END PROCESS;
+                    DIN WHEN "0000000001",
+                    "000000000" WHEN OTHERS;
 
 END Mixed;
 
@@ -244,4 +241,3 @@ BEGIN
         END IF;
     END PROCESS;
 END Behavior;
-

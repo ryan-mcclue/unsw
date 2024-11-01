@@ -51,20 +51,22 @@ architecture Behavioral of l6p1brd is
           BusWires : BUFFER std_logic_vector(8 DOWNTO 0));
     END COMPONENT;
     
-    SIGNAL Clock, Reset, Resetn: STD_LOGIC;
+    SIGNAL Clock, Reset, Resetn, Run: STD_LOGIC;
     SIGNAL Done: STD_LOGIC;
-    SIGNAL BusWires: STD_LOGIC_VECTOR(8 DOWNTO 0);
+    SIGNAL DIN, BusWires: STD_LOGIC_VECTOR(8 DOWNTO 0);
+    
 
 begin
+    CleanBtnPressResetn: Debounce PORT MAP (clk, btnL, Reset);
     CleanBtnPressClock: Debounce PORT MAP (clk, btnR, Clock);
-    CleanBtnPressResetn: Debounce PORT MAP (clk, btnR, Reset);
     Resetn <= NOT Reset;
-    
-    p: Processor PORT MAP (DIN => sw(8 DOWNTO 0), Resetn => Resetn, Clock => Clock, Run => sw(15), Done => Done, BusWires => BusWires);
-    
+    Run <= sw(15);
+    DIN <= sw(8 DOWNTO 0);
     led(15) <= Done;
     led(8 DOWNTO 0) <= BusWires;
-
+    
+    p: Processor PORT MAP (DIN, Resetn, Clock, Run, Done, BusWires);
+    
 end Behavioral;
 
 LIBRARY ieee; 
@@ -337,4 +339,3 @@ BEGIN
         END IF;
     END PROCESS;
 END behavioural;
-

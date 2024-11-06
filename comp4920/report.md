@@ -114,7 +114,6 @@ literature or commercial systems that are already deployed. Discuss the possible
 techniques or approaches to deal with the potential risks and ethical concerns of the studied AI
 system. Well-justified usage and selection of the used data sources, figures, and/or references.
 
-
 TODO:
 explainability and transparency. what are the rules and regulations in nsw around ai and healthcare
 

@@ -3,7 +3,11 @@ https://www.coursehero.com/textbook-solutions/Fundamentals-of-Digital-Logic-with
 
 http://www.32x8.com/index.html
 https://www.dcode.fr/boolean-expressions-calculator
+https://www.exploringbinary.com/twos-complement-converter/
 
+
+- circuit to expression
+  start inside and work out
 
 - logic simplification
   1 + x = 1
@@ -69,6 +73,18 @@ https://www.dcode.fr/boolean-expressions-calculator
 
   IMPORTANT: the variables have values given at the instant of sensitivity list
 
-  clock skew: t = d / s; (sqrt(4 + 4)) / (0.3c) 
-
+- clock skew: t = d / s; (sqrt(4 + 4)) / (0.3c) 
   due to setup/hold times, don't want enable to be pressed near clock rise 
+- Setup Time (before clock)
+  Follow longest path that starts and ends at flip flop.
+  total prop. delay = max(q_delay) + gate_delays + setup_time
+  fmax = 1/prop. delay
+- Hold Time (after clock; how long input to propagate)
+  Follow longest path from flip-flop to input.
+  total prop. delay = min(q_delay) + gate_delays
+  IMPORTANT: when finding values, will just be > or < what formula gives
+
+- State Minimisation
+  First partition into state output values.
+  Then, based on input, see what next state is.
+  Partition if next state does not belong to same partition

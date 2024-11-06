@@ -30,6 +30,9 @@ begin
     end process clck;
 
     stimulus: process begin
+      
+      -- Test, 0000, 1111, 1000, 0001, 1010
+      -- TODO: What are some corner cases?
 	
        wait for 120 ns;    -- wait for global reset after device powers up
          Resetn <= '0';    -- assert active low reset 

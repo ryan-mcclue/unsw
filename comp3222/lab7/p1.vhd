@@ -66,7 +66,9 @@ BEGIN
         CASE y IS
             WHEN S1 =>
                 LB <= '1';
-                LA <= '1';
+                IF (s = '0') THEN
+                    LA <= '1';
+                END IF;
             WHEN S2 =>
                 EA <= '1' ;
                 IF A(0) = '1' THEN 

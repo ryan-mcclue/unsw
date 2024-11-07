@@ -1,3 +1,5 @@
+-- TODO: what is blk_mem_gen_0?
+
 -------------------------------------------------------------------------------
 --
 --  performs a binary search for the presence of a given value in a sorted ROM
@@ -6,6 +8,74 @@
 LIBRARY ieee ;
 USE ieee.std_logic_1164.all ;
 USE ieee.std_logic_unsigned.all ;
+
+bin(data)
+SIGNAL low, index : STD_LOGIC_VECTOR(4 DOWNTO 0);
+SIGNAL high : STD_LOGIC_VECTOR(4 DOWNTO 0) := "01111"; -- len(32) - 1
+
+-- TODO: why does example code have 'labels:' for processes? 
+
+-- index <= (low + (high - low)) // 2
+-- TODO: can use right_shift() function or have to use shift register?
+
+  
+states:
+  addr_calc:
+    if s = '1'
+      data_request
+  data_request:
+    data_inspect
+  data_inspect:
+    -- TODO: how to capture 3 chain if else in ASM conditional block?
+    -- TODO: how to show different outputs on state box
+    if dout == val or high < low:
+      done
+    else if dout > val:
+      update_high
+    else:
+      update_low
+  update_high:
+  update_low:
+    addr_calc;
+  done:
+     
+
+outputs:
+  addr_calc:
+    addr <= (low + (high - low)) >> 1
+    load_wide into shift
+    shift
+  data_request:
+    -- just want clock cycle for memory block latency
+  data_inspect:
+    -- just transitions
+  update_high:
+      high_enable <= '1' high <= addr - 1;
+      high <= addr - 1 WHEN high_enable ELSE high;
+  update_low:
+      -- TODO: clarify why can't do this (sensitivity list?)
+      low <= addr + 1;
+  done:
+    done <= '1';
+    if dout == val:
+      found <= '1';
+    elif high < low:
+      found <= '0';
+
+
+    high reg (high_enable, bus_wires);
+    low reg (low_enable_ bus_wires)
+
+    addr_sum <= (low + (high - low));
+    
+    addr shiftreg(addr_enable, addr_sum);
+    
+    next_high <= addr - 1;
+    next_low <= addr + 1;
+    muxes: WITH search_higher SELECT
+        bus_wires <= next_high WHEN "1",
+                    next_low WHEN OTHERS;
+
 
 ENTITY l7p2 IS
     PORT( Clock, Resetn : IN STD_LOGIC ;

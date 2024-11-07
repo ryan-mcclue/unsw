@@ -105,9 +105,12 @@ ARCHITECTURE Behavior OF l7p2 IS
     END COMPONENT;
 	
     -- any other components
+    SIGNAL low_reg: STD_LOGIC_VECTOR(4 DOWNTO 0);
+    SIGNAL high_reg: STD_LOGIC_VECTOR(4 DOWNTO 0) := "01111"; -- len(32) - 1
 	
-    TYPE State_type IS ( ); -- your states
+    TYPE State_type IS (Init, AddrCalc, MemoryRequest, DataInspect, Finish); -- your states
     SIGNAL y, y_next : State_type ;
+
 	
     SIGNAL address : STD_LOGIC_VECTOR(4 DOWNTO 0);
     SIGNAL data_out : STD_LOGIC_VECTOR(7 DOWNTO 0);
@@ -115,9 +118,79 @@ ARCHITECTURE Behavior OF l7p2 IS
     -- any other signals
 
 BEGIN
-
     -- your code
-	
+
+    -- specific reset values
+    index_reg0: regn PORT MAP (IndexBus, IndexEnables(0), Clock, low_reg);
+    index_reg1: regn PORT MAP (IndexBus, IndexEnables(1), Clock, high_reg);
+
+    -- wrap in PROCESS(y, IndexEnables) if init then state start value
+    muxes: WITH IndexEnables SELECT
+      IndexBus <= addra - 1 WHEN "10", -- high
+                  addra + 1 WHEN "01", -- low
+                  "000000000" WHEN OTHERS;
+
+    address: PROCESS(low_reg, high_reg)
+    BEGIN
+      addra <= (low_reg + (high_reg - low_reg)) >> 1;
+    END PROCESS;
+
+    -- IMPORTANT: use combinatorial blocks for circuit 
+    -- IMPORTANT: only enables with states    
+    statetable: PROCESS(y, s, I)
+    BEGIN
+        CASE y IS
+            WHEN Init =>
+                IF (s = '1') THEN
+                    y_next <= MemoryRequest; 
+                END IF; 
+            WHEN MemoryRequest =>
+              y_next <= DataCompare;
+            WHEN DataCompare =>
+              IF (data_out = Data)
+                y_next <= Finished;
+              ELSIF (high_reg > low_reg)
+                y_next <= Finished;  
+              ELSE
+                y_next <= MemoryRequest;
+              END IF;
+        END CASE;
+    END PROCESS;
+
+    controlsignals: PROCESS(y, I, Xreg, Yreg)
+    BEGIN
+       -- Clear all outputs
+       Done <= '0'; 
+       Found <= '0'; 
+       InputEnables <= (OTHERS => '0'); 
+
+       CASE y IS
+          WHEN Init =>
+          WHEN MemoryRequest =>
+          WHEN DataCompare =>
+             IF (data_out < Data)
+               InputEnables(INPUT_LOW) <= '1';
+             ELSIF (data_out > Data)
+               InputEnables(INPUT_HIGH) <= '1';
+             END IF;
+          WHEN Finished =>
+            Done <= '1';
+            IF (data_out = Data) THEN
+              Found <= '1';
+            END IF;
+       END CASE;
+    END PROCESS;
+
+
+    fsmflipflops: PROCESS(Clock, Resetn)
+    BEGIN
+      IF (Resetn = '0') THEN
+        y <= Init;
+      ELSIF (Clock'event AND Clock = '1') THEN
+        y <= y_next;
+      END IF;
+    END PROCESS;
+
     mem_blk: blk_mem_gen_0
         PORT MAP ( clka => Clock,
                    addra => address,

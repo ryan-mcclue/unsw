@@ -7,6 +7,10 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 
+-- TODO: have to right-click (set as top) on testbench file to not have undefined
+-- TODO: rename component name to l7p1 (i.e. remove sim ending) 
+-- TODO: add 's' to sensitivity list to FSM_outputs 
+
 entity testbench is
 end entity testbench;
 

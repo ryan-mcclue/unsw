@@ -12,7 +12,7 @@ USE ieee.std_logic_unsigned.all ;
 
 ENTITY l7p1 IS
     PORT( Clock, Resetn	: IN STD_LOGIC ;
-          LA, s	: IN STD_LOGIC ;
+          s	: IN STD_LOGIC ;
           Data : IN STD_LOGIC_VECTOR(7 DOWNTO 0) ;
           B : BUFFER STD_LOGIC_VECTOR(3 DOWNTO 0) ;
           Done : OUT STD_LOGIC ) ;
@@ -27,6 +27,7 @@ ARCHITECTURE Behavior OF l7p1 IS
     END COMPONENT ;
     TYPE State_type IS ( S1, S2, S3 ) ;
     SIGNAL y : State_type ;
+    SIGNAL LA: STD_LOGIC;
     SIGNAL A : STD_LOGIC_VECTOR(7 DOWNTO 0) ;
     SIGNAL z, EA, LB, EB, low : STD_LOGIC ;
 BEGIN
@@ -60,12 +61,12 @@ BEGIN
 
     FSM_outputs: PROCESS ( y, A(0) )
     BEGIN
-        EA <= '0' ; LB <= '0' ; EB <= '0' ; Done <= '0' ;
+        EA <= '0' ; LB <= '0' ; EB <= '0' ; Done <= '0' ; LA <= '0';
         -- LA <= '0';
         CASE y IS
             WHEN S1 =>
                 LB <= '1';
-                -- LA <= '1';
+                LA <= '1';
             WHEN S2 =>
                 EA <= '1' ;
                 IF A(0) = '1' THEN 

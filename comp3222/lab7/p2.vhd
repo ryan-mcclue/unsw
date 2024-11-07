@@ -1,4 +1,6 @@
 -- TODO: what is blk_mem_gen_0?
+-- TODO: difference between ASM sketch and annotated design?
+
 -------------------------------------------------------------------------------
 --
 --  performs a binary search for the presence of a given value in a sorted ROM
@@ -51,6 +53,8 @@ ARCHITECTURE Behavior OF l7p2 IS
     SIGNAL index_enables : STD_LOGIC_VECTOR(1 DOWNTO 0);
     SIGNAL index_resets : STD_LOGIC_VECTOR(1 DOWNTO 0);
 
+    SIGNAL address_shift : STD_LOGIC_VECTOR(4 DOWNTO 0);
+
 BEGIN
     -- your code
     lowreg: regne PORT MAP (index_bus, low_reg_reset, index_enables(0), index_resets(0), Clock, low_reg);
@@ -63,7 +67,9 @@ BEGIN
 
     addresscalc: PROCESS(low_reg, high_reg)
     BEGIN
-      address <= (low_reg + (high_reg - low_reg)) >> 1;
+      address_shift <= (low_reg + (high_reg - low_reg));
+      address <= '0' & address_shift(3 DOWNTO 0);
+      -- address <= (low_reg + (high_reg - low_reg)) >> 1;
     END PROCESS;
 
     -- IMPORTANT: use combinatorial blocks for circuit 

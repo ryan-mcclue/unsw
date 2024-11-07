@@ -26,7 +26,7 @@ states:
   data_request:
     data_inspect
   data_inspect:
-    -- TODO: how to capture 3 chain if else in ASM conditional block?
+    -- TODO: how to capture 3 chain if else in ASM conditional block? (chain conditional blocks)
     -- TODO: how to show different outputs on state box
     if dout == val or high < low:
       done
@@ -39,6 +39,8 @@ states:
     addr_calc;
   done:
      
+  reg(high_enable, addr + 1, addr - 1
+  reg
 
 outputs:
   addr_calc:
@@ -53,6 +55,7 @@ outputs:
       high_enable <= '1' high <= addr - 1;
       high <= addr - 1 WHEN high_enable ELSE high;
   update_low:
+      -- we will need a register if want value to persist across clock cycles
       -- TODO: clarify why can't do this (sensitivity list?)
       low <= addr + 1;
   done:

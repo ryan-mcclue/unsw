@@ -58,10 +58,13 @@ monitoring system for NDIS participants. Furthermore, it would
 integrate ECG sharing between NDIS support teams and healthcare providers.
 
 The primary motivation for our proposed adoption of KardiaMobile is 
-to tackle cardiovascular disease.  In 2023, this was among the 
-top five disease causing burden in Australia (). People with disabilities are at a higher
-risk for heart disease, with cardiac events occuring up to eight times
-more frequently within this population (). 
+to tackle cardiovascular disease.  In 2023, this was the leading cause
+of death in Australia (). 
+https://www.abs.gov.au/statistics/health/causes-death/causes-death-australia/2022
+
+People with disability have cardiovascular disease more often and earlier than the general
+population (). 
+https://www.ndiscommission.gov.au/sites/default/files/2022-06/Practice%20Alert%20-%20Cardiovascular%20disease%20in%20people%20who%20have%20a%20disability.pdf
 
 The main benefits of rolling out the KardiaMobile for NDIS participants are:
 Early detection of atrial fibrillation (AF), the most common type of heart arrhythmia, which can lower quality of life and increase the risk of stroke or heart failure. The KardiaMobile provides a non-invasive way to monitor heart health and detect potential issues.
@@ -123,7 +126,9 @@ usage in hospitals is an opportunity for being part of the training.
 
 TODO:
 jake - if its a device to be used at home, clarification of why is it 
-being deployed in a hospital (many NDIS participants with history of hospital visitations)
+being deployed in a hospital 
+
+(many NDIS participants with history of hospital visitations)
 
 
 
@@ -137,6 +142,14 @@ system. Well-justified usage and selection of the used data sources, figures, an
 TODO:
 explainability and transparency. 
 what are the rules and regulations in nsw around ai and healthcare
+
+This should follow along with the Explainability and Transparency guidelines
+mentioned in Australia's AI Ethics Principles.
+(https://www.industry.gov.au/publications/australias-artificial-intelligence-ethics-principles/australias-ai-ethics-principles)
+This means KardiaMobile must clearly disclose the AI's presence to users, 
+provide understandable explanations for their decisions, 
+and ensure this information is readily accessible, documented, and regularly reviewed.
+
 
 ## Recommendations
 Overall creative and critical thinking: Thinks out of the box, creates or extends to a novel

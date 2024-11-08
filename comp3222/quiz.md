@@ -41,7 +41,7 @@ https://www.exploringbinary.com/twos-complement-converter/
 - adder
   overflow bit ignored for end calculation
   however, detect if: carry in to msb != carry out
-                      carry int to msb XOR carry out
+                      carry in to msb XOR carry out
 
   carry = x XOR y XOR sum
   sum = x XOR y XOR carry
@@ -88,3 +88,7 @@ https://www.exploringbinary.com/twos-complement-converter/
   First partition into state output values.
   Then, based on input, see what next state is.
   Partition if next state does not belong to same partition
+
+- Circuit To State Table
+  Outputs of d-flip-flops are y
+  So next state might be Y1 = w(y1 + y2)

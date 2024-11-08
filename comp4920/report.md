@@ -143,7 +143,7 @@ TODO:
 explainability and transparency. 
 what are the rules and regulations in nsw around ai and healthcare
 
-This should follow along with the Explainability and Transparency guidelines
+KardiaMobile should follow along with the Explainability and Transparency guidelines
 mentioned in Australia's AI Ethics Principles.
 (https://www.industry.gov.au/publications/australias-artificial-intelligence-ethics-principles/australias-ai-ethics-principles)
 This means KardiaMobile must clearly disclose the AI's presence to users, 
@@ -180,6 +180,7 @@ The advice sets out a number of recommendations on:
 The Government is carefully considering each of the recommendations contained in the final advice and 
 will commence consultation on the design elements of a new model from October 2024.
 (https://www.dss.gov.au/disability-and-carers-standards-and-quality-assurance/ndis-provider-and-worker-registration-taskforce)
+h
 
 
 TODO:
@@ -197,6 +198,25 @@ kardiamobile considered medium risk
 https://www.tga.gov.au/resources/guidance/understanding-regulation-software-based-medical-devices#artificial-intelligence-chat-text-and-language
 
 
+
+
+
+
+References:
+Kardia. (n.d.). Portable Six-Lead Heart Monitor | KardiaMobile 6L.  [online] Available at: https://kardia.com/kardiamobile-6l. [Accessed 2 Nov. 2024]
+Alivecor. (n.d.). Mission. [online] Available at: https://alivecor.com/mission. [Accessed 2 Nov. 2024]
+National Disability Insurance Agency (2024). What is the NDIS?  [online] NDIS. Available at: https://www.ndis.gov.au/understanding/what-ndis. [Accessed 2 Nov. 2024]
+Australian Bureau of Statistics (2023). Causes of Death, Australia, 2022 | Australian Bureau of Statistics. [online] www.abs.gov.au. Available at: https://www.abs.gov.au/statistics/health/causes-death/causes-death-australia/2022. [Accessed 9 Nov. 2024]
+NDIS Commission. (2022). Available at: https://www.ndiscommission.gov.au/sites/default/files/2022-06/Practice%20Alert%20-%20Cardiovascular%20disease%20in%20people%20who%20have%20a%20disability.pdf. [Accessed 9 Nov. 2024]
+NDIS Review. (2023). References. [online] Available at: https://www.ndisreview.gov.au/node/170#_fn53. [Accessed 2 Nov. 2024]
+Apple Support. (n.d.). Your Apple Watch. [online] Available at: https://support.apple.com/en-au/guide/watch/apd2054d0d5b/watchos. [Accessed 9 Nov. 2024]
+Ajmal, Boonya-Ananta, T., Rodriguez, A.J., Du Le, V.N. and Ramella-Roman, J.C. (2021). Monte Carlo analysis of optical heart rate sensors in commercial wearables: the effect of skin tone and obesity on the photoplethysmography (PPG) signal. Biomedical Optics Express, 12(12), p.7445. doi:https://doi.org/10.1364/boe.439893.
+NHS Transformation Directorate. (n.d.). Remote ECG monitoring and AI-assisted analysis to improve reporting times and accuracy. [online] Available at: https://transform.england.nhs.uk/key-tools-and-info/digital-playbooks/cardiology-digital-playbook/remote-ecg-monitoring-and-ai-assisted-analysis-to-improve-reporting-times-and-accuracy/.
+NHS Transformation Directorate. (n.d.). Artificial Intelligence: How to get it right. [online] Available at: https://transform.england.nhs.uk/ai-lab/explore-all-resources/understand-ai/artificial-intelligence-how-get-it-right/artificial-intelligence-how-to-get-it-right/.
+Department of Industry, Science and Resources (2024). Australia’s AI Ethics Principles. [online] Industry.gov.au. Available at: https://www.industry.gov.au/publications/australias-artificial-intelligence-ethics-principles/australias-ai-ethics-principles.
+National Institute on Deafness and other Communication Disorders (2021). Cochlear Implants. [online] NIDCD. Available at: https://www.nidcd.nih.gov/health/cochlear-implants.
+Friedner, M. (2023). From Obsolescence to Abandonment: Exploring the Precarious Use of Cochlear Implants in India. Science, Technology, & Human Values, 0(0). https://doi.org/10.1177/01622439231211099 
+Therapeutic Goods Administration (2024). Understanding regulation of software-based medical devices. [online] Therapeutic Goods Administration (TGA). Available at: https://www.tga.gov.au/resources/guidance/understanding-regulation-software-based-medical-devices#artificial-intelligence-chat-text-and-language [Accessed 8 Nov. 2024].
 
 
 

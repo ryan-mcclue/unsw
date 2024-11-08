@@ -95,7 +95,12 @@ Margaret "Marg" Brown is a 68-year-old retired caretaker from Ryde who looks aft
 Following a car accident that left Frank with a fractured sternum and possible heart trauma, they need a home-based monitoring solution that's easy to use given their low dexterity and limited familiarity with smartphones.
 
 Healthcare Industry Stakeholders:
-John Edward Smith is a 42-year-old NDIS Support Coordinator based in Western Sydney. She manages a caseload of 45 participants, many with complex health needs requiring regular cardiac monitoring. Sarah is responsible for ensuring that funding requests for assistive technology are both clinically appropriate and cost-effective. She's particularly concerned about the "twin pricing" issue mentioned in NDIS reviews, where participants might be charged above retail prices. Her priorities include finding sustainable, long-term health monitoring solutions that provide value for participants' funding packages while ensuring they maintain choice and control over their healthcare decisions.
+John is a 42-year-old NDIS Support Coordinator based in Western Sydney. 
+John manages a caseload of 45 participants, many with complex health needs 
+requiring regular cardiac monitoring. 
+John is responsible for ensuring that funding requests for assistive technology 
+are both clinically appropriate and cost-effective. 
+His priorities include finding sustainable, long-term health monitoring solutions that provide value for participants' funding packages while ensuring they maintain choice and control over their healthcare decisions.
 
 Dr. Joanne Chia, 51, serves as the Director of Cardiology at Prince of Wales Hospital and must ensure the accuracy and efficiency of cardiac monitoring solutions. Suresh Akash, 40, is an investment director at CardieX limited who needs detailed performance data to make investment decisions.
 

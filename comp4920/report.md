@@ -217,6 +217,8 @@ Department of Industry, Science and Resources (2024). Australia’s AI Ethics Pr
 National Institute on Deafness and other Communication Disorders (2021). Cochlear Implants. [online] NIDCD. Available at: https://www.nidcd.nih.gov/health/cochlear-implants.
 Friedner, M. (2023). From Obsolescence to Abandonment: Exploring the Precarious Use of Cochlear Implants in India. Science, Technology, & Human Values, 0(0). https://doi.org/10.1177/01622439231211099 
 Therapeutic Goods Administration (2024). Understanding regulation of software-based medical devices. [online] Therapeutic Goods Administration (TGA). Available at: https://www.tga.gov.au/resources/guidance/understanding-regulation-software-based-medical-devices#artificial-intelligence-chat-text-and-language [Accessed 8 Nov. 2024].
+www.dss.gov.au. (n.d.). NDIS Provider and Worker Registration Taskforce | Department of Social Services, Australian Government. [online] Available at: https://www.dss.gov.au/disability-and-carers-standards-and-quality-assurance/ndis-provider-and-worker-registration-taskforce.
+azure.microsoft.com. (n.d.). Azure Health Data Services - FHIR, DICOM & MedTech | Microsoft Azure. [online] Available at: https://azure.microsoft.com/en-au/products/health-data-services.
 
 
 

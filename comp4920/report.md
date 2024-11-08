@@ -58,8 +58,8 @@ monitoring system for NDIS participants. Furthermore, it would
 integrate ECG sharing between NDIS support teams and healthcare providers.
 
 The primary motivation for our proposed adoption of KardiaMobile is 
-to tackle cardiovascular disease.  In 2023, this was the leading cause
-of death in Australia (). 
+to tackle cardiovascular disease.  
+In 2023, this was the leading cause of death in Australia (). 
 https://www.abs.gov.au/statistics/health/causes-death/causes-death-australia/2022
 
 People with disability have cardiovascular disease more often and earlier than the general
@@ -171,12 +171,14 @@ what does ndis expect of us.
 
 NDIS Provider and Worker Registration Taskforce
 The NDIS Provider and Worker Registration Taskforce (the Taskforce) was established to provide advice on the design and implementation of the new graduated risk-proportionate regulatory model proposed in Recommendation 17 of the NDIS Review Final Report(link is external) (NDIS Review) in consultation with the disability community.
-Following an extensive period of consultation with the disability community, the Taskforce advice was provided to the Minister and released on 2 August 2024.
+Following an extensive period of consultation with the disability community, 
+the Taskforce advice was provided to the Minister and released on 2 August 2024.
 The advice sets out a number of recommendations on:
     The design and implementation of the graduated risk-proportionate regulatory model;
     A Provider Risk Framework; and
     Arrangements for platform providers and circumstances where participants directly employ their workers.
-The Government is carefully considering each of the recommendations contained in the final advice and will commence consultation on the design elements of a new model from October 2024.
+The Government is carefully considering each of the recommendations contained in the final advice and 
+will commence consultation on the design elements of a new model from October 2024.
 (https://www.dss.gov.au/disability-and-carers-standards-and-quality-assurance/ndis-provider-and-worker-registration-taskforce)
 
 

@@ -89,6 +89,9 @@ https://www.exploringbinary.com/twos-complement-converter/
   Then, based on input, see what next state is.
   Partition if next state does not belong to same partition
 
+- Next State Expression
+  Derive Karnaugh map from state and input to next state bit
+
 - Circuit To State Table
   Outputs of d-flip-flops are y
   So next state might be Y1 = w(y1 + y2)

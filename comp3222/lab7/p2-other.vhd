@@ -45,7 +45,6 @@ ARCHITECTURE Behavior OF l7p2 IS
 
     SIGNAL index_bus : STD_LOGIC_VECTOR(4 DOWNTO 0);
     SIGNAL index_enables : STD_LOGIC_VECTOR(1 DOWNTO 0);
-    SIGNAL index_resets : STD_LOGIC_VECTOR(1 DOWNTO 0);
 
     SIGNAL address_shift : STD_LOGIC_VECTOR(4 DOWNTO 0);
     
@@ -57,7 +56,8 @@ BEGIN
     lowreg: regne PORT MAP (index_bus, index_enables(0), low, Clock, low_reg);
     highreg: regne PORT MAP (index_bus, index_enables(1), low, Clock, high_reg);
     
-    addresscalc: PROCESS(low_reg, high_reg)
+    -- TODO(Ryan): Seems need to add y?
+    addresscalc: PROCESS(y, low_reg, high_reg)
     BEGIN
       address_shift <= (high_reg + low_reg);
       
@@ -71,8 +71,8 @@ BEGIN
     
     muxes: WITH index_enables & init SELECT
       index_bus <= 
-                  "11111" WHEN "101", -- high, init
-                  "00000" WHEN "011", -- low, init
+                  "11111" WHEN "101", -- high, init (set to 31)
+                  "00000" WHEN "011", -- low, init (set to 0)
                   address - 1 WHEN "100", -- high
                   address + 1 WHEN "010", -- low
                   "00000" WHEN OTHERS;
@@ -94,7 +94,7 @@ BEGIN
             WHEN MemoryRequest =>
               y_next <= DataInspect;
             WHEN DataInspect =>
-              IF (data_out = Data OR high_reg > low_reg) THEN
+              IF (data_out = Data OR low_reg > high_reg) THEN
                 y_next <= Finish;
               ELSE
                 y_next <= MemoryRequest;
@@ -124,9 +124,9 @@ BEGIN
           WHEN MemoryRequest =>
           WHEN DataInspect =>
              IF (data_out < Data) THEN
-               index_enables(0) <= '1';
+               index_enables(0) <= '1'; -- change low to addr + 1
              ELSIF (data_out > Data) THEN
-               index_enables(1) <= '1';
+               index_enables(1) <= '1'; -- change high to addr - 1
              END IF;
           WHEN Finish =>
             Done <= '1';

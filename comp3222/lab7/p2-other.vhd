@@ -61,14 +61,15 @@ BEGIN
     highreg: regne PORT MAP (index_bus, index_enables(1), low, Clock, high_reg);
     
     -- TODO(Ryan): Seems need to add y?
-    addresscalc: PROCESS(y, low_reg, high_reg)
+    addresscalc: PROCESS(low_reg, high_reg)
     BEGIN
       address_shift <= (high_reg + low_reg);
       
-      address <= "0" & address_shift(3 DOWNTO 0);
+      address <= "0" & address_shift(4 DOWNTO 1);
+      --address <= address_shift;
 
       Addr <= address;
-      -- address <= (low_reg + (high_reg - low_reg)) >> 1;
+      -- address <= (high_reg + low_reg)) >> 1;
     END PROCESS;
 	
     mem_blk: blk_mem_gen_0 PORT MAP (clka => Clock, addra => address, douta => data_out);
@@ -98,7 +99,7 @@ BEGIN
             WHEN MemoryRequest =>
               y_next <= DataInspect;
             WHEN DataInspect =>
-              IF (data_out = Data OR low_reg > high_reg) THEN
+              IF (data_out = Data OR low_reg >= high_reg) THEN
                 y_next <= Finish;
               ELSE
                 y_next <= MemoryRequest;
@@ -110,7 +111,7 @@ BEGIN
         END CASE;
     END PROCESS;
 
-    controlsignals: PROCESS(y, data_out, Data)
+    controlsignals: PROCESS(y, data_out, Data, high_reg)
     BEGIN
        -- Clear all outputs
        Done <= '0'; 
@@ -178,4 +179,3 @@ BEGIN
         END IF ;
     END PROCESS ;
 END Behavior ;
-

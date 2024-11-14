@@ -34,56 +34,49 @@ ARCHITECTURE Behavior OF l7p2 IS
     -- any other components
 	
     -- any other signals
-    SIGNAL low_reg: STD_LOGIC_VECTOR(4 DOWNTO 0);
-    SIGNAL high_reg: STD_LOGIC_VECTOR(4 DOWNTO 0);
-
-	
     TYPE State_type IS (InitLow, InitHigh, MemoryRequest, DataStore, DataInspect, Finish); -- your states
     SIGNAL y, y_next : State_type ;
 	
-    SIGNAL address : STD_LOGIC_VECTOR(4 DOWNTO 0);
+    SIGNAL address : STD_LOGIC_VECTOR(5 DOWNTO 0);
     SIGNAL data_out : STD_LOGIC_VECTOR(7 DOWNTO 0);
 
     SIGNAL data_reg: STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL data_enable: STD_LOGIC;
 
-    SIGNAL buss : STD_LOGIC_VECTOR(4 DOWNTO 0);
+    SIGNAL buss : STD_LOGIC_VECTOR(5 DOWNTO 0);
     SIGNAL enables : STD_LOGIC_VECTOR(1 DOWNTO 0);
 
-    SIGNAL address_shift : STD_LOGIC_VECTOR(4 DOWNTO 0);
+    SIGNAL low_reg: STD_LOGIC_VECTOR(5 DOWNTO 0);
+    SIGNAL high_reg: STD_LOGIC_VECTOR(5 DOWNTO 0);
+    SIGNAL address_shift : STD_LOGIC_VECTOR(5 DOWNTO 0);
     
     SIGNAL init: STD_LOGIC;
     SIGNAL low: STD_LOGIC;
 BEGIN
     low <= '1';
     -- your code
-    lowreg: regne PORT MAP (buss, enables(0), low, Clock, low_reg);
-    highreg: regne PORT MAP (buss, enables(1), low, Clock, high_reg);
-    datareg: regne PORT MAP (data_out, data_enable, low, Clock, data_reg);
+    lowreg: regne GENERIC MAP (n => 6) PORT MAP (buss, enables(0), low, Clock, low_reg);
+    highreg: regne GENERIC MAP (n => 6) PORT MAP (buss, enables(1), low, Clock, high_reg);
+    datareg: regne GENERIC MAP (n => 8) PORT MAP (data_out, data_enable, low, Clock, data_reg);
     
-    addresscalc: PROCESS(low_reg, high_reg)
+    addresscalc: PROCESS(low_reg, high_reg, address_shift)
     BEGIN
-      -- address <= (high_reg + low_reg)) >> 1;
+      -- do calculation in 6bits to account for overflow in 5bits, e.g. when high + low >= 32 >= 2^5
       address_shift <= (high_reg + low_reg);
-      address <= "0" & address_shift(4 DOWNTO 1);
+      address <= "0" & address_shift(5 DOWNTO 1);
 
-      Addr <= address;
+      Addr <= address(4 DOWNTO 0);
     END PROCESS;
 	
-    mem_blk: blk_mem_gen_0 PORT MAP (clka => Clock, addra => address, douta => data_out);
+    mem_blk: blk_mem_gen_0 PORT MAP (clka => Clock, addra => address(4 DOWNTO 0), douta => data_out);
     
     muxes: WITH enables & init SELECT
-      buss <= "11111" WHEN "101", -- high, init (set to 31)
-              "00000" WHEN "011", -- low, init (set to 0)
-              address WHEN "100", -- high IMPORTANT: don't do subtraction for edge case overflow
+      buss <= "011111" WHEN "101", -- high, init (set to 31)
+              "000000" WHEN "011", -- low, init (set to 0)
+              address - 1 WHEN "100", -- high
               address + 1 WHEN "010", -- low,
-              "00000" WHEN OTHERS;
+              "000000" WHEN OTHERS;
                   
-    -- IMPORTANT: use combinatorial blocks for circuit 
-    -- IMPORTANT: only enables with states
-    -- TODO: is the general rule of if equating then put in sensitivity?
-    -- is there really any logic issues that could arise if just go whole hog and put everything in unecessarily?
-    -- TODO: what if put an input in this list like Data that is static?
     statetable: PROCESS(y, s, data_reg, high_reg, low_reg, Data)
     BEGIN
         CASE y IS
@@ -96,9 +89,10 @@ BEGIN
             WHEN MemoryRequest =>
               y_next <= DataStore;
             WHEN DataStore =>
+              -- store in register to account for any weird IP memory block changes
               y_next <= DataInspect;
             WHEN DataInspect =>
-              IF (data_reg = Data OR low_reg = high_reg) THEN
+              IF (data_reg = Data OR low_reg >= high_reg) THEN
                 y_next <= Finish;
               ELSE
                 y_next <= MemoryRequest;
@@ -133,7 +127,7 @@ BEGIN
              IF (data_reg < Data) THEN
                enables(0) <= '1'; -- change low to addr + 1
              ELSIF (data_reg > Data) THEN
-               enables(1) <= '1'; -- change high to addr
+               enables(1) <= '1'; -- change high to addr - 1
              END IF;
           WHEN Finish =>
             Done <= '1';

@@ -9,10 +9,10 @@ while not done:
   if search == data:
     done = True;
     found = True;
-  else if low == high:
+  else if low >= high:
     done = True;
     found = False;
   else if search < data:
     low = address + 1
   else:
-    high = address
+    high = address - 1

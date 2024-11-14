@@ -51,6 +51,10 @@ ARCHITECTURE Behavior OF l7p2 IS
     SIGNAL init: STD_LOGIC;
     SIGNAL low: STD_LOGIC;
 BEGIN
+    -- TODO: what is a hardware handshake in this code?
+    -- TODO: distinction between ASM charts?
+    -- TODO: difference betwee behavioural and structural?
+
     low <= '1';
     -- your code
     lowreg: regne PORT MAP (index_bus, index_enables(0), low, Clock, low_reg);

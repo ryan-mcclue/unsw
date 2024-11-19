@@ -6,6 +6,10 @@ https://www.dcode.fr/boolean-expressions-calculator
 https://www.exploringbinary.com/twos-complement-converter/
 
 
+
+main focus on prac is code (simulation and board testing minimal)
+
+
 - circuit to expression
   start inside and work out
 

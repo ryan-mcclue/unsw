@@ -9,6 +9,11 @@ https://www.exploringbinary.com/twos-complement-converter/
 
 main focus on prac is code (simulation and board testing minimal)
 
+- when drawing a circuit, an IF would be a mux
+  e.g. if two bits, than 4-to-1 mux etc.
+  if nested ifs, then nested muxes, etc.
+and storage a D-flip flop
+
 
 - circuit to expression
   start inside and work out

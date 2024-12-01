@@ -6,19 +6,14 @@ https://www.dcode.fr/boolean-expressions-calculator
 https://www.exploringbinary.com/twos-complement-converter/
 
 
+**Drawing**
+IF is a mux, e.g. two bits a 4-to-1 mux etc. Nested ifs, then chained muxes.
+If a process block with a clk and reset, then a D-flip-flop
 
-main focus on prac is code (simulation and board testing minimal)
+Converting circuit to expression, start inside and work out
 
-- when drawing a circuit, an IF would be a mux
-  e.g. if two bits, than 4-to-1 mux etc.
-  if nested ifs, then nested muxes, etc.
-and storage a D-flip flop
-
-
-- circuit to expression
-  start inside and work out
-
-- logic simplification
+**Logic Simplification**
+```
   1 + x = 1
   zz' = 0
   z + z' = 1
@@ -26,43 +21,44 @@ and storage a D-flip flop
   xy + xy' = x
   (x + y)' = x'y'
   gain term: xz = x(y + y')z
-
-- canonical POS, SOP
+```
+**Canonical POS, SOP**
+```
   x = 0, y = 1, z = 0
   SOP: (x'yz')
   POS: (x + y' + z)
-
-- karnaugh map
-  prime implicants can be of different sizes (group where inputs asserted)
-  f(x, y, z) = m(1, 2, 3)
-               001,010,011
-- circuit cost
+```
+**Karnaugh Map**
+  Prime implicants can be of different sizes (group where inputs asserted)
+  f(x, y, z) = m(1, 2, 3), 001,010,011
+ 
+**Circuit Cost**
   num_inputs + num_gates
 
-- nand/nor circuit conversions
+**Nand/Nor Circuit Conversions**
   single bubble for matching output component, or 2 input bubbles for opposite component
   balance bubbles even on input and output
   single inversion becomes 2-input component
 
-- twos complement 
+**Twos Complement**
+  first digit is negative, remaining positive
   (5 + (-2)) ignore carry outs
 
-- adder
-  overflow bit ignored for end calculation
-  however, detect if: carry in to msb != carry out
+**Adder**
+  detect overflow if: carry in to msb != carry out
                       carry in to msb XOR carry out
 
   carry = x XOR y XOR sum
   sum = x XOR y XOR carry
 
-- shannon's expansion theorem
-  `a'b'(0, 0, c + a'b(0, 1, c) + ab'(1, 0, c) + ab(1, 1, c)`
+**Shannon's Expansion Theorem**
+  `a'b'(0, 0, c) + a'b(0, 1, c) + ab'(1, 0, c) + ab(1, 1, c)`
 
-- boolean functions with decoders
+**Boolean Functions With Decoders**
   the output pins are minterm numbers, so OR relevent outputs as SOP
   Add x(y + y')z to get into minterms
 
-- combinational logic
+**Combinational Logic**
   A LUT is a series of multiplexors.
   A 2 input LUT has 2^2=4 memory cells.
   So, a 2LUT is a 4-1 mux.
@@ -76,31 +72,49 @@ and storage a D-flip flop
 
   invertor period is 2 * delay as have to go through circuit twice to get back to start.
 
-- flip-flops
+**Flip-Flops**
   if 4bit counter, 4 d-flip-flops etc.
   if contain conditional logic, would have a mux.
 
   IMPORTANT: the variables have values given at the instant of sensitivity list
 
-- clock skew: t = d / s; (sqrt(4 + 4)) / (0.3c) 
+**Clock Skew**: `t = d / s; (sqrt(4 + 4)) / (0.3c)`
   due to setup/hold times, don't want enable to be pressed near clock rise 
-- Setup Time (before clock)
+  
+**Setup Time (before clock)**
   Follow longest path that starts and ends at flip flop.
-  total prop. delay = max(q_delay) + gate_delays + setup_time
-  fmax = 1/prop. delay
-- Hold Time (after clock; how long input to propagate)
+  `total prop. delay = max(q_delay) + gate_delays + setup_time`
+ `fmax = 1/prop. delay`
+  
+**Hold Time (after clock; how long input to propagate)**
   Follow longest path from flip-flop to input.
-  total prop. delay = min(q_delay) + gate_delays
+  `total prop. delay = min(q_delay) + gate_delays`
   IMPORTANT: when finding values, will just be > or < what formula gives
-
-- State Minimisation
+  
+**State Minimisation**
   First partition into state output values.
   Then, based on input, see what next state is.
   Partition if next state does not belong to same partition
 
-- Next State Expression
-  Derive Karnaugh map from state and input to next state bit
+**State Table**
+(if single implicant, i.e. cannot group into 2s, either/or not in affect for exclusion)
+(y0,y1,y2,w) -> y0_next
+| state | next_state (w=0 \| w=1) | output |
+|-------|-------------------------|--------|
+| A     | B \| F                  | 0      |
+| B     | C \| F                  | 0      |
+| C     | D \| F                  | 0      |
+| D     | E \| F                  | 0      |
+| E     | E \| F                  | 1      |
+| F     | B \| G                  | 0      |
+| G     | B \| H                  | 0      |
+| H     | B \| I                  | 0      |
+| I     | B \| I                  | 1      |
 
-- Circuit To State Table
+  
+**Next State Expression**
+  Derive Karnaugh map from state and input to next state bit
+  
+**Circuit To State Table**
   Outputs of d-flip-flops are y
   So next state might be Y1 = w(y1 + y2)

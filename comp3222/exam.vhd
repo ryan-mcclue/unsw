@@ -203,5 +203,3 @@ BEGIN
   address_shift <= (high_reg + low_reg);
   address <= "0" & address_shift(5 DOWNTO 1);
 END PROCESS;
-
-

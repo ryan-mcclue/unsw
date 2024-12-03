@@ -83,13 +83,13 @@ Converting circuit to expression, start inside and work out
   
 **Setup Time (before clock)**
   Follow longest path that starts and ends at flip flop.
-  `total prop. delay = max(q_delay) + gate_delays + setup_time`
- `fmax = 1/prop. delay`
+  `total delay = max(q_delay/prop. delay) + gate_delays + setup_time`
+ `fmax = 1/total delay`
   
 **Hold Time (after clock; how long input to propagate)**
   Follow longest path from flip-flop to input.
-  `total prop. delay = min(q_delay) + gate_delays`
-  IMPORTANT: when finding values, will just be > or < what formula gives
+  `total prop. delay = min(q_delay/prop. delay) + gate_delays`
+  IMPORTANT: must be > hold time to be valid 
   
 **State Minimisation**
   First partition into state output values.

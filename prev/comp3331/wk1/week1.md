@@ -10,10 +10,11 @@ Note that a signal is unicast or broadcast, however the action of the device mig
 IANA (Internet Assigned Numbers Authority) allocates blocks of IPs which ISPs will use.
 router networks designed to run as 'autonomous systems'.
 they use BGP (border gateway protocol) to exchange routing information
-BGP used by routers to decide what they should do with packet on their network
+BGP used by routers to decide what they should do with packet on their network (BGP is for external routing)
 e.g. should I go through path A or path B
 so, routers constantly sharing information with other directly connected routers via BGP 
 (perhaps updating hop length to a network)
+OSPF is interior routing, i.e. for within an ISP.
 
 IP addresses can be static or dynamic.
 (typically dynamic from ISP. static if want to be publically addressable)
